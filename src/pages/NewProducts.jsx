@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Home = () => {
+const NewProducts = () => {
     return (
         <div>
-            HomePage
+            Make a New Product
         </div>
     );
 };
 
-export default Home;
+export default NewProducts;

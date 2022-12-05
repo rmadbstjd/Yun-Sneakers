@@ -1,0 +1,43 @@
+.container {
+    display:flex;
+    justify-content: center;
+}
+.navbarContainer {
+    display:flex;
+    width: 70%;
+    justify-content: space-between;
+    
+}
+.navbarLeftContainer {
+    display : flex;
+    cursor: pointer;
+    line-height : 45px;
+}
+
+.navbarRightContainer {
+    display : flex;
+    cursor: pointer;
+    justify-content: space-around;
+    line-height : 45px;
+    
+}
+.products {
+    margin-right : 10px;
+}
+.cartImg {
+    margin-top : 5px;
+    margin-right : 10px;
+}
+.pencilImg {
+    margin-top : 10px;
+    margin-right : 10px;
+}
+.img {
+    width: 1350px;
+    height : 300px;
+    color : white;
+    text-align: center;
+    line-height : 300px;
+    font-size : 30px;
+    font-weight : bold;
+}
