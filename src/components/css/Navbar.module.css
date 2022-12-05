@@ -8,6 +8,9 @@
     justify-content: space-between;
     
 }
+.shopName {
+    background-color: red;
+}
 .navbarLeftContainer {
     display : flex;
     cursor: pointer;
@@ -20,6 +23,15 @@
     justify-content: space-around;
     line-height : 45px;
     
+}
+.userImg {
+    border : solid black 1px;
+    border-radius : 50%;
+    width : 30px;
+    height : 30px;
+    margin-top : 7px;
+    margin-right : 10px;
+    background-size: contain;
 }
 .products {
     margin-right : 10px;
@@ -40,4 +52,7 @@
     line-height : 300px;
     font-size : 30px;
     font-weight : bold;
+}
+.name {
+    margin-right : 5px;
 }

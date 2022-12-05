@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {AiOutlineShopping, AiOutlineShoppingCart} from 'react-icons/ai';
 import {BsFillPencilFill} from 'react-icons/bs';
 import styles from './css/Navbar.module.css';
@@ -8,11 +8,22 @@ import useStore from '../store';
 const Navbar = () => {
     const navigate = useNavigate();
     const {user,setUser} = useStore();
+    const [token, setToken] = useState('');
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+        console.log("실행됨???");
+        
+    },[token]);
     const handleLogin = () => {
-        login().then(user=>setUser(user.email));
+        login().then(user=>setUser(user));
+        
+        
     };
     const handleLogout = () => {
         logout().then(user => setUser(user));
+        localStorage.clear();
+        setToken('');
+        
     };
     return (
         <div>
@@ -26,7 +37,10 @@ const Navbar = () => {
                     <div onClick={() =>{navigate('/products')}} className={styles.products}>Products</div>
                     <AiOutlineShoppingCart  className={styles.cartImg} size={40} onClick={() =>{navigate('/cart')}}/>
                     <BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>
-                    {!user?<div onClick ={handleLogin}>Login</div>:<div onClick={handleLogout}>Logout</div>}
+                    {token?<div style={{backgroundImage:"url("+`${localStorage.getItem('img')}`+")"}} className={styles.userImg}></div>:null}
+                    {token?<div className={styles.name}>{localStorage.getItem('name')}</div>:null}
+                    {!token?<div onClick ={handleLogin}>Login</div>:<div onClick={handleLogout}>Logout</div>}
+                    
                </div>
                
                 </div>

@@ -21,6 +21,11 @@ export async function login() {
     .then((result) => {
       const user = result.user;
       console.log("유저", user);
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("name", user.displayName);
+      localStorage.setItem("token", user.acessToken);
+      localStorage.setItem("img", user.photoURL);
+      window.location.replace("/");
       return user;
     })
     .catch((error) => {
