@@ -27,7 +27,7 @@ export async function login() {
       localStorage.setItem("name", user.displayName);
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("img", user.photoURL);
-      window.location.replace("/");
+
       return user;
     })
     .catch((error) => {

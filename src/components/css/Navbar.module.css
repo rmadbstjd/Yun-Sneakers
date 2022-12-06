@@ -61,6 +61,18 @@
     height : 40px;
     
 }
+.button {
+    border  : solid black 0px;
+    padding: 0px 20px 0px 20px;
+    height : 80%;
+    margin-top : 5px;
+    cursor : pointer;
+    background-color: whitesmoke;
+}
+.button:hover {
+    
+    background-color: beige;
+}
 @media (max-width : 593px) {
     .navbarContainer {
         width: 100%;

@@ -6,6 +6,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Root from "./pages/Root";
 import NewProducts from "./pages/NewProducts";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   const router = createBrowserRouter([
