@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, child, get } from "firebase/database";
 import {
   getAuth,
   signInWithPopup,
@@ -11,8 +12,9 @@ const firebaseConfig = {
   databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
-const app = initializeApp(firebaseConfig);
 
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
@@ -23,7 +25,7 @@ export async function login() {
       console.log("유저", user);
       localStorage.setItem("email", user.email);
       localStorage.setItem("name", user.displayName);
-      localStorage.setItem("token", user.acessToken);
+      localStorage.setItem("token", user.accessToken);
       localStorage.setItem("img", user.photoURL);
       window.location.replace("/");
       return user;
@@ -33,10 +35,20 @@ export async function login() {
       // ...
     });
 }
-export async function logout() {
-  return signOut(auth)
-    .then(() => null) // logout을 하면 null을 리턴함.
-    .catch((error) => {
-      // An error happened.
-    });
+export function logout() {
+  signOut(auth).catch((error) => {
+    console.log(error);
+  });
+}
+export async function adminUser(user) {
+  return get(ref(database, "admins")).then((snapshot) => {
+    if (snapshot.exists()) {
+      const admins = snapshot.val();
+
+      const isAdmin = admins.includes(user);
+
+      return isAdmin;
+    } else {
+    }
+  });
 }

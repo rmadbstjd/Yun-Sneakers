@@ -9,7 +9,9 @@
     
 }
 .shopName {
-    background-color: red;
+    width : 80px;
+    height : 40px;
+   
 }
 .navbarLeftContainer {
     display : flex;
@@ -55,4 +57,17 @@
 }
 .name {
     margin-right : 5px;
+    width : 40px;
+    height : 40px;
+    
+}
+@media (max-width : 593px) {
+    .navbarContainer {
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+        
+        
+    }
+   
 }
