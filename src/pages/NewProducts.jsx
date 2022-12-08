@@ -22,6 +22,7 @@ const NewProducts = () => {
     const onSubmit = async(e) => {
         e.preventDefault();
         const url =await uploadImage(file);
+        console.log("유알엘",url);
         addProduct(product,url);
             
        
