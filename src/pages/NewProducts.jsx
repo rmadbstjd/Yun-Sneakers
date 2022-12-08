@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {useNavigate, Navigate} from 'react-router-dom';
+import { addProduct } from '../api/firebase';
 import { uploadImage } from '../api/upload';
 import styles from './css/NewProducts.module.css';
 const NewProducts = () => {
@@ -22,9 +23,12 @@ const NewProducts = () => {
     }
     const onSubmit = async(e) => {
         e.preventDefault();
-        uploadImage(file).then(url => {
-            console.log("url",url);
-        });
+        const url =await uploadImage(file);
+        console.log("url",url);
+        addProduct(title,price,description,category,size,url);
+
+            
+       
     };
     return (
         <div className={styles.container}>

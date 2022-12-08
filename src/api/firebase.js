@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { v4 as uuid } from "uuid";
+import { getDatabase, ref, set, get } from "firebase/database";
 import {
   getAuth,
   signInWithPopup,
@@ -50,5 +51,23 @@ export async function adminUser(user) {
       return isAdmin;
     } else {
     }
+  });
+}
+export async function addProduct(
+  title,
+  price,
+  description,
+  category,
+  size,
+  url
+) {
+  const id = uuid();
+  set(ref(database, `products/${id}`), {
+    id: id,
+    price: parseInt(price),
+    image: url,
+    description: description,
+    category: category,
+    size: size.split(","),
   });
 }
