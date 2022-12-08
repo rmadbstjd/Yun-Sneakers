@@ -1,0 +1,13 @@
+.img {
+    width: 1350px;
+    height : 300px;
+    color : white;
+    text-align: center;
+    line-height : 300px;
+    font-size : 30px;
+    font-weight : bold;
+}
+.container {
+    display:flex;
+    justify-content: center;
+}

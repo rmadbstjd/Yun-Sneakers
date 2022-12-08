@@ -21,7 +21,7 @@ const Navbar = () => {
         if(email) {
             localStorage.setItem("admin",(await adminUser(localStorage.getItem('email'))));
         };    
-        window.location.replace("/");
+        window.location.replace('/');
     };
     const handleLogout = () => {
         logout();
@@ -52,9 +52,7 @@ const Navbar = () => {
                 
                
             </div>
-            <div className={styles.container}>
-            <div style={{backgroundImage:"url(https://cdn.pixabay.com/photo/2017/09/09/11/52/t-shirts-2731768_960_720.jpg)"}}className={styles.img}>Shop With Us</div>
-            </div>
+
             
          </div>
     );
