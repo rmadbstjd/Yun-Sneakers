@@ -53,7 +53,7 @@ export async function adminUser(user) {
     }
   });
 }
-export async function addProduct(
+/*export async function addProduct(
   title,
   price,
   description,
@@ -69,5 +69,17 @@ export async function addProduct(
     description: description,
     category: category,
     size: size.split(","),
+  });
+}*/
+export async function addProduct(product, image) {
+  const id = uuid();
+  console.log("product", product);
+  set(ref(database, `products/${id}`), {
+    id: id,
+    price: parseInt(product.price),
+    image: image,
+    description: product.description,
+    category: product.category,
+    size: product.size.split(","),
   });
 }

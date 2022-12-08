@@ -12,7 +12,8 @@ const store = set =>({
         category:'',
         description:'',
         size:''
-    }
+    },
+    setProduct : (col,row)=> set(produce((draft) => {draft.product[col] = row})),
 });
 const useStore = create(devtools(store));
 
