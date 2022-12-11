@@ -12,13 +12,54 @@
     width: 100%;
     height : 50px;
     line-height : 300%;
+    display:flex;
+    justify-content: center;
     
+}
+.form1 {
+    border : solid black 1px;
+    width: 100%;
+    height : 50px;
+    line-height : 300%;
 }
 .btnContainer {
     display: flex;
     justify-content: space-between;
 }
+.imgContainer {
+    display:flex;
+    justify-content: center;
+    margin-bottom : 20px;
+}
 .img {
+
     width: 200px;
     height : 300px;
+}
+.input {
+    border :solid black 0px;
+    width: 100%;
+    height : 90%;
+}
+.input2 {
+    border :solid black 0px;
+    width: 100%;
+    height : 90%;
+}
+.input2::placeholder {
+    color : red;
+}
+.addBtn {
+    margin : 8px 0px 8px 8px;
+    height : 30px;
+    border : solid black 0px;
+    background-color: whitesmoke;
+    color : black;
+    cursor:pointer;
+}
+.addBtn:hover {
+    
+    border : solid black 0px;
+    background-color: black;
+    color : white;
 }
