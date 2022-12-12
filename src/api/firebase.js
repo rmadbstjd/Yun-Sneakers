@@ -76,6 +76,7 @@ export async function addProduct(product, image) {
   console.log("product", product);
   set(ref(database, `products/${id}`), {
     id: id,
+    title: product.title,
     price: parseInt(product.price),
     image: image,
     description: product.description,
@@ -87,6 +88,7 @@ export async function addProduct(product, image) {
 export async function getProducts() {
   return get(ref(database, "products")).then((snapshot) => {
     if (snapshot.exists()) {
+      console.log("value", Object.values(snapshot.val()));
       return Object.values(snapshot.val());
     } else {
       return [];
