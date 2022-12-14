@@ -1,0 +1,17 @@
+.mordal {
+    border-radius : 10px;
+    width : 400px;
+    height : 400px;
+    z-index : 999;
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+}
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor : pointer;
+}

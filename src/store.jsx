@@ -5,7 +5,7 @@ import {immer} from 'zustand/middleware/immer';
 const store = set =>({
     user :'',
     setUser : (user)=> set(state =>({user : user})),
-    product : {
+    newProduct : {
         url:'',
         title:'',
         price:'',
@@ -13,8 +13,18 @@ const store = set =>({
         description:'',
         size:''
     },
-    setProduct : (col,row)=> set(produce((draft) => {draft.product[col] = row})),
-    setInitProduct : () => set(produce((draft) => {draft.product ={url:'',title:'',price:'',category:'',description:'',size:''}}))
+    setNewProduct : (col,row)=> set(produce((draft) => {draft.newProduct[col] = row})),
+    setInitNewProduct : () => set(produce((draft) => {draft.newProduct ={url:'',title:'',price:'',category:'',description:'',size:''}})),
+    currentProduct : {
+        url:'',
+        title:'',
+        price:'',
+        category:'',
+        description:'',
+        size:''
+    },
+    setCurrentProduct : (product) => set(produce((draft) => {draft.currentProduct={url:product.image,title:product.title,price:product.title,category:product.category,description:product.description,size:product.size}})),
+
 });
 const useStore = create(devtools(store));
 

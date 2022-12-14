@@ -1,0 +1,37 @@
+.container {
+    
+    display:flex;
+    justify-content: center;
+   
+}
+.productContainer {
+    width: 71%;
+    display:flex;
+  
+}
+.img {
+    border : solid black 0px;
+    width : 700px;
+    height :425px;
+    background-size : contain;  
+    background-repeat : no-repeat;
+}
+.infoContainer {
+    width: 40%;
+    
+}
+.sizeContainer{
+    display:flex;
+    justify-content: space-between;
+}
+.sizeBtn {
+    cursor : pointer;
+}
+.addBtn {
+    border : solid black 1px;
+    width : 100%;
+    text-align : center;
+    height : 50px;
+    font-size : 20px;
+    line-height : 250%;
+}

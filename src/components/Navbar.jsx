@@ -4,12 +4,12 @@ import {BsFillPencilFill} from 'react-icons/bs';
 import styles from './css/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 import { login, logout, adminUser } from './../api/firebase';
-import useStore from '../store';
+
 const Navbar = () => {
     const navigate = useNavigate();
     
     const [token, setToken] = useState('');
-    const [admin ,setAdmin] = useState('');
+    const [admin] = useState('');
     useEffect(() => {
         setToken(localStorage.getItem("token"));
         

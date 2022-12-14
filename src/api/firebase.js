@@ -23,7 +23,7 @@ export async function login() {
   return signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
-      console.log("유저", user);
+
       localStorage.setItem("email", user.email);
       localStorage.setItem("name", user.displayName);
       localStorage.setItem("token", user.accessToken);
@@ -73,7 +73,7 @@ export async function adminUser(user) {
 }*/
 export async function addProduct(product, image) {
   const id = uuid();
-  console.log("product", product);
+
   set(ref(database, `products/${id}`), {
     id: id,
     title: product.title,
@@ -88,7 +88,6 @@ export async function addProduct(product, image) {
 export async function getProducts() {
   return get(ref(database, "products")).then((snapshot) => {
     if (snapshot.exists()) {
-      console.log("value", Object.values(snapshot.val()));
       return Object.values(snapshot.val());
     } else {
       return [];

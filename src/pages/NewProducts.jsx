@@ -5,14 +5,14 @@ import { uploadImage } from '../api/upload';
 import styles from './css/NewProducts.module.css';
 import useStore from '../store';
 const NewProducts = () => {
-    const {product, setProduct, setInitProduct} = useStore();
+    const {newProduct, setNewProduct, setInitNewProduct} = useStore();
     const [file, setFile] = useState('');
     const [count, setCount] = useState(0);
     let isAdmin = localStorage.getItem('admin');
     const navigate = useNavigate();
     
     if(isAdmin !=='true') {
-        console.log("어드민",isAdmin);
+       
         return <Navigate to="/" replace></Navigate>
     }
     
@@ -27,18 +27,18 @@ const NewProducts = () => {
         }
         setCount(1);
         const url =await uploadImage(file);
-        console.log("ur;url",url);
-        addProduct(product,url);
+  
+        addProduct(newProduct,url);
         
     };
     const onCancel = () => {
         setCount(0);
-        setInitProduct();
+        setInitNewProduct();
         navigate('/');
     };
     const onChangeProduct = (e,column) => {
         const row = e.target.value;
-        setProduct(column,row);
+        setNewProduct(column,row);
     };
     return (
         <div className={styles.container}>
@@ -70,43 +70,43 @@ const NewProducts = () => {
                     </div>
                     <div className={styles.form}>
                         <input type="text"
-                        placeholder={count===0?'제품명':product.title===true?'제품명':'제품명을 입력해주세요.'}
+                        placeholder={count===0?'제품명':newProduct.title===true?'제품명':'제품명을 입력해주세요.'}
                         onChange={(e) =>onChangeProduct(e,'title')}
-                        className={count===0?styles.input:product.title===true?styles.input:styles.input2}>
+                        className={count===0?styles.input:newProduct.title===true?styles.input:styles.input2}>
                         
                         </input>
                     </div>
                     <div className={styles.form}>
                         <input type="text"
-                        placeholder={count===0?'가격':product.price===true?'가격':'가격을 입력해주세요.'}
+                        placeholder={count===0?'가격':newProduct.price===true?'가격':'가격을 입력해주세요.'}
                         onChange={(e) =>onChangeProduct(e,'price')}
-                        className={count===0?styles.input:product.price===true?styles.input:styles.input2}>
+                        className={count===0?styles.input:newProduct.price===true?styles.input:styles.input2}>
                         
 
                         </input>
                     </div>
                     <div className={styles.form}>
                         <input type="text"
-                        placeholder={count===0?'카테고리':product.category===true?'카테고리':'카테고리를 입력해주세요.'}
+                        placeholder={count===0?'카테고리':newProduct.category===true?'카테고리':'카테고리를 입력해주세요.'}
                         onChange={(e) =>onChangeProduct(e,'category')}
-                        className={count===0?styles.input:product.category===true?styles.input:styles.input2}>
+                        className={count===0?styles.input:newProduct.category===true?styles.input:styles.input2}>
 
                         </input>
                     </div>
                     <div className={styles.form}>
                         <input type="text"
-                        placeholder={count===0?'설명':product.description===true?'설명':'설명을 입력해주세요.'}
+                        placeholder={count===0?'설명':newProduct.description===true?'설명':'설명을 입력해주세요.'}
                         onChange={(e) =>onChangeProduct(e,'description')}
-                        className={count===0?styles.input:product.description===true?styles.input:styles.input2}>
+                        className={count===0?styles.input:newProduct.description===true?styles.input:styles.input2}>
 
                         </input>
                     </div>
                     <div className={styles.form}> 
                         <input type="text"
                         //placeholder="사이즈(,로 구분해주세요)"
-                        placeholder={count===0?'"사이즈(쉼표로 구분해주세요)"':product.size===true?'"사이즈(쉼표로 구분해주세요)"':"사이즈를 입력해주세요"}
+                        placeholder={count===0?'"사이즈(쉼표로 구분해주세요)"':newProduct.size===true?'"사이즈(쉼표로 구분해주세요)"':"사이즈를 입력해주세요"}
                         onChange={(e) =>onChangeProduct(e,'size')}
-                        className={count===0?styles.input:product.price===true?styles.input:styles.input2}>
+                        className={count===0?styles.input:newProduct.price===true?styles.input:styles.input2}>
 
                         </input>
                     </div>
