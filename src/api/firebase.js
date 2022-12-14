@@ -94,3 +94,24 @@ export async function getProducts() {
     }
   });
 }
+export async function getSimilarProducts() {
+  return get(ref(database, "products")).then((snapshot) => {
+    if (snapshot.exists()) {
+      let test = snapshot.val();
+
+      console.log("테스트", test[0]);
+      return Object.values(snapshot.val());
+    } else {
+      return [];
+    }
+  });
+}
+export async function getProductInfo(id) {
+  return get(ref(database, `products/${id}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    } else {
+      return [];
+    }
+  });
+}

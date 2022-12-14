@@ -1,0 +1,14 @@
+    .product {
+        margin-top : 20px;
+        width : 20%;
+        cursor:pointer;
+    
+    }
+    .img {
+        width : 270px;
+        height : 150px;
+        background-color: red;
+        background-size : cover;
+        background-repeat : no-repeat;
+        
+    }

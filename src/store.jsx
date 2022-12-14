@@ -23,8 +23,10 @@ const store = set =>({
         description:'',
         size:''
     },
-    setCurrentProduct : (product) => set(produce((draft) => {draft.currentProduct={url:product.image,title:product.title,price:product.title,category:product.category,description:product.description,size:product.size}})),
-
+    setCurrentProduct : (product) => set(produce((draft) => {draft.currentProduct={url:product.image,title:product.title,price:product.price,category:product.category,description:product.description,size:product.size}})),
+    size :'',
+    setSize : (size) =>set(state =>({size : size})),
+    setInitSize : () =>set(state=>({size: ''})),
 });
 const useStore = create(devtools(store));
 

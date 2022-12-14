@@ -8,10 +8,33 @@
     left : 50%;
     transform: translate(-50%, -50%);
     background-color: whitesmoke;
+ 
+    
 }
 .close {
     position: absolute;
     right: 10px;
     top: 10px;
     cursor : pointer;
+}
+.name {
+    width : 100%;
+    text-align: center;
+    margin-top : 5px;
+    font-weight : bolder;
+}
+.sizeBox {
+    border : solid gray 1px;
+    border-radius : 15px;
+    width : 100px;
+    height : 50px;
+    text-align : center;
+    line-height : 300%;
+    margin : 10px;
+    cursor: pointer;
+}
+.sizeContainer {
+    display:flex;
+    flex-wrap : wrap;
+    
 }

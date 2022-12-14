@@ -2,6 +2,7 @@ import React from 'react';
 import ShowProducts from '../components/ShowProducts';
 import styles from './css/Home.module.css';
 const Home = () => {
+  
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>

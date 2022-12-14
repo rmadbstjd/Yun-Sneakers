@@ -6,7 +6,7 @@ const ProductCard = ({product}) => {
     const {setCurrentProduct} = useStore();
     const navigate = useNavigate();
     const goToDetail = () => {
-        console.log("product",product);
+       
         setCurrentProduct(product);
         navigate(`/products/${product.id}`)
     }
