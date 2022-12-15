@@ -27,6 +27,8 @@ const store = set =>({
     size :'',
     setSize : (size) =>set(state =>({size : size})),
     setInitSize : () =>set(state=>({size: ''})),
+    last :false,
+    setLast : (boolean) => set(state =>({last : boolean}))
 });
 const useStore = create(devtools(store));
 

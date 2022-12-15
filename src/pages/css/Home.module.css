@@ -18,3 +18,16 @@
     display: flex;
     justify-content: center;
 }
+.arrowContainer1 {
+    display :flex;
+    
+}
+    
+.arrowContainer2 {
+    margin-top : 10px;
+    width: 86%;
+    display : flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    
+}

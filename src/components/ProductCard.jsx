@@ -16,7 +16,7 @@ const ProductCard = ({product}) => {
             <div>{product.category}</div>
             <div className={styles.info}>
                 <p>{product.title} </p>
-                <p>{product.price}₩</p>
+                <p>{product.price}원</p>
             </div>
             
             

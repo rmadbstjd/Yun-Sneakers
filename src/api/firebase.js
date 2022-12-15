@@ -1,12 +1,22 @@
 import { initializeApp } from "firebase/app";
 import { v4 as uuid } from "uuid";
-import { getDatabase, ref, set, get } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  query,
+  orderByChild,
+  limitToLast,
+} from "firebase/database";
+
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -15,6 +25,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -99,7 +110,6 @@ export async function getSimilarProducts() {
     if (snapshot.exists()) {
       let test = snapshot.val();
 
-      console.log("테스트", test[0]);
       return Object.values(snapshot.val());
     } else {
       return [];
