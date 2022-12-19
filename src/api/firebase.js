@@ -1,14 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { v4 as uuid } from "uuid";
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  query,
-  orderByChild,
-  limitToLast,
-} from "firebase/database";
+import { getDatabase, ref, set, get, remove } from "firebase/database";
 
 import {
   getAuth,
@@ -124,4 +116,24 @@ export async function getProductInfo(id) {
       return [];
     }
   });
+}
+
+export async function getCart(userId) {
+  return get(ref(database, `carts/${userId}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      const items = snapshot.val() || {};
+
+      return Object.values(items);
+    } else {
+      return [];
+    }
+  });
+}
+
+export async function addOrUpdateToCart(userId, product) {
+  return set(ref(database, `carts/${userId}/${product.id}`), product);
+}
+
+export async function removeFromCart(userId, productId) {
+  return remove(ref(database, `carts/${userId}/${productId}`));
 }

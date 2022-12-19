@@ -1,25 +1,41 @@
 import React, {useState,useEffect} from 'react';
 import useStore from '../store';
 import styles from './css/ProductDetail.module.css';
-import Mordal from '../components/Mordal';
+import SizeMordal from '../components/SizeMordal';
 import HorizonLine from '../components/HorizonLine';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import {useQuery} from '@tanstack/react-query';
 import { getProducts } from '../api/firebase';
 import SimilarProducts from '../components/SimilarProducts';
-import { getProductInfo,getSimilarProducts } from '../api/firebase';
+import { getProductInfo,getSimilarProducts,addOrUpdateToCart } from '../api/firebase';
 import {useParams} from 'react-router-dom';
+import CartMordal from '../components/CartMordal';
 const ProductDetail = () => {
-    const [show, setShow] = useState(false);
-    const {isLoading, error, data:products} = useQuery([show], () => (getSimilarProducts()));
-    const {currentProduct,size,setInitSize} = useStore();
+    const [sizeShow, setSizeShow] = useState(false);
+    const [cartShow, setCartShow] = useState(false);
+    const {isLoading, error, data:products} = useQuery([sizeShow], () => (getSimilarProducts()));
+    const {size,setInitSize, setWillAddProduct} = useStore();
+    const email = localStorage.getItem('email');
     const [product, setProduct] = useState('');
+    const [addProduct, setAddProduct] = useState({
+    });
     const {id} = useParams();
 
     const showSize = () => {
-        setShow((prev) => !prev);
+        setSizeShow((prev) => !prev);
     };
-    
+    const clickToCart = () => {
+        setCartShow((prev) => !prev);
+        setTimeout(setCartShow,3000);
+        if(!size) {
+            alert("사이즈를 선택해주세요!");
+            return;
+        }
+        
+        setAddProduct({id : product[2],url : product[3], title: product[6], description:product[1], category : product[0], price: product[4], size:size});
+        
+        
+    }; 
     useEffect(() => {
         const fetchData = async()=>{
             setProduct((await getProductInfo(id)));
@@ -30,8 +46,12 @@ const ProductDetail = () => {
             setInitSize();
             
     },[id]);
-
-  
+    useEffect(() => {
+        addProduct && setWillAddProduct(addProduct);
+        addProduct  && addOrUpdateToCart(email.split('.')[0], addProduct);
+    },[addProduct])
+    
+   
     return (
         
         <div>
@@ -57,14 +77,15 @@ const ProductDetail = () => {
                         </div>
                            
                         
-                        {show && <Mordal show={show} setShow ={setShow} size={product[5]}></Mordal>}
+                        {sizeShow && <SizeMordal sizeShow={sizeShow} setSizeShow ={setSizeShow} size={product[5]}></SizeMordal>}
+                        
                      </div>
                      <HorizonLine/>
                     </div>
                     
                      <div className={styles.price}>{product[4]}원</div>
-                     
-                     <div className={styles.addBtn}>장바구니에 추가</div>
+                     {cartShow && <CartMordal cartShow={cartShow} setCartShow ={setCartShow}></CartMordal>}
+                     <div className={styles.addBtn} onClick={clickToCart}>장바구니에 추가</div>
                 </div>
                 
             </div>

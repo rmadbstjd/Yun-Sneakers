@@ -1,0 +1,23 @@
+.mordal {
+    border-radius : 10px;
+    width : 400px;
+    height : 50px;
+    z-index : 999;
+    position: absolute;
+    top : 38%;
+    left : 67.5%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    opacity: 0.9;
+}
+.container {
+    line-height : 300%;
+    text-align:center;
+    display :flex;
+    justify-content: space-around;
+    color : white;
+}
+.go {
+    cursor : pointer;
+    color : skyblue;
+}

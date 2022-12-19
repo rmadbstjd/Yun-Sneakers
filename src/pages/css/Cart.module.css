@@ -1,0 +1,64 @@
+.container {
+    display:flex;
+    justify-content: center;   
+}
+.text {
+    font-size : 30px;
+    font-weight : bold;
+    margin-bottom : 20px;
+}
+.productsContainer {
+    width : 70.5%;
+    
+}
+.menuContainer {
+    width: 70%;
+   
+    font-size : 30px;
+    font-weight : bold;
+    justify-content: space-between;
+}
+.test {
+    border : solid gray 1px;
+    text-align : center;
+    line-height : 250%;
+    height : 40px;
+    display:flex;
+    justify-content: flex-end;
+}
+.menu {
+    
+    width : 70%;
+    display:flex;
+    justify-content: space-around;
+    
+}
+.payContainer {
+    display:flex;
+    justify-content: space-around;
+    margin-top : 20px;
+}
+.productPrice {
+    border : solid gray 1px;
+    border-radius : 10px;
+    width: 200px;
+    height : 100px;
+    text-align:center;
+    background-color: beige;
+}
+.deliveryPrice {
+    border : solid gray 1px;
+    border-radius : 10px;
+    width: 200px;
+    height : 100px;
+    text-align:center;
+    background-color: beige;
+}
+.lastPrice {
+    border : solid gray 1px;
+    border-radius : 10px;
+    width: 200px;
+    height : 100px;
+    text-align:center;
+    background-color: beige;
+}

@@ -1,8 +1,8 @@
 import create from 'zustand';
 import produce from "immer";
-import {devtools}from 'zustand/middleware';
+import {devtools, persist}from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
-const store = set =>({
+const store = persist(set =>({
     user :'',
     setUser : (user)=> set(state =>({user : user})),
     newProduct : {
@@ -28,8 +28,27 @@ const store = set =>({
     setSize : (size) =>set(state =>({size : size})),
     setInitSize : () =>set(state=>({size: ''})),
     last :false,
-    setLast : (boolean) => set(state =>({last : boolean}))
-});
+    setLast : (boolean) => set(state =>({last : boolean})),
+    willAddProduct : {
+        id:'',
+        url:'',
+        title:'',
+        price:'',
+        category:'',
+        description:'',
+        size:''
+    },
+    setWillAddProduct : (product) => set(produce((draft) => {draft.willAddProduct={id:product.id,url:product.url,title:product.title,price:product.price,category:product.category,description:product.description,size:product.size}})),
+    totalCount : 0,
+    initTotalCount : (init) => set(state =>({totalCount : init })),
+    plusTotalCount : () => set(state =>({totalCount : state.totalCount + 1})),
+    minusTotalCount : () => set(state =>({totalCount : state.totalCount - 1})),
+    deleteTotalCount : (count) => set(state =>({totalCount : state.totalCount - count})),
+    totalPrice : 0,
+    initTotalPrice : (init) => set(state =>({totalPrice : init })),
+    plusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice + price})),
+    minusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice - price})),
+}),{ name: "user-StoreName" }   );
 const useStore = create(devtools(store));
 
 export default useStore;

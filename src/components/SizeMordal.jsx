@@ -1,15 +1,15 @@
 import React from 'react';
-import styles from './css/Mordal.module.css';
+import styles from './css/SizeMordal.module.css';
 import useStore from '../store';
-const Mordal = ({show,setShow,size}) => {
+const SizeMordal = ({setSizeShow,size}) => {
     const {setSize} = useStore();
     const closeShow = () => {
-        setShow((prev) => !prev);
+        setSizeShow((prev) => !prev);
     }
     const clickSize = (item) => {
         
         setSize(item);
-        setShow((prev) => !prev);
+        setSizeShow((prev) => !prev);
     }
     
     return (
@@ -26,4 +26,4 @@ const Mordal = ({show,setShow,size}) => {
     );
 };
 
-export default Mordal;
+export default SizeMordal;
