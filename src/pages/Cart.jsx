@@ -1,39 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, Navigate} from 'react-router-dom';
 import useStore from '../store';
-import { getCart } from '../api/firebase';
+import {useQuery} from '@tanstack/react-query';
+import { getProducts,getCart } from '../api/firebase';
 import CartProduct from '../components/CartProduct';
 import styles from './css/Cart.module.css';
 
 const Cart =  () => {
+    const [state,setState] = useState(false);
+    const {isLoading, error, data:cartProducts} = useQuery(["1",state], () => (getCart(email.split('.')[0])));
     const {initTotalCount, initTotalPrice, totalPrice} = useStore();
-    const [product, setProduct] = useState('');
     const [zz, setZZ] = useState(0);
     const email = localStorage.getItem('email');
     const isLogin = localStorage.getItem('email');
+    
     useEffect(() => {
-        const loadData = async() => {
-            
-            setProduct(await getCart(email.split('.')[0]));
-            
-            
-        }
         
-        loadData();
- 
-
-    },[]);
-    useEffect(() => {
-        if(product .length === 0) {
-            
+        
             initTotalCount(0);
-        }
-        product && product.map(item => setZZ((prev) => prev + item.price ));
-        product && initTotalCount(product.length);
+            setZZ(0);
         
-    },[product])
+        
+       
+        
+        cartProducts && cartProducts.map(item => setZZ((prev) => prev + item.price ));
+        cartProducts && initTotalCount(cartProducts.length);
+        console.log("테스트"<cartProducts);
+
+    },[cartProducts]);
     useEffect(() => {
-        product && initTotalPrice(zz);
+        
+        cartProducts && initTotalPrice(zz);
     },[zz])
     if(!isLogin) {
         
@@ -57,20 +54,24 @@ const Cart =  () => {
                 </div>
                
                 
-                {product && product.map(item => <CartProduct  key ={item.id}item ={item}/>)}
-            <div className={styles.payContainer}>
+                {cartProducts && cartProducts.map(item => <CartProduct  key ={item.id}item ={item} setState={setState}/>)}
+            { cartProducts && 
+                <div className={styles.payContainer}>
                 <div className={styles.productPrice}>
                     <div>상품 총액</div>
                     <div>{totalPrice}원</div>
                     
                 </div>
                 <div className={styles.deliveryPrice}>
-                    배송비
+                    <div>배송비</div>
+                    <div>3000원</div>
                 </div>
                 <div className={styles.lastPrice}>
-                    총 결제 금액
+                    <div>총 결제 금액</div>
+                    <div>{totalPrice + 3000}</div>
                 </div>
             </div>
+            }
             </div>
         </div>
     );

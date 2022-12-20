@@ -2,10 +2,10 @@ import React,{useState,useEffect} from 'react';
 import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
-const CartProduct = ({item}) => {
+const CartProduct = ({item,setState}) => {
     
     const [count,setCount] = useState(1);
-    const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice} = useStore();
+    const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice, minusProductCount} = useStore();
     
     const email = localStorage.getItem('email');
     const plus = () => {
@@ -15,7 +15,7 @@ const CartProduct = ({item}) => {
         }
         setCount((prev) => prev + 1);
         plusTotalCount();
-        console.log("오잉",item.price)
+        
         plusTotalPrice(item.price);
     }
     const minus =  () => {
@@ -29,7 +29,9 @@ const CartProduct = ({item}) => {
     const deleteProduct = () => {
         removeFromCart(email.split('.')[0], item.id);
         deleteTotalCount(count);
-        
+        minusTotalPrice(count * item.price);
+        setState((prev) =>!prev);
+        minusProductCount();
     };
     
     return (

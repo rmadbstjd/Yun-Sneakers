@@ -4,10 +4,10 @@ import {BsFillPencilFill} from 'react-icons/bs';
 import styles from './css/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 import { login, logout, adminUser } from './../api/firebase';
-
+import useStore from '../store';
 const Navbar = () => {
     const navigate = useNavigate();
-    
+    const {productCount} = useStore();
     const [token, setToken] = useState('');
     const [admin] = useState('');
     useEffect(() => {
@@ -41,6 +41,7 @@ const Navbar = () => {
                     <div className={styles.navbarRightContainer} >
                         <div onClick={() =>{navigate('/products')}} className={styles.products}>Products</div>
                         {token?<AiOutlineShoppingCart  className={styles.cartImg} size={40} onClick={() =>{navigate('/cart')}}/>:null}
+                        <div className={styles.count}>{productCount}</div>
                         {token&& localStorage.getItem('admin') === 'true'?<BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>:null}
                         {token?<div style={{backgroundImage:"url("+`${localStorage.getItem('img')}`+")"}} className={styles.userImg}></div>:null}
                         {token?<div className={styles.name}>{localStorage.getItem('name')}</div>:null}

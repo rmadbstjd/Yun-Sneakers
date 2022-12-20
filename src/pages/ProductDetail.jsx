@@ -14,7 +14,7 @@ const ProductDetail = () => {
     const [sizeShow, setSizeShow] = useState(false);
     const [cartShow, setCartShow] = useState(false);
     const {isLoading, error, data:products} = useQuery([sizeShow], () => (getSimilarProducts()));
-    const {size,setInitSize, setWillAddProduct} = useStore();
+    const {size,setInitSize, setWillAddProduct, plusProductCount} = useStore();
     const email = localStorage.getItem('email');
     const [product, setProduct] = useState('');
     const [addProduct, setAddProduct] = useState({
@@ -25,6 +25,7 @@ const ProductDetail = () => {
         setSizeShow((prev) => !prev);
     };
     const clickToCart = () => {
+        plusProductCount();
         setCartShow((prev) => !prev);
         setTimeout(setCartShow,3000);
         if(!size) {

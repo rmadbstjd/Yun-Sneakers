@@ -2,7 +2,7 @@ import create from 'zustand';
 import produce from "immer";
 import {devtools, persist}from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
-const store = persist(set =>({
+const store = set =>({
     user :'',
     setUser : (user)=> set(state =>({user : user})),
     newProduct : {
@@ -48,7 +48,11 @@ const store = persist(set =>({
     initTotalPrice : (init) => set(state =>({totalPrice : init })),
     plusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice + price})),
     minusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice - price})),
-}),{ name: "user-StoreName" }   );
+    productCount : 0,
+    plusProductCount : () => set(state =>({productCount : state.productCount + 1})),
+    minusProductCount : () => set(state =>({productCount : state.productCount - 1})),
+
+}   );
 const useStore = create(devtools(store));
 
 export default useStore;

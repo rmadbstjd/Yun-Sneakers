@@ -100,8 +100,6 @@ export async function getProducts() {
 export async function getSimilarProducts() {
   return get(ref(database, "products")).then((snapshot) => {
     if (snapshot.exists()) {
-      let test = snapshot.val();
-
       return Object.values(snapshot.val());
     } else {
       return [];
