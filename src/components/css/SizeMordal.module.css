@@ -7,7 +7,7 @@
     top : 50%;
     left : 50%;
     transform: translate(-50%, -50%);
-    background-color: whitesmoke;
+    background-color: beige;
  
     
 }
@@ -16,6 +16,13 @@
     right: 10px;
     top: 10px;
     cursor : pointer;
+    background-color: gray;
+    border : solid black 0px;
+    color: white;
+}
+.close:hover {
+    background-color: black;
+    color:white;
 }
 .name {
     width : 100%;
@@ -32,6 +39,7 @@
     line-height : 300%;
     margin : 10px;
     cursor: pointer;
+    font-weight: bolder;
 }
 .sizeContainer {
     display:flex;

@@ -2,6 +2,7 @@
     display:flex;
     flex-direction: column;
     justify-content : space-around;
+    
 }
 
 .img {
@@ -17,6 +18,7 @@
 .imgContainer {
     display: flex;
     justify-content: center;
+    
 }
 .arrowContainer1 {
     display :flex;
@@ -31,3 +33,14 @@
     cursor: pointer;
     
 }
+.productsContainer {
+    display:flex;
+    justify-content: center;
+    
+}
+.productContainer {
+
+    width: 90%;
+    
+}
+

@@ -15,7 +15,7 @@ const SizeMordal = ({setSizeShow,size}) => {
     return (
         <div className={styles.mordal}>
             <div className={styles.sizeContainer}>
-                <div className={styles.name}>사이즈</div>
+                <div className={styles.name}>Size</div>
                 {size && size.map((item) =>(<div onClick={() =>{clickSize(item)}}className={styles.sizeBox}>{item}</div>))}
                 </div>
             

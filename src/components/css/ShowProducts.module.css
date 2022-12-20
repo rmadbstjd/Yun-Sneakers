@@ -3,9 +3,11 @@
     justify-content: center;
 }
 .productsContainer {
-    width : 73.4%;
+    width : 1424px;
+    height : 300px;
     flex-wrap: wrap;
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    
     
 }

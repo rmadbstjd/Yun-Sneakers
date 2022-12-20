@@ -19,6 +19,11 @@ const ProductDetail = () => {
     const [product, setProduct] = useState('');
     const [addProduct, setAddProduct] = useState({
     });
+    const test = [];
+    for(let i = 0; i<=4; i++) {
+        products && test.push(products[i]);
+    }
+    console.log("테스트",test);
     const {id} = useParams();
 
     const showSize = () => {
@@ -58,9 +63,9 @@ const ProductDetail = () => {
         <div>
             <div className={styles.container}>
             <div className={styles.productContainer}>
-                <div>
+                
                     <div className={styles.img}style={{backgroundImage:"url("+`${product[3]}`+")"}}></div>
-                </div>
+                
 
                 <div className={styles.infoContainer}>
                     <div className={styles.category}>{product[0]}</div>
@@ -97,7 +102,7 @@ const ProductDetail = () => {
             </div>
            <div className={styles.similarContainer}>
                 <div className={styles.shoesContainer}>
-                    {products && products.map((item) => <SimilarProducts key={item.id} products={item}/>)}
+                    {test && test.map((item) => <SimilarProducts  className={styles.shoes}key={item.id} products={item}/>)}
                 </div>
             </div>
         </div>

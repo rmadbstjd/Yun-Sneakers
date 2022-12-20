@@ -55,23 +55,26 @@ const Cart =  () => {
                
                 
                 {cartProducts && cartProducts.map(item => <CartProduct  key ={item.id}item ={item} setState={setState}/>)}
-            { cartProducts && 
+             
                 <div className={styles.payContainer}>
                 <div className={styles.productPrice}>
-                    <div>상품 총액</div>
-                    <div>{totalPrice}원</div>
+                    <div className={styles.name}>상품 총액</div>
+                    
+                    <div className={styles.name2}>{totalPrice}원</div>
                     
                 </div>
+                <div className={styles.symbol}> + </div>
                 <div className={styles.deliveryPrice}>
-                    <div>배송비</div>
-                    <div>3000원</div>
+                <div className={styles.name}>배송비</div>
+                <div className={styles.name2}>3000원</div>
                 </div>
+                <div className={styles.symbol}>  = </div>
                 <div className={styles.lastPrice}>
-                    <div>총 결제 금액</div>
-                    <div>{totalPrice + 3000}</div>
+                <div className={styles.name}>총 결제 금액</div>
+                <div className={styles.name2}>{totalPrice + 3000}원</div>
                 </div>
             </div>
-            }
+            
             </div>
         </div>
     );

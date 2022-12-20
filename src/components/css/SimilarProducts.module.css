@@ -2,13 +2,16 @@
         margin-top : 20px;
         width : 20%;
         cursor:pointer;
-    
+        
     }
     .img {
-        width : 270px;
-        height : 150px;
+        width : 320px;
+        height : 170px;
         background-color: red;
         background-size : cover;
         background-repeat : no-repeat;
         
+    }
+    .title {
+        width : 200px;
     }

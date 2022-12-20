@@ -15,7 +15,7 @@ const SimilarProducts = ({products}) => {
     return (
         <div className={styles.product} onClick={goToDetail}>
             <div className={styles.img}style={{backgroundImage:"url("+`${products.image}`+")"}}></div>
-            <div>{products.title}</div>
+            <div className={styles.title}>{products.title}</div>
             <div>{products.price}원</div>
         </div>
     );

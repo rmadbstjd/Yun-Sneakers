@@ -34,8 +34,12 @@ const Home = () => {
                 </div>
             </div>
             
+            <div className={styles.productsContainer}>
+                <div className={styles.productContainer}>
+                    <ShowProducts count={count} setCount={setCount}/>
+                </div>
+            </div>
             
-         <ShowProducts count={count} setCount={setCount}/>
                           
         </div>
     );
