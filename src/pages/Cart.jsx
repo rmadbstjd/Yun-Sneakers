@@ -3,20 +3,22 @@ import {useNavigate, Navigate} from 'react-router-dom';
 import useStore from '../store';
 import {useQuery} from '@tanstack/react-query';
 import { getProducts,getCart } from '../api/firebase';
+
 import CartProduct from '../components/CartProduct';
 import styles from './css/Cart.module.css';
 
 const Cart =  () => {
+    const {initTotalCount, initTotalPrice, totalPrice,cart} = useStore();
     const [state,setState] = useState(false);
     const {isLoading, error, data:cartProducts} = useQuery(["1",state], () => (getCart(email.split('.')[0])));
-    const {initTotalCount, initTotalPrice, totalPrice} = useStore();
+
     const [zz, setZZ] = useState(0);
     const email = localStorage.getItem('email');
     const isLogin = localStorage.getItem('email');
     
     useEffect(() => {
         
-        
+            cart.addCart();
             initTotalCount(0);
             setZZ(0);
         
@@ -25,7 +27,7 @@ const Cart =  () => {
         
         cartProducts && cartProducts.map(item => setZZ((prev) => prev + item.price ));
         cartProducts && initTotalCount(cartProducts.length);
-        console.log("테스트"<cartProducts);
+       
 
     },[cartProducts]);
     useEffect(() => {

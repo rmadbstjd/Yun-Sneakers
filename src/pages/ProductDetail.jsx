@@ -14,16 +14,16 @@ const ProductDetail = () => {
     const [sizeShow, setSizeShow] = useState(false);
     const [cartShow, setCartShow] = useState(false);
     const {isLoading, error, data:products} = useQuery([sizeShow], () => (getSimilarProducts()));
-    const {size,setInitSize, setWillAddProduct, plusProductCount} = useStore();
+    const {size,setInitSize, setWillAddProduct, plusProductCount,product} = useStore();
     const email = localStorage.getItem('email');
-    const [product, setProduct] = useState('');
+    const [productInfo, setProductInfo] = useState('');
     const [addProduct, setAddProduct] = useState({
     });
     const test = [];
     for(let i = 0; i<=4; i++) {
         products && test.push(products[i]);
     }
-    console.log("테스트",test);
+   
     const {id} = useParams();
 
     const showSize = () => {
@@ -38,13 +38,14 @@ const ProductDetail = () => {
             return;
         }
         
-        setAddProduct({id : product[2],url : product[3], title: product[6], description:product[1], category : product[0], price: product[4], size:size});
+        setAddProduct({id : productInfo[2],url : productInfo[3], title: productInfo[6], description:productInfo[1], category : productInfo[0], price: productInfo[4], size:size});
         
         
-    }; 
+    };
+    
     useEffect(() => {
         const fetchData = async()=>{
-            setProduct((await getProductInfo(id)));
+            setProductInfo((await product.getProductInfo(id)));
             }
             
             
@@ -57,21 +58,21 @@ const ProductDetail = () => {
         addProduct  && addOrUpdateToCart(email.split('.')[0], addProduct);
     },[addProduct])
     
-   
+    
     return (
         
         <div>
             <div className={styles.container}>
             <div className={styles.productContainer}>
                 
-                    <div className={styles.img}style={{backgroundImage:"url("+`${product[3]}`+")"}}></div>
+                     <div className={styles.img}style={{backgroundImage:"url("+`${ productInfo && productInfo.product.image}`+")"}}></div>
                 
 
                 <div className={styles.infoContainer}>
-                    <div className={styles.category}>{product[0]}</div>
+                    <div className={styles.category}>{productInfo && productInfo.product.category}</div>
                     <div>
-                        <div>{product[6]}</div>
-                        <div className={styles.description}>{product[1]}</div>
+                        <div>{productInfo[6]}</div>
+                        <div className={styles.description}>{productInfo && productInfo.product.description}</div>
                     </div>
                     
                     <div>
@@ -83,13 +84,13 @@ const ProductDetail = () => {
                         </div>
                            
                         
-                        {sizeShow && <SizeMordal sizeShow={sizeShow} setSizeShow ={setSizeShow} size={product[5]}></SizeMordal>}
+                        {sizeShow && <SizeMordal sizeShow={sizeShow} setSizeShow ={setSizeShow} size={productInfo && productInfo.product.size}></SizeMordal>}
                         
                      </div>
                      <HorizonLine/>
                     </div>
                     
-                     <div className={styles.price}>{product[4]}원</div>
+                     <div className={styles.price}>{productInfo && productInfo.product.price}원</div>
                      {cartShow && <CartMordal cartShow={cartShow} setCartShow ={setCartShow}></CartMordal>}
                      <div className={styles.addBtn} onClick={clickToCart}>장바구니에 추가</div>
                 </div>

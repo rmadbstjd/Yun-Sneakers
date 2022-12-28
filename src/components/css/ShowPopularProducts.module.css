@@ -4,27 +4,21 @@
     
 }
 .productsContainer {
- 
     width : 79%;
-    
     
     flex-wrap: wrap;
     display:flex;
     justify-content: flex-start;
+    margin : 50px;
     
     
 }
-.product {
-    display:flex;
-    
-}
-.new {
-    margin-top : 10px;
+.popular {
+    margin-top : 20px;
     width : 100%;
     display:flex;
     justify-content: flex-start;
     font-weight: bold;
-    
     
 }
 .moreContainer {
@@ -34,14 +28,15 @@
     width: 100%;
 }
 .more {
-
+    border : solid gray 1px;
+    border-radius : 10px;
     text-align:center;
     line-height : 160%;
-    width : 200px;
-    height : 40px;
-    
+    width : 100px;
+    height : 30px;
+
     font-weight: bold;
-  
+    cursor : pointer;
     color : gray;
     
 }

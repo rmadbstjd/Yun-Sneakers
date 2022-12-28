@@ -1,0 +1,52 @@
+.container {
+    display:flex;
+    justify-content: space-between;
+    font-size : 25px;
+}
+.size {
+    width: 200px;
+    display:flex;
+    justify-content: space-between;
+    
+}
+.current {
+   
+    color : black;
+}
+.in {
+    display:flex;
+    margin-top : 5px;
+}
+.left {
+    
+    cursor:pointer;
+    text-align: center;
+    line-height: 150%;
+    font-size : 30px;
+}
+.Noleft {
+    cursor:pointer;
+    text-align: center;
+    line-height: 150%;
+    font-size : 30px;
+}
+.Noleft:hover {
+    cursor : not-allowed;
+}
+.right {
+    margin-top : 2px;
+    cursor:pointer;
+    text-align: center;
+    line-height: 150%;
+    font-size : 30px;
+}
+.NoRight {
+    margin-top : 2px;
+    cursor:pointer;
+    text-align: center;
+    line-height: 150%;
+    font-size : 30px;
+}
+.NoRight:hover {
+    cursor : not-allowed;
+}

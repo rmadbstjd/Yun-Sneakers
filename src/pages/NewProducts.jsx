@@ -5,7 +5,7 @@ import { uploadImage } from '../api/upload';
 import styles from './css/NewProducts.module.css';
 import useStore from '../store';
 const NewProducts = () => {
-    const {newProduct, setNewProduct, setInitNewProduct} = useStore();
+    const {newProduct, setNewProduct, setInitNewProduct, product} = useStore();
     const [file, setFile] = useState('');
     const [count, setCount] = useState(0);
     let isAdmin = localStorage.getItem('admin');
@@ -28,7 +28,7 @@ const NewProducts = () => {
         setCount(1);
         const url =await uploadImage(file);
   
-        addProduct(newProduct,url);
+        product.addProduct(newProduct,url);
         
     };
     const onCancel = () => {

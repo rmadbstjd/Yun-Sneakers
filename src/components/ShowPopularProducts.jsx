@@ -1,33 +1,31 @@
-import React,{useState} from 'react';
+import React from 'react';
 
 import {useQuery} from '@tanstack/react-query';
 import ProductCard from './ProductCard';
-import styles from './css/ShowProducts.module.css';
+import styles from './css/ShowPopularProducts.module.css';
 import useStore from '../store';
 
-import Arrow from './Arrow';
 const ShowProducts = () => {
     const {product} = useStore();
-    const [currentPage, setCurrentPage] = useState(1);
-    const {isLoading, error, data:products} = useQuery([currentPage], () => (product.getProducts(currentPage)));
+    const {isLoading, error, data:products} = useQuery([], () => (product.getProducts()));
     
 
+  
+    
+   
     return (
         <div className={styles.container}>
         
             <div className={styles.productsContainer}>
- 
-                <div className={styles.new}>최신순</div>
-                
+                {isLoading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+                <div className={styles.popular}>인기순</div>
                 {products && products.map(product => <ProductCard product={product} key={product.id} />)}
                 <div className={styles.moreContainer}>
-                    <div className={styles.more}>
-                        <Arrow currentPage ={currentPage} setCurrentPage ={setCurrentPage}/>
-                    </div>
+                    <div className={styles.more}>더보기</div>
                 </div>
-                
             </div>
-            
+
         </div>
     );
 };

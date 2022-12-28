@@ -2,7 +2,11 @@ import create from 'zustand';
 import produce from "immer";
 import {devtools, persist}from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
+import Cart from './api/cart';
+import Product from './api/product';
 const store = set =>({
+    cart : new Cart(),
+    product : new Product(),
     user :'',
     setUser : (user)=> set(state =>({user : user})),
     newProduct : {
