@@ -11,7 +11,7 @@ export default class Product {
     );
   }
   async getProducts(currentPage) {
-    if (currentPage < 1) {
+    if (!currentPage) {
       currentPage = 1;
     }
     return this.httpClient

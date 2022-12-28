@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './css/Arrow.module.css';
 import {AiOutlineLeft,AiOutlineRight } from 'react-icons/ai';
 const Arrow = ({currentPage, setCurrentPage}) => {
-    console.log("뭐나오냐",currentPage);
+    
     const plusCurrent =  () => {
         if(currentPage >=4) {
             return;

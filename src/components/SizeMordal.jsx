@@ -15,7 +15,7 @@ const SizeMordal = ({setSizeShow,size}) => {
         setSize(item);
         setSizeShow((prev) => !prev);
     }
-    sizes && console.log("사이즈",sizes);
+   
     return (
         <div className={styles.mordal}>
             <div className={styles.sizeContainer}>

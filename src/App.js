@@ -6,6 +6,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 import Root from "./pages/Root";
 import NewProducts from "./pages/NewProducts";
+import Join from "./pages/Join";
+import Login from "./pages/Login";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +35,14 @@ function App() {
         {
           path: "/new",
           element: <NewProducts />,
+        },
+        {
+          path: "/join",
+          element: <Join />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
       ],
     },

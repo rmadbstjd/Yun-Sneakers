@@ -1,14 +1,12 @@
 import React from 'react';
-import ShowProducts from '../components/ShowProducts';
-import { getProducts, infinity } from '../api/firebase';
 import {useQuery} from '@tanstack/react-query';
 import ProductCard from '../components/ProductCard';
 import styles from '../components/css/ShowProducts.module.css';
 import useStore from '../store';
 const Products = () => {
-    const {product} =useStore();
-    const {isLoading, error, data:products} = useQuery([], () => (product.getProducts()));
-    
+    const {like} =useStore();
+    const {isLoading, error, data:products} = useQuery([], () => (like.getLikeProduct()));
+    products && console.log("products",products);
     return (
         <div className={styles.container}>
             <div className={styles.productsContainer}>

@@ -4,9 +4,11 @@ import {devtools, persist}from 'zustand/middleware';
 import {immer} from 'zustand/middleware/immer';
 import Cart from './api/cart';
 import Product from './api/product';
+import Like from './api/like';
 const store = set =>({
     cart : new Cart(),
     product : new Product(),
+    like : new Like(),
     user :'',
     setUser : (user)=> set(state =>({user : user})),
     newProduct : {
@@ -19,6 +21,7 @@ const store = set =>({
     },
     setNewProduct : (col,row)=> set(produce((draft) => {draft.newProduct[col] = row})),
     setInitNewProduct : () => set(produce((draft) => {draft.newProduct ={url:'',title:'',price:'',category:'',description:'',size:''}})),
+    
     currentProduct : {
         url:'',
         title:'',

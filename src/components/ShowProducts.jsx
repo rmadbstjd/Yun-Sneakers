@@ -9,9 +9,9 @@ import Arrow from './Arrow';
 const ShowProducts = () => {
     const {product} = useStore();
     const [currentPage, setCurrentPage] = useState(1);
-    const {isLoading, error, data:products} = useQuery([currentPage], () => (product.getProducts(currentPage)));
+    const {isLoading, error, data:products} = useQuery([currentPage],() => ( product.getProducts(currentPage)));
     
-
+ 
     return (
         <div className={styles.container}>
         

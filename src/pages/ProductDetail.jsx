@@ -5,29 +5,29 @@ import SizeMordal from '../components/SizeMordal';
 import HorizonLine from '../components/HorizonLine';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import {useQuery} from '@tanstack/react-query';
-import { getProducts } from '../api/firebase';
-import SimilarProducts from '../components/SimilarProducts';
-import { getProductInfo,getSimilarProducts,addOrUpdateToCart } from '../api/firebase';
+import {getSimilarProducts,addOrUpdateToCart } from '../api/firebase';
 import {useParams} from 'react-router-dom';
 import CartMordal from '../components/CartMordal';
+import {BsHeart} from 'react-icons/bs';
+import {FaHeart} from 'react-icons/fa';
 const ProductDetail = () => {
+    const [, updateState]= useState();
     const [sizeShow, setSizeShow] = useState(false);
     const [cartShow, setCartShow] = useState(false);
-    const {isLoading, error, data:products} = useQuery([sizeShow], () => (getSimilarProducts()));
-    const {size,setInitSize, setWillAddProduct, plusProductCount,product} = useStore();
+    
+    const [test, setTest] = useState(null);
+    const {size,setInitSize, setWillAddProduct, plusProductCount,product,like} = useStore();
+    
     const email = localStorage.getItem('email');
     const [productInfo, setProductInfo] = useState('');
     const [addProduct, setAddProduct] = useState({
-    });
-    const test = [];
-    for(let i = 0; i<=4; i++) {
-        products && test.push(products[i]);
-    }
-   
+    });   
     const {id} = useParams();
-
+    
+    
     const showSize = () => {
         setSizeShow((prev) => !prev);
+        
     };
     const clickToCart = () => {
         plusProductCount();
@@ -42,9 +42,13 @@ const ProductDetail = () => {
         
         
     };
-    
+    const clickToLike = () => {
+        like.pushLike(productInfo.product.id);
+        setTest((prev) => !prev);
+    };
     useEffect(() => {
         const fetchData = async()=>{
+           
             setProductInfo((await product.getProductInfo(id)));
             }
             
@@ -56,16 +60,24 @@ const ProductDetail = () => {
     useEffect(() => {
         addProduct && setWillAddProduct(addProduct);
         addProduct  && addOrUpdateToCart(email.split('.')[0], addProduct);
-    },[addProduct])
+    },[addProduct]);
+    useEffect(() => {
+        const fetchData = async() => {
+            productInfo && setTest(await like.isLike(productInfo.product.id));
+        }
+        
+        fetchData();
+        
+    },[productInfo]);
     
-    
+    console.log("테스트",test);
     return (
         
         <div>
             <div className={styles.container}>
             <div className={styles.productContainer}>
                 
-                     <div className={styles.img}style={{backgroundImage:"url("+`${ productInfo && productInfo.product.image}`+")"}}></div>
+                <div className={styles.img}style={{backgroundImage:"url("+`${ productInfo && productInfo.product.image}`+")"}}></div>
                 
 
                 <div className={styles.infoContainer}>
@@ -81,31 +93,29 @@ const ProductDetail = () => {
                         <div className= {styles.test} onClick={showSize}>
                             {size===''?<div className={styles.sizeBtn}>사이즈 선택</div>:<div className={styles.sizeNum}>{size}</div> }
                             <div className={styles.circle}><BsArrowDownCircle size={20}/></div>  
-                        </div>
-                           
+                        </div>                           
                         
                         {sizeShow && <SizeMordal sizeShow={sizeShow} setSizeShow ={setSizeShow} size={productInfo && productInfo.product.size}></SizeMordal>}
                         
                      </div>
                      <HorizonLine/>
                     </div>
-                    
+                   
                      <div className={styles.price}>{productInfo && productInfo.product.price}원</div>
                      {cartShow && <CartMordal cartShow={cartShow} setCartShow ={setCartShow}></CartMordal>}
-                     <div className={styles.addBtn} onClick={clickToCart}>장바구니에 추가</div>
+                     
+                     <div className={styles.cartContainer}>
+                        <div className={styles.addBtn} onClick={clickToCart}>장바구니에 추가</div>
+                        <div className={styles.heartContainer}> {test===false?<BsHeart className={styles.heart} onClick={clickToLike}/>:test===true?<FaHeart className={styles.heart} onClick={clickToLike}/>:null}</div>
+                    </div>
+                        
+                     
                 </div>
                 
             </div>
                 
             </div>
-            <div className={styles.p}>
-                <div className={styles.p2}>유사한 상품들</div>
-            </div>
-           <div className={styles.similarContainer}>
-                <div className={styles.shoesContainer}>
-                    {test && test.map((item) => <SimilarProducts  className={styles.shoes}key={item.id} products={item}/>)}
-                </div>
-            </div>
+
         </div>
     );
 };
