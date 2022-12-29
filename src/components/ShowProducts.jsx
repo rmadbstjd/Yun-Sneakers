@@ -9,7 +9,7 @@ import Arrow from './Arrow';
 const ShowProducts = () => {
     const {product} = useStore();
     const [currentPage, setCurrentPage] = useState(1);
-    const {isLoading, error, data:products} = useQuery([currentPage],() => ( product.getProducts(currentPage)));
+    const {isLoading, error, data:products} = useQuery(["new",currentPage],() => ( product.getProducts(currentPage)));
     
  
     return (
@@ -17,8 +17,8 @@ const ShowProducts = () => {
         
             <div className={styles.productsContainer}>
  
-                <div className={styles.new}>최신순</div>
-                
+                <div className={styles.new}>New In</div>
+                <div className={styles.new2}>새로운 상품</div>
                 {products && products.map(product => <ProductCard product={product} key={product.id} />)}
                 <div className={styles.moreContainer}>
                     <div className={styles.more}>

@@ -22,18 +22,22 @@ const ProductCard = ({product}) => {
        
         navigate(`/products/${state.id}`)
     }
-    console.log("프러덕뜨",product);
+    
     return (
         <div className={styles.card} onClick={goToDetail}>
             <img className={styles.img}src={state && state.image}></img>
             <div className={styles.categoryContainer}>
-                <div>{state && state.category}</div>
-                <div className={styles.heartContainer}><HiHeart className={styles.heart}/><div className={styles.num}>{state && state.likeNum}</div>
-                </div>
+                <div className={styles.category}>{state && state.category}</div>
+                
             </div>
             <div className={styles.info}>
-                <p>{state && state.description} </p>
-                <p>{state && state.price}원</p>
+                <div>{state && state.description} </div>
+                <div className={styles.name}>{state && state.name}</div>
+                <div className={styles.priceContainer}>
+                    <div className={styles.price}>{state && state.price}원</div>
+                    <div className={styles.heartContainer}><HiHeart className={styles.heart}/><div className={styles.num}>{state && state.likeNum}</div>
+                </div>
+                </div>
             </div>
             
             

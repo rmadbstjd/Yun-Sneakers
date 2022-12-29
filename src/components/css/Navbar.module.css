@@ -1,6 +1,14 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .container {
     display:flex;
     justify-content: center;
+    font-family : 'NanumSquareNeo-Variable';
 }
 .navbarContainer {
     display:flex;
@@ -9,7 +17,7 @@
     
 }
 .shopName {
-    width : 80px;
+    width : 200px;
     height : 40px;
    
 }

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {AiOutlineShopping, AiOutlineShoppingCart} from 'react-icons/ai';
+import {AiOutlineShoppingCart} from 'react-icons/ai';
 import {BsFillPencilFill} from 'react-icons/bs';
+import {GiConverseShoe} from 'react-icons/gi';
 import styles from './css/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 import { login, logout, adminUser } from './../api/firebase';
@@ -35,8 +36,8 @@ const Navbar = () => {
             <div className={styles.container}>
                 <div className={styles.navbarContainer}>
                     <div className={styles.navbarLeftContainer} onClick={() =>{navigate('/')}}>
-                        <AiOutlineShopping size={45}/>
-                        <div className={styles.shopName}>Yun's Shop</div>
+                        <GiConverseShoe size={45}/>
+                        <div className={styles.shopName}>Yun's Premium Sneakers</div>
                     </div>
                     <div className={styles.navbarRightContainer} >
                         <div onClick={() =>{navigate('/products')}} className={styles.products}>Likes</div>

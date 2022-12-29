@@ -12,7 +12,7 @@ const Home = () => {
         <div className={styles.container}>
             
             <div className={styles.imgContainer}>
-                <div style={{backgroundImage:"url(https://cdn.pixabay.com/photo/2017/09/09/11/52/t-shirts-2731768_960_720.jpg)"}}className={styles.img}>Premium Shoes for you</div>
+                <div style={{backgroundImage:"url(https://res.cloudinary.com/dtw1xfagx/image/upload/v1672322796/rgi4hlcwkfrlf7jizvac.jpg)"}}className={styles.img}>Premium Shoes for you</div>
                 
             </div>
 
@@ -22,7 +22,7 @@ const Home = () => {
                 <div className={styles.productContainer}>
                     
                     <ShowProducts/>
-                    
+                    <ShowPopularProducts/>
                 </div>
             </div>                          
         </div>

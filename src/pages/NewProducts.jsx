@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import {useNavigate, Navigate} from 'react-router-dom';
-import { addProduct } from '../api/firebase';
 import { uploadImage } from '../api/upload';
 import styles from './css/NewProducts.module.css';
 import useStore from '../store';
