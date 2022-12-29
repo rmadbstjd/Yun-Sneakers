@@ -39,7 +39,7 @@ const Navbar = () => {
                         <div className={styles.shopName}>Yun's Shop</div>
                     </div>
                     <div className={styles.navbarRightContainer} >
-                        <div onClick={() =>{navigate('/products')}} className={styles.products}>Products</div>
+                        <div onClick={() =>{navigate('/products')}} className={styles.products}>Likes</div>
                         {token?<AiOutlineShoppingCart  className={styles.cartImg} size={40} onClick={() =>{navigate('/cart')}}/>:null}
                         {<div className={styles.count}>{productCount}</div>}
                         {token&& localStorage.getItem('admin') === 'true'?<BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>:null}
