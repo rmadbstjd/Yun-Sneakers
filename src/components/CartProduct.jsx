@@ -1,9 +1,9 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
 const CartProduct = ({item,setState}) => {
-    
+    console.log("테스트",item);
     const [count,setCount] = useState(1);
     const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice, minusProductCount} = useStore();
     
@@ -37,7 +37,7 @@ const CartProduct = ({item,setState}) => {
     return (
         <div className={styles.container}>
             
-            <div  className={styles.img}style={{backgroundImage:"url("+`${item.url}`+")"}}></div>
+            <div  className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}}></div>
             <div className={styles.infoContainer}>
                 <div className={styles.description}>{item.description}</div>
                 <div>{item.title}</div>

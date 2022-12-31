@@ -20,7 +20,7 @@ const ProductDetail = () => {
     
     const [test, setTest] = useState(null);
     const [heartShow, setHeartShow] = useState(test);
-    const {size,setInitSize, setWillAddProduct, plusProductCount,product,like} = useStore();
+    const {size,setInitSize, setWillAddProduct, plusProductCount,product,like,cart} = useStore();
     
     const email = localStorage.getItem('email');
     const [productInfo, setProductInfo] = useState('');
@@ -31,9 +31,9 @@ const ProductDetail = () => {
         setSizeShow((prev) => !prev);
     };
     const {data} = useQuery([], () =>product.getProductInfo(id));
-    const productId = data && data.product.id;
+    const products = data && data.product;
     const category = data && data.product.category;
-    
+    console.log("프러덕트",products);
     const {isLoading, error, data : similars} = useQuery(["similar",id],() => product.getSimilarProducts(category,id), 
     {refetchOnMount : 'alaways',
      enabled : !!category});
@@ -45,9 +45,9 @@ const ProductDetail = () => {
         plusProductCount();
         setCartShow((prev) => !prev);
         setTimeout(setCartShow,3000);
-       
+        cart.addCart(products,size)
         
-        setAddProduct({id : productInfo[2],url : productInfo[3], title: productInfo[6], description:productInfo[1], category : productInfo[0], price: productInfo[4], size:size});
+        //setAddProduct({id : productInfo[2],url : productInfo[3], title: productInfo[6], description:productInfo[1], category : productInfo[0], price: productInfo[4], size:size});
         
         
     };

@@ -12,12 +12,32 @@ export default class Cart {
   }
 
   async getCarts() {
-    return this.httpClient.get("cart").then((res) => res.data);
+    const email = localStorage.getItem("email");
+    console.log("이메일", email);
+    return this.httpClient
+      .get("/cart", {
+        headers: {
+          email: email,
+        },
+      })
+      .then((res) => res.data);
   }
-  async addCart() {
-    return this.httpClient.post("/products/1/cart", {
-      productId: 1,
-      quantity: 1,
-    });
+
+  async addCart(products, size) {
+    const email = localStorage.getItem("email");
+    console.log("이메일", email);
+    return this.httpClient.post(
+      `/carts/${products.id}`,
+      {
+        product: products,
+        quantity: 1,
+        size: size,
+      },
+      {
+        headers: {
+          email: email,
+        },
+      }
+    );
   }
 }
