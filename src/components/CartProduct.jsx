@@ -37,7 +37,7 @@ const CartProduct = ({item,setState}) => {
     return (
         <div className={styles.container}>
             
-            <div  className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}}></div>
+            <div  className={styles.img}style={{backgroundImage:"url("+`${item.backgroundImage}`+")"}}></div>
             <div className={styles.infoContainer}>
                 <div className={styles.description}>{item.description}</div>
                 <div>{item.title}</div>

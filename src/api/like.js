@@ -20,16 +20,20 @@ export default class Like {
   async isLike(productId) {
     const email = localStorage.getItem("email");
     return this.httpClient
-      .post(`/like/isLike/${productId}`, {
-        email: email,
+      .get(`/like/isLike/${productId}`, {
+        headers: {
+          email: email,
+        },
       })
       .then((res) => res.data.result);
   }
   async getLikeProduct() {
     const email = localStorage.getItem("email");
     return this.httpClient
-      .post(`/like/products`, {
-        email: email,
+      .get(`/like/products`, {
+        headers: {
+          email: email,
+        },
       })
       .then((res) => res.data.result);
   }
