@@ -2,7 +2,7 @@ import React from 'react';
 import ShowProducts from '../components/ShowProducts';
 import ShowPopularProducts from '../components/ShowPopularProducts';
 import styles from './css/Home.module.css';
-import {AiOutlineArrowLeft,AiOutlineArrowRight} from 'react-icons/ai';
+
 
 const Home = () => {
 

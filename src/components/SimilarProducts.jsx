@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './css/SimilarProducts.module.css';
 import {useNavigate} from 'react-router-dom';
 import useStore from '../store';
-import { getProductInfo,getSimilarProducts } from '../api/firebase';
+import { getProductInfo } from '../api/firebase';
 const SimilarProducts = ({products}) => {
   
     const {setCurrentProduct} = useStore();
@@ -15,8 +15,9 @@ const SimilarProducts = ({products}) => {
     return (
         <div className={styles.product} onClick={goToDetail}>
             <div className={styles.img}style={{backgroundImage:"url("+`${products.image}`+")"}}></div>
-            <div className={styles.title}>{products.title}</div>
-            <div>{products.price}원</div>
+            <span className={styles.category}>{products.category}</span>
+            <div className={styles.name}>{products.name}</div>
+            <div className={styles.price}>{products.price}원</div>
         </div>
     );
 };

@@ -17,16 +17,21 @@ const SizeMordal = ({setSizeShow,size}) => {
     }
    
     return (
-        <div className={styles.mordal}>
+        <div className={styles.mordalBackground}>
+            <div className={styles.mordal}>
             <div className={styles.sizeContainer}>
                 <div className={styles.name}>Size</div>
-                {sizes && sizes.map((item) =>(<div onClick={() =>{clickSize(item)}}className={styles.sizeBox}>{item}</div>))}
+                    <div className={styles.sizeContainer}>
+                        {sizes && sizes.map((item) =>(<div onClick={() =>{clickSize(item)}}className={styles.sizeBox}>{item}</div>))}
+                    </div>
                 </div>
             
                  <button className={styles.close} onClick={closeShow}>
                     X
                 </button>
         </div>
+        </div>
+        
     );
 };
 

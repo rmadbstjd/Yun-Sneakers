@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 
 import {useQuery} from '@tanstack/react-query';
 import ProductCard from './ProductCard';
@@ -11,7 +11,9 @@ const ShowProducts = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const {isLoading, error, data:products} = useQuery(["new",currentPage],() => ( product.getProducts(currentPage)));
     
- 
+    useEffect(() => {
+        products && console.log("products",products);
+    },[products])
     return (
         <div className={styles.container}>
         

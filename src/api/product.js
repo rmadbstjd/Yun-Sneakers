@@ -30,6 +30,14 @@ export default class Product {
       })
       .then((res) => res.data);
   }
+  async getSimilarProducts(category, productId) {
+    return this.httpClient
+      .post("products/similar", {
+        category: category,
+        productId: productId,
+      })
+      .then((res) => res.data);
+  }
   async getProductInfo(id) {
     return this.httpClient.get(`products/${id}`).then((res) => res.data);
   }
