@@ -31,12 +31,29 @@ export default class Cart {
       },
     });
     const data = response.data;
-    console.log("데이타!", data);
+
     if (data.success === "true") {
       return data;
     } else {
       return null;
     }
+  }
+  async updateCart(productId, size, quantity) {
+    const email = localStorage.getItem("email");
+    const response = await this.httpClient.put(
+      `/carts/${productId}`,
+      {
+        quantity: quantity,
+        size: size,
+      },
+      {
+        headers: {
+          email: email,
+        },
+      }
+    );
+    const data = response.data;
+    return data;
   }
 
   async addCart(products, size) {
@@ -59,7 +76,7 @@ export default class Cart {
 
   async deleteCart(productId, size) {
     const email = localStorage.getItem("email");
-    console.log("123", productId, size);
+
     return this.httpClient.delete(`/carts/${productId}`, {
       headers: {
         email: email,
