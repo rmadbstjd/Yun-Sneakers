@@ -5,8 +5,8 @@ import useStore from '../store';
 const CartProduct = ({item,setState}) => {
     console.log("테스트",item);
     const [count,setCount] = useState(1);
-    const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice, minusProductCount} = useStore();
-    
+    const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice, minusProductCount, cart} = useStore();
+    console.log("Cart",cart);
     const email = localStorage.getItem('email');
     const plus = () => {
         if(count >=10) {
@@ -32,6 +32,7 @@ const CartProduct = ({item,setState}) => {
         minusTotalPrice(count * item.price);
         setState((prev) =>!prev);
         minusProductCount();
+        cart.deleteCart(item.productId,item.size);
     };
     
     return (

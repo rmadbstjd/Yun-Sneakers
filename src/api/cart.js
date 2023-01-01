@@ -13,7 +13,7 @@ export default class Cart {
 
   async getCarts() {
     const email = localStorage.getItem("email");
-    console.log("이메일", email);
+
     return this.httpClient
       .get("/cart", {
         headers: {
@@ -22,10 +22,26 @@ export default class Cart {
       })
       .then((res) => res.data);
   }
+  async getCartsTest() {
+    const email = localStorage.getItem("email");
+
+    const response = await this.httpClient.get("/cart", {
+      headers: {
+        email: email,
+      },
+    });
+    const data = response.data;
+    console.log("데이타!", data);
+    if (data.success === "true") {
+      return data;
+    } else {
+      return null;
+    }
+  }
 
   async addCart(products, size) {
     const email = localStorage.getItem("email");
-    console.log("이메일", email);
+
     return this.httpClient.post(
       `/carts/${products.id}`,
       {
@@ -39,5 +55,16 @@ export default class Cart {
         },
       }
     );
+  }
+
+  async deleteCart(productId, size) {
+    const email = localStorage.getItem("email");
+    console.log("123", productId, size);
+    return this.httpClient.delete(`/carts/${productId}`, {
+      headers: {
+        email: email,
+      },
+      data: { size: size },
+    });
   }
 }

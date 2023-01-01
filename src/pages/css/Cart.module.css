@@ -1,6 +1,66 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .container {
     display:flex;
     justify-content: center;   
+    font-family: 'NanumSquareNeo-Variable';
+}
+.nullContainer {
+    display:flex;
+    justify-content: center;
+    font-family: 'NanumSquareNeo-Variable';
+    
+}
+.nullContent {
+    width : 71%;
+    
+}
+.nullText {
+    display : flex;
+    justify-content: center;
+    font-size : 35px;
+    margin-top : 10%;
+}
+.nullBoxContainer {
+    margin-top : 5%;
+    display:flex;
+    justify-content: center;
+}
+.nullBox {
+ 
+    border : solid gray 1px;
+    width: 350px;
+    padding: 20px;
+    font-size : 25px;
+    text-align : center;
+    cursor : pointer;
+    color : #3A3B3C;
+    font-weight: bold;
+    
+}
+.nullBox:hover {
+    background-color: black;
+    color : white;
+    
+    transition: all 0.3s;
+}
+.horizonLine {
+    width: 100%;
+    margin-top : 3%;
+    border-bottom: 5px solid black;
+    line-Height : 0.1rem;
+    
+}
+.horizonBottomLine {
+    width: 100%;
+    margin-top : 3%;
+    border-bottom: 3px solid gray;
+    line-Height : 0.1rem;
 }
 .text {
     font-size : 30px;
@@ -83,4 +143,21 @@
     background-color: whitesmoke;
     color : black;
     font-weight: bold;
+}
+@media ( max-width :736px) {
+    .horizonLine {
+        margin-top : 15%;
+    }
+    .nullBox {
+        margin-top : 2%;
+        font-size : 20px;
+    }
+    .nullText {
+        margin-top : 10%;
+        font-size : 20px;
+    }
+    .horizonBottomLine {
+        
+        margin-top : 5%;
+    }
 }
