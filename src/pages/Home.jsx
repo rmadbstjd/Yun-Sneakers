@@ -1,13 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import ShowProducts from '../components/ShowProducts';
 import ShowPopularProducts from '../components/ShowPopularProducts';
 import styles from './css/Home.module.css';
 
-
 const Home = () => {
 
     
-
+   
     return (
         <div className={styles.container}>
             

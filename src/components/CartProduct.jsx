@@ -5,17 +5,22 @@ import useStore from '../store';
 const CartProduct = ({item,setState}) => {
     
     const [count,setCount] = useState(item.quantity);
-    const [boolean, setBoolean] = useState('plus');
-    const {cart,plusTotalPrice,minusTotalPrice} = useStore();
+    const [boolean, setBoolean] = useState(null);
+    const {cart,plusTotalPrice,minusTotalPrice,initTotalPrice} = useStore();
+
     useEffect(() => {
-        cart.updateCart(item.productId,item.size,count);
-       
         const new_price = item.price.replace(/,/g, '');
         console.log("boolean",boolean);
+        if(boolean ===null) {
+           initTotalPrice(Number(new_price) * item.quantity);
+        }
+
         if(boolean==='plus'){
-            plusTotalPrice(Number(new_price) * item.quantity);
+            cart.updateCart(item.productId,item.size,count);
+            plusTotalPrice(Number(new_price) * 1);
         }
         else if(boolean==='minus'){
+            cart.updateCart(item.productId,item.size,count);
             minusTotalPrice(Number(new_price) * 1);
         }
     }, [count]);

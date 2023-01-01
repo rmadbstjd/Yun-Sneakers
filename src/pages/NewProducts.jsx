@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useNavigate, Navigate} from 'react-router-dom';
 import { uploadImage } from '../api/upload';
 import styles from './css/NewProducts.module.css';
@@ -9,7 +9,7 @@ const NewProducts = () => {
     const [count, setCount] = useState(0);
     let isAdmin = localStorage.getItem('admin');
     const navigate = useNavigate();
-    
+
     if(isAdmin !=='true') {
        
         return <Navigate to="/" replace></Navigate>

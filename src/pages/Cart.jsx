@@ -11,13 +11,15 @@ const Cart =  () => {
     const navigate = useNavigate();
     const {cart,totalPrice,totalCount,initTotalPrice} = useStore();
     const [state,setState] = useState(false);
-    const {isLoading, error, data:cartProducts} = useQuery(["1"], () => cart.getCartsTest());
+    const {isLoading, error, data:cartProducts} = useQuery(["1",totalPrice], () => cart.getCartsTest());
     const isLogin = localStorage.getItem('email');
     useEffect(() => {
+        
         console.log("??????",totalPrice,typeof(totalPrice));
         if(typeof(totalPrice) === 'number') {
             console.log("뭐나오는데",totalPrice);
             if(totalPrice !== 0){
+                
                 const test1 = String(totalPrice);
                 const test2 = test1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
                 initTotalPrice(test2);
