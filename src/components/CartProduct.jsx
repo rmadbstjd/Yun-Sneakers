@@ -3,12 +3,22 @@ import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
 const CartProduct = ({item,setState}) => {
-    console.log("테스트",item);
+    
     const [count,setCount] = useState(item.quantity);
-    const {plusTotalCount, minusTotalCount,deleteTotalCount,plusTotalPrice,minusTotalPrice, minusProductCount, cart} = useStore();
+    const [boolean, setBoolean] = useState('plus');
+    const {cart,plusTotalPrice,minusTotalPrice} = useStore();
     useEffect(() => {
         cart.updateCart(item.productId,item.size,count);
-    }, [count])
+       
+        const new_price = item.price.replace(/,/g, '');
+        console.log("boolean",boolean);
+        if(boolean==='plus'){
+            plusTotalPrice(Number(new_price) * item.quantity);
+        }
+        else if(boolean==='minus'){
+            minusTotalPrice(Number(new_price) * 1);
+        }
+    }, [count]);
     const email = localStorage.getItem('email');
     const plus = () => {
         if(count >=10) {
@@ -16,8 +26,7 @@ const CartProduct = ({item,setState}) => {
             return;
         }
         setCount((prev) => prev + 1);
-        plusTotalCount();
-        plusTotalPrice(item.price);
+        setBoolean('plus');
         
     }
     const minus =  () => {
@@ -25,16 +34,14 @@ const CartProduct = ({item,setState}) => {
             return;
         }
         setCount((prev) => prev - 1);
-        minusTotalCount();
-        minusTotalPrice(item.price);
+        setBoolean('minus');
         
     }
     const deleteProduct = () => {
         removeFromCart(email.split('.')[0], item.id);
-        deleteTotalCount(count);
-        minusTotalPrice(count * item.price);
+       
         setState((prev) =>!prev);
-        minusProductCount();
+       
         cart.deleteCart(item.productId,item.size);
     };
     

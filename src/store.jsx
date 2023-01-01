@@ -45,6 +45,7 @@ const store = set =>({
         description:'',
         size:''
     },
+    test : null,
     setWillAddProduct : (product) => set(produce((draft) => {draft.willAddProduct={id:product.id,url:product.url,title:product.title,price:product.price,category:product.category,description:product.description,size:product.size}})),
     totalCount : 0,
     initTotalCount : (init) => set(state =>({totalCount : init })),
@@ -53,8 +54,8 @@ const store = set =>({
     deleteTotalCount : (count) => set(state =>({totalCount : state.totalCount - count})),
     totalPrice : 0,
     initTotalPrice : (init) => set(state =>({totalPrice : init })),
-    plusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice + price})),
-    minusTotalPrice : (price) => set(state => ({totalPrice : state.totalPrice - price})),
+    plusTotalPrice : (price) => set(state => (typeof(state.totalPrice)==='number'?{totalPrice : state.totalPrice + price}:{totalPrice : Number(state.totalPrice.replace(/,/g, '')) + price})),
+    minusTotalPrice : (price) => set(state => (typeof(state.totalPrice)==='number'?{totalPrice : state.totalPrice - price}:{totalPrice : Number(state.totalPrice.replace(/,/g, '')) - price})),
     productCount : 0,
     plusProductCount : () => set(state =>({productCount : state.productCount + 1})),
     minusProductCount : () => set(state =>({productCount : state.productCount - 1})),

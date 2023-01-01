@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Navigate} from 'react-router-dom';
 import useStore from '../store';
 import {useQuery} from '@tanstack/react-query';
@@ -7,12 +7,27 @@ import styles from './css/Cart.module.css';
 import {useNavigate} from 'react-router-dom';
 import HorizonLine from '../components/HorizonLine';
 const Cart =  () => {
+    
     const navigate = useNavigate();
-    const {cart,totalPrice,totalCount} = useStore();
+    const {cart,totalPrice,totalCount,initTotalPrice} = useStore();
     const [state,setState] = useState(false);
     const {isLoading, error, data:cartProducts} = useQuery(["1"], () => cart.getCartsTest());
-    
     const isLogin = localStorage.getItem('email');
+    useEffect(() => {
+        console.log("??????",totalPrice,typeof(totalPrice));
+        if(typeof(totalPrice) === 'number') {
+            console.log("뭐나오는데",totalPrice);
+            if(totalPrice !== 0){
+                const test1 = String(totalPrice);
+                const test2 = test1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+                initTotalPrice(test2);
+            }
+        }
+        else if(typeof(totalPrice) ==='string') {
+            console.log("price is string!!!");
+        }
+       
+    },[totalPrice]);
     const goToMain = () => {
         navigate('/');
     };
@@ -73,13 +88,13 @@ const Cart =  () => {
                     <div className={styles.symbolContent}>
                         <div className={styles.symbol}>  + </div>
                         <div className={styles.payContent2}>
-                            3000원                 
+                            원                 
                         </div>
                         <div className={styles.symbol}>  = </div>
                     </div>
                   
                     <div className={styles.payContent3}>
-                        {totalPrice + 3000}원                 
+                        {totalPrice}원                 
                     </div>
 
                 </div>
