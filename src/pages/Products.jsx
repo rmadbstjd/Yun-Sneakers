@@ -7,7 +7,7 @@ const Products = () => {
     const {like} =useStore();
     const {isLoading, error, data:products} = useQuery([], () => (like.getLikeProduct()));
 
-    products && console.log("products",products);
+    
     return (
         <div className={styles.container}>
             <div className={styles.productsContainer}>

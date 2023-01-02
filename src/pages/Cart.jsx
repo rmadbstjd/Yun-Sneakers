@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Navigate} from 'react-router-dom';
 import useStore from '../store';
 import {useQuery} from '@tanstack/react-query';
@@ -9,27 +9,27 @@ import HorizonLine from '../components/HorizonLine';
 const Cart =  () => {
     
     const navigate = useNavigate();
-    const {cart,totalPrice,totalCount,initTotalPrice} = useStore();
-    const [state,setState] = useState(false);
-    const {isLoading, error, data:cartProducts} = useQuery(["1",totalPrice], () => cart.getCartsTest());
+    const {cart,totalPrice,deletes,change} = useStore();
+    const [price, setPrice] = useState(0);
+    const [count, setCount] = useState();
+    const [boolean, setBoolean] = useState(null);
+    const {isLoading, error, data:cartProducts} = useQuery([totalPrice,deletes,change], () => cart.getCartsTest());
     const isLogin = localStorage.getItem('email');
+    
     useEffect(() => {
-        
-        console.log("??????",totalPrice,typeof(totalPrice));
-        if(typeof(totalPrice) === 'number') {
-            console.log("뭐나오는데",totalPrice);
-            if(totalPrice !== 0){
+        if(cartProducts){
+          
+            setPrice(0);
+            setCount(0);
+            for(let i = 0; i<cartProducts.products.length; i++) {
                 
-                const test1 = String(totalPrice);
-                const test2 = test1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-                initTotalPrice(test2);
-            }
+                let newPrice = Number(cartProducts.products[i].price.replace(/,/g, '') * cartProducts.products[i].quantity );
+               
+                setPrice((prev) => prev + newPrice);
+                setCount((prev) => prev +  cartProducts.products[i].quantity);
+            }   
         }
-        else if(typeof(totalPrice) ==='string') {
-            console.log("price is string!!!");
-        }
-       
-    },[totalPrice]);
+    },[cartProducts]);  
     const goToMain = () => {
         navigate('/');
     };
@@ -37,6 +37,7 @@ const Cart =  () => {
         
         return <Navigate to="/" replace></Navigate>
     }
+
     if(cartProducts === null) {
         return <div className={styles.nullContainer}>
                     <div className={styles.nullContent}>
@@ -67,7 +68,7 @@ const Cart =  () => {
                         <div className={styles.menuOrder}>주문관리</div>
                     </div>
                 </div>
-                {cartProducts && cartProducts.products.map(item => <CartProduct  key ={item.id}item ={item} setState={setState} />)}
+                {cartProducts && cartProducts.products.map(item => <CartProduct key ={item.productId} item ={item} boolean ={boolean }setBoolean={setBoolean}/>)}
                 <div className={styles.horizonLine}></div>
                 <div className={styles.payContainer}>                   
                     <div className={styles.productPrice}>
@@ -85,18 +86,19 @@ const Cart =  () => {
                 <HorizonLine/>
                 <div className={styles.payContainer2}>
                     <div className={styles.payContent1}>
-                        {totalPrice}원             
+                        <div className={styles.count}>총 {count}개</div>
+                        {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원             
                     </div>
                     <div className={styles.symbolContent}>
                         <div className={styles.symbol}>  + </div>
                         <div className={styles.payContent2}>
-                            원                 
+                            0원                 
                         </div>
                         <div className={styles.symbol}>  = </div>
                     </div>
                   
                     <div className={styles.payContent3}>
-                        {totalPrice}원                 
+                        {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원                 
                     </div>
 
                 </div>

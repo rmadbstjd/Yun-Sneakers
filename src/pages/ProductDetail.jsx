@@ -30,10 +30,10 @@ const ProductDetail = () => {
     const showSize = () => {
         setSizeShow((prev) => !prev);
     };
-    const {data} = useQuery([], () =>product.getProductInfo(id));
+    const {data} = useQuery([id], () =>product.getProductInfo(id));
     const products = data && data.product;
     const category = data && data.product.category;
-    console.log("프러덕트",products);
+
     const {isLoading, error, data : similars} = useQuery(["similar",id],() => product.getSimilarProducts(category,id), 
     {refetchOnMount : 'alaways',
      enabled : !!category});
@@ -53,7 +53,7 @@ const ProductDetail = () => {
     };
     const clickToHeart = () => {
         //처음 화면에 딱 왔을 때 하트 boolean
-        console.log("테스트",test);
+       
         if(!test) {
             setHeartShow((prev) =>!prev);
             setTimeout(setHeartShow,2000);

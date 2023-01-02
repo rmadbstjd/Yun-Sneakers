@@ -2,60 +2,59 @@ import React,{useState,useEffect} from 'react';
 import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
-const CartProduct = ({item,setState}) => {
+import {useNavigate} from 'react-router-dom';
+const CartProduct = ({item, boolean, setBoolean}) => {
+    const [productCount,setProductCount] = useState(item.quantity);   
+    const {cart,setDeletes,setChange} = useStore();
+    const navigate = useNavigate();
     
-    const [count,setCount] = useState(item.quantity);
-    const [boolean, setBoolean] = useState(null);
-    const {cart,plusTotalPrice,minusTotalPrice,initTotalPrice} = useStore();
-
     useEffect(() => {
-        const new_price = item.price.replace(/,/g, '');
-        console.log("boolean",boolean);
-        if(boolean ===null) {
-           initTotalPrice(Number(new_price) * item.quantity);
-        }
 
         if(boolean==='plus'){
-            cart.updateCart(item.productId,item.size,count);
-            plusTotalPrice(Number(new_price) * 1);
+                    
+            cart.updateCart(item.productId,item.size,productCount);
+            setChange((prev) => !prev);         
         }
         else if(boolean==='minus'){
-            cart.updateCart(item.productId,item.size,count);
-            minusTotalPrice(Number(new_price) * 1);
+           
+            cart.updateCart(item.productId,item.size,productCount);
+            setChange((prev) => !prev);               
         }
-    }, [count]);
+    }, [productCount]);
     const email = localStorage.getItem('email');
     const plus = () => {
-        if(count >=10) {
+        if(productCount >=10) {
             alert("최대 구매 갯수는 10개입니다.");
             return;
         }
-        setCount((prev) => prev + 1);
+        setProductCount((prev) => prev + 1);
         setBoolean('plus');
         
     }
     const minus =  () => {
-        if(count<=1) {
+        if(productCount<=1) {
             return;
         }
-        setCount((prev) => prev - 1);
+        setProductCount((prev) => prev - 1);
         setBoolean('minus');
         
     }
     const deleteProduct = () => {
-        removeFromCart(email.split('.')[0], item.id);
-       
-        setState((prev) =>!prev);
-       
+        removeFromCart(email.split('.')[0], item.id);       
+        
         cart.deleteCart(item.productId,item.size);
+        setDeletes((prev) =>!prev);
     };
-    
+
+    const goToDetail = () => {
+        navigate(`/products/${item.productId}`);
+    };
     return (
         <div className={styles.container}>
             
             
             <div className={styles.infoContainer}>
-                <div className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}}></div>
+                <div className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}} onClick={goToDetail}></div>
                 <div className={styles.infoContent}>
                     <div className={styles.name}>{item.name}</div>
                     <div className={styles.description}>{item.description}</div>
@@ -67,7 +66,7 @@ const CartProduct = ({item,setState}) => {
             <div className={styles.quantity}>
                     <div className={styles.quantityContent}>
                         <div className={styles.minus} onClick={minus}>-</div>
-                        <div className={styles.count}>{count}</div>
+                        <div className={styles.count}>{productCount}</div>
                         <div className={styles.plus} onClick={plus}>+</div>
                     </div>
                     

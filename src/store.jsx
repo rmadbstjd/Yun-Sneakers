@@ -59,7 +59,10 @@ const store = set =>({
     productCount : 0,
     plusProductCount : () => set(state =>({productCount : state.productCount + 1})),
     minusProductCount : () => set(state =>({productCount : state.productCount - 1})),
-
+    deletes : false,
+    change : false,
+    setChange : () => set(state =>({change : !(state.change)})),
+    setDeletes : () => set(state =>({deletes : !(state.deletes)})),
 }   );
 const useStore = create(devtools(store));
 

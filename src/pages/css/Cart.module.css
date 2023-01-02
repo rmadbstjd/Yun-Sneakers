@@ -199,6 +199,10 @@
     
    
 }
+.count {
+    font-size : 14px;
+    margin-top : -5%;
+}
 @media ( max-width :736px) {
     .horizonLine {
         margin-top : 15%;
