@@ -33,6 +33,9 @@ const Cart =  () => {
     const goToMain = () => {
         navigate('/');
     };
+    const goToOrderPage = () => {
+        alert("아직 준비중입니다!!");
+    }
     if(!isLogin) {
         
         return <Navigate to="/" replace></Navigate>
@@ -104,8 +107,16 @@ const Cart =  () => {
                 </div>
                 <div className={styles.horizonLine2}></div>
                 
-            
+                <div className={styles.footerContainer}>
+                    <div className={styles.footerContent1} onClick={goToMain}>   
+                            쇼핑 계속하기
+                    </div>
+                    <div className={styles.footerContent2} onClick={goToOrderPage}> 
+                            구매하기
+                    </div>
+                </div>
             </div>
+            
         </div>
     );
 };

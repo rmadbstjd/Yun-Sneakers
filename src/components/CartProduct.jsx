@@ -3,11 +3,12 @@ import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
 import {useNavigate} from 'react-router-dom';
+import HorizonLine from '../components/HorizonLine';
 const CartProduct = ({item, boolean, setBoolean}) => {
     const [productCount,setProductCount] = useState(item.quantity);   
     const {cart,setDeletes,setChange} = useStore();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
 
         if(boolean==='plus'){
@@ -53,29 +54,36 @@ const CartProduct = ({item, boolean, setBoolean}) => {
         <div className={styles.container}>
             
             
-            <div className={styles.infoContainer}>
-                <div className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}} onClick={goToDetail}></div>
-                <div className={styles.infoContent}>
-                    <div className={styles.name}>{item.name}</div>
-                    <div className={styles.description}>{item.description}</div>
-                    
-                    <div className={styles.size}>[사이즈] {item.size}</div>
-                    <div className={styles.price}>{item.price}원</div>
-                </div>
-            </div>
-            <div className={styles.quantity}>
-                    <div className={styles.quantityContent}>
-                        <div className={styles.minus} onClick={minus}>-</div>
-                        <div className={styles.count}>{productCount}</div>
-                        <div className={styles.plus} onClick={plus}>+</div>
+
+            <div className={styles.real}>
+                <div className={styles.infoContainer}>
+                    <div className={styles.img}style={{backgroundImage:"url("+`${item.image}`+")"}} onClick={goToDetail}></div>
+                    <div className={styles.infoContent}>
+                        <div className={styles.name}>{item.name}</div>
+                        <div className={styles.description}>{item.description}</div>
+                        
+                        <div className={styles.size}>[사이즈] {item.size}</div>
+                        <div className={styles.price}>{item.price}원</div>
                     </div>
-                    
-            </div>
-            <div className={styles.deleteContainer}>
-                <div className={styles.delete} onClick={deleteProduct}>
-                        삭제하기
                 </div>
+                <div className={styles.real2}>
+                    <div className={styles.quantity}>
+                            <div className={styles.quantityContent}>
+                                <div className={styles.minus} onClick={minus}>-</div>
+                                <div className={styles.count}>{productCount}</div>
+                                <div className={styles.plus} onClick={plus}>+</div>
+                            </div>
+                            
+                    </div>
+                    <div className={styles.deleteContainer}>
+                        <div className={styles.delete} onClick={deleteProduct}>
+                                삭제하기
+                        </div>
+                    </div>
+                </div>
+
             </div>
+                <div className={styles.horizonLine2}></div>
         </div>
     );    
 };

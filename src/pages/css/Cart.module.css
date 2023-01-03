@@ -92,6 +92,7 @@
     height : 40px;
     display:flex;
     justify-content: flex-end;
+    
 }
 
 .payContainer {
@@ -203,7 +204,54 @@
     font-size : 14px;
     margin-top : -5%;
 }
-@media ( max-width :736px) {
+.footerContainer {
+    display:flex;
+    margin-top : 5%;
+    justify-content: center;
+    margin-bottom : 5%;
+}
+.footerContent1 {
+    width : 30%;
+    border : solid black 1px;
+    height : 65px;
+    text-align:center;
+    font-size : 25px;
+    line-height : 270%;
+    margin-right : 10px;
+    font-weight : bolder;
+    cursor : pointer;
+    color : #3A3B3C;
+}
+.footerContent1:hover {
+    color : #A5BA93;
+}
+.footerContent2 {
+    width : 30%;
+    border : solid black 1px;
+    height : 65px;
+    text-align:center;
+    font-size : 25px;
+    line-height : 270%;
+    font-weight : bolder;
+    background-color: black;
+    color : white;
+    cursor : pointer;
+   
+}
+.footerContent2:hover {
+    color:#A5BA93;
+}
+@media ( max-width :836px) {
+   .test {
+    display:none;
+   }
+}
+
+@media ( max-width :836px) {
+    .productsContainer {
+        width : 100%;
+        
+    }
     .horizonLine {
         margin-top : 15%;
     }
@@ -218,5 +266,27 @@
     .horizonBottomLine {
         
         margin-top : 5%;
+    }
+    .menuContainer {
+        width: 100%;
+        display:flex;
+        justify-content: center;
+        font-size : 30px;
+        font-weight : bold;
+        margin-top : 5%;
+
+    }
+
+}
+@media ( max-width :656px) {
+    .footerContent1 {
+        width : 50%;
+        font-size : 20px;
+        line-height : 310%;
+    }
+    .footerContent2 {
+        width : 50%;
+        font-size : 20px;
+        line-height : 310%;
     }
 }

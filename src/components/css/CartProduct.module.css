@@ -4,30 +4,37 @@
     font-weight: normal;
     font-style: normal;
 }
-.container {
+.real {
     display:flex;
+    
+    justify-content: space-around;
+}
+.container {
+   
     margin-top : 20px;
    
 }
 .img {
-    
+    min-width : 190px;
+    min-height : 250px;
     width: 190px;
     height : 250px;
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
+    
 }
 .infoContainer {
     
-    width: 44%;
+    width: 33%;
     display:flex;
-   
+
     justify-content : flex-start;
 }
 .infoContent {
     margin-top : 4%;
     margin-left : 5%;
-    
+   
 }
 .name {
     margin-top : 5%;
@@ -50,8 +57,8 @@
 }
 
 .deleteContainer {
-    width : 26%;
- 
+   width : 37%;
+    
     display:flex;
     justify-content: center;
 }
@@ -60,6 +67,7 @@
     width : 80px;
     height : 40px;
     margin-top : 65px;
+    margin-left : 7%;
     text-align:center;
     line-height : 280%;
     font-size : 14px;
@@ -72,13 +80,16 @@
 }
 
 .quantity {
-    width : 30%;   
+    width : 63%;  
     display:flex;
     justify-content: center;
    
+
 }
+
 .quantityContent {
     display:flex;
+    margin-left : -14%;
     margin-top : 19%;
     
 }
@@ -111,4 +122,136 @@
     cursor : pointer;
     color : #414141;
     line-height : 150%;
+}
+.horizonLine2 {
+    width: 100%;
+    margin-top : -1%;
+    border-bottom: 1px solid black;
+    line-Height : 0.1rem;
+    
+}
+.real2 {
+    width : 50%;
+    display:flex;
+    
+}
+@media ( max-width :1015px) {   
+    .infoContent {
+        margin-top : -1%;
+        margin-left : 5%;
+        
+    }
+    .price {
+        margin-top : 3%;
+        font-size : 16px;
+        font-weight: bolder;
+    }
+}
+@media ( max-width :936px) {
+
+    .price {
+        margin-top : 3%;
+        font-size : 14px;
+        font-weight: bolder;
+    }
+    .name {
+        margin-top : 5%;
+        font-weight: bold;
+        font-size : 14px;
+    }
+    .description {
+        margin-top : 1%;
+        color : #3A3B3C;
+        font-size : 14px;
+    }
+    .size {
+        margin-top : 5%;
+        font-size: 14px;
+        
+    }
+}
+@media ( max-width :836px) {
+    .real {
+        width : 100%;
+        display:flex;
+        flex-direction: column;
+      
+        
+    }
+    .real2 {
+        margin-top : -30px;
+        width : 100%;
+        display:flex;   
+       
+        
+    }
+    .delete {
+       
+        margin-top : 0px;
+    
+    
+    }
+    .quantityContent {
+      
+        margin-top : 0%;
+        
+    }
+
+    .container {
+        width : 100%;
+        display:flex;
+        flex-direction: column;
+       
+    }
+    .infoContent {
+        width : 100%;
+        margin-left : 5%;
+        margin-top : -3.5%;
+        height : 200px;
+    }
+    .infoContainer {
+        display:flex;
+        flex-direction: reverse;
+       
+        width: 100%;
+     }
+     .price {
+        margin-top : 3%;
+        font-size : 18px;
+        font-weight: bolder;
+    }
+    .name {
+        margin-top : 5%;
+        font-weight: bold;
+        font-size : 18px;
+    }
+    .description {
+        margin-top : 1%;
+        color : #3A3B3C;
+        font-size : 18px;
+    }
+    .size {
+        margin-top : 5%;
+        font-size: 15px;
+        
+    }
+    /*.quantity {
+        width : 25%;
+        display:flex;
+        margin-top : -7%;
+        
+        
+    }
+    .quantityContent {
+      
+        margin-top : 0%;
+    }*/
+    .horizonLine2 {
+        width: 100%;
+        margin-top : 3%;
+        border-bottom: 1px solid black;
+        line-Height : 0.1rem;
+        
+    }
+
 }
