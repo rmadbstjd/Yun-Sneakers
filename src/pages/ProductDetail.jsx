@@ -20,7 +20,7 @@ const ProductDetail = () => {
     
     const [test, setTest] = useState(null);
     const [heartShow, setHeartShow] = useState(test);
-    const {size,setInitSize, setWillAddProduct, plusProductCount,product,like,cart} = useStore();
+    const {size,setInitSize, setWillAddProduct, plusProductCount,product,like,cart,plusCartCount} = useStore();
     
     const email = localStorage.getItem('email');
     const [productInfo, setProductInfo] = useState('');
@@ -37,7 +37,7 @@ const ProductDetail = () => {
     const {isLoading, error, data : similars} = useQuery(["similar",id],() => product.getSimilarProducts(category,id), 
     {refetchOnMount : 'alaways',
      enabled : !!category});
-    const clickToCart = () => {
+    const clickToCart = async () => {
         if(!size) {
             alert("사이즈를 선택해주세요!");
             return;
@@ -45,8 +45,12 @@ const ProductDetail = () => {
         plusProductCount();
         setCartShow((prev) => !prev);
         setTimeout(setCartShow,3000);
-        cart.addCart(products,size)
-        
+        const test = await cart.addCart(products,size);
+        console.log("test",test.success);
+        if(test.success===false){
+            return;
+        }
+        plusCartCount(1);
         //setAddProduct({id : productInfo[2],url : productInfo[3], title: productInfo[6], description:productInfo[1], category : productInfo[0], price: productInfo[4], size:size});
         
         
@@ -142,7 +146,7 @@ const ProductDetail = () => {
                     </div>
                     <div className={styles.similarContainer}>
                     <div className={styles.shoesContainer}>
-                        {similars && similars.map((item) => <SimilarProducts key={item.id} products={item}/>)}
+                        {similars && similars.map((item) => <SimilarProducts key={item.productId} products={item}/>)}
                     </div>
                 </div>  
         </div>

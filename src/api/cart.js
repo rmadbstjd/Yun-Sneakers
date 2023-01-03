@@ -59,7 +59,7 @@ export default class Cart {
   async addCart(products, size) {
     const email = localStorage.getItem("email");
 
-    return this.httpClient.post(
+    const response = await this.httpClient.post(
       `/carts/${products.id}`,
       {
         product: products,
@@ -72,6 +72,9 @@ export default class Cart {
         },
       }
     );
+    const data = response.data;
+    console.log("data", data);
+    return data;
   }
 
   async deleteCart(productId, size) {

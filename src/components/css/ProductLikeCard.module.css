@@ -4,7 +4,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 .card {
     
     width : 220px;
@@ -12,14 +11,29 @@
     margin : 20px 30px 20px 0px;
     cursor:pointer;
     font-family: 'NanumSquareNeo-Variable';
-    z-index : 1;
+   
+}
+.deleteButton {
+    position : absolute;
+    width : 30px;
+    height : 30px;
+    margin-top : 6%;
+    margin-left : 83%;
+    cursor:pointer;
+    display:none;
+    z-index :999;
+   
+}
+.card:hover .deleteButton {
+    display:block;
+    z-index: 999;
 }
 .card:hover {
    
     opacity: 0.9;
     scale : 1.05;
+   
 }
-
 .img {
     width : 100%;
     border-radius : 10px;

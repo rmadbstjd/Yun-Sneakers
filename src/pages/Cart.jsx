@@ -9,7 +9,7 @@ import HorizonLine from '../components/HorizonLine';
 const Cart =  () => {
     
     const navigate = useNavigate();
-    const {cart,totalPrice,deletes,change} = useStore();
+    const {cart,totalPrice,deletes,change,cartCount,initCartCount,plusCartCount} = useStore();
     const [price, setPrice] = useState(0);
     const [count, setCount] = useState();
     const [boolean, setBoolean] = useState(null);
@@ -21,13 +21,18 @@ const Cart =  () => {
           
             setPrice(0);
             setCount(0);
+            initCartCount();
             for(let i = 0; i<cartProducts.products.length; i++) {
                 
                 let newPrice = Number(cartProducts.products[i].price.replace(/,/g, '') * cartProducts.products[i].quantity );
                
                 setPrice((prev) => prev + newPrice);
                 setCount((prev) => prev +  cartProducts.products[i].quantity);
+                plusCartCount(1);
             }   
+        }
+        else {
+            initCartCount();
         }
     },[cartProducts]);  
     const goToMain = () => {
@@ -42,6 +47,7 @@ const Cart =  () => {
     }
 
     if(cartProducts === null) {
+        
         return <div className={styles.nullContainer}>
                     <div className={styles.nullContent}>
                         <div className={styles.horizonLine}></div>
@@ -55,7 +61,7 @@ const Cart =  () => {
                     
                 </div>
     }
-    
+    console.log("너가 왜실행");
     return (
         <div className={styles.container}>
             

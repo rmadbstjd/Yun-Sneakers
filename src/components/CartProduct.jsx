@@ -3,7 +3,7 @@ import styles from './css/CartProduct.module.css';
 import { removeFromCart } from '../api/firebase';
 import useStore from '../store';
 import {useNavigate} from 'react-router-dom';
-import HorizonLine from '../components/HorizonLine';
+
 const CartProduct = ({item, boolean, setBoolean}) => {
     const [productCount,setProductCount] = useState(item.quantity);   
     const {cart,setDeletes,setChange} = useStore();

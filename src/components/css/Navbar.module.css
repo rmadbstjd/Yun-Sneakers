@@ -12,13 +12,15 @@
 }
 .navbarContainer {
     display:flex;
-    width: 71%;
+    width: 71%; 
     justify-content: space-between;
     
 }
 .shopName {
     width : 200px;
     height : 40px;
+
+    cursor:pointer;
    
 }
 .navbarLeftContainer {

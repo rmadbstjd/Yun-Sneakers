@@ -1,21 +1,36 @@
-import React from 'react';
-import styles from './css/ProductCard.module.css';
+import React,{} from 'react';
+import styles from './css/ProductLikeCard.module.css';
 import {useNavigate} from 'react-router-dom';
 import useStore from '../store';
 import {HiHeart} from 'react-icons/hi';
-const ProductCard = ({product}) => {
-    const {setCurrentProduct} = useStore();
+import {AiFillCloseSquare} from 'react-icons/ai';
+
+
+const ProductLikeCard = ({product,setCount}) => {
+    const {like,setLikeDeletes} = useStore();
+    
+   
     const navigate = useNavigate();
+    
+    const clickDelete = (e) => {        
+        e.stopPropagation();       
+        
+        product && like.pushLike(product.id);
+        setLikeDeletes((prev) =>!prev);
+        setCount((prev) =>prev -1);
+    };
     const goToDetail = () => {
+        
+        navigate(`/products/${product.id}`);
        
-        setCurrentProduct(product);
-       
-        navigate(`/products/${product.id}`)
     }
-  
+   
+    
     return (
         <div className={styles.card} onClick={goToDetail}>
+            <AiFillCloseSquare className={styles.deleteButton} onClick={clickDelete}/>
             <img className={styles.img}src={product && product.image}></img>
+            
             <div className={styles.infoContainer}>
                 <div className={styles.categoryContainer}>
                     <div className={styles.category}>{product && product.category}</div>
@@ -37,4 +52,4 @@ const ProductCard = ({product}) => {
     );  
 };
 
-export default ProductCard;
+export default ProductLikeCard;
