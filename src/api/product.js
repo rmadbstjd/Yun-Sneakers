@@ -10,6 +10,16 @@ export default class Product {
       }
     );
   }
+  async search(keyword) {
+    console.log("키워드", keyword);
+    const response = await this.httpClient.get("/search", {
+      params: { keyword },
+    });
+    const data = response.data;
+    console.log("Data", data);
+    return data;
+  }
+
   async getProducts(currentPage) {
     if (!currentPage) {
       currentPage = 1;

@@ -1,0 +1,53 @@
+.container {
+    border-radius : 10px;
+    width : 100%;
+    height : 100%;
+    z-index : 5;
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    background:rgba(255,255,255,0.95);
+    
+    transition-duration: 2s, 4s;
+
+
+}
+
+.searchContainer {
+    margin : 3% 0% 0% 28%;
+    width : 40%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+}
+.searchContent {
+    display:flex;
+    
+}
+.searchBar{
+    border : none;
+    width : 100%;
+    height : 50px;
+    font-size : 30px;
+    
+    
+}   
+.searchBar:focus {
+     outline: none; 
+}
+.horizonLine {
+    width: 93%;    
+    border-bottom: 5px solid black;
+    line-Height : 0.1rem;
+    
+}
+.close {
+    width: 45px;
+    height : 45px;
+    cursor : pointer;
+    margin-top : 5px;
+  
+}

@@ -61,7 +61,7 @@ const Cart =  () => {
                     
                 </div>
     }
-    console.log("너가 왜실행");
+   
     return (
         <div className={styles.container}>
             

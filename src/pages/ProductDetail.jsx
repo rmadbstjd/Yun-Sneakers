@@ -46,7 +46,7 @@ const ProductDetail = () => {
         setCartShow((prev) => !prev);
         setTimeout(setCartShow,3000);
         const test = await cart.addCart(products,size);
-        console.log("test",test.success);
+       
         if(test.success===false){
             return;
         }

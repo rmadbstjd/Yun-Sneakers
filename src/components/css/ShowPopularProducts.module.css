@@ -7,7 +7,7 @@
 .container {
     display:flex;
     justify-content: center;
-    
+    font-family: 'NanumSquareNeo-Variable';
 }
 .productsContainer {
     width : 73%;

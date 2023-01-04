@@ -12,7 +12,7 @@ const ShowProducts = () => {
     const {isLoading, error, data:products} = useQuery(["new",currentPage],() => ( product.getProducts(currentPage)));
     
     useEffect(() => {
-        products && console.log("products",products);
+    
     },[products])
     return (
         <div className={styles.container}>
