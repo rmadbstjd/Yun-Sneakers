@@ -10,7 +10,7 @@ import Search from '../components/Search';
 import useStore from '../store';
 const Navbar = () => {
     const navigate = useNavigate();
-    const {productCount,cartCount} = useStore();
+    const {productCount,cartCount,setText} = useStore();
     const [token, setToken] = useState('');
     const [showSearch,setShowSearch] = useState(false);
     const [admin] = useState('');
@@ -34,7 +34,9 @@ const Navbar = () => {
         
     };
     const clickToSearch = () => {
+        setText(null);
         setShowSearch((prev) => !prev);
+        
     };
     return (
         <div>

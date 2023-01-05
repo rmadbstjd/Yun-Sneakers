@@ -9,30 +9,27 @@ export default class Like {
         withCredentials: true,
       }
     );
+    this.email = localStorage.getItem("email");
   }
-
   async pushLike(productId) {
-    const email = localStorage.getItem("email");
     return this.httpClient.post(`/like/${productId}`, {
-      email: email,
+      email: this.email,
     });
   }
   async isLike(productId) {
-    const email = localStorage.getItem("email");
     return this.httpClient
       .get(`/like/isLike/${productId}`, {
         headers: {
-          email: email,
+          email: this.email,
         },
       })
       .then((res) => res.data.result);
   }
   async getLikeProduct() {
-    const email = localStorage.getItem("email");
     return this.httpClient
       .get(`/like/products`, {
         headers: {
-          email: email,
+          email: this.email,
         },
       })
       .then((res) => res.data.result);

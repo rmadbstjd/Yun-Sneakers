@@ -10,13 +10,12 @@ export default class Product {
       }
     );
   }
-  async search(keyword) {
-    console.log("키워드", keyword);
+  async search(keyword, sort) {
     const response = await this.httpClient.get("/search", {
-      params: { keyword },
+      params: { keyword, sort },
     });
     const data = response.data;
-    console.log("Data", data);
+
     return data;
   }
 

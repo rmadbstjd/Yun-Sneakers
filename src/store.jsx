@@ -69,6 +69,11 @@ const store = set =>({
     setLikeDeletes : () => set(state =>({likeDeletes : state.likeDeletes + 1})),
     setChange : () => set(state =>({change : !(state.change)})),
     setDeletes : () => set(state =>({deletes : !(state.deletes)})),
+    text : '',
+    setText : (keyword) => set(state =>({text : keyword})),
+    sort : "popular",
+    setSortPopular : () => set(state =>({sort : "popular"})),
+    setSortNew : () => set(state =>({sort : "new"})),
 }   );
 const useStore = create(devtools(store));
 

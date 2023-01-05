@@ -9,25 +9,22 @@ export default class Cart {
         withCredentials: true,
       }
     );
+    this.email = localStorage.getItem("email");
   }
 
   async getCarts() {
-    const email = localStorage.getItem("email");
-
     return this.httpClient
       .get("/cart", {
         headers: {
-          email: email,
+          email: this.email,
         },
       })
       .then((res) => res.data);
   }
   async getCartsTest() {
-    const email = localStorage.getItem("email");
-
     const response = await this.httpClient.get("/cart", {
       headers: {
-        email: email,
+        email: this.email,
       },
     });
     const data = response.data;
@@ -39,7 +36,6 @@ export default class Cart {
     }
   }
   async updateCart(productId, size, quantity) {
-    const email = localStorage.getItem("email");
     const response = await this.httpClient.put(
       `/carts/${productId}`,
       {
@@ -48,7 +44,7 @@ export default class Cart {
       },
       {
         headers: {
-          email: email,
+          email: this.email,
         },
       }
     );
@@ -57,8 +53,6 @@ export default class Cart {
   }
 
   async addCart(products, size) {
-    const email = localStorage.getItem("email");
-
     const response = await this.httpClient.post(
       `/carts/${products.id}`,
       {
@@ -68,21 +62,19 @@ export default class Cart {
       },
       {
         headers: {
-          email: email,
+          email: this.email,
         },
       }
     );
     const data = response.data;
-    console.log("data", data);
+
     return data;
   }
 
   async deleteCart(productId, size) {
-    const email = localStorage.getItem("email");
-
     return this.httpClient.delete(`/carts/${productId}`, {
       headers: {
-        email: email,
+        email: this.email,
       },
       data: { size: size },
     });

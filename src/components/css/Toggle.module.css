@@ -1,0 +1,33 @@
+.container {
+    border : solid #BEBEBE 1px;
+    height : 133px;
+    color : black;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    transform: translate(0%, 12%);
+    margin-top : 10px;
+    z-index : 999;
+    box-shadow: 1px 2px 2px 2px #BEBEBE;
+    
+}
+.content {
+    cursor:pointer;
+    
+    height : 70px;
+}
+.title {
+    font-weight : bolder;
+    padding : 10px;
+    font-size : 15px;
+}
+.desc {
+    color : lightGray;
+    font-size : 14px;
+    padding-left : 10px;
+   
+}
+.content:hover {
+    background-color: #FAFAFA;
+}

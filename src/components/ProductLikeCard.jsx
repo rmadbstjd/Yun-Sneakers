@@ -6,7 +6,7 @@ import {HiHeart} from 'react-icons/hi';
 import {AiFillCloseSquare} from 'react-icons/ai';
 
 
-const ProductLikeCard = ({product,setCount}) => {
+const ProductLikeCard = ({none,product,setCount}) => {
     const {like,setLikeDeletes} = useStore();
     
    
@@ -28,7 +28,7 @@ const ProductLikeCard = ({product,setCount}) => {
     
     return (
         <div className={styles.card} onClick={goToDetail}>
-            <AiFillCloseSquare className={styles.deleteButton} onClick={clickDelete}/>
+            {none!=='none'?<AiFillCloseSquare className={styles.deleteButton} onClick={clickDelete}/>:null}
             <img className={styles.img}src={product && product.image}></img>
             
             <div className={styles.infoContainer}>
