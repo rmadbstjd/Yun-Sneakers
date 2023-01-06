@@ -10,8 +10,8 @@
     font-family: 'NanumSquareNeo-Variable';
 }
 .productsContainer {
-    width : 73%;
-    
+    width : 1250px;
+ 
     flex-wrap: wrap;
     display:flex;
     justify-content: flex-start;

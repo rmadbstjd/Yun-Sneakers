@@ -9,6 +9,12 @@ const Toggle = ({setToggle}) => {
     const [query] = useSearchParams();
     const searchQuery= query.get('keyword')|| "null";
     const clickToSort = (sort) => {
+        if(sort ==='popular') {
+            setSortPopular();
+        }
+        else {
+            setSortNew();
+        }
         navigate(`/search?keyword=${searchQuery}&sort=${sort}`);
     };
     return (

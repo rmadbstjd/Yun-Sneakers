@@ -10,7 +10,7 @@ const ShowProducts = () => {
     const {product} = useStore();
     const [currentPage, setCurrentPage] = useState(1);
     const {isLoading, error, data:products} = useQuery(["new",currentPage],() => ( product.getProducts(currentPage)));
-    
+
     useEffect(() => {
     
     },[products])

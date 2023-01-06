@@ -11,7 +11,7 @@ const Home = () => {
         <div className={styles.container}>
             
             <div className={styles.imgContainer}>
-                <div style={{backgroundImage:"url(https://res.cloudinary.com/dtw1xfagx/image/upload/v1672322796/rgi4hlcwkfrlf7jizvac.jpg)"}}className={styles.img}>Premium Shoes for you</div>
+                <div style={{backgroundImage:"url(https://res.cloudinary.com/dtw1xfagx/image/upload/v1672987124/homeimg_nrshhh.jpg)"}}className={styles.img}>Premium Shoes for you</div>
                 
             </div>
 

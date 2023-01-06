@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 import styles from './css/ShowPopularProducts.module.css';
 import useStore from '../store';
 import Arrow from './Arrow';
-const ShowProducts = () => {
+const ShowPopularProducts = () => {
     const {product} = useStore();
     const [currentPage, setCurrentPage] = useState(1);
     const {isLoading, error, data:products} = useQuery(["popular",currentPage], () => (product.getPopularProducts(currentPage)));
@@ -29,4 +29,4 @@ const ShowProducts = () => {
     );
 };
 
-export default ShowProducts;
+export default ShowPopularProducts;

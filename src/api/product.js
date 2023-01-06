@@ -61,4 +61,9 @@ export default class Product {
       description: product.description,
     });
   }
+  async getBrandsName() {
+    const response = await this.httpClient.get("products/brandsName", {});
+    const data = response.data;
+    return data;
+  }
 }
