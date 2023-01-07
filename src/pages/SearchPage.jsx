@@ -14,9 +14,10 @@ const SearchPage = () => {
     const [query,setQuery] = useSearchParams();
     const [toggle, setToggle] = useState(false);   
     const searchQuery= query.get('keyword')|| "null";
-    const searchSort= query.get('sort')|| "null"; 
+    const searchSort= query.get('sort')|| "null";
+    const collectionName = query.get('collectionName') || undefined; 
     const [result, setResult] = useState(searchQuery);
-    const {error, isLoading, data:products} = useQuery([searchQuery,searchSort], () => product.search(searchQuery,searchSort));
+    const {error, isLoading, data:products} = useQuery([searchQuery,searchSort,collectionName], () => product.search(searchQuery,searchSort,collectionName));
     const navigate = useNavigate();
     const submitKeyword = (e) => {        
         e.preventDefault();    
@@ -35,6 +36,7 @@ const SearchPage = () => {
     const handleChange = (e) => {        
         setResult(e.target.value);     
     };
+    products && console.log("products",products);
     return (
         <div className={styles.container} onClick={() => setToggle(false)}>          
             <div className={styles.productsContainer}>
@@ -63,12 +65,12 @@ const SearchPage = () => {
                 <div className={styles.content}>
                         <Side/>
                         <div className={styles.products}>
-                            {products && products.map(product => <ProductLikeCard none={'none'}product={product} key={product.id} />)}
+                            {products && products.map((product,index) => product.map((product,index) =><ProductLikeCard none={'none'}product={product} key={index} />))}
                         </div>
                 </div>               
             </div>
         </div>
     );
 };
-
+//{product && product.map(product => product.map( product => <ProductLikeCard  setCount ={setCount}product={product} key={product.id} />))}
 export default SearchPage;

@@ -4,7 +4,7 @@ import ShowPopularProducts from '../components/ShowPopularProducts';
 import styles from './css/Home.module.css';
 
 const Home = () => {
-
+    
     
    
     return (
