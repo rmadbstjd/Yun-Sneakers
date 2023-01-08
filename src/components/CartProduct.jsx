@@ -63,7 +63,7 @@ const CartProduct = ({item, boolean, setBoolean}) => {
                         <div className={styles.description}>{item.description}</div>
                         
                         <div className={styles.size}>[사이즈] {item.size}</div>
-                        <div className={styles.price}>{item.price}원</div>
+                        <div className={styles.price}>{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
                     </div>
                 </div>
                 <div className={styles.real2}>

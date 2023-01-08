@@ -24,7 +24,7 @@ const Cart =  () => {
             initCartCount();
             for(let i = 0; i<cartProducts.products.length; i++) {
                 
-                let newPrice = Number(cartProducts.products[i].price.replace(/,/g, '') * cartProducts.products[i].quantity );
+                let newPrice = Number(cartProducts.products[i].price * cartProducts.products[i].quantity );
                
                 setPrice((prev) => prev + newPrice);
                 setCount((prev) => prev +  cartProducts.products[i].quantity);

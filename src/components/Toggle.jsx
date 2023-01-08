@@ -7,13 +7,16 @@ const Toggle = ({setToggle}) => {
     const navigate = useNavigate();
     const{setSortNew, setSortPopular,text} = useStore();
     const [query] = useSearchParams();
+    
     const searchQuery= query.get('keyword')|| "null";
     const clickToSort = (sort) => {
         if(sort ==='popular') {
             setSortPopular();
+            sessionStorage.setItem("sort",'popular');
         }
         else {
             setSortNew();
+            sessionStorage.setItem("sort",'new');
         }
         navigate(`/search?keyword=${searchQuery}&sort=${sort}`);
     };

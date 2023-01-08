@@ -5,12 +5,12 @@ import {useNavigate} from 'react-router-dom';
 import useStore from '../store';
 const Search = ({setShowSearch}) => {
     const navigate = useNavigate();
-    const {text, setText,sort} = useStore();
+    const {text, setText} = useStore();
 
     const submitKeyword = (e) => {
         e.preventDefault();
         
-        navigate(`/search?keyword=${text}&sort=${sort}`);
+        navigate(`/search?keyword=${text}`);
         setShowSearch((prev) => !prev);
     };  
     const closeSearch = () => {

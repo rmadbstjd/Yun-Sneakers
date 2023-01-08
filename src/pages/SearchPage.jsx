@@ -10,25 +10,32 @@ import {TbArrowsUpDown} from 'react-icons/tb';
 import Toggle from '../components/Toggle';
 import Side from '../components/Side';
 const SearchPage = () => {
-    const {product,sort} = useStore();
+    const {product,sort,initSort} = useStore();
     const [query,setQuery] = useSearchParams();
-    const [toggle, setToggle] = useState(false);   
+    const [toggle, setToggle] = useState(false);
+    const test = sessionStorage.getItem("sort");
     const searchQuery= query.get('keyword')|| "null";
-    const searchSort= query.get('sort')|| "null";
-    const collectionName = query.get('collectionName') || undefined; 
+    const searchSort= test || query.get('sort')|| "null";
+    console.log("테스트",searchSort);
+    
+    const priceOrder = query.get('priceOrder') || undefined;
+    let collectionName = query.get('collectionName') || undefined; 
     const [result, setResult] = useState(searchQuery);
-    const {error, isLoading, data:products} = useQuery([searchQuery,searchSort,collectionName], () => product.search(searchQuery,searchSort,collectionName));
+    let {error, isLoading, data : products} = useQuery([searchQuery,searchSort,collectionName,priceOrder], () => product.search(searchQuery,searchSort,collectionName,priceOrder));  
     const navigate = useNavigate();
     const submitKeyword = (e) => {        
         e.preventDefault();    
-        navigate(`/search?keyword=${result}&sort=${sort}`);
+        navigate(`/search?keyword=${result}&sort=${test || sort}$collectionName=${collectionName}&priceOrder=${priceOrder}`);
     };
     const closeSearch = () => {        
         setResult('');       
     };
     useEffect(() => {
         setResult(searchQuery);
-    },[searchQuery]);
+        products && initSort(test);
+       
+    },[searchQuery,searchSort]);
+    
     const clickToSort = (e) => {
         e.stopPropagation();
         setToggle((prev) =>!prev);   
@@ -36,7 +43,7 @@ const SearchPage = () => {
     const handleChange = (e) => {        
         setResult(e.target.value);     
     };
-    products && console.log("products",products);
+    products && console.log("products");
     return (
         <div className={styles.container} onClick={() => setToggle(false)}>          
             <div className={styles.productsContainer}>
@@ -57,7 +64,7 @@ const SearchPage = () => {
                 </div> 
 
                 <div className={styles.sortContainer}>
-                            <div className={styles.sort} onClick={clickToSort}>{sort==='popular'?'인기순':'최신순'}</div>
+                            <div className={styles.sort} onClick={clickToSort}>{test==='new'?'최신순':'인기순'}</div>
                             <TbArrowsUpDown className={styles.toggleIcon} onClick={clickToSort}/>
                             {toggle && <Toggle setToggle={setToggle}/>}
                 </div>  
@@ -65,12 +72,12 @@ const SearchPage = () => {
                 <div className={styles.content}>
                         <Side/>
                         <div className={styles.products}>
-                            {products && products.map((product,index) => product.map((product,index) =><ProductLikeCard none={'none'}product={product} key={index} />))}
+                            {products && products.products.map((product,index) => product.map((product,index) =><ProductLikeCard none={'none'}product={product} key={index} />))}
                         </div>
                 </div>               
             </div>
         </div>
     );
 };
-//{product && product.map(product => product.map( product => <ProductLikeCard  setCount ={setCount}product={product} key={product.id} />))}
+
 export default SearchPage;

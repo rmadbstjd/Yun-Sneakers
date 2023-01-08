@@ -1,4 +1,6 @@
 import axios from "axios";
+import useStore from "../store";
+
 export default class Product {
   constructor() {
     this.httpClient = axios.create(
@@ -10,12 +12,12 @@ export default class Product {
       }
     );
   }
-  async search(keyword, sort, collectionName) {
+  async search(keyword, sort, collectionName, priceOrder) {
     const response = await this.httpClient.get("/search", {
-      params: { keyword, sort, collectionName },
+      params: { keyword, sort, collectionName, priceOrder },
     });
     const data = response.data;
-    console.log("data", data);
+
     return data;
   }
 

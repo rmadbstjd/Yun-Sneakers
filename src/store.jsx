@@ -71,7 +71,8 @@ const store = set =>({
     setDeletes : () => set(state =>({deletes : !(state.deletes)})),
     text : '',
     setText : (keyword) => set(state =>({text : keyword})),
-    sort : "popular",
+    sort : 'popular',
+    initSort : (some) => set(state =>({sort : some})),
     setSortPopular : () => set(state =>({sort : "popular"})),
     setSortNew : () => set(state =>({sort : "new"})),
 }   );

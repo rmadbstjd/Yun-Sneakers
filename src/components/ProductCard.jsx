@@ -24,7 +24,7 @@ const ProductCard = ({product}) => {
                     <div>{product && product.description} </div>
                     <div className={styles.name}>{product && product.name}</div>
                     <div className={styles.priceContainer}>
-                        <div className={styles.price}>{product && product.price}원</div>
+                        <div className={styles.price}>{product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
                         <div className={styles.heartContainer}><HiHeart className={styles.heart}/><div className={styles.num}>{product && product.likeNum}</div>
                     </div>
                     </div>
