@@ -13,10 +13,11 @@ const Side = () => {
     const [showPrice,setShowPrice] = useState(false);
     const sessionSort = sessionStorage.getItem("sort");
     const sessionBrand = sessionStorage.getItem("brand");
-    let collectionName = query.get('collectionName') || undefined; 
+    const sessionPrice = sessionStorage.getItem("price");
+   
     const searchQuery= query.get('keyword')|| "null";
     const [checkedBrandList, setCheckedBrandList] = useState(JSON.parse(sessionBrand) || []);
-    const [checkedPriceList, setCheckedPriceList] = useState('');
+    const [checkedPriceList, setCheckedPriceList] = useState(JSON.parse(sessionPrice) || sessionBrand ||  []);
     const priceInitArr = ['20만원 이하', '20만원 - 40만원 이하', '40만원 - 60만원 이하', '60만원 이상'];
   
     const navigate = useNavigate();
@@ -66,9 +67,10 @@ const Side = () => {
     useEffect(() => {
        
        sessionStorage.setItem("brand",JSON.stringify(checkedBrandList));
+       sessionStorage.setItem("price",JSON.stringify(checkedPriceList));
        navigate(`/search?keyword=${searchQuery}&sort=${sessionSort || sort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`);
        console.log("sessionBrand",sessionBrand,typeof(sessionBrand));
-       console.log("checkedBrandList",collectionName, typeof(checkedBrandList));
+       console.log("checkedBrandPrice",checkedBrandList, typeof(checkedBrandList));
     },
     [checkedBrandList,checkedPriceList])
     return (

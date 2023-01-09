@@ -10,14 +10,13 @@ import {TbArrowsUpDown} from 'react-icons/tb';
 import Toggle from '../components/Toggle';
 import Side from '../components/Side';
 const SearchPage = () => {
-    const {product,sort,initSort} = useStore();
+    const {product,sort,initSort,addRecentKeyword} = useStore();
     const [query,setQuery] = useSearchParams();
     const [toggle, setToggle] = useState(false);
     const sessionSort = sessionStorage.getItem("sort");
-    const sessionBrand = sessionStorage.getItem("brand");
     const searchQuery= query.get('keyword')|| "null";
     const searchSort= sessionSort || query.get('sort')|| "null";
-    console.log("테스트",searchSort);
+   
     
     const priceOrder = query.get('priceOrder') || undefined;
     let collectionName = query.get('collectionName') || undefined; 
@@ -25,8 +24,9 @@ const SearchPage = () => {
     let {error, isLoading, data : products} = useQuery([searchQuery,searchSort,collectionName,priceOrder], () => product.search(searchQuery,searchSort,collectionName,priceOrder));  
     const navigate = useNavigate();
     const submitKeyword = (e) => {        
-        e.preventDefault();    
+        e.preventDefault();        
         navigate(`/search?keyword=${result}&sort=${sessionSort || sort}$collectionName=${collectionName}&priceOrder=${priceOrder}`);
+        addRecentKeyword(result);
     };
     const closeSearch = () => {        
         setResult('');       
@@ -44,7 +44,7 @@ const SearchPage = () => {
     const handleChange = (e) => {        
         setResult(e.target.value);     
     };
-    products && console.log("products");
+
     return (
         <div className={styles.container} onClick={() => setToggle(false)}>          
             <div className={styles.productsContainer}>

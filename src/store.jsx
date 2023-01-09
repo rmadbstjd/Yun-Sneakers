@@ -75,6 +75,10 @@ const store = set =>({
     initSort : (some) => set(state =>({sort : some})),
     setSortPopular : () => set(state =>({sort : "popular"})),
     setSortNew : () => set(state =>({sort : "new"})),
+    recentKeyword : JSON.parse(localStorage.getItem("recentKeyword")) || [],
+    addRecentKeyword : (keyword) => set(produce((state) => {state.recentKeyword.push(keyword)})),
+    setRecentKeyword : (keyword) => set(state =>({recentKeyword : state.recentKeyword.filter(el => el !==keyword)})),
+    allDeleteRecentKeyword : () => set(state =>({recentKeyword : []})),
 }   );
 const useStore = create(devtools(store));
 

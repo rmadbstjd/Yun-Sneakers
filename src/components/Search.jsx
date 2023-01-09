@@ -1,26 +1,52 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import styles from './css/Search.module.css';
 import {GrClose} from 'react-icons/gr';
 import {useNavigate} from 'react-router-dom';
 import useStore from '../store';
+import {IoMdCloseCircle} from 'react-icons/io';
 const Search = ({setShowSearch}) => {
     const navigate = useNavigate();
-    const {text, setText} = useStore();
-
-    const submitKeyword = (e) => {
+    const {text, setText, recentKeyword,addRecentKeyword,setRecentKeyword, allDeleteRecentKeyword} = useStore();
+    const [showKeyword, setShowKeyword] = useState(recentKeyword ||[]);
+    const submitKeyword = async (e) => {
         e.preventDefault();
-        sessionStorage.clear();
+        sessionStorage.clear();        
         navigate(`/search?keyword=${text}`);
         setShowSearch((prev) => !prev);
-    };  
+        addRecentKeyword(text);
+       
+    };
+    const goToSearchPage = (item) => {
+        navigate(`/search?keyword=${item}`);
+        setShowSearch((prev) => !prev);
+    };
     const closeSearch = () => {
         setShowSearch((prev) => !prev);
-        localStorage.setItem("result",'');
+       
         setText('');
     };
     const handleChange = (e) => {
         setText(e.target.value);
     };
+    const deleteAllRecentKeyword = () => {
+        localStorage.removeItem("recentKeyword");
+        setShowKeyword([]);
+        allDeleteRecentKeyword();
+       
+    };
+    const deleteKeyword = (item) => {
+        setShowKeyword(showKeyword.filter(keyword => keyword !== item));
+        setRecentKeyword(item);
+        console.log("삭제할 item",item);
+        console.log("recentKeyWord",recentKeyword);
+    };
+    useEffect(() => {
+        //console.log("recentKeyword",recentKeyword); // recentKeyword = ['나이키', '아디다스'];
+        recentKeyword && localStorage.setItem("recentKeyword",JSON.stringify(recentKeyword));
+        //console.log("showKeyword",showKeyword);
+        //localStorage.setItem("recentKeyword",JSON.stringify(showKeyword));
+    },
+    [recentKeyword]);
     return (
         <div className={styles.container}>
                  <div className={styles.searchContainer}>
@@ -31,7 +57,16 @@ const Search = ({setShowSearch}) => {
                         <GrClose className={styles.close} onClick={closeSearch}/>
                     </form>
                     <div className={styles.horizonLine}></div>
-                   
+                    <div className={styles.recentSearchContainer}>
+                        <div className={styles.recentSearch}>
+                            최근 검색어
+                        </div>
+                        <div className={styles.delete}onClick={deleteAllRecentKeyword}>
+                            모두 지우기
+                            <IoMdCloseCircle/>
+                        </div>
+                        </div>
+                    <div className={styles.keywordContainer}>{showKeyword && showKeyword.map(item => <div className={styles.keywordContent}><div className={styles.keyword} onClick={()=>goToSearchPage(item)}>{item}</div><IoMdCloseCircle className={styles.keywordClose} onClick={() =>deleteKeyword(item)}/> </div>)}</div>
                 </div>
                 
                 

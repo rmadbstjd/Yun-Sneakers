@@ -51,3 +51,44 @@
     margin-top : 5px;
   
 }
+.recentSearchContainer {
+    display:flex;
+    justify-content: space-between;
+    width : 220px;
+    margin-top : 2%;
+}
+.recentSearch {
+    font-size : 20px;
+    font-weight: bolder;
+}
+.delete {
+    cursor:pointer;
+    margin-top : 5px;
+    color : darkgray;
+}
+.keywordContainer {
+    width : 785px;
+    
+    display:flex;
+}
+.keywordContent {
+    display:flex;
+    margin-top : 10px;
+    width : 100px;
+    height : 30px;
+    line-height : 180%;
+    
+    cursor : pointer;
+}
+
+.keywordClose {
+    margin-top : 5px;
+    width : 20px;
+    height : 20px;
+    color : gray;
+    
+}
+.keywordClose:hover{
+    color : black;
+    
+}
