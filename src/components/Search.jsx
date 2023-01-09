@@ -9,7 +9,7 @@ const Search = ({setShowSearch}) => {
 
     const submitKeyword = (e) => {
         e.preventDefault();
-        
+        sessionStorage.clear();
         navigate(`/search?keyword=${text}`);
         setShowSearch((prev) => !prev);
     };  

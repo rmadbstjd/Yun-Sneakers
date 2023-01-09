@@ -11,11 +11,14 @@ const Side = () => {
     const {isLoading, error, data : brands} = useQuery(['test'], () =>product.getBrandsName());
     const [showBrand,setShowBrand] = useState(false);
     const [showPrice,setShowPrice] = useState(false);
+    const sessionSort = sessionStorage.getItem("sort");
+    const sessionBrand = sessionStorage.getItem("brand");
+    let collectionName = query.get('collectionName') || undefined; 
     const searchQuery= query.get('keyword')|| "null";
-    const [checkedBrandList, setCheckedBrandList] = useState([]);
+    const [checkedBrandList, setCheckedBrandList] = useState(JSON.parse(sessionBrand) || []);
     const [checkedPriceList, setCheckedPriceList] = useState('');
     const priceInitArr = ['20만원 이하', '20만원 - 40만원 이하', '40만원 - 60만원 이하', '60만원 이상'];
-    const test = sessionStorage.getItem("sort");
+  
     const navigate = useNavigate();
    
     const clickToBrand = () => {
@@ -29,6 +32,7 @@ const Side = () => {
             if(e.target.checked === true) {
             
                 setCheckedBrandList([...checkedBrandList,e.target.value]);
+                
             }
             else {
                 setCheckedBrandList(checkedBrandList.filter(el =>el !== e.target.value));
@@ -47,7 +51,7 @@ const Side = () => {
 
         
             if(e.target.checked === true) {
-                console.log("index",index);
+             
                 
                 setCheckedPriceList([...checkedPriceList,`${index}`]);
                 
@@ -61,7 +65,10 @@ const Side = () => {
    
     useEffect(() => {
        
-       navigate(`/search?keyword=${searchQuery}&sort=${test || sort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`);
+       sessionStorage.setItem("brand",JSON.stringify(checkedBrandList));
+       navigate(`/search?keyword=${searchQuery}&sort=${sessionSort || sort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`);
+       console.log("sessionBrand",sessionBrand,typeof(sessionBrand));
+       console.log("checkedBrandList",collectionName, typeof(checkedBrandList));
     },
     [checkedBrandList,checkedPriceList])
     return (

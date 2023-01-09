@@ -13,9 +13,10 @@ const SearchPage = () => {
     const {product,sort,initSort} = useStore();
     const [query,setQuery] = useSearchParams();
     const [toggle, setToggle] = useState(false);
-    const test = sessionStorage.getItem("sort");
+    const sessionSort = sessionStorage.getItem("sort");
+    const sessionBrand = sessionStorage.getItem("brand");
     const searchQuery= query.get('keyword')|| "null";
-    const searchSort= test || query.get('sort')|| "null";
+    const searchSort= sessionSort || query.get('sort')|| "null";
     console.log("테스트",searchSort);
     
     const priceOrder = query.get('priceOrder') || undefined;
@@ -25,14 +26,14 @@ const SearchPage = () => {
     const navigate = useNavigate();
     const submitKeyword = (e) => {        
         e.preventDefault();    
-        navigate(`/search?keyword=${result}&sort=${test || sort}$collectionName=${collectionName}&priceOrder=${priceOrder}`);
+        navigate(`/search?keyword=${result}&sort=${sessionSort || sort}$collectionName=${collectionName}&priceOrder=${priceOrder}`);
     };
     const closeSearch = () => {        
         setResult('');       
     };
     useEffect(() => {
         setResult(searchQuery);
-        products && initSort(test);
+        products && initSort(sessionSort);
        
     },[searchQuery,searchSort]);
     
@@ -64,7 +65,7 @@ const SearchPage = () => {
                 </div> 
 
                 <div className={styles.sortContainer}>
-                            <div className={styles.sort} onClick={clickToSort}>{test==='new'?'최신순':'인기순'}</div>
+                            <div className={styles.sort} onClick={clickToSort}>{sessionSort==='new'?'최신순':'인기순'}</div>
                             <TbArrowsUpDown className={styles.toggleIcon} onClick={clickToSort}/>
                             {toggle && <Toggle setToggle={setToggle}/>}
                 </div>  
