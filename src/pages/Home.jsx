@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import ShowProducts from '../components/ShowProducts';
 import ShowPopularProducts from '../components/ShowPopularProducts';
 import styles from './css/Home.module.css';

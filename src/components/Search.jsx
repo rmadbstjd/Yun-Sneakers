@@ -10,13 +10,18 @@ const Search = ({setShowSearch}) => {
     const [showKeyword, setShowKeyword] = useState(recentKeyword ||[]);
     const submitKeyword = async (e) => {
         e.preventDefault();
-        sessionStorage.clear();        
+        sessionStorage.clear();
+        console.log("1111111111");        
         navigate(`/search?keyword=${text}`);
         setShowSearch((prev) => !prev);
-        addRecentKeyword(text);
+        if(!recentKeyword.includes(text)){
+            addRecentKeyword(text);
+        }
        
     };
     const goToSearchPage = (item) => {
+        sessionStorage.clear();
+        console.log("1111111111");    
         navigate(`/search?keyword=${item}`);
         setShowSearch((prev) => !prev);
     };
@@ -37,14 +42,12 @@ const Search = ({setShowSearch}) => {
     const deleteKeyword = (item) => {
         setShowKeyword(showKeyword.filter(keyword => keyword !== item));
         setRecentKeyword(item);
-        console.log("삭제할 item",item);
-        console.log("recentKeyWord",recentKeyword);
+   
     };
     useEffect(() => {
-        //console.log("recentKeyword",recentKeyword); // recentKeyword = ['나이키', '아디다스'];
+   
         recentKeyword && localStorage.setItem("recentKeyword",JSON.stringify(recentKeyword));
-        //console.log("showKeyword",showKeyword);
-        //localStorage.setItem("recentKeyword",JSON.stringify(showKeyword));
+
     },
     [recentKeyword]);
     return (

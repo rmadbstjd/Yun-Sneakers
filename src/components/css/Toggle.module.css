@@ -31,3 +31,8 @@
 .content:hover {
     background-color: #FAFAFA;
 }
+@media (max-width : 717px) {
+    .container {
+        transform: translate(92%, 12%);
+    }
+}

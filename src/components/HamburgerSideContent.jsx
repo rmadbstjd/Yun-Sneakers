@@ -1,11 +1,11 @@
 import React,{useState,useEffect, useRef} from 'react';
-import styles from './css/Side.module.css';
+import styles from './css/HamburgerSideContent.module.css';
 import {useQuery} from '@tanstack/react-query';
 import useStore from '../store';
 import {useNavigate} from 'react-router-dom';
 import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
 import {useSearchParams} from 'react-router-dom';
-const Side = () => {
+const HamburgerSideContent = () => {
     const isMounted = useRef(false)
     const [query] = useSearchParams();
     const {product,sort} = useStore();
@@ -19,7 +19,7 @@ const Side = () => {
     const searchQuery= query.get('keyword')|| "null";
     const [checkedBrandList, setCheckedBrandList] = useState(JSON.parse(sessionBrand) || []);
     const [checkedPriceList, setCheckedPriceList] = useState(JSON.parse(sessionPrice) || sessionBrand ||  []);
-    const priceInitArr = ['20만원 이하', '20만원 - 40만원 이하', '40만원 - 60만원 이하', '60만원 이상'];
+    const priceInitArr = ['20만원 이하', '20만원 - 40만원 이하', '40만원 - 60만원 이하', '50만원 이상'];
   
     const navigate = useNavigate();
    
@@ -79,7 +79,7 @@ const Side = () => {
     [checkedBrandList,checkedPriceList])
     return (
         <div className={styles.container}>
-            {<div className={styles.filter}>필터</div>}
+            
             <div className={styles.brandContainer} onClick={clickToBrand}>
                 <div className={styles.brandNavbar}>
                 
@@ -113,4 +113,4 @@ const Side = () => {
     );
 };
 
-export default Side;
+export default HamburgerSideContent;

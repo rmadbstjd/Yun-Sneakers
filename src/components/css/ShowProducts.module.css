@@ -14,8 +14,7 @@
 .productsContainer {
  
     width : 1250px;
-    
-    
+
     flex-wrap: wrap;
     display:flex;
     justify-content: flex-start;

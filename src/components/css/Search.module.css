@@ -7,11 +7,8 @@
     top : 50%;
     left : 50%;
     transform: translate(-50%, -50%);
-    background:rgba(255,255,255,0.95);
-    
+    background:rgba(255,255,255,0.95);   
     transition-duration: 2s, 4s;
-
-
 }
 
 .searchContainer {
@@ -24,7 +21,7 @@
     
 }
 .searchContent {
-    display:flex;
+    display:flex;   
     
 }
 .searchBar{
@@ -66,6 +63,9 @@
     margin-top : 5px;
     color : darkgray;
 }
+.delete:hover {
+    color : black;
+}
 .keywordContainer {
     width : 785px;
     
@@ -73,22 +73,40 @@
 }
 .keywordContent {
     display:flex;
-    margin-top : 10px;
     width : 100px;
     height : 30px;
+    margin: 10px 5px 5px 5px;
     line-height : 180%;
+   
+    justify-content: center;
     
-    cursor : pointer;
 }
-
+.keyword {
+    color : gray;
+    cursor:pointer;
+}
+.keyword:hover {
+    color : black;
+}
 .keywordClose {
     margin-top : 5px;
     width : 20px;
     height : 20px;
     color : gray;
-    
+    cursor:pointer;
 }
 .keywordClose:hover{
     color : black;
     
 }
+@media ( max-width :880px) {
+    .searchContainer {
+        margin : 3% 0% 0% 2%;
+        width : 96%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+      
+        
+    }
+ }

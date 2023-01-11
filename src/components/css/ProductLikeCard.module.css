@@ -6,12 +6,11 @@
 }
 .card {
     
-    width : 220px;
+    width : 190px;
     height : 340px;
-    margin : 20px 30px 20px 0px;
+    margin : 0px 30px 20px 0px;
     cursor:pointer;
     font-family: 'NanumSquareNeo-Variable';
-   
 }
 .deleteButton {
     position : absolute;
