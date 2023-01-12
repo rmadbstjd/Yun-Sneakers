@@ -12,14 +12,13 @@
    
 }
 .productsContainer {
- 
-    width : 1250px;
 
+    width : 1250px;
     flex-wrap: wrap;
     display:flex;
     justify-content: flex-start;
-    
-    
+    margin : 50px;
+
 }
 .product {
     display:flex;
@@ -98,34 +97,13 @@
    
 }
 .title {
-    font-size : 30px;
+    font-size : 20px;
     font-weight: bolder;
 }
 .horizonLine2 {
-    width: 100%;
-    margin-top : 3%;
-    border-bottom: 1px solid black;
+    width: 90%;
+    margin : 2% 0% 3% 0%;
+    border-bottom: 3px solid black;
     line-Height : 0.1rem;
     
-}
-@media (max-width : 703px) {
-    .container {
-        width: 100%;
-    }
-    .productsContainer {
- 
-        width : 100%;
-        
-        
-        flex-wrap: wrap;
-        display:flex;
-        justify-content: center;
-        
-        
-    }
-    .title {
-        font-size : 23px;
-        font-weight: bolder;
-    }
-
 }

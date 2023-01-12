@@ -1,0 +1,109 @@
+.container {
+    display:flex;
+    flex-direction: column;
+}
+.first {
+    display : flex;
+    margin : 5px;
+}
+.left {
+    border :solid black 0px;
+    width : 129px;
+    height : 40px;
+    line-height : 240%;
+}
+.addressLeft {
+    border :solid black 0px;
+    width : 129px;
+    height : 160px;
+    line-height : 240%;
+ 
+}
+.deliveryAddress {
+    width : 310px;
+    height :40px;
+}
+.saerchContainer {
+    display:flex;
+    flex-direction: column;
+}
+.search {
+    display:flex;
+
+}
+.searchBtn {
+    border : solid gray 1px;
+    width : 120px;
+    height : 40px;
+    background-color: gray;
+    color : white;
+    line-height : 240%;
+}
+.addressContainer {
+    display:flex;
+    margin : 5px;
+}
+.addressInfo {
+    border : solid black 1px;
+    width : 400px;
+    height : 40px;
+    background-color: white;
+    line-height : 240%;
+}
+.addressNumber {
+    width : 200px;
+    height : 40px;
+    margin-bottom : 10px;
+ 
+}
+.checkBoxContainer {
+    display:flex;
+    margin-left : 16.5%;
+}
+.checkbox {
+    width : 20px;
+    height : 20px;
+}
+.test {
+    border-left : solid #BEBEBE 1px;
+    border-right : solid #BEBEBE 1px;
+    border-bottom : solid #BEBEBE 1px;
+    position : absolute;
+    margin: 399px 0px 0px 128px;
+    z-index :999;
+}
+.default {
+    line-height : 230%;
+}
+.requestBox {
+    border : solid #BEBEBE 1px;
+    margin-left: 128px;
+    width: 400px;
+    height : 40px;
+    display :flex;
+    justify-content: space-between;
+    cursor:pointer;
+    background-color: white;
+    line-height : 240%;
+}
+.request {
+   
+    border : solid #BEBEBE 0px;
+    width : 600px;
+    height : 40px;
+    line-height : 240%;
+    background-color: white;
+}
+.moreInfo {
+    width : 400px;
+    height : 40px;
+    margin-top : 10px;
+  
+}
+.phoneNumberContainer {
+    display : flex;
+}
+.number {
+    width: 60px;
+    height : 35px;
+}

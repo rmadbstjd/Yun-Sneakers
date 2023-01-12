@@ -9,6 +9,7 @@ import NewProducts from "./pages/NewProducts";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
+import Shipment from "./pages/Shipment";
 function App() {
   const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ function App() {
         {
           path: "/search",
           element: <SearchPage />,
+        },
+        {
+          path: "/shipment",
+          element: <Shipment />,
         },
       ],
     },

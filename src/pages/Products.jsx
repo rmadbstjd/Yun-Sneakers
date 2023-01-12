@@ -27,7 +27,7 @@ const Products = () => {
                 {error && <p>{error}</p>}
                 
                  <div className={styles.contentContainer}>
-                    <div className={styles.title}>Products ( {count} )</div>
+                    <div className={styles.title}>좋아요를 누른 상품 ♥ ( {count} )</div>
                      <div className={styles.horizonLine2}></div>
                  </div>
                     

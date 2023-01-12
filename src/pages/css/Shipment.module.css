@@ -1,0 +1,125 @@
+.container {
+    margin-top : 5%;
+    display:flex;
+    justify-content: center;
+    
+}
+.leftContainer {
+    display :flex;
+    flex-direction: column;
+    background-color: beige;
+    width : 750px;
+}
+.rightContainer {   
+    width : 750px;
+    background-color: aquamarine;
+}
+.shipInfoContainer {
+
+}
+.infoTitle {
+    font-weight : bolder;
+    font-size : 20px;
+    padding : 20px;
+}
+.infoSelectContainer {
+    display : flex;
+    margin-top : 20px;
+}
+.leftSelectBox {
+    border : solid 1px #BEBEBE;
+    width : 150px;
+    height : 50px;
+    
+    text-align:center;
+    line-height : 300%;
+    cursor : pointer;
+}
+.rightSelectBox {
+    border : solid 1px #BEBEBE;
+    width : 150px;
+    height : 50px;
+    text-align:center;
+    line-height : 300%;
+    cursor : pointer;
+}
+.couponContainer {
+
+}
+.bonusCouponContainer {
+    display:flex;
+}
+.brandCouponContainer {
+    display:flex;
+}
+.couponTitle {
+    font-weight : bolder;
+    font-size : 20px;
+    padding : 20px;
+}
+.couponLeftBox {
+    width : 130px;
+    height : 50px;
+    line-height : 300%;
+    
+}
+
+.couponRightBox {
+    border : solid #BEBEBE 1px;
+    width: 600px;
+    height : 40px;
+    display :flex;
+    justify-content: space-between;
+    cursor:pointer;
+    
+}
+.couponBox {
+    position : relative;
+}
+.test {
+    border-left : solid #BEBEBE 1px;
+    border-right : solid #BEBEBE 1px;
+    border-bottom : solid #BEBEBE 1px;
+    position : absolute;
+    margin: -8px 0px 0px 130px;
+    z-index :999;
+}
+.default {
+    line-height : 230%;
+}
+.coupon {
+   
+    border : solid #BEBEBE 0px;
+    width : 600px;
+    height : 40px;
+    line-height : 240%;
+    background-color: white;
+}
+.coupon:hover {
+    background-color: #D4D4D4;
+    cursor:pointer;
+}
+.brandCouponRightBox {
+    border : solid #BEBEBE 1px;
+    width: 600px;
+    height : 40px;
+    display :flex;
+    justify-content: space-between;
+    cursor:pointer;
+    background-color: #ECECEC;
+    color : #6a6a6a;
+    line-height : 240%;
+}
+.paymentContainer {
+
+}
+.horizonLine {
+    width : 750px; 
+    border-bottom: 2px solid black;
+    line-Height : 0.1rem;
+}
+.horizonLine2 {
+    width : 750px; 
+    border-bottom: 1px solid #bebebe;
+    line-Height : 0.1rem;
+}
