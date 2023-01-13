@@ -135,6 +135,9 @@
 .down {
     margin : 10px 10px 0px 0px;
 }
+.cardDown {
+    margin : 10px 10px 0px 650px;
+}
 .coupon {
    
     border : solid #BEBEBE 0px;
@@ -160,6 +163,66 @@
 }
 .paymentContainer {
     
+}
+.cardContainer {
+    display:flex;
+    flex-wrap : wrap;
+    margin-top : 30px;
+    width : 734px;
+    height : 100px;
+    justify-content: flex-start;
+}
+.firstCard {
+    border : 1px solid #bebebe;
+    width : 140px;
+    height : 40px;
+    text-align:center;
+    margin : 2px;
+    line-height : 290%;
+    cursor : pointer;
+    background-color: black;
+    color:white;
+    font-size : 14px;
+}
+
+.card {
+    border : 1px solid #bebebe;
+    width : 140px;
+    height : 40px;
+    text-align:center;
+    margin : 2px;
+    line-height : 290%;
+    cursor : not-allowed;
+    font-size : 14px;
+}
+.selectCard {
+    border: 1px solid #bebebe;
+    width : 734px;
+    height : 40px;
+    line-height : 290%;
+    font-size : 14px;
+    cursor:pointer;
+}
+.cardItemContainer {
+    border : solid gray 1px;
+}
+.cardItem {
+    width : 734px;
+    height : 40px;
+    margin-top : 10px;
+    line-height : 240%;
+    cursor:pointer;
+}
+.cardItem:hover {
+    background-color: #ECECEC;
+}
+.modal {
+    border-left : solid #BEBEBE 1px;
+    border-right : solid #BEBEBE 1px;
+    border-bottom : solid #BEBEBE 1px;
+    position : absolute;
+    margin: -8px 0px 0px 0px;
+    z-index :999;
 }
 .horizonLine {
     width : 750px; 
