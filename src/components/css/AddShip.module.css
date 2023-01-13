@@ -31,13 +31,18 @@
     display:flex;
 
 }
-.searchBtn {
-    border : solid gray 1px;
-    width : 120px;
-    height : 40px;
-    background-color: gray;
-    color : white;
-    line-height : 240%;
+.searchButton {
+    
+        border : solid gray 0px;
+        width : 100px;
+        height : 43px;       
+        background-color: #F5F5F5;
+        line-height : 330%;
+        margin-left : 15px;
+        font-size : 12px;
+        text-align: center;
+        cursor:pointer;
+    
 }
 .addressContainer {
     display:flex;
@@ -51,11 +56,15 @@
     line-height : 240%;
 }
 .addressNumber {
+    border : solid black 1px;
     width : 200px;
     height : 40px;
+    background-color: white;
     margin-bottom : 10px;
- 
+    line-height : 240%;
 }
+ 
+
 .checkBoxContainer {
     display:flex;
     margin-left : 16.5%;

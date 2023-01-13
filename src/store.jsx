@@ -79,6 +79,10 @@ const store = set =>({
     addRecentKeyword : (keyword) => set(produce((state) => {state.recentKeyword.push(keyword)})),
     setRecentKeyword : (keyword) => set(state =>({recentKeyword : state.recentKeyword.filter(el => el !==keyword)})),
     allDeleteRecentKeyword : () => set(state =>({recentKeyword : []})),
+    number : '',
+    setNumber : (some) => set(state =>({number : some})),
+    info :'',
+    setInfo : (some) => set(state => ({info : some})),
 }   );
 const useStore = create(devtools(store));
 
