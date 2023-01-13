@@ -127,7 +127,7 @@ const ProductDetail = () => {
                      <HorizonLine/>
                     </div>
                    
-                     <div className={styles.price}>{productInfo && productInfo.product.price}원</div>
+                     <div className={styles.price}>{productInfo && productInfo.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')   }원</div>
                      {cartShow && <CartMordal cartShow={cartShow} setCartShow ={setCartShow}></CartMordal>}
                      {heartShow && <HeartModal heartShow={heartShow} setHeartShow ={setHeartShow}></HeartModal>}
                      <div className={styles.cartContainer}>

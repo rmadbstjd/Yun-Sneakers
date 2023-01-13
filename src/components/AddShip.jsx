@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 import styles from './css/AddShip.module.css';
 import {IoIosArrowDown} from 'react-icons/io';
-import PostButton from '../components/PostButton';
 import PopupPostCode from './PopupPostCode';
 import PopupDom from './PopupDom';
 import useStore from '../store';
+import {AiOutlineMinus} from 'react-icons/ai';
 const AddShip = () => {
     const requestArr = ['배송시 요청사항을 선택해 주세요', '부재시 문앞에 놓아주세요', '부재시 경비실에 맡겨 주세요.', '부재시 전화 또는 문자 주세요', '택배함에 넣어 주세요.', '직접입력'];
     const [showRequest, setShowRequest] = useState(false);
@@ -14,14 +14,16 @@ const AddShip = () => {
     const [numInput2, setNumInput2] = useState('');
     const [numInput3, setNumInput3] = useState('');
     const {number, info} = useStore();
-
+    const [textArea,setTextArea] = useState('');
+    const [showTextArea, showSetTextArea] = useState(false);
     const closePostCode = () => {
         setIsPopupOpen(false)
     }
     const clickRequest = (item) => {
-        console.log("item",item);
         setRequest(item);
-        setShowRequest(false);   
+        setShowRequest(false);
+        if(item ==='직접입력') showSetTextArea(true);
+        else showSetTextArea(false);
     };
     const showRequestBox = () => {
         setShowRequest((prev) => !prev);
@@ -41,8 +43,12 @@ const AddShip = () => {
         else if(place ==='last') {
             if(onlyNumber.length >=5) return;
             setNumInput3(onlyNumber);
-        }
-        
+        }       
+    };
+    const checkTextLength = (e) => {
+        const { value } = e.target;
+        if(value.length >= 51) return;
+        setTextArea(value);
     };
     return (
         <div className={styles.container}>
@@ -86,18 +92,19 @@ const AddShip = () => {
                
                 <input type="text"  value={numInput1}onChange={(e) => checkNumber(e,'first')}className={styles.number} />
                 
-                -
-                <input type="number" value={numInput2}onChange={(e) => checkNumber(e,'second')} className={styles.number}></input>
-                -
-                <input type="number" value={numInput3}onChange={(e) => checkNumber(e,'last')} className={styles.number}></input>
+                <AiOutlineMinus className={styles.minus}/>
+                <input type="text" value={numInput2}onChange={(e) => checkNumber(e,'second')} className={styles.number}></input>
+                <AiOutlineMinus className={styles.minus}/>
+                <input type="text" value={numInput3}onChange={(e) => checkNumber(e,'last')} className={styles.number}></input>
             </div>
             <div className={styles.checkBoxContainer}>
                 <input type="checkbox" className={styles.checkbox}/>
-                <div>기본 배송지로 설정</div>
+                <div className={styles.checkBoxRight}>기본 배송지로 설정</div>
                 
             </div>
-            <div className={styles.requestBox} onClick={showRequestBox}>{request} <IoIosArrowDown/></div>
+            <div className={styles.requestBox} onClick={showRequestBox}>{request} <IoIosArrowDown className={styles.down}/></div>
             <div className={styles.test}> { showRequest && requestArr.map((item,index) => <div className={styles.request} onClick={() => clickRequest(item)} key={index}>{item}</div>)}</div>
+            {showTextArea && <textarea value={textArea} onChange={(e) => checkTextLength(e)}className={styles.textArea} placeholder="내용을 입력해주세요.(최대 50자)"></textarea>}
             <div>
 
             </div>

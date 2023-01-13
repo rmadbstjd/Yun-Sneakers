@@ -25,18 +25,25 @@ const Shipment = () => {
                 <div className={styles.horizonLine}></div>  
                 <div className={styles.shipInfoContainer}>
                     <div className={styles.infoTitle}>배송 정보</div>
-                    <div className={styles.horizonLine2}></div>
+                    
                     <div className={styles.infoSelectContainer}>
-                        <div className={styles.leftSelectBox} onClick={() =>clickShip('old')}>
+                        <div className={newShip===false?styles.leftSelectBox1 : styles.leftSelectBox2} onClick={() =>clickShip('old')}>
                                 기존 배송지
                         </div>
-                        <div className={styles.rightSelectBox} onClick={() =>clickShip('new')}>
+                        <div className={newShip===false?styles.rightSelectBox1:styles.rightSelectBox2} onClick={() =>clickShip('new')}>
                                 신규 입력
                         </div>
-                        
+                        <div className={styles.horizonLine3}></div>                        
                     </div>
                     {
-                        newShip===false?<div> 기존 배송지 </div>:<AddShip/>
+                        newShip===false?<div className={styles.showOldBox}> 
+                            <p className={styles.oldBoxP1}>
+                            등록된 배송지가 없습니다.
+                            </p>
+                            <p className={styles.oldBoxP2}>
+                                배송지를 신규입력 해주세요.
+                            </p>
+                            </div>:<AddShip/>
                     }       
                 </div>
 
@@ -51,12 +58,9 @@ const Shipment = () => {
                         <div className={styles.couponRightBox} onClick={showCouponBox}>
                             <div className={styles.default} >
                                     {coupon}
-                            </div>
-                           
-                            <IoIosArrowDown/>
-                        </div>
-                      
-                       
+                            </div>                          
+                            <IoIosArrowDown className={styles.down}/>
+                        </div>                     
                     </div>
                     <div className={styles.test}> { showCoupon && couponArr.map((item,index) => <div className={styles.coupon} onClick={() => clickCoupon(item)} key={index}>{item}</div>)}</div>
                     <div className={styles.brandCouponContainer}>
@@ -67,14 +71,15 @@ const Shipment = () => {
                                 적용 가능한 쿠폰이 없습니다.
                         </div>
                     </div>
+                    <div className={styles.horizonLine}></div> 
                 </div>
                 
                 <div className={styles.paymentContainer}>
-                        3
+                    
+                    <div className={styles.infoTitle}>결제 방법</div>
+                    <div className={styles.horizonLine2}></div>
                 </div>
             </div>  
-            
-
             <div className={styles.rightContainer}>
                 4
             </div>
