@@ -1,8 +1,12 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styles from './css/Shipment.module.css';
 import {IoIosArrowDown} from 'react-icons/io';
 import AddShip from '../components/AddShip';
+import {useQuery} from '@tanstack/react-query';
+import useStore from '../store';
 const Shipment = () => {
+    const {cart} = useStore();
+    const {isLoading, error, data : products} = useQuery(['test'], () =>cart.getCartsTest());
     const couponArr = ['선택안함','Welcome 5% 할인 쿠폰', '10만원 이상 구매 시 10% 할인 쿠폰', '20만원 이상 구매 시 20% 할인 쿠폰'];
     const paymentArr = ['신용/체크카드', '네이버페이', '카카오페이', '토스', '삼성페이', '페이코', 'SSG 페이', '휴대폰 결제', '무통장 입금'];
     const cardArr = ['NH카드', '수협카드', '삼성카드', '우체국카드', 'BC카드', '전북카드', '우리카드', '현대카드', '롯데카드'];
@@ -40,6 +44,9 @@ const Shipment = () => {
         setShowCard((prev) =>!prev);
         setShowBudgetAccount1((prev) => !prev);
     };
+    useEffect(() => {
+        console.log("프러덕뜨",products);
+    },[products])
     return (
         <div className={styles.container}>
             <div className={styles.leftContainer}>
@@ -119,7 +126,23 @@ const Shipment = () => {
                 </div>
             </div>  
             <div className={styles.rightContainer}>
-                
+                <div className={styles.title}>주문 상품 정보 / 총 {products && products.products.length}개</div>
+                <div className={styles.productsContainer}>
+                        {products && products.products.map(item => 
+                        <div className={styles.productContent}>
+                            <img className={styles.productImage} src={item.image}></img>
+                            <div className={styles.productInfo}>
+                                <div className={styles.category}>{item.category}</div>
+                                <div className={styles.name}>{item.name}</div>
+                                <div className={styles.priceContainer}>
+                                    <div className={styles.price}>{item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원 /</div>
+                                    <div className={styles.quantity}>&nbsp;수량 {item.quantity}개</div>                                    
+                                </div>
+                                <div className={styles.size}>옵션 : [SIZE] {item.size}</div>
+                                
+                            </div>
+                        </div>)}
+                </div>
             </div>
         </div>
     );

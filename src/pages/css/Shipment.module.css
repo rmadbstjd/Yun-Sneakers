@@ -1,4 +1,11 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 .container {
+    font-family: 'NanumSquareNeo-Variable';
     margin-top : 5%;
     display:flex;
     justify-content: center;
@@ -10,9 +17,11 @@
     
     width : 750px;
 }
-.rightContainer {   
-    width : 750px;
-   
+.rightContainer {
+    border : solid black 5px;
+    width : 650px;
+    height : 1000px;
+   margin-left : 20px;
 }
 .shipInfoContainer {
 
@@ -247,7 +256,43 @@
     z-index :999;
     
 }
+.productsContainer {
+    border : solid black 1px;
+    width : 600px;
+    height : 500px;
+    overflow-x : hidden;
+    overflow-y: scroll;
+}
+.productContent {
+    display:flex;
+    border : solid black 1px;
+    width : 600px;
+    height : 200px;
+    margin-bottom : 20px;
+}
+.productImage {
 
+}
+.productInfo {
+    
+}
+.priceContainer {
+    display: flex;
+    margin : 20px 10px 10px 10px;
+    font-size : 15px;
+}
+.category {
+    margin: 10px;
+    text-decoration:underline;
+}
+.name {
+    margin : 10px;
+    font-weight: bolder;
+}
+.size {
+    margin : 10px;
+    font-size : 15px;
+}
 .horizonLine {
     width : 750px; 
     border-bottom: 2px solid black;
