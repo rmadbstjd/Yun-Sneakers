@@ -6,11 +6,15 @@ const Shipment = () => {
     const couponArr = ['선택안함','Welcome 5% 할인 쿠폰', '10만원 이상 구매 시 10% 할인 쿠폰', '20만원 이상 구매 시 20% 할인 쿠폰'];
     const paymentArr = ['신용/체크카드', '네이버페이', '카카오페이', '토스', '삼성페이', '페이코', 'SSG 페이', '휴대폰 결제', '무통장 입금'];
     const cardArr = ['NH카드', '수협카드', '삼성카드', '우체국카드', 'BC카드', '전북카드', '우리카드', '현대카드', '롯데카드'];
+    const budgetArr = ['일시불','2개월','3개월','4개월','5개월','6개월','7개월','8개월','9개월','10개월','11개월','12개월'];
     const [showCoupon, setShowCoupon] = useState(false);
     const [newShip, setNewShip] = useState(false);
     const [coupon, setCoupon] = useState('선택안함');
     const [card, setCard] = useState('카드사를 선택해주세요.');
     const [showCard, setShowCard] = useState(false);
+    const [budgetAccount,setBudgetAccount] = useState('일시불');
+    const [showBudgetAccount1, setShowBudgetAccount1] = useState(false);
+    const [showBudgetAccount2, setShowBudgetAccount2] = useState(false);
     const showCouponBox = () => {
         setShowCoupon((prev) => !prev);
     };
@@ -22,10 +26,19 @@ const Shipment = () => {
     const clickCard = (item) => {
         setCard(item);
         setShowCard(false);
+        setShowBudgetAccount1(true);
+    };
+    const clickBudget = (item) => {
+        setBudgetAccount(item);
+        setShowBudgetAccount2(false);
     };
     const clickShip = (state) => {
         if(state ==='new') setNewShip(true);
         else setNewShip(false);
+    };
+    const test = () => {
+        setShowCard((prev) =>!prev);
+        setShowBudgetAccount1((prev) => !prev);
     };
     return (
         <div className={styles.container}>
@@ -89,15 +102,24 @@ const Shipment = () => {
                     <div className={styles.cardContainer}>
                         {paymentArr.map(item => <div className={item==='신용/체크카드'?styles.firstCard:styles.card}>{item}</div>)}
                     </div>
-                    <div className={styles.selectCard} onClick={() =>setShowCard((prev) =>!prev)}>
-                        {card}
+                    <div className={styles.selectCard} onClick={test}>
+                        <div className={styles.cardTitle}>{card}</div>
                         <IoIosArrowDown className={styles.cardDown}/>
                     </div>
                     <div className={styles.modal}>{showCard && cardArr.map((item) => <div className={styles.cardItem} onClick={() =>clickCard(item)}>{item}</div>)}</div>
+                    {showBudgetAccount1 && 
+                    <div className={styles.selectBudget} onClick={() =>setShowBudgetAccount2((prev) =>!prev)}>
+                        <div className={styles.cardTitle}>{budgetAccount}</div>
+                        <IoIosArrowDown className={styles.cardDown}/>
+                    </div>
+                    }
+                    {showBudgetAccount2 &&
+                        <div className={styles.modal}>{budgetArr.map((item) => <div className={styles.cardItem} onClick={() =>clickBudget(item)}>{item}</div>)}</div>
+                    }
                 </div>
             </div>  
             <div className={styles.rightContainer}>
-                4
+                
             </div>
         </div>
     );

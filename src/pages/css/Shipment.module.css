@@ -136,7 +136,9 @@
     margin : 10px 10px 0px 0px;
 }
 .cardDown {
-    margin : 10px 10px 0px 650px;
+    width : 18px;
+    height : 18px;
+    margin : 10px 0px 0px 500px;
 }
 .coupon {
    
@@ -196,15 +198,34 @@
     font-size : 14px;
 }
 .selectCard {
+    display:flex;
     border: 1px solid #bebebe;
     width : 734px;
     height : 40px;
     line-height : 290%;
     font-size : 14px;
     cursor:pointer;
+
+}
+.selectBudget {
+    position: relative;
+    display:flex;
+    border: 1px solid #bebebe;
+    width : 734px;
+    height : 40px;
+    line-height : 290%;
+    font-size : 14px;
+    margin-top : 10px;
+    cursor:pointer;
+    z-index : 199;
+  
 }
 .cardItemContainer {
     border : solid gray 1px;
+}
+.cardTitle {
+    width : 200px;
+  
 }
 .cardItem {
     width : 734px;
@@ -212,6 +233,7 @@
     margin-top : 10px;
     line-height : 240%;
     cursor:pointer;
+ 
 }
 .cardItem:hover {
     background-color: #ECECEC;
@@ -223,7 +245,9 @@
     position : absolute;
     margin: -8px 0px 0px 0px;
     z-index :999;
+    
 }
+
 .horizonLine {
     width : 750px; 
     border-bottom: 2px solid black;
