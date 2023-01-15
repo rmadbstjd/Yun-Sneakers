@@ -6,14 +6,12 @@ import PopupDom from './PopupDom';
 import useStore from '../store';
 import {AiOutlineMinus} from 'react-icons/ai';
 const AddShip = () => {
+    let regex;
+    const {shipPlaceName, setShipPlaceName,shipReceiver, setShipReceiver, number, info, shipPhoneNumber,setShipPhoneNumber,numInput1,numInput2,numInput3,setNumInput1,setNumInput2,setNumInput3} = useStore();
     const requestArr = ['배송시 요청사항을 선택해 주세요', '부재시 문앞에 놓아주세요', '부재시 경비실에 맡겨 주세요.', '부재시 전화 또는 문자 주세요', '택배함에 넣어 주세요.', '직접입력'];
     const [showRequest, setShowRequest] = useState(false);
     const [request, setRequest] = useState('배송시 요청사항을 선택해 주세요');
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [numInput1, setNumInput1] = useState('');
-    const [numInput2, setNumInput2] = useState('');
-    const [numInput3, setNumInput3] = useState('');
-    const {number, info} = useStore();
     const [textArea,setTextArea] = useState('');
     const [showTextArea, showSetTextArea] = useState(false);
     const closePostCode = () => {
@@ -28,6 +26,22 @@ const AddShip = () => {
     const showRequestBox = () => {
         setShowRequest((prev) => !prev);
     };
+    const changeText =(e,keyword) => {
+        switch(keyword) {
+            case 'shipPlaceName':
+                regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
+                if(regex.test(e.target.value)) setShipPlaceName(e.target.value);
+                break;
+            case 'shipReceiver':
+                
+                 regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
+                 if(regex.test(e.target.value)) setShipReceiver(e.target.value);
+                 break;
+            default:
+                break;
+
+        }
+    };  
     const checkNumber = (e,place) => {
         const { value } = e.target;
         const onlyNumber = value.replace(/[^0-9]/g, '');
@@ -56,13 +70,13 @@ const AddShip = () => {
                 <div className={styles.left}>
                     배송지명
                 </div>               
-                <input type ="text" className={styles.deliveryAddress} maxLength={10}></input>                
+                <input type ="text" className={styles.deliveryAddress} maxLength={10} value={shipPlaceName} onChange={(e) => changeText(e,'shipPlaceName')}></input>                
             </div>
             <div className={styles.first}>
                 <div className={styles.left}>
                     수령인
                 </div>               
-                <input type ="text" className={styles.deliveryAddress} maxLength={10}></input>               
+                <input type ="text" className={styles.deliveryAddress} maxLength={10} value={shipReceiver} onChange={(e) => changeText(e,'shipReceiver')}></input>               
             </div>
             <div className={styles.addressContainer}>
                 <div className={styles.addressLeft}>

@@ -83,6 +83,18 @@ const store = set =>({
     setNumber : (some) => set(state =>({number : some})),
     info :'',
     setInfo : (some) => set(state => ({info : some})),
+    shipPlaceName : '',
+    setShipPlaceName : (keyword) => set(state => ({shipPlaceName : keyword})),
+    shipReceiver : '',
+    setShipReceiver : (keyword) => set(state => ({shipReceiver : keyword})),
+    shipPostCode : '',
+    setShipPostCode : (keyword) => set(state => ({shipPostCode : keyword})),
+    numInput1 : '',
+    setNumInput1 : (keyword) => set(state => ({numInput1 : keyword})),
+    numInput2 : '',
+    setNumInput2 : (keyword) => set(state => ({numInput2 : keyword})),
+    numInput3 : '',
+    setNumInput3: (keyword) => set(state => ({numInput3: keyword})),
 }   );
 const useStore = create(devtools(store));
 

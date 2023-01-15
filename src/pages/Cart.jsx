@@ -39,7 +39,7 @@ const Cart =  () => {
         navigate('/');
     };
     const goToOrderPage = () => {
-        alert("아직 준비중입니다!!");
+        navigate("/shipment");
     }
     if(!isLogin) {
         

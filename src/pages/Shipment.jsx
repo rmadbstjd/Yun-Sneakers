@@ -5,7 +5,7 @@ import AddShip from '../components/AddShip';
 import {useQuery} from '@tanstack/react-query';
 import useStore from '../store';
 const Shipment = () => {
-    const {cart} = useStore();
+    const {cart, shipPlaceName, shipReceiver, number,numInput1,numInput2,numInput3} = useStore();
     const {isLoading, error, data : products} = useQuery(['test'], () =>cart.getCartsTest());
     const couponArr = ['선택안함','Welcome 5% 할인 쿠폰', '10만원 이상 구매 시 10% 할인 쿠폰', '20만원 이상 구매 시 20% 할인 쿠폰'];
     const paymentArr = ['신용/체크카드', '네이버페이', '카카오페이', '토스', '삼성페이', '페이코', 'SSG 페이', '휴대폰 결제', '무통장 입금'];
@@ -14,16 +14,24 @@ const Shipment = () => {
     const [showCoupon, setShowCoupon] = useState(false);
     const [newShip, setNewShip] = useState(false);
     const [coupon, setCoupon] = useState('선택안함');
+    const [couponPrice, setCouponPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [card, setCard] = useState('카드사를 선택해주세요.');
+    const [price, setPrice] = useState(0);
+    const [count, setCount] = useState(0);
     const [showCard, setShowCard] = useState(false);
     const [budgetAccount,setBudgetAccount] = useState('일시불');
     const [showBudgetAccount1, setShowBudgetAccount1] = useState(false);
     const [showBudgetAccount2, setShowBudgetAccount2] = useState(false);
+    const [checkAll, setCheckAll] = useState(false);
+    const [check1, setCheck1] = useState(false);
+    const [check2, setCheck2] = useState(false);
+    const [check3, setCheck3] = useState(false);
     const showCouponBox = () => {
         setShowCoupon((prev) => !prev);
     };
     const clickCoupon = (item) => {
-        console.log("item",item);
+       
         setCoupon(item);
         setShowCoupon(false);   
     };
@@ -42,11 +50,76 @@ const Shipment = () => {
     };
     const test = () => {
         setShowCard((prev) =>!prev);
-        setShowBudgetAccount1((prev) => !prev);
+        if(showBudgetAccount1)setShowBudgetAccount1(false);
+    };
+    const check = (some) => {
+        if(some ==='all'){
+            if(checkAll ===false) {
+                setCheckAll(true);
+                setCheck1(true);
+                setCheck2(true);
+                setCheck3(true);
+            }
+            else {
+                setCheckAll(false);
+                setCheck1(false);
+                setCheck2(false);
+                setCheck3(false);
+            }
+        return;
+        }
+        else if(some ==='1') setCheck1((prev) => !prev);
+        else if(some ==='2') setCheck2((prev) => !prev);
+        else if(some ==='3') setCheck3((prev) => !prev);
+        
+    };
+    const onValidate = () => {
+        if(!shipPlaceName) alert("배송지명을 입력하세요!");
+        else if(!shipReceiver) alert("수령인을 입력하세요!");
+        else if(!number) alert("우편 번호를 입력하세요!");
+        else if(!numInput1 || !numInput2 || !numInput3) alert("핸드폰 번호를 입력해주세요!");
     };
     useEffect(() => {
-        console.log("프러덕뜨",products);
-    },[products])
+        if(products) {
+            for(let i = 0; i<products.products.length; i++) {               
+                let newPrice = Number(products.products[i].price * products.products[i].quantity );
+                setPrice((prev) => prev + newPrice);  
+                setCount((prev) => prev + products.products[i].quantity);
+            }
+            
+        }
+        
+    },[products]);
+
+    useEffect(() => {
+        switch(coupon){
+        case '선택안함' :
+            setCouponPrice(0);
+            break;
+        case 'Welcome 5% 할인 쿠폰' :
+            setCouponPrice(price / 10 / 2);
+            break;
+        case '10만원 이상 구매 시 10% 할인 쿠폰':
+            if(price < 100000) break;
+            setCouponPrice(price / 10);
+            break;
+        case '20만원 이상 구매 시 20% 할인 쿠폰':
+            if(price < 200000) break;
+            setCouponPrice(price / 5);
+            break;
+        default :
+        break;
+        }
+        
+    },
+    [coupon]);
+    useEffect(() => {
+        if(check1 ===true && check2 ===true && check3 ===true) setCheckAll(true);
+        else {
+            setCheckAll(false);
+        }   
+        
+    },[check1,check2,check3])
     return (
         <div className={styles.container}>
             <div className={styles.leftContainer}>
@@ -90,13 +163,13 @@ const Shipment = () => {
                             <IoIosArrowDown className={styles.down}/>
                         </div>                     
                     </div>
-                    <div className={styles.test}> { showCoupon && couponArr.map((item,index) => <div className={styles.coupon} onClick={() => clickCoupon(item)} key={index}>{item}</div>)}</div>
+                    <div className={styles.test}> { showCoupon && couponArr.map((item,index) => <div className={styles.coupon} onClick={() => clickCoupon(item)} key={index}>&nbsp;&nbsp;{item}</div>)}</div>
                     <div className={styles.brandCouponContainer}>
                         <div className={styles.couponLeftBox}>
                                 브랜드 쿠폰
                         </div>
                         <div className={styles.brandCouponRightBox}>
-                                적용 가능한 쿠폰이 없습니다.
+                                &nbsp;&nbsp;&nbsp;적용 가능한 쿠폰이 없습니다.
                         </div>
                     </div>
                     <div className={styles.horizonLine}></div> 
@@ -126,7 +199,7 @@ const Shipment = () => {
                 </div>
             </div>  
             <div className={styles.rightContainer}>
-                <div className={styles.title}>주문 상품 정보 / 총 {products && products.products.length}개</div>
+                <div className={styles.title}>주문 상품 정보 / 총 {count}개</div>
                 <div className={styles.productsContainer}>
                         {products && products.products.map(item => 
                         <div className={styles.productContent}>
@@ -143,6 +216,47 @@ const Shipment = () => {
                             </div>
                         </div>)}
                 </div>
+                <div className={styles.InfoContainer}>
+                    <div className={styles.infoPriceContainer}>
+                        <div>총 상품금액</div>
+                        <div>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
+                    </div>
+                    <div className={styles.infoCouponContainer}>
+                        <div>쿠폰 사용</div>
+                        <div>- {couponPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
+                    </div>
+                    <div className={styles.infoDeliveryChargeContainer}>
+                        <div>배송비</div>
+                        <div>+ 0원</div>
+                    </div>
+                    <div className={styles.infoTotalPriceContainer}>
+                        <div>총 결제금액</div>
+                        <div>{(price - couponPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</div>
+                    </div>
+                    <div className={styles.horizonLine4}></div> 
+                </div>
+                
+                <div className={styles.checkBoxContainer}>
+                    <div className={styles.checkBoxContent}>
+                    <input type="checkbox" className={styles.checkBox} onChange={() =>check('all')} checked={checkAll}></input>
+                    <div className={styles.checkBoxLetter}>주문 내역을 확인했으며, 아래 내용에 모두 동의합니다.</div>
+                    </div>
+                    <div className={styles.checkBoxContent}>                   
+                    <input type="checkbox" className={styles.checkBox}  onChange={() =>check('1')}checked={check1}></input>
+                    <div className={styles.checkBoxLetter2}>(필수) 개인정보 수집/이용 동의</div>
+                    </div>
+                    <div className={styles.checkBoxContent}>
+                    <input type="checkbox" className={styles.checkBox} onChange={() =>check('2')} checked={check2}></input>
+                    <div className={styles.checkBoxLetter2}>(필수) 개인정보 제3자 제공 동의</div>
+                    </div>
+                    <div className={styles.checkBoxContent}>
+                    <input type="checkbox" className={styles.checkBox} onChange={() =>check('3')}checked={check3}></input>
+                    <div className={styles.checkBoxLetter2}>(필수) 결제대행 서비스 이용약관 (주)KG이니시스</div>
+                    </div>
+                    
+                    
+                </div>
+                <div className={styles.paymentBtn} onClick={onValidate}>CHECK OUT</div>
             </div>
         </div>
     );

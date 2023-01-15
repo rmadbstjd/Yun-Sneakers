@@ -20,11 +20,16 @@
 .rightContainer {
     border : solid black 5px;
     width : 650px;
-    height : 1000px;
+    height : 1200px;
    margin-left : 20px;
 }
 .shipInfoContainer {
 
+}
+.title {
+    font-size : 18px;
+    font-weight : bolder;
+    margin : 25px;
 }
 .infoTitle {
     font-weight : bolder;
@@ -100,6 +105,7 @@
 }
 .bonusCouponContainer {
     display:flex;
+    margin-top : 20px;
 }
 .brandCouponContainer {
     display:flex;
@@ -140,6 +146,7 @@
 }
 .default {
     line-height : 230%;
+    margin-left : 10px;
 }
 .down {
     margin : 10px 10px 0px 0px;
@@ -156,6 +163,7 @@
     height : 40px;
     line-height : 240%;
     background-color: white;
+    
 }
 .coupon:hover {
     background-color: #D4D4D4;
@@ -234,6 +242,7 @@
 }
 .cardTitle {
     width : 200px;
+    margin-left : 10px;
   
 }
 .cardItem {
@@ -242,10 +251,12 @@
     margin-top : 10px;
     line-height : 240%;
     cursor:pointer;
+    margin-left : 10px;
  
 }
 .cardItem:hover {
     background-color: #ECECEC;
+    
 }
 .modal {
     border-left : solid #BEBEBE 1px;
@@ -257,15 +268,16 @@
     
 }
 .productsContainer {
-    border : solid black 1px;
+    border : solid black 0px;
     width : 600px;
     height : 500px;
     overflow-x : hidden;
     overflow-y: scroll;
+    margin-left : 25px;
 }
 .productContent {
     display:flex;
-    border : solid black 1px;
+    border : solid black 0px;
     width : 600px;
     height : 200px;
     margin-bottom : 20px;
@@ -293,18 +305,80 @@
     margin : 10px;
     font-size : 15px;
 }
+.InfoContainer {
+    border : solid black 0px;
+    width : 600px;
+    height : 250px;
+    margin : 35px 0px 0px 25px;
+    
+}
+.infoPriceContainer, .infoCouponContainer, .infoDeliveryChargeContainer {
+    display:flex;
+    justify-content: space-between;
+    margin : 25px;
+}
+.infoTotalPriceContainer {
+    display:flex;
+    justify-content: space-between;
+    margin : 25px;
+    font-weight : bolder;
+    
+} 
+
+.checkBoxContainer {
+    border : solid black 0px;
+    width : 600px;
+    height : 200px;
+    margin : 0px 0px 0px 25px;
+}
+.checkBox {
+    width : 25px;
+    height : 25px;
+   
+}
+
+.checkBoxContent {
+    display:flex;
+    
+}
+.checkBoxLetter {
+    margin : 5px;
+}
+.checkBoxLetter2 {
+    margin : 5px;
+    color : gray;
+}
+.paymentBtn {
+    border : solid black 0px;
+    width : 600px;
+    height : 70px;
+    background-color: black;
+    color : white;
+    font-size  :25px;
+    font-weight : bolder;
+    margin : 40px 0px 0px 25px;
+    text-align: center;
+    line-height: 270%;
+    cursor:pointer;
+}
 .horizonLine {
     width : 750px; 
     border-bottom: 2px solid black;
     line-Height : 0.1rem;
 }
 .horizonLine2 {
-    width : 750px;   
+    width : 100%;   
     border-bottom: 1px solid #bebebe;
     line-Height : 0.1rem;
 }
 .horizonLine3 {  
     width : 750px; 
     border-bottom: 0.5px solid #bebebe;
+    
+}
+.horizonLine4 {
+    width : 100%;   
+    border-bottom: 1px solid #bebebe;
+    line-Height : 0.1rem;
     
 }
