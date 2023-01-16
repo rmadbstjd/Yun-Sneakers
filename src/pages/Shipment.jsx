@@ -4,8 +4,9 @@ import {IoIosArrowDown} from 'react-icons/io';
 import AddShip from '../components/AddShip';
 import {useQuery} from '@tanstack/react-query';
 import useStore from '../store';
+import ShipAddress from '../components/ShipAddress';
 const Shipment = () => {
-    const {cart, shipPlaceName, shipReceiver, number,numInput1,numInput2,numInput3} = useStore();
+    const {cart, shipPlaceName, shipReceiver, number,numInput1,numInput2,numInput3,card,setCard} = useStore();
     const {isLoading, error, data : products} = useQuery(['test'], () =>cart.getCartsTest());
     const couponArr = ['선택안함','Welcome 5% 할인 쿠폰', '10만원 이상 구매 시 10% 할인 쿠폰', '20만원 이상 구매 시 20% 할인 쿠폰'];
     const paymentArr = ['신용/체크카드', '네이버페이', '카카오페이', '토스', '삼성페이', '페이코', 'SSG 페이', '휴대폰 결제', '무통장 입금'];
@@ -13,10 +14,10 @@ const Shipment = () => {
     const budgetArr = ['일시불','2개월','3개월','4개월','5개월','6개월','7개월','8개월','9개월','10개월','11개월','12개월'];
     const [showCoupon, setShowCoupon] = useState(false);
     const [newShip, setNewShip] = useState(false);
+    const [newShip2, setNewShip2] = useState(false);
     const [coupon, setCoupon] = useState('선택안함');
     const [couponPrice, setCouponPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [card, setCard] = useState('카드사를 선택해주세요.');
+    const [totalPrice, setTotalPrice] = useState(0);  
     const [price, setPrice] = useState(0);
     const [count, setCount] = useState(0);
     const [showCard, setShowCard] = useState(false);
@@ -78,6 +79,8 @@ const Shipment = () => {
         else if(!shipReceiver) alert("수령인을 입력하세요!");
         else if(!number) alert("우편 번호를 입력하세요!");
         else if(!numInput1 || !numInput2 || !numInput3) alert("핸드폰 번호를 입력해주세요!");
+        else if(card==='카드사를 선택해주세요.') alert("카드사를 입력해주세요!");
+        else if(!checkAll) alert("약관 동의를 해주세요!");
     };
     useEffect(() => {
         if(products) {
@@ -136,16 +139,7 @@ const Shipment = () => {
                         </div>
                         <div className={styles.horizonLine3}></div>                        
                     </div>
-                    {
-                        newShip===false?<div className={styles.showOldBox}> 
-                            <p className={styles.oldBoxP1}>
-                            등록된 배송지가 없습니다.
-                            </p>
-                            <p className={styles.oldBoxP2}>
-                                배송지를 신규입력 해주세요.
-                            </p>
-                            </div>:<AddShip/>
-                    }       
+                    {newShip ===false?<ShipAddress/>:<AddShip/>}
                 </div>
 
                 <div className={styles.couponContainer}>

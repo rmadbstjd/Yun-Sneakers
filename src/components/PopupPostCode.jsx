@@ -4,7 +4,7 @@ import styles from '../components/css/PopupPostCode.module.css';
 import useStore from '../store';
 const PopupPostCode = (props) => {
 	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
-    const {setInfo, setNumber} = useStore();
+    const {setInfo, setShipPostCode,setShipAddress} = useStore();
     const handlePostCode = (data) => {
         let fullAddress = data.address;
         let extraAddress = ''; 
@@ -21,8 +21,8 @@ const PopupPostCode = (props) => {
         console.log(data)
         console.log(fullAddress)
         console.log(data.zonecode)
-        setInfo(fullAddress);
-        setNumber(data.zonecode);
+        setShipAddress(fullAddress);
+        setShipPostCode(data.zonecode);
         props.onClose()
     }
  

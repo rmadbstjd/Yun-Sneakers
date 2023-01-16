@@ -35,6 +35,21 @@ export default class Cart {
       return null;
     }
   }
+
+  async getAddress() {
+    const response = await this.httpClient.get("/address", {
+      headers: {
+        email: this.email,
+      },
+    });
+    const data = response.data;
+    console.log("data", data);
+    if (data) {
+      return data;
+    } else {
+      return false;
+    }
+  }
   async updateCart(productId, size, quantity) {
     const response = await this.httpClient.put(
       `/carts/${productId}`,
@@ -70,7 +85,37 @@ export default class Cart {
 
     return data;
   }
-
+  async addShipAddress(
+    shipPlaceName,
+    shipReceiver,
+    shipPostCode,
+    shipAddress,
+    shipAddressDetail,
+    numInput1,
+    numInput2,
+    numInput3
+  ) {
+    const response = await this.httpClient.post(
+      `/address`,
+      {
+        place: shipPlaceName,
+        receiver: shipReceiver,
+        postCode: shipPostCode,
+        address: shipAddress,
+        addressDetail: shipAddressDetail,
+        phoneNumber1: String(numInput1),
+        phoneNumber2: String(numInput2),
+        phoneNumber3: String(numInput3),
+      },
+      {
+        headers: {
+          email: this.email,
+        },
+      }
+    );
+    const data = response.data;
+    return data;
+  }
   async deleteCart(productId, size) {
     return this.httpClient.delete(`/carts/${productId}`, {
       headers: {

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import styles from './css/AddShip.module.css';
 import {IoIosArrowDown} from 'react-icons/io';
 import PopupPostCode from './PopupPostCode';
@@ -7,7 +7,7 @@ import useStore from '../store';
 import {AiOutlineMinus} from 'react-icons/ai';
 const AddShip = () => {
     let regex;
-    const {shipPlaceName, setShipPlaceName,shipReceiver, setShipReceiver, number, info, shipPhoneNumber,setShipPhoneNumber,numInput1,numInput2,numInput3,setNumInput1,setNumInput2,setNumInput3} = useStore();
+    const {cart,shipPlaceName, setShipPlaceName,shipReceiver, setShipReceiver,shipPostCode, setShipPostCode,shipAddress, numInput1,numInput2,numInput3,setNumInput1,setNumInput2,setNumInput3, defaultAddress,setDefaultAddress,shipAddressDetail,setShipAddressDetail} = useStore();
     const requestArr = ['배송시 요청사항을 선택해 주세요', '부재시 문앞에 놓아주세요', '부재시 경비실에 맡겨 주세요.', '부재시 전화 또는 문자 주세요', '택배함에 넣어 주세요.', '직접입력'];
     const [showRequest, setShowRequest] = useState(false);
     const [request, setRequest] = useState('배송시 요청사항을 선택해 주세요');
@@ -64,6 +64,15 @@ const AddShip = () => {
         if(value.length >= 51) return;
         setTextArea(value);
     };
+    const checkAddress = (e) => {
+        setDefaultAddress();
+    };
+    useEffect(() => {
+        if(defaultAddress) {
+           
+            cart.addShipAddress(shipPlaceName,shipReceiver,shipPostCode,shipAddress,shipAddressDetail,numInput1, numInput2,numInput3);
+        }
+    },[defaultAddress])
     return (
         <div className={styles.container}>
             <div className={styles.first}>
@@ -84,7 +93,7 @@ const AddShip = () => {
                 </div>               
                 <div className={styles.searchContainer}>
                     <div className={styles.search}>
-                        <div className={styles.addressNumber}>{number}</div>
+                        <div className={styles.addressNumber}>{shipPostCode}</div>
                         <div className={styles.searchButton} onClick={() =>setIsPopupOpen((prev) =>!prev)}>우편 번호 검색</div>
                     </div>
                     <div id='popupDom'>
@@ -94,8 +103,8 @@ const AddShip = () => {
                         </PopupDom>
                     )}
                 </div>
-                    <div className={styles.addressInfo}>{info}</div>
-                    <input type ="text" placeholder="상세 주소 입력" className={styles.moreInfo}></input>
+                    <div className={styles.addressInfo}>{shipAddress}</div>
+                    <input type ="text" placeholder="상세 주소 입력" value={shipAddressDetail} onChange={(e) =>setShipAddressDetail(e.target.value)}className={styles.moreInfo}></input>
                 </div>
                     
             </div>
@@ -112,7 +121,7 @@ const AddShip = () => {
                 <input type="text" value={numInput3}onChange={(e) => checkNumber(e,'last')} className={styles.number}></input>
             </div>
             <div className={styles.checkBoxContainer}>
-                <input type="checkbox" className={styles.checkbox}/>
+                <input type="checkbox" value={defaultAddress}className={styles.checkbox} onChange={(e) => checkAddress(e)}/>
                 <div className={styles.checkBoxRight}>기본 배송지로 설정</div>
                 
             </div>

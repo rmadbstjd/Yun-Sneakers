@@ -11,7 +11,7 @@ const Search = ({setShowSearch}) => {
     const submitKeyword = async (e) => {
         e.preventDefault();
         sessionStorage.clear();
-        console.log("1111111111");        
+            
         navigate(`/search?keyword=${text}`);
         setShowSearch((prev) => !prev);
         if(!recentKeyword.includes(text)){
@@ -21,7 +21,7 @@ const Search = ({setShowSearch}) => {
     };
     const goToSearchPage = (item) => {
         sessionStorage.clear();
-        console.log("1111111111");    
+           
         navigate(`/search?keyword=${item}`);
         setShowSearch((prev) => !prev);
     };
