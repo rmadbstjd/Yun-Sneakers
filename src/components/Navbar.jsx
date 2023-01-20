@@ -1,24 +1,31 @@
 import React, {useEffect, useState} from 'react';
-import {AiOutlineShoppingCart} from 'react-icons/ai';
-import {BsFillPencilFill} from 'react-icons/bs';
+
+import {BsFillPencilFill,BsFillCartFill} from 'react-icons/bs';
 import {GiConverseShoe} from 'react-icons/gi';
 import {FiSearch} from 'react-icons/fi';
+import {BsHeartFill} from 'react-icons/bs';
+import {FaUser} from 'react-icons/fa';
 import styles from './css/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 import { login, logout, adminUser } from './../api/firebase';
 import Search from '../components/Search';
 import useStore from '../store';
+import {useQuery} from '@tanstack/react-query';
 const Navbar = () => {
     const navigate = useNavigate();
-    const {productCount,cartCount,setText} = useStore();
+    const {productCount,cartCount,initCartCount,plusCartCount,setText,cart} = useStore();
+
     const [token, setToken] = useState('');
     const [showSearch,setShowSearch] = useState(false);
     const [admin] = useState('');
+    const {isLoading, error, data:cartProducts} = useQuery([], () => cart.getCartsTest());
     useEffect(() => {
+        if(cartProducts){
+            initCartCount();
+            plusCartCount(cartProducts.products.length);
+        }
         setToken(localStorage.getItem("token"));
-        
-        
-    },[token,admin]);
+    },[token,admin,cartProducts]);
     const handleLogin = async() => {
         await login();
         const email = localStorage.getItem('email');
@@ -38,6 +45,7 @@ const Navbar = () => {
         setShowSearch((prev) => !prev);
         
     };
+    console.log("테스트",cartProducts && cartProducts.products.length);
     return (
         <div>
             <div className={styles.container}>
@@ -47,12 +55,14 @@ const Navbar = () => {
                         <div className={styles.shopName}>Yun's Premium Sneakers</div>
                     </div>
                     <div className={styles.navbarRightContainer} >
-                        <div onClick={() =>{navigate('/products')}} className={styles.products}>Likes</div>
-                        {token?<AiOutlineShoppingCart  className={styles.cartImg} size={40} onClick={() =>{navigate('/cart')}}/>:null}
+                        <FaUser className={styles.mypageImg}/>
+                        <div onClick={() =>{navigate('/mypage')}} className={styles.mypage}>MY PAGE</div>
+                        <BsHeartFill className={styles.heartImg}/>
+                        <div onClick={() =>{navigate('/products')}} className={styles.products}>MY LIKE</div>
+                        {token?<BsFillCartFill className={styles.cartImg} size={20} onClick={() =>{navigate('/cart')}}/>:null}
+                        {token?<div className={styles.shoppingBag} onClick={() =>{navigate('/cart')}} >SHOPPING BAG</div>:null}
                         {<div className={styles.count}>{cartCount}</div>}
                         {token&& localStorage.getItem('admin') === 'true'?<BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>:null}
-                        {token?<div style={{backgroundImage:"url("+`${localStorage.getItem('img')}`+")"}} className={styles.userImg}></div>:null}
-                        {token?<div className={styles.name}>{localStorage.getItem('name')}</div>:null}
                         <FiSearch className={styles.search} onClick={clickToSearch}/>
                         {!token?<button onClick ={handleLogin} className={styles.button}>Login</button>:<button onClick={handleLogout} className={styles.button}>Logout</button>}
 

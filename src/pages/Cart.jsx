@@ -9,7 +9,7 @@ import HorizonLine from '../components/HorizonLine';
 const Cart =  () => {
     
     const navigate = useNavigate();
-    const {cart,totalPrice,deletes,change,cartCount,initCartCount,plusCartCount} = useStore();
+    const {cart,totalPrice,deletes,change,initCartCount,plusCartCount} = useStore();
     const [price, setPrice] = useState(0);
     const [count, setCount] = useState();
     const [boolean, setBoolean] = useState(null);
