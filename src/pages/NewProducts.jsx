@@ -9,11 +9,8 @@ const NewProducts = () => {
     const [count, setCount] = useState(0);
     let isAdmin = localStorage.getItem('admin');
     const navigate = useNavigate();
+    console.log("텟트@@@@@@@@@@");
 
-    if(isAdmin !=='true') {
-       
-        return <Navigate to="/" replace></Navigate>
-    }
     
     const onChange = (e) => {
         const {name ,value, files} = e.target;

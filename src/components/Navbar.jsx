@@ -45,7 +45,7 @@ const Navbar = () => {
         setShowSearch((prev) => !prev);
         
     };
-    console.log("테스트",cartProducts && cartProducts.products.length);
+   
     return (
         <div>
             <div className={styles.container}>
@@ -62,7 +62,7 @@ const Navbar = () => {
                         {token?<BsFillCartFill className={styles.cartImg} size={20} onClick={() =>{navigate('/cart')}}/>:null}
                         {token?<div className={styles.shoppingBag} onClick={() =>{navigate('/cart')}} >SHOPPING BAG</div>:null}
                         {<div className={styles.count}>{cartCount}</div>}
-                        {token&& localStorage.getItem('admin') === 'true'?<BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>:null}
+                        <BsFillPencilFill size={28} className={styles.pencilImg} onClick={() =>{navigate('/new')}}/>
                         <FiSearch className={styles.search} onClick={clickToSearch}/>
                         {!token?<button onClick ={handleLogin} className={styles.button}>Login</button>:<button onClick={handleLogout} className={styles.button}>Logout</button>}
 
