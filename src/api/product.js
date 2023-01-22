@@ -5,7 +5,7 @@ export default class Product {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://localhost:3001/api",
+        baseURL: "http://52.79.248.58/api",
       },
       {
         withCredentials: true,
