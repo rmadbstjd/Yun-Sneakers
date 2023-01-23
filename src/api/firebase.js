@@ -26,12 +26,11 @@ export async function login() {
   return signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
-
+      console.log("유저", user);
       localStorage.setItem("email", user.email);
       localStorage.setItem("name", user.displayName);
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("img", user.photoURL);
-
       return user;
     })
     .catch((error) => {
