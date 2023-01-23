@@ -13,7 +13,7 @@ import useStore from '../store';
 import {useQuery} from '@tanstack/react-query';
 const Navbar = () => {
     const navigate = useNavigate();
-    const {productCount,cartCount,initCartCount,plusCartCount,setText,cart} = useStore();
+    const {cartCount,initCartCount,plusCartCount,setText,cart} = useStore();
 
     const [token, setToken] = useState('');
     const [showSearch,setShowSearch] = useState(false);
