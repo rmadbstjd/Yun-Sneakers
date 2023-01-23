@@ -3,7 +3,7 @@ export default class Like {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://52.79.248.58/api",
+        baseURL: "https://weeklyrun.site/api",
       },
       {
         withCredentials: true,

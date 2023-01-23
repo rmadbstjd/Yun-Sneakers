@@ -1,11 +1,9 @@
 import axios from "axios";
-import useStore from "../store";
-
 export default class Product {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://52.79.248.58/api",
+        baseURL: "https://weeklyrun.site/api",
       },
       {
         withCredentials: true,
