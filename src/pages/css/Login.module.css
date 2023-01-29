@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: solid black 0px;
+  width: 400px;
+  height: 600px;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 100px;
+  width: 440px;
+  height: 80px;
+  border: soldid black 1px;
+  border-radius: 50px;
+  background-color: black;
+  opacity: 0.7;
+  color: white;
+  text-align: center;
+}
+.title {
+  font-family: "KOTRA_BOLD-Bold";
+  font-style: italic;
+  font-weight: bolder;
+  width: 100%;
+  font-size: 24px;
+  text-align: center;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 70px;
+  font-family: "LINESeedKR-Bd";
+  padding: 10px 0px 10px 0px;
+}
+.inputTitleIDNotAllowed {
+  color: red;
+}
+.inputTitlePWNotAllowed {
+  color: red;
+}
+.inputTitleREPWNotAllowed {
+  color: red;
+}
+.inputTitleNickNotAllowed {
+  color: red;
+}
+.inputValue {
+  width: 97%;
+  border: none;
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+.inputValueNotAllowed {
+  border: none;
+  height: 30px;
+  border-bottom: 1px solid red;
+}
+
+.inputValue:focus {
+  outline: none;
+}
+.inputValueNotAllowed:focus {
+  outline: none;
+}
+.text {
+  color: red;
+  font-size: 12px;
+}
+.submitBtn {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #ececec;
+  height: 50px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 17px;
+  color: white;
+  line-height: 300%;
+  cursor: default;
+}
+.submitBtnAllowed {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: black;
+  height: 50px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 17px;
+  color: white;
+  line-height: 300%;
+  cursor: pointer;
+}
+.signUpLink {
+  margin-top: 15px;
+  color: gray;
+  text-decoration: underline;
+}
+.signUpLink:hover {
+  color: black;
+  cursor: pointer;
+  font-weight: bolder;
+}

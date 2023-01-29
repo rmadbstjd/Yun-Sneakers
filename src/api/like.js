@@ -3,13 +3,12 @@ export default class Like {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "https://weeklyrun.site/api",
+        baseURL: "http://localhost:3001/api",
       },
       {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
   }
   async pushLike(productId) {
     return this.httpClient.post(`/like/${productId}`, {
@@ -18,20 +17,12 @@ export default class Like {
   }
   async isLike(productId) {
     return this.httpClient
-      .get(`/like/isLike/${productId}`, {
-        headers: {
-          email: this.email,
-        },
-      })
+      .get(`/like/isLike/${productId}`, {})
       .then((res) => res.data.result);
   }
   async getLikeProduct() {
     return this.httpClient
-      .get(`/like/products`, {
-        headers: {
-          email: this.email,
-        },
-      })
+      .get(`/like/products`, {})
       .then((res) => res.data.result);
   }
 }

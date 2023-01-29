@@ -1,147 +1,141 @@
 @font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .container {
-    display:flex;
-    justify-content: center;
-    font-family : 'NanumSquareNeo-Variable';
+  display: flex;
+  justify-content: center;
+  font-family: "NanumSquareNeo-Variable";
 }
 .navbarContainer {
-    display:flex;
-    width: 100%; 
-    justify-content: space-between;
-    
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 .shopName {
-    width : 200px;
-    height : 40px;
+  width: 200px;
+  height: 40px;
 
-    cursor:pointer;
-   
+  cursor: pointer;
 }
 .navbarLeftContainer {
-    display : flex;
-    cursor: pointer;
-    line-height : 45px;
+  display: flex;
+  cursor: pointer;
+  line-height: 45px;
 }
 
 .navbarRightContainer {
-    width : 400px;
-    display : flex;
-    
-    justify-content: center;
-    line-height : 45px;
+  width: 550px;
+  display: flex;
+  justify-content: center;
+  line-height: 45px;
 }
 .shoppingBag {
-    font-size : 11px;
-    margin-right : 15px;
-    cursor:pointer;
+  font-size: 11px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.nickName {
+  margin-right: 10px;
 }
 .mypage {
-    margin-right : 10px;
-    font-size : 11px;   
-    cursor:pointer;
+  margin-right: 10px;
+  font-size: 11px;
+  cursor: pointer;
 }
 .userImg {
-    border : solid black 1px;
-    border-radius : 50%;
-    width : 30px;
-    height : 30px;
-    margin-top : 7px;
-    margin-right : 10px;
-    background-size: contain;
-    cursor:pointer;
+  border: solid black 1px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 7px;
+  margin-right: 10px;
+  background-size: contain;
+  cursor: pointer;
 }
 .products {
-    margin-right : 10px;
-    font-size : 11px;   
-    cursor:pointer;
+  margin-right: 10px;
+  font-size: 11px;
+  cursor: pointer;
 }
 
 .heartImg {
-    margin-top : 15px;
-    margin-right : 3px;
-    cursor:pointer;
+  margin-top: 15px;
+  margin-right: 3px;
+  cursor: pointer;
 }
 .cartImg {
-    margin-top : 10px;
-    margin-right : 3px;
-    cursor:pointer;
-    background-color : red;
+  margin-top: 10px;
+  margin-right: 3px;
+  cursor: pointer;
 }
 .mypageImg {
-    margin-top : 13px;
-    margin-right : 3px;
-    cursor:pointer;
+  margin-top: 13px;
+  margin-right: 3px;
+  cursor: pointer;
 }
 .count {
-    
-    background-color: red;
-    border : solid beige 1px;
-    border-radius : 50%;
-    width : 15px;
-    height : 15px;
-    text-align:center;
-    line-height : 120%;
-    z-index : 1;
-    position : absolute;
-    margin : 0.5px 0% 0% -48px;
-    color:white;
-    font-size : 10px;
-    text-align: center;
-    line-height : 160%;
+  background-color: red;
+  border: solid beige 1px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 120%;
+  z-index: 1;
+  position: absolute;
+  margin-left: -13px;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  line-height: 160%;
 }
 .pencilImg {
-    margin-top : 10px;
-    margin-right : 10px;
-    cursor:pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 .img {
-    width: 1350px;
-    height : 300px;
-    color : white;
-    text-align: center;
-    line-height : 300px;    
-    font-weight : bold;
-    cursor:pointer;
+  width: 1350px;
+  height: 300px;
+  color: white;
+  text-align: center;
+  line-height: 300px;
+  font-weight: bold;
+  cursor: pointer;
 }
 .name {
-    margin-right : 5px;
-    width : 40px;
-    height : 40px;
-    font-size : 20px;
-    
+  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
 }
 .button {
-    border  : solid black 0px;
-    padding: 0px 20px 0px 20px;
-    height : 60%;
-    margin-top : 8px;
-    cursor : pointer;
-    background-color: whitesmoke;
+  border: solid black 0px;
+  padding: 0px 20px 0px 20px;
+  height: 60%;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: whitesmoke;
 }
 .button:hover {
-    
-    background-color: beige;
+  background-color: black;
+  color: white;
 }
 .search {
-    margin : 2% 2% 0% 0%;
-    width : 25px;
-    height : 25px;
-    cursor:pointer;
-
+  margin: 2% 2% 0% 0%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
-@media (max-width : 593px) {
-    .navbarContainer {
-        width: 100%;
-        display:flex;
-        justify-content: space-between;
-        
-        
-    }
-   
+@media (max-width: 593px) {
+  .navbarContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }

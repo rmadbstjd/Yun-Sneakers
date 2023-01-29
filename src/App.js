@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Cart from "./pages/Cart";
@@ -10,7 +11,13 @@ import Join from "./pages/Join";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import Shipment from "./pages/Shipment";
+import loginSuccess from "./hooks/loginSuccess";
+import useStore from "./store";
 function App() {
+  const { userId, setNickName, setUserId, isLogin } = useStore();
+  useEffect(() => {
+    loginSuccess(setNickName, setUserId);
+  }, []);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -58,5 +65,4 @@ function App() {
   ]);
   return <RouterProvider router={router}></RouterProvider>;
 }
-
 export default App;
