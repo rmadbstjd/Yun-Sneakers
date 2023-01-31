@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import useStore from "../store";
 import { useQuery } from "@tanstack/react-query";
 import CartProduct from "../components/CartProduct";

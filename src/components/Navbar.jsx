@@ -13,8 +13,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cartCount, initCartCount, plusCartCount, setText, cart, nickName } =
-    useStore();
+  const {
+    cartCount,
+    initCartCount,
+    plusCartCount,
+    setText,
+    cart,
+    nickName,
+    userId,
+  } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   console.log("이즈로그인", typeof isLogin);
   const [token, setToken] = useState("");
@@ -24,10 +31,10 @@ const Navbar = () => {
     isLoading,
     error,
     data: cartProducts,
-  } = useQuery([], () => cart.getCartsTest());
+  } = useQuery([userId], () => cart.getCartsTest());
   useEffect(() => {
+    initCartCount();
     if (cartProducts) {
-      initCartCount();
       plusCartCount(cartProducts.products.length);
     }
     setToken(localStorage.getItem("token"));
@@ -101,7 +108,6 @@ const Navbar = () => {
                 navigate("/cart");
               }}
             />
-
             <div
               className={styles.shoppingBag}
               onClick={() => {
@@ -109,7 +115,7 @@ const Navbar = () => {
               }}
             >
               {isLogin && <div className={styles.count}>{cartCount}</div>}
-              MY CART
+              <div className={styles.products}>MY CART</div>
             </div>
 
             {
@@ -121,8 +127,9 @@ const Navbar = () => {
                 }}
               />
             }
-            <FiSearch className={styles.search} onClick={clickToSearch} />
             {nickName && <span className={styles.nickName}> {nickName}</span>}
+            <FiSearch className={styles.search} onClick={clickToSearch} />
+
             {!isLogin ? (
               <button onClick={handleLogin} className={styles.button}>
                 Login

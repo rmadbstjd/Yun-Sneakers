@@ -1,112 +1,101 @@
 .container {
-    border-radius : 10px;
-    width : 100%;
-    height : 100%;
-    z-index : 5;
-    position: absolute;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%, -50%);
-    background:rgba(255,255,255,0.95);   
-    transition-duration: 2s, 4s;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  transition-duration: 2s, 4s;
 }
 
 .searchContainer {
-    margin : 3% 0% 0% 28%;
-    width : 40%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-   
-    
+  margin: 60px 0% 0% 28%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .searchContent {
-    display:flex;   
-    
+  display: flex;
 }
-.searchBar{
-    border : none;
-    width : 100%;
-    height : 50px;
-    font-size : 30px;
-    
-    
-}   
+.searchBar {
+  border: none;
+  width: 100%;
+  height: 50px;
+  font-size: 30px;
+}
 .searchBar:focus {
-     outline: none; 
+  outline: none;
 }
 .horizonLine {
-    width: 93%;    
-    border-bottom: 5px solid black;
-    line-Height : 0.1rem;
-    
+  width: 93%;
+  border-bottom: 5px solid black;
+  line-height: 0.1rem;
 }
 .close {
-    width: 45px;
-    height : 45px;
-    cursor : pointer;
-    margin-top : 5px;
-  
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 .recentSearchContainer {
-    display:flex;
-    justify-content: space-between;
-    width : 220px;
-    margin-top : 2%;
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  margin-top: 2%;
 }
 .recentSearch {
-    font-size : 20px;
-    font-weight: bolder;
+  font-size: 20px;
+  font-weight: bolder;
 }
 .delete {
-    cursor:pointer;
-    margin-top : 5px;
-    color : darkgray;
+  cursor: pointer;
+  margin-top: 5px;
+  color: darkgray;
 }
 .delete:hover {
-    color : black;
+  color: black;
 }
 .keywordContainer {
-    width : 785px;
-    
-    display:flex;
+  width: 785px;
+
+  display: flex;
 }
 .keywordContent {
-    display:flex;
-    width : 100px;
-    height : 30px;
-    margin: 10px 5px 5px 5px;
-    line-height : 180%;
-   
-    justify-content: center;
-    
+  display: flex;
+  width: 100px;
+  height: 30px;
+  margin: 10px 5px 5px 5px;
+  line-height: 180%;
+
+  justify-content: center;
 }
 .keyword {
-    color : gray;
-    cursor:pointer;
+  color: gray;
+  cursor: pointer;
 }
 .keyword:hover {
-    color : black;
+  color: black;
 }
 .keywordClose {
-    margin-top : 5px;
-    width : 20px;
-    height : 20px;
-    color : gray;
-    cursor:pointer;
+  margin-top: 5px;
+  width: 20px;
+  height: 20px;
+  color: gray;
+  cursor: pointer;
 }
-.keywordClose:hover{
-    color : black;
-    
+.keywordClose:hover {
+  color: black;
 }
-@media ( max-width :880px) {
-    .searchContainer {
-        margin : 3% 0% 0% 2%;
-        width : 96%;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-      
-        
-    }
- }
+@media (max-width: 880px) {
+  .searchContainer {
+    margin: 60px 0% 0% 2%;
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -11,6 +11,7 @@ import Join from "./pages/Join";
 import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import Shipment from "./pages/Shipment";
+import MyPage from "./pages/MyPage";
 import loginSuccess from "./hooks/loginSuccess";
 import useStore from "./store";
 function App() {
@@ -56,9 +57,14 @@ function App() {
           path: "/search",
           element: <SearchPage />,
         },
+
         {
           path: "/shipment",
           element: <Shipment />,
+        },
+        {
+          path: "/mypage",
+          element: <MyPage />,
         },
       ],
     },

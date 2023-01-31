@@ -1,0 +1,32 @@
+.horizonLine {
+  width: 1320px;
+  border-bottom: 2px solid black;
+  line-height: 0.1rem;
+}
+.title {
+  font-size: 21px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.topContainer {
+  display: flex;
+  text-align: center;
+  font-size: 16px;
+  margin: 20px 0px 20px 0px;
+}
+.productInfo {
+  width: 500px;
+}
+
+.orderDate {
+  width: 170px;
+}
+.orderNumber {
+  width: 170px;
+}
+.orderPrice {
+  width: 170px;
+}
+.orderState {
+  width: 250px;
+}
