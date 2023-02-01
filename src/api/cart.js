@@ -55,6 +55,39 @@ export default class Cart {
 
     return data;
   }
+  async getOrderProducts() {
+    const response = await this.httpClient.get(`/order`, {});
+    const data = response.data;
+    return data;
+  }
+  async order(productId, date, count, coupon, size) {
+    const state = "배송중";
+    const response = await this.httpClient.post(`/order`, {
+      productId,
+      date,
+      count,
+      state,
+      coupon,
+      size,
+    });
+    const data = response.data;
+    return data;
+  }
+
+  async addShipComplete(orderId) {
+    console.log("실행됨?");
+    const response = await this.httpClient.put(`/order`, {
+      orderId,
+    });
+    const data = response.data;
+    console.log("데이타", data);
+    return data;
+  }
+  async getShipComplete() {
+    const response = await this.httpClient.get(`/order/completed`, {});
+    const data = response.data;
+    return data;
+  }
   async addShipAddress(
     shipPlaceName,
     shipReceiver,

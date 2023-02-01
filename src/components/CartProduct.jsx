@@ -3,7 +3,7 @@ import styles from "./css/CartProduct.module.css";
 import useStore from "../store";
 import { useNavigate } from "react-router-dom";
 
-const CartProduct = ({ item, boolean, setBoolean, setClick, refetch }) => {
+const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
   const [productCount, setProductCount] = useState(item.quantity);
   const { cart, setChange } = useStore();
 

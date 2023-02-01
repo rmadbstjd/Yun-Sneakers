@@ -30,13 +30,12 @@ const Login = () => {
       if (result.status === 201) {
         localStorage.setItem("isLogin", false);
 
-        console.log("테스트, false");
         setResult(false);
       } else if (result.status === 200) {
         localStorage.setItem("isLogin", true);
         setNickName(result.data.data.user.nickname);
         setUserId(result.data.data.user.userId);
-        console.log("테스트, true");
+
         setResult(true);
       }
     });
@@ -81,10 +80,8 @@ const Login = () => {
   };
   useEffect(() => {
     if (result === true) {
-      console.log("로그인 성공");
       navigate("/");
     } else if (result === false) {
-      console.log("로그인 실패");
       setShowModal((prev) => !prev);
       setTimeout(setShowModal, 2000);
       setResult(null);

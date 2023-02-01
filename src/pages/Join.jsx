@@ -66,16 +66,14 @@ const Join = () => {
   };
   const clickToSubmit = async () => {
     if (allowAll) {
-      console.log("id", id, "password", pw, "nickname", nickname);
       const response = await user.signUp(id, pw, nickname);
-      console.log("response@@", response);
+
       setResult(response);
     }
   };
   useEffect(() => {
     if (allowID && allowPW && allowREPW && allowNick) setAllowAll(true);
     if (allowAll) {
-      console.log("result", result);
       if (!result) {
       }
       if (result) navigate("/login");

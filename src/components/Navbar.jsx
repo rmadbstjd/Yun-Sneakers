@@ -23,7 +23,6 @@ const Navbar = () => {
     userId,
   } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
-  console.log("이즈로그인", typeof isLogin);
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [admin] = useState("");

@@ -27,7 +27,6 @@ const Products = () => {
     }
     if (product) {
       setCount(product.length);
-      console.log("클릭");
     }
   }, [product, isLogin, navigate]);
 

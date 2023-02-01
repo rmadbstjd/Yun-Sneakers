@@ -28,7 +28,6 @@ const Cart = () => {
   } = useQuery([totalPrice, change], () => cart.getCartsTest());
 
   useEffect(() => {
-    console.log("render!");
     if (cartProducts) {
       setPrice(0);
       setCount(0);

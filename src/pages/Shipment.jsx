@@ -22,6 +22,7 @@ const Shipment = () => {
     error,
     data: products,
   } = useQuery(["test"], () => cart.getCartsTest());
+  const { data: address } = useQuery(["address"], () => cart.getAddress());
   const couponArr = [
     "선택안함",
     "Welcome 5% 할인 쿠폰",
@@ -66,10 +67,8 @@ const Shipment = () => {
   ];
   const [showCoupon, setShowCoupon] = useState(false);
   const [newShip, setNewShip] = useState(false);
-  const [newShip2, setNewShip2] = useState(false);
   const [coupon, setCoupon] = useState("선택안함");
   const [couponPrice, setCouponPrice] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [price, setPrice] = useState(0);
   const [count, setCount] = useState(0);
   const [showCard, setShowCard] = useState(false);
@@ -123,14 +122,37 @@ const Shipment = () => {
     else if (some === "3") setCheck3((prev) => !prev);
   };
   const onValidate = () => {
-    if (!shipPlaceName) alert("배송지명을 입력하세요!");
-    else if (!shipReceiver) alert("수령인을 입력하세요!");
-    else if (!shipPostCode) alert("우편 번호를 입력하세요!");
-    else if (!numInput1 || !numInput2 || !numInput3)
-      alert("핸드폰 번호를 입력해주세요!");
-    else if (card === "카드사를 선택해주세요.") alert("카드사를 입력해주세요!");
-    else if (!checkAll) alert("약관 동의를 해주세요!");
-    alert("주문 완료!");
+    if (!address) {
+      if (!shipPlaceName) alert("배송지명을 입력하세요!");
+      else if (!shipReceiver) alert("수령인을 입력하세요!");
+      else if (!shipPostCode) alert("우편 번호를 입력하세요!");
+      else if (!numInput1 || !numInput2 || !numInput3)
+        alert("핸드폰 번호를 입력해주세요!");
+      else if (card === "카드사를 선택해주세요.")
+        alert("카드사를 입력해주세요!");
+      else if (!checkAll) alert("약관 동의를 해주세요!");
+      return;
+    }
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    let days = now.getDate();
+    let months;
+    if (month + 1 < 10) {
+      months = "0".concat(String(month + 1));
+    }
+
+    let dates = `${year}.${months}.${days}`;
+
+    for (let i = 0; i < products.products.length; i++) {
+      cart.order(
+        products.products[i].productId,
+        dates,
+        products.products[i].quantity,
+        coupon,
+        products.products[i].size
+      );
+    }
   };
   useEffect(() => {
     setCount(0);
