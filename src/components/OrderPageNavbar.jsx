@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./css/OrderPageNavbar.module.css";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../store";
+import { useNavigate } from "react-router-dom";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -22,13 +23,11 @@ const OrderPageNavbar = () => {
     () => cart.getShipComplete()
   );
   const { cart } = useStore();
+  const navigate = useNavigate();
   const clickToBtn = async (id) => {
-    console.log("1");
     await cart.addShipComplete(id);
-    console.log("2");
     refetch1();
     refetch2();
-    console.log("3");
   };
   const setPrice = (coupon, price) => {
     switch (coupon) {
@@ -44,13 +43,19 @@ const OrderPageNavbar = () => {
         break;
     }
   };
-  useEffect(() => {
-    console.log("리패치?!");
-  }, [products, completedProducts]);
+  const goToDetail = (info) => {
+    navigate(`/products/${info.id}`);
+  };
+  const goToSearch = (info) => {
+    navigate(`/search?keyword=${info.category}`);
+  };
+  useEffect(() => {}, [products, completedProducts]);
   return (
     <div>
       <div className={styles.title}>주문 내역 조회</div>
-      <div className={styles.title2}>배송중</div>
+      <div className={styles.title2}>
+        배송중 ( {products && products.length} )
+      </div>
       <div className={styles.horizonLine}></div>
       <div className={styles.topContainer}>
         <div className={styles.productInfo}>{itemArr[0]}</div>
@@ -61,17 +66,42 @@ const OrderPageNavbar = () => {
         <div className={styles.orderState}>{itemArr[5]}</div>
       </div>
       <div className={styles.horizonLine}></div>
+      {products && products.length === 0 ? (
+        <div className={styles.noneText}>
+          최근 배송중인 상품이 존재하지 않습니다.
+        </div>
+      ) : null}
       {products &&
         products.map((item, index) => (
           <div className={styles.productContent} key={index}>
-            <img className={styles.img} src={item.info.image}></img>
+            <img
+              className={styles.img}
+              src={item.info.image}
+              onClick={() => {
+                goToDetail(item.info);
+              }}
+            ></img>
             <div className={styles.info}>
-              <div className={styles.brand}>{item.info.category}</div>
-              <div className={styles.name}>{item.info.name}</div>
+              <div
+                className={styles.brand}
+                onClick={() => {
+                  goToSearch(item.info);
+                }}
+              >
+                <span>{item.info.category}</span>
+              </div>
+              <div
+                className={styles.name}
+                onClick={() => {
+                  goToDetail(item.info);
+                }}
+              >
+                <span>{item.info.name}</span>
+              </div>
               <div className={styles.size}>사이즈 [{item.product.size}]</div>
             </div>
             <div className={styles.date}>{item.product.date}</div>
-            <div className={styles.orderNum}>{item.product._id}</div>
+            <div className={styles.orderNum}>{item.product.id}</div>
             <div className={styles.priceContainer}>
               {item.product.coupon !== "선택안함" ? (
                 <div className={styles.firstPrice}>
@@ -106,7 +136,9 @@ const OrderPageNavbar = () => {
             </div>
           </div>
         ))}
-      <div className={styles.title2}>배송 완료</div>
+      <div className={styles.title2}>
+        배송 완료 ( {completedProducts && completedProducts.length} )
+      </div>
       <div className={styles.horizonLine}></div>
       <div className={styles.topContainer}>
         <div className={styles.productInfo}>{itemArr[0]}</div>
@@ -116,13 +148,39 @@ const OrderPageNavbar = () => {
         <div className={styles.orderCoupon}>{itemArr[4]}</div>
         <div className={styles.orderState}>{itemArr[5]}</div>
       </div>
+      <div className={styles.horizonLine}></div>
+      {completedProducts && completedProducts.length === 0 ? (
+        <div className={styles.noneText}>
+          배송이 완료된 상품이 존재하지 않습니다.
+        </div>
+      ) : null}
       {completedProducts &&
         completedProducts.map((item, index) => (
           <div className={styles.productContent} key={index}>
-            <img className={styles.img} src={item.info.image}></img>
+            <img
+              className={styles.img}
+              src={item.info.image}
+              onClick={() => {
+                goToDetail(item.info);
+              }}
+            ></img>
             <div className={styles.info}>
-              <div className={styles.brand}>{item.info.category}</div>
-              <div className={styles.name}>{item.info.name}</div>
+              <div
+                className={styles.brand}
+                onClick={() => {
+                  goToSearch(item.info);
+                }}
+              >
+                <span>{item.info.category}</span>
+              </div>
+              <div
+                className={styles.name}
+                onClick={() => {
+                  goToDetail(item.info);
+                }}
+              >
+                <span>{item.info.name}</span>
+              </div>
               <div className={styles.size}>사이즈 [{item.product.size}]</div>
             </div>
             <div className={styles.date}>{item.product.date}</div>

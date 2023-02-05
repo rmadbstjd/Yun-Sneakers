@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../store";
 import styles from "./css/ProductDetail.module.css";
-
 import SizeMordal from "../components/SizeMordal";
 import HorizonLine from "../components/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
-import { addOrUpdateToCart } from "../api/firebase";
 import { useParams } from "react-router-dom";
 import CartMordal from "../components/CartMordal";
 import HeartModal from "../components/HeartModal";
 import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import SimilarProducts from "../components/SimilarProducts";
+import Swal from "sweetalert2";
+import Modal from "../components/common/Modal";
 const ProductDetail = () => {
   const [sizeShow, setSizeShow] = useState(false);
   const [cartShow, setCartShow] = useState(false);
-
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [test, setTest] = useState(null);
   const [heartShow, setHeartShow] = useState(test);
   const {
@@ -36,6 +36,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const showSize = () => {
     setSizeShow((prev) => !prev);
+    setModalIsOpen((prev) => !prev);
   };
   const { data } = useQuery([id], () => product.getProductInfo(id));
   const products = data && data.product;
@@ -52,7 +53,10 @@ const ProductDetail = () => {
   );
   const clickToCart = async () => {
     if (!size) {
-      alert("사이즈를 선택해주세요!");
+      Swal.fire({
+        title: "사이즈를 선택해주세요.",
+        confirmButtonColor: "black",
+      });
       return;
     }
     plusProductCount();
@@ -99,7 +103,7 @@ const ProductDetail = () => {
 
     fetchData();
   }, [productInfo]);
-
+  console.log("sizeShow", sizeShow);
   return (
     <div>
       <div className={styles.container}>
@@ -137,13 +141,13 @@ const ProductDetail = () => {
                   </div>
                 </div>
 
-                {sizeShow && (
+                {/*sizeShow && (
                   <SizeMordal
                     sizeShow={sizeShow}
                     setSizeShow={setSizeShow}
                     size={productInfo && productInfo.product.size}
                   ></SizeMordal>
-                )}
+                )*/}
               </div>
               <HorizonLine />
             </div>
@@ -204,6 +208,19 @@ const ProductDetail = () => {
             ))}
         </div>
       </div>
+      {sizeShow === true ? (
+        <Modal
+          isOpen={true}
+          modalIsOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}
+        ></Modal>
+      ) : (
+        <Modal
+          isOpen={false}
+          modalIsOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}
+        ></Modal>
+      )}
     </div>
   );
 };

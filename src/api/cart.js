@@ -75,12 +75,11 @@ export default class Cart {
   }
 
   async addShipComplete(orderId) {
-    console.log("실행됨?");
     const response = await this.httpClient.put(`/order`, {
       orderId,
     });
     const data = response.data;
-    console.log("데이타", data);
+
     return data;
   }
   async getShipComplete() {
@@ -108,6 +107,11 @@ export default class Cart {
       phoneNumber2: String(numInput2),
       phoneNumber3: String(numInput3),
     });
+    const data = response.data;
+    return data;
+  }
+  async deleteAddress() {
+    const response = await this.httpClient.delete(`/address`, {});
     const data = response.data;
     return data;
   }

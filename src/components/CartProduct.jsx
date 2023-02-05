@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./css/CartProduct.module.css";
 import useStore from "../store";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
   const [productCount, setProductCount] = useState(item.quantity);
   const { cart, setChange } = useStore();
@@ -20,7 +20,10 @@ const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
   }, [productCount]);
   const plus = () => {
     if (productCount >= 10) {
-      alert("최대 구매 갯수는 10개입니다.");
+      Swal.fire({
+        title: "최대 구매 갯수는 10개입니다.",
+        confirmButtonColor: "black",
+      });
       return;
     }
     setProductCount((prev) => prev + 1);

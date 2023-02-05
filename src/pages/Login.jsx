@@ -79,6 +79,7 @@ const Login = () => {
     navigate("/join");
   };
   useEffect(() => {
+    if (allowID && allowPW) setAllowAll(true);
     if (result === true) {
       navigate("/");
     } else if (result === false) {

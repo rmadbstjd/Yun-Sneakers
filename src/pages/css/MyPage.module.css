@@ -1,22 +1,22 @@
-.container {
-  display: flex;
-  justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
-}
 .mypageContainer {
+  font-family: "NanumSquareNeo-Variable";
   width: 2100px;
-  flex-wrap: wrap;
   display: flex;
-  justify-content: flex-start;
   height: 100%;
-  margin: 100px 50px 0px 50px;
-  background-color: azure;
+
+  margin: 0px 50px 0px 80px;
+}
+.adContainer {
+}
+.horizonLine {
+  width: 1200px;
+  border-bottom: 2px solid black;
+  line-height: 0.1rem;
 }
 .sideContainer {
+  margin-top: 100px;
   width: 180px;
   height: 400px;
-  background-color: beige;
-  padding: 10px;
 }
 .title {
   font-size: 22px;
@@ -24,8 +24,72 @@
   margin-bottom: 20px;
 }
 .item {
+  color: gray;
   margin-top: 10px;
   cursor: pointer;
 }
 .mainContainer {
+  margin-top: 145px;
+}
+.nickName {
+  width: 150px;
+  text-align: start;
+  font-weight: bolder;
+  font-size: 22px;
+}
+.last {
+  font-size: 17px;
+}
+.item:hover {
+  font-weight: bolder;
+  color: black;
+}
+.likeProducts {
+  margin: -80px 0px 0px -45px;
+}
+
+.Btn {
+  border: solid gray 1px;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  line-height: 190%;
+  text-align: center;
+  cursor: pointer;
+}
+.Btn:hover {
+  background-color: black;
+  color: white;
+}
+.addressContainer {
+  border: solid black 1px;
+  border-radius: 20px;
+  width: 900px;
+  height: 500px;
+  z-index: 555;
+  position: absolute;
+  top: 47%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+.addressContainer2 {
+  width: 1200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.addressContainer3 {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 50px;
+  align-items: center;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-left: 35%;
 }

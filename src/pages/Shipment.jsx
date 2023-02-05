@@ -5,6 +5,8 @@ import AddShip from "../components/AddShip";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../store";
 import ShipAddress from "../components/ShipAddress";
+import Alert from "../components/common/Alert";
+import Swal from "sweetalert2";
 const Shipment = () => {
   const {
     cart,
@@ -82,10 +84,7 @@ const Shipment = () => {
   const showCouponBox = () => {
     setShowCoupon((prev) => !prev);
   };
-  const clickCoupon = (item) => {
-    setCoupon(item);
-    setShowCoupon(false);
-  };
+
   const clickCard = (item) => {
     setCard(item);
     setShowCard(false);
@@ -123,26 +122,72 @@ const Shipment = () => {
   };
   const onValidate = () => {
     if (!address) {
-      if (!shipPlaceName) alert("배송지명을 입력하세요!");
-      else if (!shipReceiver) alert("수령인을 입력하세요!");
-      else if (!shipPostCode) alert("우편 번호를 입력하세요!");
-      else if (!numInput1 || !numInput2 || !numInput3)
-        alert("핸드폰 번호를 입력해주세요!");
-      else if (card === "카드사를 선택해주세요.")
-        alert("카드사를 입력해주세요!");
-      else if (!checkAll) alert("약관 동의를 해주세요!");
-      return;
+      if (!shipPlaceName) {
+        Swal.fire({
+          title: "배송지를 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        //alert("배송지명을 입력하세요!");
+        return;
+      } else if (!shipReceiver) {
+        Swal.fire({
+          title: "수령인을 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (!shipPostCode) {
+        Swal.fire({
+          title: "우편번호를 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (!numInput1 || !numInput2 || !numInput3) {
+        Swal.fire({
+          title: "핸드폰번호를 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (card === "카드사를 선택해주세요.") {
+        Swal.fire("카드사를 선택해주세요.");
+
+        return;
+      } else if (!checkAll) {
+        Swal.fire({
+          title: "약관 동의를 모두 선택해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      }
+    } else {
+      if (card === "카드사를 선택해주세요.") {
+        Swal.fire({
+          title: "카드사를 선택해주세요.",
+          confirmButtonColor: "black",
+        });
+        //alert("카드사를 입력해주세요!");
+        return;
+      } else if (!checkAll) {
+        Swal.fire({
+          title: "약관 동의를 모두 선택해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      }
     }
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth();
     let days = now.getDate();
     let months;
+    let days2;
     if (month + 1 < 10) {
       months = "0".concat(String(month + 1));
     }
+    if (month < 10) {
+      days2 = "0".concat(String(days));
+    }
 
-    let dates = `${year}.${months}.${days}`;
+    let dates = `${year}.${months}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
       cart.order(
@@ -154,6 +199,7 @@ const Shipment = () => {
       );
     }
   };
+
   useEffect(() => {
     setCount(0);
     if (products) {
@@ -167,6 +213,11 @@ const Shipment = () => {
     }
   }, [products]);
 
+  const clickCoupon = (item) => {
+    setCoupon(item);
+    setShowCoupon(false);
+  };
+
   useEffect(() => {
     switch (coupon) {
       case "선택안함":
@@ -176,17 +227,28 @@ const Shipment = () => {
         setCouponPrice(price / 10 / 2);
         break;
       case "10만원 이상 구매 시 10% 할인 쿠폰":
-        if (price < 100000) break;
+        if (price < 100000) {
+          setCoupon((prev) => prev);
+          break;
+        }
         setCouponPrice(price / 10);
         break;
       case "20만원 이상 구매 시 20% 할인 쿠폰":
-        if (price < 200000) break;
+        if (price < 200000) {
+          Swal.fire({
+            title:
+              "총 상품의 가격의 합이 200,000원이 넘지 않아 쿠폰 선택이 불가능합니다.",
+            confirmButtonColor: "black",
+          });
+          setCoupon("선택안함");
+          break;
+        }
         setCouponPrice(price / 5);
         break;
       default:
         break;
     }
-  }, [coupon]);
+  }, [coupon, price]);
   useEffect(() => {
     if (check1 === true && check2 === true && check3 === true)
       setCheckAll(true);

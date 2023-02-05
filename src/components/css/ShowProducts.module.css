@@ -16,7 +16,6 @@
   display: flex;
   justify-content: flex-start;
   margin: 50px;
-  background-color: red;
 }
 .product {
   display: flex;
@@ -93,7 +92,7 @@
   font-weight: bolder;
 }
 .horizonLine2 {
-  width: 90%;
+  width: 100%;
   margin: 2% 0% 3% 0%;
   border-bottom: 3px solid black;
   line-height: 0.1rem;

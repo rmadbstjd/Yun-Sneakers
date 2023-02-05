@@ -52,7 +52,7 @@ const Join = () => {
         }
         break;
       case "NICK":
-        regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/;
+        regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
         if (!regex.test(e.target.value)) {
           setAllowNick(false);
           setAllowAll(false);
@@ -181,7 +181,7 @@ const Join = () => {
         <input
           type="text"
           onChange={(e) => changeInput(e, "NICK")}
-          placeholder="2~10 글자를 입력해주세요."
+          placeholder="2~6 글자를 입력해주세요."
           value={nickname}
           className={
             allowNick === null
