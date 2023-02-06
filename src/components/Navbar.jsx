@@ -25,6 +25,7 @@ const Navbar = () => {
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [admin] = useState("");
   const {
     isLoading,
@@ -58,14 +59,27 @@ const Navbar = () => {
     setText(null);
     setShowSearch((prev) => !prev);
   };
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+  useEffect(() => {
+    console.log("테스트");
+    window.addEventListener("scroll", updateScroll);
+  }, []);
+
   return (
     <div>
-      <div className={styles.container}>
+      <div
+        className={
+          scrollPosition > 100 ? styles.scrolledContainer : styles.container
+        }
+      >
         <div className={styles.navbarContainer}>
           <div
             className={styles.navbarLeftContainer}
             onClick={() => {
               navigate("/");
+              setShowSearch(false);
             }}
           >
             <GiConverseShoe size={45} />
@@ -76,11 +90,13 @@ const Navbar = () => {
               className={styles.mypageImg}
               onClick={() => {
                 navigate("/mypage");
+                setShowSearch(false);
               }}
             />
             <div
               onClick={() => {
                 navigate("/mypage");
+                setShowSearch(false);
               }}
               className={styles.mypage}
             >
@@ -90,11 +106,13 @@ const Navbar = () => {
               className={styles.heartImg}
               onClick={() => {
                 navigate("/products");
+                setShowSearch(false);
               }}
             />
             <div
               onClick={() => {
                 navigate("/products");
+                setShowSearch(false);
               }}
               className={styles.products}
             >
@@ -105,12 +123,14 @@ const Navbar = () => {
               size={20}
               onClick={() => {
                 navigate("/cart");
+                setShowSearch(false);
               }}
             />
             <div
               className={styles.shoppingBag}
               onClick={() => {
                 navigate("/cart");
+                setShowSearch(false);
               }}
             >
               {isLogin && <div className={styles.count}>{cartCount}</div>}
@@ -123,12 +143,11 @@ const Navbar = () => {
                 className={styles.pencilImg}
                 onClick={() => {
                   navigate("/new");
+                  setShowSearch(false);
                 }}
               />
             }
             {nickName && <span className={styles.nickName}> {nickName}</span>}
-            <FiSearch className={styles.search} onClick={clickToSearch} />
-
             {!isLogin ? (
               <button onClick={handleLogin} className={styles.button}>
                 Login
@@ -138,6 +157,7 @@ const Navbar = () => {
                 Logout
               </button>
             )}
+            <FiSearch className={styles.search} onClick={clickToSearch} />
           </div>
         </div>
       </div>

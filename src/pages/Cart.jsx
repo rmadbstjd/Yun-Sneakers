@@ -61,7 +61,7 @@ const Cart = () => {
         <div className={styles.nullContent}>
           <div className={styles.horizonLine}></div>
           <div className={styles.nullText}>
-            장바구니에 담은 상품이 없습니다.
+            장바구니에 담긴 상품이 없습니다.
           </div>
           <div className={styles.nullBoxContainer}>
             <div onClick={goToMain} className={styles.nullBox}>

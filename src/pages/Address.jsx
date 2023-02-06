@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import styles from "../pages/css/MyPage.module.css";
-import OrderPageNavbar from "../components/OrderPageNavbar";
+import styles from "./css/Address.module.css";
 import useStore from "../store";
-import Products from "./Products";
-import ShipAddress from "../components/ShipAddress";
 import Swal from "sweetalert2";
+import ShipAddress from "../components/ShipAddress";
 import Modal from "../components/common/Modal";
-const itemArr = ["주문 내역 조회", "관심 상품", "주소록"];
-
-const MyPage = () => {
+const Address = () => {
   const navigate = useNavigate();
   const {
     nickName,
@@ -24,12 +20,10 @@ const MyPage = () => {
     numInput2,
     numInput3,
   } = useStore();
-  const isLogin = localStorage.getItem("isLogin") === "true";
+  const [showModal, setShowModal] = useState(false);
   const { data: address, refetch } = useQuery(["address"], () =>
     cart.getAddress()
   );
-  const [state, setState] = useState("주문 내역 조회");
-  const [showModal, setShowModal] = useState(false);
   const submitBtn = async () => {
     if (!shipPlaceName) {
       Swal.fire({
@@ -74,12 +68,29 @@ const MyPage = () => {
     await cart.deleteAddress();
     refetch();
   };
+  const isLogin = localStorage.getItem("isLogin") === "true";
+  const itemArr = ["주문 내역 조회", "관심 상품", "주소록"];
+  const goToPage = (item) => {
+    console.log("item", item);
+    switch (item) {
+      case "주문 내역 조회":
+        navigate("/mypage/order");
+        break;
+      case "관심 상품":
+        navigate("/mypage/wish");
+        break;
+      case "주소록":
+        navigate("/mypage/address");
+        break;
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     if (isLogin === false) {
       navigate("/login");
     }
-  }, [address, isLogin, navigate]);
-
+  }, [isLogin, navigate]);
   return (
     <div className={styles.mypageContainer}>
       <div className={styles.sideContainer}>
@@ -96,7 +107,7 @@ const MyPage = () => {
               className={styles.item}
               key={index}
               onClick={() => {
-                setState(item);
+                goToPage(item);
               }}
             >
               {item}
@@ -104,69 +115,59 @@ const MyPage = () => {
           ))}
       </div>
       <div className={styles.mainContainer}>
-        {state === "주문 내역 조회" ? (
-          <OrderPageNavbar />
-        ) : state === "관심 상품" ? (
-          <div className={styles.likeProducts}>
-            <Products></Products>
-          </div>
-        ) : state === "주소록" ? (
-          <div className={styles.adContainer}>
-            <div className={styles.title}>배송지</div>
-            <div className={styles.horizonLine}></div>
-            <div
-              className={
-                address === false
-                  ? styles.addressContainer3
-                  : styles.addressContainer2
-              }
-            >
-              <ShipAddress />
+        <div className={styles.title}>배송지</div>
+        <div className={styles.horizonLine}></div>
+        <div
+          className={
+            address === false
+              ? styles.addressContainer3
+              : styles.addressContainer2
+          }
+        >
+          <ShipAddress />
 
-              {address === false ? (
-                <div
-                  className={styles.Btn}
-                  onClick={() => {
-                    setShowModal((prev) => !prev);
-                  }}
-                >
-                  추가하기
-                </div>
-              ) : (
-                <div className={styles.btnContainer}>
-                  <div
-                    className={styles.Btn}
-                    onClick={() => {
-                      setShowModal((prev) => !prev);
-                    }}
-                  >
-                    수정
-                  </div>
-                  <div
-                    className={styles.Btn}
-                    onClick={() => {
-                      deleteAddress();
-                    }}
-                  >
-                    삭제
-                  </div>
-                </div>
-              )}
-              {showModal === true ? (
-                <Modal
-                  isOpen={true}
-                  modalIsOpen={showModal}
-                  setModalIsOpen={setShowModal}
-                  submitBtn={submitBtn}
-                  type={"ship"}
-                ></Modal>
-              ) : null}
+          {address === false ? (
+            <div
+              className={styles.Btn}
+              onClick={() => {
+                setShowModal((prev) => !prev);
+              }}
+            >
+              추가하기
             </div>
-          </div>
-        ) : null}
+          ) : (
+            <div className={styles.btnContainer}>
+              <div
+                className={styles.Btn}
+                onClick={() => {
+                  setShowModal((prev) => !prev);
+                }}
+              >
+                수정
+              </div>
+              <div
+                className={styles.Btn}
+                onClick={() => {
+                  deleteAddress();
+                }}
+              >
+                삭제
+              </div>
+            </div>
+          )}
+          {showModal === true ? (
+            <Modal
+              isOpen={true}
+              modalIsOpen={showModal}
+              setModalIsOpen={setShowModal}
+              submitBtn={submitBtn}
+              type={"ship"}
+            ></Modal>
+          ) : null}
+        </div>
       </div>
     </div>
   );
 };
 
-export default MyPage;
+export default Address;

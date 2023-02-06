@@ -16,9 +16,12 @@ const Search = ({ setShowSearch }) => {
   } = useStore();
   const [showKeyword, setShowKeyword] = useState(recentKeyword || []);
   const submitKeyword = async (e) => {
-    e.preventDefault();
-    sessionStorage.clear();
+    if (text.trim() === "") {
+      e.preventDefault();
+      return;
+    }
 
+    sessionStorage.clear();
     navigate(`/search?keyword=${text}`);
     setShowSearch((prev) => !prev);
     if (!recentKeyword.includes(text)) {
@@ -52,6 +55,7 @@ const Search = ({ setShowSearch }) => {
     recentKeyword &&
       localStorage.setItem("recentKeyword", JSON.stringify(recentKeyword));
   }, [recentKeyword]);
+  console.log("테스트");
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>

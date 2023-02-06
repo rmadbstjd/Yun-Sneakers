@@ -12,6 +12,9 @@ import Login from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import Shipment from "./pages/Shipment";
 import MyPage from "./pages/MyPage";
+import Order from "./pages/Order";
+import Wish from "./pages/Wish";
+import Address from "./pages/Address";
 import loginSuccess from "./hooks/loginSuccess";
 import useStore from "./store";
 function App() {
@@ -65,6 +68,18 @@ function App() {
         {
           path: "/mypage",
           element: <MyPage />,
+        },
+        {
+          path: "/mypage/order",
+          element: <Order />,
+        },
+        {
+          path: "/mypage/address",
+          element: <Address />,
+        },
+        {
+          path: "/mypage/wish",
+          element: <Wish />,
         },
       ],
     },

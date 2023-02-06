@@ -48,7 +48,7 @@
 }
 .horizonLine {
   width: 100%;
-  margin-top: 3%;
+  margin-top: 9%;
   border-bottom: 5px solid black;
   line-height: 0.1rem;
 }
@@ -229,7 +229,7 @@
     width: 100%;
   }
   .horizonLine {
-    margin-top: 15%;
+    margin-top: 20%;
   }
   .nullBox {
     margin-top: 2%;

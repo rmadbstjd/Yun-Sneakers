@@ -11,10 +11,89 @@
   transition-duration: 2s, 4s;
 }
 .overlay {
+  border: 0px;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+.sizeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 8px;
+}
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  background-color: gray;
+  border: solid black 0px;
+  color: white;
+}
+.close:hover {
+  background-color: black;
+  color: white;
+}
+.name {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bolder;
+}
+.sizeBox {
+  border: solid gray 1px;
+  border-radius: 15px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 300%;
+  margin: 10px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.sizeBox:hover {
+  background-color: black;
+  color: white;
+  scale: 1.1;
+  transition: all 0.8s;
+}
+
+.Btn {
+  border: solid gray 1px;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  line-height: 190%;
+  text-align: center;
+  cursor: pointer;
+}
+.Btn:hover {
+  background-color: black;
+  color: white;
+}
+.addressContainer {
+  border: solid black 1px;
+  border-radius: 20px;
+  width: 700px;
+  height: 500px;
+  z-index: 555;
+  position: absolute;
+  top: 47%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+.addressContent {
+  margin-left: 40px;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-left: 35%;
 }

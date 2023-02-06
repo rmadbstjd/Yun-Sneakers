@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../store";
 import styles from "./css/ProductDetail.module.css";
-import SizeMordal from "../components/SizeMordal";
 import HorizonLine from "../components/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
@@ -103,7 +102,7 @@ const ProductDetail = () => {
 
     fetchData();
   }, [productInfo]);
-  console.log("sizeShow", sizeShow);
+
   return (
     <div>
       <div className={styles.container}>
@@ -140,14 +139,22 @@ const ProductDetail = () => {
                     <BsArrowDownCircle size={20} />
                   </div>
                 </div>
-
-                {/*sizeShow && (
-                  <SizeMordal
-                    sizeShow={sizeShow}
-                    setSizeShow={setSizeShow}
+                {sizeShow === true ? (
+                  <Modal
+                    isOpen={true}
+                    modalIsOpen={modalIsOpen}
+                    setModalIsOpen={setModalIsOpen}
                     size={productInfo && productInfo.product.size}
-                  ></SizeMordal>
-                )*/}
+                    type={"size"}
+                  ></Modal>
+                ) : (
+                  <Modal
+                    isOpen={false}
+                    modalIsOpen={modalIsOpen}
+                    setModalIsOpen={setModalIsOpen}
+                    type={"size"}
+                  ></Modal>
+                )}
               </div>
               <HorizonLine />
             </div>
@@ -208,19 +215,6 @@ const ProductDetail = () => {
             ))}
         </div>
       </div>
-      {sizeShow === true ? (
-        <Modal
-          isOpen={true}
-          modalIsOpen={modalIsOpen}
-          setModalIsOpen={setModalIsOpen}
-        ></Modal>
-      ) : (
-        <Modal
-          isOpen={false}
-          modalIsOpen={modalIsOpen}
-          setModalIsOpen={setModalIsOpen}
-        ></Modal>
-      )}
     </div>
   );
 };

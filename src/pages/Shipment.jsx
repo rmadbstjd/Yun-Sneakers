@@ -5,8 +5,8 @@ import AddShip from "../components/AddShip";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../store";
 import ShipAddress from "../components/ShipAddress";
-import Alert from "../components/common/Alert";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const Shipment = () => {
   const {
     cart,
@@ -67,6 +67,7 @@ const Shipment = () => {
     "11개월",
     "12개월",
   ];
+  const navigate = useNavigate();
   const [showCoupon, setShowCoupon] = useState(false);
   const [newShip, setNewShip] = useState(false);
   const [coupon, setCoupon] = useState("선택안함");
@@ -198,6 +199,21 @@ const Shipment = () => {
         products.products[i].size
       );
     }
+    Swal.fire({
+      icon: "success",
+      title: "성공적으로 주문하였습니다.",
+      text: "주문 내역을 확인하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: "black",
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/mypage");
+      } else {
+        navigate("/");
+      }
+    });
   };
 
   useEffect(() => {
@@ -286,7 +302,11 @@ const Shipment = () => {
             </div>
             <div className={styles.horizonLine3}></div>
           </div>
-          {newShip === false ? <ShipAddress /> : <AddShip />}
+          {newShip === false ? (
+            <ShipAddress />
+          ) : (
+            <AddShip type={"orderPage"}></AddShip>
+          )}
         </div>
 
         <div className={styles.couponContainer}>

@@ -11,11 +11,11 @@
   font-family: "NanumSquareNeo-Variable";
 }
 .productsContainer {
-  width: 1250px;
+  width: 1320px;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  margin: 50px;
+  margin-top: 50px;
 }
 .product {
   display: flex;
@@ -24,8 +24,9 @@
   width: 500px;
   display: flex;
   justify-content: center;
-
   height: 20px;
+  margin-top: -100px;
+  font-size: 20px;
 }
 .noneProductContainer {
   margin-top: 10%;

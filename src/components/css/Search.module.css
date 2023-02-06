@@ -8,7 +8,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.95);
-  transition-duration: 2s, 4s;
 }
 
 .searchContainer {

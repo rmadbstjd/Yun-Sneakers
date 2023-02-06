@@ -5,7 +5,8 @@ import PopupPostCode from "./PopupPostCode";
 import PopupDom from "./PopupDom";
 import useStore from "../store";
 import { AiOutlineMinus } from "react-icons/ai";
-const AddShip = () => {
+const AddShip = ({ type }) => {
+  console.log("AddShip", type);
   let regex;
   const {
     cart,
@@ -138,7 +139,7 @@ const AddShip = () => {
           <div id="popupDom">
             {isPopupOpen && (
               <PopupDom>
-                <PopupPostCode onClose={closePostCode} />
+                <PopupPostCode onClose={closePostCode} type={type} />
               </PopupDom>
             )}
           </div>

@@ -29,6 +29,7 @@
   justify-content: flex-end;
   width: 1110px;
   height: 20px;
+  margin-bottom: 10px;
 }
 .test {
   width: 100px;
@@ -44,7 +45,7 @@
    
 }*/
 .searchContainer {
-  margin-top: 3%;
+  margin-top: 5%;
 }
 .searchContent {
   display: flex;
@@ -86,13 +87,19 @@
   margin-left: 0.2%;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 .content {
   width: 95%;
   display: flex;
   justify-content: center;
 }
-
+.notFound {
+  width: 85%;
+  margin-top: 90px;
+  text-align: center;
+  font-weight: bolder;
+}
 .products {
   width: 1250px;
   flex-wrap: wrap;
@@ -151,6 +158,7 @@
   .content {
     width: 92%;
     margin-left: 15%;
+    background-color: red;
   }
   .searchBar {
     border: none;
