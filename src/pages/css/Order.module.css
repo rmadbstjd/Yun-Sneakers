@@ -1,13 +1,13 @@
 .mypageContainer {
   font-family: "NanumSquareNeo-Variable";
-  width: 2000px;
+  width: 1500px;
   display: flex;
   height: 100%;
   margin: 0px 50px 0px 80px;
 }
 .sideContainer {
-  margin: 145px 0px 0px 100px;
-  width: 300px;
+  margin: 145px 20px 0px 20px;
+  width: 250px;
   height: 400px;
 }
 .title {
@@ -19,6 +19,10 @@
   color: gray;
   margin-top: 10px;
   cursor: pointer;
+}
+.item:hover {
+  font-weight: bolder;
+  color: black;
 }
 .nickName {
   width: 150px;

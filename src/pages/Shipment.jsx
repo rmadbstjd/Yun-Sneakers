@@ -198,6 +198,10 @@ const Shipment = () => {
         coupon,
         products.products[i].size
       );
+      cart.deleteCart(
+        products.products[i].productId,
+        products.products[i].size
+      );
     }
     Swal.fire({
       icon: "success",
@@ -209,9 +213,11 @@ const Shipment = () => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/mypage");
+        navigate("/mypage/order");
+        window.location.reload();
       } else {
         navigate("/");
+        window.location.reload();
       }
     });
   };

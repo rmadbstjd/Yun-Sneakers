@@ -4,6 +4,7 @@ import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import useStore from "../store";
 import { IoMdCloseCircle } from "react-icons/io";
+const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
 const Search = ({ setShowSearch }) => {
   const navigate = useNavigate();
   const {
@@ -98,6 +99,20 @@ const Search = ({ setShowSearch }) => {
                 />{" "}
               </div>
             ))}
+        </div>
+        <div className={styles.recommendSearch}>추천 검색어</div>
+        <div className={styles.recommendContainer}>
+          {recommendKeywordArr.map((item) => (
+            <div
+              className={styles.recommendContent}
+              onClick={() => {
+                navigate(`/search?keyword=${item}`);
+                setShowSearch(false);
+              }}
+            >
+              {item}{" "}
+            </div>
+          ))}
         </div>
       </div>
     </div>

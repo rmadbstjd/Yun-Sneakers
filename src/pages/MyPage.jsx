@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "../pages/css/MyPage.module.css";
@@ -74,6 +74,22 @@ const MyPage = () => {
     await cart.deleteAddress();
     refetch();
   };
+  const goToPage = (item) => {
+    console.log("item", item);
+    switch (item) {
+      case "주문 내역 조회":
+        navigate("/mypage/order");
+        break;
+      case "관심 상품":
+        navigate("/mypage/wish");
+        break;
+      case "주소록":
+        navigate("/mypage/address");
+        break;
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     if (isLogin === false) {
       navigate("/login");
@@ -96,7 +112,7 @@ const MyPage = () => {
               className={styles.item}
               key={index}
               onClick={() => {
-                setState(item);
+                goToPage(item);
               }}
             >
               {item}
@@ -104,69 +120,10 @@ const MyPage = () => {
           ))}
       </div>
       <div className={styles.mainContainer}>
-        {state === "주문 내역 조회" ? (
-          <OrderPageNavbar />
-        ) : state === "관심 상품" ? (
-          <div className={styles.likeProducts}>
-            <Products></Products>
-          </div>
-        ) : state === "주소록" ? (
-          <div className={styles.adContainer}>
-            <div className={styles.title}>배송지</div>
-            <div className={styles.horizonLine}></div>
-            <div
-              className={
-                address === false
-                  ? styles.addressContainer3
-                  : styles.addressContainer2
-              }
-            >
-              <ShipAddress />
-
-              {address === false ? (
-                <div
-                  className={styles.Btn}
-                  onClick={() => {
-                    setShowModal((prev) => !prev);
-                  }}
-                >
-                  추가하기
-                </div>
-              ) : (
-                <div className={styles.btnContainer}>
-                  <div
-                    className={styles.Btn}
-                    onClick={() => {
-                      setShowModal((prev) => !prev);
-                    }}
-                  >
-                    수정
-                  </div>
-                  <div
-                    className={styles.Btn}
-                    onClick={() => {
-                      deleteAddress();
-                    }}
-                  >
-                    삭제
-                  </div>
-                </div>
-              )}
-              {showModal === true ? (
-                <Modal
-                  isOpen={true}
-                  modalIsOpen={showModal}
-                  setModalIsOpen={setShowModal}
-                  submitBtn={submitBtn}
-                  type={"ship"}
-                ></Modal>
-              ) : null}
-            </div>
-          </div>
-        ) : null}
+        {state === "주문 내역 조회" ? <OrderPageNavbar /> : null}
       </div>
     </div>
   );
 };
 
-export default MyPage;
+export default MyPage;*/

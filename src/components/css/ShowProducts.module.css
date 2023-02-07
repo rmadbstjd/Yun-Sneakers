@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  margin-top: 50px;
+  margin: 50px 0px 0px 65px;
 }
 .product {
   display: flex;
@@ -79,7 +79,7 @@
   line-height: 160%;
   width: 200px;
   height: 40px;
-
+  margin-left: -65px;
   font-weight: bold;
 
   color: gray;

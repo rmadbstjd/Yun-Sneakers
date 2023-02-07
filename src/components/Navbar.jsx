@@ -95,7 +95,7 @@ const Navbar = () => {
             />
             <div
               onClick={() => {
-                navigate("/mypage");
+                navigate("/mypage/order");
                 setShowSearch(false);
               }}
               className={styles.mypage}

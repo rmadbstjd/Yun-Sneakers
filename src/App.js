@@ -65,10 +65,7 @@ function App() {
           path: "/shipment",
           element: <Shipment />,
         },
-        {
-          path: "/mypage",
-          element: <MyPage />,
-        },
+
         {
           path: "/mypage/order",
           element: <Order />,

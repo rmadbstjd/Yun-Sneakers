@@ -1,6 +1,7 @@
 import React from "react";
 import ShowProducts from "../components/ShowProducts";
 import ShowPopularProducts from "../components/ShowPopularProducts";
+import Brand from "../components/Brand";
 import styles from "./css/Home.module.css";
 
 const Home = () => {
@@ -20,8 +21,9 @@ const Home = () => {
 
       <div className={styles.productsContainer}>
         <div className={styles.productContainer}>
-          <ShowProducts />
+          <Brand />
           <ShowPopularProducts />
+          <ShowProducts />
         </div>
       </div>
     </div>

@@ -58,7 +58,7 @@ export default class Cart {
   async getOrderProducts() {
     const response = await this.httpClient.get(`/order`, {});
     const data = response.data;
-    return data;
+    return data.reverse();
   }
   async order(productId, date, count, coupon, size) {
     const state = "배송중";
@@ -85,7 +85,7 @@ export default class Cart {
   async getShipComplete() {
     const response = await this.httpClient.get(`/order/completed`, {});
     const data = response.data;
-    return data;
+    return data.reverse();
   }
   async addShipAddress(
     shipPlaceName,
