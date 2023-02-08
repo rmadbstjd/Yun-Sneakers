@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect } from "react";
+
 import Products from "./Products";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Wish.module.css";
@@ -8,7 +8,7 @@ const Wish = () => {
   const navigate = useNavigate();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const { nickName } = useStore();
-  const itemArr = ["주문 내역 조회", "관심 상품", "주소록"];
+  const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
   const goToPage = (item) => {
     console.log("item", item);
     switch (item) {
@@ -20,6 +20,9 @@ const Wish = () => {
         break;
       case "주소록":
         navigate("/mypage/address");
+        break;
+      case "상품 리뷰":
+        navigate("/mypage/review");
         break;
       default:
         break;

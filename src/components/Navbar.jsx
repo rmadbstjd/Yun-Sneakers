@@ -89,7 +89,7 @@ const Navbar = () => {
             <FaUser
               className={styles.mypageImg}
               onClick={() => {
-                navigate("/mypage");
+                navigate("/mypage/order");
                 setShowSearch(false);
               }}
             />

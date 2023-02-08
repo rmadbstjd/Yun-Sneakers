@@ -69,7 +69,7 @@ const Address = () => {
     refetch();
   };
   const isLogin = localStorage.getItem("isLogin") === "true";
-  const itemArr = ["주문 내역 조회", "관심 상품", "주소록"];
+  const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
   const goToPage = (item) => {
     console.log("item", item);
     switch (item) {
@@ -81,6 +81,9 @@ const Address = () => {
         break;
       case "주소록":
         navigate("/mypage/address");
+        break;
+      case "상품 리뷰":
+        navigate("/mypage/review");
         break;
       default:
         break;

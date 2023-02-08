@@ -128,7 +128,7 @@ const Shipment = () => {
           title: "배송지를 입력해주세요.",
           confirmButtonColor: "black",
         });
-        //alert("배송지명을 입력하세요!");
+
         return;
       } else if (!shipReceiver) {
         Swal.fire({

@@ -32,6 +32,9 @@
   cursor: pointer;
   color: white;
 }
+.brandContainer:hover {
+  scale: 1.05;
+}
 .new {
   width: 100%;
   display: flex;

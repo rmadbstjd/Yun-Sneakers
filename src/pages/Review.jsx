@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
+import styles from "./css/Review.module.css";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/Order.module.css";
-import OrderPageNavbar from "../components/OrderPageNavbar";
 import useStore from "../store";
-const Order = () => {
+const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
+const Review = () => {
   const navigate = useNavigate();
   const { nickName } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
-  const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
   const goToPage = (item) => {
     console.log("item", item);
     switch (item) {
@@ -56,10 +55,11 @@ const Order = () => {
           ))}
       </div>
       <div className={styles.mainContainer}>
-        <OrderPageNavbar />
+        <div className={styles.title}>리뷰</div>
+        <div className={styles.horizonLine}></div>
       </div>
     </div>
   );
 };
 
-export default Order;
+export default Review;

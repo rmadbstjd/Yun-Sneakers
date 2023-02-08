@@ -61,10 +61,16 @@
   margin-right: 8px;
   font-size: 14px;
 }
+.nickName:hover {
+  font-weight: bolder;
+}
 .mypage {
   margin-right: 10px;
   font-size: 12px;
   cursor: pointer;
+}
+.mypage:hover {
+  font-weight: bolder;
 }
 .userImg {
   border: solid black 1px;
@@ -81,7 +87,9 @@
   font-size: 12px;
   cursor: pointer;
 }
-
+.products:hover {
+  font-weight: bolder;
+}
 .heartImg {
   margin-top: 15px;
   margin-right: 3px;

@@ -1,6 +1,6 @@
 .mypageContainer {
   font-family: "NanumSquareNeo-Variable";
-  width: 1820px;
+  width: 1310px;
   display: flex;
   height: 100%;
   margin: 0px 50px 0px 80px;
@@ -35,4 +35,9 @@
 }
 .last {
   font-size: 17px;
+}
+.horizonLine {
+  width: 1090px;
+  border-bottom: 3px solid black;
+  line-height: 0.1rem;
 }

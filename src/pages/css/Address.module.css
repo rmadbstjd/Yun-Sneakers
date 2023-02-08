@@ -1,12 +1,12 @@
 .mypageContainer {
   font-family: "NanumSquareNeo-Variable";
-  width: 1500px;
+  width: 1420px;
   display: flex;
   height: 100%;
   margin: 0px 50px 0px 80px;
 }
 .sideContainer {
-  margin: 145px 20px 0px 20px;
+  margin: 145px 20px 0px 10px;
   width: 250px;
   height: 400px;
 }

@@ -15,6 +15,7 @@ import MyPage from "./pages/MyPage";
 import Order from "./pages/Order";
 import Wish from "./pages/Wish";
 import Address from "./pages/Address";
+import Review from "./pages/Review";
 import loginSuccess from "./hooks/loginSuccess";
 import useStore from "./store";
 function App() {
@@ -77,6 +78,10 @@ function App() {
         {
           path: "/mypage/wish",
           element: <Wish />,
+        },
+        {
+          path: "/mypage/review",
+          element: <Review />,
         },
       ],
     },

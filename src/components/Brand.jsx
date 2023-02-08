@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { SiNike, SiJordan, SiNewbalance, SiAdidas } from "react-icons/si";
 import { GiConverseShoe } from "react-icons/gi";
 const brandArr = [
-  { name: "나이키", img: <SiNike color={"white"} size={45} /> },
+  {
+    name: "나이키",
+    img: <SiNike color={"white"} size={45} />,
+  },
   { name: "조던", img: <SiJordan color={"white"} size={45} /> },
   { name: "뉴발란스", img: <SiNewbalance color={"white"} size={45} /> },
   { name: "아디다스", img: <SiAdidas color={"white"} size={45} /> },

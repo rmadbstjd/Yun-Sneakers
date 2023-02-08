@@ -3,6 +3,7 @@ import styles from "./css/OrderPageNavbar.module.css";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../store";
 import { useNavigate } from "react-router-dom";
+import Modal from "./common/Modal";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -12,6 +13,7 @@ const itemArr = [
   "주문상태",
 ];
 const OrderPageNavbar = () => {
+  const [showModal, setShowModal] = useState(false);
   const {
     isLoading,
     error,
@@ -204,9 +206,25 @@ const OrderPageNavbar = () => {
             </div>
             <div className={styles.coupon}>{item.product.coupon}</div>
             <div className={styles.state}>
-              <div className={styles.btnContainer2}></div>
               <div>{item.product.state}</div>
+              <div
+                className={styles.review}
+                onClick={() => {
+                  setShowModal((prev) => !prev);
+                }}
+              >
+                리뷰 쓰기
+              </div>
             </div>
+            {showModal === true ? (
+              <Modal
+                isOpen={true}
+                modalIsOpen={showModal}
+                setModalIsOpen={setShowModal}
+                type={"review"}
+                product={item}
+              ></Modal>
+            ) : null}
           </div>
         ))}
     </div>

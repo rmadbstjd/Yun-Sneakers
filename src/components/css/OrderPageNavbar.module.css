@@ -1,5 +1,5 @@
 .horizonLine {
-  width: 1590px;
+  width: 1550px;
   border-bottom: 2px solid black;
   line-height: 0.1rem;
 }
@@ -114,6 +114,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.review {
+  border: solid gray 1px;
+  width: 70px;
+  height: 25px;
+  background-color: #303033;
+  text-align: center;
+  line-height: 190%;
+  margin-top: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+}
+.review:hover {
+  background-color: black;
+  color: white;
 }
 .firstPrice {
   text-decoration-line: line-through;
