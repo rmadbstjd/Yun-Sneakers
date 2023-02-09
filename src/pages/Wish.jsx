@@ -10,7 +10,6 @@ const Wish = () => {
   const { nickName } = useStore();
   const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
   const goToPage = (item) => {
-    console.log("item", item);
     switch (item) {
       case "주문 내역 조회":
         navigate("/mypage/order");

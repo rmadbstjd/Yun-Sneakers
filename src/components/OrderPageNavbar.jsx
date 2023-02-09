@@ -14,6 +14,7 @@ const itemArr = [
 ];
 const OrderPageNavbar = () => {
   const [showModal, setShowModal] = useState(false);
+  const [number, setNumber] = useState();
   const {
     isLoading,
     error,
@@ -51,6 +52,7 @@ const OrderPageNavbar = () => {
   const goToSearch = (info) => {
     navigate(`/search?keyword=${info.category}`);
   };
+  console.log("테스트", completedProducts);
   useEffect(() => {}, [products, completedProducts]);
   return (
     <div>
@@ -207,26 +209,29 @@ const OrderPageNavbar = () => {
             <div className={styles.coupon}>{item.product.coupon}</div>
             <div className={styles.state}>
               <div>{item.product.state}</div>
-              <div
-                className={styles.review}
-                onClick={() => {
-                  setShowModal((prev) => !prev);
-                }}
-              >
-                리뷰 쓰기
-              </div>
+              {!item.product.isReviewd && (
+                <div
+                  className={styles.review}
+                  onClick={() => {
+                    setShowModal((prev) => !prev);
+                    setNumber(index);
+                  }}
+                >
+                  리뷰 쓰기
+                </div>
+              )}
             </div>
-            {showModal === true ? (
-              <Modal
-                isOpen={true}
-                modalIsOpen={showModal}
-                setModalIsOpen={setShowModal}
-                type={"review"}
-                product={item}
-              ></Modal>
-            ) : null}
           </div>
         ))}
+      {showModal === true ? (
+        <Modal
+          isOpen={true}
+          modalIsOpen={showModal}
+          setModalIsOpen={setShowModal}
+          type={"review"}
+          product={completedProducts[number]}
+        ></Modal>
+      ) : null}
     </div>
   );
 };

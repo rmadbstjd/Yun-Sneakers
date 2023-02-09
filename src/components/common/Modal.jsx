@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ReactModal from "react-modal";
 import produce from "immer";
 import styles from "./css/Modal.module.css";
@@ -11,16 +12,16 @@ const Modal = ({
   setModalIsOpen,
   type,
   size,
-  setShowModal,
   submitBtn,
   product,
 }) => {
+  const navigate = useNavigate();
   const [sizes, setSizes] = useState([]);
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
   const [text, setText] = useState("");
 
-  const { setSize } = useStore();
+  const { setSize, cart } = useStore();
   const closeShow = () => {
     setModalIsOpen((prev) => !prev);
   };
@@ -31,7 +32,6 @@ const Modal = ({
   const clickToStar = (index) => {
     setClickIndex(index);
     if (clickIndex === index) {
-      console.log("이꼬르", index);
       setStar(
         produce(star, (draft) => {
           for (let i = 0; i <= index; i++) {
@@ -62,21 +62,42 @@ const Modal = ({
         title: "별점을 매겨주세요.",
         confirmButtonColor: "black",
       });
+      return;
     } else if (text.length < 10) {
       Swal.fire({
         title: "리뷰 내용을 10자 이상 입력해주세요.",
         confirmButtonColor: "black",
       });
+      return;
     }
+
+    cart.addReview(
+      star,
+      product.product.count,
+      product.product.coupon,
+      product.info.price,
+      product.product.date,
+      product.product.size,
+      product.product.productId,
+      product.product._id,
+      text,
+      clickIndex + 1
+    );
+    Swal.fire({
+      icon: "success",
+      title: "성공적으로 리뷰를 작성하였습니다.",
+      confirmButtonColor: "black",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   };
   useEffect(() => {
     size && setSizes(size.split(","));
-    console.log("Star", star);
     if (text.length === 10) {
-      console.log("10개");
     }
   }, [size, star, text]);
-  console.log("product", product);
   if (type === "size") {
     return (
       <ReactModal
@@ -211,7 +232,12 @@ const Modal = ({
           <div className={styles.horizonLine}></div>
         </div>
         <div className={styles.btnContainer}>
-          <div className={styles.btn1} onClick={submitReview}>
+          <div
+            className={styles.btn1}
+            onClick={() => {
+              submitReview();
+            }}
+          >
             등록하기
           </div>
           <div

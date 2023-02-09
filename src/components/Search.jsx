@@ -56,7 +56,6 @@ const Search = ({ setShowSearch }) => {
     recentKeyword &&
       localStorage.setItem("recentKeyword", JSON.stringify(recentKeyword));
   }, [recentKeyword]);
-  console.log("테스트");
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>

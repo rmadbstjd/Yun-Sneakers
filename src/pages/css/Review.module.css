@@ -41,3 +41,120 @@
   border-bottom: 3px solid black;
   line-height: 0.1rem;
 }
+.horizonLine2 {
+  width: 1455px;
+  border-bottom: 3px solid black;
+  line-height: 0.1rem;
+}
+.reviewContainer {
+  display: flex;
+}
+.reviewTitle {
+  border: solid black 1px;
+  width: 180px;
+  height: 45px;
+  text-align: center;
+  line-height: 250%;
+}
+/**********************************************/
+.productContent {
+  display: flex;
+  border: solid black 0px;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  margin: 15px 0px 15px 0px;
+}
+.img {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 200px;
+  text-align: left;
+  font-size: 15px;
+}
+.brand,
+.name,
+.size {
+  padding: 10px;
+}
+.name > span {
+  cursor: pointer;
+}
+.brand > span {
+  cursor: pointer;
+  font-weight: bolder;
+}
+.date {
+  margin-top: 20px;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  height: 130px;
+}
+.firstPrice {
+  text-decoration-line: line-through;
+  color: gray;
+}
+
+.topContainer {
+  display: flex;
+  text-align: center;
+  font-size: 16px;
+  margin: 20px 0px 20px 0px;
+}
+
+.productInfo {
+  width: 450px;
+}
+
+.reviewPrice {
+  width: 200px;
+}
+.reviewContent {
+  width: 370px;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+  height: 100px;
+}
+.reviewStar {
+  width: 240px;
+}
+.reviewState {
+  width: 200px;
+}
+.star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 100px;
+}
+.btnContainer {
+  display: flex;
+  width: 170px;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
+.btn {
+  border: solid gray 1px;
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  line-height: 180%;
+  cursor: pointer;
+}

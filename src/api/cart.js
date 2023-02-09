@@ -120,4 +120,45 @@ export default class Cart {
       data: { size: size },
     });
   }
+  async addReview(
+    star,
+    count,
+    coupon,
+    price,
+    date,
+    size,
+    productId,
+    orderId,
+    content,
+    rate
+  ) {
+    const response = await this.httpClient.post(`/review`, {
+      star,
+      count,
+      coupon,
+      price,
+      size,
+      date,
+      productId,
+      orderId,
+      content,
+      rate,
+    });
+    const data = response.data;
+    return data;
+  }
+  async getReview() {
+    const response = await this.httpClient.get(`/review`, {});
+    const data = response.data;
+    return data.reverse();
+  }
+
+  async deleteReview(orderId) {
+    console.log("orderId@", orderId);
+    const response = await this.httpClient.delete(`/review`, {
+      data: { orderId },
+    });
+    const data = response.data;
+    return data;
+  }
 }
