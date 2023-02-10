@@ -209,7 +209,7 @@ const OrderPageNavbar = () => {
             <div className={styles.coupon}>{item.product.coupon}</div>
             <div className={styles.state}>
               <div>{item.product.state}</div>
-              {!item.product.isReviewd && (
+              {item.product.isReviewd === false ? (
                 <div
                   className={styles.review}
                   onClick={() => {
@@ -219,7 +219,7 @@ const OrderPageNavbar = () => {
                 >
                   리뷰 쓰기
                 </div>
-              )}
+              ) : null}
             </div>
           </div>
         ))}
@@ -230,6 +230,7 @@ const OrderPageNavbar = () => {
           setModalIsOpen={setShowModal}
           type={"review"}
           product={completedProducts[number]}
+          isReviewed={false}
         ></Modal>
       ) : null}
     </div>

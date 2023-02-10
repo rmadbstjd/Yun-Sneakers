@@ -37,12 +37,12 @@
   font-size: 17px;
 }
 .horizonLine {
-  width: 1090px;
+  width: 1190px;
   border-bottom: 3px solid black;
   line-height: 0.1rem;
 }
 .horizonLine2 {
-  width: 1455px;
+  width: 1555px;
   border-bottom: 3px solid black;
   line-height: 0.1rem;
 }
@@ -50,20 +50,38 @@
   display: flex;
 }
 .reviewTitle {
-  border: solid black 1px;
+  border-top: solid black 1px;
+  border-right: solid black 1px;
+  border-left: solid black 1px;
   width: 180px;
   height: 45px;
   text-align: center;
   line-height: 250%;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+.reviewTitle2 {
+  border-top: solid black 1px;
+  border-right: solid black 1px;
+  border-left: solid black 1px;
+  width: 180px;
+  height: 45px;
+  text-align: center;
+  line-height: 250%;
+  cursor: pointer;
 }
 /**********************************************/
 .productContent {
   display: flex;
   border: solid black 0px;
   width: 100%;
-  height: 200px;
+  height: 150px;
   text-align: center;
   margin: 15px 0px 15px 0px;
+}
+.productContent:hover {
+  background-color: #fafafa;
 }
 .img {
   width: 150px;
@@ -98,7 +116,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 200px;
+  width: 340px;
   height: 130px;
 }
 .firstPrice {
@@ -118,43 +136,129 @@
 }
 
 .reviewPrice {
-  width: 200px;
+  width: 350px;
 }
 .reviewContent {
-  width: 370px;
+  width: 270px;
 }
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 370px;
+  width: 290px;
   height: 100px;
 }
 .reviewStar {
-  width: 240px;
+  width: 300px;
 }
 .reviewState {
-  width: 200px;
+  width: 110px;
 }
 .star {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
+  width: 290px;
   height: 100px;
 }
 .btnContainer {
   display: flex;
-  width: 170px;
+  width: 150px;
   height: 100px;
-  justify-content: space-around;
+  margin-left: -15px;
+  justify-content: space-between;
   align-items: center;
 }
-.btn {
+.Btn {
+  border: solid gray 1px;
+  border-radius: 15px;
+  width: 80px;
+  height: 30px;
+  line-height: 190%;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.Btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/********************/
+
+.orderDate {
+  width: 350px;
+}
+.orderNumber {
+  width: 340px;
+}
+.orderPrice {
+  width: 190px;
+}
+.orderCoupon {
+  width: 190px;
+}
+.orderState {
+  width: 190px;
+}
+.productDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+  height: 200px;
+}
+.orderNum {
+  width: 350px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.priceContainer2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 340px;
+  height: 120px;
+}
+
+.coupon {
+  width: 195px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.state {
+  width: 185px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review {
   border: solid gray 1px;
   width: 70px;
-  height: 30px;
+  height: 25px;
+  background-color: #303033;
   text-align: center;
-  line-height: 180%;
+  line-height: 190%;
+  margin-top: 10px;
   cursor: pointer;
+  color: white;
+  font-size: 13px;
+}
+.review:hover {
+  background-color: black;
+  color: white;
+}
+.noneText {
+  width: 1590px;
+  text-align: center;
+  font-weight: bolder;
+  padding: 80px 0px 50px 0px;
 }

@@ -14,6 +14,7 @@ const Modal = ({
   size,
   submitBtn,
   product,
+  isReviewed,
 }) => {
   const navigate = useNavigate();
   const [sizes, setSizes] = useState([]);
@@ -70,19 +71,36 @@ const Modal = ({
       });
       return;
     }
-
-    cart.addReview(
-      star,
-      product.product.count,
-      product.product.coupon,
-      product.info.price,
-      product.product.date,
-      product.product.size,
-      product.product.productId,
-      product.product._id,
-      text,
-      clickIndex + 1
-    );
+    console.log("리뷰ㅜ드!", isReviewed);
+    if (!isReviewed) {
+      console.log("리뷰 없을 떄(리뷰 추가), orderId", product.product._id);
+      cart.addReview(
+        star,
+        product.product.count,
+        product.product.coupon,
+        product.info.price,
+        product.product.date,
+        product.product.size,
+        product.product.productId,
+        product.product._id,
+        text,
+        clickIndex + 1
+      );
+    } else if (isReviewed) {
+      console.log("리뷰 있을 때(리뷰 수정)orderId", product.product.orderId);
+      cart.addReview(
+        star,
+        product.product.count,
+        product.product.coupon,
+        product.info.price,
+        product.product.date,
+        product.product.size,
+        product.product.productId,
+        product.product.orderId,
+        text,
+        clickIndex + 1
+      );
+    }
     Swal.fire({
       icon: "success",
       title: "성공적으로 리뷰를 작성하였습니다.",
@@ -93,6 +111,8 @@ const Modal = ({
       }
     });
   };
+  console.log("리뷰ㅜ드!", isReviewed);
+  console.log("products", product);
   useEffect(() => {
     size && setSizes(size.split(","));
     if (text.length === 10) {

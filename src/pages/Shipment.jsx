@@ -178,17 +178,16 @@ const Shipment = () => {
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth();
-    let days = now.getDate();
-    let months;
-    let days2;
-    if (month + 1 < 10) {
-      months = "0".concat(String(month + 1));
-    }
-    if (month < 10) {
-      days2 = "0".concat(String(days));
-    }
+    let days2 = now.getDate();
 
-    let dates = `${year}.${months}.${days2}`;
+    if (month + 1 < 10) {
+      month = "0".concat(String(month + 1));
+    }
+    if (days2 < 10) {
+      days2 = "0".concat(String(days2));
+    }
+    console.log("year", year, "months", month, "days2", days2);
+    let dates = `${year}.${month}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
       cart.order(

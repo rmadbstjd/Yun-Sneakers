@@ -87,6 +87,11 @@ export default class Cart {
     const data = response.data;
     return data.reverse();
   }
+  async getisNotReviewdProducts() {
+    const response = await this.httpClient.get(`/order/notreviewd`, {});
+    const data = response.data;
+    return data.reverse();
+  }
   async addShipAddress(
     shipPlaceName,
     shipReceiver,
