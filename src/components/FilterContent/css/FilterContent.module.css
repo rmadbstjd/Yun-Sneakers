@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.container {
+}
+.brandContainer,
+.sizeContainer,
+.priceContainer {
+  min-width: 220px;
+  word-break: break-all;
+  font-family: "NanumSquareNeo-Variable";
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+.brandNavbar {
+  width: 100%;
+  font-size: 25px;
+  line-height: 250%;
+}
+.plus {
+  width: 35px;
+  height: 35px;
+  margin-top: 15px;
+}
+
+.content {
+  border: solid black 1px;
+  width: 99%;
+  height: 40px;
+  cursor: pointer;
+}
+.brandContentIsNone {
+  display: none;
+}
+.brandContentIsBlock {
+  display: block;
+}
+.item {
+  padding: 10px 5px 10px 5px;
+}
+.itemName {
+  cursor: pointer;
+}
+.horizonLine2 {
+  width: 100%;
+  border-bottom: 1px solid black;
+
+  line-height: 0.1rem;
+}

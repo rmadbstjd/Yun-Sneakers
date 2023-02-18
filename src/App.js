@@ -2,20 +2,19 @@ import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Cart from "./pages/Cart";
-import Home from "./pages/Home";
-import ProductDetail from "./pages/ProductDetail";
-import Products from "./pages/Products";
+import Main from "./pages/Main";
+import ProductDetail from "./pages/Detail";
+import LikeProducts from "./pages/Like";
 import Root from "./pages/Root";
-import NewProducts from "./pages/NewProducts";
+import NewProducts from "./pages/NewProduct";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/Search";
 import Shipment from "./pages/Shipment";
-import MyPage from "./pages/MyPage";
-import Order from "./pages/Order";
-import Wish from "./pages/Wish";
-import Address from "./pages/Address";
-import Review from "./pages/Review";
+import Order from "./pages/MyPage/Order";
+import Wish from "./pages/MyPage/Wish";
+import Address from "./pages/MyPage/Address";
+import Review from "./pages/MyPage/Review";
 import loginSuccess from "./hooks/loginSuccess";
 import useStore from "./store";
 function App() {
@@ -31,11 +30,11 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: <Main />,
         },
         {
           path: "/products",
-          element: <Products />,
+          element: <LikeProducts />,
         },
         {
           path: "/products/:id",
