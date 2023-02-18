@@ -25,7 +25,7 @@ export default class Like {
     return data;
   }
 
-  async getLikeProduct() {
+  async getLikedProducts() {
     const response = await this.httpClient.get(`/like/products`, {});
     const data = response.data;
     return data;

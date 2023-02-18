@@ -12,7 +12,7 @@ export default class Order {
     this.email = localStorage.getItem("email");
   }
 
-  async orderProducts(productId, date, count, coupon, size) {
+  async addOrderProducts(productId, date, count, coupon, size) {
     const state = "배송중";
     const response = await this.httpClient.post(`/order`, {
       productId,
@@ -26,7 +26,7 @@ export default class Order {
     return data;
   }
 
-  async addShipComplete(orderId) {
+  async completeShipment(orderId) {
     const response = await this.httpClient.put(`/order`, {
       orderId,
     });
@@ -34,13 +34,13 @@ export default class Order {
     return data;
   }
 
-  async getShipComplete() {
+  async getShipIsCompleted() {
     const response = await this.httpClient.get(`/order/completed`, {});
     const data = response.data;
     return data.reverse();
   }
 
-  async getisNotReviewdProducts() {
+  async getIsNotReviewdProducts() {
     const response = await this.httpClient.get(`/order/notreviewd`, {});
     const data = response.data;
     return data.reverse();

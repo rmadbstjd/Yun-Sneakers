@@ -191,14 +191,14 @@ const Shipment = () => {
     let dates = `${year}.${month}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
-      order.orderProducts(
+      order.addOrderProducts(
         products.products[i].productId,
         dates,
         products.products[i].quantity,
         coupon,
         products.products[i].size
       );
-      cart.deleteCart(
+      cart.deleteUserCart(
         products.products[i].productId,
         products.products[i].size
       );

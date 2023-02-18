@@ -90,7 +90,7 @@ const AddShip = ({ type }) => {
   };
   useEffect(() => {
     if (defaultAddress) {
-      cart.addShipAddress(
+      cart.addUserAddress(
         shipPlaceName,
         shipReceiver,
         shipPostCode,

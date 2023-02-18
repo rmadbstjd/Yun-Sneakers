@@ -22,11 +22,11 @@ const Review = () => {
     error,
     data: product,
     refetch,
-  } = useQuery([], () => myPage.getReview());
+  } = useQuery([], () => myPage.getUserReviews());
 
   const { data: completedProducts, refetch: refetch2 } = useQuery(
     ["리뷰"],
-    () => order.getisNotReviewdProducts()
+    () => order.getIsNotReviewdProducts()
   );
   const goToPage = (item) => {
     switch (item) {
@@ -75,7 +75,7 @@ const Review = () => {
       cancelButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await myPage.deleteReview(orderId);
+        await myPage.deleteProductReview(orderId);
         refetch();
         refetch2();
       } else {

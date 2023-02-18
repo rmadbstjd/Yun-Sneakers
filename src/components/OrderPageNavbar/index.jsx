@@ -20,15 +20,15 @@ const OrderPageNavbar = () => {
     error,
     data: products,
     refetch: refetch1,
-  } = useQuery(["배송중"], () => myPage.getOrderProducts());
+  } = useQuery(["배송중"], () => myPage.getOrderedProducts());
   const { data: completedProducts, refetch: refetch2 } = useQuery(
     ["배송완료"],
-    () => order.getShipComplete()
+    () => order.getShipIsCompleted()
   );
   const { cart, myPage, order } = useStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
-    await order.addShipComplete(id);
+    await order.completeShipment(id);
     refetch1();
     refetch2();
   };

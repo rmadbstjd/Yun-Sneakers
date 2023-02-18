@@ -1,92 +1,97 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import styles from "./Join.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 
 const Join = () => {
   const { user } = useStore();
-  const [id, setID] = useState(null);
-  const [pw, setPW] = useState(null);
-  const [rePw] = useState(null);
-  const [nickname, setNickname] = useState(null);
-  const [allowID, setAllowID] = useState(null);
-  const [allowPW, setAllowPW] = useState(null);
-  const [allowREPW, setAllowREPW] = useState(null);
-  const [allowNick, setAllowNick] = useState(null);
-  const [allowAll, setAllowAll] = useState(false);
+
   const [result, setResult] = useState();
+  const [inputs, setInputs] = useState({
+    id: "",
+    pw: "",
+    rePW: "",
+    nickname: "",
+  });
+  const [allows, setAllows] = useState({
+    id: null,
+    pw: null,
+    rePW: null,
+    nickname: null,
+    all: false,
+  });
   const navigate = useNavigate();
   let regex;
   const changeInput = (e, type) => {
     switch (type) {
-      case "ID":
+      case "id":
         regex = /^[a-z]+[a-z0-9]{5,19}$/g;
         if (!regex.test(e.target.value)) {
-          setAllowID(false);
-          setAllowAll(false);
+          setAllows({ ...allows, [type]: false, all: false });
         } else {
-          setAllowID(true);
+          setAllows({ ...allows, [type]: true });
         }
-        setID(e.target.value);
+        setInputs({ ...inputs, [type]: e.target.value });
         break;
-      case "PW":
+      case "pw":
         regex =
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         if (!regex.test(e.target.value)) {
-          setAllowPW(false);
-          setAllowAll(false);
+          setAllows({ ...allows, [type]: false, all: false });
         } else {
-          setAllowPW(true);
+          setAllows({ ...allows, [type]: true });
         }
-        setPW(e.target.value);
+        setInputs({ ...inputs, [type]: e.target.value });
 
         break;
-      case "REPW":
-        if (e.target.value !== pw) {
-          setAllowREPW(false);
-          setAllowAll(false);
+      case "rePW":
+        if (e.target.value !== inputs.pw) {
+          setAllows({ ...allows, [type]: false, all: false });
         } else {
-          setAllowREPW(true);
+          setAllows({ ...allows, [type]: true });
         }
         break;
-      case "NICK":
+      case "nickname":
         regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
         if (!regex.test(e.target.value)) {
-          setAllowNick(false);
-          setAllowAll(false);
+          setAllows({ ...allows, [type]: false, all: false });
         } else {
-          setAllowNick(true);
+          setAllows({ ...allows, [type]: true });
         }
-        setNickname(e.target.value);
+        setInputs({ ...inputs, [type]: e.target.value });
         break;
       default:
         break;
     }
   };
   const clickToSubmit = async () => {
-    if (allowAll) {
-      const response = await user.signUp(id, pw, nickname);
+    if (allows.all) {
+      const response = await user.signUp(inputs.id, inputs.pw, inputs.nickname);
 
       setResult(response);
     }
   };
   useEffect(() => {
-    if (allowID && allowPW && allowREPW && allowNick) setAllowAll(true);
-    if (allowAll) {
+    console.log("allows", allows);
+    if (allows.id && allows.pw && allows.rePW && allows.nickname) {
+      console.log("지옥시작");
+      setAllows({ ...allows, all: true });
+    }
+    if (allows.all) {
       if (!result) {
       }
       if (result) navigate("/login");
     }
-  }, [result, navigate, allowAll, allowID, allowPW, allowREPW, allowNick]);
+  }, [result, navigate, allows]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>회원가입</div>
       <div className={styles.inputContainer}>
         <label
           className={
-            allowID === null
+            allows.id === null
               ? styles.inputTitleID
-              : allowID === false
+              : allows.id === false
               ? styles.inputTitleIDNotAllowed
               : styles.inputTitleID
           }
@@ -95,18 +100,18 @@ const Join = () => {
         </label>
         <input
           type="text"
-          onChange={(e) => changeInput(e, "ID")}
+          onChange={(e) => changeInput(e, "id")}
           placeholder="6-20자의 영문,숫자를 입력해주세요"
-          value={id}
+          value={inputs.id}
           className={
-            allowID === null
+            allows.id === null
               ? styles.inputValue
-              : allowID === false
+              : allows.id === false
               ? styles.inputValueNotAllowed
               : styles.inputValue
           }
         ></input>
-        {allowID === false ? (
+        {allows.id === false ? (
           <div className={styles.text}>
             양식에 준수하여 아이디를 입력해주세요.
           </div>
@@ -120,9 +125,9 @@ const Join = () => {
       <div className={styles.inputContainer}>
         <label
           className={
-            allowPW === null
+            allows.pw === null
               ? styles.inputTitlePW
-              : allowPW === false
+              : allows.pw === false
               ? styles.inputTitlePWNotAllowed
               : styles.inputTitlePW
           }
@@ -131,12 +136,12 @@ const Join = () => {
         </label>
         <input
           type="password"
-          onChange={(e) => changeInput(e, "PW")}
+          onChange={(e) => changeInput(e, "pw")}
           placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
-          value={pw}
+          value={inputs.pw}
           className={styles.inputValue}
         ></input>
-        {allowPW === false ? (
+        {allows.pw === false ? (
           <div className={styles.text}>
             양식에 준수하여 비밀번호를 입력해주세요.
           </div>
@@ -145,9 +150,9 @@ const Join = () => {
       <div className={styles.inputContainer}>
         <label
           className={
-            allowREPW === null
+            allows.rePW === null
               ? styles.inputTitlePW
-              : allowPW === false
+              : allows.PW === false
               ? styles.inputTitlePWNotAllowed
               : styles.inputTitlePW
           }
@@ -156,21 +161,21 @@ const Join = () => {
         </label>
         <input
           type="password"
-          onChange={(e) => changeInput(e, "REPW")}
+          onChange={(e) => changeInput(e, "rePW")}
           placeholder="비밀번호를 다시 입력해주세요"
-          value={rePw}
+          value={inputs.rePw}
           className={styles.inputValue}
         ></input>
-        {allowREPW === false ? (
+        {allows.rePW === false ? (
           <div className={styles.text}>비밀번호가 일치하지 않습니다.</div>
         ) : null}
       </div>
       <div className={styles.inputContainer}>
         <label
           className={
-            allowNick === null
+            allows.nickname === null
               ? styles.inputTitleNick
-              : allowNick === false
+              : allows.nickname === false
               ? styles.inputTitleNickNotAllowed
               : styles.inputTitleNick
           }
@@ -179,18 +184,18 @@ const Join = () => {
         </label>
         <input
           type="text"
-          onChange={(e) => changeInput(e, "NICK")}
+          onChange={(e) => changeInput(e, "nickname")}
           placeholder="2~6 글자를 입력해주세요."
-          value={nickname}
+          value={inputs.nickname}
           className={
-            allowNick === null
+            allows.nickname === null
               ? styles.inputValue
-              : allowNick === false
+              : allows.nickname === false
               ? styles.inputValueNotAllowed
               : styles.inputValue
           }
         ></input>
-        {allowNick === false ? (
+        {allows.nickname === false ? (
           <div className={styles.text}>
             양식에 준수하여 닉네임을 입력해주세요
           </div>
@@ -198,7 +203,7 @@ const Join = () => {
       </div>
       <div
         className={
-          allowAll === false ? styles.submitBtn : styles.submitBtnAllowed
+          allows.all === false ? styles.submitBtn : styles.submitBtnAllowed
         }
         onClick={clickToSubmit}
       >

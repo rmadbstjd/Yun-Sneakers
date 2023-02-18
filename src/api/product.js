@@ -10,7 +10,7 @@ export default class Product {
       }
     );
   }
-  async search(keyword, sort, collectionName, priceOrder) {
+  async searchProducts(keyword, sort, collectionName, priceOrder) {
     const response = await this.httpClient.get("/search", {
       params: { keyword, sort, collectionName, priceOrder },
     });
@@ -58,7 +58,7 @@ export default class Product {
       category: product.category,
       size: product.size,
       price: product.price,
-      image: image,
+      image,
       description: product.description,
     });
   }

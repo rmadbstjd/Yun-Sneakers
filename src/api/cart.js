@@ -44,15 +44,15 @@ export default class Cart {
     const response = await this.httpClient.post(`/carts/${products.id}`, {
       product: products,
       quantity: 1,
-      size: size,
+      size,
     });
     const data = response.data;
     return data;
   }
 
-  async deleteCart(productId, size) {
+  async deleteUserCart(productId, size) {
     return this.httpClient.delete(`/carts/${productId}`, {
-      data: { size: size },
+      data: { size },
     });
   }
 }

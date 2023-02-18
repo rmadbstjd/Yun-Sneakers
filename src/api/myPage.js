@@ -12,13 +12,13 @@ export default class MyPage {
     this.email = localStorage.getItem("email");
   }
 
-  async getOrderProducts() {
+  async getOrderedProducts() {
     const response = await this.httpClient.get(`/order`, {});
     const data = response.data;
     return data.reverse();
   }
 
-  async addShipAddress(
+  async addUserAddress(
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -42,13 +42,13 @@ export default class MyPage {
     return data;
   }
 
-  async deleteAddress() {
+  async deleteUserAddress() {
     const response = await this.httpClient.delete(`/address`, {});
     const data = response.data;
     return data;
   }
 
-  async addReview(
+  async addProductReview(
     star,
     count,
     coupon,
@@ -76,13 +76,13 @@ export default class MyPage {
     return data;
   }
 
-  async getReview() {
+  async getUserReviews() {
     const response = await this.httpClient.get(`/review`, {});
     const data = response.data;
     return data.reverse();
   }
 
-  async deleteReview(orderId) {
+  async deleteProductReview(orderId) {
     const response = await this.httpClient.delete(`/review`, {
       data: { orderId },
     });

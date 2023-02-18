@@ -30,7 +30,7 @@ const SearchPage = () => {
     isLoading,
     data: products,
   } = useQuery([searchQuery, searchSort, collectionName, priceOrder], () =>
-    product.search(searchQuery, searchSort, collectionName, priceOrder)
+    product.searchProducts(searchQuery, searchSort, collectionName, priceOrder)
   );
   const navigate = useNavigate();
   const submitKeyword = (e) => {

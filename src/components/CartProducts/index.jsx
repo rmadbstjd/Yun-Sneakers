@@ -37,7 +37,7 @@ const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
     setBoolean("minus");
   };
   const deleteProduct = async () => {
-    await cart.deleteCart(item.productId, item.size);
+    await cart.deleteUserCart(item.productId, item.size);
     refetch();
   };
 

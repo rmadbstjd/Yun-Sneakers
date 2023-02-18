@@ -17,7 +17,7 @@ const LikeProducts = () => {
     error,
     data: product,
     refetch,
-  } = useQuery(["like"], () => like.getLikeProduct(), {
+  } = useQuery(["like"], () => like.getLikedProducts(), {
     enabled: true,
   });
 

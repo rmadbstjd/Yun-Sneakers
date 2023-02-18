@@ -52,7 +52,7 @@ const Address = () => {
       return;
     }
 
-    await myPage.addShipAddress(
+    await myPage.addUserAddress(
       shipPlaceName,
       shipReceiver,
       shipPostCode,
@@ -66,7 +66,7 @@ const Address = () => {
     setShowModal(false);
   };
   const deleteAddress = async () => {
-    await myPage.deleteAddress();
+    await myPage.deleteUserAddress();
     refetch();
   };
   const isLogin = localStorage.getItem("isLogin") === "true";
