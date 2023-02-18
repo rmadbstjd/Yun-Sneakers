@@ -51,6 +51,7 @@
 .inputValueNotAllowed {
   border: none;
   height: 30px;
+  width: 97%;
   border-bottom: 1px solid red;
 }
 

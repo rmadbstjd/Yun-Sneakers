@@ -61,12 +61,7 @@
 .inputTitlePWNotAllowed {
   color: red;
 }
-.inputTitleREPWNotAllowed {
-  color: red;
-}
-.inputTitleNickNotAllowed {
-  color: red;
-}
+
 .inputValue {
   width: 97%;
   border: none;
@@ -85,6 +80,7 @@
 .inputValueNotAllowed:focus {
   outline: none;
 }
+
 .text {
   color: red;
   font-size: 12px;

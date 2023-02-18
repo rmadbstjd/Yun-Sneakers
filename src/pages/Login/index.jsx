@@ -7,10 +7,16 @@ import axios from "axios";
 
 const Login = () => {
   const { user, setNickName, setUserId } = useStore();
-  const [id, setID] = useState(null);
-  const [pw, setPW] = useState(null);
-  const [allowID, setAllowID] = useState(true);
-  const [allowPW, setAllowPW] = useState(true);
+
+  const [inputs, setInputs] = useState({
+    id: null,
+    pw: null,
+  });
+  const [allows, setAllows] = useState({
+    id: null,
+    pw: null,
+  });
+
   const [allowAll, setAllowAll] = useState(false);
   const [result, setResult] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -23,8 +29,8 @@ const Login = () => {
       method: "POST",
       withCredentials: "true",
       data: {
-        userId: id,
-        password: pw,
+        userId: inputs.id,
+        password: inputs.pw,
       },
     }).then(async (result) => {
       if (result.status === 201) {
@@ -43,27 +49,27 @@ const Login = () => {
 
   const changeInput = (e, type) => {
     switch (type) {
-      case "ID":
+      case "id":
         regex = /^[a-z]+[a-z0-9]{5,19}$/g;
         if (!regex.test(e.target.value)) {
-          setAllowID(false);
+          setAllows({ ...allows, [type]: false });
           setAllowAll(false);
         } else {
-          setAllowID(true);
+          setAllows({ ...allows, [type]: true });
         }
-        setID(e.target.value);
+        setInputs({ ...inputs, [type]: e.target.value });
         break;
-      case "PW":
+      case "pw":
         regex =
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         if (!regex.test(e.target.value)) {
-          setAllowPW(false);
+          setAllows({ ...allows, [type]: false });
           setAllowAll(false);
         } else {
-          setAllowPW(true);
+          setAllows({ ...allows, [type]: true });
           setAllowAll(true);
         }
-        setPW(e.target.value);
+        setInputs({ ...inputs, [type]: e.target.value });
         break;
       default:
         break;
@@ -79,7 +85,8 @@ const Login = () => {
     navigate("/join");
   };
   useEffect(() => {
-    if (allowID && allowPW) setAllowAll(true);
+    console.log("allows", allows);
+    if (allows.id && allows.pw) setAllowAll(true);
     if (result === true) {
       navigate("/");
     } else if (result === false) {
@@ -87,7 +94,7 @@ const Login = () => {
       setTimeout(setShowModal, 2000);
       setResult(null);
     }
-  }, [result, count]);
+  }, [result, count, allows, navigate]);
   return (
     <div className={styles.container}>
       {showModal && (
@@ -100,50 +107,64 @@ const Login = () => {
       <div className={styles.inputContainer}>
         <label
           className={
-            allowID === true
+            allows.id === null
               ? styles.inputTitleID
-              : styles.inputTitleIDNotAllowed
+              : allows.id === false
+              ? styles.inputTitleIDNotAllowed
+              : styles.inputTitleID
           }
         >
           아이디
         </label>
         <input
           type="text"
-          onChange={(e) => changeInput(e, "ID")}
+          onChange={(e) => changeInput(e, "id")}
           placeholder="6-20자의 영문,숫자를 입력해주세요"
-          value={id}
+          value={inputs.id}
           className={
-            allowID === true ? styles.inputValue : styles.inputValueNotAllowed
+            allows.id === null
+              ? styles.inputValue
+              : allows.id === false
+              ? styles.inputValueNotAllowed
+              : styles.inputValue
           }
         ></input>
-        {!allowID && (
+        {allows.id === false ? (
           <div className={styles.text}>
             양식에 준수하여 아이디를 입력해주세요.
           </div>
-        )}
+        ) : null}
       </div>
       <div className={styles.inputContainer}>
         <label
           className={
-            allowPW === true
+            allows.pw === null
               ? styles.inputTitlePW
-              : styles.inputTitlePWNotAllowed
+              : allows.pw === false
+              ? styles.inputTitlePWNotAllowed
+              : styles.inputTitlePW
           }
         >
           비밀번호
         </label>
         <input
           type="password"
-          onChange={(e) => changeInput(e, "PW")}
+          onChange={(e) => changeInput(e, "pw")}
           placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
-          value={pw}
-          className={styles.inputValue}
+          value={inputs.pw}
+          className={
+            allows.pw === null
+              ? styles.inputValue
+              : allows.pw === false
+              ? styles.inputValueNotAllowed
+              : styles.inputValue
+          }
         ></input>
-        {!allowPW && (
+        {allows.pw === false ? (
           <div className={styles.text}>
             양식에 준수하여 비밀번호를 입력해주세요.
           </div>
-        )}
+        ) : null}
       </div>
 
       <div

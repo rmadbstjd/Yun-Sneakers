@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Join.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
@@ -51,6 +51,7 @@ const Join = () => {
         } else {
           setAllows({ ...allows, [type]: true });
         }
+        setInputs({ ...inputs, [type]: e.target.value });
         break;
       case "nickname":
         regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
@@ -73,6 +74,7 @@ const Join = () => {
     }
   };
   useEffect(() => {
+    console.log("allows", allows);
     if (allows.id && allows.pw && allows.rePW && allows.nickname) {
       setIsPassed(true);
     } else {
@@ -140,7 +142,13 @@ const Join = () => {
           onChange={(e) => changeInput(e, "pw")}
           placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
           value={inputs.pw}
-          className={styles.inputValue}
+          className={
+            allows.pw === null
+              ? styles.inputValue
+              : allows.pw === false
+              ? styles.inputValueNotAllowed
+              : styles.inputValue
+          }
         ></input>
         {allows.pw === false ? (
           <div className={styles.text}>
@@ -153,19 +161,25 @@ const Join = () => {
           className={
             allows.rePW === null
               ? styles.inputTitlePW
-              : allows.PW === false
+              : allows.rePW === false
               ? styles.inputTitlePWNotAllowed
               : styles.inputTitlePW
           }
         >
-          비밀번호
+          비밀번호 확인
         </label>
         <input
           type="password"
           onChange={(e) => changeInput(e, "rePW")}
           placeholder="비밀번호를 다시 입력해주세요"
-          value={inputs.rePw}
-          className={styles.inputValue}
+          value={inputs.rePW}
+          className={
+            allows.rePW === null
+              ? styles.inputValue
+              : allows.rePW === false
+              ? styles.inputValueNotAllowed
+              : styles.inputValue
+          }
         ></input>
         {allows.rePW === false ? (
           <div className={styles.text}>비밀번호가 일치하지 않습니다.</div>
