@@ -4,9 +4,10 @@ import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 
 const Join = () => {
+  const navigate = useNavigate();
   const { user } = useStore();
-
   const [result, setResult] = useState();
+  const [isPassed, setIsPassed] = useState(false);
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",
@@ -20,14 +21,14 @@ const Join = () => {
     nickname: null,
     all: false,
   });
-  const navigate = useNavigate();
+
   let regex;
   const changeInput = (e, type) => {
     switch (type) {
       case "id":
         regex = /^[a-z]+[a-z0-9]{5,19}$/g;
         if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false, all: false });
+          setAllows({ ...allows, [type]: false });
         } else {
           setAllows({ ...allows, [type]: true });
         }
@@ -37,7 +38,7 @@ const Join = () => {
         regex =
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false, all: false });
+          setAllows({ ...allows, [type]: false });
         } else {
           setAllows({ ...allows, [type]: true });
         }
@@ -46,7 +47,7 @@ const Join = () => {
         break;
       case "rePW":
         if (e.target.value !== inputs.pw) {
-          setAllows({ ...allows, [type]: false, all: false });
+          setAllows({ ...allows, [type]: false });
         } else {
           setAllows({ ...allows, [type]: true });
         }
@@ -54,7 +55,7 @@ const Join = () => {
       case "nickname":
         regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
         if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false, all: false });
+          setAllows({ ...allows, [type]: false });
         } else {
           setAllows({ ...allows, [type]: true });
         }
@@ -65,24 +66,24 @@ const Join = () => {
     }
   };
   const clickToSubmit = async () => {
-    if (allows.all) {
+    if (isPassed) {
       const response = await user.signUp(inputs.id, inputs.pw, inputs.nickname);
 
       setResult(response);
     }
   };
   useEffect(() => {
-    console.log("allows", allows);
     if (allows.id && allows.pw && allows.rePW && allows.nickname) {
-      console.log("지옥시작");
-      setAllows({ ...allows, all: true });
+      setIsPassed(true);
+    } else {
+      setIsPassed(false);
     }
-    if (allows.all) {
+    if (isPassed) {
       if (!result) {
       }
       if (result) navigate("/login");
     }
-  }, [result, navigate, allows]);
+  }, [result, navigate, allows, isPassed]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>회원가입</div>
@@ -203,7 +204,7 @@ const Join = () => {
       </div>
       <div
         className={
-          allows.all === false ? styles.submitBtn : styles.submitBtnAllowed
+          isPassed === false ? styles.submitBtn : styles.submitBtnAllowed
         }
         onClick={clickToSubmit}
       >
