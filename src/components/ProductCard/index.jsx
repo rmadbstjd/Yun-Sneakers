@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/ProductCard.module.css";
+import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../store";
 import { HiHeart } from "react-icons/hi";

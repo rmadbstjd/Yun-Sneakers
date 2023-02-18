@@ -5,7 +5,7 @@ import { GiConverseShoe } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import styles from "./css/Navbar.module.css";
+import styles from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search";
 import useStore from "../../../store";
@@ -31,7 +31,7 @@ const Navbar = () => {
     isLoading,
     error,
     data: cartProducts,
-  } = useQuery([userId], () => cart.getCartsTest());
+  } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
     initCartCount();
     if (cartProducts) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/OrderPageNavbar.module.css";
+import styles from "./OrderPageNavbar.module.css";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
@@ -20,15 +20,15 @@ const OrderPageNavbar = () => {
     error,
     data: products,
     refetch: refetch1,
-  } = useQuery(["배송중"], () => cart.getOrderProducts());
+  } = useQuery(["배송중"], () => myPage.getOrderProducts());
   const { data: completedProducts, refetch: refetch2 } = useQuery(
     ["배송완료"],
-    () => cart.getShipComplete()
+    () => order.getShipComplete()
   );
-  const { cart } = useStore();
+  const { cart, myPage, order } = useStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
-    await cart.addShipComplete(id);
+    await order.addShipComplete(id);
     refetch1();
     refetch2();
   };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import produce from "immer";
-import styles from "./css/Modal.module.css";
+import styles from "./Modal.module.css";
 import useStore from "../../../store";
 import AddShip from "../../AddShipInfo";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
@@ -20,7 +20,7 @@ const Modal = ({
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
   const [text, setText] = useState("");
-  const { setSize, cart } = useStore();
+  const { setSize, myPage } = useStore();
 
   const closeShow = () => {
     setModalIsOpen((prev) => !prev);
@@ -77,7 +77,7 @@ const Modal = ({
     console.log("리뷰ㅜ드!", isReviewed);
     if (!isReviewed) {
       console.log("리뷰 없을 떄(리뷰 추가), orderId", product.product._id);
-      cart.addReview(
+      myPage.addReview(
         star,
         product.product.count,
         product.product.coupon,
@@ -91,7 +91,7 @@ const Modal = ({
       );
     } else if (isReviewed) {
       console.log("리뷰 있을 때(리뷰 수정)orderId", product.product.orderId);
-      cart.addReview(
+      myPage.addReview(
         star,
         product.product.count,
         product.product.coupon,

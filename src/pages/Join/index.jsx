@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/Join.module.css";
+import styles from "./Join.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 

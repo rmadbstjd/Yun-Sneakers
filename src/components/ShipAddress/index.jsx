@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/ShipAddress.module.css";
+import styles from "./ShipAddress.module.css";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../../store";
 const ShipAddress = () => {
@@ -8,7 +8,7 @@ const ShipAddress = () => {
     isLoading,
     error,
     data: address,
-  } = useQuery(["address"], () => cart.getAddress());
+  } = useQuery(["address"], () => cart.getUserAddress());
   if (!address) {
     return (
       <div className={styles.showOldBox}>

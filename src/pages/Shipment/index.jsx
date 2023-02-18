@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/Shipment.module.css";
+import styles from "./Shipment.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import AddShip from "../../components/AddShipInfo";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Shipment = () => {
   const {
     cart,
+    order,
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -23,8 +24,8 @@ const Shipment = () => {
     isLoading,
     error,
     data: products,
-  } = useQuery(["test"], () => cart.getCartsTest());
-  const { data: address } = useQuery(["address"], () => cart.getAddress());
+  } = useQuery(["test"], () => cart.getUserCarts());
+  const { data: address } = useQuery(["address"], () => cart.getUserAddress());
   const couponArr = [
     "선택안함",
     "Welcome 5% 할인 쿠폰",
@@ -190,7 +191,7 @@ const Shipment = () => {
     let dates = `${year}.${month}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
-      cart.order(
+      order.orderProducts(
         products.products[i].productId,
         dates,
         products.products[i].quantity,

@@ -1,14 +1,13 @@
 import React from "react";
-import styles from "./css/SimilarProducts.module.css";
+import styles from "./SimilarProducts.module.css";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../store";
-import { getProductInfo } from "../../api/firebase";
+
 const SimilarProducts = ({ products }) => {
   const { setCurrentProduct } = useStore();
   const navigate = useNavigate();
   const goToDetail = () => {
     setCurrentProduct(products);
-    getProductInfo(products.id);
     navigate(`/products/${products.id}`);
   };
   return (

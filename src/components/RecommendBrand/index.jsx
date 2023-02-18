@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/RecommendBrand.module.css";
+import styles from "./RecommendBrand.module.css";
 import { useNavigate } from "react-router-dom";
 import { SiNike, SiJordan, SiNewbalance, SiAdidas } from "react-icons/si";
 import { GiConverseShoe } from "react-icons/gi";

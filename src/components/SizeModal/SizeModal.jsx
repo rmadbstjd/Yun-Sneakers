@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./css/SizeModal.module.css";
+import styles from "./SizeModal.module.css";
 import useStore from "../../store";
 const SizeModal = ({ setSizeShow, size }) => {
   const [sizes, setSizes] = useState([]);

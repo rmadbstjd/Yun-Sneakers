@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/Arrow.module.css";
+import styles from "./Arrow.module.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 const Arrow = ({ currentPage, setCurrentPage }) => {
   const plusCurrent = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../../store";
-import styles from "./css/ProductDetail.module.css";
+import styles from "./ProductDetail.module.css";
 import HorizonLine from "../../components/common/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
@@ -60,17 +60,14 @@ const ProductDetail = () => {
     plusProductCount();
     setCartShow((prev) => !prev);
     setTimeout(setCartShow, 3000);
-    const test = await cart.addCart(products, size);
+    const test = await cart.addUserCart(products, size);
 
     if (test.success === false) {
       return;
     }
     plusCartCount(1);
-    //setAddProduct({id : productInfo[2],url : productInfo[3], title: productInfo[6], description:productInfo[1], category : productInfo[0], price: productInfo[4], size:size});
   };
   const clickToHeart = () => {
-    //처음 화면에 딱 왔을 때 하트 boolean
-
     if (!test) {
       setHeartShow((prev) => !prev);
       setTimeout(setHeartShow, 2000);

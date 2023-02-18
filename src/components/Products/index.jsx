@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
-import styles from "./css/Products.module.css";
+import styles from "./Products.module.css";
 import useStore from "../../store";
 import Arrow from "../Arrow";
 const Products = () => {

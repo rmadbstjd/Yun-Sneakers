@@ -11,6 +11,7 @@ const Address = () => {
   const {
     nickName,
     cart,
+    myPage,
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -51,7 +52,7 @@ const Address = () => {
       return;
     }
 
-    await cart.addShipAddress(
+    await myPage.addShipAddress(
       shipPlaceName,
       shipReceiver,
       shipPostCode,
@@ -65,7 +66,7 @@ const Address = () => {
     setShowModal(false);
   };
   const deleteAddress = async () => {
-    await cart.deleteAddress();
+    await myPage.deleteAddress();
     refetch();
   };
   const isLogin = localStorage.getItem("isLogin") === "true";

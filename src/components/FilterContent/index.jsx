@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./css/FilterContent.module.css";
+import styles from "./FilterContent.module.css";
 import { useQuery } from "@tanstack/react-query";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";

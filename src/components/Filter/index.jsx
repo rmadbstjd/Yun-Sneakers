@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/Filter.module.css";
+import styles from "./Filter.module.css";
 import { GrClose } from "react-icons/gr";
 import FilterContent from "../FilterContent";
 const Filter = ({ setHamburger, setShow }) => {

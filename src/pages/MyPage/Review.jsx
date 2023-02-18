@@ -15,18 +15,18 @@ const Review = () => {
   const [deleted, setDeleted] = useState(false);
   const [stateReview, setStateReview] = useState(true);
   const navigate = useNavigate();
-  const { nickName, cart } = useStore();
+  const { nickName, cart, order, myPage } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const {
     isLoading,
     error,
     data: product,
     refetch,
-  } = useQuery([], () => cart.getReview());
+  } = useQuery([], () => myPage.getReview());
 
   const { data: completedProducts, refetch: refetch2 } = useQuery(
     ["리뷰"],
-    () => cart.getisNotReviewdProducts()
+    () => order.getisNotReviewdProducts()
   );
   const goToPage = (item) => {
     switch (item) {
@@ -75,7 +75,7 @@ const Review = () => {
       cancelButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await cart.deleteReview(orderId);
+        await myPage.deleteReview(orderId);
         refetch();
         refetch2();
       } else {

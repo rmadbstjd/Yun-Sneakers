@@ -15,41 +15,42 @@ export default class Product {
       params: { keyword, sort, collectionName, priceOrder },
     });
     const data = response.data;
-
     return data;
   }
 
   async getProducts(currentPage) {
-    if (!currentPage) {
-      currentPage = 1;
-    }
-    return this.httpClient
-      .post("products/orderByNew", {
-        currentPage: currentPage,
-      })
-      .then((res) => res.data);
+    if (!currentPage) currentPage = 1;
+    const response = await this.httpClient.post("products/orderByNew", {
+      currentPage,
+    });
+    const data = response.data;
+    return data;
   }
+
   async getPopularProducts(currentPage) {
-    if (!currentPage) {
-      currentPage = 1;
-    }
-    return this.httpClient
-      .post("products/orderByPopular", {
-        currentPage: currentPage,
-      })
-      .then((res) => res.data);
+    if (!currentPage) currentPage = 1;
+    const response = await this.httpClient.post("products/orderByPopular", {
+      currentPage,
+    });
+    const data = response.data;
+    return data;
   }
+
   async getSimilarProducts(category, productId) {
-    return this.httpClient
-      .post("products/similar", {
-        category: category,
-        productId: productId,
-      })
-      .then((res) => res.data);
+    const response = await this.httpClient.post("products/similar", {
+      category,
+      productId,
+    });
+    const data = response.data;
+    return data;
   }
+
   async getProductInfo(id) {
-    return this.httpClient.get(`products/${id}`).then((res) => res.data);
+    const response = await this.httpClient.get(`products/${id}`);
+    const data = response.data;
+    return data;
   }
+
   async addProduct(product, image) {
     return this.httpClient.post("/products", {
       id: product.id,

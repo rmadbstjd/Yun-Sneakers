@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/CartProduct.module.css";
+import styles from "./CartProduct.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -11,10 +11,10 @@ const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
 
   useEffect(() => {
     if (boolean === "plus") {
-      cart.updateCart(item.productId, item.size, productCount);
+      cart.updateUserCart(item.productId, item.size, productCount);
       setChange((prev) => !prev);
     } else if (boolean === "minus") {
-      cart.updateCart(item.productId, item.size, productCount);
+      cart.updateUserCart(item.productId, item.size, productCount);
       setChange((prev) => !prev);
     }
   }, [productCount]);

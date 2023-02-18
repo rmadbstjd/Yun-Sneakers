@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductLikeCard from "../../components/ProductLikeCard";
-import styles from "./css/LikeProducts.module.css";
+import styles from "./LikeProducts.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 const LikeProducts = () => {

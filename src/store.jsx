@@ -6,11 +6,15 @@ import Cart from "./api/cart";
 import Product from "./api/product";
 import Like from "./api/like";
 import User from "./api/user";
+import MyPage from "./api/myPage";
+import Order from "./api/order";
 const store = (set) => ({
   cart: new Cart(),
   product: new Product(),
   like: new Like(),
   user: new User(),
+  myPage: new MyPage(),
+  order: new Order(),
   newProduct: {
     url: "",
     title: "",

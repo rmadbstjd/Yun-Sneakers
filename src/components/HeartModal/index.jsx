@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/HeartModal.module.css";
+import styles from "./HeartModal.module.css";
 const HeartModal = () => {
   return (
     <div className={styles.modal}>

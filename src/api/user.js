@@ -31,30 +31,10 @@ export default class Login {
       return true;
     }
   }
-  /*(async login(id, pw) {
-    const response = await this.httpClient.post("/login", {
-      userId: id,
-      password: pw,
-    });
-    const data = response.data.data;
-    console.log("Data", data);
-    const nickname = data.user.nickname;
-    const userId = data.user.userId;
-    return { userId, nickname };
-  }*/
 
   async loginCheck() {
     const response = await this.httpClient.get("/login/success", {});
     const data = response.data;
+    return data;
   }
-  /*axios({
-    url: "http://localhost:3001/login/success",
-    method: "GET",
-    withCredentials: "ture",
-  }).then((result) => {
-    if (result.data.user) {
-      setNickName(result.data.user.nickname);
-      setUserId(result.data.user.userId);
-    }
-  });*/
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Products from "../../components/Products";
 import ShowPopularProducts from "../../components/PopularProducts";
 import Brand from "../../components/RecommendBrand";
-import styles from "./css/Main.module.css";
+import styles from "./Main.module.css";
 
 const Main = () => {
   return (

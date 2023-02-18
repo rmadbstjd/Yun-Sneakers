@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { uploadImage } from "../../api/upload";
-import styles from "./css/NewProducts.module.css";
+import styles from "./NewProducts.module.css";
 import useStore from "../../store";
 const NewProducts = () => {
   const { newProduct, setNewProduct, setInitNewProduct, product } = useStore();

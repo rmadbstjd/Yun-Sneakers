@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/Toggle.module.css";
+import styles from "./Toggle.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";

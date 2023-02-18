@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useStore from "../../store";
 import { useQuery } from "@tanstack/react-query";
 import CartProduct from "../../components/CartProducts";
-import styles from "./css/Cart.module.css";
+import styles from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
 import HorizonLine from "../../components/common/HorizonLine";
 
@@ -25,7 +25,7 @@ const Cart = () => {
     error,
     data: cartProducts,
     refetch,
-  } = useQuery([totalPrice, change], () => cart.getCartsTest());
+  } = useQuery([totalPrice, change], () => cart.getUserCarts());
 
   useEffect(() => {
     if (cartProducts) {

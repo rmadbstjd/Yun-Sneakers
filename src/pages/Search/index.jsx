@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/SearchPage.module.css";
+import styles from "./SearchPage.module.css";
 import { useQuery } from "@tanstack/react-query";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import useStore from "../../store";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
-import styles from "./css/PopularProducts.module.css";
+import styles from "./PopularProducts.module.css";
 import useStore from "../../store";
 import Arrow from "../Arrow";
 const ShowPopularProducts = () => {

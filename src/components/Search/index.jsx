@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./css/Search.module.css";
+import styles from "./Search.module.css";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../store";

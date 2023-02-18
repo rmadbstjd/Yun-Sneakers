@@ -10,19 +10,24 @@ export default class Like {
       }
     );
   }
+
   async pushLike(productId) {
-    return this.httpClient.post(`/like/${productId}`, {
+    const response = await this.httpClient.post(`/like/${productId}`, {
       email: this.email,
     });
+    const data = response.data;
+    return data;
   }
+
   async isLike(productId) {
-    return this.httpClient
-      .get(`/like/isLike/${productId}`, {})
-      .then((res) => res.data.result);
+    const response = await this.httpClient.get(`/like/isLike/${productId}`, {});
+    const data = response.data;
+    return data;
   }
+
   async getLikeProduct() {
-    return this.httpClient
-      .get(`/like/products`, {})
-      .then((res) => res.data.result);
+    const response = await this.httpClient.get(`/like/products`, {});
+    const data = response.data;
+    return data;
   }
 }
