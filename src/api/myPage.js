@@ -24,9 +24,9 @@ export default class MyPage {
     shipPostCode,
     shipAddress,
     shipAddressDetail,
-    numInput1,
-    numInput2,
-    numInput3
+    phoneNumInput1,
+    phoneNumInput2,
+    phoneNumInput3
   ) {
     const response = await this.httpClient.post(`/address`, {
       place: shipPlaceName,
@@ -34,9 +34,9 @@ export default class MyPage {
       postCode: shipPostCode,
       address: shipAddress,
       addressDetail: shipAddressDetail,
-      phoneNumber1: String(numInput1),
-      phoneNumber2: String(numInput2),
-      phoneNumber3: String(numInput3),
+      phoneNumber1: String(phoneNumInput1),
+      phoneNumber2: String(phoneNumInput2),
+      phoneNumber3: String(phoneNumInput3),
     });
     const data = response.data;
     return data;

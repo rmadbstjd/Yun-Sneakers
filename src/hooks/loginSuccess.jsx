@@ -1,4 +1,3 @@
-import useStore from "../store";
 import axios from "axios";
 
 async function loginSuccess(setNickName, setUserId) {

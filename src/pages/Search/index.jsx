@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import styles from "./SearchPage.module.css";
 import { useQuery } from "@tanstack/react-query";
-import ProductLikeCard from "../../components/ProductLikeCard";
-import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
 import { TbArrowsUpDown } from "react-icons/tb";
+import { GiHamburgerMenu } from "react-icons/gi";
+import useStore from "../../store";
+import styles from "./SearchPage.module.css";
+import ProductLikeCard from "../../components/ProductLikeCard";
 import Toggle from "../../components/Toggle";
 import Side from "../../components/Side";
-import { GiHamburgerMenu } from "react-icons/gi";
 import Filter from "../../components/Filter";
 const SearchPage = () => {
+  const navigate = useNavigate();
   const { product, sort, initSort, recentKeyword, addRecentKeyword } =
     useStore();
   const [query] = useSearchParams();
@@ -21,10 +22,9 @@ const SearchPage = () => {
   const sessionSort = sessionStorage.getItem("sort");
   const searchQuery = query.get("keyword") || "null";
   const searchSort = sessionSort || query.get("sort") || "null";
-
   const priceOrder = query.get("priceOrder") || undefined;
-  let collectionName = query.get("collectionName") || undefined;
   const [result, setResult] = useState(searchQuery);
+  let collectionName = query.get("collectionName") || undefined;
   let {
     error,
     isLoading,
@@ -32,14 +32,13 @@ const SearchPage = () => {
   } = useQuery([searchQuery, searchSort, collectionName, priceOrder], () =>
     product.searchProducts(searchQuery, searchSort, collectionName, priceOrder)
   );
-  const navigate = useNavigate();
+
   const submitKeyword = (e) => {
     if (result.trim() === "") {
       e.preventDefault();
       return;
     }
     e.preventDefault();
-
     navigate(
       `/search?keyword=${result}&sort=${
         sessionSort || sort

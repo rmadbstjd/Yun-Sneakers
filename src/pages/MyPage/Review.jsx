@@ -6,6 +6,8 @@ import useStore from "../../store";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Modal from "../../components/common/Modal";
 import Swal from "sweetalert2";
+import convertToPrice from "../../hooks/convertToPrice";
+import MypageSide from "../../components/MypageSide";
 const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
@@ -28,24 +30,7 @@ const Review = () => {
     ["리뷰"],
     () => order.getIsNotReviewdProducts()
   );
-  const goToPage = (item) => {
-    switch (item) {
-      case "주문 내역 조회":
-        navigate("/mypage/order");
-        break;
-      case "관심 상품":
-        navigate("/mypage/wish");
-        break;
-      case "주소록":
-        navigate("/mypage/address");
-        break;
-      case "상품 리뷰":
-        navigate("/mypage/review");
-        break;
-      default:
-        break;
-    }
-  };
+
   const goToDetail = (info) => {
     navigate(`/products/${info.id}`);
   };
@@ -98,27 +83,7 @@ const Review = () => {
   if (!stateReview) {
     return (
       <div className={styles.mypageContainer}>
-        <div className={styles.sideContainer}>
-          <div className={styles.title}>마이 페이지</div>
-          {nickName && (
-            <div className={styles.nickName}>
-              {nickName}
-              <span className={styles.last}>님</span>
-            </div>
-          )}
-          {itemArr &&
-            itemArr.map((item, index) => (
-              <div
-                className={styles.item}
-                key={index}
-                onClick={() => {
-                  goToPage(item);
-                }}
-              >
-                {item}
-              </div>
-            ))}
-        </div>
+        <MypageSide />
         <div className={styles.mainContainer}>
           <div className={styles.title}>리뷰</div>
           <div className={styles.reviewContainer}>
@@ -185,10 +150,7 @@ const Review = () => {
                   <div className={styles.priceContainer}>
                     {item.product.coupon !== "선택안함" ? (
                       <div className={styles.firstPrice}>
-                        {item.info.price
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                        원
+                        {convertToPrice(item.info.price)}원 원
                       </div>
                     ) : null}
                     <div>
@@ -260,27 +222,7 @@ const Review = () => {
   } else if (stateReview) {
     return (
       <div className={styles.mypageContainer}>
-        <div className={styles.sideContainer}>
-          <div className={styles.title}>마이 페이지</div>
-          {nickName && (
-            <div className={styles.nickName}>
-              {nickName}
-              <span className={styles.last}>님</span>
-            </div>
-          )}
-          {itemArr &&
-            itemArr.map((item, index) => (
-              <div
-                className={styles.item}
-                key={index}
-                onClick={() => {
-                  goToPage(item);
-                }}
-              >
-                {item}
-              </div>
-            ))}
-        </div>
+        <MypageSide />
 
         <div className={styles.mainContainer}>
           <div className={styles.title}>리뷰</div>
@@ -354,10 +296,7 @@ const Review = () => {
                   <div className={styles.priceContainer2}>
                     {item.product.coupon !== "선택안함" ? (
                       <div className={styles.firstPrice}>
-                        {item.info.price
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                        원
+                        {convertToPrice(item.info.price)}원 원
                       </div>
                     ) : null}
                     <div>

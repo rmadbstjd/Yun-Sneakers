@@ -16,12 +16,12 @@ const AddShip = ({ type }) => {
     setShipReceiver,
     shipPostCode,
     shipAddress,
-    numInput1,
-    numInput2,
-    numInput3,
-    setNumInput1,
-    setNumInput2,
-    setNumInput3,
+    phoneNumInput1,
+    phoneNumInput2,
+    phoneNumInput3,
+    setPhoneNumInput1,
+    setPhoneNumInput2,
+    setPhoneNumInput3,
     defaultAddress,
     setDefaultAddress,
     shipAddressDetail,
@@ -71,13 +71,13 @@ const AddShip = ({ type }) => {
     const onlyNumber = value.replace(/[^0-9]/g, "");
     if (place === "first") {
       if (onlyNumber.length >= 4) return;
-      setNumInput1(onlyNumber);
+      setPhoneNumInput1(onlyNumber);
     } else if (place === "second") {
       if (onlyNumber.length >= 5) return;
-      setNumInput2(onlyNumber);
+      setPhoneNumInput2(onlyNumber);
     } else if (place === "last") {
       if (onlyNumber.length >= 5) return;
-      setNumInput3(onlyNumber);
+      setPhoneNumInput3(onlyNumber);
     }
   };
   const checkTextLength = (e) => {
@@ -96,9 +96,9 @@ const AddShip = ({ type }) => {
         shipPostCode,
         shipAddress,
         shipAddressDetail,
-        numInput1,
-        numInput2,
-        numInput3
+        phoneNumInput1,
+        phoneNumInput2,
+        phoneNumInput3
       );
     }
   }, [defaultAddress]);
@@ -158,7 +158,7 @@ const AddShip = ({ type }) => {
 
         <input
           type="text"
-          value={numInput1}
+          value={phoneNumInput1}
           onChange={(e) => checkNumber(e, "first")}
           className={styles.number}
         />
@@ -166,14 +166,14 @@ const AddShip = ({ type }) => {
         <AiOutlineMinus className={styles.minus} />
         <input
           type="text"
-          value={numInput2}
+          value={phoneNumInput2}
           onChange={(e) => checkNumber(e, "second")}
           className={styles.number}
         ></input>
         <AiOutlineMinus className={styles.minus} />
         <input
           type="text"
-          value={numInput3}
+          value={phoneNumInput3}
           onChange={(e) => checkNumber(e, "last")}
           className={styles.number}
         ></input>

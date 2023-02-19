@@ -63,7 +63,6 @@ const Navbar = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
   useEffect(() => {
-    console.log("테스트");
     window.addEventListener("scroll", updateScroll);
   }, []);
 

@@ -6,6 +6,7 @@ import useStore from "../../store";
 import Swal from "sweetalert2";
 import ShipAddress from "../../components/ShipAddress";
 import Modal from "../../components/common/Modal";
+import MypageSide from "../../components/MypageSide";
 const Address = () => {
   const navigate = useNavigate();
   const {
@@ -17,9 +18,9 @@ const Address = () => {
     shipPostCode,
     shipAddress,
     shipAddressDetail,
-    numInput1,
-    numInput2,
-    numInput3,
+    phoneNumInput1,
+    phoneNumInput2,
+    phoneNumInput3,
   } = useStore();
   const [showModal, setShowModal] = useState(false);
   const { data: address, refetch } = useQuery(["address"], () =>
@@ -44,7 +45,7 @@ const Address = () => {
         confirmButtonColor: "black",
       });
       return;
-    } else if (!numInput1 || !numInput2 || !numInput3) {
+    } else if (!phoneNumInput1 || !phoneNumInput2 || !phoneNumInput3) {
       Swal.fire({
         title: "핸드폰 번호를 입력해주세요.",
         confirmButtonColor: "black",
@@ -58,9 +59,9 @@ const Address = () => {
       shipPostCode,
       shipAddress,
       shipAddressDetail,
-      numInput1,
-      numInput2,
-      numInput3
+      phoneNumInput1,
+      phoneNumInput2,
+      phoneNumInput3
     );
     refetch();
     setShowModal(false);
@@ -70,25 +71,7 @@ const Address = () => {
     refetch();
   };
   const isLogin = localStorage.getItem("isLogin") === "true";
-  const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
-  const goToPage = (item) => {
-    switch (item) {
-      case "주문 내역 조회":
-        navigate("/mypage/order");
-        break;
-      case "관심 상품":
-        navigate("/mypage/wish");
-        break;
-      case "주소록":
-        navigate("/mypage/address");
-        break;
-      case "상품 리뷰":
-        navigate("/mypage/review");
-        break;
-      default:
-        break;
-    }
-  };
+
   useEffect(() => {
     if (isLogin === false) {
       navigate("/login");
@@ -96,27 +79,7 @@ const Address = () => {
   }, [isLogin, navigate]);
   return (
     <div className={styles.mypageContainer}>
-      <div className={styles.sideContainer}>
-        <div className={styles.title}>마이 페이지</div>
-        {nickName && (
-          <div className={styles.nickName}>
-            {nickName}
-            <span className={styles.last}>님</span>
-          </div>
-        )}
-        {itemArr &&
-          itemArr.map((item, index) => (
-            <div
-              className={styles.item}
-              key={index}
-              onClick={() => {
-                goToPage(item);
-              }}
-            >
-              {item}
-            </div>
-          ))}
-      </div>
+      <MypageSide />
       <div className={styles.mainContainer}>
         <div className={styles.title}>배송지</div>
         <div className={styles.horizonLine}></div>

@@ -7,6 +7,7 @@ import useStore from "../../store";
 import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import convertToPrice from "../../hooks/convertToPrice";
 const Shipment = () => {
   const {
     cart,
@@ -14,9 +15,9 @@ const Shipment = () => {
     shipPlaceName,
     shipReceiver,
     shipPostCode,
-    numInput1,
-    numInput2,
-    numInput3,
+    phoneNumInput1,
+    phoneNumInput2,
+    phoneNumInput3,
     card,
     setCard,
   } = useStore();
@@ -129,7 +130,6 @@ const Shipment = () => {
           title: "배송지를 입력해주세요.",
           confirmButtonColor: "black",
         });
-
         return;
       } else if (!shipReceiver) {
         Swal.fire({
@@ -143,7 +143,7 @@ const Shipment = () => {
           confirmButtonColor: "black",
         });
         return;
-      } else if (!numInput1 || !numInput2 || !numInput3) {
+      } else if (!phoneNumInput1 || !phoneNumInput2 || !phoneNumInput3) {
         Swal.fire({
           title: "핸드폰번호를 입력해주세요.",
           confirmButtonColor: "black",
@@ -160,22 +160,22 @@ const Shipment = () => {
         });
         return;
       }
-    } else {
-      if (card === "카드사를 선택해주세요.") {
-        Swal.fire({
-          title: "카드사를 선택해주세요.",
-          confirmButtonColor: "black",
-        });
-        //alert("카드사를 입력해주세요!");
-        return;
-      } else if (!checkAll) {
-        Swal.fire({
-          title: "약관 동의를 모두 선택해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      }
     }
+    if (card === "카드사를 선택해주세요.") {
+      Swal.fire({
+        title: "카드사를 선택해주세요.",
+        confirmButtonColor: "black",
+      });
+
+      return;
+    } else if (!checkAll) {
+      Swal.fire({
+        title: "약관 동의를 모두 선택해주세요.",
+        confirmButtonColor: "black",
+      });
+      return;
+    }
+
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth();
@@ -187,7 +187,7 @@ const Shipment = () => {
     if (days2 < 10) {
       days2 = "0".concat(String(days2));
     }
-    console.log("year", year, "months", month, "days2", days2);
+
     let dates = `${year}.${month}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
@@ -416,10 +416,7 @@ const Shipment = () => {
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.priceContainer}>
                     <div className={styles.price}>
-                      {item.price
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                      원 /
+                      {convertToPrice(item.price)}원/
                     </div>
                     <div className={styles.quantity}>
                       &nbsp;수량 {item.quantity}개
@@ -433,15 +430,11 @@ const Shipment = () => {
         <div className={styles.InfoContainer}>
           <div className={styles.infoPriceContainer}>
             <div>총 상품금액</div>
-            <div>
-              {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-            </div>
+            <div>{convertToPrice(price)}원</div>
           </div>
           <div className={styles.infoCouponContainer}>
             <div>쿠폰 사용</div>
-            <div>
-              - {couponPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-            </div>
+            <div>- {convertToPrice(couponPrice)}원</div>
           </div>
           <div className={styles.infoDeliveryChargeContainer}>
             <div>배송비</div>
@@ -449,12 +442,7 @@ const Shipment = () => {
           </div>
           <div className={styles.infoTotalPriceContainer}>
             <div>총 결제금액</div>
-            <div>
-              {(price - couponPrice)
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              원
-            </div>
+            <div>{convertToPrice(price - couponPrice)}원</div>
           </div>
           <div className={styles.horizonLine4}></div>
         </div>

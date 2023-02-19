@@ -5,7 +5,7 @@ import useStore from "../../store";
 import styles from "./Cart.module.css";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
-
+import convertToPrice from "../../hooks/convertToPrice";
 const Cart = () => {
   const navigate = useNavigate();
   const { cart, totalPrice, initCartCount, plusCartCount } = useStore();
@@ -97,7 +97,7 @@ const Cart = () => {
         <div className={styles.payContainer2}>
           <div className={styles.payContent1}>
             <div className={styles.count}>총 {count}개</div>
-            {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+            {convertToPrice(price)}원
           </div>
           <div className={styles.symbolContent}>
             <div className={styles.symbol}> + </div>
@@ -105,9 +105,7 @@ const Cart = () => {
             <div className={styles.symbol}> = </div>
           </div>
 
-          <div className={styles.payContent3}>
-            {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-          </div>
+          <div className={styles.payContent3}>{convertToPrice(price)}원</div>
         </div>
         <div className={styles.horizonLine2}></div>
 

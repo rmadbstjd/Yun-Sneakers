@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 import Modal from "../common/Modal";
+import convertToPrice from "../../hooks/convertToPrice";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -52,7 +53,7 @@ const OrderPageNavbar = () => {
   const goToSearch = (info) => {
     navigate(`/search?keyword=${info.category}`);
   };
-  console.log("테스트", completedProducts);
+
   useEffect(() => {}, [products, completedProducts]);
   return (
     <div>
@@ -109,10 +110,7 @@ const OrderPageNavbar = () => {
             <div className={styles.priceContainer}>
               {item.product.coupon !== "선택안함" ? (
                 <div className={styles.firstPrice}>
-                  {item.info.price
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                  원
+                  {convertToPrice(item.info.price)}원
                 </div>
               ) : null}
               <div>
@@ -192,10 +190,7 @@ const OrderPageNavbar = () => {
             <div className={styles.priceContainer}>
               {item.product.coupon !== "선택안함" ? (
                 <div className={styles.firstPrice}>
-                  {item.info.price
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                  원
+                  {convertToPrice(item.info.price)}원
                 </div>
               ) : null}
               <div>

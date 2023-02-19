@@ -3,6 +3,7 @@ import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../store";
 import { HiHeart } from "react-icons/hi";
+import convertToPrice from "../../hooks/convertToPrice";
 const ProductCard = ({ product }) => {
   const { setCurrentProduct } = useStore();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ProductCard = ({ product }) => {
           <div className={styles.name}>{product && product.name}</div>
           <div className={styles.priceContainer}>
             <div className={styles.price}>
-              {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+              {convertToPrice(product.price)}원
             </div>
             <div className={styles.heartContainer}>
               <HiHeart className={styles.heart} />
