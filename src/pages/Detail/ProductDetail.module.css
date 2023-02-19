@@ -43,14 +43,14 @@
   justify-content: space-between;
 }
 .size {
-  font-size: 13px;
+  font-size: 18px;
   color: gray;
   line-height: 400%;
 }
 .sizeBtn {
   cursor: pointer;
   font-weight: bolder;
-  line-height: 300%;
+  line-height: 460%;
 }
 
 .sizeName {
@@ -67,11 +67,12 @@
   font-weight: bolder;
   font-size: 20px;
 
-  line-height: 235%;
+  line-height: 355%;
 }
 
 .category {
   font-weight: bolder;
+  font-size: 20px;
 }
 .category2 {
   font-family: "NanumSquareNeo-Variable";
@@ -80,7 +81,7 @@
 }
 .description {
   color: gray;
-  font-size: 13px;
+  font-size: 17px;
 }
 .price {
   font-size: 20px;
@@ -97,7 +98,7 @@
 .circle {
   margin-top: 2px;
   cursor: pointer;
-  line-height: 340%;
+  line-height: 490%;
 }
 .circle:hover {
   color: red;
@@ -140,7 +141,6 @@
   margin-left: 10px;
   cursor: pointer;
   font-size: 35px;
-
   color: gray;
 }
 .heart2 {
@@ -158,10 +158,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-@media (max-width: 1480px) {
-  .shoesContainer {
-  }
-}
+
 @media (max-width: 1300px) {
   .productContainer {
     width: 71%;

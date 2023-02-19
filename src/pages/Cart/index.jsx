@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
-import useStore from "../../store";
 import { useQuery } from "@tanstack/react-query";
-import CartProduct from "../../components/CartProducts";
-import styles from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
+import useStore from "../../store";
+import styles from "./Cart.module.css";
+import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const {
-    cart,
-    totalPrice,
-
-    change,
-    initCartCount,
-    plusCartCount,
-  } = useStore();
+  const { cart, totalPrice, change, initCartCount, plusCartCount } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [price, setPrice] = useState(0);
   const [count, setCount] = useState();
   const [boolean, setBoolean] = useState(null);
-  const {
-    isLoading,
-    error,
-    data: cartProducts,
-    refetch,
-  } = useQuery([totalPrice, change], () => cart.getUserCarts());
+  const { data: cartProducts, refetch } = useQuery([totalPrice, change], () =>
+    cart.getUserCarts()
+  );
 
   useEffect(() => {
     if (cartProducts) {

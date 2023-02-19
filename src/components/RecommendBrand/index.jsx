@@ -27,9 +27,9 @@ const Brand = () => {
       <div className={styles.productsContainer}>
         <div className={styles.new}>Recommend Brand</div>
         <div className={styles.new2}>추천 브랜드</div>
-        {brandArr.map((item, index) => (
+        {brandArr.map((item) => (
           <div
-            key={index}
+            key={item.name}
             className={styles.brandContainer}
             onClick={() => {
               goToDetail(item.name);

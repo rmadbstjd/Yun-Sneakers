@@ -9,6 +9,7 @@ export default class Like {
         withCredentials: true,
       }
     );
+    this.email = localStorage.getItem("email");
   }
 
   async pushLike(productId) {

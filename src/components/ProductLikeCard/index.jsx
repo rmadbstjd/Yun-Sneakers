@@ -7,9 +7,7 @@ import { AiFillCloseSquare } from "react-icons/ai";
 
 const ProductLikeCard = ({ none, product, refetch }) => {
   const { like } = useStore();
-
   const navigate = useNavigate();
-
   const clickDelete = async (e) => {
     e.stopPropagation();
     product && (await like.pushLike(product.id));
@@ -27,7 +25,11 @@ const ProductLikeCard = ({ none, product, refetch }) => {
           onClick={clickDelete}
         />
       ) : null}
-      <img className={styles.img} src={product && product.image}></img>
+      <img
+        className={styles.img}
+        src={product && product.image}
+        alt="이미지"
+      ></img>
 
       <div className={styles.infoContainer}>
         <div className={styles.categoryContainer}>

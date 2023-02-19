@@ -14,7 +14,7 @@ import Filter from "../../components/Filter";
 const SearchPage = () => {
   const { product, sort, initSort, recentKeyword, addRecentKeyword } =
     useStore();
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const [toggle, setToggle] = useState(false);
   const [hamburger, setHamburger] = useState(false);
   const [show, setShow] = useState(true);

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
 import Cart from "./pages/Cart";
 import Main from "./pages/Main";
 import ProductDetail from "./pages/Detail";
@@ -18,10 +17,10 @@ import Review from "./pages/MyPage/Review";
 import loginSuccess from "./hooks/loginSuccess";
 import useStore from "./store";
 function App() {
-  const { userId, setNickName, setUserId, isLogin } = useStore();
+  const { setNickName, setUserId } = useStore();
   useEffect(() => {
     loginSuccess(setNickName, setUserId);
-  }, []);
+  }, [setNickName, setUserId]);
   const router = createBrowserRouter([
     {
       path: "/",

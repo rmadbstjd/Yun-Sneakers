@@ -5,50 +5,45 @@ import HorizonLine from "../../components/common/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import CartModal from "../../components/CartModal";
-import HeartModal from "../../components/HeartModal";
 import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import Modal from "../../components/common/Modal";
+import CartModal from "../../components/CartModal";
+import HeartModal from "../../components/HeartModal";
 import SimilarProducts from "../../components/SimilarProducts";
 import Swal from "sweetalert2";
-import Modal from "../../components/common/Modal";
+
 const ProductDetail = () => {
-  const [sizeShow, setSizeShow] = useState(false);
-  const [cartShow, setCartShow] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [test, setTest] = useState(null);
-  const [heartShow, setHeartShow] = useState(test);
+  const { id } = useParams();
   const {
     size,
     setInitSize,
-    setWillAddProduct,
     plusProductCount,
+    plusCartCount,
     product,
     like,
     cart,
-    plusCartCount,
   } = useStore();
-
+  const [sizeModalShow, setSizeModalShow] = useState(false);
+  const [cartModalShow, setCartModalShow] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productInfo, setProductInfo] = useState("");
-  const [addProduct] = useState({});
-  const { id } = useParams();
-  const showSize = () => {
-    setSizeShow((prev) => !prev);
-    setModalIsOpen((prev) => !prev);
-  };
+  const [heart, setHeart] = useState(null);
+  const [heartShow, setHeartShow] = useState(heart);
   const { data } = useQuery([id], () => product.getProductInfo(id));
   const products = data && data.product;
   const category = data && data.product.category;
-
-  const {
-    isLoading,
-    error,
-    data: similars,
-  } = useQuery(
+  const { data: similars } = useQuery(
     ["similar", id],
     () => product.getSimilarProducts(category, id),
     { refetchOnMount: "alaways", enabled: !!category }
   );
+
+  const showSize = () => {
+    setSizeModalShow((prev) => !prev);
+    setModalIsOpen((prev) => !prev);
+  };
+
   const clickToCart = async () => {
     if (!size) {
       Swal.fire({
@@ -57,45 +52,46 @@ const ProductDetail = () => {
       });
       return;
     }
-    plusProductCount();
-    setCartShow((prev) => !prev);
-    setTimeout(setCartShow, 3000);
-    const test = await cart.addUserCart(products, size);
 
-    if (test.success === false) {
+    plusProductCount();
+    setCartModalShow((prev) => !prev);
+    setTimeout(setCartModalShow, 3000);
+
+    const isSubmit = await cart.addUserCart(products, size);
+
+    if (isSubmit.success === false) {
       return;
     }
     plusCartCount(1);
   };
   const clickToHeart = () => {
-    if (!test) {
+    if (!heart) {
       setHeartShow((prev) => !prev);
       setTimeout(setHeartShow, 2000);
     }
   };
   const clickToLike = () => {
     like.pushLike(productInfo.product.id);
-    setTest((prev) => !prev);
+    setHeart((prev) => !prev);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       setProductInfo(await product.getProductInfo(id));
     };
-
     fetchData();
     setInitSize();
   }, [id]);
-  useEffect(() => {
-    addProduct && setWillAddProduct(addProduct);
-    //addProduct  && addOrUpdateToCart(email.split('.')[0], addProduct);
-  }, [addProduct]);
 
   useEffect(() => {
     const fetchData = async () => {
-      productInfo && setTest(await like.isLike(productInfo.product.id));
+      productInfo &&
+        setHeart(
+          (await like.isLike(productInfo.product.id).result) === true
+            ? true
+            : false
+        );
     };
-
     fetchData();
   }, [productInfo]);
 
@@ -135,7 +131,7 @@ const ProductDetail = () => {
                     <BsArrowDownCircle size={20} />
                   </div>
                 </div>
-                {sizeShow === true ? (
+                {sizeModalShow === true ? (
                   <Modal
                     isOpen={true}
                     modalIsOpen={modalIsOpen}
@@ -162,10 +158,10 @@ const ProductDetail = () => {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               원
             </div>
-            {cartShow && (
+            {cartModalShow && (
               <CartModal
-                cartShow={cartShow}
-                setCartShow={setCartShow}
+                cartShow={cartModalShow}
+                setCartShow={setCartModalShow}
               ></CartModal>
             )}
             {heartShow && (
@@ -181,16 +177,15 @@ const ProductDetail = () => {
 
               <div
                 className={
-                  test === true
+                  heart === true
                     ? styles.heartContainer2
                     : styles.heartContainer1
                 }
                 onClick={clickToHeart}
               >
-                {" "}
-                {test === false ? (
+                {heart === false ? (
                   <BsHeart className={styles.heart1} onClick={clickToLike} />
-                ) : test === true ? (
+                ) : heart === true ? (
                   <FaHeart className={styles.heart2} onClick={clickToLike} />
                 ) : null}
               </div>

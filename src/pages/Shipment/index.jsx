@@ -406,7 +406,11 @@ const Shipment = () => {
           {products &&
             products.products.map((item) => (
               <div className={styles.productContent}>
-                <img className={styles.productImage} src={item.image}></img>
+                <img
+                  className={styles.productImage}
+                  src={item.image}
+                  alt="이미지"
+                ></img>
                 <div className={styles.productInfo}>
                   <div className={styles.category}>{item.category}</div>
                   <div className={styles.name}>{item.name}</div>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import useStore from "../../store";
-
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
-  const { user, setNickName, setUserId } = useStore();
+  const { setNickName, setUserId } = useStore();
 
   const [inputs, setInputs] = useState({
     id: null,
@@ -85,16 +84,14 @@ const Login = () => {
     navigate("/join");
   };
   useEffect(() => {
-    console.log("allows", allows);
     if (allows.id && allows.pw) setAllowAll(true);
-    if (result === true) {
-      navigate("/");
-    } else if (result === false) {
+    if (result === true) navigate("/");
+    else if (result === false) {
       setShowModal((prev) => !prev);
       setTimeout(setShowModal, 2000);
       setResult(null);
     }
-  }, [result, count, allows, navigate]);
+  }, [result, count, allows]);
   return (
     <div className={styles.container}>
       {showModal && (

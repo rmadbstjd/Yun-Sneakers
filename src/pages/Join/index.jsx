@@ -4,10 +4,8 @@ import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
 
 const Join = () => {
-  const navigate = useNavigate();
   const { user } = useStore();
-  const [result, setResult] = useState();
-  const [isPassed, setIsPassed] = useState(false);
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",
@@ -21,6 +19,8 @@ const Join = () => {
     nickname: null,
     all: false,
   });
+  const [result, setResult] = useState();
+  const [isPassed, setIsPassed] = useState(false);
 
   let regex;
   const changeInput = (e, type) => {
@@ -34,6 +34,7 @@ const Join = () => {
         }
         setInputs({ ...inputs, [type]: e.target.value });
         break;
+
       case "pw":
         regex =
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
@@ -45,6 +46,7 @@ const Join = () => {
         setInputs({ ...inputs, [type]: e.target.value });
 
         break;
+
       case "rePW":
         if (e.target.value !== inputs.pw) {
           setAllows({ ...allows, [type]: false });
@@ -53,6 +55,7 @@ const Join = () => {
         }
         setInputs({ ...inputs, [type]: e.target.value });
         break;
+
       case "nickname":
         regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
         if (!regex.test(e.target.value)) {
@@ -74,18 +77,15 @@ const Join = () => {
     }
   };
   useEffect(() => {
-    console.log("allows", allows);
     if (allows.id && allows.pw && allows.rePW && allows.nickname) {
       setIsPassed(true);
     } else {
       setIsPassed(false);
     }
     if (isPassed) {
-      if (!result) {
-      }
       if (result) navigate("/login");
     }
-  }, [result, navigate, allows, isPassed]);
+  }, [result, allows, isPassed]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>회원가입</div>

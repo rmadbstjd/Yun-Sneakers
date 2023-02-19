@@ -4,6 +4,7 @@ import ProductLikeCard from "../../components/ProductLikeCard";
 import styles from "./LikeProducts.module.css";
 import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
+
 const LikeProducts = () => {
   const navigate = useNavigate();
   const goToMain = () => {
@@ -28,29 +29,29 @@ const LikeProducts = () => {
     if (product) {
       setCount(product.length);
     }
-  }, [product, isLogin, navigate]);
+    product && console.log("product", product);
+  }, [product, isLogin]);
 
   return (
     <div className={styles.container}>
       <div className={styles.productsContainer}>
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-
         <div className={styles.contentContainer}>
           <div className={styles.title}>좋아요를 누른 상품 ♥ ( {count} )</div>
           <div className={styles.horizonLine2}></div>
         </div>
 
         {product &&
-          product.map((product) =>
-            product.map((product) => (
+          product.map((item) =>
+            item.map((product) => (
               <ProductLikeCard
                 product={product}
-                key={product.id}
                 refetch={refetch}
-              />
+              ></ProductLikeCard>
             ))
           )}
+
         {product && product.length === 0 ? (
           <div className={styles.noneProductContainer}>
             <div className={styles.noneProduct}>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { uploadImage } from "../../api/upload";
 import styles from "./NewProducts.module.css";
 import useStore from "../../store";
@@ -7,7 +7,7 @@ const NewProducts = () => {
   const { newProduct, setNewProduct, setInitNewProduct, product } = useStore();
   const [file, setFile] = useState("");
   const [count, setCount] = useState(0);
-  let isAdmin = localStorage.getItem("admin");
+
   const navigate = useNavigate();
 
   const onChange = (e) => {

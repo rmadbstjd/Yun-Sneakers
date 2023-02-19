@@ -9,6 +9,7 @@ export default class Login {
         withCredentials: true,
       }
     );
+    this.email = localStorage.getItem("email");
   }
 
   async getSession() {

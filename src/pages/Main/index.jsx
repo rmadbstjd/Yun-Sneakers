@@ -1,6 +1,6 @@
 import React from "react";
-import Products from "../../components/Products";
-import ShowPopularProducts from "../../components/PopularProducts";
+import NewProducts from "../../components/NewProducts";
+import PopularProducts from "../../components/PopularProducts";
 import Brand from "../../components/RecommendBrand";
 import styles from "./Main.module.css";
 
@@ -15,15 +15,15 @@ const Main = () => {
           }}
           className={styles.img}
         >
-          Premium Shoes for you
+          Premium Shoes for you !
         </div>
       </div>
 
       <div className={styles.productsContainer}>
         <div className={styles.productContainer}>
           <Brand />
-          <ShowPopularProducts />
-          <Products />
+          <PopularProducts />
+          <NewProducts />
         </div>
       </div>
     </div>

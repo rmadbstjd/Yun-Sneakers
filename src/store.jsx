@@ -1,7 +1,6 @@
 import create from "zustand";
 import produce from "immer";
-import { devtools, persist } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
+import { devtools } from "zustand/middleware";
 import Cart from "./api/cart";
 import Product from "./api/product";
 import Like from "./api/like";
@@ -69,30 +68,7 @@ const store = (set) => ({
   setInitSize: () => set((state) => ({ size: "" })),
   last: false,
   setLast: (boolean) => set((state) => ({ last: boolean })),
-  willAddProduct: {
-    id: "",
-    url: "",
-    title: "",
-    price: "",
-    category: "",
-    description: "",
-    size: "",
-  },
-  test: null,
-  setWillAddProduct: (product) =>
-    set(
-      produce((draft) => {
-        draft.willAddProduct = {
-          id: product.id,
-          url: product.url,
-          title: product.title,
-          price: product.price,
-          category: product.category,
-          description: product.description,
-          size: product.size,
-        };
-      })
-    ),
+
   totalCount: 0,
   initTotalCount: (init) => set((state) => ({ totalCount: init })),
   plusTotalCount: () => set((state) => ({ totalCount: state.totalCount + 1 })),
