@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
-import styles from "./CartProduct.module.css";
-import useStore from "../../store";
 import { useNavigate } from "react-router-dom";
+import useStore from "../../store";
+import styles from "./CartProduct.module.css";
 import Swal from "sweetalert2";
-const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
-  const [productCount, setProductCount] = useState(item.quantity);
-  const { cart, setChange } = useStore();
-
+const CartProduct = ({ item, refetch }) => {
+  const { cart } = useStore();
   const navigate = useNavigate();
+  const [productCount, setProductCount] = useState(item.quantity);
 
-  useEffect(() => {
-    if (boolean === "plus") {
-      cart.updateUserCart(item.productId, item.size, productCount);
-      setChange((prev) => !prev);
-    } else if (boolean === "minus") {
-      cart.updateUserCart(item.productId, item.size, productCount);
-      setChange((prev) => !prev);
-    }
-  }, [productCount]);
-  const plus = () => {
+  const plus = async () => {
     if (productCount >= 10) {
       Swal.fire({
         title: "최대 구매 갯수는 10개입니다.",
@@ -27,14 +17,16 @@ const CartProduct = ({ item, boolean, setBoolean, refetch }) => {
       return;
     }
     setProductCount((prev) => prev + 1);
-    setBoolean("plus");
+    await cart.updateUserCart(item.productId, item.size, productCount + 1);
+    refetch();
   };
-  const minus = () => {
+  const minus = async () => {
     if (productCount <= 1) {
       return;
     }
     setProductCount((prev) => prev - 1);
-    setBoolean("minus");
+    await cart.updateUserCart(item.productId, item.size, productCount - 1);
+    refetch();
   };
   const deleteProduct = async () => {
     await cart.deleteUserCart(item.productId, item.size);

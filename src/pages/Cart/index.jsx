@@ -8,12 +8,12 @@ import HorizonLine from "../../components/common/HorizonLine";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { cart, totalPrice, change, initCartCount, plusCartCount } = useStore();
+  const { cart, totalPrice, initCartCount, plusCartCount } = useStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [price, setPrice] = useState(0);
   const [count, setCount] = useState();
-  const [boolean, setBoolean] = useState(null);
-  const { data: cartProducts, refetch } = useQuery([totalPrice, change], () =>
+
+  const { data: cartProducts, refetch } = useQuery(["totalPrice"], () =>
     cart.getUserCarts()
   );
 
@@ -82,8 +82,6 @@ const Cart = () => {
             <CartProduct
               key={`${item.productId}+${item.size}`}
               item={item}
-              boolean={boolean}
-              setBoolean={setBoolean}
               refetch={refetch}
             />
           ))}

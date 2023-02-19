@@ -100,11 +100,9 @@ const store = (set) => ({
     set((state) => ({ cartCount: state.cartCount + count })),
   minusCartCount: () => set((state) => ({ cartCount: state.cartCount - 1 })),
   deletes: false,
-  change: false,
   likeDeletes: 0,
   setLikeDeletes: () =>
     set((state) => ({ likeDeletes: state.likeDeletes + 1 })),
-  setChange: () => set((state) => ({ change: !state.change })),
   setDeletes: () => set((state) => ({ deletes: !state.deletes })),
   text: "",
   setText: (keyword) => set((state) => ({ text: keyword })),
