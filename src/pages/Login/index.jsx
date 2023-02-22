@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Login.module.css";
 import userInfoStore from "../../store/userInfoStore";
 import axios from "axios";
-
+import { history } from "../../hooks/history";
 const Login = ({ isAuthenticated }) => {
+  const location = useLocation();
   window.history.forward();
   const { setNickName, setUserId } = userInfoStore();
-
   const [inputs, setInputs] = useState({
     id: null,
     pw: null,
@@ -88,6 +88,7 @@ const Login = ({ isAuthenticated }) => {
   const goToMainPage = () => {
     navigate("/");
   };
+
   useEffect(() => {
     if (isAuthenticated) navigate("/");
     if (allows.id && allows.pw) setAllowAll(true);
@@ -99,6 +100,19 @@ const Login = ({ isAuthenticated }) => {
     }
   }, [result, count, allows, isAuthenticated, navigate]);
 
+  useEffect(() => {
+    const listenBackEvent = () => {
+      if (location.pathname === "/login") navigate("/");
+    };
+
+    const unlistenHistoryEvent = history.listen(({ action }) => {
+      if (action === "POP") {
+        listenBackEvent();
+      }
+    });
+
+    return unlistenHistoryEvent;
+  }, [navigate, location.pathname]);
   return (
     <div className={styles.container}>
       {showModal && (

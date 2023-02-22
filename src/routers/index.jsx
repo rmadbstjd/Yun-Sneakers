@@ -34,7 +34,7 @@ const Router = () => {
         <Route
           path="/mypage/*"
           element={
-            <AuthenticateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticateRoute>
               <MyPageRoute />
             </AuthenticateRoute>
           }
@@ -43,7 +43,7 @@ const Router = () => {
         <Route
           path="/products"
           element={
-            <AuthenticateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticateRoute>
               <Like />
             </AuthenticateRoute>
           }
@@ -51,7 +51,7 @@ const Router = () => {
         <Route
           path="/cart"
           element={
-            <AuthenticateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticateRoute>
               <Cart />
             </AuthenticateRoute>
           }
@@ -59,7 +59,7 @@ const Router = () => {
         <Route
           path="/shipment"
           element={
-            <AuthenticateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticateRoute>
               <Shipment />
             </AuthenticateRoute>
           }
