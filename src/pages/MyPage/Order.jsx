@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Order.module.css";
 import OrderPageNavbar from "../../components/OrderPageNavbar";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import MypageSide from "../../components/MypageSide";
 const Order = () => {
   const navigate = useNavigate();
-  const { nickName } = useStore();
+  const { nickName } = userInfoStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
 
   useEffect(() => {

@@ -23,14 +23,6 @@ export default class Cart {
     }
   }
 
-  async getUserAddress() {
-    const response = await this.httpClient.get("/address", {});
-    const data = response.data;
-
-    if (data) return data;
-    else return false;
-  }
-
   async updateUserCart(productId, size, quantity) {
     const response = await this.httpClient.put(`/carts/${productId}`, {
       quantity: quantity,

@@ -8,20 +8,16 @@ import { FaUser } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search";
-import useStore from "../../../store";
+import userInfoStore from "../../../store/userInfoStore";
+import cartStore from "../../../store/cartStore";
+import searchStore from "./../../../store/searchStore";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 const Navbar = () => {
   const navigate = useNavigate();
-  const {
-    cartCount,
-    initCartCount,
-    plusCartCount,
-    setText,
-    cart,
-    nickName,
-    userId,
-  } = useStore();
+  const { cart, nickName, userId } = userInfoStore();
+  const { cartCount, initCartCount, plusCartCount } = cartStore();
+  const { setSearchWord } = searchStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -56,7 +52,7 @@ const Navbar = () => {
     });
   };
   const clickToSearch = () => {
-    setText(null);
+    setSearchWord(null);
     setShowSearch((prev) => !prev);
   };
   const updateScroll = () => {

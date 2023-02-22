@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Join.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 
 const Join = () => {
-  const { user } = useStore();
+  const { user } = userInfoStore();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     id: "",

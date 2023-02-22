@@ -15,9 +15,9 @@ import Wish from "./pages/MyPage/Wish";
 import Address from "./pages/MyPage/Address";
 import Review from "./pages/MyPage/Review";
 import loginSuccess from "./hooks/loginSuccess";
-import useStore from "./store";
+import userInfoStore from "./store/userInfoStore";
 function App() {
-  const { setNickName, setUserId } = useStore();
+  const { setNickName, setUserId } = userInfoStore();
   useEffect(() => {
     loginSuccess(setNickName, setUserId);
   }, [setNickName, setUserId]);

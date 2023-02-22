@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
+import cartStore from "../../store/cartStore";
+import productStore from "../../store/productStore";
 import styles from "./ProductDetail.module.css";
 import HorizonLine from "../../components/common/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
@@ -15,19 +17,14 @@ import Swal from "sweetalert2";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const {
-    size,
-    setInitSize,
-    plusProductCount,
-    plusCartCount,
-    product,
-    like,
-    cart,
-  } = useStore();
+  const { product, like, cart } = userInfoStore();
+  const { plusCartCount } = cartStore();
+  const { selectSize, setInitSize } = productStore();
   const [sizeModalShow, setSizeModalShow] = useState(false);
   const [cartModalShow, setCartModalShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productInfo, setProductInfo] = useState("");
+
   const [heart, setHeart] = useState(null);
   const [heartShow, setHeartShow] = useState(heart);
   const { data } = useQuery([id], () => product.getProductInfo(id));
@@ -45,7 +42,7 @@ const ProductDetail = () => {
   };
 
   const clickToCart = async () => {
-    if (!size) {
+    if (!selectSize) {
       Swal.fire({
         title: "사이즈를 선택해주세요.",
         confirmButtonColor: "black",
@@ -53,11 +50,10 @@ const ProductDetail = () => {
       return;
     }
 
-    plusProductCount();
     setCartModalShow((prev) => !prev);
     setTimeout(setCartModalShow, 3000);
 
-    const isSubmit = await cart.addUserCart(products, size);
+    const isSubmit = await cart.addUserCart(products, selectSize);
 
     if (isSubmit.success === false) {
       return;
@@ -122,10 +118,10 @@ const ProductDetail = () => {
               <div className={styles.sizeContainer}>
                 <div className={styles.size}>사이즈</div>
                 <div className={styles.test} onClick={showSize}>
-                  {size === "" ? (
+                  {selectSize === "" ? (
                     <div className={styles.sizeBtn}>사이즈</div>
                   ) : (
-                    <div className={styles.sizeNum}>{size}</div>
+                    <div className={styles.sizeNum}>{selectSize}</div>
                   )}
                   <div className={styles.circle}>
                     <BsArrowDownCircle size={20} />

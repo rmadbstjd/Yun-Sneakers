@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Side.module.css";
 import { useQuery } from "@tanstack/react-query";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
+import searchStore from "../../store/searchStore";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useSearchParams } from "react-router-dom";
 const Side = () => {
   const isMounted = useRef(false);
   const [query] = useSearchParams();
-  const { product, sort } = useStore();
+  const { product } = userInfoStore();
+  const { sort } = searchStore();
   const {
     isLoading,
     error,

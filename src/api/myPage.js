@@ -41,7 +41,13 @@ export default class MyPage {
     const data = response.data;
     return data;
   }
+  async getUserAddress() {
+    const response = await this.httpClient.get("/address", {});
+    const data = response.data;
 
+    if (data) return data;
+    else return false;
+  }
   async deleteUserAddress() {
     const response = await this.httpClient.delete(`/address`, {});
     const data = response.data;

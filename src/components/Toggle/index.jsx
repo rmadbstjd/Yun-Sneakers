@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Toggle.module.css";
-import useStore from "../../store";
+
+import searchStore from "../../store/searchStore";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 const Toggle = ({ setToggle }) => {
   const navigate = useNavigate();
-  const { setSortNew, setSortPopular, text } = useStore();
+  const { setSortNew, setSortPopular } = searchStore();
   const [query] = useSearchParams();
 
   const searchQuery = query.get("keyword") || "null";

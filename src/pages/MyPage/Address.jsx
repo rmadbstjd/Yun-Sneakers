@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "./css/Address.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import Swal from "sweetalert2";
 import ShipAddress from "../../components/ShipAddress";
 import Modal from "../../components/common/Modal";
@@ -10,7 +10,6 @@ import MypageSide from "../../components/MypageSide";
 const Address = () => {
   const navigate = useNavigate();
   const {
-    nickName,
     cart,
     myPage,
     shipPlaceName,
@@ -21,10 +20,10 @@ const Address = () => {
     phoneNumInput1,
     phoneNumInput2,
     phoneNumInput3,
-  } = useStore();
+  } = userInfoStore();
   const [showModal, setShowModal] = useState(false);
   const { data: address, refetch } = useQuery(["address"], () =>
-    cart.getAddress()
+    myPage.getUserAddress()
   );
   const submitBtn = async () => {
     if (!shipPlaceName) {
@@ -51,6 +50,24 @@ const Address = () => {
         confirmButtonColor: "black",
       });
       return;
+    } else if (phoneNumInput1.length !== 3) {
+      Swal.fire({
+        title: "핸드폰 번호를 정확하게 입력해주세요.",
+        confirmButtonColor: "black",
+      });
+      return;
+    } else if (phoneNumInput2.length !== 4) {
+      Swal.fire({
+        title: "핸드폰 번호를 정확하게 입력해주세요.",
+        confirmButtonColor: "black",
+      });
+      return;
+    } else if (phoneNumInput3.length !== 4) {
+      Swal.fire({
+        title: "핸드폰 번호를 정확하게 입력해주세요.",
+        confirmButtonColor: "black",
+      });
+      return;
     }
 
     await myPage.addUserAddress(
@@ -63,7 +80,9 @@ const Address = () => {
       phoneNumInput2,
       phoneNumInput3
     );
+
     refetch();
+
     setShowModal(false);
   };
   const deleteAddress = async () => {
@@ -127,6 +146,7 @@ const Address = () => {
               modalIsOpen={showModal}
               setModalIsOpen={setShowModal}
               submitBtn={submitBtn}
+              refetch={refetch}
               type={"ship"}
             ></Modal>
           ) : null}

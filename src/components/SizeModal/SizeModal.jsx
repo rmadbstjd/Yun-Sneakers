@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 import styles from "./SizeModal.module.css";
 import useStore from "../../store";
 const SizeModal = ({ setSizeShow, size }) => {
   const [sizes, setSizes] = useState([]);
+  const { setSize } = useStore();
   useEffect(() => {
     setSizes(size.split(","));
   }, []);
-  const { setSize } = useStore();
+
   const closeShow = () => {
     setSizeShow((prev) => !prev);
   };
@@ -43,4 +44,4 @@ const SizeModal = ({ setSizeShow, size }) => {
   );
 };
 
-export default SizeModal;
+export default SizeModal;*/

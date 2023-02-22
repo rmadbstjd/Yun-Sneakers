@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadImage } from "../../api/upload";
 import styles from "./NewProducts.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
+import { useImmer } from "use-immer";
 const NewProducts = () => {
-  const { newProduct, setNewProduct, setInitNewProduct, product } = useStore();
+  const { product } = userInfoStore();
+  const [newProducts, setNewProducts] = useImmer({
+    url: "",
+    title: "",
+    price: "",
+    category: "",
+    description: "",
+    size: "",
+  });
   const [file, setFile] = useState("");
   const [count, setCount] = useState(0);
 
@@ -21,17 +30,20 @@ const NewProducts = () => {
     setCount(1);
     const url = await uploadImage(file);
 
-    product.addProduct(newProduct, url);
+    product.addProduct(newProducts, url);
   };
   const onCancel = () => {
     setCount(0);
-    setInitNewProduct();
+
     navigate("/");
   };
   const onChangeProduct = (e, column) => {
     const row = e.target.value;
-    setNewProduct(column, row);
+    setNewProducts((product) => {
+      product[column] = row;
+    });
   };
+  console.log("테스트", newProducts);
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -69,7 +81,7 @@ const NewProducts = () => {
             placeholder={
               count === 0
                 ? "제품명"
-                : newProduct.title === true
+                : newProducts.title === true
                 ? "제품명"
                 : "제품명을 입력해주세요."
             }
@@ -77,7 +89,7 @@ const NewProducts = () => {
             className={
               count === 0
                 ? styles.input
-                : newProduct.title === true
+                : newProducts.title === true
                 ? styles.input
                 : styles.input2
             }
@@ -89,7 +101,7 @@ const NewProducts = () => {
             placeholder={
               count === 0
                 ? "가격"
-                : newProduct.price === true
+                : newProducts.price === true
                 ? "가격"
                 : "가격을 입력해주세요."
             }
@@ -97,7 +109,7 @@ const NewProducts = () => {
             className={
               count === 0
                 ? styles.input
-                : newProduct.price === true
+                : newProducts.price === true
                 ? styles.input
                 : styles.input2
             }
@@ -109,7 +121,7 @@ const NewProducts = () => {
             placeholder={
               count === 0
                 ? "카테고리"
-                : newProduct.category === true
+                : newProducts.category === true
                 ? "카테고리"
                 : "카테고리를 입력해주세요."
             }
@@ -117,7 +129,7 @@ const NewProducts = () => {
             className={
               count === 0
                 ? styles.input
-                : newProduct.category === true
+                : newProducts.category === true
                 ? styles.input
                 : styles.input2
             }
@@ -129,7 +141,7 @@ const NewProducts = () => {
             placeholder={
               count === 0
                 ? "설명"
-                : newProduct.description === true
+                : newProducts.description === true
                 ? "설명"
                 : "설명을 입력해주세요."
             }
@@ -137,7 +149,7 @@ const NewProducts = () => {
             className={
               count === 0
                 ? styles.input
-                : newProduct.description === true
+                : newProducts.description === true
                 ? styles.input
                 : styles.input2
             }
@@ -150,7 +162,7 @@ const NewProducts = () => {
             placeholder={
               count === 0
                 ? '"사이즈(쉼표로 구분해주세요)"'
-                : newProduct.size === true
+                : newProducts.size === true
                 ? '"사이즈(쉼표로 구분해주세요)"'
                 : "사이즈를 입력해주세요"
             }
@@ -158,7 +170,7 @@ const NewProducts = () => {
             className={
               count === 0
                 ? styles.input
-                : newProduct.price === true
+                : NewProducts.price === true
                 ? styles.input
                 : styles.input2
             }

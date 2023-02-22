@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./css/Review.module.css";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Modal from "../../components/common/Modal";
 import Swal from "sweetalert2";
@@ -17,7 +17,7 @@ const Review = () => {
   const [deleted, setDeleted] = useState(false);
   const [stateReview, setStateReview] = useState(true);
   const navigate = useNavigate();
-  const { nickName, cart, order, myPage } = useStore();
+  const { order, myPage } = userInfoStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const {
     isLoading,

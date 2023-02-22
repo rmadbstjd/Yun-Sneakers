@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./ProductLikeCard.module.css";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { HiHeart } from "react-icons/hi";
 import { AiFillCloseSquare } from "react-icons/ai";
 import convertToPrice from "../../hooks/convertToPrice";
 const ProductLikeCard = ({ none, product, refetch }) => {
-  const { like } = useStore();
+  const { like } = userInfoStore();
   const navigate = useNavigate();
   const clickDelete = async (e) => {
     e.stopPropagation();

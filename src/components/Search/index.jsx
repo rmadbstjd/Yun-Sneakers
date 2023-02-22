@@ -2,31 +2,33 @@ import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
+import searchStore from "../../store/searchStore";
 import { IoMdCloseCircle } from "react-icons/io";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
 const Search = ({ setShowSearch }) => {
   const navigate = useNavigate();
+  const {} = userInfoStore();
   const {
-    text,
-    setText,
+    searchWord,
+    setSearchWord,
     recentKeyword,
     addRecentKeyword,
     setRecentKeyword,
     allDeleteRecentKeyword,
-  } = useStore();
+  } = searchStore();
   const [showKeyword, setShowKeyword] = useState(recentKeyword || []);
   const submitKeyword = async (e) => {
-    if (text.trim() === "") {
+    if (searchWord.trim() === "") {
       e.preventDefault();
       return;
     }
 
     sessionStorage.clear();
-    navigate(`/search?keyword=${text}`);
+    navigate(`/search?keyword=${searchWord}`);
     setShowSearch((prev) => !prev);
-    if (!recentKeyword.includes(text)) {
-      addRecentKeyword(text);
+    if (!recentKeyword.includes(searchWord)) {
+      addRecentKeyword(searchWord);
     }
   };
   const goToSearchPage = (item) => {
@@ -38,10 +40,10 @@ const Search = ({ setShowSearch }) => {
   const closeSearch = () => {
     setShowSearch((prev) => !prev);
 
-    setText("");
+    setSearchWord("");
   };
   const handleChange = (e) => {
-    setText(e.target.value);
+    setSearchWord(e.target.value);
   };
   const deleteAllRecentKeyword = () => {
     localStorage.removeItem("recentKeyword");
@@ -65,7 +67,7 @@ const Search = ({ setShowSearch }) => {
         >
           <input
             type="text"
-            value={text}
+            value={searchWord}
             placeholder="브랜드명, 모델명"
             onChange={(e) => handleChange(e)}
             className={styles.searchBar}
@@ -85,7 +87,7 @@ const Search = ({ setShowSearch }) => {
         <div className={styles.keywordContainer}>
           {showKeyword &&
             showKeyword.map((item) => (
-              <div className={styles.keywordContent}>
+              <div className={styles.keywordContent} keyword={item}>
                 <div
                   className={styles.keyword}
                   onClick={() => goToSearchPage(item)}
@@ -108,6 +110,7 @@ const Search = ({ setShowSearch }) => {
                 navigate(`/search?keyword=${item}`);
                 setShowSearch(false);
               }}
+              key={item}
             >
               {item}{" "}
             </div>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import styles from "./CartProduct.module.css";
 import Swal from "sweetalert2";
 const CartProduct = ({ item, refetch }) => {
-  const { cart } = useStore();
+  const { cart } = userInfoStore();
   const navigate = useNavigate();
   const [productCount, setProductCount] = useState(item.quantity);
 

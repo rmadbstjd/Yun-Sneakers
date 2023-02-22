@@ -3,7 +3,7 @@ import styles from "./Shipment.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import AddShip from "../../components/AddShipInfo";
 import { useQuery } from "@tanstack/react-query";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import convertToPrice from "../../hooks/convertToPrice";
 const Shipment = () => {
   const {
     cart,
+    myPage,
     order,
     shipPlaceName,
     shipReceiver,
@@ -20,13 +21,15 @@ const Shipment = () => {
     phoneNumInput3,
     card,
     setCard,
-  } = useStore();
+  } = userInfoStore();
   const {
     isLoading,
     error,
     data: products,
   } = useQuery(["test"], () => cart.getUserCarts());
-  const { data: address } = useQuery(["address"], () => cart.getUserAddress());
+  const { data: address } = useQuery(["address"], () =>
+    myPage.getUserAddress()
+  );
   const couponArr = [
     "선택안함",
     "Welcome 5% 할인 쿠폰",
@@ -146,6 +149,24 @@ const Shipment = () => {
       } else if (!phoneNumInput1 || !phoneNumInput2 || !phoneNumInput3) {
         Swal.fire({
           title: "핸드폰번호를 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (phoneNumInput1.length !== 3) {
+        Swal.fire({
+          title: "핸드폰 번호를 정확하게 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (phoneNumInput2.length !== 4) {
+        Swal.fire({
+          title: "핸드폰 번호를 정확하게 입력해주세요.",
+          confirmButtonColor: "black",
+        });
+        return;
+      } else if (phoneNumInput3.length !== 4) {
+        Swal.fire({
+          title: "핸드폰 번호를 정확하게 입력해주세요.",
           confirmButtonColor: "black",
         });
         return;

@@ -1,13 +1,10 @@
 import React from "react";
 import styles from "./SimilarProducts.module.css";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store";
 
 const SimilarProducts = ({ products }) => {
-  const { setCurrentProduct } = useStore();
   const navigate = useNavigate();
   const goToDetail = () => {
-    setCurrentProduct(products);
     navigate(`/products/${products.id}`);
   };
   return (

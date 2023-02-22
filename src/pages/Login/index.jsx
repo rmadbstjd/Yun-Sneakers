@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import axios from "axios";
 
 const Login = () => {
-  const { setNickName, setUserId } = useStore();
+  const { setNickName, setUserId } = userInfoStore();
 
   const [inputs, setInputs] = useState({
     id: null,

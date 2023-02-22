@@ -1,9 +1,9 @@
 import React from "react";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import styles from "./MypageSide.module.css";
 const MypageSide = () => {
-  const { nickName } = useStore();
+  const { nickName } = userInfoStore();
   const navigate = useNavigate();
   const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
 

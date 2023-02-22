@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./OrderPageNavbar.module.css";
 import { useQuery } from "@tanstack/react-query";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import Modal from "../common/Modal";
 import convertToPrice from "../../hooks/convertToPrice";
@@ -26,7 +26,7 @@ const OrderPageNavbar = () => {
     ["배송완료"],
     () => order.getShipIsCompleted()
   );
-  const { cart, myPage, order } = useStore();
+  const { cart, myPage, order } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
     await order.completeShipment(id);

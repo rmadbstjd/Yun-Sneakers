@@ -5,7 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
 import { TbArrowsUpDown } from "react-icons/tb";
 import { GiHamburgerMenu } from "react-icons/gi";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
+import searchStore from "../../store/searchStore";
 import styles from "./SearchPage.module.css";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import Toggle from "../../components/Toggle";
@@ -13,8 +14,9 @@ import Side from "../../components/Side";
 import Filter from "../../components/Filter";
 const SearchPage = () => {
   const navigate = useNavigate();
-  const { product, sort, initSort, recentKeyword, addRecentKeyword } =
-    useStore();
+  const { product } = userInfoStore();
+  const { sort, initSort } = searchStore();
+  const { recentKeyword, addRecentKeyword } = searchStore();
   const [query] = useSearchParams();
   const [toggle, setToggle] = useState(false);
   const [hamburger, setHamburger] = useState(false);

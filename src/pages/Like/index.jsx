@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import styles from "./LikeProducts.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 
 const LikeProducts = () => {
@@ -10,7 +10,7 @@ const LikeProducts = () => {
   const goToMain = () => {
     navigate("/");
   };
-  const { like } = useStore();
+  const { like } = userInfoStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [count, setCount] = useState(0);
   const {

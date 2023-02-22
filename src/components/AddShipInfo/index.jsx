@@ -3,13 +3,12 @@ import styles from "./AddShip.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import { AiOutlineMinus } from "react-icons/ai";
 const AddShip = ({ type }) => {
-  console.log("AddShip", type);
   let regex;
   const {
-    cart,
+    myPage,
     shipPlaceName,
     setShipPlaceName,
     shipReceiver,
@@ -26,7 +25,7 @@ const AddShip = ({ type }) => {
     setDefaultAddress,
     shipAddressDetail,
     setShipAddressDetail,
-  } = useStore();
+  } = userInfoStore();
   const requestArr = [
     "배송시 요청사항을 선택해 주세요",
     "부재시 문앞에 놓아주세요",
@@ -90,7 +89,7 @@ const AddShip = ({ type }) => {
   };
   useEffect(() => {
     if (defaultAddress) {
-      cart.addUserAddress(
+      myPage.addUserAddress(
         shipPlaceName,
         shipReceiver,
         shipPostCode,

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import produce from "immer";
 import styles from "./Modal.module.css";
-import useStore from "../../../store";
+import userInfoStore from "../../../store/userInfoStore";
+import productStore from "../../../store/productStore";
 import AddShip from "../../AddShipInfo";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
@@ -15,19 +16,20 @@ const Modal = ({
   submitBtn,
   product,
   isReviewed,
+  refetch,
 }) => {
   const [sizes, setSizes] = useState([]);
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
   const [text, setText] = useState("");
-  const { setSize, myPage } = useStore();
-
+  const { myPage } = userInfoStore();
+  const { setSelectSize } = productStore();
   const closeShow = () => {
     setModalIsOpen((prev) => !prev);
   };
 
   const clickSize = (item) => {
-    setSize(item);
+    setSelectSize(item);
     setModalIsOpen((prev) => !prev);
   };
 

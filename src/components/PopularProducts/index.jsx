@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
 import styles from "./PopularProducts.module.css";
-import useStore from "../../store";
+import userInfoStore from "../../store/userInfoStore";
 import Arrow from "../Arrow";
+
 const ShowPopularProducts = () => {
-  const { product } = useStore();
+  const { product } = userInfoStore();
   const [currentPage, setCurrentPage] = useState(1);
   const {
     isLoading,

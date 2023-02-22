@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../store";
 import { HiHeart } from "react-icons/hi";
 import convertToPrice from "../../hooks/convertToPrice";
+
 const ProductCard = ({ product }) => {
-  const { setCurrentProduct } = useStore();
   const navigate = useNavigate();
   const goToDetail = () => {
-    setCurrentProduct(product);
-
     navigate(`/products/${product.id}`);
   };
 
