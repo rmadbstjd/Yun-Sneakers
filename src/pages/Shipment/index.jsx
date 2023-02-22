@@ -8,7 +8,8 @@ import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import convertToPrice from "../../hooks/convertToPrice";
-const Shipment = () => {
+import Navbar from "./../../components/common/Navbar/index";
+const Shipment = ({ isAuthenticated }) => {
   const {
     cart,
     myPage,
@@ -300,225 +301,228 @@ const Shipment = () => {
     }
   }, [check1, check2, check3]);
   return (
-    <div className={styles.container}>
-      <div className={styles.leftContainer}>
-        <div className={styles.horizonLine}></div>
-        <div className={styles.shipInfoContainer}>
-          <div className={styles.infoTitle}>배송 정보</div>
-
-          <div className={styles.infoSelectContainer}>
-            <div
-              className={
-                newShip === false
-                  ? styles.leftSelectBox1
-                  : styles.leftSelectBox2
-              }
-              onClick={() => clickShip("old")}
-            >
-              기존 배송지
-            </div>
-            <div
-              className={
-                newShip === false
-                  ? styles.rightSelectBox1
-                  : styles.rightSelectBox2
-              }
-              onClick={() => clickShip("new")}
-            >
-              신규 입력
-            </div>
-            <div className={styles.horizonLine3}></div>
-          </div>
-          {newShip === false ? (
-            <ShipAddress />
-          ) : (
-            <AddShip type={"orderPage"}></AddShip>
-          )}
-        </div>
-
-        <div className={styles.couponContainer}>
+    <>
+      <Navbar />
+      <div className={styles.container}>
+        <div className={styles.leftContainer}>
           <div className={styles.horizonLine}></div>
-          <div className={styles.couponTitle}>쿠폰 / 마일리지</div>
-          <div className={styles.horizonLine2}></div>
-          <div className={styles.bonusCouponContainer}>
-            <div className={styles.couponLeftBox}>보너스 쿠폰</div>
-            <div className={styles.couponRightBox} onClick={showCouponBox}>
-              <div className={styles.default}>{coupon}</div>
-              <IoIosArrowDown className={styles.down} />
-            </div>
-          </div>
-          <div className={styles.test}>
-            {" "}
-            {showCoupon &&
-              couponArr.map((item, index) => (
-                <div
-                  className={styles.coupon}
-                  onClick={() => clickCoupon(item)}
-                  key={index}
-                >
-                  &nbsp;&nbsp;{item}
-                </div>
-              ))}
-          </div>
-          <div className={styles.brandCouponContainer}>
-            <div className={styles.couponLeftBox}>브랜드 쿠폰</div>
-            <div className={styles.brandCouponRightBox}>
-              &nbsp;&nbsp;&nbsp;적용 가능한 쿠폰이 없습니다.
-            </div>
-          </div>
-          <div className={styles.horizonLine}></div>
-        </div>
+          <div className={styles.shipInfoContainer}>
+            <div className={styles.infoTitle}>배송 정보</div>
 
-        <div className={styles.paymentContainer}>
-          <div className={styles.infoTitle}>결제 방법</div>
-          <div className={styles.horizonLine2}></div>
-          <div className={styles.cardContainer}>
-            {paymentArr.map((item) => (
+            <div className={styles.infoSelectContainer}>
               <div
                 className={
-                  item === "신용/체크카드" ? styles.firstCard : styles.card
+                  newShip === false
+                    ? styles.leftSelectBox1
+                    : styles.leftSelectBox2
                 }
+                onClick={() => clickShip("old")}
               >
-                {item}
+                기존 배송지
               </div>
-            ))}
+              <div
+                className={
+                  newShip === false
+                    ? styles.rightSelectBox1
+                    : styles.rightSelectBox2
+                }
+                onClick={() => clickShip("new")}
+              >
+                신규 입력
+              </div>
+              <div className={styles.horizonLine3}></div>
+            </div>
+            {newShip === false ? (
+              <ShipAddress />
+            ) : (
+              <AddShip type={"orderPage"}></AddShip>
+            )}
           </div>
-          <div className={styles.selectCard} onClick={test}>
-            <div className={styles.cardTitle}>{card}</div>
-            <IoIosArrowDown className={styles.cardDown} />
+
+          <div className={styles.couponContainer}>
+            <div className={styles.horizonLine}></div>
+            <div className={styles.couponTitle}>쿠폰 / 마일리지</div>
+            <div className={styles.horizonLine2}></div>
+            <div className={styles.bonusCouponContainer}>
+              <div className={styles.couponLeftBox}>보너스 쿠폰</div>
+              <div className={styles.couponRightBox} onClick={showCouponBox}>
+                <div className={styles.default}>{coupon}</div>
+                <IoIosArrowDown className={styles.down} />
+              </div>
+            </div>
+            <div className={styles.test}>
+              {" "}
+              {showCoupon &&
+                couponArr.map((item, index) => (
+                  <div
+                    className={styles.coupon}
+                    onClick={() => clickCoupon(item)}
+                    key={index}
+                  >
+                    &nbsp;&nbsp;{item}
+                  </div>
+                ))}
+            </div>
+            <div className={styles.brandCouponContainer}>
+              <div className={styles.couponLeftBox}>브랜드 쿠폰</div>
+              <div className={styles.brandCouponRightBox}>
+                &nbsp;&nbsp;&nbsp;적용 가능한 쿠폰이 없습니다.
+              </div>
+            </div>
+            <div className={styles.horizonLine}></div>
           </div>
-          <div className={styles.modal}>
-            {showCard &&
-              cardArr.map((item) => (
+
+          <div className={styles.paymentContainer}>
+            <div className={styles.infoTitle}>결제 방법</div>
+            <div className={styles.horizonLine2}></div>
+            <div className={styles.cardContainer}>
+              {paymentArr.map((item) => (
                 <div
-                  className={styles.cardItem}
-                  onClick={() => clickCard(item)}
+                  className={
+                    item === "신용/체크카드" ? styles.firstCard : styles.card
+                  }
                 >
                   {item}
                 </div>
               ))}
-          </div>
-          {showBudgetAccount1 && (
-            <div
-              className={styles.selectBudget}
-              onClick={() => setShowBudgetAccount2((prev) => !prev)}
-            >
-              <div className={styles.cardTitle}>{budgetAccount}</div>
+            </div>
+            <div className={styles.selectCard} onClick={test}>
+              <div className={styles.cardTitle}>{card}</div>
               <IoIosArrowDown className={styles.cardDown} />
             </div>
-          )}
-          {showBudgetAccount2 && (
             <div className={styles.modal}>
-              {budgetArr.map((item) => (
-                <div
-                  className={styles.cardItem}
-                  onClick={() => clickBudget(item)}
-                >
-                  {item}
+              {showCard &&
+                cardArr.map((item) => (
+                  <div
+                    className={styles.cardItem}
+                    onClick={() => clickCard(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
+            </div>
+            {showBudgetAccount1 && (
+              <div
+                className={styles.selectBudget}
+                onClick={() => setShowBudgetAccount2((prev) => !prev)}
+              >
+                <div className={styles.cardTitle}>{budgetAccount}</div>
+                <IoIosArrowDown className={styles.cardDown} />
+              </div>
+            )}
+            {showBudgetAccount2 && (
+              <div className={styles.modal}>
+                {budgetArr.map((item) => (
+                  <div
+                    className={styles.cardItem}
+                    onClick={() => clickBudget(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.title}>주문 상품 정보 / 총 {count}개</div>
+          <div className={styles.productsContainer}>
+            {products &&
+              products.products.map((item) => (
+                <div className={styles.productContent}>
+                  <img
+                    className={styles.productImage}
+                    src={item.image}
+                    alt="이미지"
+                  ></img>
+                  <div className={styles.productInfo}>
+                    <div className={styles.category}>{item.category}</div>
+                    <div className={styles.name}>{item.name}</div>
+                    <div className={styles.priceContainer}>
+                      <div className={styles.price}>
+                        {convertToPrice(item.price)}원/
+                      </div>
+                      <div className={styles.quantity}>
+                        &nbsp;수량 {item.quantity}개
+                      </div>
+                    </div>
+                    <div className={styles.size}>옵션 : [SIZE] {item.size}</div>
+                  </div>
                 </div>
               ))}
+          </div>
+          <div className={styles.InfoContainer}>
+            <div className={styles.infoPriceContainer}>
+              <div>총 상품금액</div>
+              <div>{convertToPrice(price)}원</div>
             </div>
-          )}
-        </div>
-      </div>
-      <div className={styles.rightContainer}>
-        <div className={styles.title}>주문 상품 정보 / 총 {count}개</div>
-        <div className={styles.productsContainer}>
-          {products &&
-            products.products.map((item) => (
-              <div className={styles.productContent}>
-                <img
-                  className={styles.productImage}
-                  src={item.image}
-                  alt="이미지"
-                ></img>
-                <div className={styles.productInfo}>
-                  <div className={styles.category}>{item.category}</div>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.priceContainer}>
-                    <div className={styles.price}>
-                      {convertToPrice(item.price)}원/
-                    </div>
-                    <div className={styles.quantity}>
-                      &nbsp;수량 {item.quantity}개
-                    </div>
-                  </div>
-                  <div className={styles.size}>옵션 : [SIZE] {item.size}</div>
-                </div>
-              </div>
-            ))}
-        </div>
-        <div className={styles.InfoContainer}>
-          <div className={styles.infoPriceContainer}>
-            <div>총 상품금액</div>
-            <div>{convertToPrice(price)}원</div>
+            <div className={styles.infoCouponContainer}>
+              <div>쿠폰 사용</div>
+              <div>- {convertToPrice(couponPrice)}원</div>
+            </div>
+            <div className={styles.infoDeliveryChargeContainer}>
+              <div>배송비</div>
+              <div>+ 0원</div>
+            </div>
+            <div className={styles.infoTotalPriceContainer}>
+              <div>총 결제금액</div>
+              <div>{convertToPrice(price - couponPrice)}원</div>
+            </div>
+            <div className={styles.horizonLine4}></div>
           </div>
-          <div className={styles.infoCouponContainer}>
-            <div>쿠폰 사용</div>
-            <div>- {convertToPrice(couponPrice)}원</div>
-          </div>
-          <div className={styles.infoDeliveryChargeContainer}>
-            <div>배송비</div>
-            <div>+ 0원</div>
-          </div>
-          <div className={styles.infoTotalPriceContainer}>
-            <div>총 결제금액</div>
-            <div>{convertToPrice(price - couponPrice)}원</div>
-          </div>
-          <div className={styles.horizonLine4}></div>
-        </div>
 
-        <div className={styles.checkBoxContainer}>
-          <div className={styles.checkBoxContent}>
-            <input
-              type="checkbox"
-              className={styles.checkBox}
-              onChange={() => check("all")}
-              checked={checkAll}
-            ></input>
-            <div className={styles.checkBoxLetter}>
-              주문 내역을 확인했으며, 아래 내용에 모두 동의합니다.
+          <div className={styles.checkBoxContainer}>
+            <div className={styles.checkBoxContent}>
+              <input
+                type="checkbox"
+                className={styles.checkBox}
+                onChange={() => check("all")}
+                checked={checkAll}
+              ></input>
+              <div className={styles.checkBoxLetter}>
+                주문 내역을 확인했으며, 아래 내용에 모두 동의합니다.
+              </div>
+            </div>
+            <div className={styles.checkBoxContent}>
+              <input
+                type="checkbox"
+                className={styles.checkBox}
+                onChange={() => check("1")}
+                checked={check1}
+              ></input>
+              <div className={styles.checkBoxLetter2}>
+                (필수) 개인정보 수집/이용 동의
+              </div>
+            </div>
+            <div className={styles.checkBoxContent}>
+              <input
+                type="checkbox"
+                className={styles.checkBox}
+                onChange={() => check("2")}
+                checked={check2}
+              ></input>
+              <div className={styles.checkBoxLetter2}>
+                (필수) 개인정보 제3자 제공 동의
+              </div>
+            </div>
+            <div className={styles.checkBoxContent}>
+              <input
+                type="checkbox"
+                className={styles.checkBox}
+                onChange={() => check("3")}
+                checked={check3}
+              ></input>
+              <div className={styles.checkBoxLetter2}>
+                (필수) 결제대행 서비스 이용약관 (주)KG이니시스
+              </div>
             </div>
           </div>
-          <div className={styles.checkBoxContent}>
-            <input
-              type="checkbox"
-              className={styles.checkBox}
-              onChange={() => check("1")}
-              checked={check1}
-            ></input>
-            <div className={styles.checkBoxLetter2}>
-              (필수) 개인정보 수집/이용 동의
-            </div>
+          <div className={styles.paymentBtn} onClick={onValidate}>
+            CHECK OUT
           </div>
-          <div className={styles.checkBoxContent}>
-            <input
-              type="checkbox"
-              className={styles.checkBox}
-              onChange={() => check("2")}
-              checked={check2}
-            ></input>
-            <div className={styles.checkBoxLetter2}>
-              (필수) 개인정보 제3자 제공 동의
-            </div>
-          </div>
-          <div className={styles.checkBoxContent}>
-            <input
-              type="checkbox"
-              className={styles.checkBox}
-              onChange={() => check("3")}
-              checked={check3}
-            ></input>
-            <div className={styles.checkBoxLetter2}>
-              (필수) 결제대행 서비스 이용약관 (주)KG이니시스
-            </div>
-          </div>
-        </div>
-        <div className={styles.paymentBtn} onClick={onValidate}>
-          CHECK OUT
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -7,7 +7,8 @@ import Swal from "sweetalert2";
 import ShipAddress from "../../components/ShipAddress";
 import Modal from "../../components/common/Modal";
 import MypageSide from "../../components/MypageSide";
-const Address = () => {
+import Navbar from "./../../components/common/Navbar/index";
+const Address = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const {
     cart,
@@ -97,62 +98,65 @@ const Address = () => {
     }
   }, [isLogin, navigate]);
   return (
-    <div className={styles.mypageContainer}>
-      <MypageSide />
-      <div className={styles.mainContainer}>
-        <div className={styles.title}>배송지</div>
-        <div className={styles.horizonLine}></div>
-        <div
-          className={
-            address === false
-              ? styles.addressContainer3
-              : styles.addressContainer2
-          }
-        >
-          <ShipAddress />
+    <>
+      <Navbar />
+      <div className={styles.mypageContainer}>
+        <MypageSide />
+        <div className={styles.mainContainer}>
+          <div className={styles.title}>배송지</div>
+          <div className={styles.horizonLine}></div>
+          <div
+            className={
+              address === false
+                ? styles.addressContainer3
+                : styles.addressContainer2
+            }
+          >
+            <ShipAddress />
 
-          {address === false ? (
-            <div
-              className={styles.Btn}
-              onClick={() => {
-                setShowModal((prev) => !prev);
-              }}
-            >
-              추가하기
-            </div>
-          ) : (
-            <div className={styles.btnContainer}>
+            {address === false ? (
               <div
                 className={styles.Btn}
                 onClick={() => {
                   setShowModal((prev) => !prev);
                 }}
               >
-                수정
+                추가하기
               </div>
-              <div
-                className={styles.Btn}
-                onClick={() => {
-                  deleteAddress();
-                }}
-              >
-                삭제
+            ) : (
+              <div className={styles.btnContainer}>
+                <div
+                  className={styles.Btn}
+                  onClick={() => {
+                    setShowModal((prev) => !prev);
+                  }}
+                >
+                  수정
+                </div>
+                <div
+                  className={styles.Btn}
+                  onClick={() => {
+                    deleteAddress();
+                  }}
+                >
+                  삭제
+                </div>
               </div>
-            </div>
-          )}
-          {showModal === true ? (
-            <Modal
-              isOpen={true}
-              modalIsOpen={showModal}
-              setModalIsOpen={setShowModal}
-              submitBtn={submitBtn}
-              refetch={refetch}
-              type={"ship"}
-            ></Modal>
-          ) : null}
+            )}
+            {showModal === true ? (
+              <Modal
+                isOpen={true}
+                modalIsOpen={showModal}
+                setModalIsOpen={setShowModal}
+                submitBtn={submitBtn}
+                refetch={refetch}
+                type={"ship"}
+              ></Modal>
+            ) : null}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

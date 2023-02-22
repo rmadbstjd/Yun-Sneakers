@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function loginSuccess(setNickName, setUserId) {
+async function isAuthenticated(setNickName, setUserId) {
   return axios({
     url: "http://localhost:3001/login/success",
     method: "GET",
@@ -13,4 +13,4 @@ async function loginSuccess(setNickName, setUserId) {
     }
   });
 }
-export default loginSuccess;
+export default isAuthenticated;

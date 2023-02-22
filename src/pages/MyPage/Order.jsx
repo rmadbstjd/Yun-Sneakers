@@ -4,7 +4,8 @@ import styles from "./css/Order.module.css";
 import OrderPageNavbar from "../../components/OrderPageNavbar";
 import userInfoStore from "../../store/userInfoStore";
 import MypageSide from "../../components/MypageSide";
-const Order = () => {
+import Navbar from "./../../components/common/Navbar/index";
+const Order = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const { nickName } = userInfoStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
@@ -15,12 +16,15 @@ const Order = () => {
     }
   }, [isLogin, navigate]);
   return (
-    <div className={styles.mypageContainer}>
-      <MypageSide />
-      <div className={styles.mainContainer}>
-        <OrderPageNavbar />
+    <>
+      <Navbar />
+      <div className={styles.mypageContainer}>
+        <MypageSide />
+        <div className={styles.mainContainer}>
+          <OrderPageNavbar />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

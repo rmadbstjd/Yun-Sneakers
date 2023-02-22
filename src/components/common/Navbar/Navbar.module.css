@@ -8,20 +8,22 @@
 
 .container {
   position: fixed;
-  z-index: 10;
+  z-index: 999;
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
   background-color: white;
   width: 100%;
   height: 65px;
+  margin-top: -10px;
 }
 .scrolledContainer {
   border-bottom: solid gray 2px;
   position: fixed;
-  z-index: 10;
+  z-index: 999;
   display: flex;
   justify-content: center;
+  margin-top: -10px;
   font-family: "NanumSquareNeo-Variable";
 
   width: 100%;

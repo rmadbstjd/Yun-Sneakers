@@ -14,6 +14,7 @@ import CartModal from "../../components/CartModal";
 import HeartModal from "../../components/HeartModal";
 import SimilarProducts from "../../components/SimilarProducts";
 import Swal from "sweetalert2";
+import Navbar from "./../../components/common/Navbar/index";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -92,7 +93,8 @@ const ProductDetail = () => {
   }, [productInfo]);
 
   return (
-    <div>
+    <>
+      <Navbar />
       <div className={styles.container}>
         <div className={styles.productContainer}>
           <div
@@ -202,7 +204,7 @@ const ProductDetail = () => {
             ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

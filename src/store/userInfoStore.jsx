@@ -1,5 +1,4 @@
 import create from "zustand";
-import produce from "immer";
 import { devtools } from "zustand/middleware";
 import Cart from "../api/cart";
 import Product from "../api/product";
