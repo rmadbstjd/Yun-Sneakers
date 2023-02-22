@@ -44,7 +44,7 @@ const NewProducts = () => {
       product[column] = row;
     });
   };
-  console.log("테스트", newProducts);
+
   return (
     <>
       <Navbar />

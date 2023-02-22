@@ -8,10 +8,9 @@ import ShipAddress from "../../components/ShipAddress";
 import Modal from "../../components/common/Modal";
 import MypageSide from "../../components/MypageSide";
 import Navbar from "./../../components/common/Navbar/index";
-const Address = ({ isAuthenticated }) => {
+const Address = () => {
   const navigate = useNavigate();
   const {
-    cart,
     myPage,
     shipPlaceName,
     shipReceiver,
@@ -90,13 +89,7 @@ const Address = ({ isAuthenticated }) => {
     await myPage.deleteUserAddress();
     refetch();
   };
-  const isLogin = localStorage.getItem("isLogin") === "true";
 
-  useEffect(() => {
-    if (isLogin === false) {
-      navigate("/login");
-    }
-  }, [isLogin, navigate]);
   return (
     <>
       <Navbar />

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
-const Shipment = ({ isAuthenticated }) => {
+const Shipment = () => {
   const {
     cart,
     myPage,
@@ -300,6 +300,7 @@ const Shipment = ({ isAuthenticated }) => {
       setCheckAll(false);
     }
   }, [check1, check2, check3]);
+
   return (
     <>
       <Navbar />

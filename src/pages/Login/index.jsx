@@ -4,7 +4,8 @@ import styles from "./Login.module.css";
 import userInfoStore from "../../store/userInfoStore";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ isAuthenticated }) => {
+  window.history.forward();
   const { setNickName, setUserId } = userInfoStore();
 
   const [inputs, setInputs] = useState({
@@ -83,7 +84,12 @@ const Login = () => {
   const goToSignUp = () => {
     navigate("/join");
   };
+
+  const goToMainPage = () => {
+    navigate("/");
+  };
   useEffect(() => {
+    if (isAuthenticated) navigate("/");
     if (allows.id && allows.pw) setAllowAll(true);
     if (result === true) navigate("/");
     else if (result === false) {
@@ -91,7 +97,8 @@ const Login = () => {
       setTimeout(setShowModal, 2000);
       setResult(null);
     }
-  }, [result, count, allows]);
+  }, [result, count, allows, isAuthenticated, navigate]);
+
   return (
     <div className={styles.container}>
       {showModal && (
@@ -100,7 +107,9 @@ const Login = () => {
           <div>다시 입력해주세요.</div>
         </div>
       )}
-      <div className={styles.title}>Yun's Shoes Shop</div>
+      <div className={styles.title} onClick={goToMainPage}>
+        Yun's Shoes Shop
+      </div>
       <div className={styles.inputContainer}>
         <label
           className={

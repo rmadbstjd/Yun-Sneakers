@@ -12,14 +12,13 @@ import Navbar from "./../../components/common/Navbar/index";
 
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
-const Review = ({ isAuthenticated }) => {
+const Review = () => {
   const [showModal, setShowModal] = useState(false);
   const [number, setNumber] = useState();
   const [deleted, setDeleted] = useState(false);
   const [stateReview, setStateReview] = useState(true);
   const navigate = useNavigate();
   const { order, myPage } = userInfoStore();
-  const isLogin = localStorage.getItem("isLogin") === "true";
   const {
     isLoading,
     error,
@@ -70,17 +69,12 @@ const Review = ({ isAuthenticated }) => {
     });
   };
   useEffect(() => {
-    console.log("number", number);
-    if (isLogin === false) {
-      navigate("/login");
-    }
     if (deleted === true) {
       deleteReview(product[number].product.orderId);
       setDeleted(false);
     }
-  }, [isLogin, navigate, number, stateReview, deleted]);
-  console.log("product", product);
-  console.log("completedProducts", completedProducts);
+  }, [number, stateReview, deleted]);
+
   if (!stateReview) {
     return (
       <>
@@ -135,6 +129,7 @@ const Review = ({ isAuthenticated }) => {
                       onClick={() => {
                         goToDetail(item.info);
                       }}
+                      alt="이미지"
                     ></img>
                     <div className={styles.info}>
                       <div
@@ -288,6 +283,7 @@ const Review = ({ isAuthenticated }) => {
                       onClick={() => {
                         goToDetail(item.info);
                       }}
+                      alt="이미지"
                     ></img>
                     <div className={styles.info}>
                       <div

@@ -7,8 +7,8 @@ import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
-const Cart = ({ isAuthenticated }) => {
-  console.log("auth", isAuthenticated);
+const Cart = () => {
+  console.log("테스트");
   const navigate = useNavigate();
   const { cart, initCartCount, plusCartCount } = cartStore();
 

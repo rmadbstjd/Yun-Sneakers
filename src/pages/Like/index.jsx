@@ -5,13 +5,14 @@ import styles from "./LikeProducts.module.css";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./../../components/common/Navbar/index";
-const LikeProducts = ({ isAuthenticated }) => {
+const Like = () => {
   const navigate = useNavigate();
+
   const goToMain = () => {
     navigate("/");
   };
   const { like } = userInfoStore();
-  const isLogin = localStorage.getItem("isLogin") === "true";
+
   const [count, setCount] = useState(0);
   const {
     isLoading,
@@ -23,14 +24,10 @@ const LikeProducts = ({ isAuthenticated }) => {
   });
 
   useEffect(() => {
-    if (isLogin === false) {
-      navigate("/login");
-    }
     if (product) {
       setCount(product.length);
     }
-    product && console.log("product", product);
-  }, [product, isLogin]);
+  }, [product]);
 
   return (
     <>
@@ -72,4 +69,4 @@ const LikeProducts = ({ isAuthenticated }) => {
   );
 };
 
-export default LikeProducts;
+export default Like;

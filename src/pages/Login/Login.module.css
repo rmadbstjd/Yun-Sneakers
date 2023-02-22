@@ -46,6 +46,7 @@
   width: 100%;
   font-size: 24px;
   text-align: center;
+  cursor: pointer;
 }
 .inputContainer {
   display: flex;
