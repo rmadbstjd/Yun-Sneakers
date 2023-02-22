@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./Login.module.css";
+import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
 import axios from "axios";
 import { history } from "../../hooks/history";
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
-  window.history.forward();
+  //window.history.forward();
   const { setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: null,
@@ -101,104 +101,58 @@ const Login = ({ isAuthenticated }) => {
   }, [result, count, allows, isAuthenticated, navigate]);
 
   useEffect(() => {
-    const listenBackEvent = () => {
-      if (location.pathname === "/login") navigate("/");
-    };
-
+    const listenBackEvent = () => navigate("/");
     const unlistenHistoryEvent = history.listen(({ action }) => {
       if (action === "POP") {
-        listenBackEvent();
+        if (location.pathname === "/login") listenBackEvent();
       }
     });
 
     return unlistenHistoryEvent;
   }, [navigate, location.pathname]);
   return (
-    <div className={styles.container}>
+    <Style.Container>
       {showModal && (
-        <div className={styles.modal}>
+        <Style.Modal>
           <div>아이디 혹은 비밀번호가 일치하지 않습니다.</div>
           <div>다시 입력해주세요.</div>
-        </div>
+        </Style.Modal>
       )}
-      <div className={styles.title} onClick={goToMainPage}>
-        Yun's Shoes Shop
-      </div>
-      <div className={styles.inputContainer}>
-        <label
-          className={
-            allows.id === null
-              ? styles.inputTitleID
-              : allows.id === false
-              ? styles.inputTitleIDNotAllowed
-              : styles.inputTitleID
-          }
-        >
-          아이디
-        </label>
-        <input
+      <Style.Title onClick={goToMainPage}>Yun's Shoes Shop</Style.Title>
+      <Style.InputContainer>
+        <Style.Label isAllowed={allows.id}>아이디</Style.Label>
+        <Style.InputValue
           type="text"
           onChange={(e) => changeInput(e, "id")}
           placeholder="6-20자의 영문,숫자를 입력해주세요"
           value={inputs.id}
-          className={
-            allows.id === null
-              ? styles.inputValue
-              : allows.id === false
-              ? styles.inputValueNotAllowed
-              : styles.inputValue
-          }
-        ></input>
+          isAllowed={allows.id}
+        ></Style.InputValue>
         {allows.id === false ? (
-          <div className={styles.text}>
-            양식에 준수하여 아이디를 입력해주세요.
-          </div>
+          <Style.Text>아이디를 입력해주세요.</Style.Text>
         ) : null}
-      </div>
-      <div className={styles.inputContainer}>
-        <label
-          className={
-            allows.pw === null
-              ? styles.inputTitlePW
-              : allows.pw === false
-              ? styles.inputTitlePWNotAllowed
-              : styles.inputTitlePW
-          }
-        >
-          비밀번호
-        </label>
-        <input
+      </Style.InputContainer>
+      <Style.InputContainer>
+        <Style.Label isAllowed={allows.pw}>비밀번호</Style.Label>
+        <Style.InputValue
           type="password"
           onChange={(e) => changeInput(e, "pw")}
           placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
           value={inputs.pw}
-          className={
-            allows.pw === null
-              ? styles.inputValue
-              : allows.pw === false
-              ? styles.inputValueNotAllowed
-              : styles.inputValue
-          }
-        ></input>
+          isAllowed={allows.pw}
+        ></Style.InputValue>
         {allows.pw === false ? (
-          <div className={styles.text}>
-            양식에 준수하여 비밀번호를 입력해주세요.
-          </div>
+          <Style.Text>비밀번호를 입력해주세요.</Style.Text>
         ) : null}
-      </div>
+      </Style.InputContainer>
 
-      <div
-        className={
-          allowAll === false ? styles.submitBtn : styles.submitBtnAllowed
-        }
-        onClick={clickToSubmit}
-      >
-        로그인하기
-      </div>
-      <div className={styles.signUpLink} onClick={goToSignUp}>
+      <Style.SubmitBtn isPassed={allowAll} onClick={clickToSubmit}>
+        로그인
+      </Style.SubmitBtn>
+      <Style.SignUpLink onClick={goToSignUp}>
         아직 회원이 아니시라면
-      </div>
-    </div>
+      </Style.SignUpLink>
+    </Style.Container>
   );
 };
 
