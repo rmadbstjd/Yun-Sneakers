@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import cartStore from "../../store/cartStore";
-import styles from "./Cart.module.css";
+import * as Style from "./styles";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
+
 const Cart = () => {
   console.log("테스트");
   const navigate = useNavigate();
@@ -49,39 +50,37 @@ const Cart = () => {
     return (
       <>
         <Navbar />
-        <div className={styles.nullContainer}>
-          <div className={styles.nullContent}>
-            <div className={styles.horizonLine}></div>
-            <div className={styles.nullText}>
-              장바구니에 담긴 상품이 없습니다.
-            </div>
-            <div className={styles.nullBoxContainer}>
-              <div onClick={goToMain} className={styles.nullBox}>
+        <Style.NullContainer>
+          <Style.NullContent>
+            <Style.HorizonLine margin={9}></Style.HorizonLine>
+            <Style.NullText>장바구니에 담긴 상품이 없습니다.</Style.NullText>
+            <Style.NullBoxContainer>
+              <Style.GoToMainBtn onClick={goToMain}>
                 CONTINUE SHOPPING
-              </div>
-            </div>
-            <div className={styles.horizonBottomLine}></div>
-          </div>
-        </div>
+              </Style.GoToMainBtn>
+            </Style.NullBoxContainer>
+            <Style.HorizonBottomLine></Style.HorizonBottomLine>
+          </Style.NullContent>
+        </Style.NullContainer>
       </>
     );
   }
 
   return (
-    <>
+    <div>
       <Navbar />
-      <div className={styles.container}>
-        <div className={styles.productsContainer}>
-          <div className={styles.menuContainer}>
-            <div className={styles.text}>Order / Payment</div>
-          </div>
-          <div className={styles.test}>
-            <div className={styles.menu}>
-              <div className={styles.menuOption}>상품명(옵션)</div>
-              <div className={styles.menuQuantity}>수량</div>
-              <div className={styles.menuOrder}>주문관리</div>
-            </div>
-          </div>
+      <Style.Container>
+        <Style.ProductsContainer>
+          <Style.MenuContainer>
+            <Style.Menu>ORDER / PAYMENT</Style.Menu>
+          </Style.MenuContainer>
+          <Style.MenuHeader>
+            <Style.MenuContent>
+              <Style.MenuOption width={52.8}>상품명(옵션)</Style.MenuOption>
+              <Style.MenuOption width={35.9}>수량</Style.MenuOption>
+              <Style.MenuOption width={31}>주문관리</Style.MenuOption>
+            </Style.MenuContent>
+          </Style.MenuHeader>
           {cartProducts &&
             cartProducts.products.map((item) => (
               <CartProduct
@@ -90,41 +89,51 @@ const Cart = () => {
                 refetch={refetch}
               />
             ))}
-          <div className={styles.horizonLine}></div>
-          <div className={styles.payContainer}>
-            <div className={styles.productPrice}>총 주문금액</div>
-
-            <div className={styles.deliveryPrice}>총 배송비</div>
-
-            <div className={styles.lastPrice}>총 결제 금액</div>
-          </div>
-          <HorizonLine />
-          <div className={styles.payContainer2}>
-            <div className={styles.payContent1}>
-              <div className={styles.count}>총 {count}개</div>
+          <Style.HorizonLine margin={9}></Style.HorizonLine>
+          <Style.PayContainer>
+            <Style.PayContent width={30} fontSize={20}>
+              총 주문금액
+            </Style.PayContent>
+            <Style.PayContent width={53} fontSize={20}>
+              총 배송비
+            </Style.PayContent>
+            <Style.PayContent width={25} fontSize={20}>
+              총 결제 금액
+            </Style.PayContent>
+          </Style.PayContainer>
+          <HorizonLine margin={9} />
+          <Style.PayContainer>
+            <Style.PayContent width={27.5} margin={true} fontSize={25}>
+              <Style.Count>총 {count}개</Style.Count>
               {convertToPrice(price)}원
-            </div>
-            <div className={styles.symbolContent}>
-              <div className={styles.symbol}> + </div>
-              <div className={styles.payContent2}>0원</div>
-              <div className={styles.symbol}> = </div>
-            </div>
+            </Style.PayContent>
+            <Style.SymbolContainer>
+              <Style.Symbol> + </Style.Symbol>
+              <Style.PayContent fontSize={25}>0원</Style.PayContent>
+              <Style.Symbol> = </Style.Symbol>
+            </Style.SymbolContainer>
 
-            <div className={styles.payContent3}>{convertToPrice(price)}원</div>
-          </div>
-          <div className={styles.horizonLine2}></div>
+            <Style.PayContent width={23} margin={true} fontSize={25}>
+              {convertToPrice(price)}원
+            </Style.PayContent>
+          </Style.PayContainer>
+          <Style.HorizonLine margin={3}></Style.HorizonLine>
 
-          <div className={styles.footerContainer}>
-            <div className={styles.footerContent1} onClick={goToMain}>
+          <Style.FooterContainer>
+            <Style.FooterBtn color={"#3a3b3c"} onClick={goToMain}>
               쇼핑 계속하기
-            </div>
-            <div className={styles.footerContent2} onClick={goToOrderPage}>
+            </Style.FooterBtn>
+            <Style.FooterBtn
+              color={"white"}
+              back={"black"}
+              onClick={goToOrderPage}
+            >
               구매하기
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+            </Style.FooterBtn>
+          </Style.FooterContainer>
+        </Style.ProductsContainer>
+      </Style.Container>
+    </div>
   );
 };
 
