@@ -93,7 +93,7 @@ const ProductDetail = () => {
               {productInfo && productInfo.product.description}
             </Style.Description>
 
-            <>
+            <div>
               <Style.SizeContainer>
                 <Style.SizeTitle>사이즈</Style.SizeTitle>
                 <Style.Size onClick={showSize}>
@@ -124,7 +124,7 @@ const ProductDetail = () => {
                 )}
               </Style.SizeContainer>
               <HorizonLine />
-            </>
+            </div>
 
             <Style.Price>
               {productInfo && convertToPrice(productInfo.product.price)}원

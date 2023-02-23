@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductLikeCard from "../../components/ProductLikeCard";
-import styles from "./LikeProducts.module.css";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./../../components/common/Navbar/index";
+import * as Style from "./styles";
 const Like = () => {
   const navigate = useNavigate();
 
@@ -14,14 +14,13 @@ const Like = () => {
   const { like } = userInfoStore();
 
   const [count, setCount] = useState(0);
-  const {
-    isLoading,
-    error,
-    data: product,
-    refetch,
-  } = useQuery(["like"], () => like.getLikedProducts(), {
-    enabled: true,
-  });
+  const { data: product, refetch } = useQuery(
+    ["like"],
+    () => like.getLikedProducts(),
+    {
+      enabled: true,
+    }
+  );
 
   useEffect(() => {
     if (product) {
@@ -32,14 +31,12 @@ const Like = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.container}>
-        <div className={styles.productsContainer}>
-          {isLoading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          <div className={styles.contentContainer}>
-            <div className={styles.title}>좋아요를 누른 상품 ♥ ( {count} )</div>
-            <div className={styles.horizonLine2}></div>
-          </div>
+      <Style.Container>
+        <Style.ProductsContainer>
+          <Style.ContentContainer>
+            <Style.Title>좋아요를 누른 상품 ♥ ( {count} )</Style.Title>
+            <Style.HorizonLine></Style.HorizonLine>
+          </Style.ContentContainer>
 
           {product &&
             product.map((item) =>
@@ -52,19 +49,15 @@ const Like = () => {
             )}
 
           {product && product.length === 0 ? (
-            <div className={styles.noneProductContainer}>
-              <div className={styles.noneProduct}>
-                <div className={styles.span}>
-                  좋아요를 누른 상품이 없습니다.
-                </div>
-                <div className={styles.mainBtn} onClick={goToMain}>
-                  CONTINUE SHOPPING{" "}
-                </div>
+            <Style.NoneProductsContainer>
+              <div>
+                <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
+                <Style.Btn onClick={goToMain}>CONTINUE SHOPPING </Style.Btn>
               </div>
-            </div>
+            </Style.NoneProductsContainer>
           ) : null}
-        </div>
-      </div>
+        </Style.ProductsContainer>
+      </Style.Container>
     </>
   );
 };
