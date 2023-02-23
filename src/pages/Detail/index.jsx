@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import userInfoStore from "../../store/userInfoStore";
 import cartStore from "../../store/cartStore";
 import productStore from "../../store/productStore";
-import styles from "./ProductDetail.module.css";
 import HorizonLine from "../../components/common/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
@@ -11,31 +10,39 @@ import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import Modal from "../../components/common/Modal";
 import CartModal from "../../components/CartModal";
-import HeartModal from "../../components/HeartModal";
 import SimilarProducts from "../../components/SimilarProducts";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
-
+import * as Style from "./styles";
+import convertToPrice from "../../hooks/convertToPrice";
 const ProductDetail = () => {
   const { id } = useParams();
   const { product, like, cart } = userInfoStore();
   const { plusCartCount } = cartStore();
   const { selectSize, setInitSize } = productStore();
-  const [sizeModalShow, setSizeModalShow] = useState(false);
-  const [cartModalShow, setCartModalShow] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [productInfo, setProductInfo] = useState("");
 
-  const [heart, setHeart] = useState(null);
-  const [heartShow, setHeartShow] = useState(heart);
-  const { data } = useQuery([id], () => product.getProductInfo(id));
-  const products = data && data.product;
-  const category = data && data.product.category;
+  const { data: productInfo } = useQuery([id], () =>
+    product.getProductInfo(id)
+  );
+  const products = productInfo && productInfo.product;
+  const category = productInfo && productInfo.product.category;
+  const productId = productInfo && productInfo.product.id;
+
   const { data: similars } = useQuery(
     ["similar", id],
     () => product.getSimilarProducts(category, id),
     { refetchOnMount: "alaways", enabled: !!category }
   );
+
+  const { data: isLiked, refetch } = useQuery(
+    ["isLiked", id],
+    () => like.isLike(productId),
+    { enabled: !!productId }
+  );
+
+  const [sizeModalShow, setSizeModalShow] = useState(false);
+  const [cartModalShow, setCartModalShow] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const showSize = () => {
     setSizeModalShow((prev) => !prev);
@@ -50,85 +57,55 @@ const ProductDetail = () => {
       });
       return;
     }
-
     setCartModalShow((prev) => !prev);
     setTimeout(setCartModalShow, 3000);
-
     const isSubmit = await cart.addUserCart(products, selectSize);
-
-    if (isSubmit.success === false) {
-      return;
-    }
+    if (isSubmit.success === false) return;
     plusCartCount(1);
   };
-  const clickToHeart = () => {
-    if (!heart) {
-      setHeartShow((prev) => !prev);
-      setTimeout(setHeartShow, 2000);
-    }
-  };
-  const clickToLike = () => {
-    like.pushLike(productInfo.product.id);
-    setHeart((prev) => !prev);
+
+  const clickToLike = async () => {
+    await like.pushLike(productInfo.product.id);
+    refetch();
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setProductInfo(await product.getProductInfo(id));
-    };
-    fetchData();
     setInitSize();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      productInfo &&
-        setHeart(
-          (await like.isLike(productInfo.product.id).result) === true
-            ? true
-            : false
-        );
-    };
-    fetchData();
-  }, [productInfo]);
+  }, []);
 
   return (
     <>
       <Navbar />
-      <div className={styles.container}>
-        <div className={styles.productContainer}>
-          <div
-            className={styles.img}
+      <Style.Container>
+        <Style.ProductContainer>
+          <Style.Image
             style={{
               backgroundImage:
                 "url(" + `${productInfo && productInfo.product.image}` + ")",
             }}
-          ></div>
+          ></Style.Image>
 
-          <div className={styles.infoContainer}>
-            <div className={styles.category}>
+          <Style.InfoContainer>
+            <Style.Category>
               {productInfo && productInfo.product.category}
-            </div>
-            <div>
-              <div>{productInfo[6]}</div>
-              <div className={styles.description}>
-                {productInfo && productInfo.product.description}
-              </div>
-            </div>
+            </Style.Category>
+            <Style.Description>
+              {productInfo && productInfo.product.description}
+            </Style.Description>
 
-            <div>
-              <div className={styles.sizeContainer}>
-                <div className={styles.size}>사이즈</div>
-                <div className={styles.test} onClick={showSize}>
+            <>
+              <Style.SizeContainer>
+                <Style.SizeTitle>사이즈</Style.SizeTitle>
+                <Style.Size onClick={showSize}>
                   {selectSize === "" ? (
-                    <div className={styles.sizeBtn}>사이즈</div>
+                    <Style.SizeBtn>사이즈</Style.SizeBtn>
                   ) : (
-                    <div className={styles.sizeNum}>{selectSize}</div>
+                    <Style.SizeNum>{selectSize}</Style.SizeNum>
                   )}
-                  <div className={styles.circle}>
+                  <Style.Circle>
                     <BsArrowDownCircle size={20} />
-                  </div>
-                </div>
+                  </Style.Circle>
+                </Style.Size>
                 {sizeModalShow === true ? (
                   <Modal
                     isOpen={true}
@@ -145,65 +122,67 @@ const ProductDetail = () => {
                     type={"size"}
                   ></Modal>
                 )}
-              </div>
+              </Style.SizeContainer>
               <HorizonLine />
-            </div>
+            </>
 
-            <div className={styles.price}>
-              {productInfo &&
-                productInfo.product.price
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              원
-            </div>
+            <Style.Price>
+              {productInfo && convertToPrice(productInfo.product.price)}원
+            </Style.Price>
             {cartModalShow && (
               <CartModal
                 cartShow={cartModalShow}
                 setCartShow={setCartModalShow}
               ></CartModal>
             )}
-            {heartShow && (
-              <HeartModal
-                heartShow={heartShow}
-                setHeartShow={setHeartShow}
-              ></HeartModal>
-            )}
-            <div className={styles.cartContainer}>
-              <div className={styles.addBtn} onClick={clickToCart}>
-                장바구니에 추가
-              </div>
 
-              <div
-                className={
-                  heart === true
-                    ? styles.heartContainer2
-                    : styles.heartContainer1
-                }
-                onClick={clickToHeart}
-              >
-                {heart === false ? (
-                  <BsHeart className={styles.heart1} onClick={clickToLike} />
-                ) : heart === true ? (
-                  <FaHeart className={styles.heart2} onClick={clickToLike} />
-                ) : null}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.p}>
-        <div className={styles.p2}>
-          <span className={styles.category2}>{category}</span>의 다른 상품
-        </div>
-      </div>
-      <div className={styles.similarContainer}>
-        <div className={styles.shoesContainer}>
+            <Style.CartContainer>
+              <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
+
+              {isLiked && isLiked.result === false ? (
+                <BsHeart
+                  style={{
+                    width: "45px",
+                    height: "45px",
+                    marginTop: "2px",
+                    marginLeft: "10px",
+                    cursor: "pointer",
+                    fontsize: "35px",
+                    color: "gray",
+                  }}
+                  onClick={clickToLike}
+                />
+              ) : isLiked && isLiked.result === true ? (
+                <FaHeart
+                  style={{
+                    width: "45px",
+                    height: "45px",
+                    marginTop: "2px",
+                    marginLeft: "10px",
+                    cursor: "pointer",
+                    fontsize: "35px",
+                    color: "red",
+                  }}
+                  onClick={clickToLike}
+                />
+              ) : null}
+            </Style.CartContainer>
+          </Style.InfoContainer>
+        </Style.ProductContainer>
+      </Style.Container>
+      <Style.SpanContainer>
+        <Style.Span>
+          <Style.Category2>{category}</Style.Category2>의 다른 상품
+        </Style.Span>
+      </Style.SpanContainer>
+      <Style.SimilarContainer>
+        <Style.ShoesContainer>
           {similars &&
             similars.map((item) => (
               <SimilarProducts key={item.productId} products={item} />
             ))}
-        </div>
-      </div>
+        </Style.ShoesContainer>
+      </Style.SimilarContainer>
     </>
   );
 };
