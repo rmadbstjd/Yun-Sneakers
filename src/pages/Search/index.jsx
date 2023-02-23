@@ -7,12 +7,12 @@ import { TbArrowsUpDown } from "react-icons/tb";
 import { GiHamburgerMenu } from "react-icons/gi";
 import userInfoStore from "../../store/userInfoStore";
 import searchStore from "../../store/searchStore";
-import styles from "./SearchPage.module.css";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import Toggle from "../../components/Toggle";
 import Side from "../../components/Side";
 import Filter from "../../components/Filter";
 import Navbar from "./../../components/common/Navbar/index";
+import * as Style from "./styles";
 const SearchPage = () => {
   const navigate = useNavigate();
   const { product } = userInfoStore();
@@ -74,58 +74,71 @@ const SearchPage = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.container} onClick={() => setToggle(false)}>
+      <Style.Container onClick={() => setToggle(false)}>
         {show && (
-          <div className={styles.productsContainer}>
-            {isLoading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-
-            <div className={styles.contentContainer}>
-              <div className={styles.searchContainer}>
-                <form
-                  className={styles.searchContent}
-                  onSubmit={(e) => submitKeyword(e)}
-                >
-                  <input
+          <Style.ProductsContainer>
+            <Style.ContentContainer>
+              <Style.SearchContainer>
+                <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
+                  <Style.InputSearch
                     type="text"
                     value={result}
                     placeholder="브랜드명, 모델명"
                     onChange={(e) => handleChange(e)}
-                    className={styles.searchBar}
                     autoFocus
                   />
-                  <GrClose className={styles.close} onClick={closeSearch} />
-                </form>
-                <div className={styles.horizonLine}></div>
-              </div>
-            </div>
+                  <GrClose
+                    style={{
+                      width: "25px",
+                      minWidth: "25px",
+                      height: "25px",
+                      minHeight: "25px",
+                      cursor: "pointer",
+                      margin: "10px 0px 0px 10px",
+                    }}
+                    onClick={closeSearch}
+                  />
+                </Style.SearchContent>
+                <Style.HorizonLine></Style.HorizonLine>
+              </Style.SearchContainer>
+            </Style.ContentContainer>
 
             {products && products.products[0].length !== 0 ? (
-              <div className={styles.sortContainer}>
+              <Style.SortContainer>
                 <GiHamburgerMenu
-                  className={styles.hamburger}
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    display: "none",
+                    cursor: "pointer",
+                  }}
                   onClick={clickHamburger}
                 />
 
-                <div className={styles.test}>
-                  <div className={styles.sort} onClick={clickToSort}>
+                <Style.SortContent>
+                  <Style.Sort onClick={clickToSort}>
                     {sessionSort === "new" ? "최신순" : "인기순"}
-                  </div>
+                  </Style.Sort>
                   <TbArrowsUpDown
-                    className={styles.toggleIcon}
+                    style={{
+                      marginLeft: "0.2%",
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer",
+                    }}
                     onClick={clickToSort}
                   />
-                </div>
+                </Style.SortContent>
 
                 {toggle && <Toggle setToggle={setToggle} />}
-              </div>
+              </Style.SortContainer>
             ) : null}
 
-            <div className={styles.content}>
-              <Side className={styles.side} />
-              <div className={styles.products}>
+            <Style.Content>
+              <Side />
+              <Style.Products>
                 {products && products.products[0].length !== 0 ? (
-                  products.products.map((product, index) =>
+                  products.products.map((product) =>
                     product.map((product, index) => (
                       <ProductLikeCard
                         none={"none"}
@@ -135,16 +148,16 @@ const SearchPage = () => {
                     ))
                   )
                 ) : (
-                  <div className={styles.notFound}>
+                  <Style.NotFound>
                     검색하신 상품이 존재하지 않습니다.
-                  </div>
+                  </Style.NotFound>
                 )}
-              </div>
-            </div>
-          </div>
+              </Style.Products>
+            </Style.Content>
+          </Style.ProductsContainer>
         )}
         {hamburger && <Filter setShow={setShow} setHamburger={setHamburger} />}
-      </div>
+      </Style.Container>
     </>
   );
 };
