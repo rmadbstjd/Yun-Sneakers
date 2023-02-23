@@ -1,34 +1,33 @@
 import React from "react";
+import * as Style from "./styles";
 import NewProducts from "../../components/NewProducts";
 import PopularProducts from "../../components/PopularProducts";
 import Brand from "../../components/RecommendBrand";
-import styles from "./Main.module.css";
 import Navbar from "./../../components/common/Navbar/index";
 const Main = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.container}>
-        <div className={styles.imgContainer}>
-          <div
+      <Style.Container>
+        <Style.ImgContainer>
+          <Style.Img
             style={{
               backgroundImage:
                 "url(https://res.cloudinary.com/dtw1xfagx/image/upload/v1672987124/homeimg_nrshhh.jpg)",
             }}
-            className={styles.img}
           >
             Premium Shoes for you !
-          </div>
-        </div>
+          </Style.Img>
+        </Style.ImgContainer>
 
-        <div className={styles.productsContainer}>
-          <div className={styles.productContainer}>
+        <Style.ProductsContainerLayout>
+          <Style.ProductsContainer>
             <Brand />
             <PopularProducts />
             <NewProducts />
-          </div>
-        </div>
-      </div>
+          </Style.ProductsContainer>
+        </Style.ProductsContainerLayout>
+      </Style.Container>
     </>
   );
 };
