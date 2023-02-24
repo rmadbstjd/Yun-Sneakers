@@ -60,7 +60,7 @@ export const SortContent = styled.div`
   display: flex;
 `;
 
-export const Sort = styled.did`
+export const Sort = styled.div`
   cursor: pointer;
 `;
 
