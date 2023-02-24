@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import styles from "./css/Address.module.css";
-import userInfoStore from "../../store/userInfoStore";
+import * as Style from "./styles";
 import Swal from "sweetalert2";
-import ShipAddress from "../../components/ShipAddress";
-import Modal from "../../components/common/Modal";
-import MypageSide from "../../components/MypageSide";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "./../../../components/common/Navbar/index";
+import userInfoStore from "./../../../store/userInfoStore";
+import ShipAddress from "./../../../components/ShipAddress/index";
+import Modal from "./../../../components/common/Modal/index";
+import MypageSide from "./../../../components/MypageSide/index";
 const Address = () => {
   const navigate = useNavigate();
   const {
@@ -93,48 +93,43 @@ const Address = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.mypageContainer}>
+      <Style.MyPageContainer>
         <MypageSide />
-        <div className={styles.mainContainer}>
-          <div className={styles.title}>배송지</div>
-          <div className={styles.horizonLine}></div>
-          <div
-            className={
-              address === false
-                ? styles.addressContainer3
-                : styles.addressContainer2
-            }
-          >
+        <Style.MainContainer>
+          <Style.Title>배송지</Style.Title>
+          <Style.HorizonLine
+            width={"1200px"}
+            border={4}
+            color={"black"}
+          ></Style.HorizonLine>
+          <Style.AddressContainer isBoolean={address}>
             <ShipAddress />
 
             {address === false ? (
-              <div
-                className={styles.Btn}
+              <Style.Btn
                 onClick={() => {
                   setShowModal((prev) => !prev);
                 }}
               >
                 추가하기
-              </div>
+              </Style.Btn>
             ) : (
-              <div className={styles.btnContainer}>
-                <div
-                  className={styles.Btn}
+              <Style.BtnContainer>
+                <Style.Btn
                   onClick={() => {
                     setShowModal((prev) => !prev);
                   }}
                 >
                   수정
-                </div>
-                <div
-                  className={styles.Btn}
+                </Style.Btn>
+                <Style.Btn
                   onClick={() => {
                     deleteAddress();
                   }}
                 >
                   삭제
-                </div>
-              </div>
+                </Style.Btn>
+              </Style.BtnContainer>
             )}
             {showModal === true ? (
               <Modal
@@ -146,9 +141,9 @@ const Address = () => {
                 type={"ship"}
               ></Modal>
             ) : null}
-          </div>
-        </div>
-      </div>
+          </Style.AddressContainer>
+        </Style.MainContainer>
+      </Style.MyPageContainer>
     </>
   );
 };

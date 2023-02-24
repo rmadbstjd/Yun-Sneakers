@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import styles from "./css/Review.module.css";
+import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../store/userInfoStore";
+import userInfoStore from "../../../store/userInfoStore";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import Modal from "../../components/common/Modal";
+import Modal from "../../../components/common/Modal";
 import Swal from "sweetalert2";
-import convertToPrice from "../../hooks/convertToPrice";
-import MypageSide from "../../components/MypageSide";
-import Navbar from "./../../components/common/Navbar/index";
+import convertToPrice from "../../../hooks/convertToPrice";
+import MypageSide from "../../../components/MypageSide";
+import Navbar from "./../../../components/common/Navbar/index";
 
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
@@ -74,89 +74,88 @@ const Review = () => {
       setDeleted(false);
     }
   }, [number, stateReview, deleted]);
-
+  console.log("stateReview", stateReview);
   if (!stateReview) {
     return (
       <>
         <Navbar />
-        <div className={styles.mypageContainer}>
+        <Style.MyPageContainer>
           <MypageSide />
-          <div className={styles.mainContainer}>
-            <div className={styles.title}>리뷰</div>
-            <div className={styles.reviewContainer}>
-              <div
-                className={
-                  stateReview !== true
-                    ? styles.reviewTitle2
-                    : styles.reviewTitle
-                }
+          <Style.MainContainer>
+            <Style.Title>리뷰</Style.Title>
+            <Style.ReviewContainer>
+              <Style.ReviewLeftTitle
+                state={stateReview}
                 onClick={() => setStateReview(true)}
               >
                 작성 가능한 리뷰 (
                 {completedProducts && completedProducts.length})
-              </div>
-              <div
-                className={styles.reviewTitle}
+              </Style.ReviewLeftTitle>
+              <Style.ReviewRightTitle
+                state={stateReview}
                 onClick={() => setStateReview(false)}
               >
                 내 리뷰 ({product && product.length})
-              </div>
-              <div className={styles.horizonLine}></div>
-            </div>
-            <div className={styles.topContainer}>
-              <div className={styles.productInfo}>{itemArr2[0]}</div>
-              <div className={styles.reviewPrice}>{itemArr2[1]}</div>
-              <div className={styles.reviewContent}>{itemArr2[2]}</div>
-              <div className={styles.reviewStar}>{itemArr2[3]}</div>
-              <div className={styles.reviewState}>{itemArr2[4]}</div>
-            </div>
-            <div className={styles.horizonLine2}></div>
+              </Style.ReviewRightTitle>
+              <Style.HorizonLine
+                width={"1190px"}
+                border={3}
+                color={"black"}
+              ></Style.HorizonLine>
+            </Style.ReviewContainer>
+            <Style.TopContainer>
+              <Style.TopItem width={"450px"}>{itemArr2[0]}</Style.TopItem>
+              <Style.TopItem width={"350px"}>{itemArr2[1]}</Style.TopItem>
+              <Style.TopItem width={"270px"}>{itemArr2[2]}</Style.TopItem>
+              <Style.TopItem width={"300px"}>{itemArr2[3]}</Style.TopItem>
+              <Style.TopItem width={"110px"}>{itemArr2[4]}</Style.TopItem>
+            </Style.TopContainer>
+            <Style.HorizonLine
+              width={"1555px"}
+              border={3}
+              color={"black"}
+            ></Style.HorizonLine>
             {product && product.length === 0 ? (
-              <div className={styles.noneText}>
-                아직 작성한 리뷰가 없습니다.
-              </div>
+              <Style.NoneText>아직 작성한 리뷰가 없습니다.</Style.NoneText>
             ) : null}
             {product &&
               product.map((item, index) => (
                 <div key={index}>
-                  <div className={styles.date}>
-                    주문 일자 {item.product.date}
-                  </div>
-                  <div className={styles.productContent}>
-                    <img
-                      className={styles.img}
+                  <Style.Date>주문 일자 {item.product.date}</Style.Date>
+                  <Style.ProductContent>
+                    <Style.Img
                       src={item.info.image}
                       onClick={() => {
                         goToDetail(item.info);
                       }}
                       alt="이미지"
-                    ></img>
-                    <div className={styles.info}>
-                      <div
-                        className={styles.brand}
+                    ></Style.Img>
+
+                    <Style.Info>
+                      <Style.Text
                         onClick={() => {
                           goToSearch(item.info);
                         }}
                       >
                         <span>{item.info.category}</span>
-                      </div>
-                      <div
-                        className={styles.name}
+                      </Style.Text>
+
+                      <Style.Text
                         onClick={() => {
                           goToDetail(item.info);
                         }}
                       >
                         <span>{item.info.name}</span>
-                      </div>
-                      <div className={styles.size}>
-                        사이즈 [{item.product.size}]
-                      </div>
-                    </div>
-                    <div className={styles.priceContainer}>
+                      </Style.Text>
+
+                      <Style.Text>사이즈 [{item.product.size}]</Style.Text>
+                    </Style.Info>
+
+                    <Style.PriceContainer height={"130px"}>
                       {item.product.coupon !== "선택안함" ? (
-                        <div className={styles.firstPrice}>
-                          {convertToPrice(item.info.price)}원 원
-                        </div>
+                        <Style.FirstPrice>
+                          {convertToPrice(item.info.price)}원
+                        </Style.FirstPrice>
                       ) : null}
                       <div>
                         {setPrice(item.product.coupon, item.info.price)
@@ -164,12 +163,14 @@ const Review = () => {
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                         원
                       </div>
-                      <div className={styles.price}>{item.product.count}개</div>
-                    </div>
-                    <div className={styles.content}>
+                      <div>{item.product.count}개</div>
+                    </Style.PriceContainer>
+
+                    <Style.Content>
                       <div>{item.product.content}</div>
-                    </div>
-                    <div className={styles.star}>
+                    </Style.Content>
+
+                    <Style.Star>
                       {item.product.star.map((item, index) =>
                         item === false ? (
                           <AiOutlineStar
@@ -187,17 +188,17 @@ const Review = () => {
                           />
                         )
                       )}
-                    </div>
-                    <div className={styles.btnContainer}>
-                      <div
-                        className={styles.Btn}
+                    </Style.Star>
+
+                    <Style.BtnContainer>
+                      <Style.Btn
                         onClick={() => {
                           setShowModal((prev) => !prev);
                           setNumber(index);
                         }}
                       >
                         수정
-                      </div>
+                      </Style.Btn>
                       {showModal === true ? (
                         <Modal
                           isOpen={true}
@@ -208,110 +209,106 @@ const Review = () => {
                           isReviewed={true}
                         ></Modal>
                       ) : null}
-                      <div
-                        className={styles.Btn}
+                      <Style.Btn
                         onClick={() => {
                           setNumber(index);
                           setDeleted(true);
                         }}
                       >
                         삭제
-                      </div>
-                    </div>
-                  </div>
+                      </Style.Btn>
+                    </Style.BtnContainer>
+                  </Style.ProductContent>
                 </div>
               ))}
-          </div>
-        </div>
+          </Style.MainContainer>
+        </Style.MyPageContainer>
       </>
     );
   } else if (stateReview) {
     return (
       <>
         <Navbar />
-        <div className={styles.mypageContainer}>
+        <Style.MyPageContainer>
           <MypageSide />
 
-          <div className={styles.mainContainer}>
-            <div className={styles.title}>리뷰</div>
-            <div className={styles.reviewContainer}>
-              <div
-                className={styles.reviewTitle}
+          <Style.MainContainer>
+            <Style.Title>리뷰</Style.Title>
+            <Style.ReviewContainer>
+              <Style.ReviewLeftTitle
+                state={stateReview}
                 onClick={() => setStateReview(true)}
               >
                 작성 가능한 리뷰 (
                 {completedProducts && completedProducts.length})
-              </div>
-              <div
-                className={
-                  stateReview !== true
-                    ? styles.reviewTitle
-                    : styles.reviewTitle2
-                }
+              </Style.ReviewLeftTitle>
+              <Style.ReviewRightTitle
+                state={stateReview}
                 onClick={() => setStateReview(false)}
               >
                 내 리뷰 ({product && product.length})
-              </div>
-              <div className={styles.horizonLine}></div>
-            </div>
-            <div className={styles.topContainer}>
-              <div className={styles.productInfo}>{itemArr3[0]}</div>
-              <div className={styles.orderDate}>{itemArr3[1]}</div>
-              <div className={styles.orderNumber}>{itemArr3[2]}</div>
-              <div className={styles.orderPrice}>{itemArr3[3]}</div>
-              <div className={styles.orderCoupon}>{itemArr3[4]}</div>
-              <div className={styles.orderState}>{itemArr3[5]}</div>
-            </div>
+              </Style.ReviewRightTitle>
+              <Style.HorizonLine
+                width={"1190px"}
+                border={3}
+                color={"black"}
+              ></Style.HorizonLine>
+            </Style.ReviewContainer>
+            <Style.TopContainer>
+              <Style.TopItem width={"450px"}>{itemArr3[0]}</Style.TopItem>
+              <Style.TopItem width={"350px"}>{itemArr3[1]}</Style.TopItem>
+              <Style.TopItem width={"340px"}>{itemArr3[2]}</Style.TopItem>
+              <Style.TopItem width={"190px"}>{itemArr3[3]}</Style.TopItem>
+              <Style.TopItem width={"190px"}>{itemArr3[4]}</Style.TopItem>
+              <Style.TopItem width={"190px"}>{itemArr3[5]}</Style.TopItem>
+            </Style.TopContainer>
 
-            <div className={styles.horizonLine2}></div>
+            <Style.HorizonLine
+              width={"1555px"}
+              border={3}
+              color={"black "}
+            ></Style.HorizonLine>
 
             {completedProducts && completedProducts.length === 0 ? (
-              <div className={styles.noneText}>
+              <Style.NoneText>
                 아직 리뷰를 작성할 수 있는 주문내역이 없습니다.
-              </div>
+              </Style.NoneText>
             ) : null}
             {completedProducts &&
               completedProducts.map((item, index) => (
                 <div key={index}>
-                  <div className={styles.date}>
-                    주문 일자 {item.product.date}
-                  </div>
-                  <div className={styles.productContent}>
-                    <img
-                      className={styles.img}
+                  <Style.Date>주문 일자 {item.product.date}</Style.Date>
+                  <Style.ProductContent>
+                    <Style.Img
                       src={item.info.image}
                       onClick={() => {
                         goToDetail(item.info);
                       }}
                       alt="이미지"
-                    ></img>
-                    <div className={styles.info}>
-                      <div
-                        className={styles.brand}
+                    ></Style.Img>
+                    <Style.Info>
+                      <Style.Text
                         onClick={() => {
                           goToSearch(item.info);
                         }}
                       >
                         <span>{item.info.category}</span>
-                      </div>
-                      <div
-                        className={styles.name}
+                      </Style.Text>
+                      <Style.Text
                         onClick={() => {
                           goToDetail(item.info);
                         }}
                       >
                         <span>{item.info.name}</span>
-                      </div>
-                      <div className={styles.size}>
-                        사이즈 [{item.product.size}]
-                      </div>
-                    </div>
-                    <div className={styles.orderNum}>{item.product._id}</div>
-                    <div className={styles.priceContainer2}>
+                      </Style.Text>
+                      <Style.Text>사이즈 [{item.product.size}]</Style.Text>
+                    </Style.Info>
+                    <Style.OrderNum>{item.product._id}</Style.OrderNum>
+                    <Style.PriceContainer height={"120px"}>
                       {item.product.coupon !== "선택안함" ? (
-                        <div className={styles.firstPrice}>
+                        <Style.FirstPrice>
                           {convertToPrice(item.info.price)}원 원
-                        </div>
+                        </Style.FirstPrice>
                       ) : null}
                       <div>
                         {setPrice(item.product.coupon, item.info.price)
@@ -320,23 +317,22 @@ const Review = () => {
                         원
                       </div>
                       <div>{item.product.count} 개</div>
-                    </div>
-                    <div className={styles.coupon}>{item.product.coupon}</div>
-                    <div className={styles.state}>
+                    </Style.PriceContainer>
+                    <Style.Coupon>{item.product.coupon}</Style.Coupon>
+                    <Style.State>
                       <div>{item.product.state}</div>
                       {item.product.isReviewd === false ? (
-                        <div
-                          className={styles.review}
+                        <Style.Review
                           onClick={() => {
                             setShowModal((prev) => !prev);
                             setNumber(index);
                           }}
                         >
                           리뷰 쓰기
-                        </div>
+                        </Style.Review>
                       ) : null}
-                    </div>
-                  </div>
+                    </Style.State>
+                  </Style.ProductContent>
                 </div>
               ))}
             {showModal === true ? (
@@ -349,8 +345,8 @@ const Review = () => {
                 isReviewed={false}
               ></Modal>
             ) : null}
-          </div>
-        </div>
+          </Style.MainContainer>
+        </Style.MyPageContainer>
       </>
     );
   }

@@ -23,11 +23,7 @@ const Shipment = () => {
     card,
     setCard,
   } = userInfoStore();
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["test"], () => cart.getUserCarts());
+  const { data: products } = useQuery(["products"], () => cart.getUserCarts());
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
   );
@@ -105,7 +101,7 @@ const Shipment = () => {
     if (state === "new") setNewShip(true);
     else setNewShip(false);
   };
-  const test = () => {
+  const showBudget = () => {
     setShowCard((prev) => !prev);
     if (showBudgetAccount1) setShowBudgetAccount1(false);
   };
@@ -295,12 +291,10 @@ const Shipment = () => {
   }, [coupon, price]);
 
   useEffect(() => {
-    if (check1 === true && check2 === true && check3 === true)
-      setCheckAll(true);
-    else {
-      setCheckAll(false);
-    }
+    if (check1 && check2 && check3) setCheckAll(true);
+    else setCheckAll(false);
   }, [check1, check2, check3]);
+
   return (
     <>
       <Navbar />
@@ -387,7 +381,7 @@ const Shipment = () => {
                 </Style.Card>
               ))}
             </Style.CardContainer>
-            <Style.SelectCard onClick={test}>
+            <Style.SelectCard onClick={showBudget}>
               <Style.CardTitle>{card}</Style.CardTitle>
               <IoIosArrowDown
                 style={{
