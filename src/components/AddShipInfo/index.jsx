@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./AddShip.module.css";
+import * as Style from "./styles";
 import { IoIosArrowDown } from "react-icons/io";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
@@ -102,39 +102,34 @@ const AddShip = ({ type }) => {
     }
   }, [defaultAddress]);
   return (
-    <div className={styles.container}>
-      <div className={styles.first}>
-        <div className={styles.left}>배송지명</div>
-        <input
+    <Style.Container>
+      <Style.Content>
+        <Style.Item>배송지명</Style.Item>
+        <Style.DeliveryAddress
           type="text"
-          className={styles.deliveryAddress}
           maxLength={10}
           value={shipPlaceName}
           onChange={(e) => changeText(e, "shipPlaceName")}
-        ></input>
-      </div>
-      <div className={styles.first}>
-        <div className={styles.left}>수령인</div>
-        <input
+        ></Style.DeliveryAddress>
+      </Style.Content>
+      <Style.Content>
+        <Style.Item>수령인</Style.Item>
+        <Style.DeliveryAddress
           type="text"
-          className={styles.deliveryAddress}
           maxLength={10}
           value={shipReceiver}
           onChange={(e) => changeText(e, "shipReceiver")}
-        ></input>
-      </div>
-      <div className={styles.addressContainer}>
-        <div className={styles.addressLeft}>배송지</div>
-        <div className={styles.searchContainer}>
-          <div className={styles.search}>
-            <div className={styles.addressNumber}>{shipPostCode}</div>
-            <div
-              className={styles.searchButton}
-              onClick={() => setIsPopupOpen((prev) => !prev)}
-            >
+        ></Style.DeliveryAddress>
+      </Style.Content>
+      <Style.AddressContainer>
+        <Style.AddressItem>배송지</Style.AddressItem>
+        <Style.SearchContainer>
+          <Style.Search>
+            <Style.AddressNumber>{shipPostCode}</Style.AddressNumber>
+            <Style.SearchBtn onClick={() => setIsPopupOpen((prev) => !prev)}>
               우편 번호 검색
-            </div>
-          </div>
+            </Style.SearchBtn>
+          </Style.Search>
           <div id="popupDom">
             {isPopupOpen && (
               <PopupDom>
@@ -142,76 +137,74 @@ const AddShip = ({ type }) => {
               </PopupDom>
             )}
           </div>
-          <div className={styles.addressInfo}>{shipAddress}</div>
-          <input
+          <Style.AddressInfo>{shipAddress}</Style.AddressInfo>
+          <Style.MoreInfo
             type="text"
             placeholder="상세 주소 입력"
             value={shipAddressDetail}
             onChange={(e) => setShipAddressDetail(e.target.value)}
-            className={styles.moreInfo}
-          ></input>
-        </div>
-      </div>
-      <div className={styles.phoneNumberContainer}>
-        <div className={styles.left}>연락처</div>
+          ></Style.MoreInfo>
+        </Style.SearchContainer>
+      </Style.AddressContainer>
+      <Style.PhoneNumberContainer>
+        <Style.Item>연락처</Style.Item>
 
-        <input
+        <Style.Number
           type="text"
           value={phoneNumInput1}
           onChange={(e) => checkNumber(e, "first")}
-          className={styles.number}
         />
 
-        <AiOutlineMinus className={styles.minus} />
-        <input
+        <AiOutlineMinus
+          style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
+        />
+        <Style.Number
           type="text"
           value={phoneNumInput2}
           onChange={(e) => checkNumber(e, "second")}
-          className={styles.number}
-        ></input>
-        <AiOutlineMinus className={styles.minus} />
-        <input
+        ></Style.Number>
+        <AiOutlineMinus
+          style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
+        />
+        <Style.Number
           type="text"
           value={phoneNumInput3}
           onChange={(e) => checkNumber(e, "last")}
-          className={styles.number}
-        ></input>
-      </div>
-      <div className={styles.checkBoxContainer}>
-        <input
+        ></Style.Number>
+      </Style.PhoneNumberContainer>
+      <Style.CheckBoxContainer>
+        <Style.CheckBox
           type="checkbox"
           value={defaultAddress}
-          className={styles.checkbox}
           onChange={(e) => checkAddress(e)}
         />
-        <div className={styles.checkBoxRight}>기본 배송지로 설정</div>
-      </div>
-      <div className={styles.requestBox} onClick={showRequestBox}>
-        {request} <IoIosArrowDown className={styles.down} />
-      </div>
-      <div className={styles.test}>
+        <Style.CheckBoxRight>기본 배송지로 설정</Style.CheckBoxRight>
+      </Style.CheckBoxContainer>
+      <Style.RequestBox onClick={showRequestBox}>
+        {request} <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
+      </Style.RequestBox>
+      <Style.RequestContainer>
         {" "}
         {showRequest &&
           requestArr.map((item, index) => (
-            <div
-              className={styles.request}
-              onClick={() => clickRequest(item)}
-              key={index}
-            >
+            <Style.Request onClick={() => clickRequest(item)} key={index}>
               {item}
-            </div>
+            </Style.Request>
           ))}
-      </div>
+      </Style.RequestContainer>
       {showTextArea && (
-        <textarea
-          value={textArea}
-          onChange={(e) => checkTextLength(e)}
-          className={styles.textArea}
-          placeholder="내용을 입력해주세요.(최대 50자)"
-        ></textarea>
+        <>
+          <Style.TextArea
+            value={textArea}
+            onChange={(e) => checkTextLength(e)}
+            placeholder="내용을 입력해주세요.(최대 50자)"
+          ></Style.TextArea>
+          <Style.letterCount>{textArea.length}/50</Style.letterCount>
+        </>
       )}
+
       <div></div>
-    </div>
+    </Style.Container>
   );
 };
 

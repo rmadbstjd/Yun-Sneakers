@@ -3,16 +3,12 @@ import styles from "./Arrow.module.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 const Arrow = ({ currentPage, setCurrentPage }) => {
   const plusCurrent = () => {
-    if (currentPage >= 4) {
-      return;
-    }
+    if (currentPage >= 4) return;
 
     setCurrentPage((prev) => prev + 1);
   };
   const minusCurrent = () => {
-    if (currentPage <= 1) {
-      return;
-    }
+    if (currentPage <= 1) return;
     setCurrentPage((prev) => prev - 1);
   };
   return (
