@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Filter.module.css";
+import * as Style from "./styles";
 import { GrClose } from "react-icons/gr";
 import FilterContent from "../FilterContent";
 const Filter = ({ setHamburger, setShow }) => {
@@ -9,22 +9,25 @@ const Filter = ({ setHamburger, setShow }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.navbarContainer}>
-        <div></div>
-        <div className={styles.navbarTitle}>필터</div>
-        <div className={styles.navabrClose} onClick={closeHamburger}>
-          <GrClose className={styles.closeBtn} />
-        </div>
-      </div>
+    <Style.Container>
+      <Style.NavbarContainer>
+        <Style.NavbarTitle>필터</Style.NavbarTitle>
+        <GrClose
+          style={{
+            width: "25px",
+            height: "25px",
+            margin: "18px 15px 0px 0px",
+            cursor: "pointer",
+          }}
+          onClick={closeHamburger}
+        />
+      </Style.NavbarContainer>
 
       <div>
         <FilterContent />
       </div>
-      <div className={styles.footer} onClick={closeHamburger}>
-        적용하기
-      </div>
-    </div>
+      <Style.Footer onClick={closeHamburger}>적용하기</Style.Footer>
+    </Style.Container>
   );
 };
 
