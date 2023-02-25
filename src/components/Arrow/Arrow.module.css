@@ -1,0 +1,64 @@
+.container {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+}
+.size {
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+}
+.current {
+  color: black;
+}
+.in {
+  display: flex;
+  margin-top: 5px;
+}
+.left {
+  cursor: pointer;
+  text-align: center;
+  font-size: 30px;
+}
+.Noleft {
+  cursor: pointer;
+  text-align: center;
+  font-size: 30px;
+}
+.Noleft:hover {
+  cursor: not-allowed;
+}
+.right {
+  margin-top: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 150%;
+  font-size: 30px;
+}
+.NoRight {
+  margin-top: 2px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 150%;
+  font-size: 30px;
+}
+.NoRight:hover {
+  cursor: not-allowed;
+}
+
+@media (max-width: 776px) {
+  .container {
+    margin-left: -40%;
+  }
+}
+@media (max-width: 676px) {
+  .container {
+    margin-left: -30%;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    margin-left: -20%;
+  }
+}
