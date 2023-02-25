@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import produce from "immer";
 import styles from "./Modal.module.css";
+import * as Style from "./styles";
 import userInfoStore from "../../../store/userInfoStore";
 import productStore from "../../../store/productStore";
 import AddShip from "../../AddShipInfo";
@@ -132,28 +133,25 @@ const Modal = ({
         onRequestClose={() => setModalIsOpen(false)}
         ariaHideApp={false}
       >
-        <div className={styles.sizeContainer}>
-          <div className={styles.sizeContainer}>
-            <div className={styles.name}>Size</div>
-            <div className={styles.sizeContainer}>
+        <Style.SizeContainer>
+          <Style.SizeContainer>
+            <Style.Title>Size</Style.Title>
+            <Style.SizeContainer>
               {sizes &&
                 sizes.map((item) => (
-                  <div
+                  <Style.SizeBox
                     onClick={() => {
                       clickSize(item);
                     }}
-                    className={styles.sizeBox}
                   >
                     {item}
-                  </div>
+                  </Style.SizeBox>
                 ))}
-            </div>
-          </div>
+            </Style.SizeContainer>
+          </Style.SizeContainer>
 
-          <button className={styles.close} onClick={closeShow}>
-            X
-          </button>
-        </div>
+          <Style.Close onClick={closeShow}>X</Style.Close>
+        </Style.SizeContainer>
       </ReactModal>
     );
   } else if (type === "ship") {
@@ -165,29 +163,27 @@ const Modal = ({
         onRequestClose={() => setModalIsOpen(false)}
         ariaHideApp={false}
       >
-        <div className={styles.addressContainer}>
-          <div className={styles.addressContent}>
+        <Style.AddressContainer>
+          <Style.AddressContent>
             <AddShip />
-            <div className={styles.btnContainer}>
-              <div
-                className={styles.Btn}
+            <Style.BtnContainer>
+              <Style.Btn
                 onClick={() => {
                   setModalIsOpen(false);
                 }}
               >
                 취소
-              </div>
-              <div
-                className={styles.Btn}
+              </Style.Btn>
+              <Style.Btn
                 onClick={() => {
                   submitBtn();
                 }}
               >
                 저장
-              </div>
-            </div>
-          </div>
-        </div>
+              </Style.Btn>
+            </Style.BtnContainer>
+          </Style.AddressContent>
+        </Style.AddressContainer>
       </ReactModal>
     );
   } else if (type === "review") {
@@ -199,28 +195,28 @@ const Modal = ({
         onRequestClose={() => setModalIsOpen(false)}
         ariaHideApp={false}
       >
-        <div className={styles.reviewContainer}>
-          <div className={styles.reviewTitle}>리뷰 쓰기</div>
-          <div className={styles.productContent}>
-            <img className={styles.img} src={product.info.image}></img>
-            <div className={styles.infoContainer}>
-              <div className={styles.productCategory}>
+        <Style.ReviewContainer>
+          <Style.ReviewTitle>리뷰 쓰기</Style.ReviewTitle>
+          <Style.ProductContent>
+            <Style.Img src={product.info.image}></Style.Img>
+            <Style.InfoContainer>
+              <Style.ProductCategory>
                 {product.info.category}
-              </div>
-              <div className={styles.productName}>{product.info.name}</div>
-              <div className={styles.productDescription}>
+              </Style.ProductCategory>
+              <Style.ProductName>{product.info.name}</Style.ProductName>
+              <Style.ProductDescription>
                 {product.info.description}
-              </div>
+              </Style.ProductDescription>
               <div>[사이즈] {product.product.size}</div>
-            </div>
-          </div>
-          <div className={styles.horizonLine}></div>
-          <div className={styles.starContainer}>
-            <div className={styles.starText1}>상품은 어떠셨나요?</div>
-            <div className={styles.starText2}>
+            </Style.InfoContainer>
+          </Style.ProductContent>
+          <Style.HorizonLine></Style.HorizonLine>
+          <Style.StarContainer>
+            <Style.StarTopText>상품은 어떠셨나요?</Style.StarTopText>
+            <Style.StarBotText>
               상품에 대한 별점을 매겨주세요.
-            </div>
-            <div className={styles.star}>
+            </Style.StarBotText>
+            <Style.Star>
               {star.map((item, index) =>
                 item === false ? (
                   <AiOutlineStar
@@ -244,36 +240,40 @@ const Modal = ({
                   />
                 )
               )}
-            </div>
-          </div>
-          <div className={styles.horizonLine}></div>
+            </Style.Star>
+          </Style.StarContainer>
+          <Style.HorizonLine></Style.HorizonLine>
           <div>
-            <textarea
+            <Style.TextArea
               placeholder="최소 10자 이상을 입력해주세요."
               value={text}
               onChange={(e) => handleSetValue(e)}
-            ></textarea>
+            ></Style.TextArea>
           </div>
-          <div className={styles.horizonLine}></div>
-        </div>
-        <div className={styles.btnContainer}>
-          <div
-            className={styles.btn1}
+          <Style.HorizonLine></Style.HorizonLine>
+        </Style.ReviewContainer>
+        <Style.BtnContainer>
+          <Style.StarBtn
+            color={"white"}
+            backcolor={"black"}
+            border={"black"}
             onClick={() => {
               submitReview();
             }}
           >
             등록하기
-          </div>
-          <div
-            className={styles.btn2}
+          </Style.StarBtn>
+          <Style.StarBtn
+            color={"#303033"}
+            backcolor={"white"}
+            border={"gray"}
             onClick={() => {
               setModalIsOpen(false);
             }}
           >
             취소하기
-          </div>
-        </div>
+          </Style.StarBtn>
+        </Style.BtnContainer>
       </ReactModal>
     );
   }

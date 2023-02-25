@@ -5,7 +5,7 @@ import { GiConverseShoe } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
-import styles from "./Navbar.module.css";
+import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search";
 import userInfoStore from "../../../store/userInfoStore";
@@ -23,11 +23,7 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [admin] = useState("");
-  const {
-    isLoading,
-    error,
-    data: cartProducts,
-  } = useQuery([userId], () => cart.getUserCarts());
+  const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
     initCartCount();
     if (cartProducts) {
@@ -64,98 +60,111 @@ const Navbar = () => {
 
   return (
     <div>
-      <div
-        className={
-          scrollPosition > 100 ? styles.scrolledContainer : styles.container
-        }
-      >
-        <div className={styles.navbarContainer}>
-          <div
-            className={styles.navbarLeftContainer}
+      <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
+        <Style.NavbarContainer>
+          <Style.NavbarLeftContainer
             onClick={() => {
               navigate("/");
               setShowSearch(false);
             }}
           >
             <GiConverseShoe size={45} />
-            <div className={styles.shopName}>Yun's Premium Sneakers</div>
-          </div>
-          <div className={styles.navbarRightContainer}>
+            <Style.ShopName>Yun's Premium Sneakers</Style.ShopName>
+          </Style.NavbarLeftContainer>
+          <Style.NavbarRightContainer>
             <FaUser
-              className={styles.mypageImg}
+              style={{
+                marginTop: "13px",
+                marginRight: "3px",
+                cursor: "pointer",
+              }}
               onClick={() => {
                 navigate("/mypage/order");
                 setShowSearch(false);
               }}
             />
-            <div
+            <Style.MyPage
               onClick={() => {
                 navigate("/mypage/order");
                 setShowSearch(false);
               }}
-              className={styles.mypage}
             >
               MY PAGE
-            </div>
+            </Style.MyPage>
             <BsHeartFill
-              className={styles.heartImg}
+              style={{
+                marginTop: "15px",
+                marginRight: "3px",
+                cursor: "pointer",
+              }}
               onClick={() => {
                 navigate("/products");
                 setShowSearch(false);
               }}
             />
-            <div
+            <Style.Products
               onClick={() => {
                 navigate("/products");
                 setShowSearch(false);
               }}
-              className={styles.products}
             >
               MY LIKE
-            </div>
+            </Style.Products>
             <BsFillCartFill
-              className={styles.cartImg}
+              style={{
+                marginTop: "10px",
+                marginRight: "3px",
+                cursor: "pointer",
+              }}
               size={20}
               onClick={() => {
                 navigate("/cart");
                 setShowSearch(false);
               }}
             />
-            <div
-              className={styles.shoppingBag}
+            <Style.ShoppingBag
               onClick={() => {
                 navigate("/cart");
                 setShowSearch(false);
               }}
             >
-              {isLogin && <div className={styles.count}>{cartCount}</div>}
-              <div className={styles.products}>MY CART</div>
-            </div>
+              {isLogin && <Style.Count>{cartCount}</Style.Count>}
+              <Style.Products>MY CART</Style.Products>
+            </Style.ShoppingBag>
 
             {
               <BsFillPencilFill
                 size={28}
-                className={styles.pencilImg}
+                style={{
+                  marginTop: "10px",
+                  marginRight: "10px",
+                  cursor: "pointer",
+                  display: "none",
+                }}
                 onClick={() => {
                   navigate("/new");
                   setShowSearch(false);
                 }}
               />
             }
-            {nickName && <span className={styles.nickName}> {nickName}</span>}
+            {nickName && <Style.Nickname> {nickName}</Style.Nickname>}
             {!isLogin ? (
-              <button onClick={handleLogin} className={styles.button}>
-                Login
-              </button>
+              <Style.Btn onClick={handleLogin}>Login</Style.Btn>
             ) : (
-              <button onClick={handleLogout} className={styles.button}>
-                Logout
-              </button>
+              <Style.Btn onClick={handleLogout}>Logout</Style.Btn>
             )}
-            <FiSearch className={styles.search} onClick={clickToSearch} />
-          </div>
-        </div>
-      </div>
+            <FiSearch
+              style={{
+                margin: "7px 2px 0px 10px",
+                width: "30px",
+                height: "30px",
+                cursor: "pointer",
+              }}
+              onClick={clickToSearch}
+            />
+          </Style.NavbarRightContainer>
+        </Style.NavbarContainer>
+      </Style.Container>
       {showSearch && <Search setShowSearch={setShowSearch} />}
     </div>
   );
