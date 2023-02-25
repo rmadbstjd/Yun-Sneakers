@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Arrow.module.css";
+import * as Style from "./styles";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 const Arrow = ({ currentPage, setCurrentPage }) => {
   const plusCurrent = () => {
@@ -12,26 +12,25 @@ const Arrow = ({ currentPage, setCurrentPage }) => {
     setCurrentPage((prev) => prev - 1);
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.size}>
-        <div
-          className={currentPage === 1 ? styles.Noleft : styles.left}
+    <Style.Container>
+      <Style.Size>
+        <Style.Left
+          abled={currentPage === 1 ? false : true}
           onClick={minusCurrent}
         >
           <AiOutlineLeft style={{ marginTop: "1.8px" }}></AiOutlineLeft>
-        </div>
-        <div className={styles.in}>
-          <div className={styles.current}> {currentPage} &nbsp; </div> &nbsp;/
-          &nbsp;4
-        </div>
-        <div
-          className={currentPage === 4 ? styles.NoRight : styles.right}
+        </Style.Left>
+        <Style.Layout>
+          <Style.Current> {currentPage} &nbsp; </Style.Current> &nbsp;/ &nbsp;4
+        </Style.Layout>
+        <Style.Right
+          abled={currentPage === 4 ? false : true}
           onClick={plusCurrent}
         >
           <AiOutlineRight />
-        </div>
-      </div>
-    </div>
+        </Style.Right>
+      </Style.Size>
+    </Style.Container>
   );
 };
 
