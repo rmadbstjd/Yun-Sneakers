@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
-import styles from "./CartProduct.module.css";
+import * as Style from "./styles";
 import Swal from "sweetalert2";
 const CartProduct = ({ item, refetch }) => {
   const { cart } = userInfoStore();
@@ -36,46 +36,39 @@ const CartProduct = ({ item, refetch }) => {
   const goToDetail = () => {
     navigate(`/products/${item.productId}`);
   };
+
   return (
-    <div className={styles.container}>
-      <div className={styles.real}>
-        <div className={styles.infoContainer}>
-          <div
-            className={styles.img}
+    <Style.Container>
+      <Style.InfoLayout>
+        <Style.InfoContainer>
+          <Style.Img
             style={{ backgroundImage: "url(" + `${item.image}` + ")" }}
             onClick={goToDetail}
-          ></div>
-          <div className={styles.infoContent}>
-            <div className={styles.name}>{item.name}</div>
-            <div className={styles.description}>{item.description}</div>
-
-            <div className={styles.size}>[사이즈] {item.size}</div>
-            <div className={styles.price}>
+          ></Style.Img>
+          <Style.InfoContent>
+            <Style.Name>{item.name}</Style.Name>
+            <Style.Description>{item.description}</Style.Description>
+            <Style.Size>[사이즈] {item.size}</Style.Size>
+            <Style.Price>
               {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-            </div>
-          </div>
-        </div>
-        <div className={styles.real2}>
-          <div className={styles.quantity}>
-            <div className={styles.quantityContent}>
-              <div className={styles.minus} onClick={minus}>
-                -
-              </div>
-              <div className={styles.count}>{productCount}</div>
-              <div className={styles.plus} onClick={plus}>
-                +
-              </div>
-            </div>
-          </div>
-          <div className={styles.deleteContainer}>
-            <div className={styles.delete} onClick={deleteProduct}>
-              삭제하기
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.horizonLine2}></div>
-    </div>
+            </Style.Price>
+          </Style.InfoContent>
+        </Style.InfoContainer>
+        <Style.QuantityLayout>
+          <Style.Quantity>
+            <Style.QuantityContent>
+              <Style.Minus onClick={minus}>-</Style.Minus>
+              <Style.Count>{productCount}</Style.Count>
+              <Style.Plus onClick={plus}>+</Style.Plus>
+            </Style.QuantityContent>
+          </Style.Quantity>
+          <Style.DeleteContainer>
+            <Style.Delete onClick={deleteProduct}>삭제하기</Style.Delete>
+          </Style.DeleteContainer>
+        </Style.QuantityLayout>
+      </Style.InfoLayout>
+      <Style.HorizonLine></Style.HorizonLine>
+    </Style.Container>
   );
 };
 
