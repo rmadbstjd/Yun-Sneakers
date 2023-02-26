@@ -8,7 +8,7 @@ export const Modal = styled.div`
   position: absolute;
   top: 38%;
   left: 67.5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-83%, 70%);
   background-color: black;
   opacity: 0.9;
 `;

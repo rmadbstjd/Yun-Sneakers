@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./SimilarProducts.module.css";
+import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 
 const SimilarProducts = ({ products }) => {
@@ -8,17 +8,16 @@ const SimilarProducts = ({ products }) => {
     navigate(`/products/${products.id}`);
   };
   return (
-    <div className={styles.product} onClick={goToDetail}>
-      <div
-        className={styles.img}
+    <Style.Product onClick={goToDetail}>
+      <Style.Img
         style={{ backgroundImage: "url(" + `${products.image}` + ")" }}
-      ></div>
-      <span className={styles.category}>{products.category}</span>
-      <div className={styles.name}>{products.name}</div>
-      <div className={styles.price}>
+      ></Style.Img>
+      <Style.Category>{products.category}</Style.Category>
+      <Style.Name>{products.name}</Style.Name>
+      <Style.Price>
         {products.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-      </div>
-    </div>
+      </Style.Price>
+    </Style.Product>
   );
 };
 

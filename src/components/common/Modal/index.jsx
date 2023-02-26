@@ -134,24 +134,20 @@ const Modal = ({
         ariaHideApp={false}
       >
         <Style.SizeContainer>
-          <Style.SizeContainer>
-            <Style.Title>Size</Style.Title>
-            <Style.SizeContainer>
-              {sizes &&
-                sizes.map((item) => (
-                  <Style.SizeBox
-                    onClick={() => {
-                      clickSize(item);
-                    }}
-                  >
-                    {item}
-                  </Style.SizeBox>
-                ))}
-            </Style.SizeContainer>
-          </Style.SizeContainer>
+          <Style.Title>Size</Style.Title>
 
-          <Style.Close onClick={closeShow}>X</Style.Close>
+          {sizes &&
+            sizes.map((item) => (
+              <Style.SizeBox
+                onClick={() => {
+                  clickSize(item);
+                }}
+              >
+                {item}
+              </Style.SizeBox>
+            ))}
         </Style.SizeContainer>
+        <Style.Close onClick={closeShow}>닫기</Style.Close>
       </ReactModal>
     );
   } else if (type === "ship") {

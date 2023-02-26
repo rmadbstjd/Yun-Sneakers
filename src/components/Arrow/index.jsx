@@ -18,7 +18,7 @@ const Arrow = ({ currentPage, setCurrentPage }) => {
           abled={currentPage === 1 ? false : true}
           onClick={minusCurrent}
         >
-          <AiOutlineLeft style={{ marginTop: "1.8px" }}></AiOutlineLeft>
+          <AiOutlineLeft></AiOutlineLeft>
         </Style.Left>
         <Style.Layout>
           <Style.Current> {currentPage} &nbsp; </Style.Current> &nbsp;/ &nbsp;4

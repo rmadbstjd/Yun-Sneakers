@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
-import styles from "./Products.module.css";
+import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
 import Arrow from "../Arrow";
 const Products = () => {
@@ -15,21 +15,21 @@ const Products = () => {
 
   useEffect(() => {}, [products]);
   return (
-    <div className={styles.container}>
-      <div className={styles.productsContainer}>
-        <div className={styles.new}>New In</div>
-        <div className={styles.new2}>새로운 상품</div>
+    <Style.Container>
+      <Style.ProductsContainer>
+        <Style.TitleENG>New In</Style.TitleENG>
+        <Style.TitleKOR>새로운 상품</Style.TitleKOR>
         {products &&
           products.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
-        <div className={styles.moreContainer}>
-          <div className={styles.more}>
+        <Style.MoreContainer>
+          <Style.More>
             <Arrow currentPage={currentPage} setCurrentPage={setCurrentPage} />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Style.More>
+        </Style.MoreContainer>
+      </Style.ProductsContainer>
+    </Style.Container>
   );
 };
 

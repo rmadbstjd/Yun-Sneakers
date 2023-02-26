@@ -9,13 +9,10 @@ import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
 
 const Cart = () => {
-  console.log("테스트");
   const navigate = useNavigate();
   const { cart, initCartCount, plusCartCount } = cartStore();
-
   const [price, setPrice] = useState(0);
   const [count, setCount] = useState();
-
   const { data: cartProducts, refetch } = useQuery(["totalPrice"], () =>
     cart.getUserCarts()
   );

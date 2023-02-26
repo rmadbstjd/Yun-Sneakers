@@ -13,18 +13,34 @@ export const Size = styled.div`
 `;
 
 export const Left = styled.div`
+  margin-top: 5px;
   cursor: pointer;
   text-align: center;
-  font-size: 30px;
   cursor: ${(props) => (props.abled === true ? "pointer" : "not-allowed")};
+  &:hover {
+    margin-right: -5px;
+    border: solid black 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fafafa;
+  }
 `;
 
 export const Right = styled.div`
-  margin-top: 2px;
+  margin-top: 4px;
   cursor: pointer;
+
   text-align: center;
   line-height: 150%;
-  font-size: 30px;
+  &:hover {
+    margin-left: -5px;
+    border: solid black 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fafafa;
+  }
   cursor: ${(props) => (props.abled === true ? "pointer" : "not-allowed")};
 `;
 

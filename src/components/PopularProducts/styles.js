@@ -1,61 +1,48 @@
-@font-face {
-  font-family: "NanumSquareNeo-Variable";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-.container {
+import styled from "@emotion/styled";
+
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
-}
-.productsContainer {
+`;
+
+export const ProductsContainer = styled.div`
   width: 1250px;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
   margin: 50px;
-}
-.popular {
+`;
+
+export const TitleENG = styled.div`
   margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
   font-weight: bold;
   font-size: 20px;
-}
-.popular2 {
+`;
+
+export const TitleKOR = styled.div`
   margin-top: 3px;
   width: 100%;
   color: #3a3b3c;
   font-family: "NanumSquareNeo-Variable";
   font-size: 15px;
-}
-.moreContainer {
+`;
+
+export const MoreContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-}
-.more {
-  border-radius: 10px;
-  text-align: center;
-  line-height: 160%;
-  width: 100px;
-  height: 30px;
+`;
 
-  font-weight: bold;
-  cursor: pointer;
-  color: gray;
-}
-.more {
+export const More = styled.div`
   text-align: center;
   line-height: 160%;
   width: 200px;
   height: 40px;
-
   font-weight: bold;
-
   color: gray;
-}
+`;

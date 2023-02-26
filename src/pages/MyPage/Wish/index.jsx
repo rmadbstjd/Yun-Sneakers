@@ -35,8 +35,8 @@ const Wish = () => {
         <Style.MainContainer>
           <Style.Title>관심 상품 ( {count} )</Style.Title>
           <Style.HorizonLine
-            width={"1190px"}
-            border={3}
+            width={"1200px"}
+            border={4}
             color={"black"}
           ></Style.HorizonLine>
           <Style.ProductsContainer>

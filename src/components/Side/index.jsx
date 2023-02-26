@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./Side.module.css";
+import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import searchStore from "../../store/searchStore";
@@ -81,29 +81,23 @@ const Side = () => {
     }
   }, [checkedBrandList, checkedPriceList]);
   return (
-    <div className={styles.container}>
-      {<div className={styles.filter}>필터</div>}
-      <div className={styles.brandContainer} onClick={clickToBrand}>
-        <div className={styles.brandNavbar}>브랜드</div>
+    <div>
+      {<Style.Filter>필터</Style.Filter>}
+      <Style.Container onClick={clickToBrand}>
+        <Style.BrandNavbar>브랜드</Style.BrandNavbar>
 
         {showBrand === false ? (
-          <AiOutlinePlus className={styles.plus} />
+          <AiOutlinePlus style={{ width: "80px" }} />
         ) : (
-          <AiOutlineMinus className={styles.plus} />
+          <AiOutlineMinus style={{ width: "80px" }} />
         )}
-      </div>
-      {!showBrand && <div className={styles.horizonLine2}></div>}
-      <div
-        className={
-          showBrand === true
-            ? styles.brandContentIsBlock
-            : styles.brandContentIsNone
-        }
-      >
+      </Style.Container>
+      {!showBrand && <Style.HorizonLine></Style.HorizonLine>}
+      <Style.BrandContent isShow={showBrand === true ? true : false}>
         {brands &&
           brands.map((item, index) => (
-            <div className={styles.item} key={index}>
-              <label className={styles.itemName}>
+            <Style.Item key={index}>
+              <Style.ItemName>
                 {" "}
                 <input
                   type="checkbox"
@@ -112,32 +106,26 @@ const Side = () => {
                   onChange={(e) => onChecked(e, "brand")}
                 />
                 {item}
-              </label>
-            </div>
+              </Style.ItemName>
+            </Style.Item>
           ))}
-        <div className={styles.horizonLine2}></div>
-      </div>
+        <Style.HorizonLine></Style.HorizonLine>
+      </Style.BrandContent>
 
-      <div className={styles.priceContainer} onClick={clickToPrice}>
-        <div className={styles.brandNavbar}>가격</div>
+      <Style.Container onClick={clickToPrice}>
+        <Style.BrandNavbar>가격</Style.BrandNavbar>
         {showPrice === false ? (
-          <AiOutlinePlus className={styles.plus} />
+          <AiOutlinePlus style={{ width: "80px" }} />
         ) : (
-          <AiOutlineMinus className={styles.plus} />
+          <AiOutlineMinus style={{ width: "80px" }} />
         )}
-      </div>
+      </Style.Container>
 
-      {!showPrice && <div className={styles.horizonLine2}></div>}
-      <div
-        className={
-          showPrice === true
-            ? styles.brandContentIsBlock
-            : styles.brandContentIsNone
-        }
-      >
+      {!showPrice && <Style.HorizonLine></Style.HorizonLine>}
+      <Style.BrandContent isShow={showPrice === true ? true : false}>
         {priceInitArr.map((item, index) => (
-          <div className={styles.item} key={index}>
-            <label className={styles.itemName}>
+          <Style.Item key={index}>
+            <Style.ItemName>
               {" "}
               <input
                 type="checkbox"
@@ -148,11 +136,11 @@ const Side = () => {
                 onChange={(e) => onChecked(e, "price", index + 1)}
               />
               {item}
-            </label>
-          </div>
+            </Style.ItemName>
+          </Style.Item>
         ))}
-        <div className={styles.horizonLine2}></div>
-      </div>
+        <Style.HorizonLine></Style.HorizonLine>
+      </Style.BrandContent>
     </div>
   );
 };

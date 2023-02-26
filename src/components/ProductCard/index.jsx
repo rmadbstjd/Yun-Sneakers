@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ProductCard.module.css";
+import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { HiHeart } from "react-icons/hi";
 import convertToPrice from "../../hooks/convertToPrice";
@@ -11,27 +11,27 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className={styles.card} onClick={goToDetail}>
-      <img className={styles.img} src={product && product.image}></img>
-      <div className={styles.infoContainer}>
-        <div className={styles.categoryContainer}>
-          <div className={styles.category}>{product && product.category}</div>
-        </div>
-        <div className={styles.info}>
+    <Style.Card onClick={goToDetail}>
+      <Style.Img src={product && product.image}></Style.Img>
+      <div>
+        <Style.CategoryContainer>
+          <Style.Category>{product && product.category}</Style.Category>
+        </Style.CategoryContainer>
+        <Style.Info>
           <div>{product && product.description} </div>
-          <div className={styles.name}>{product && product.name}</div>
-          <div className={styles.priceContainer}>
-            <div className={styles.price}>
-              {convertToPrice(product.price)}원
-            </div>
-            <div className={styles.heartContainer}>
-              <HiHeart className={styles.heart} />
-              <div className={styles.num}>{product && product.likeNum}</div>
-            </div>
-          </div>
-        </div>
+          <Style.Name>{product && product.name}</Style.Name>
+          <Style.PriceContainer>
+            <>{convertToPrice(product.price)}원</>
+            <Style.HeartContainer>
+              <HiHeart
+                style={{ marginTop: "-4px", color: "red", fontSize: "18px" }}
+              />
+              <Style.Num>{product && product.likeNum}</Style.Num>
+            </Style.HeartContainer>
+          </Style.PriceContainer>
+        </Style.Info>
       </div>
-    </div>
+    </Style.Card>
   );
 };
 

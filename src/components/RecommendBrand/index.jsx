@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RecommendBrand.module.css";
+import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { SiNike, SiJordan, SiNewbalance, SiAdidas } from "react-icons/si";
 import { GiConverseShoe } from "react-icons/gi";
@@ -23,24 +23,23 @@ const Brand = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.productsContainer}>
-        <div className={styles.new}>Recommend Brand</div>
-        <div className={styles.new2}>추천 브랜드</div>
+    <Style.Container>
+      <Style.ProductsContainer>
+        <Style.TitleENG>Recommend Brand</Style.TitleENG>
+        <Style.TitleKOR>추천 브랜드</Style.TitleKOR>
         {brandArr.map((item) => (
-          <div
+          <Style.BrandContainer
             key={item.name}
-            className={styles.brandContainer}
             onClick={() => {
               goToDetail(item.name);
             }}
           >
             {item.img}
             {item.name}
-          </div>
+          </Style.BrandContainer>
         ))}
-      </div>
-    </div>
+      </Style.ProductsContainer>
+    </Style.Container>
   );
 };
 

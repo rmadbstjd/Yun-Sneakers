@@ -1,7 +1,7 @@
 import React from "react";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
-import styles from "./MypageSide.module.css";
+import * as Style from "./styles";
 const MypageSide = () => {
   const { nickName } = userInfoStore();
   const navigate = useNavigate();
@@ -26,27 +26,26 @@ const MypageSide = () => {
     }
   };
   return (
-    <div className={styles.sideContainer}>
-      <div className={styles.title}>마이 페이지</div>
+    <Style.Container>
+      <Style.Title>마이 페이지</Style.Title>
       {nickName && (
-        <div className={styles.nickName}>
+        <Style.NickName>
           {nickName}
-          <span className={styles.last}>님</span>
-        </div>
+          <Style.Last>님</Style.Last>
+        </Style.NickName>
       )}
       {itemArr &&
         itemArr.map((item) => (
-          <div
-            className={styles.item}
+          <Style.Item
             key={item}
             onClick={() => {
               goToPage(item);
             }}
           >
             {item}
-          </div>
+          </Style.Item>
         ))}
-    </div>
+    </Style.Container>
   );
 };
 

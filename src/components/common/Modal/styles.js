@@ -33,12 +33,15 @@ export const SizeBox = styled.div`
 `;
 
 export const Close = styled.div`
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  width: 70px;
+  margin-top: 40px;
+  margin-left: 170px;
+  height: 25px;
+  text-align: center;
   cursor: pointer;
   background-color: gray;
   border: solid black 0px;
+  border-radius: 5px;
   color: white;
   &:hover {
     background-color: black;

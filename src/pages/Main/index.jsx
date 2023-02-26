@@ -3,6 +3,7 @@ import * as Style from "./styles";
 import NewProducts from "../../components/NewProducts";
 import PopularProducts from "../../components/PopularProducts";
 import Brand from "../../components/RecommendBrand";
+
 import Navbar from "./../../components/common/Navbar/index";
 const Main = () => {
   return (

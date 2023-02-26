@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Search.module.css";
+import * as Style from "./styles";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
@@ -59,53 +59,59 @@ const Search = ({ setShowSearch }) => {
       localStorage.setItem("recentKeyword", JSON.stringify(recentKeyword));
   }, [recentKeyword]);
   return (
-    <div className={styles.container}>
-      <div className={styles.searchContainer}>
-        <form
-          className={styles.searchContent}
-          onSubmit={(e) => submitKeyword(e)}
-        >
-          <input
+    <Style.Container>
+      <Style.SearchContainer>
+        <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
+          <Style.SearchBar
             type="text"
             value={searchWord}
             placeholder="브랜드명, 모델명"
             onChange={(e) => handleChange(e)}
-            className={styles.searchBar}
             autoFocus
           />
 
-          <GrClose className={styles.close} onClick={closeSearch} />
-        </form>
-        <div className={styles.horizonLine}></div>
-        <div className={styles.recentSearchContainer}>
-          <div className={styles.recentSearch}>최근 검색어</div>
-          <div className={styles.delete} onClick={deleteAllRecentKeyword}>
+          <GrClose
+            style={{
+              width: "45px",
+              height: "45px",
+              cursor: "pointer",
+              marginTop: "5px",
+            }}
+            onClick={closeSearch}
+          />
+        </Style.SearchContent>
+        <Style.HorizonLine></Style.HorizonLine>
+        <Style.RecentSearchContainer>
+          <Style.RecentSearch>최근 검색어</Style.RecentSearch>
+          <Style.Delete onClick={deleteAllRecentKeyword}>
             모두 지우기
             <IoMdCloseCircle />
-          </div>
-        </div>
-        <div className={styles.keywordContainer}>
+          </Style.Delete>
+        </Style.RecentSearchContainer>
+        <Style.KeywordContainer>
           {showKeyword &&
             showKeyword.map((item) => (
-              <div className={styles.keywordContent} keyword={item}>
-                <div
-                  className={styles.keyword}
-                  onClick={() => goToSearchPage(item)}
-                >
+              <Style.KeywordContent keyword={item}>
+                <Style.Keyword onClick={() => goToSearchPage(item)}>
                   {item}
-                </div>
+                </Style.Keyword>
                 <IoMdCloseCircle
-                  className={styles.keywordClose}
+                  style={{
+                    marginTop: "5px",
+                    width: "20px",
+                    height: "20px",
+                    color: "gray",
+                    cursor: "pointer",
+                  }}
                   onClick={() => deleteKeyword(item)}
                 />{" "}
-              </div>
+              </Style.KeywordContent>
             ))}
-        </div>
-        <div className={styles.recommendSearch}>추천 검색어</div>
-        <div className={styles.recommendContainer}>
+        </Style.KeywordContainer>
+        <Style.RecommendSearch>추천 검색어</Style.RecommendSearch>
+        <Style.RecommendContainer>
           {recommendKeywordArr.map((item) => (
-            <div
-              className={styles.recommendContent}
+            <Style.RecommendContent
               onClick={() => {
                 navigate(`/search?keyword=${item}`);
                 setShowSearch(false);
@@ -113,11 +119,11 @@ const Search = ({ setShowSearch }) => {
               key={item}
             >
               {item}{" "}
-            </div>
+            </Style.RecommendContent>
           ))}
-        </div>
-      </div>
-    </div>
+        </Style.RecommendContainer>
+      </Style.SearchContainer>
+    </Style.Container>
   );
 };
 

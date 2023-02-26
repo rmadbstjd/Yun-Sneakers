@@ -15,8 +15,10 @@ import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
 import * as Style from "./styles";
 import convertToPrice from "../../hooks/convertToPrice";
+import { useNavigate } from "react-router-dom";
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { product, like, cart } = userInfoStore();
   const { plusCartCount } = cartStore();
   const { selectSize, setInitSize } = productStore();
@@ -43,13 +45,18 @@ const ProductDetail = () => {
   const [sizeModalShow, setSizeModalShow] = useState(false);
   const [cartModalShow, setCartModalShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const isLogin = localStorage.getItem("isLogin") === "true";
   const showSize = () => {
     setSizeModalShow((prev) => !prev);
     setModalIsOpen((prev) => !prev);
   };
 
   const clickToCart = async () => {
+    console.log("isLogin", isLogin);
+    if (!isLogin) {
+      navigate("/login");
+      return;
+    }
     if (!selectSize) {
       Swal.fire({
         title: "사이즈를 선택해주세요.",
@@ -57,6 +64,7 @@ const ProductDetail = () => {
       });
       return;
     }
+
     setCartModalShow((prev) => !prev);
     setTimeout(setCartModalShow, 3000);
     const isSubmit = await cart.addUserCart(products, selectSize);

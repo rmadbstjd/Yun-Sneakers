@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./OrderPageNavbar.module.css";
+import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
@@ -57,61 +57,54 @@ const OrderPageNavbar = () => {
   useEffect(() => {}, [products, completedProducts]);
   return (
     <div>
-      <div className={styles.title}>주문 내역 조회</div>
-      <div className={styles.title2}>
-        배송중 ( {products && products.length} )
-      </div>
-      <div className={styles.horizonLine}></div>
-      <div className={styles.topContainer}>
-        <div className={styles.productInfo}>{itemArr[0]}</div>
-        <div className={styles.orderDate}>{itemArr[1]}</div>
-        <div className={styles.orderNumber}>{itemArr[2]}</div>
-        <div className={styles.orderPrice}>{itemArr[3]}</div>
-        <div className={styles.orderCoupon}>{itemArr[4]}</div>
-        <div className={styles.orderState}>{itemArr[5]}</div>
-      </div>
-      <div className={styles.horizonLine}></div>
+      <Style.Header>주문 내역 조회</Style.Header>
+      <Style.Title>배송중 ( {products && products.length} )</Style.Title>
+      <Style.HorizonLine></Style.HorizonLine>
+      <Style.TopContainer>
+        <Style.TopItem width={"500px"}>{itemArr[0]}</Style.TopItem>
+        <Style.TopItem width={"150px"}>{itemArr[1]}</Style.TopItem>
+        <Style.TopItem width={"350px"}>{itemArr[2]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[3]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[4]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[5]}</Style.TopItem>
+      </Style.TopContainer>
+      <Style.HorizonLine></Style.HorizonLine>
       {products && products.length === 0 ? (
-        <div className={styles.noneText}>
-          최근 배송중인 상품이 존재하지 않습니다.
-        </div>
+        <Style.NoneText>최근 배송중인 상품이 존재하지 않습니다.</Style.NoneText>
       ) : null}
       {products &&
         products.map((item, index) => (
-          <div className={styles.productContent} key={index}>
-            <img
-              className={styles.img}
+          <Style.ProductContent key={index}>
+            <Style.Img
               src={item.info.image}
               onClick={() => {
                 goToDetail(item.info);
               }}
-            ></img>
-            <div className={styles.info}>
-              <div
-                className={styles.brand}
+            ></Style.Img>
+            <Style.InfoContainer>
+              <Style.InfoItem
                 onClick={() => {
                   goToSearch(item.info);
                 }}
               >
-                <span>{item.info.category}</span>
-              </div>
-              <div
-                className={styles.name}
+                <span style={{ cursor: "pointer" }}>{item.info.category}</span>
+              </Style.InfoItem>
+              <Style.InfoItem
                 onClick={() => {
                   goToDetail(item.info);
                 }}
               >
-                <span>{item.info.name}</span>
-              </div>
-              <div className={styles.size}>사이즈 [{item.product.size}]</div>
-            </div>
-            <div className={styles.date}>{item.product.date}</div>
-            <div className={styles.orderNum}>{item.product.id}</div>
-            <div className={styles.priceContainer}>
+                <span style={{ cursor: "pointer" }}>{item.info.name}</span>
+              </Style.InfoItem>
+              <Style.InfoItem>사이즈 [{item.product.size}]</Style.InfoItem>
+            </Style.InfoContainer>
+            <Style.OrderDate>{item.product.date}</Style.OrderDate>
+            <Style.OrderNum>{item.product.id}</Style.OrderNum>
+            <Style.PriceContainer>
               {item.product.coupon !== "선택안함" ? (
-                <div className={styles.firstPrice}>
+                <Style.FirstPrice>
                   {convertToPrice(item.info.price)}원
-                </div>
+                </Style.FirstPrice>
               ) : null}
               <div>
                 {setPrice(item.product.coupon, item.info.price)
@@ -120,78 +113,72 @@ const OrderPageNavbar = () => {
                 원
               </div>
               <div>{item.product.count} 개</div>
-            </div>
-            <div className={styles.coupon}>{item.product.coupon}</div>
-            <div className={styles.state}>
-              <div className={styles.btnContainer}>
-                <div className={styles.text}>배송이 완료되었다면↓</div>
-                <div
-                  className={styles.btn}
+            </Style.PriceContainer>
+            <Style.Coupon>{item.product.coupon}</Style.Coupon>
+            <Style.State>
+              <Style.BtnContainer>
+                <Style.Text>배송이 완료되었다면↓</Style.Text>
+                <Style.Btn
                   onClick={() => {
                     clickToBtn(item.product._id);
                   }}
                 >
                   배송완료
-                </div>
-              </div>
+                </Style.Btn>
+              </Style.BtnContainer>
               <div>{item.product.state}</div>
-            </div>
-          </div>
+            </Style.State>
+          </Style.ProductContent>
         ))}
-      <div className={styles.title2}>
+      <Style.ShipmentTitle>
         배송 완료 ( {completedProducts && completedProducts.length} )
-      </div>
-      <div className={styles.horizonLine}></div>
-      <div className={styles.topContainer}>
-        <div className={styles.productInfo}>{itemArr[0]}</div>
-        <div className={styles.orderDate}>{itemArr[1]}</div>
-        <div className={styles.orderNumber}>{itemArr[2]}</div>
-        <div className={styles.orderPrice}>{itemArr[3]}</div>
-        <div className={styles.orderCoupon}>{itemArr[4]}</div>
-        <div className={styles.orderState}>{itemArr[5]}</div>
-      </div>
-      <div className={styles.horizonLine}></div>
+      </Style.ShipmentTitle>
+      <Style.HorizonLine></Style.HorizonLine>
+      <Style.TopContainer>
+        <Style.TopItem width={"500px"}>{itemArr[0]}</Style.TopItem>
+        <Style.TopItem width={"150px"}>{itemArr[1]}</Style.TopItem>
+        <Style.TopItem width={"350px"}>{itemArr[2]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[3]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[4]}</Style.TopItem>
+        <Style.TopItem width={"200px"}>{itemArr[5]}</Style.TopItem>
+      </Style.TopContainer>
+      <Style.HorizonLine></Style.HorizonLine>
       {completedProducts && completedProducts.length === 0 ? (
-        <div className={styles.noneText}>
-          배송이 완료된 상품이 존재하지 않습니다.
-        </div>
+        <Style.NoneText>배송이 완료된 상품이 존재하지 않습니다.</Style.NoneText>
       ) : null}
       {completedProducts &&
         completedProducts.map((item, index) => (
-          <div className={styles.productContent} key={index}>
-            <img
-              className={styles.img}
+          <Style.ProductContent key={index}>
+            <Style.Img
               src={item.info.image}
               onClick={() => {
                 goToDetail(item.info);
               }}
-            ></img>
-            <div className={styles.info}>
-              <div
-                className={styles.brand}
+            ></Style.Img>
+            <Style.InfoContainer>
+              <Style.InfoItem
                 onClick={() => {
                   goToSearch(item.info);
                 }}
               >
-                <span>{item.info.category}</span>
-              </div>
-              <div
-                className={styles.name}
+                <span style={{ cursor: "pointer" }}>{item.info.category}</span>
+              </Style.InfoItem>
+              <Style.InfoItem
                 onClick={() => {
                   goToDetail(item.info);
                 }}
               >
-                <span>{item.info.name}</span>
-              </div>
-              <div className={styles.size}>사이즈 [{item.product.size}]</div>
-            </div>
-            <div className={styles.date}>{item.product.date}</div>
-            <div className={styles.orderNum}>{item.product._id}</div>
-            <div className={styles.priceContainer}>
+                <span style={{ cursor: "pointer" }}>{item.info.name}</span>
+              </Style.InfoItem>
+              <Style.TopItem>사이즈 [{item.product.size}]</Style.TopItem>
+            </Style.InfoContainer>
+            <Style.OrderDate>{item.product.date}</Style.OrderDate>
+            <Style.OrderNum>{item.product._id}</Style.OrderNum>
+            <Style.PriceContainer>
               {item.product.coupon !== "선택안함" ? (
-                <div className={styles.firstPrice}>
+                <Style.FirstPrice>
                   {convertToPrice(item.info.price)}원
-                </div>
+                </Style.FirstPrice>
               ) : null}
               <div>
                 {setPrice(item.product.coupon, item.info.price)
@@ -200,23 +187,22 @@ const OrderPageNavbar = () => {
                 원
               </div>
               <div>{item.product.count} 개</div>
-            </div>
-            <div className={styles.coupon}>{item.product.coupon}</div>
-            <div className={styles.state}>
+            </Style.PriceContainer>
+            <Style.Coupon>{item.product.coupon}</Style.Coupon>
+            <Style.State>
               <div>{item.product.state}</div>
               {item.product.isReviewd === false ? (
-                <div
-                  className={styles.review}
+                <Style.Review
                   onClick={() => {
                     setShowModal((prev) => !prev);
                     setNumber(index);
                   }}
                 >
                   리뷰 쓰기
-                </div>
+                </Style.Review>
               ) : null}
-            </div>
-          </div>
+            </Style.State>
+          </Style.ProductContent>
         ))}
       {showModal === true ? (
         <Modal

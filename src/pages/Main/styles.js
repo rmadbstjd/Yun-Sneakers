@@ -3,12 +3,14 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 export const Img = styled.div`
@@ -20,7 +22,7 @@ export const Img = styled.div`
   font-size: 30px;
   font-weight: bold;
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
 `;
 
 export const ProductsContainerLayout = styled.div`

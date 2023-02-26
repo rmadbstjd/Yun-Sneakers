@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 1820px;
+  margin: 0 auto;
   font-family: "NanumSquareNeo-Variable";
 `;
 

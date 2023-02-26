@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "./Toggle.module.css";
-
+import * as Style from "./styles";
 import searchStore from "../../store/searchStore";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
@@ -21,18 +20,20 @@ const Toggle = ({ setToggle }) => {
     navigate(`/search?keyword=${searchQuery}&sort=${sort}`);
   };
   return (
-    <div className={styles.container} onClick={() => setToggle(false)}>
-      <div className={styles.content} onClick={() => clickToSort("popular")}>
-        <div className={styles.title}>인기순</div>
-        <div className={styles.desc}>좋아요 갯수를 기준으로 정렬합니다.</div>
-      </div>
-      <div className={styles.content} onClick={() => clickToSort("new")}>
-        <div className={styles.title}>최신순</div>
-        <div className={styles.desc}>
+    <Style.Container onClick={() => setToggle(false)}>
+      <Style.Content onClick={() => clickToSort("popular")}>
+        <Style.Title>인기순</Style.Title>
+        <Style.Description>
+          좋아요 갯수를 기준으로 정렬합니다.
+        </Style.Description>
+      </Style.Content>
+      <Style.Content onClick={() => clickToSort("new")}>
+        <Style.Title>최신순</Style.Title>
+        <Style.Description>
           상품을 등록한 시간 기준으로 정렬합니다.
-        </div>
-      </div>
-    </div>
+        </Style.Description>
+      </Style.Content>
+    </Style.Container>
   );
 };
 

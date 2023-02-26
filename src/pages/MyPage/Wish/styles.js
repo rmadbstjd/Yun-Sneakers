@@ -25,11 +25,11 @@ export const HorizonLine = styled.div`
 `;
 
 export const ProductsContainer = styled.div`
-  width: 1320px;
+  width: 1220px;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  margin: 50px 0px 0px 70px;
+  margin: 50px 0px 0px 50px;
 `;
 
 export const noneProductContainer = styled.div`

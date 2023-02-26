@@ -35,7 +35,6 @@ const Navbar = () => {
     navigate("/login");
   };
   const handleLogout = () => {
-    console.log("로그아웃");
     axios({
       url: "http://localhost:3001/logout",
       method: "POST",

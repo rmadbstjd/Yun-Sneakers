@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   font-family: "NanumSquareNeo-Variable";
   justify-content: center;
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const ProductContainer = styled.div`
@@ -60,6 +62,7 @@ export const SizeBtn = styled.div`
   cursor: pointer;
   font-weight: bolder;
   line-height: 460%;
+  cursor: pointer;
 `;
 
 export const SizeNum = styled.div`
@@ -118,6 +121,8 @@ export const HeartBtn = styled.div`
 export const SpanContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const Span = styled.div`
@@ -137,6 +142,8 @@ export const Category2 = styled.span`
 export const SimilarContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const ShoesContainer = styled.div`

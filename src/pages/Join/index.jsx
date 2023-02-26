@@ -77,13 +77,15 @@ const Join = () => {
     }
   };
   useEffect(() => {
+    console.log("삐번", inputs.pw, inputs.rePW);
     if (allows.id && allows.pw && allows.rePW && allows.nickname) {
-      setIsPassed(true);
+      if (inputs.pw === inputs.rePW) setIsPassed(true);
+      else if (inputs.pw !== inputs.rePW) setIsPassed(false);
     } else {
       setIsPassed(false);
     }
     if (isPassed) if (result) navigate("/login");
-  }, [result, allows, isPassed, navigate]);
+  }, [result, allows, inputs, isPassed, navigate]);
   return (
     <Style.Container>
       <Style.Title>회원가입</Style.Title>

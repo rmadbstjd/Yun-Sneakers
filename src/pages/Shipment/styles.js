@@ -4,6 +4,8 @@ export const Container = styled.div`
   font-family: "NanumSquareNeo-Variable";
   display: flex;
   justify-content: center;
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const LeftContainer = styled.div`
@@ -181,9 +183,6 @@ export const CardItem = styled.div`
   line-height: 240%;
   cursor: pointer;
   margin-left: 10px;
-  &:hover {
-    background-color: #ececec;
-  }
 `;
 
 export const SelectedBudget = styled.div`

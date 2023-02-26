@@ -1,39 +1,33 @@
 import React, { useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
-import styles from "./PopularProducts.module.css";
+
+import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
 import Arrow from "../Arrow";
 
 const ShowPopularProducts = () => {
   const { product } = userInfoStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["popular", currentPage], () =>
+  const { data: products } = useQuery(["popular", currentPage], () =>
     product.getPopularProducts(currentPage)
   );
   return (
-    <div className={styles.container}>
-      <div className={styles.productsContainer}>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        <div className={styles.popular}>Most Popular</div>
-        <div className={styles.popular2}>인기 있는 상품</div>
+    <Style.Container>
+      <Style.ProductsContainer>
+        <Style.TitleENG>Most Popular</Style.TitleENG>
+        <Style.TitleKOR>인기 있는 상품</Style.TitleKOR>
         {products &&
           products.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
-        <div className={styles.moreContainer}>
-          <div className={styles.more}>
+        <Style.MoreContainer>
+          <Style.More>
             <Arrow currentPage={currentPage} setCurrentPage={setCurrentPage} />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Style.More>
+        </Style.MoreContainer>
+      </Style.ProductsContainer>
+    </Style.Container>
   );
 };
 

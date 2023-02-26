@@ -45,12 +45,18 @@ export const GoToMainBtn = styled.div`
   cursor: pointer;
   color: #3a3b3c;
   font-weight: bold;
+  &:hover {
+    background: black;
+    color: white;
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
+  width: 1820px;
+  margin: 0 auto;
 `;
 
 export const ProductsContainer = styled.div`
