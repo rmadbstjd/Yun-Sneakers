@@ -36,13 +36,31 @@ export const MoreContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+  margin-top: 45px;
 `;
 
 export const More = styled.div`
   text-align: center;
   line-height: 160%;
   width: 200px;
-  height: 40px;
+  height: 45px;
   font-weight: bold;
   color: gray;
+`;
+
+export const Btn = styled.div`
+  border: solid gray 1px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  cursor: pointer;
+  line-height: 240%;
+  font-weight: 100;
+  display: ${(props) => (props.isShow === true ? "block" : "none")};
+  &:hover {
+    background: black;
+    color: white;
+  }
 `;

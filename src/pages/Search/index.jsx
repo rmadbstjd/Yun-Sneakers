@@ -28,12 +28,15 @@ const SearchPage = () => {
   const priceOrder = query.get("priceOrder") || undefined;
   const [result, setResult] = useState(searchQuery);
   let collectionName = query.get("collectionName") || undefined;
-  let {
-    error,
-    isLoading,
-    data: products,
-  } = useQuery([searchQuery, searchSort, collectionName, priceOrder], () =>
-    product.searchProducts(searchQuery, searchSort, collectionName, priceOrder)
+  let { data: products } = useQuery(
+    [searchQuery, searchSort, collectionName, priceOrder],
+    () =>
+      product.searchProducts(
+        searchQuery,
+        searchSort,
+        collectionName,
+        priceOrder
+      )
   );
 
   const submitKeyword = (e) => {
@@ -70,7 +73,7 @@ const SearchPage = () => {
     setHamburger((prev) => !prev);
     setShow((prev) => !prev);
   };
-
+  console.log("query", searchQuery);
   return (
     <>
       <Navbar />
