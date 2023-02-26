@@ -16,8 +16,9 @@ export const Container = styled.div`
 
 export const NavbarContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 67%;
   margin-top: 10px;
+
   justify-content: space-between;
   @media (max-width: 593px) {
     width: 100%;
@@ -33,10 +34,12 @@ export const NavbarLeftContainer = styled.div`
 `;
 
 export const NavbarRightContainer = styled.div`
-  width: 520px;
+  width: 540px;
+
   display: flex;
   justify-content: center;
   line-height: 45px;
+
   @media (max-width: 721px) {
     width: 320px;
     display: flex;

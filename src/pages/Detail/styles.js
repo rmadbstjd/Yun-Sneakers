@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const ProductContainer = styled.div`
-  width: 79%;
+  width: 69%;
   margin-top: 100px;
   display: flex;
 `;
@@ -121,7 +121,7 @@ export const HeartBtn = styled.div`
 export const SpanContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 1820px;
+  width: 1590px;
   margin: 0 auto;
 `;
 
@@ -142,7 +142,7 @@ export const Category2 = styled.span`
 export const SimilarContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 1820px;
+  width: 1600px;
   margin: 0 auto;
 `;
 

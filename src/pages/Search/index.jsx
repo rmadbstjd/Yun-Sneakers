@@ -4,30 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
 import { TbArrowsUpDown } from "react-icons/tb";
-import { GiHamburgerMenu } from "react-icons/gi";
 import userInfoStore from "../../store/userInfoStore";
 import searchStore from "../../store/searchStore";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import Toggle from "../../components/Toggle";
 import Side from "../../components/Side";
-import Filter from "../../components/Filter";
 import Navbar from "./../../components/common/Navbar/index";
 import * as Style from "./styles";
 const SearchPage = () => {
-  const navigate = useNavigate();
-  const { product } = userInfoStore();
-  const { sort, initSort } = searchStore();
-  const { recentKeyword, addRecentKeyword } = searchStore();
-  const [query] = useSearchParams();
-  const [toggle, setToggle] = useState(false);
-  const [hamburger, setHamburger] = useState(false);
-  const [show, setShow] = useState(true);
-  const sessionSort = sessionStorage.getItem("sort");
-  const searchQuery = query.get("keyword") || "null";
-  const searchSort = sessionSort || query.get("sort") || "null";
-  const priceOrder = query.get("priceOrder") || undefined;
-  const [result, setResult] = useState(searchQuery);
-  let collectionName = query.get("collectionName") || undefined;
+  const navigate = useNavigate(); //ok
+  const { product } = userInfoStore(); // ok
+  const { sort, initSort } = searchStore(); //ok
+  const { recentKeyword, addRecentKeyword } = searchStore(); // ok
+  const [query] = useSearchParams(); //ok
+  const [toggle, setToggle] = useState(false); // ok 최신순 인기순 토글 (가격순도 있으면 좋겠다)
+  const [isShowSearchBar, setIsShowSearchBar] = useState(false); //전체 상품 보여주기 이건 수정 필요
+  const sessionSort = sessionStorage.getItem("sort"); //최신순인지 인기순인지
+  const searchQuery = query.get("keyword") || "null"; // query의 keyword 부분
+  const searchSort = sessionSort || query.get("sort") || "null"; //query의 sort부분
+  const priceOrder = query.get("priceOrder") || undefined; //query의 priceOrder부분
+  const [result, setResult] = useState(searchQuery); // 검색창 키워드 부분인듯?
+  let collectionName = query.get("collectionName") || undefined; //collection 네임
   let { data: products } = useQuery(
     [searchQuery, searchSort, collectionName, priceOrder],
     () =>
@@ -37,7 +34,7 @@ const SearchPage = () => {
         collectionName,
         priceOrder
       )
-  );
+  ); //searcqhQuery, searchSort, collectionName, prcieOrder에 따라 받아오는 상품들....
 
   const submitKeyword = (e) => {
     if (result.trim() === "") {
@@ -58,6 +55,8 @@ const SearchPage = () => {
     setResult("");
   };
   useEffect(() => {
+    if (searchQuery === "null") setIsShowSearchBar(false);
+    else setIsShowSearchBar(true);
     setResult(searchQuery);
     products && initSort(sessionSort);
   }, [searchQuery, searchSort]);
@@ -69,18 +68,14 @@ const SearchPage = () => {
   const handleChange = (e) => {
     setResult(e.target.value);
   };
-  const clickHamburger = () => {
-    setHamburger((prev) => !prev);
-    setShow((prev) => !prev);
-  };
-  console.log("query", searchQuery);
+  products && console.log("products", products);
   return (
     <>
       <Navbar />
       <Style.Container onClick={() => setToggle(false)}>
-        {show && (
-          <Style.ProductsContainer>
-            <Style.ContentContainer>
+        <Style.ProductsContainer>
+          <Style.ContentContainer>
+            {isShowSearchBar === true ? (
               <Style.SearchContainer>
                 <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
                   <Style.InputSearch
@@ -104,62 +99,54 @@ const SearchPage = () => {
                 </Style.SearchContent>
                 <Style.HorizonLine></Style.HorizonLine>
               </Style.SearchContainer>
-            </Style.ContentContainer>
+            ) : (
+              <Style.SearchContainer>SHOP</Style.SearchContainer>
+            )}
+          </Style.ContentContainer>
 
-            {products && products.products[0].length !== 0 ? (
-              <Style.SortContainer>
-                <GiHamburgerMenu
+          {products && products.products[0].length !== 0 ? (
+            <Style.SortContainer>
+              <Style.SortContent>
+                <Style.Sort onClick={clickToSort}>
+                  {sessionSort === "new" ? "최신순" : "인기순"}
+                </Style.Sort>
+                <TbArrowsUpDown
                   style={{
-                    width: "30px",
-                    height: "30px",
-                    display: "none",
+                    marginLeft: "0.2%",
+                    width: "20px",
+                    height: "20px",
                     cursor: "pointer",
                   }}
-                  onClick={clickHamburger}
+                  onClick={clickToSort}
                 />
+              </Style.SortContent>
 
-                <Style.SortContent>
-                  <Style.Sort onClick={clickToSort}>
-                    {sessionSort === "new" ? "최신순" : "인기순"}
-                  </Style.Sort>
-                  <TbArrowsUpDown
-                    style={{
-                      marginLeft: "0.2%",
-                      width: "20px",
-                      height: "20px",
-                      cursor: "pointer",
-                    }}
-                    onClick={clickToSort}
-                  />
-                </Style.SortContent>
+              {toggle && <Toggle setToggle={setToggle} />}
+            </Style.SortContainer>
+          ) : null}
 
-                {toggle && <Toggle setToggle={setToggle} />}
-              </Style.SortContainer>
-            ) : null}
+          <Style.Content>
+            <Side />
 
-            <Style.Content>
-              <Side />
-              <Style.Products>
-                {products && products.products[0].length !== 0 ? (
-                  products.products.map((product) =>
-                    product.map((product, index) => (
-                      <ProductLikeCard
-                        none={"none"}
-                        product={product}
-                        key={index}
-                      />
-                    ))
-                  )
-                ) : (
-                  <Style.NotFound>
-                    검색하신 상품이 존재하지 않습니다.
-                  </Style.NotFound>
-                )}
-              </Style.Products>
-            </Style.Content>
-          </Style.ProductsContainer>
-        )}
-        {hamburger && <Filter setShow={setShow} setHamburger={setHamburger} />}
+            <Style.Products>
+              {products && products.products[0].length !== 0 ? (
+                products.products.map((product) =>
+                  product.map((product, index) => (
+                    <ProductLikeCard
+                      none={"none"}
+                      product={product}
+                      key={index}
+                    />
+                  ))
+                )
+              ) : (
+                <Style.NotFound>
+                  검색하신 상품이 존재하지 않습니다.
+                </Style.NotFound>
+              )}
+            </Style.Products>
+          </Style.Content>
+        </Style.ProductsContainer>
       </Style.Container>
     </>
   );

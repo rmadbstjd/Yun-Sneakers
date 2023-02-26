@@ -21,7 +21,6 @@ export const Img = styled.div`
 
 export const Category = styled.div`
   margin-bottom: 10px;
-  border-bottom: 1px solid;
 `;
 
 export const Name = styled.div`

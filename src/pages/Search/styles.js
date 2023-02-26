@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 1820px;
+  width: 1020px;
   margin: 0 auto;
   font-family: "NanumSquareNeo-Variable";
 `;
@@ -51,7 +51,7 @@ export const HorizonLine = styled.div`
 export const SortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 1110px;
+  width: 1310px;
   height: 20px;
   margin-bottom: 10px;
 `;
@@ -66,7 +66,7 @@ export const Sort = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 95%;
+  width: 98%;
   display: flex;
   justify-content: center;
 `;

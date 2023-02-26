@@ -11,13 +11,22 @@ export default class Product {
     );
   }
   async searchProducts(keyword, sort, collectionName, priceOrder) {
+    console.log("keyword", keyword);
+    console.log("sort", sort);
+    console.log("collectionName", collectionName);
+    console.log("priceOrder", priceOrder);
     const response = await this.httpClient.get("/search", {
       params: { keyword, sort, collectionName, priceOrder },
     });
     const data = response.data;
     return data;
   }
-
+  async getAllProducts() {
+    const response = await this.httpClient.get("products/all", {});
+    const data = response.data;
+    console.log("Data", data);
+    return data;
+  }
   async getProducts(currentPage) {
     if (!currentPage) currentPage = 1;
     const response = await this.httpClient.post("products/orderByNew", {

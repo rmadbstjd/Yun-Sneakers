@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import { BsFillPencilFill, BsFillCartFill } from "react-icons/bs";
 import { GiConverseShoe } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
+import { AiTwotoneShopping } from "react-icons/ai";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search";
@@ -56,7 +56,9 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
+  console.log("nickname", nickName);
 
+  useEffect(() => {}, [nickName]);
   return (
     <div>
       <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
@@ -71,6 +73,27 @@ const Navbar = () => {
             <Style.ShopName>Yun's Premium Sneakers</Style.ShopName>
           </Style.NavbarLeftContainer>
           <Style.NavbarRightContainer>
+            <AiTwotoneShopping
+              style={{
+                marginTop: "10px",
+                marginRight: "3px",
+                cursor: "pointer",
+                width: "21px",
+                height: "21px",
+              }}
+              onClick={() => {
+                navigate("/search");
+                setShowSearch(false);
+              }}
+            />
+            <Style.MyPage
+              onClick={() => {
+                navigate("/search");
+                setShowSearch(false);
+              }}
+            >
+              SHOP
+            </Style.MyPage>
             <FaUser
               style={{
                 marginTop: "13px",
@@ -147,6 +170,7 @@ const Navbar = () => {
               />
             }
             {nickName && <Style.Nickname> {nickName}</Style.Nickname>}
+            {!nickName && <Style.Nickname>GUEST</Style.Nickname>}
             {!isLogin ? (
               <Style.Btn onClick={handleLogin}>Login</Style.Btn>
             ) : (
