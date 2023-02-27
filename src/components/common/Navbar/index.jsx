@@ -69,7 +69,7 @@ const Navbar = () => {
             }}
           >
             <GiConverseShoe size={45} />
-            <Style.ShopName>Yun's Premium Sneakers</Style.ShopName>
+            <Style.ShopName>Yun's Sneakers</Style.ShopName>
           </Style.NavbarLeftContainer>
           <Style.NavbarRightContainer>
             <AiTwotoneShopping

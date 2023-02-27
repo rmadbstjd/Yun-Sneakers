@@ -13,11 +13,12 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   width: 100%;
-  font-family: "Tenada";
-  font-size: 24px;
+  font-family: "LINESeedKR-Bd";
+  font-size: 30px;
   text-align: center;
   font-weight: 900;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 export const InputContainer = styled.div`
@@ -47,6 +48,7 @@ export const InputValue = styled.input`
 export const Text = styled.div`
 color: red;
 font-size: 12px;
+margin-top : 3px;
 }`;
 
 export const SubmitBtn = styled.button`
@@ -92,3 +94,5 @@ export const SignUpLink = styled.span`
     font-weight: bolder;
   }
 `;
+
+export const Form = styled.form``;

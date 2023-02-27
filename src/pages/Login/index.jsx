@@ -4,13 +4,14 @@ import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
 import axios from "axios";
 import { history } from "../../hooks/history";
+import Navbar from "../../components/common/Navbar";
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
   //window.history.forward();
   const { setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
-    id: null,
-    pw: null,
+    id: "",
+    pw: "",
   });
   const [allows, setAllows] = useState({
     id: null,
@@ -111,48 +112,54 @@ const Login = ({ isAuthenticated }) => {
     return unlistenHistoryEvent;
   }, [navigate, location.pathname]);
   return (
-    <Style.Container>
-      {showModal && (
-        <Style.Modal>
-          <div>아이디 혹은 비밀번호가 일치하지 않습니다.</div>
-          <div>다시 입력해주세요.</div>
-        </Style.Modal>
-      )}
-      <Style.Title onClick={goToMainPage}>Yun's Shoes Shop</Style.Title>
-      <Style.InputContainer>
-        <Style.Label isAllowed={allows.id}>아이디</Style.Label>
-        <Style.InputValue
-          type="text"
-          onChange={(e) => changeInput(e, "id")}
-          placeholder="6-20자의 영문,숫자를 입력해주세요"
-          value={inputs.id}
-          isAllowed={allows.id}
-        ></Style.InputValue>
-        {allows.id === false ? (
-          <Style.Text>아이디를 입력해주세요.</Style.Text>
-        ) : null}
-      </Style.InputContainer>
-      <Style.InputContainer>
-        <Style.Label isAllowed={allows.pw}>비밀번호</Style.Label>
-        <Style.InputValue
-          type="password"
-          onChange={(e) => changeInput(e, "pw")}
-          placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
-          value={inputs.pw}
-          isAllowed={allows.pw}
-        ></Style.InputValue>
-        {allows.pw === false ? (
-          <Style.Text>비밀번호를 입력해주세요.</Style.Text>
-        ) : null}
-      </Style.InputContainer>
+    <>
+      <Navbar />
+      <Style.Container>
+        {showModal && (
+          <Style.Modal>
+            <div>아이디 혹은 비밀번호가 일치하지 않습니다.</div>
+            <div>다시 입력해주세요.</div>
+          </Style.Modal>
+        )}
+        <Style.Title onClick={goToMainPage}>Yun's Sneakers</Style.Title>
+        <Style.InputContainer>
+          <Style.Label isAllowed={allows.id}>아이디</Style.Label>
+          <Style.InputValue
+            type="text"
+            onChange={(e) => changeInput(e, "id")}
+            placeholder="6-20자의 영문,숫자를 입력해주세요"
+            value={inputs.id}
+            isAllowed={allows.id}
+          ></Style.InputValue>
+          {allows.id === false ? (
+            <Style.Text>아이디를 입력해주세요.</Style.Text>
+          ) : null}
+        </Style.InputContainer>
+        <Style.InputContainer>
+          <Style.Label isAllowed={allows.pw}>비밀번호</Style.Label>
+          <Style.Form>
+            <Style.InputValue
+              type="password"
+              onChange={(e) => changeInput(e, "pw")}
+              placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
+              value={inputs.pw}
+              isAllowed={allows.pw}
+              autoComplete="off"
+            ></Style.InputValue>
+          </Style.Form>
+          {allows.pw === false ? (
+            <Style.Text>비밀번호를 입력해주세요.</Style.Text>
+          ) : null}
+        </Style.InputContainer>
 
-      <Style.SubmitBtn isPassed={allowAll} onClick={clickToSubmit}>
-        로그인
-      </Style.SubmitBtn>
-      <Style.SignUpLink onClick={goToSignUp}>
-        아직 회원이 아니시라면
-      </Style.SignUpLink>
-    </Style.Container>
+        <Style.SubmitBtn isPassed={allowAll} onClick={clickToSubmit}>
+          로그인
+        </Style.SubmitBtn>
+        <Style.SignUpLink onClick={goToSignUp}>
+          아직 회원이 아니시라면
+        </Style.SignUpLink>
+      </Style.Container>
+    </>
   );
 };
 
