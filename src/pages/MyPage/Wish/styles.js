@@ -32,7 +32,7 @@ export const ProductsContainer = styled.div`
   margin: 50px 0px 0px 50px;
 `;
 
-export const noneProductContainer = styled.div`
+export const NoneProductContainer = styled.div`
   margin-top: 10%;
   width: 100%;
   display: flex;

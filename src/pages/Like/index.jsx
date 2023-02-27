@@ -42,6 +42,7 @@ const Like = () => {
             product.map((item) =>
               item.map((product) => (
                 <ProductLikeCard
+                  key={product.name}
                   product={product}
                   refetch={refetch}
                 ></ProductLikeCard>

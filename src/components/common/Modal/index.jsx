@@ -135,8 +135,9 @@ const Modal = ({
           <Style.Title>Size</Style.Title>
 
           {sizes &&
-            sizes.map((item) => (
+            sizes.map((item, index) => (
               <Style.SizeBox
+                key={index}
                 onClick={() => {
                   clickSize(item);
                 }}

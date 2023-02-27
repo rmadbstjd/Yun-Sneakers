@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import * as Style from "./styles";
 import { GrClose } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../store/userInfoStore";
+
 import searchStore from "../../store/searchStore";
 import { IoMdCloseCircle } from "react-icons/io";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
 const Search = ({ setShowSearch }) => {
   const navigate = useNavigate();
-  const {} = userInfoStore();
   const {
     searchWord,
     setSearchWord,
@@ -64,7 +63,7 @@ const Search = ({ setShowSearch }) => {
         <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
           <Style.SearchBar
             type="text"
-            value={searchWord}
+            value={searchWord || ""}
             placeholder="브랜드명, 모델명"
             onChange={(e) => handleChange(e)}
             autoFocus
@@ -91,7 +90,7 @@ const Search = ({ setShowSearch }) => {
         <Style.KeywordContainer>
           {showKeyword &&
             showKeyword.map((item) => (
-              <Style.KeywordContent keyword={item}>
+              <Style.KeywordContent key={item}>
                 <Style.Keyword onClick={() => goToSearchPage(item)}>
                   {item}
                 </Style.Keyword>

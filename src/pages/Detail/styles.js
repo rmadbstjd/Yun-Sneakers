@@ -136,7 +136,7 @@ export const Span = styled.div`
 export const Category2 = styled.span`
   font-family: "NanumSquareNeo-Variable";
   font-weight: bold;
-  line-height: 140%;
+  margin-right: 3px;
 `;
 
 export const SimilarContainer = styled.div`

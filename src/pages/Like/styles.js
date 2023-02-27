@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: flex;
+
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
 `;
@@ -11,7 +12,7 @@ export const ProductsContainer = styled.div`
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  margin: 50px 0px 0px 65px;
+  margin: 50px 0px 0px 20px;
 `;
 
 export const ContentContainer = styled.div`
@@ -25,7 +26,7 @@ export const Title = styled.div`
 `;
 
 export const HorizonLine = styled.div`
-  width: 100%;
+  width: 98.8%;
   margin: 2% 0% 3% 0%;
   border-bottom: 3px solid black;
   line-height: 0.1rem;

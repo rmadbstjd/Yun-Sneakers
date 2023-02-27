@@ -79,7 +79,6 @@ const ProductDetail = () => {
   useEffect(() => {
     setInitSize();
   }, []);
-
   return (
     <>
       <Navbar />
@@ -186,7 +185,7 @@ const ProductDetail = () => {
         <Style.ShoesContainer>
           {similars &&
             similars.map((item) => (
-              <SimilarProducts key={item.productId} products={item} />
+              <SimilarProducts key={item.id} products={item} />
             ))}
         </Style.ShoesContainer>
       </Style.SimilarContainer>

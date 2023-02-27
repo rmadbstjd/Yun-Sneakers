@@ -294,7 +294,6 @@ const Shipment = () => {
     if (check1 && check2 && check3) setCheckAll(true);
     else setCheckAll(false);
   }, [check1, check2, check3]);
-
   return (
     <>
       <Navbar />
@@ -352,8 +351,8 @@ const Shipment = () => {
             <Style.ShowCouponSheet>
               {" "}
               {showCoupon &&
-                couponArr.map((item, index) => (
-                  <Style.Coupon onClick={() => clickCoupon(item)} key={index}>
+                couponArr.map((item) => (
+                  <Style.Coupon onClick={() => clickCoupon(item)} key={item}>
                     &nbsp;&nbsp;{item}
                   </Style.Coupon>
                 ))}
@@ -375,8 +374,8 @@ const Shipment = () => {
             <Style.Title>결제 방법</Style.Title>
             <Style.HorizonLine width={"100%"} border={2}></Style.HorizonLine>
             <Style.CardContainer>
-              {paymentArr.map((item, index) => (
-                <Style.Card item={item} key={index}>
+              {paymentArr.map((item) => (
+                <Style.Card item={item} key={item}>
                   {item}
                 </Style.Card>
               ))}
@@ -394,7 +393,7 @@ const Shipment = () => {
             <Style.Modal>
               {showCard &&
                 cardArr.map((item) => (
-                  <Style.CardItem onClick={() => clickCard(item)}>
+                  <Style.CardItem key={item} onClick={() => clickCard(item)}>
                     {item}
                   </Style.CardItem>
                 ))}
@@ -416,7 +415,7 @@ const Shipment = () => {
             {showBudgetAccount2 && (
               <Style.Modal>
                 {budgetArr.map((item) => (
-                  <Style.CardItem onClick={() => clickBudget(item)}>
+                  <Style.CardItem key={item} onClick={() => clickBudget(item)}>
                     {item}
                   </Style.CardItem>
                 ))}
@@ -429,7 +428,7 @@ const Shipment = () => {
           <Style.ProductsContaier>
             {products &&
               products.products.map((item) => (
-                <Style.ProductsContent>
+                <Style.ProductsContent key={item.productId}>
                   <img src={item.image} alt="이미지"></img>
                   <div>
                     <Style.Category>{item.category}</Style.Category>

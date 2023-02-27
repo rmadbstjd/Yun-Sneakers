@@ -5,4 +5,5 @@ export const Content = styled.div`
 
 export const Box = styled.div`
   text-align: center;
+  line-height: 250%;
 `;

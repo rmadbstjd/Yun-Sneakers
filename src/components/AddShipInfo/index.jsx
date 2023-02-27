@@ -186,8 +186,8 @@ const AddShip = ({ type }) => {
       <Style.RequestContainer>
         {" "}
         {showRequest &&
-          requestArr.map((item, index) => (
-            <Style.Request onClick={() => clickRequest(item)} key={index}>
+          requestArr.map((item) => (
+            <Style.Request onClick={() => clickRequest(item)} key={item}>
               {item}
             </Style.Request>
           ))}

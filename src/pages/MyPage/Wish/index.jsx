@@ -44,18 +44,19 @@ const Wish = () => {
               product.map((item) =>
                 item.map((product) => (
                   <ProductLikeCard
+                    key={product.id}
                     product={product}
                     refetch={refetch}
                   ></ProductLikeCard>
                 ))
               )}
             {product && product.length === 0 ? (
-              <Style.noneProductContainer>
+              <Style.NoneProductContainer>
                 <div>
                   <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
                   <Style.Btn onClick={goToMain}>CONTINUE SHOPPING </Style.Btn>
                 </div>
-              </Style.noneProductContainer>
+              </Style.NoneProductContainer>
             ) : null}
           </Style.ProductsContainer>
         </Style.MainContainer>

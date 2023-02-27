@@ -34,6 +34,7 @@ export const AddressContainer = styled.div`
 `;
 
 export const Btn = styled.div`
+  margin-top: 10px;
   border: solid gray 1px;
   border-radius: 15px;
   width: 70px;
