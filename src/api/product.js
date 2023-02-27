@@ -3,7 +3,7 @@ export default class Product {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "https://weeklyrun.site/api",
+        baseURL: "http://localhost:3001/api",
       },
       {
         withCredentials: true,

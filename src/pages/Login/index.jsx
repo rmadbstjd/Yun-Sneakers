@@ -26,7 +26,7 @@ const Login = ({ isAuthenticated }) => {
   let regex;
   const login = async () => {
     await axios({
-      url: "https://weeklyrun.site/login",
+      url: "http://localhost:3001/login",
       method: "POST",
       withCredentials: "true",
       data: {

@@ -36,7 +36,7 @@ const Navbar = () => {
   };
   const handleLogout = () => {
     axios({
-      url: "https://weeklyrun.site/logout",
+      url: "http://localhost:3001/logout",
       method: "POST",
       withCredentials: "true",
     }).then((result) => {
