@@ -10,7 +10,7 @@ export const Filter = styled.div`
 `;
 
 export const Container = styled.div`
-  min-width: 220px;
+  width: 220px;
   word-break: break-all;
   font-family: "NanumSquareNeo-Variable";
   height: 40px;

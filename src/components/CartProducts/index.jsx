@@ -11,7 +11,7 @@ const CartProduct = ({ item, refetch }) => {
   const plus = async () => {
     if (productCount >= 10) {
       Swal.fire({
-        title: "최대 구매 갯수는 10개입니다.",
+        title: "최대 구매 개수는 10개입니다.",
         confirmButtonColor: "black",
       });
       return;

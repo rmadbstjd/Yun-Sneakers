@@ -27,8 +27,6 @@ export const SizeBox = styled.div`
   &:hover {
     background-color: black;
     color: white;
-    scale: 1.1;
-    transition: all 0.8s;
   }
 `;
 
@@ -39,7 +37,7 @@ export const Close = styled.div`
   height: 25px;
   text-align: center;
   cursor: pointer;
-  background-color: gray;
+  background-color: #bababa;
   border: solid black 0px;
   border-radius: 5px;
   color: white;

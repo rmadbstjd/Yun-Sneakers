@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 1020px;
-  margin: 0 auto;
+  width: 1400px;
+  margin: 0 230px;
   font-family: "NanumSquareNeo-Variable";
 `;
 
@@ -25,6 +25,9 @@ export const ContentContainer = styled.div`
 
 export const SearchContainer = styled.div`
   margin-top: 5%;
+  margin-left: ${(props) => (props.isText === true ? "60px" : null)};
+  font-weight: bolder;
+  font-size: 20px;
 `;
 
 export const SearchContent = styled.form`
@@ -69,6 +72,7 @@ export const Content = styled.div`
   width: 98%;
   display: flex;
   justify-content: center;
+  margin-top: ${(props) => (props.isShow === true ? "0px" : "30px")};
 `;
 
 export const Products = styled.div`

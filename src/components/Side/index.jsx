@@ -11,11 +11,7 @@ const Side = () => {
   const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { sort } = searchStore();
-  const {
-    isLoading,
-    error,
-    data: brands,
-  } = useQuery(["test"], () => product.getBrandsName());
+  const { data: brands } = useQuery(["test"], () => product.getBrandsName());
   const [showBrand, setShowBrand] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");

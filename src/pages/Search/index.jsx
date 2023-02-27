@@ -12,19 +12,19 @@ import Side from "../../components/Side";
 import Navbar from "./../../components/common/Navbar/index";
 import * as Style from "./styles";
 const SearchPage = () => {
-  const navigate = useNavigate(); //ok
-  const { product } = userInfoStore(); // ok
-  const { sort, initSort } = searchStore(); //ok
-  const { recentKeyword, addRecentKeyword } = searchStore(); // ok
-  const [query] = useSearchParams(); //ok
-  const [toggle, setToggle] = useState(false); // ok 최신순 인기순 토글 (가격순도 있으면 좋겠다)
-  const [isShowSearchBar, setIsShowSearchBar] = useState(false); //전체 상품 보여주기 이건 수정 필요
-  const sessionSort = sessionStorage.getItem("sort"); //최신순인지 인기순인지
-  const searchQuery = query.get("keyword") || "null"; // query의 keyword 부분
-  const searchSort = sessionSort || query.get("sort") || "null"; //query의 sort부분
-  const priceOrder = query.get("priceOrder") || undefined; //query의 priceOrder부분
-  const [result, setResult] = useState(searchQuery); // 검색창 키워드 부분인듯?
-  let collectionName = query.get("collectionName") || undefined; //collection 네임
+  const navigate = useNavigate();
+  const { product } = userInfoStore();
+  const { sort, initSort } = searchStore();
+  const { recentKeyword, addRecentKeyword } = searchStore();
+  const [query] = useSearchParams();
+  const [toggle, setToggle] = useState(false);
+  const [isShowSearchBar, setIsShowSearchBar] = useState(false);
+  const sessionSort = sessionStorage.getItem("sort");
+  const searchQuery = query.get("keyword") || "null";
+  const searchSort = sessionSort || query.get("sort") || "null";
+  const priceOrder = query.get("priceOrder") || undefined;
+  const [result, setResult] = useState(searchQuery);
+  let collectionName = query.get("collectionName") || undefined;
   let { data: products } = useQuery(
     [searchQuery, searchSort, collectionName, priceOrder],
     () =>
@@ -34,7 +34,7 @@ const SearchPage = () => {
         collectionName,
         priceOrder
       )
-  ); //searcqhQuery, searchSort, collectionName, prcieOrder에 따라 받아오는 상품들....
+  );
 
   const submitKeyword = (e) => {
     if (result.trim() === "") {
@@ -68,15 +68,14 @@ const SearchPage = () => {
   const handleChange = (e) => {
     setResult(e.target.value);
   };
-  products && console.log("products", products);
   return (
-    <>
+    <div>
       <Navbar />
       <Style.Container onClick={() => setToggle(false)}>
         <Style.ProductsContainer>
           <Style.ContentContainer>
             {isShowSearchBar === true ? (
-              <Style.SearchContainer>
+              <Style.SearchContainer isText={false}>
                 <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
                   <Style.InputSearch
                     type="text"
@@ -100,7 +99,7 @@ const SearchPage = () => {
                 <Style.HorizonLine></Style.HorizonLine>
               </Style.SearchContainer>
             ) : (
-              <Style.SearchContainer>SHOP</Style.SearchContainer>
+              <Style.SearchContainer isText={true}>SHOP</Style.SearchContainer>
             )}
           </Style.ContentContainer>
 
@@ -125,7 +124,11 @@ const SearchPage = () => {
             </Style.SortContainer>
           ) : null}
 
-          <Style.Content>
+          <Style.Content
+            isShow={
+              products && products.products[0].length !== 0 ? true : false
+            }
+          >
             <Side />
 
             <Style.Products>
@@ -148,7 +151,7 @@ const SearchPage = () => {
           </Style.Content>
         </Style.ProductsContainer>
       </Style.Container>
-    </>
+    </div>
   );
 };
 

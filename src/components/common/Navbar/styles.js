@@ -15,10 +15,11 @@ export const Container = styled.div`
 `;
 
 export const NavbarContainer = styled.div`
+  position: fixed;
+  left: 310px;
   display: flex;
   width: 67%;
   margin-top: 10px;
-
   justify-content: space-between;
   @media (max-width: 593px) {
     width: 100%;
@@ -35,7 +36,8 @@ export const NavbarLeftContainer = styled.div`
 
 export const NavbarRightContainer = styled.div`
   width: 540px;
-
+  position: fixed;
+  left: 1070px;
   display: flex;
   justify-content: center;
   line-height: 45px;
