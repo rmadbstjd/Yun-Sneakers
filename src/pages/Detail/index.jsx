@@ -52,7 +52,6 @@ const ProductDetail = () => {
   };
 
   const clickToCart = async () => {
-    console.log("isLogin", isLogin);
     if (!isLogin) {
       navigate("/login");
       return;

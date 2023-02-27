@@ -74,7 +74,7 @@ const Review = () => {
       setDeleted(false);
     }
   }, [number, stateReview, deleted]);
-  console.log("stateReview", stateReview);
+
   if (!stateReview) {
     return (
       <>

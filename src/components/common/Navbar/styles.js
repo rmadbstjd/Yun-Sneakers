@@ -7,7 +7,6 @@ export const Container = styled.div`
   z-index: 999;
   display: flex;
   justify-content: center;
-  margin-top: -10px;
   font-family: "NanumSquareNeo-Variable";
   width: 100%;
   height: 65px;

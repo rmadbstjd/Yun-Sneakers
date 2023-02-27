@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import Cart from "../api/cart";
 import Product from "../api/product";

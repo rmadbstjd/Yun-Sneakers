@@ -13,10 +13,10 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   width: 100%;
-  font-family: "Tenada";
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
-  font-weight: 900;
+  font-family: "LINESeedKR-Bd";
+  margin-top: 150px;
 `;
 
 export const InputContainer = styled.div`
@@ -46,6 +46,7 @@ export const InputValue = styled.input`
 export const Text = styled.div`
 color: red;
 font-size: 12px;
+margin-top : 3px;
 }`;
 
 export const SubmitBtn = styled.button`
@@ -63,3 +64,5 @@ export const SubmitBtn = styled.button`
   line-height: 300%;
   cursor: ${(props) => (props.isPassed === true ? "pointer" : "default")};
 `;
+
+export const Form = styled.form``;

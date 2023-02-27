@@ -77,9 +77,8 @@ const Modal = ({
       });
       return;
     }
-    console.log("리뷰ㅜ드!", isReviewed);
+
     if (!isReviewed) {
-      console.log("리뷰 없을 떄(리뷰 추가), orderId", product.product._id);
       myPage.addProductReview(
         star,
         product.product.count,
@@ -93,7 +92,6 @@ const Modal = ({
         clickIndex + 1
       );
     } else if (isReviewed) {
-      console.log("리뷰 있을 때(리뷰 수정)orderId", product.product.orderId);
       myPage.addProductReview(
         star,
         product.product.count,

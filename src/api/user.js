@@ -25,10 +25,8 @@ export default class Login {
       nickname,
     });
     if (response.status === 201) {
-      console.log("회원가입 실패");
       return false;
     } else if (response.status === 200) {
-      console.log("회원가입 성공");
       return true;
     }
   }

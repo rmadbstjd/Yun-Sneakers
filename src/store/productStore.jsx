@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import Product from "../api/product";
 import { devtools } from "zustand/middleware";
 const store = (set) => ({

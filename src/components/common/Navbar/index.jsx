@@ -56,7 +56,6 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-  console.log("nickname", nickName);
 
   useEffect(() => {}, [nickName]);
   return (
