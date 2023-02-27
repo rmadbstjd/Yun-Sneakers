@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function authenticate(setNickName, setUserId) {
   return axios({
-    url: "http://localhost:3001/login/success",
+    url: "https://weeklyrun.site/login/success",
     method: "GET",
     withCredentials: "ture",
   }).then((result) => {
