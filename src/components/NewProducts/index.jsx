@@ -32,7 +32,7 @@ const Products = () => {
         {moreProducts &&
           moreProducts.map((product) =>
             product.map((product) => (
-              <ProductCard product={product}>{product.name}</ProductCard>
+              <ProductCard key={product.name} product={product}></ProductCard>
             ))
           )}
         <Style.MoreContainer>
