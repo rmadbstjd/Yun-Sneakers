@@ -12,10 +12,9 @@ import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cart, nickName, userId } = userInfoStore();
+  const { cart, nickName, userId, user } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
   const { setSearchWord } = searchStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
@@ -35,16 +34,7 @@ const Navbar = () => {
     navigate("/login");
   };
   const handleLogout = () => {
-    axios({
-      url: "http://localhost:3001/api/logout",
-      method: "POST",
-      withCredentials: "true",
-    }).then((result) => {
-      if (result.status === 200) {
-        localStorage.setItem("isLogin", false);
-        window.location.replace("/");
-      }
-    });
+    user.logout();
   };
   const clickToSearch = () => {
     setSearchWord(null);

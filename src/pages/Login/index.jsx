@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as Style from "./styles";
-import userInfoStore from "../../store/userInfoStore";
-import axios from "axios";
 import { history } from "../../hooks/history";
 import Navbar from "../../components/common/Navbar";
+import userInfoStore from "../../store/userInfoStore";
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
   //window.history.forward();
-  const { setNickName, setUserId } = userInfoStore();
+  const { user, setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",
@@ -24,9 +23,9 @@ const Login = ({ isAuthenticated }) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   let regex;
-  const login = async () => {
+  /*const login = async () => {
     await axios({
-      url: "http://localhost:3001/api/login",
+      url: "http://localhost:3000/login",
       method: "POST",
       withCredentials: "true",
       data: {
@@ -40,13 +39,13 @@ const Login = ({ isAuthenticated }) => {
         setResult(false);
       } else if (result.status === 200) {
         localStorage.setItem("isLogin", true);
+        console.log("result", result);
         setNickName(result.data.data.user.nickname);
         setUserId(result.data.data.user.userId);
-
         setResult(true);
       }
     });
-  };
+  };*/
 
   const changeInput = (e, type) => {
     switch (type) {
@@ -76,9 +75,14 @@ const Login = ({ isAuthenticated }) => {
         break;
     }
   };
-  const clickToSubmit = () => {
+  const clickToSubmit = async () => {
     if (allowAll) {
-      login();
+      const data = await user.login(inputs.id, inputs.pw);
+      if (data) {
+        setNickName(data.userInfo.nickname);
+        setUserId(data.userInfo.userId);
+        setResult(true);
+      }
       setCount((prev) => prev + 1);
     }
   };

@@ -1,16 +1,9 @@
-import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 async function authenticate(setNickName, setUserId) {
-  return axios({
-    url: "http://localhost:3001/api/login/success",
-    method: "GET",
-    withCredentials: "ture",
-  }).then((result) => {
-    if (result.data.user) {
-      setNickName(result.data.user.nickname);
-      setUserId(result.data.user.userId);
-      localStorage.setItem("isLogin", true);
-    }
-  });
+  const token = localStorage.getItem("accessToken");
+  const info = jwt_decode(token);
+  setNickName(info.nickname);
+  setUserId(info.id);
 }
 export default authenticate;

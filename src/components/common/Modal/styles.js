@@ -40,6 +40,7 @@ export const Close = styled.div`
   background-color: #bababa;
   border: solid black 0px;
   border-radius: 5px;
+  line-height: 160%;
   color: white;
   &:hover {
     background-color: black;

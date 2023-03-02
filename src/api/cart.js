@@ -1,9 +1,10 @@
 import axios from "axios";
+import { instance } from "./../utils/instance";
 export default class Cart {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://localhost:3001/api",
+        baseURL: "http://localhost:3000/api",
       },
       {
         withCredentials: true,
@@ -13,7 +14,7 @@ export default class Cart {
   }
 
   async getUserCarts() {
-    const response = await this.httpClient.get("/cart", {});
+    const response = await instance.get("/cart", {});
     const data = response.data;
 
     if (data.success === "true") {
@@ -24,7 +25,7 @@ export default class Cart {
   }
 
   async updateUserCart(productId, size, quantity) {
-    const response = await this.httpClient.put(`/carts/${productId}`, {
+    const response = await instance.put(`/carts/${productId}`, {
       quantity: quantity,
       size: size,
     });
@@ -33,7 +34,7 @@ export default class Cart {
   }
 
   async addUserCart(products, size) {
-    const response = await this.httpClient.post(`/carts/${products.id}`, {
+    const response = await instance.post(`/carts/${products.id}`, {
       product: products,
       quantity: 1,
       size,
@@ -43,7 +44,7 @@ export default class Cart {
   }
 
   async deleteUserCart(productId, size) {
-    return this.httpClient.delete(`/carts/${productId}`, {
+    return instance.delete(`/carts/${productId}`, {
       data: { size },
     });
   }

@@ -14,6 +14,7 @@ const Like = () => {
   const { like } = userInfoStore();
 
   const [count, setCount] = useState(0);
+
   const { data: product, refetch } = useQuery(
     ["like"],
     () => like.getLikedProducts(),

@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { product, like, cart } = userInfoStore();
+  const { product, like, cart, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
   const { selectSize, setInitSize } = productStore();
 
@@ -72,7 +72,7 @@ const ProductDetail = () => {
   };
 
   const clickToLike = async () => {
-    await like.pushLike(productInfo.product.id);
+    await like.pushLike(productInfo.product.id, userId);
     refetch();
   };
 

@@ -1,9 +1,10 @@
 import axios from "axios";
+import { instance } from "./../utils/instance";
 export default class Order {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://localhost:3001/api",
+        baseURL: "http://localhost:3000/api",
       },
       {
         withCredentials: true,
@@ -14,7 +15,7 @@ export default class Order {
 
   async addOrderProducts(productId, date, count, coupon, size) {
     const state = "배송중";
-    const response = await this.httpClient.post(`/order`, {
+    const response = await instance.post(`/order`, {
       productId,
       date,
       count,
@@ -27,7 +28,7 @@ export default class Order {
   }
 
   async completeShipment(orderId) {
-    const response = await this.httpClient.put(`/order`, {
+    const response = await instance.put(`/order`, {
       orderId,
     });
     const data = response.data;
@@ -35,13 +36,13 @@ export default class Order {
   }
 
   async getShipIsCompleted() {
-    const response = await this.httpClient.get(`/order/completed`, {});
+    const response = await instance.get(`/order/completed`, {});
     const data = response.data;
     return data.reverse();
   }
 
   async getIsNotReviewdProducts() {
-    const response = await this.httpClient.get(`/order/notreviewd`, {});
+    const response = await instance.get(`/order/notreviewd`, {});
     const data = response.data;
     return data.reverse();
   }
