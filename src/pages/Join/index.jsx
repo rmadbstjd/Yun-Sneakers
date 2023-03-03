@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
-import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
+import userInfoStore from "../../store/userInfoStore";
 import Navbar from "./../../components/common/Navbar";
+
 const Join = () => {
-  const { user } = userInfoStore();
   const navigate = useNavigate();
+  const { user } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",
@@ -17,7 +18,6 @@ const Join = () => {
     pw: null,
     rePW: null,
     nickname: null,
-    all: false,
   });
   const [result, setResult] = useState();
   const [isPassed, setIsPassed] = useState(false);
@@ -72,17 +72,15 @@ const Join = () => {
   const clickToSubmit = async () => {
     if (isPassed) {
       const response = await user.signUp(inputs.id, inputs.pw, inputs.nickname);
-
       setResult(response);
     }
   };
   useEffect(() => {
     if (allows.id && allows.pw && allows.rePW && allows.nickname) {
       if (inputs.pw === inputs.rePW) setIsPassed(true);
-      else if (inputs.pw !== inputs.rePW) setIsPassed(false);
-    } else {
-      setIsPassed(false);
-    }
+      else setIsPassed(false);
+    } else setIsPassed(false);
+
     if (isPassed) if (result) navigate("/login");
   }, [result, allows, inputs, isPassed, navigate]);
   return (

@@ -85,6 +85,7 @@ export const PriceContainer = styled.div`
   justify-content: center;
   width: 200px;
   height: 200px;
+  line-height: 140%;
 `;
 
 export const FirstPrice = styled.div`

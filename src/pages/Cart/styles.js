@@ -61,7 +61,7 @@ export const Container = styled.div`
 
 export const ProductsContainer = styled.div`
   width: 70.5%;
-  margin-top: 60px;
+  margin-top: 90px;
 `;
 
 export const MenuContainer = styled.div`

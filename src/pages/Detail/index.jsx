@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
+import * as Style from "./styles";
+import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import cartStore from "../../store/cartStore";
 import productStore from "../../store/productStore";
-import HorizonLine from "../../components/common/HorizonLine";
 import { BsArrowDownCircle } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import HorizonLine from "../../components/common/HorizonLine";
 import Modal from "../../components/common/Modal";
-import CartModal from "../../components/CartModal";
 import SimilarProducts from "../../components/SimilarProducts";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
-import * as Style from "./styles";
 import convertToPrice from "../../hooks/convertToPrice";
-import { useNavigate } from "react-router-dom";
+
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { product, like, cart, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
+  const isLogin = localStorage.getItem("isLogin") === "true";
   const { selectSize, setInitSize } = productStore();
 
   const { data: productInfo } = useQuery([id], () =>
@@ -30,7 +31,7 @@ const ProductDetail = () => {
   const category = productInfo && productInfo.product.category;
   const productId = productInfo && productInfo.product.id;
 
-  const { data: similars } = useQuery(
+  const { data: similarProducts } = useQuery(
     ["similar", id],
     () => product.getSimilarProducts(category, id),
     { refetchOnMount: "alaways", enabled: !!category }
@@ -45,7 +46,6 @@ const ProductDetail = () => {
   const [sizeModalShow, setSizeModalShow] = useState(false);
   const [cartModalShow, setCartModalShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const isLogin = localStorage.getItem("isLogin") === "true";
   const showSize = () => {
     setSizeModalShow((prev) => !prev);
     setModalIsOpen((prev) => !prev);
@@ -72,6 +72,7 @@ const ProductDetail = () => {
   };
 
   const clickToLike = async () => {
+    if (!isLogin) navigate("/login");
     await like.pushLike(productInfo.product.id, userId);
     refetch();
   };
@@ -84,14 +85,11 @@ const ProductDetail = () => {
       <Navbar />
       <Style.Container>
         <Style.ProductContainer>
-          <Style.Image
-            style={{
-              backgroundImage:
-                "url(" + `${productInfo && productInfo.product.image}` + ")",
-            }}
-          ></Style.Image>
+          <Style.ImageLayout>
+            <Style.Image src={productInfo && productInfo.product.image} />
+          </Style.ImageLayout>
 
-          <Style.InfoContainer>
+          <Style.ProductInfoContainer>
             <Style.Category>
               {productInfo && productInfo.product.category}
             </Style.Category>
@@ -108,9 +106,9 @@ const ProductDetail = () => {
                   ) : (
                     <Style.SizeNum>{selectSize}</Style.SizeNum>
                   )}
-                  <Style.Circle>
+                  <Style.ShowSizeCircle>
                     <BsArrowDownCircle size={20} />
-                  </Style.Circle>
+                  </Style.ShowSizeCircle>
                 </Style.Size>
                 {sizeModalShow === true ? (
                   <Modal
@@ -129,22 +127,43 @@ const ProductDetail = () => {
                   ></Modal>
                 )}
               </Style.SizeContainer>
-              <HorizonLine />
+              <HorizonLine width={"100%"} border={"1px"} color={"gray"} />
             </div>
 
             <Style.Price>
               {productInfo && convertToPrice(productInfo.product.price)}원
             </Style.Price>
             {cartModalShow && (
-              <CartModal
-                cartShow={cartModalShow}
-                setCartShow={setCartModalShow}
-              ></CartModal>
+              <Style.GoToCartPageBtnLayout>
+                <Style.GoToCartPageBtnContainer>
+                  <div>장바구니에 추가되었습니다.</div>
+                  <Style.GoToCartBtn
+                    onClick={() => {
+                      navigate("/cart");
+                    }}
+                  >
+                    바로가기
+                  </Style.GoToCartBtn>
+                </Style.GoToCartPageBtnContainer>
+              </Style.GoToCartPageBtnLayout>
             )}
 
-            <Style.CartContainer>
+            <Style.AddBtnContainer>
               <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
-
+              {isLogin === false ? (
+                <BsHeart
+                  style={{
+                    width: "45px",
+                    height: "45px",
+                    marginTop: "2px",
+                    marginLeft: "10px",
+                    cursor: "pointer",
+                    fontsize: "35px",
+                    color: "gray",
+                  }}
+                  onClick={clickToLike}
+                />
+              ) : null}
               {isLiked && isLiked.result === false ? (
                 <BsHeart
                   style={{
@@ -172,19 +191,20 @@ const ProductDetail = () => {
                   onClick={clickToLike}
                 />
               ) : null}
-            </Style.CartContainer>
-          </Style.InfoContainer>
+            </Style.AddBtnContainer>
+          </Style.ProductInfoContainer>
         </Style.ProductContainer>
       </Style.Container>
-      <Style.SpanContainer>
+      <Style.SimilarProductTitleLayout>
         <Style.Span>
-          <Style.Category2>{category}</Style.Category2>의 다른 상품
+          <Style.SimilarProductTitle>{category}</Style.SimilarProductTitle>의
+          다른 상품
         </Style.Span>
-      </Style.SpanContainer>
+      </Style.SimilarProductTitleLayout>
       <Style.SimilarContainer>
         <Style.ShoesContainer>
-          {similars &&
-            similars.map((item) => (
+          {similarProducts &&
+            similarProducts.map((item) => (
               <SimilarProducts key={item.id} products={item} />
             ))}
         </Style.ShoesContainer>

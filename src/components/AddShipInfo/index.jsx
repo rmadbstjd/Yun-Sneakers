@@ -174,6 +174,7 @@ const AddShip = ({ type }) => {
       </Style.PhoneNumberContainer>
       <Style.CheckBoxContainer>
         <Style.CheckBox
+          margin={"2 0px"}
           type="checkbox"
           value={defaultAddress}
           onChange={(e) => checkAddress(e)}

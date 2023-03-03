@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Title = styled.div`
+export const Title = styled.span`
   width: 100%;
   font-size: 28px;
   text-align: center;
@@ -43,7 +43,7 @@ export const InputValue = styled.input`
   }
 `;
 
-export const Text = styled.div`
+export const Text = styled.span`
 color: red;
 font-size: 12px;
 margin-top : 3px;

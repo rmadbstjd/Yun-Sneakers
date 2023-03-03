@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import * as Style from "./styles";
+import { useNavigate, useLocation } from "react-router-dom";
 import { history } from "../../hooks/history";
 import Navbar from "../../components/common/Navbar";
 import userInfoStore from "../../store/userInfoStore";
+
 const Login = ({ isAuthenticated }) => {
   const location = useLocation();
-  //window.history.forward();
+  const navigate = useNavigate();
   const { user, setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
@@ -16,36 +17,12 @@ const Login = ({ isAuthenticated }) => {
     id: null,
     pw: null,
   });
-
-  const [allowAll, setAllowAll] = useState(false);
-  const [result, setResult] = useState(null);
+  const [isPassed, setIsPassed] = useState(false);
+  const [result, setResult] = useState();
   const [showModal, setShowModal] = useState(false);
-  const [count, setCount] = useState(0);
-  const navigate = useNavigate();
   let regex;
-  /*const login = async () => {
-    await axios({
-      url: "http://localhost:3000/login",
-      method: "POST",
-      withCredentials: "true",
-      data: {
-        userId: inputs.id,
-        password: inputs.pw,
-      },
-    }).then(async (result) => {
-      if (result.status === 201) {
-        localStorage.setItem("isLogin", false);
 
-        setResult(false);
-      } else if (result.status === 200) {
-        localStorage.setItem("isLogin", true);
-        console.log("result", result);
-        setNickName(result.data.data.user.nickname);
-        setUserId(result.data.data.user.userId);
-        setResult(true);
-      }
-    });
-  };*/
+  if (isAuthenticated) navigate("/");
 
   const changeInput = (e, type) => {
     switch (type) {
@@ -53,7 +30,7 @@ const Login = ({ isAuthenticated }) => {
         regex = /^[a-z]+[a-z0-9]{5,19}$/g;
         if (!regex.test(e.target.value)) {
           setAllows({ ...allows, [type]: false });
-          setAllowAll(false);
+          setIsPassed(false);
         } else {
           setAllows({ ...allows, [type]: true });
         }
@@ -64,10 +41,10 @@ const Login = ({ isAuthenticated }) => {
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         if (!regex.test(e.target.value)) {
           setAllows({ ...allows, [type]: false });
-          setAllowAll(false);
+          setIsPassed(false);
         } else {
           setAllows({ ...allows, [type]: true });
-          setAllowAll(true);
+          setIsPassed(true);
         }
         setInputs({ ...inputs, [type]: e.target.value });
         break;
@@ -76,16 +53,17 @@ const Login = ({ isAuthenticated }) => {
     }
   };
   const clickToSubmit = async () => {
-    if (allowAll) {
+    if (isPassed) {
       const data = await user.login(inputs.id, inputs.pw);
-      if (data) {
+      if (data === false) setResult(false);
+      else {
         setNickName(data.userInfo.nickname);
         setUserId(data.userInfo.userId);
         setResult(true);
       }
-      setCount((prev) => prev + 1);
     }
   };
+
   const goToSignUp = () => {
     navigate("/join");
   };
@@ -95,15 +73,14 @@ const Login = ({ isAuthenticated }) => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/");
-    if (allows.id && allows.pw) setAllowAll(true);
-    if (result === true) navigate("/");
+    if (allows.id && allows.pw) setIsPassed(true);
+    if (result) navigate("/");
     else if (result === false) {
       setShowModal((prev) => !prev);
       setTimeout(setShowModal, 2000);
       setResult(null);
     }
-  }, [result, count, allows, isAuthenticated, navigate]);
+  }, [result, allows, navigate]);
 
   useEffect(() => {
     const listenBackEvent = () => navigate("/");
@@ -121,8 +98,8 @@ const Login = ({ isAuthenticated }) => {
       <Style.Container>
         {showModal && (
           <Style.Modal>
-            <div>아이디 혹은 비밀번호가 일치하지 않습니다.</div>
-            <div>다시 입력해주세요.</div>
+            <span>아이디 혹은 비밀번호가 일치하지 않습니다.</span>
+            <span>다시 입력해주세요.</span>
           </Style.Modal>
         )}
         <Style.Title onClick={goToMainPage}>Yun's Sneakers</Style.Title>
@@ -156,7 +133,7 @@ const Login = ({ isAuthenticated }) => {
           ) : null}
         </Style.InputContainer>
 
-        <Style.SubmitBtn isPassed={allowAll} onClick={clickToSubmit}>
+        <Style.SubmitBtn isPassed={isPassed} onClick={clickToSubmit}>
           로그인
         </Style.SubmitBtn>
         <Style.SignUpLink onClick={goToSignUp}>

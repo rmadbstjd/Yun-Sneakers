@@ -17,7 +17,6 @@ const Modal = ({
   submitBtn,
   product,
   isReviewed,
-  refetch,
 }) => {
   const [sizes, setSizes] = useState([]);
   const [star, setStar] = useState([false, false, false, false, false]);
@@ -164,17 +163,17 @@ const Modal = ({
             <Style.BtnContainer>
               <Style.Btn
                 onClick={() => {
-                  setModalIsOpen(false);
-                }}
-              >
-                취소
-              </Style.Btn>
-              <Style.Btn
-                onClick={() => {
                   submitBtn();
                 }}
               >
                 저장
+              </Style.Btn>
+              <Style.Btn
+                onClick={() => {
+                  setModalIsOpen(false);
+                }}
+              >
+                취소
               </Style.Btn>
             </Style.BtnContainer>
           </Style.AddressContent>

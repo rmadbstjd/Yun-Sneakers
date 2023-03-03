@@ -63,6 +63,7 @@ const Review = () => {
         await myPage.deleteProductReview(orderId);
         refetch();
         refetch2();
+        setStateReview(true);
       } else {
         setShowModal(false);
       }
@@ -207,6 +208,7 @@ const Review = () => {
                           type={"review"}
                           product={product[number]}
                           isReviewed={true}
+                          setStateReview={setStateReview}
                         ></Modal>
                       ) : null}
                       <Style.Btn

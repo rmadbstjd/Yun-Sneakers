@@ -1,19 +1,8 @@
 import React from "react";
-
-const HorizonLine = ({ text }) => {
-  return (
-    <div
-      style={{
-        width: "100%",
-
-        borderBottom: "1px solid #aaa",
-        lineHeight: "0.1em",
-        margin: "10px 0 20px",
-      }}
-    >
-      <span style={{ background: "#fff" }}>{text}</span>
-    </div>
-  );
+import * as Style from "./styles";
+const HorizonLine = ({ width, border, color }) => {
+  console.log(width, border, color);
+  return <Style.Line width={width} border={border} color={color}></Style.Line>;
 };
 
 export default HorizonLine;

@@ -19,6 +19,7 @@ export default class Login {
       password: pw,
       nickname,
     });
+
     if (response.status === 201) return false;
     else if (response.status === 200) return true;
   }

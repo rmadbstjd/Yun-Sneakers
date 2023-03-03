@@ -99,7 +99,7 @@ export const CheckBoxContainer = styled.div`
 export const CheckBox = styled.input`
   width: 20px;
   height: 20px;
-  margin-left: 10px;
+  margin-left: ${(props) => props.margin};
 `;
 
 export const CheckBoxRight = styled.div`

@@ -13,17 +13,17 @@ export const ProductContainer = styled.div`
   margin-top: 100px;
   display: flex;
 `;
-
-export const Image = styled.div`
-  border: solid black 0px;
+export const ImageLayout = styled.div`
   width: 720px;
   height: 425px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  flex-shrink: 0;
+  border: solid black 0px;
+`;
+export const Image = styled.img`
+  width: 425px;
+  height: 425px;
 `;
 
-export const InfoContainer = styled.div`
+export const ProductInfoContainer = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@ export const Category = styled.div`
   font-size: 20px;
 `;
 
-export const Description = styled.div`
+export const Description = styled.span`
   color: gray;
   font-size: 17px;
 `;
@@ -46,23 +46,24 @@ export const SizeContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const SizeTitle = styled.div`
+export const SizeTitle = styled.span`
   font-size: 18px;
   color: gray;
   line-height: 400%;
 `;
 
-export const Size = styled.div`
+export const Size = styled.span`
   display: flex;
   width: 75px;
   justify-content: space-between;
 `;
 
-export const SizeBtn = styled.div`
-  cursor: pointer;
+export const SizeBtn = styled.span`
+  border: none;
   font-weight: bolder;
   line-height: 460%;
   cursor: pointer;
+  height: 80px;
 `;
 
 export const SizeNum = styled.div`
@@ -71,7 +72,7 @@ export const SizeNum = styled.div`
   line-height: 355%;
 `;
 
-export const Circle = styled.div`
+export const ShowSizeCircle = styled.div`
   margin-top: 2px;
   cursor: pointer;
   line-height: 490%;
@@ -88,7 +89,7 @@ export const Price = styled.div`
   margin-bottom: 155px;
 `;
 
-export const CartContainer = styled.div`
+export const AddBtnContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -118,14 +119,14 @@ export const HeartBtn = styled.div`
   font-size: 35px;
 `;
 
-export const SpanContainer = styled.div`
+export const SimilarProductTitleLayout = styled.div`
   display: flex;
   justify-content: center;
   width: 1590px;
   margin: 0 auto;
 `;
 
-export const Span = styled.div`
+export const Span = styled.span`
   width: 79%;
   display: flex;
   margin-top: 50px;
@@ -133,7 +134,7 @@ export const Span = styled.div`
   justify-content: fex-start;
 `;
 
-export const Category2 = styled.span`
+export const SimilarProductTitle = styled.span`
   font-family: "NanumSquareNeo-Variable";
   font-weight: bold;
   margin-right: 3px;
@@ -151,4 +152,30 @@ export const ShoesContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+`;
+
+export const GoToCartPageBtnLayout = styled.div`
+  border-radius: 10px;
+  width: 400px;
+  height: 50px;
+  z-index: 999;
+  position: absolute;
+  top: 38%;
+  left: 67.5%;
+  transform: translate(-59%, 70%);
+  background-color: black;
+  opacity: 0.9;
+`;
+
+export const GoToCartPageBtnContainer = styled.div`
+  line-height: 300%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+`;
+
+export const GoToCartBtn = styled.div`
+  cursor: pointer;
+  color: #a5ba93;
 `;

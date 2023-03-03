@@ -55,6 +55,7 @@ const OrderPageNavbar = () => {
   };
 
   useEffect(() => {}, [products, completedProducts]);
+  console.log("products", products);
   return (
     <div>
       <Style.Header>주문 내역 조회</Style.Header>
@@ -99,7 +100,7 @@ const OrderPageNavbar = () => {
               <Style.InfoItem>사이즈 [{item.product.size}]</Style.InfoItem>
             </Style.InfoContainer>
             <Style.OrderDate>{item.product.date}</Style.OrderDate>
-            <Style.OrderNum>{item.product.id}</Style.OrderNum>
+            <Style.OrderNum>{item.product._id}</Style.OrderNum>
             <Style.PriceContainer>
               {item.product.coupon !== "선택안함" ? (
                 <Style.FirstPrice>
