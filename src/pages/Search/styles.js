@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const Layout = styled.div`
   display: flex;
   justify-content: center;
   width: 1400px;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   font-family: "NanumSquareNeo-Variable";
 `;
 
-export const ProductsContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 1350px;
@@ -16,7 +16,7 @@ export const ProductsContainer = styled.div`
   margin-top: 30px;
 `;
 
-export const ContentContainer = styled.div`
+export const SearchBarLayout = styled.div`
   width: 100%;
   min-height: 150px;
   display: flex;
@@ -45,13 +45,12 @@ export const InputSearch = styled.input`
 `;
 
 export const HorizonLine = styled.div`
-  max-width: 558px;
-  min-width: 558px;
+  width: 558px;
   border-bottom: 3px solid black;
   line-height: 0.1rem;
 `;
 
-export const SortContainer = styled.div`
+export const SortLayout = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 1310px;

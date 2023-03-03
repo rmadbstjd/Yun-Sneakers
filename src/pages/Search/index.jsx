@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
@@ -10,13 +11,13 @@ import ProductLikeCard from "../../components/ProductLikeCard";
 import Toggle from "../../components/Toggle";
 import Side from "../../components/Side";
 import Navbar from "./../../components/common/Navbar/index";
-import * as Style from "./styles";
+import HorizonLine from "../../components/common/HorizonLine";
 const SearchPage = () => {
   const navigate = useNavigate();
+  const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { sort, initSort } = searchStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
-  const [query] = useSearchParams();
   const [toggle, setToggle] = useState(false);
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");
@@ -51,15 +52,6 @@ const SearchPage = () => {
       addRecentKeyword(result);
     }
   };
-  const closeSearch = () => {
-    setResult("");
-  };
-  useEffect(() => {
-    if (searchQuery === "null") setIsShowSearchBar(false);
-    else setIsShowSearchBar(true);
-    setResult(searchQuery);
-    products && initSort(sessionSort);
-  }, [searchQuery, searchSort]);
 
   const clickToSort = (e) => {
     e.stopPropagation();
@@ -68,12 +60,19 @@ const SearchPage = () => {
   const handleChange = (e) => {
     setResult(e.target.value);
   };
+
+  useEffect(() => {
+    if (searchQuery === "null") setIsShowSearchBar(false);
+    else setIsShowSearchBar(true);
+    setResult(searchQuery);
+    products && initSort(sessionSort);
+  }, [searchQuery, searchSort]);
   return (
-    <div>
+    <div onClick={() => setToggle(false)}>
       <Navbar />
-      <Style.Container onClick={() => setToggle(false)}>
-        <Style.ProductsContainer>
-          <Style.ContentContainer>
+      <Style.Layout>
+        <Style.Container>
+          <Style.SearchBarLayout>
             {isShowSearchBar === true ? (
               <Style.SearchContainer isText={false}>
                 <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
@@ -93,18 +92,24 @@ const SearchPage = () => {
                       cursor: "pointer",
                       margin: "10px 0px 0px 10px",
                     }}
-                    onClick={closeSearch}
+                    onClick={() => {
+                      setResult("");
+                    }}
                   />
                 </Style.SearchContent>
-                <Style.HorizonLine></Style.HorizonLine>
+                <HorizonLine
+                  width={"558px"}
+                  border={"3px"}
+                  color={"black"}
+                ></HorizonLine>
               </Style.SearchContainer>
             ) : (
               <Style.SearchContainer isText={true}>SHOP</Style.SearchContainer>
             )}
-          </Style.ContentContainer>
+          </Style.SearchBarLayout>
 
           {products && products.products[0].length !== 0 ? (
-            <Style.SortContainer>
+            <Style.SortLayout>
               <Style.SortContent>
                 <Style.Sort onClick={clickToSort}>
                   {sessionSort === "new" ? "최신순" : "인기순"}
@@ -121,7 +126,7 @@ const SearchPage = () => {
               </Style.SortContent>
 
               {toggle && <Toggle setToggle={setToggle} />}
-            </Style.SortContainer>
+            </Style.SortLayout>
           ) : null}
 
           <Style.Content
@@ -149,8 +154,8 @@ const SearchPage = () => {
               )}
             </Style.Products>
           </Style.Content>
-        </Style.ProductsContainer>
-      </Style.Container>
+        </Style.Container>
+      </Style.Layout>
     </div>
   );
 };
