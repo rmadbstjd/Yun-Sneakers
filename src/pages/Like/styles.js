@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: flex;
-
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
 `;
@@ -15,21 +14,15 @@ export const ProductsContainer = styled.div`
   margin: 50px 0px 0px 20px;
 `;
 
-export const ContentContainer = styled.div`
+export const TitleContainer = styled.div`
   width: 99%;
+  margin-top: 30px;
 `;
 
-export const Title = styled.div`
+export const Title = styled.span`
   margin-top: 30px;
   font-size: 20px;
   font-weight: bolder;
-`;
-
-export const HorizonLine = styled.div`
-  width: 98.8%;
-  margin: 2% 0% 3% 0%;
-  border-bottom: 3px solid black;
-  line-height: 0.1rem;
 `;
 
 export const NoneProductsContainer = styled.div`
@@ -39,7 +32,7 @@ export const NoneProductsContainer = styled.div`
   justify-content: center;
 `;
 
-export const Span = styled.div`
+export const Span = styled.span`
   width: 500px;
   display: flex;
   justify-content: center;
@@ -48,9 +41,11 @@ export const Span = styled.div`
   font-size: 20px;
 `;
 
-export const Btn = styled.div`
+export const GoToMainBtn = styled.button`
+  border: none;
+  background: white;
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 15%;
   border: solid gray 1px;
   width: 350px;
   padding: 20px;

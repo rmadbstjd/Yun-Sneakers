@@ -1,33 +1,20 @@
 import styled from "@emotion/styled";
 
-export const NullContainer = styled.div`
+export const NullProductContainer = styled.div`
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
 `;
 
-export const NullContent = styled.div`
+export const NullProductContentLayout = styled.div`
   width: 71%;
 `;
 
-export const HorizonLine = styled.div`
-  width: 100%;
-  margin-top: ${(props) => `${props.margin}%`};
-  border-bottom: 5px solid black;
-  line-height: 0.1rem;
-`;
-
-export const HorizonBottomLine = styled.div`
-  width: 100%;
-  margin-top: 3%;
-  border-bottom: 3px solid gray;
-  line-height: 0.1rem;
-`;
-export const NullText = styled.div`
+export const NullText = styled.span`
   display: flex;
   justify-content: center;
   font-size: 35px;
-  margin-top: 10%;
+  margin-top: 5%;
 `;
 
 export const NullBoxContainer = styled.div`
@@ -51,7 +38,7 @@ export const GoToMainBtn = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const Layout = styled.div`
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
@@ -60,24 +47,24 @@ export const Container = styled.div`
 `;
 
 export const ProductsContainer = styled.div`
-  width: 70.5%;
+  width: 71.5%;
   margin-top: 90px;
 `;
 
-export const MenuContainer = styled.div`
+export const TitleLayout = styled.div`
   width: 70%;
   font-size: 30px;
   font-weight: bold;
   justify-content: space-between;
 `;
 
-export const Menu = styled.div`
+export const Title = styled.div`
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 20px;
 `;
 
-export const MenuHeader = styled.div`
+export const HeaderLayout = styled.div`
   border: solid gray 1px;
   text-align: center;
   margin-top: 50px;
@@ -87,12 +74,12 @@ export const MenuHeader = styled.div`
   justify-content: flex-end;
 `;
 
-export const MenuContent = styled.div`
+export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
 `;
 
-export const MenuOption = styled.div`
+export const HeaderContent = styled.div`
   width: ${(props) => `${props.width}%`};
   text-align: center;
 `;

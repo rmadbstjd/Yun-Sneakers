@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import cartStore from "../../store/cartStore";
-import * as Style from "./styles";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
@@ -16,13 +16,6 @@ const Cart = () => {
   const { data: cartProducts, refetch } = useQuery(["totalPrice"], () =>
     cart.getUserCarts()
   );
-
-  const goToMain = () => {
-    navigate("/");
-  };
-  const goToOrderPage = () => {
-    navigate("/shipment");
-  };
 
   useEffect(() => {
     if (cartProducts) {
@@ -47,18 +40,32 @@ const Cart = () => {
     return (
       <>
         <Navbar />
-        <Style.NullContainer>
-          <Style.NullContent>
-            <Style.HorizonLine margin={9}></Style.HorizonLine>
+        <Style.NullProductContainer>
+          <Style.NullProductContentLayout>
+            <HorizonLine
+              width={"98%"}
+              border={"5px"}
+              margin={"8% 0px 0px 0px"}
+              color={"black"}
+            />
             <Style.NullText>장바구니에 담긴 상품이 없습니다.</Style.NullText>
             <Style.NullBoxContainer>
-              <Style.GoToMainBtn onClick={goToMain}>
+              <Style.GoToMainBtn
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 CONTINUE SHOPPING
               </Style.GoToMainBtn>
             </Style.NullBoxContainer>
-            <Style.HorizonBottomLine></Style.HorizonBottomLine>
-          </Style.NullContent>
-        </Style.NullContainer>
+            <HorizonLine
+              width={"98%"}
+              border={"3px"}
+              color={"gray"}
+              margin={"3% 0px 0px 0px"}
+            />
+          </Style.NullProductContentLayout>
+        </Style.NullProductContainer>
       </>
     );
   }
@@ -66,18 +73,20 @@ const Cart = () => {
   return (
     <div>
       <Navbar />
-      <Style.Container>
+      <Style.Layout>
         <Style.ProductsContainer>
-          <Style.MenuContainer>
-            <Style.Menu>ORDER / PAYMENT</Style.Menu>
-          </Style.MenuContainer>
-          <Style.MenuHeader>
-            <Style.MenuContent>
-              <Style.MenuOption width={52.8}>상품명(옵션)</Style.MenuOption>
-              <Style.MenuOption width={35.9}>수량</Style.MenuOption>
-              <Style.MenuOption width={31}>주문관리</Style.MenuOption>
-            </Style.MenuContent>
-          </Style.MenuHeader>
+          <Style.TitleLayout>
+            <Style.Title>ORDER / PAYMENT</Style.Title>
+          </Style.TitleLayout>
+          <Style.HeaderLayout>
+            <Style.HeaderContainer>
+              <Style.HeaderContent width={52.8}>
+                상품명(옵션)
+              </Style.HeaderContent>
+              <Style.HeaderContent width={35.9}>수량</Style.HeaderContent>
+              <Style.HeaderContent width={31}>주문관리</Style.HeaderContent>
+            </Style.HeaderContainer>
+          </Style.HeaderLayout>
           {cartProducts &&
             cartProducts.products.map((item) => (
               <CartProduct
@@ -86,7 +95,12 @@ const Cart = () => {
                 refetch={refetch}
               />
             ))}
-          <Style.HorizonLine margin={9}></Style.HorizonLine>
+          <HorizonLine
+            width={"100%"}
+            border={"5px"}
+            color={"black"}
+            margin={"9% 0px 0px 0px"}
+          ></HorizonLine>
           <Style.PayContainer>
             <Style.PayContent width={30} fontSize={20}>
               총 주문금액
@@ -98,7 +112,7 @@ const Cart = () => {
               총 결제 금액
             </Style.PayContent>
           </Style.PayContainer>
-          <HorizonLine margin={9} />
+
           <Style.PayContainer>
             <Style.PayContent width={27.5} margin={true} fontSize={25}>
               <Style.Count>총 {count}개</Style.Count>
@@ -114,22 +128,34 @@ const Cart = () => {
               {convertToPrice(price)}원
             </Style.PayContent>
           </Style.PayContainer>
-          <Style.HorizonLine margin={3}></Style.HorizonLine>
+          <HorizonLine
+            width={"100%"}
+            border={"5px"}
+            color={"black"}
+            margin={"3% 0px 0px 0px"}
+          ></HorizonLine>
 
           <Style.FooterContainer>
-            <Style.FooterBtn color={"#3a3b3c"} onClick={goToMain}>
+            <Style.FooterBtn
+              color={"#3a3b3c"}
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               쇼핑 계속하기
             </Style.FooterBtn>
             <Style.FooterBtn
               color={"white"}
               back={"black"}
-              onClick={goToOrderPage}
+              onClick={() => {
+                navigate("/shipment");
+              }}
             >
               구매하기
             </Style.FooterBtn>
           </Style.FooterContainer>
         </Style.ProductsContainer>
-      </Style.Container>
+      </Style.Layout>
     </div>
   );
 };
