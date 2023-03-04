@@ -9,7 +9,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
+import HorizonLine from "../../components/common/HorizonLine";
 const Shipment = () => {
+  const navigate = useNavigate();
   const {
     cart,
     myPage,
@@ -69,60 +71,65 @@ const Shipment = () => {
     "11개월",
     "12개월",
   ];
-  const navigate = useNavigate();
-  const [showCoupon, setShowCoupon] = useState(false);
-  const [newShip, setNewShip] = useState(false);
-  const [coupon, setCoupon] = useState("선택안함");
-  const [couponPrice, setCouponPrice] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [count, setCount] = useState(0);
-  const [showCard, setShowCard] = useState(false);
-  const [budgetAccount, setBudgetAccount] = useState("일시불");
-  const [showBudgetAccount1, setShowBudgetAccount1] = useState(false);
-  const [showBudgetAccount2, setShowBudgetAccount2] = useState(false);
-  const [checkAll, setCheckAll] = useState(false);
-  const [check1, setCheck1] = useState(false);
-  const [check2, setCheck2] = useState(false);
-  const [check3, setCheck3] = useState(false);
-  const showCouponBox = () => {
-    setShowCoupon((prev) => !prev);
+  const termsArr = [
+    {
+      id: 0,
+      title: "(필수) 개인정보 수집/이용 동의",
+    },
+    {
+      id: 1,
+      title: "(필수) 개인정보 제3자 제공 동의",
+    },
+    {
+      id: 2,
+      title: "(필수) 결제대행 서비스 이용약관 (주)KG이니시스",
+    },
+  ];
+
+  const [checkItems, setCheckItems] = useState([]);
+
+  const handleSingleCheck = (checked, id) => {
+    if (checked) {
+      setCheckItems((prev) => [...prev, id]);
+    } else {
+      setCheckItems(checkItems.filter((el) => el !== id));
+    }
   };
 
+  const handleAllCheck = (checked) => {
+    if (checked) {
+      const idArray = [];
+      termsArr.forEach((el) => idArray.push(el.id));
+      setCheckItems(idArray);
+    } else {
+      setCheckItems([]);
+    }
+  };
+  const [showCouponBox, setShowCouponBox] = useState(false);
+  const [haveAddress, setHaveAddress] = useState(false);
+  const [coupon, setCoupon] = useState("선택안함");
+  const [couponAppliedPrice, setCouponAppliedPrice] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+  const [showCreditCardBox, setShowCreditCardBox] = useState(false);
+  const [budgetAccount, setBudgetAccount] = useState("일시불");
+  const [showBudgetAccount, setShowBudgetAccount] = useState(false);
+  const [showBudgetAccountBox, setShowBudgetAccountBox] = useState(false);
   const clickCard = (item) => {
     setCard(item);
-    setShowCard(false);
-    setShowBudgetAccount1(true);
+    setShowCreditCardBox(false);
+    setShowBudgetAccount(true);
   };
   const clickBudget = (item) => {
     setBudgetAccount(item);
-    setShowBudgetAccount2(false);
+    setShowBudgetAccountBox(false);
   };
-  const clickShip = (state) => {
-    if (state === "new") setNewShip(true);
-    else setNewShip(false);
-  };
+
   const showBudget = () => {
-    setShowCard((prev) => !prev);
-    if (showBudgetAccount1) setShowBudgetAccount1(false);
+    setShowCreditCardBox((prev) => !prev);
+    if (showBudgetAccount) setShowBudgetAccount(false);
   };
-  const check = (some) => {
-    if (some === "all") {
-      if (checkAll === false) {
-        setCheckAll(true);
-        setCheck1(true);
-        setCheck2(true);
-        setCheck3(true);
-      } else {
-        setCheckAll(false);
-        setCheck1(false);
-        setCheck2(false);
-        setCheck3(false);
-      }
-      return;
-    } else if (some === "1") setCheck1((prev) => !prev);
-    else if (some === "2") setCheck2((prev) => !prev);
-    else if (some === "3") setCheck3((prev) => !prev);
-  };
+
   const onValidate = () => {
     if (!address) {
       if (!shipPlaceName) {
@@ -171,22 +178,24 @@ const Shipment = () => {
         Swal.fire("카드사를 선택해주세요.");
 
         return;
-      } else if (!checkAll) {
-        Swal.fire({
-          title: "약관 동의를 모두 선택해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
       }
+
+      Swal.fire({
+        title: "약관 동의를 모두 선택해주세요.",
+        confirmButtonColor: "black",
+      });
+      return;
     }
+
     if (card === "카드사를 선택해주세요.") {
       Swal.fire({
         title: "카드사를 선택해주세요.",
         confirmButtonColor: "black",
       });
-
       return;
-    } else if (!checkAll) {
+    }
+
+    if (checkItems.length !== termsArr.length) {
       Swal.fire({
         title: "약관 동의를 모두 선택해주세요.",
         confirmButtonColor: "black",
@@ -241,37 +250,37 @@ const Shipment = () => {
   };
 
   useEffect(() => {
-    setCount(0);
+    setProductsCount(0);
     if (products) {
       for (let i = 0; i < products.products.length; i++) {
         let newPrice = Number(
           products.products[i].price * products.products[i].quantity
         );
         setPrice((prev) => prev + newPrice);
-        setCount((prev) => prev + products.products[i].quantity);
+        setProductsCount((prev) => prev + products.products[i].quantity);
       }
     }
   }, [products]);
 
   const clickCoupon = (item) => {
     setCoupon(item);
-    setShowCoupon(false);
+    setShowCouponBox(false);
   };
 
   useEffect(() => {
     switch (coupon) {
       case "선택안함":
-        setCouponPrice(0);
+        setCouponAppliedPrice(0);
         break;
       case "Welcome 5% 할인 쿠폰":
-        setCouponPrice(price / 10 / 2);
+        setCouponAppliedPrice(price / 10 / 2);
         break;
       case "10만원 이상 구매 시 10% 할인 쿠폰":
         if (price < 100000) {
           setCoupon((prev) => prev);
           break;
         }
-        setCouponPrice(price / 10);
+        setCouponAppliedPrice(price / 10);
         break;
       case "20만원 이상 구매 시 20% 할인 쿠폰":
         if (price < 200000) {
@@ -283,50 +292,46 @@ const Shipment = () => {
           setCoupon("선택안함");
           break;
         }
-        setCouponPrice(price / 5);
+        setCouponAppliedPrice(price / 5);
         break;
       default:
         break;
     }
   }, [coupon, price]);
 
-  useEffect(() => {
-    if (check1 && check2 && check3) setCheckAll(true);
-    else setCheckAll(false);
-  }, [check1, check2, check3]);
   return (
     <>
       <Navbar />
       <Style.Container>
         <Style.LeftContainer>
-          <Style.HorizonLine
+          <HorizonLine
             width={"750px"}
-            border={4}
+            border={"4px"}
             color={"black"}
-          ></Style.HorizonLine>
+          ></HorizonLine>
           <div>
             <Style.Title>배송 정보</Style.Title>
 
-            <Style.InfoSelectContainer>
-              <Style.LeftSelectBox
-                newShip={newShip}
-                onClick={() => clickShip("old")}
+            <Style.AddressSelectContainer>
+              <Style.ExistAddressSelectBox
+                haveAddress={haveAddress}
+                onClick={() => setHaveAddress(false)}
               >
                 기존 배송지
-              </Style.LeftSelectBox>
-              <Style.RightSelectBox
-                newShip={newShip}
-                onClick={() => clickShip("new")}
+              </Style.ExistAddressSelectBox>
+              <Style.AddAddressSelectBox
+                haveAddress={haveAddress}
+                onClick={() => setHaveAddress(true)}
               >
                 신규 입력
-              </Style.RightSelectBox>
-              <Style.HorizonLine
+              </Style.AddAddressSelectBox>
+              <HorizonLine
                 width={"750px"}
-                border={0.5}
+                border={"0.5px"}
                 color={"#bebebe"}
-              ></Style.HorizonLine>
-            </Style.InfoSelectContainer>
-            {newShip === false ? (
+              ></HorizonLine>
+            </Style.AddressSelectContainer>
+            {haveAddress === false ? (
               <ShipAddress />
             ) : (
               <AddShip type={"orderPage"}></AddShip>
@@ -334,23 +339,26 @@ const Shipment = () => {
           </div>
 
           <div>
-            <Style.HorizonLine
+            <HorizonLine
               width={"750px"}
-              border={4}
+              border={"4px"}
               color={"black"}
-            ></Style.HorizonLine>
+            ></HorizonLine>
             <Style.Title>쿠폰 / 마일리지</Style.Title>
-            <Style.HorizonLine width={"100%"}></Style.HorizonLine>
-            <Style.BonusCouponContainer>
-              <Style.CouponLeftBox>보너스 쿠폰</Style.CouponLeftBox>
-              <Style.CouponRightBox onClick={showCouponBox}>
+            <Style.CouponContainer>
+              <Style.CouponTitle>보너스 쿠폰</Style.CouponTitle>
+              <Style.ShowCouponBox
+                onClick={() => {
+                  setShowCouponBox((prev) => !prev);
+                }}
+              >
                 <Style.Default>{coupon}</Style.Default>
                 <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
-              </Style.CouponRightBox>
-            </Style.BonusCouponContainer>
+              </Style.ShowCouponBox>
+            </Style.CouponContainer>
             <Style.ShowCouponSheet>
               {" "}
-              {showCoupon &&
+              {showCouponBox &&
                 couponArr.map((item) => (
                   <Style.Coupon onClick={() => clickCoupon(item)} key={item}>
                     &nbsp;&nbsp;{item}
@@ -358,21 +366,25 @@ const Shipment = () => {
                 ))}
             </Style.ShowCouponSheet>
             <Style.BrandCouponContainer>
-              <Style.CouponLeftBox>브랜드 쿠폰</Style.CouponLeftBox>
+              <Style.CouponTitle>브랜드 쿠폰</Style.CouponTitle>
               <Style.BrandCouponBox>
                 &nbsp;&nbsp;&nbsp;적용 가능한 쿠폰이 없습니다.
               </Style.BrandCouponBox>
             </Style.BrandCouponContainer>
-            <Style.HorizonLine
+            <HorizonLine
               width={"750px"}
-              border={4}
+              border={"4px"}
               color={"black"}
-            ></Style.HorizonLine>
+            ></HorizonLine>
           </div>
 
           <div>
             <Style.Title>결제 방법</Style.Title>
-            <Style.HorizonLine width={"100%"} border={2}></Style.HorizonLine>
+            <HorizonLine
+              width={"100%"}
+              border={"2px"}
+              color={"black"}
+            ></HorizonLine>
             <Style.CardContainer>
               {paymentArr.map((item) => (
                 <Style.Card item={item} key={item}>
@@ -391,16 +403,16 @@ const Shipment = () => {
               />
             </Style.SelectCard>
             <Style.Modal>
-              {showCard &&
+              {showCreditCardBox &&
                 cardArr.map((item) => (
                   <Style.CardItem key={item} onClick={() => clickCard(item)}>
                     {item}
                   </Style.CardItem>
                 ))}
             </Style.Modal>
-            {showBudgetAccount1 && (
+            {showBudgetAccount && (
               <Style.SelectedBudget
-                onClick={() => setShowBudgetAccount2((prev) => !prev)}
+                onClick={() => setShowBudgetAccountBox((prev) => !prev)}
               >
                 <Style.CardTitle>{budgetAccount}</Style.CardTitle>
                 <IoIosArrowDown
@@ -412,7 +424,7 @@ const Shipment = () => {
                 />
               </Style.SelectedBudget>
             )}
-            {showBudgetAccount2 && (
+            {showBudgetAccountBox && (
               <Style.Modal>
                 {budgetArr.map((item) => (
                   <Style.CardItem key={item} onClick={() => clickBudget(item)}>
@@ -424,7 +436,9 @@ const Shipment = () => {
           </div>
         </Style.LeftContainer>
         <Style.RightContainer>
-          <Style.OrderTitle>주문 상품 정보 / 총 {count}개</Style.OrderTitle>
+          <Style.OrderTitle>
+            주문 상품 정보 / 총 {productsCount}개
+          </Style.OrderTitle>
           <Style.ProductsContaier>
             {products &&
               products.products.map((item) => (
@@ -449,7 +463,7 @@ const Shipment = () => {
             </Style.InfoContent>
             <Style.InfoContent>
               <div>쿠폰 사용</div>
-              <div>- {convertToPrice(couponPrice)}원</div>
+              <div>- {convertToPrice(couponAppliedPrice)}원</div>
             </Style.InfoContent>
             <Style.InfoContent>
               <div>배송비</div>
@@ -457,51 +471,43 @@ const Shipment = () => {
             </Style.InfoContent>
             <Style.InfoTotalPriceContainer>
               <div>총 결제금액</div>
-              <div>{convertToPrice(price - couponPrice)}원</div>
+              <div>{convertToPrice(price - couponAppliedPrice)}원</div>
             </Style.InfoTotalPriceContainer>
             <Style.HorizonLine width={"100%"} border={1}></Style.HorizonLine>
           </Style.InfoContainer>
+
           <Style.CheckBoxContainer>
             <Style.CheckBoxContent>
               <Style.CheckBox
+                htmlFor={"주문 내역을 확인했으며, 아래 내용에 모두 동의합니다."}
                 type="checkbox"
-                onChange={() => check("all")}
-                checked={checkAll}
+                id={"주문 내역을 확인했으며, 아래 내용에 모두 동의합니다."}
+                onChange={(e) => handleAllCheck(e.target.checked)}
+                checked={checkItems.length === termsArr.length ? true : false}
               ></Style.CheckBox>
               <Style.CheckBoxLetter>
                 주문 내역을 확인했으며, 아래 내용에 모두 동의합니다.
               </Style.CheckBoxLetter>
             </Style.CheckBoxContent>
-            <Style.CheckBoxContent>
-              <Style.CheckBox
-                type="checkbox"
-                onChange={() => check("1")}
-                checked={check1}
-              ></Style.CheckBox>
-              <Style.CheckBoxLetter color={"gray"}>
-                (필수) 개인정보 수집/이용 동의
-              </Style.CheckBoxLetter>
-            </Style.CheckBoxContent>
-            <Style.CheckBoxContent>
-              <Style.CheckBox
-                type="checkbox"
-                onChange={() => check("2")}
-                checked={check2}
-              ></Style.CheckBox>
-              <Style.CheckBoxLetter color={"gray"}>
-                (필수) 개인정보 제3자 제공 동의
-              </Style.CheckBoxLetter>
-            </Style.CheckBoxContent>
-            <Style.CheckBoxContent>
-              <Style.CheckBox
-                type="checkbox"
-                onChange={() => check("3")}
-                checked={check3}
-              ></Style.CheckBox>
-              <Style.CheckBoxLetter color={"gray"}>
-                (필수) 결제대행 서비스 이용약관 (주)KG이니시스
-              </Style.CheckBoxLetter>
-            </Style.CheckBoxContent>
+
+            {termsArr.map((item, index) => (
+              <Style.CheckBoxContent key={item.id}>
+                <Style.Label htmlfor={item.title}>
+                  <Style.CheckBox
+                    type="checkbox"
+                    id={item.title}
+                    name={item.title}
+                    onChange={(e) =>
+                      handleSingleCheck(e.target.checked, termsArr[index].id)
+                    }
+                    checked={
+                      checkItems.includes(termsArr[index].id) ? true : false
+                    }
+                  ></Style.CheckBox>
+                  <Style.CheckBoxLetter>{item.title}</Style.CheckBoxLetter>
+                </Style.Label>
+              </Style.CheckBoxContent>
+            ))}
           </Style.CheckBoxContainer>
           <Style.PaymentBtn onClick={onValidate}>CHECK OUT</Style.PaymentBtn>
         </Style.RightContainer>

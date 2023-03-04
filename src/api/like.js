@@ -1,6 +1,6 @@
 import axios from "axios";
 import { instance } from "../utils/instance";
-console.log("instance", instance);
+
 export default class Like {
   constructor() {
     this.httpClient = axios.create(
@@ -47,7 +47,7 @@ export default class Like {
         Authorization: localStorage.getItem("accessToken"),
       },
     });
-    console.log("실행됨?");
+
     const data = response.data;
     return data;
   }

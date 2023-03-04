@@ -27,17 +27,17 @@ export const Title = styled.div`
   padding: 20px;
 `;
 
-export const InfoSelectContainer = styled.div`
+export const AddressSelectContainer = styled.div`
   display: flex;
   margin-top: 20px;
 `;
 
-export const LeftSelectBox = styled.div`
+export const ExistAddressSelectBox = styled.div`
   border-top: solid #bebebe 1px;
   border-left: ${(props) =>
-    props.newShip === false ? "solid #bebebe 1px" : null};
-  color: ${(props) => (props.newShip === false ? "black" : "#bebebe")};
-  background: ${(props) => (props.newShip === true ? "#f5f5f5" : null)};
+    props.haveAddress === false ? "solid #bebebe 1px" : null};
+  color: ${(props) => (props.haveAddress === false ? "black" : "#bebebe")};
+  background: ${(props) => (props.haveAddress === true ? "#f5f5f5" : null)};
   width: 150px;
   height: 50px;
   font-size: 14px;
@@ -46,15 +46,15 @@ export const LeftSelectBox = styled.div`
   cursor: pointer;
 `;
 
-export const RightSelectBox = styled.div`
+export const AddAddressSelectBox = styled.div`
   border-bottom: ${(props) =>
-    props.newShip === false ? "solid #bebebe 1px" : null};
+    props.haveAddress === false ? "solid #bebebe 1px" : null};
   border-top: ${(props) =>
-    props.newShip === true ? "solid #bebebe 1px" : null};
+    props.haveAddress === true ? "solid #bebebe 1px" : null};
   border-right: ${(props) =>
-    props.newShip === true ? "solid #bebebe 1px" : null};
-  color: ${(props) => (props.newShip === false ? "#bebebe" : "black")};
-  background: ${(props) => (props.newShip === false ? "#f5f5f5" : "white")};
+    props.haveAddress === true ? "solid #bebebe 1px" : null};
+  color: ${(props) => (props.haveAddress === false ? "#bebebe" : "black")};
+  background: ${(props) => (props.haveAddress === false ? "#f5f5f5" : "white")};
   width: 150px;
   height: 50px;
   text-align: center;
@@ -63,18 +63,18 @@ export const RightSelectBox = styled.div`
   cursor: pointer;
 `;
 
-export const BonusCouponContainer = styled.div`
+export const CouponContainer = styled.div`
   display: flex;
   margin-top: 20px;
 `;
 
-export const CouponLeftBox = styled.div`
+export const CouponTitle = styled.div`
   width: 130px;
   height: 50px;
   line-height: 300%;
 `;
 
-export const CouponRightBox = styled.div`
+export const ShowCouponBox = styled.div`
   border: solid #bebebe 1px;
   width: 600px;
   height: 40px;
@@ -196,6 +196,7 @@ font-size: 14px;
 margin-top: 10px;
 cursor: pointer;
 z-index: 199;
+
 }`;
 
 export const RightContainer = styled.div`
@@ -303,4 +304,9 @@ export const PaymentBtn = styled.div`
   text-align: center;
   line-height: 270%;
   cursor: pointer;
+`;
+
+export const Label = styled.label`
+  user-select: none;
+  display: flex;
 `;

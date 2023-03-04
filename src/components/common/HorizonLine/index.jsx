@@ -1,7 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
 const HorizonLine = ({ width, border, color, margin }) => {
-  console.log(width, border, color);
   return (
     <Style.Line
       width={width}
