@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import searchStore from "../../store/searchStore";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-const Toggle = ({ setToggle }) => {
+const Toggle = ({ setToggle, setModalIsOpen }) => {
   const navigate = useNavigate();
   const { setSortNew, setSortPopular } = searchStore();
   const [query] = useSearchParams();
@@ -13,9 +13,11 @@ const Toggle = ({ setToggle }) => {
     if (sort === "popular") {
       setSortPopular();
       sessionStorage.setItem("sort", "popular");
+      setModalIsOpen(false);
     } else {
       setSortNew();
       sessionStorage.setItem("sort", "new");
+      setModalIsOpen(false);
     }
     navigate(`/search?keyword=${searchQuery}&sort=${sort}`);
   };
@@ -24,7 +26,7 @@ const Toggle = ({ setToggle }) => {
       <Style.Content onClick={() => clickToSort("popular")}>
         <Style.Title>인기순</Style.Title>
         <Style.Description>
-          좋아요 갯수를 기준으로 정렬합니다.
+          좋아요 개수를 기준으로 정렬합니다.
         </Style.Description>
       </Style.Content>
       <Style.Content onClick={() => clickToSort("new")}>

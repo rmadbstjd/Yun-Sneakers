@@ -16,7 +16,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { cart, nickName, userId, user } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
-  const { setSearchWord } = searchStore();
+  const { setSearchWord, setShowBar } = searchStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -73,12 +73,14 @@ const Navbar = () => {
               onClick={() => {
                 navigate("/search");
                 setShowSearch(false);
+                setShowBar(false);
               }}
             />
             <Style.MyPage
               onClick={() => {
                 navigate("/search");
                 setShowSearch(false);
+                setShowBar(false);
               }}
             >
               SHOP

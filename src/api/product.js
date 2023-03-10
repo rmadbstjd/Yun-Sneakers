@@ -14,9 +14,11 @@ export default class Product {
     const response = await this.httpClient.get("/search", {
       params: { keyword, sort, collectionName, priceOrder },
     });
-    const data = response.data;
+    const data = response.data.reverse();
+
     return data;
   }
+
   async getAllProducts() {
     const response = await this.httpClient.get("products/all", {});
     const data = response.data;

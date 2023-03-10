@@ -55,7 +55,7 @@ const OrderPageNavbar = () => {
   };
 
   useEffect(() => {}, [products, completedProducts]);
-  console.log("products", products);
+
   return (
     <div>
       <Style.Header>주문 내역 조회</Style.Header>

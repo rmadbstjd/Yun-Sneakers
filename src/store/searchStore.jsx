@@ -22,6 +22,9 @@ const store = (set) => ({
   initSort: (some) => set((state) => ({ sort: some })),
   setSortPopular: () => set((state) => ({ sort: "popular" })),
   setSortNew: () => set((state) => ({ sort: "new" })),
+
+  showBar: true,
+  setShowBar: (boolean) => set((state) => ({ showBar: boolean })),
 });
 const searchStore = create(devtools(store));
 export default searchStore;

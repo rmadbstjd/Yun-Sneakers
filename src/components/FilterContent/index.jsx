@@ -16,7 +16,7 @@ const FilterContent = () => {
     isLoading,
     error,
     data: brands,
-  } = useQuery(["test"], () => product.getBrandsName());
+  } = useQuery(["brands"], () => product.getBrandsName());
   const [showBrand, setShowBrand] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");

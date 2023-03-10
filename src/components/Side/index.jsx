@@ -11,13 +11,12 @@ const Side = () => {
   const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { sort } = searchStore();
-  const { data: brands } = useQuery(["test"], () => product.getBrandsName());
+  const { data: brands } = useQuery(["brands"], () => product.getBrandsName());
   const [showBrand, setShowBrand] = useState(false);
   const [showPrice, setShowPrice] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");
   const sessionBrand = sessionStorage.getItem("brand");
   const sessionPrice = sessionStorage.getItem("price");
-
   const searchQuery = query.get("keyword") || "null";
   const [checkedBrandList, setCheckedBrandList] = useState(
     JSON.parse(sessionBrand) || []
@@ -79,7 +78,7 @@ const Side = () => {
   return (
     <div>
       {<Style.Filter>필터</Style.Filter>}
-      <Style.Container onClick={clickToBrand}>
+      <Style.SideContainer onClick={clickToBrand}>
         <Style.BrandNavbar>브랜드</Style.BrandNavbar>
 
         {showBrand === false ? (
@@ -87,7 +86,7 @@ const Side = () => {
         ) : (
           <AiOutlineMinus style={{ width: "80px" }} />
         )}
-      </Style.Container>
+      </Style.SideContainer>
       {!showBrand && <Style.HorizonLine></Style.HorizonLine>}
       <Style.BrandContent isShow={showBrand === true ? true : false}>
         {brands &&
@@ -108,14 +107,14 @@ const Side = () => {
         <Style.HorizonLine></Style.HorizonLine>
       </Style.BrandContent>
 
-      <Style.Container onClick={clickToPrice}>
+      <Style.SideContainer onClick={clickToPrice}>
         <Style.BrandNavbar>가격</Style.BrandNavbar>
         {showPrice === false ? (
           <AiOutlinePlus style={{ width: "80px" }} />
         ) : (
           <AiOutlineMinus style={{ width: "80px" }} />
         )}
-      </Style.Container>
+      </Style.SideContainer>
 
       {!showPrice && <Style.HorizonLine></Style.HorizonLine>}
       <Style.BrandContent isShow={showPrice === true ? true : false}>

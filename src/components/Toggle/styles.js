@@ -1,34 +1,36 @@
 import styled from "@emotion/styled";
 export const Container = styled.div`
-  border: solid #bebebe 1px;
+  width: 98%;
   height: 133px;
   color: black;
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: white;
   transform: translate(0%, 12%);
   margin-top: 10px;
   z-index: 999;
-  box-shadow: 1px 2px 2px 2px #bebebe;
 `;
 
 export const Content = styled.div`
   cursor: pointer;
-  height: 70px;
+  height: 45px;
+  opacity: 0.8;
+  margin: 0% 0% 5% 2%;
+  line-height: 270%;
   &:hover {
-    background-color: #fafafa;
+    opacity: 1;
+    font-weight: bolder;
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.span`
   font-weight: bolder;
   padding: 10px;
   font-size: 15px;
 `;
 
-export const Description = styled.div`
-  color: lightGray;
+export const Description = styled.span`
+  color: black;
   font-size: 14px;
   padding-left: 10px;
 `;

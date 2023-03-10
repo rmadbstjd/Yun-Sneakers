@@ -8,7 +8,7 @@ import productStore from "../../../store/productStore";
 import AddShip from "../../AddShipInfo";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Swal from "sweetalert2";
-
+import Toggle from "../../Toggle";
 const Modal = ({
   modalIsOpen,
   setModalIsOpen,
@@ -146,6 +146,18 @@ const Modal = ({
             ))}
         </Style.SizeContainer>
         <Style.Close onClick={closeShow}>닫기</Style.Close>
+      </ReactModal>
+    );
+  } else if (type === "sort") {
+    return (
+      <ReactModal
+        className={styles.modal}
+        overlayClassName={styles.overlay}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        ariaHideApp={false}
+      >
+        <Toggle setModalIsOpen={setModalIsOpen} />
       </ReactModal>
     );
   } else if (type === "ship") {

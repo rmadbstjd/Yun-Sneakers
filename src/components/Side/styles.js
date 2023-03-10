@@ -9,7 +9,7 @@ export const Filter = styled.div`
   margin-bottom: 50px;
 `;
 
-export const Container = styled.div`
+export const SideContainer = styled.div`
   width: 220px;
   word-break: break-all;
   font-family: "NanumSquareNeo-Variable";

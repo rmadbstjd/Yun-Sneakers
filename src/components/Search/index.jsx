@@ -64,7 +64,7 @@ const Search = ({ setShowSearch }) => {
           <Style.SearchBar
             type="text"
             value={searchWord || ""}
-            placeholder="브랜드명, 모델명"
+            placeholder="브랜드명, 모델명 등"
             onChange={(e) => handleChange(e)}
             autoFocus
           />
