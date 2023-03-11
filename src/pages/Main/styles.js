@@ -11,6 +11,7 @@ export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 80px;
 `;
 
 export const Img = styled.div`

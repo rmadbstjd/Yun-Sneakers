@@ -1,30 +1,29 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
   border-bottom: ${(props) =>
     props.isScrolled === true ? "solid gray 2px" : null};
-  position: fixed;
   z-index: 999;
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
-  width: 100%;
-  height: 65px;
-  background-color: white;
+  width: 2000px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
 `;
-
 export const NavbarContainer = styled.div`
   position: fixed;
-  left: 310px;
   display: flex;
-  width: 67%;
-  margin-top: 10px;
+  width: 1400px;
+  height: 60px;
+  z-index: 999;
+  padding-top: 10px;
   justify-content: space-between;
-  @media (max-width: 593px) {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
+  background: white;
 `;
 
 export const NavbarLeftContainer = styled.div`
@@ -34,19 +33,9 @@ export const NavbarLeftContainer = styled.div`
 `;
 
 export const NavbarRightContainer = styled.div`
-  width: 540px;
-  position: fixed;
-  left: 1070px;
   display: flex;
   justify-content: center;
   line-height: 45px;
-
-  @media (max-width: 721px) {
-    width: 320px;
-    display: flex;
-    justify-content: space-around;
-    line-height: 45px;
-  }
 `;
 
 export const ShopName = styled.div`
