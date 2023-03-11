@@ -12,7 +12,7 @@ import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import { useQuery } from "@tanstack/react-query";
-const Navbar = () => {
+const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { cart, nickName, userId, user } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
@@ -71,16 +71,29 @@ const Navbar = () => {
                 height: "21px",
               }}
               onClick={() => {
-                navigate("/search");
-                setShowSearch(false);
-                setShowBar(false);
+                if (searchKeyword === undefined) {
+                  navigate("/search");
+                } else {
+                  navigate(
+                    `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+                  );
+                  setShowSearch(false);
+                  setShowBar(false);
+                }
               }}
             />
             <Style.MyPage
               onClick={() => {
-                navigate("/search");
-                setShowSearch(false);
-                setShowBar(false);
+                if (searchKeyword === undefined) {
+                  console.log("테스트@@@@@@@@@@@@@@");
+                  navigate("/search");
+                } else {
+                  navigate(
+                    `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+                  );
+                  setShowSearch(false);
+                  setShowBar(false);
+                }
               }}
             >
               SHOP

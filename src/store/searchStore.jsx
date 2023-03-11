@@ -18,13 +18,10 @@ const store = (set) => ({
     })),
   allDeleteRecentKeyword: () => set((state) => ({ recentKeyword: [] })),
 
-  sort: "popular",
-  initSort: (some) => set((state) => ({ sort: some })),
-  setSortPopular: () => set((state) => ({ sort: "popular" })),
-  setSortNew: () => set((state) => ({ sort: "new" })),
-
   showBar: true,
   setShowBar: (boolean) => set((state) => ({ showBar: boolean })),
+  reset: false,
+  setReset: (boolean) => set((state) => ({ reset: boolean })),
 });
 const searchStore = create(devtools(store));
 export default searchStore;

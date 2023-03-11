@@ -31,6 +31,10 @@ export const SearchBar = styled.input`
   &:focus {
     outline: none;
   }
+  &::placeholder {
+    color: gray;
+    font-size: 20px;
+  }
 `;
 
 export const Close = styled.div`

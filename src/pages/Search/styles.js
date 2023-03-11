@@ -4,7 +4,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: center;
   width: 1400px;
-  margin: 0 230px;
+  margin: 0px 300px;
   font-family: "NanumSquareNeo-Variable";
 `;
 
@@ -43,19 +43,30 @@ export const InputSearch = styled.input`
   &:focus {
     outline: none;
   }
+  &::placeholder {
+    color: gray;
+    font-size: 20px;
+  }
 `;
 
 export const SortLayout = styled.div`
   display: flex;
-  justify-content: flex-end;
-  width: 1310px;
+  width: 1080px;
   height: 20px;
   margin-bottom: 10px;
+  justify-content: space-between;
 `;
-
-export const SortContent = styled.div`
-  width: 100px;
+export const SortContainer = styled.div`
   display: flex;
+  width: 300px;
+`;
+export const SortContent = styled.div`
+  width: ${(props) => props.width};
+  text-align: center;
+  margin-right: 10px;
+  color: ${(props) => (props.isClicked === true ? "black" : "gray")};
+  font-weight: ${(props) => (props.isClicked === true ? "bolder" : "none")};
+  cursor: pointer;
 `;
 
 export const Sort = styled.div`
@@ -66,28 +77,33 @@ export const Content = styled.div`
   width: 98%;
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => (props.isShow === true ? "0px" : "30px")};
 `;
 
 export const Products = styled.div`
   width: 1250px;
   flex-wrap: wrap;
   display: flex;
-  justify-content: flex-start;
+`;
+
+export const Cards = styled.div`
+  width: 1250px;
+  height: 100%;
+  flex-wrap: wrap;
+  display: flex;
 `;
 
 export const NotFound = styled.div`
   width: 85%;
   text-align: center;
   font-weight: bolder;
-  margin-top: -130px;
+  margin-top: 40px;
 `;
 
 export const SelectedBrandContainer = styled.div`
   width: 100%;
   display: flex;
-  height: 20px;
-  margin: 5px 0px 40px 0px;
+  height: 35px;
+  margin-top: 5px;
 `;
 
 export const SelectedBrand = styled.div`
@@ -126,21 +142,22 @@ export const Filter = styled.div`
 `;
 
 export const SideContainer = styled.div`
-  width: 220px;
+  width: 180px;
   word-break: break-all;
   font-family: "NanumSquareNeo-Variable";
   height: 40px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-`;
-
-export const BrandNavbar = styled.div`
-  width: 120px;
-  font-size: 14px;
   &:hover {
     font-weight: bolder;
   }
+  margin-right: 40px;
+`;
+
+export const BrandNavbar = styled.div`
+  width: 180px;
+  font-size: 14px;
 `;
 
 export const BrandContent = styled.div`
@@ -153,4 +170,8 @@ export const Item = styled.div`
 
 export const ItemName = styled.label`
   cursor: pointer;
+`;
+
+export const ProductsCount = styled.div`
+  width: 200px;
 `;

@@ -4,32 +4,25 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
-import { TbArrowsUpDown } from "react-icons/tb";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import userInfoStore from "../../store/userInfoStore";
 import searchStore from "../../store/searchStore";
 import ProductLikeCard from "../../components/ProductLikeCard";
-import Toggle from "../../components/Toggle";
-import Side from "../../components/Side";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
-
+import convertToPrice from "../../hooks/convertToPrice";
 import { useImmer } from "use-immer";
+
 const SearchPage = () => {
+  const isMounted = useRef(false);
   const navigate = useNavigate();
   const [query] = useSearchParams();
   const { product } = userInfoStore();
-  const { sort, initSort, showBar, setShowBar } = searchStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
-  const [toggle, setToggle] = useState(false);
-
   const { data: brands } = useQuery(["brands"], () => product.getBrandsName());
-  const [showBrand, setShowBrand] = useState(false);
+  const [showBrand, setShowBrand] = useState(true);
   const [showPrice, setShowPrice] = useState(false);
-  const [isShowSearchBar, setIsShowSearchBar] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");
-  //////////////////////////////////////////////////////////////////////////
-  const isMounted = useRef(false);
   const sessionBrand = sessionStorage.getItem("brand");
   const sessionPrice = sessionStorage.getItem("price");
   const [checkedBrandList, setCheckedBrandList] = useImmer(
@@ -38,19 +31,28 @@ const SearchPage = () => {
   const [checkedPriceList, setCheckedPriceList] = useState(
     JSON.parse(sessionPrice) || sessionBrand || []
   );
+  const [checkedSort, setCheckedSort] = useState(sessionSort || "0");
   const priceInitArr = [
     "20만원 이하",
     "20만원 - 40만원 이하",
     "40만원 - 60만원 이하",
     "60만원 이상",
   ];
+  const sortArr = [
+    { id: "0", title: "인기순" },
+    { id: "1", title: "최신순" },
+    { id: "2", title: "높은 가격순" },
+    { id: "3", title: "낮은 가격순" },
+  ];
 
   const clickToBrand = () => {
     setShowBrand((prev) => !prev);
   };
+
   const clickToPrice = () => {
     setShowPrice((prev) => !prev);
   };
+
   const onChecked = (e, title, index) => {
     if (title === "brand") {
       if (e.target.checked === true) {
@@ -79,26 +81,22 @@ const SearchPage = () => {
       setCheckedBrandList(checkedBrandList.filter((el) => el !== item));
     }
   };
-  ///////////////////////////////////////////////
+
   const searchKeyword = query.get("keyword") || "";
-  const searchSort = sessionSort || query.get("sort") || "null";
   const priceOrder = query.get("priceOrder") || "";
   const [result, setResult] = useState(searchKeyword);
   const [selectedBrands, setSelectedBrands] = useState([]);
   let collectionName = query.get("collectionName") || "";
 
-  let { data: products } = useQuery(
-    [searchKeyword, searchSort, collectionName, priceOrder],
+  const { data: products } = useQuery(
+    [searchKeyword, checkedSort, collectionName, priceOrder],
     () =>
       product.searchProducts(
         searchKeyword,
-        searchSort,
+        checkedSort,
         collectionName,
         priceOrder
-      ),
-    {
-      refetchOnWindowFocus: false,
-    }
+      )
   );
 
   const submitKeyword = (e) => {
@@ -108,128 +106,124 @@ const SearchPage = () => {
     }
     e.preventDefault();
     navigate(
-      `/search?keyword=${result}&sort=${
-        sessionSort || sort
-      }$collectionName=${collectionName}&priceOrder=${priceOrder}`
+      `/search?keyword=${result}&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
     );
+
     if (!recentKeyword.includes(result)) {
       addRecentKeyword(result);
     }
   };
 
-  const clickToSort = (e) => {
-    e.stopPropagation();
-    setToggle((prev) => !prev);
-  };
   const handleChange = (e) => {
     setResult(e.target.value);
   };
+
   const clickToClose = () => {
     setResult("");
-    navigate("/search");
+    if (collectionName) {
+      navigate(
+        `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+      );
+    }
+    if (!collectionName) {
+      if (priceOrder) {
+        navigate(
+          `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+        );
+      } else {
+        navigate("/search");
+      }
+    }
   };
-  useEffect(() => {
-    if (searchKeyword === "") setIsShowSearchBar(false);
-    else if (searchKeyword !== "") setShowBar(true);
-    else setIsShowSearchBar(true);
-    setResult(searchKeyword);
-    products && initSort(sessionSort);
-  }, [searchKeyword, searchSort]);
+
+  const clickToSort = (item) => {
+    setCheckedSort(item.id);
+  };
 
   useEffect(() => {
+    if (
+      searchKeyword === "" &&
+      checkedSort === "0" &&
+      collectionName === "" &&
+      priceOrder === ""
+    )
+      navigate("/search");
+
     if (collectionName) {
-      const test = collectionName.split(",");
-      setSelectedBrands([test]);
+      const name = collectionName.split(",");
+      setSelectedBrands([name]);
     } else setSelectedBrands([]);
-  }, [collectionName]);
+
+    setResult(searchKeyword);
+  }, [searchKeyword, checkedSort, collectionName, products, priceOrder]);
 
   useEffect(() => {
     if (isMounted.current) {
       sessionStorage.setItem("brand", JSON.stringify(checkedBrandList));
       sessionStorage.setItem("price", JSON.stringify(checkedPriceList));
+      sessionStorage.setItem("sort", checkedSort);
+      console.log("checkedSort", checkedSort);
       navigate(
-        `/search?keyword=${searchKeyword}&sort=${
-          sessionSort || sort
-        }&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`
+        `/search?keyword=${searchKeyword}&sort=${checkedSort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`
       );
     } else {
       isMounted.current = true;
     }
-  }, [checkedBrandList, checkedPriceList]);
+  }, [checkedBrandList, checkedPriceList, checkedSort]);
 
   return (
-    <div onClick={() => setToggle(false)}>
-      <Navbar />
+    <div>
+      <Navbar
+        searchKeyword={searchKeyword}
+        sort={sessionSort}
+        collectionName={collectionName}
+        priceOrder={priceOrder}
+      />
       <Style.Layout>
         <Style.Container>
           <Style.SearchBarLayout>
-            {showBar === true ? (
-              <Style.SearchContainer isText={false}>
-                <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
-                  <Style.InputSearch
-                    isResult={true}
-                    type="text"
-                    value={result}
-                    placeholder="브랜드명, 모델명 등"
-                    onChange={(e) => handleChange(e)}
-                    autoFocus
-                  />
-                  <GrClose
-                    style={{
-                      width: "25px",
-                      minWidth: "25px",
-                      height: "25px",
-                      minHeight: "25px",
-                      cursor: "pointer",
-                      margin: "10px 0px 0px 10px",
-                    }}
-                    onClick={() => {
-                      clickToClose();
-                    }}
-                  />
-                </Style.SearchContent>
-                <HorizonLine
-                  width={"558px"}
-                  border={"3px"}
-                  color={"black"}
-                ></HorizonLine>
-              </Style.SearchContainer>
-            ) : (
-              <Style.SearchContainer isText={true}>SHOP</Style.SearchContainer>
-            )}
-          </Style.SearchBarLayout>
-
-          {/*products && products.products[0].length !== 0 ? (
-            <Style.SortLayout>
-              <Style.SortContent>
-                <Style.Sort onClick={clickToSort}>
-                  {sessionSort === "new" ? "최신순" : "인기순"}
-                </Style.Sort>
-                <TbArrowsUpDown
-                  style={{
-                    marginLeft: "0.2%",
-                    width: "20px",
-                    height: "20px",
-                    cursor: "pointer",
-                  }}
-                  onClick={clickToSort}
+            <Style.SearchContainer isText={false}>
+              <Style.SearchContent onSubmit={(e) => submitKeyword(e)}>
+                <Style.InputSearch
+                  type="text"
+                  value={result}
+                  placeholder="브랜드명, 모델명 등"
+                  onChange={(e) => handleChange(e)}
+                  autoFocus
                 />
-              </Style.SortContent>
-
-              {toggle && <Toggle setToggle={setToggle} />}
-            </Style.SortLayout>
-          ) : null*/}
+                <GrClose
+                  style={{
+                    width: "25px",
+                    minWidth: "25px",
+                    height: "25px",
+                    minHeight: "25px",
+                    cursor: "pointer",
+                    margin: "10px 0px 0px 10px",
+                  }}
+                  onClick={() => {
+                    clickToClose();
+                  }}
+                />
+              </Style.SearchContent>
+              <HorizonLine
+                width={"558px"}
+                border={"3px"}
+                color={"black"}
+              ></HorizonLine>
+            </Style.SearchContainer>
+          </Style.SearchBarLayout>
 
           <Style.Content>
             <div>
-              {<Style.Filter>필터</Style.Filter>}
+              <Style.Filter>필터</Style.Filter>
+
               <Style.SideContainer onClick={clickToBrand}>
                 <Style.BrandNavbar>브랜드</Style.BrandNavbar>
 
                 {showBrand === false ? (
-                  <AiOutlinePlus style={{ width: "80px" }} />
+                  <AiOutlinePlus style={{ width: "20px" }} />
                 ) : (
-                  <AiOutlineMinus style={{ width: "80px" }} />
+                  <AiOutlineMinus style={{ width: "20px" }} />
                 )}
               </Style.SideContainer>
               {!showBrand && (
@@ -269,9 +263,9 @@ const SearchPage = () => {
               <Style.SideContainer onClick={clickToPrice}>
                 <Style.BrandNavbar>가격</Style.BrandNavbar>
                 {showPrice === false ? (
-                  <AiOutlinePlus style={{ width: "80px" }} />
+                  <AiOutlinePlus style={{ width: "20px" }} />
                 ) : (
-                  <AiOutlineMinus style={{ width: "80px" }} />
+                  <AiOutlineMinus style={{ width: "20px" }} />
                 )}
               </Style.SideContainer>
 
@@ -312,38 +306,59 @@ const SearchPage = () => {
             </div>
 
             <Style.Products>
-              <Style.SelectedBrandContainer>
-                {selectedBrands[0] &&
-                  selectedBrands[0].map((item, index) => (
-                    <Style.SelectedBrand key={index}>
-                      {item}{" "}
-                      <Style.ItemName>
-                        <Style.Close
-                          onClick={() => {
-                            closeToBrand(item);
-                          }}
-                        >
-                          X
-                        </Style.Close>
-                      </Style.ItemName>
-                    </Style.SelectedBrand>
+              <Style.SortLayout>
+                <Style.ProductsCount>
+                  상품 {products && convertToPrice(products.length)}
+                </Style.ProductsCount>
+                <Style.SortContainer>
+                  {sortArr.map((item) => (
+                    <Style.SortContent
+                      isClicked={checkedSort === item.id}
+                      width={item.length}
+                      key={item.id}
+                      onClick={() => {
+                        clickToSort(item);
+                      }}
+                    >
+                      {item.title}
+                    </Style.SortContent>
                   ))}
-              </Style.SelectedBrandContainer>
-              {products && products[0].length !== 0 ? (
-                products.map((product) =>
-                  product.map((product, index) => (
+                </Style.SortContainer>
+              </Style.SortLayout>
+              {selectedBrands[0] && (
+                <Style.SelectedBrandContainer>
+                  {selectedBrands[0] &&
+                    selectedBrands[0].map((item, index) => (
+                      <Style.SelectedBrand key={index}>
+                        {item}{" "}
+                        <Style.ItemName>
+                          <Style.Close
+                            onClick={() => {
+                              closeToBrand(item);
+                            }}
+                          >
+                            X
+                          </Style.Close>
+                        </Style.ItemName>
+                      </Style.SelectedBrand>
+                    ))}
+                </Style.SelectedBrandContainer>
+              )}
+              <Style.Cards>
+                {products && products.length !== 0 ? (
+                  products.map((item, index) => (
                     <ProductLikeCard
                       key={index}
                       none={"none"}
-                      product={product}
+                      product={item}
                     ></ProductLikeCard>
                   ))
-                )
-              ) : (
-                <Style.NotFound>
-                  검색하신 상품이 존재하지 않습니다.
-                </Style.NotFound>
-              )}
+                ) : (
+                  <Style.NotFound>
+                    검색하신 상품이 존재하지 않습니다.
+                  </Style.NotFound>
+                )}
+              </Style.Cards>
             </Style.Products>
           </Style.Content>
         </Style.Container>

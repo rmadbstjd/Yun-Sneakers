@@ -11,12 +11,51 @@ export default class Product {
     );
   }
   async searchProducts(keyword, sort, collectionName, priceOrder) {
+    const productsArr = [];
+    let sortedData;
     const response = await this.httpClient.get("/search", {
       params: { keyword, sort, collectionName, priceOrder },
     });
-    const data = response.data.reverse();
-
-    return data;
+    console.log("sort", sort);
+    console.log("response.data", response.data);
+    for (let i = 0; i < response.data.length; i++) {
+      sortedData = response.data[i];
+      for (let i = 0; i < sortedData.length; i++) {
+        productsArr.push(sortedData[i]);
+      }
+    }
+    switch (sort) {
+      case "0":
+        let popularProducts = productsArr.sort(function (a, b) {
+          if (a.likeNum > b.likeNum) return -1;
+          if (a.likeNum < b.likeNum) return 1;
+          return 0;
+        });
+        return popularProducts;
+      case "1":
+        let newProducts = productsArr.sort(function (a, b) {
+          if (a.createdAt > b.createdAt) return -1;
+          if (a.createdAt < b.createdAt) return 1;
+          return 0;
+        });
+        return newProducts;
+      case "2":
+        let highPriceProducts = productsArr.sort(function (a, b) {
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          return 0;
+        });
+        return highPriceProducts;
+      case "3":
+        let lowPriceProducts = productsArr.sort(function (a, b) {
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          return 0;
+        });
+        return lowPriceProducts;
+      default:
+        break;
+    }
   }
 
   async getAllProducts() {
