@@ -16,8 +16,7 @@ export default class Product {
     const response = await this.httpClient.get("/search", {
       params: { keyword, sort, collectionName, priceOrder },
     });
-    console.log("sort", sort);
-    console.log("response.data", response.data);
+
     for (let i = 0; i < response.data.length; i++) {
       sortedData = response.data[i];
       for (let i = 0; i < sortedData.length; i++) {

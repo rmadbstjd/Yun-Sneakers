@@ -179,12 +179,6 @@ const Shipment = () => {
 
         return;
       }
-
-      Swal.fire({
-        title: "약관 동의를 모두 선택해주세요.",
-        confirmButtonColor: "black",
-      });
-      return;
     }
 
     if (card === "카드사를 선택해주세요.") {

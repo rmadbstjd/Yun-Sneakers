@@ -42,6 +42,8 @@ const store = (set) => ({
   shipAddressDetail: "",
   setShipAddressDetail: (keyword) =>
     set((state) => ({ shipAddressDetail: keyword })),
+  isCheckedID: 0,
+  setIsCheckedID: (id) => set((state) => ({ isCheckedID: id })),
 });
 const userInfoStore = create(devtools(store));
 

@@ -85,7 +85,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
             <Style.MyPage
               onClick={() => {
                 if (searchKeyword === undefined) {
-                  console.log("테스트@@@@@@@@@@@@@@");
                   navigate("/search");
                 } else {
                   navigate(

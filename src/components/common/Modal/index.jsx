@@ -59,13 +59,14 @@ const Modal = ({
   };
 
   const handleSetValue = (e) => {
-    setText(e.target.value);
+    if (e.target.value.length > 100) setText(text.substring(0, 190));
+    else setText(e.target.value);
   };
 
   const submitReview = () => {
     if (star[0] === false) {
       Swal.fire({
-        title: "별점을 매겨주세요.",
+        title: "별점을 입력해주세요.",
         confirmButtonColor: "black",
       });
       return;
@@ -117,8 +118,6 @@ const Modal = ({
 
   useEffect(() => {
     size && setSizes(size.split(","));
-    if (text.length === 10) {
-    }
   }, [size, star, text]);
 
   if (type === "size") {
@@ -208,7 +207,7 @@ const Modal = ({
           <Style.StarContainer>
             <Style.StarTopText>상품은 어떠셨나요?</Style.StarTopText>
             <Style.StarBotText>
-              상품에 대한 별점을 매겨주세요.
+              상품에 대한 별점을 입력해주세요.
             </Style.StarBotText>
             <Style.Star>
               {star.map((item, index) =>
@@ -239,10 +238,11 @@ const Modal = ({
           <Style.HorizonLine></Style.HorizonLine>
           <div>
             <Style.TextArea
-              placeholder="최소 10자 이상을 입력해주세요."
+              placeholder="정확한 리뷰 작성을 위해 최소 10자 이상을 입력해주세요."
               value={text}
               onChange={(e) => handleSetValue(e)}
             ></Style.TextArea>
+            <Style.TextLength>{text.length} / 100</Style.TextLength>
           </div>
           <Style.HorizonLine></Style.HorizonLine>
         </Style.ReviewContainer>

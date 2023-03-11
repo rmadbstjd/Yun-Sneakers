@@ -162,7 +162,7 @@ const SearchPage = () => {
       sessionStorage.setItem("brand", JSON.stringify(checkedBrandList));
       sessionStorage.setItem("price", JSON.stringify(checkedPriceList));
       sessionStorage.setItem("sort", checkedSort);
-      console.log("checkedSort", checkedSort);
+
       navigate(
         `/search?keyword=${searchKeyword}&sort=${checkedSort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`
       );

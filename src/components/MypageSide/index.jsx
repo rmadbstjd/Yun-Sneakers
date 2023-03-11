@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
 const MypageSide = () => {
-  const { nickName } = userInfoStore();
+  const { nickName, isCheckedID, setIsCheckedID } = userInfoStore();
   const navigate = useNavigate();
-  const itemArr = ["주문 내역 조회", "관심 상품", "주소록", "상품 리뷰"];
+  const itemArr = [
+    { id: 0, title: "주문 내역 조회" },
+    { id: 1, title: "관심 상품" },
+    { id: 2, title: "주소록" },
+    { id: 3, title: "상품 리뷰" },
+  ];
 
-  const goToPage = (item) => {
-    switch (item) {
+  const goToPage = (title) => {
+    switch (title) {
       case "주문 내역 조회":
         navigate("/mypage/order");
         break;
@@ -25,6 +30,7 @@ const MypageSide = () => {
         break;
     }
   };
+
   return (
     <Style.Container>
       <Style.Title>마이 페이지</Style.Title>
@@ -37,12 +43,14 @@ const MypageSide = () => {
       {itemArr &&
         itemArr.map((item) => (
           <Style.Item
-            key={item}
+            isChecked={item.id === isCheckedID}
+            key={item.id}
             onClick={() => {
-              goToPage(item);
+              goToPage(item.title);
+              setIsCheckedID(item.id);
             }}
           >
-            {item}
+            {item.title}
           </Style.Item>
         ))}
     </Style.Container>

@@ -24,11 +24,8 @@ export const Last = styled.span`
 `;
 
 export const Item = styled.div`
-  color: gray;
+  color: ${(props) => (props.isChecked === true ? "black" : "gray")};
+  font-weight: ${(props) => (props.isChecked === true ? "bolder" : "none")};
   margin-top: 10px;
   cursor: pointer;
-  &:hover {
-    font-weight: bolder;
-    color: black;
-  }
 `;

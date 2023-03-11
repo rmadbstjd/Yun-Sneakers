@@ -177,3 +177,9 @@ export const TextArea = styled.textarea`
   resize: none;
   outline-color: white;
 `;
+
+export const TextLength = styled.div`
+  display: flex;
+  margin: 10px 0px -10px 0px;
+  justify-content: flex-end;
+`;
