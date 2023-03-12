@@ -5,10 +5,10 @@ export const Container = styled.div`
   height: 100%;
   z-index: 5;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 53%;
+  left: 52%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
 `;
 
 export const SearchContainer = styled.div`
@@ -38,10 +38,9 @@ export const SearchBar = styled.input`
 `;
 
 export const Close = styled.div`
-  width: 45px;
-  height: 45px;
-  cursor: pointer;
-  margin-top: 5px;
+  position: fixed;
+  right: 60px;
+  top: -30px;
 `;
 
 export const HorizonLine = styled.div`
@@ -127,4 +126,44 @@ export const RecommendContent = styled.div`
   &:hover {
     font-weight: bolder;
   }
+`;
+
+export const ProductsLayout = styled.div`
+  position: fixed;
+  top: 130px;
+  width: 885px;
+  background: white;
+  height: 500px;
+`;
+
+export const ProductContent = styled.div`
+  display: flex;
+  margin: 0px 0px 20px 0px;
+`;
+
+export const ProductImage = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+`;
+
+export const ProductDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NullTextLayout = styled.div`
+  position: fixed;
+  top: 130px;
+  width: 885px;
+  height: 500px;
+  display: flex;
+  background: white;
+  justify-content: center;
+`;
+
+export const NullText = styled.span`
+  font-size: 20px;
+  margin-top: 50px;
+  text-align: center;
 `;

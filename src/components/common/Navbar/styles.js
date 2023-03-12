@@ -12,6 +12,7 @@ export const Container = styled.div`
   font-family: "NanumSquareNeo-Variable";
   width: 2000px;
   height: 70px;
+  background: white;
   margin-left: auto;
   margin-right: auto;
 `;

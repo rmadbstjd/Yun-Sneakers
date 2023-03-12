@@ -83,6 +83,7 @@ export const Products = styled.div`
   width: 1250px;
   flex-wrap: wrap;
   display: flex;
+  margin-left: 200px;
 `;
 
 export const Cards = styled.div`
@@ -131,14 +132,17 @@ export const Close = styled.div`
   cursor: pointer;
 `;
 
-///////////////////////////
+export const SideLayout = styled.div`
+  position: fixed;
+  left: 300px;
+  top: ${(props) => (props.isScrolled === true ? "90px" : "162px")};
+`;
 export const Filter = styled.div`
   margin-top: 6px;
   width: 180px;
-  border-top: solid black 3px;
   line-height: 250%;
   font-weight: bolder;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 export const SideContainer = styled.div`
@@ -162,16 +166,24 @@ export const BrandNavbar = styled.div`
 
 export const BrandContent = styled.div`
   display: ${(props) => (props.isShow === true ? "block" : "none")};
+  margin-left: -5px;
 `;
 
 export const Item = styled.div`
-  padding: 10px 5px 10px 5px;
+  display: flex;
+  margin: 0px 0px 10px 0px;
 `;
 
 export const ItemName = styled.label`
+  display: flex;
+  position: relative;
   cursor: pointer;
 `;
 
 export const ProductsCount = styled.div`
   width: 200px;
+`;
+
+export const Span = styled.div`
+  margin-top: 3px;
 `;

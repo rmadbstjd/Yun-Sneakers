@@ -16,6 +16,7 @@ import { useImmer } from "use-immer";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
@@ -25,6 +26,11 @@ const SearchPage = () => {
   const sessionSort = sessionStorage.getItem("sort");
   const sessionBrand = sessionStorage.getItem("brand");
   const sessionPrice = sessionStorage.getItem("price");
+
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+
   const [checkedBrandList, setCheckedBrandList] = useImmer(
     JSON.parse(sessionBrand) || []
   );
@@ -171,6 +177,9 @@ const SearchPage = () => {
     }
   }, [checkedBrandList, checkedPriceList, checkedSort]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", updateScroll);
+  }, []);
   return (
     <div>
       <Navbar
@@ -214,7 +223,7 @@ const SearchPage = () => {
           </Style.SearchBarLayout>
 
           <Style.Content>
-            <div>
+            <Style.SideLayout isScrolled={scrollPosition > 100 ? true : false}>
               <Style.Filter>필터</Style.Filter>
 
               <Style.SideContainer onClick={clickToBrand}>
@@ -247,8 +256,13 @@ const SearchPage = () => {
                           }
                           value={item}
                           onChange={(e) => onChecked(e, "brand")}
+                          style={{
+                            width: "16px",
+                            height: "16px",
+                            marginRight: "8px",
+                          }}
                         />
-                        {item}
+                        <Style.Span>{item}</Style.Span>
                       </Style.ItemName>
                     </Style.Item>
                   ))}
@@ -291,8 +305,13 @@ const SearchPage = () => {
                         }
                         value={item}
                         onChange={(e) => onChecked(e, "price", index + 1)}
+                        style={{
+                          width: "16px",
+                          height: "16px",
+                          marginRight: "8px",
+                        }}
                       />
-                      {item}
+                      <Style.Span>{item}</Style.Span>
                     </Style.ItemName>
                   </Style.Item>
                 ))}
@@ -303,12 +322,15 @@ const SearchPage = () => {
                   margin={"0px 0px 10% 0px"}
                 ></HorizonLine>
               </Style.BrandContent>
-            </div>
+            </Style.SideLayout>
 
             <Style.Products>
               <Style.SortLayout>
                 <Style.ProductsCount>
-                  상품 {products && convertToPrice(products.length)}
+                  상품{" "}
+                  {products && products.length !== 0
+                    ? convertToPrice(products.length)
+                    : 0}
                 </Style.ProductsCount>
                 <Style.SortContainer>
                   {sortArr.map((item) => (

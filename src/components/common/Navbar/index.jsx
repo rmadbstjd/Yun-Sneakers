@@ -41,7 +41,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     setShowSearch((prev) => !prev);
   };
   const updateScroll = () => {
-    console.log("@");
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
   useEffect(() => {
@@ -191,8 +190,8 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
             />
           </Style.NavbarRightContainer>
         </Style.NavbarContainer>
-        {showSearch && <Search setShowSearch={setShowSearch} />}
       </Style.Container>
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };
