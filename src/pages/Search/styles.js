@@ -204,6 +204,7 @@ export const ProductContent = styled.div`
   display: flex;
   width: 100 %;
   margin: 10px 0px 10px 0px;
+
   &:hover {
     background: #fafafa;
     font-weight: bolder;

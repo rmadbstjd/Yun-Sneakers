@@ -150,6 +150,7 @@ const SearchPage = () => {
   };
 
   const goToDetail = (item) => {
+    console.log("테스트", item);
     navigate(`/products/${item.id}`);
   };
   const handleFocus = () => {
@@ -159,6 +160,7 @@ const SearchPage = () => {
   const handleBlur = () => {
     setShowSearchedProducts(false);
   };
+  const handleMouseDown = (e) => e.preventDefault();
   const fetch = async (result) => {
     const response = await axios.post(
       "http://localhost:3000/api/search/autocompleted",
@@ -214,7 +216,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-
+  console.log("흠..");
   return (
     <div>
       <Navbar
@@ -262,6 +264,7 @@ const SearchPage = () => {
                 {searchProducts.map((item) => (
                   <div key={item.name}>
                     <Style.ProductContent
+                      onMouseDown={handleMouseDown}
                       onClick={() => {
                         goToDetail(item);
                       }}

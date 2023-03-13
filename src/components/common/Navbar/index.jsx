@@ -51,7 +51,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, []);
 
   useEffect(() => {}, [nickName]);
-  console.log("showNavbar", showNavbar);
   return (
     <>
       {showNavbar && (
