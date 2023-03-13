@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
       <Style.Img src={product && product.image}></Style.Img>
       <div>
         <Style.CategoryContainer>
-          <Style.Category>{product && product.category}</Style.Category>
+          <Style.Category>{product && product.category[0]}</Style.Category>
         </Style.CategoryContainer>
         <Style.Info>
           <div>{product && product.description} </div>

@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 100%;
+  height: 200%;
   z-index: 5;
   position: absolute;
-  top: 53%;
+  top: 103%;
   left: 52%;
   transform: translate(-50%, -50%);
   background: white;
@@ -22,30 +22,31 @@ justify-content: center;
 export const SearchContent = styled.form`
   display: flex;
 `;
-
 export const SearchBar = styled.input`
   border: none;
   width: 100%;
   height: 50px;
-  font-size: 30px;
+  font-size: 25px;
+  font-weight: bolder;
   &:focus {
     outline: none;
   }
   &::placeholder {
     color: gray;
     font-size: 20px;
+    font-weight: normal;
   }
 `;
 
 export const Close = styled.div`
   position: fixed;
-  right: 60px;
-  top: -30px;
+  right: 40px;
+  top: 0px;
 `;
 
 export const HorizonLine = styled.div`
-  width: 93%;
-  border-bottom: 5px solid black;
+  width: 100%;
+  border-bottom: 3px solid black;
   line-height: 0.1rem;
 `;
 
@@ -63,7 +64,6 @@ export const RecentSearch = styled.div`
 
 export const Delete = styled.div`
   cursor: pointer;
-  margin-top: 5px;
   color: darkgray;
   &:hover {
     color: black;
@@ -75,16 +75,15 @@ export const KeywordContainer = styled.div`
   display: flex;
 `;
 
-export const KeywordContent = styled.div`
+export const KeywordContent = styled.span`
   display: flex;
-  width: 100px;
   height: 30px;
   margin: 10px 5px 5px 5px;
   line-height: 180%;
   justify-content: center;
 `;
 
-export const Keyword = styled.div`
+export const Keyword = styled.span`
   color: gray;
   cursor: pointer;
   &:hover {
@@ -106,7 +105,7 @@ export const KeywordClose = styled.div`
 export const RecommendSearch = styled.div`
   font-size: 18px;
   font-weight: bolder;
-  margin-top: 10px;
+  margin-top: 50px;
 `;
 
 export const RecommendContainer = styled.div`
@@ -115,7 +114,7 @@ export const RecommendContainer = styled.div`
 
 export const RecommendContent = styled.div`
   border: solid black 0px;
-  width: 100px;
+  width: 5rem;
   height: 30px;
   border-radius: 20px;
   text-align: center;
@@ -138,7 +137,12 @@ export const ProductsLayout = styled.div`
 
 export const ProductContent = styled.div`
   display: flex;
-  margin: 0px 0px 20px 0px;
+  width: 86.1%;
+  margin: 10px 0px 10px 0px;
+  &:hover {
+    background: #fafafa;
+  }
+  cursor: pointer;
 `;
 
 export const ProductImage = styled.img`
@@ -147,15 +151,25 @@ export const ProductImage = styled.img`
   border-radius: 5px;
 `;
 
-export const ProductDescription = styled.div`
+export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 15px;
 `;
-
+export const ProductDesc = styled.span`
+  color: black;
+  margin-bottom: 5px;
+`;
+export const ProductTitle = styled.span`
+  color: gray;
+  font-size: 12px;
+`;
 export const NullTextLayout = styled.div`
   position: fixed;
   top: 130px;
-  width: 885px;
+  width: 785px;
   height: 500px;
   display: flex;
   background: white;
@@ -163,7 +177,25 @@ export const NullTextLayout = styled.div`
 `;
 
 export const NullText = styled.span`
-  font-size: 20px;
-  margin-top: 50px;
+  font-size: 20px
   text-align: center;
+  line-height : 1000%;
+
+`;
+
+export const BrandLayout = styled.div`
+  width: 86.1%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+export const BrandName = styled.div`
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+`;
+
+export const BrandText = styled.span`
+  font-size: 14px;
+  color: #b1b1b1;
 `;

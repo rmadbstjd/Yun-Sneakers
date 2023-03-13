@@ -28,7 +28,7 @@ const ProductDetail = () => {
     product.getProductInfo(id)
   );
   const products = productInfo && productInfo.product;
-  const category = productInfo && productInfo.product.category;
+  const category = productInfo && productInfo.product.category[0];
   const productId = productInfo && productInfo.product.id;
 
   const { data: similarProducts } = useQuery(
@@ -91,7 +91,7 @@ const ProductDetail = () => {
 
           <Style.ProductInfoContainer>
             <Style.Category>
-              {productInfo && productInfo.product.category}
+              {productInfo && productInfo.product.category[0]}
             </Style.Category>
             <Style.Description>
               {productInfo && productInfo.product.description}

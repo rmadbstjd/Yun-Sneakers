@@ -12,7 +12,7 @@ const SimilarProducts = ({ products }) => {
       <Style.Img
         style={{ backgroundImage: "url(" + `${products.image}` + ")" }}
       ></Style.Img>
-      <Style.Category>{products.category}</Style.Category>
+      <Style.Category>{products.category[0]}</Style.Category>
       <Style.Name>{products.name}</Style.Name>
       <Style.Price>
         {products.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원

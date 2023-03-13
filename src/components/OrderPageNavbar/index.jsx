@@ -51,7 +51,7 @@ const OrderPageNavbar = () => {
     navigate(`/products/${info.id}`);
   };
   const goToSearch = (info) => {
-    navigate(`/search?keyword=${info.category}`);
+    navigate(`/search?keyword=${info.category[0]}`);
   };
 
   useEffect(() => {}, [products, completedProducts]);
@@ -88,7 +88,9 @@ const OrderPageNavbar = () => {
                   goToSearch(item.info);
                 }}
               >
-                <span style={{ cursor: "pointer" }}>{item.info.category}</span>
+                <span style={{ cursor: "pointer" }}>
+                  {item.info.category[0]}
+                </span>
               </Style.InfoItem>
               <Style.InfoItem
                 onClick={() => {

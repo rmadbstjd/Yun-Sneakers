@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as Style from "./styles";
 import { GrClose } from "react-icons/gr";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import searchStore from "../../store/searchStore";
 import { IoMdCloseCircle } from "react-icons/io";
 import axios from "axios";
+import HorizonLine from "../../components/common/HorizonLine";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
-const Search = ({ setShowSearch }) => {
+const Search = ({ setShowSearch, setShowNavbar }) => {
   const navigate = useNavigate();
   const {
     searchWord,
@@ -18,6 +20,7 @@ const Search = ({ setShowSearch }) => {
   } = searchStore();
   const [showKeyword, setShowKeyword] = useState(recentKeyword || []);
   const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
   const submitKeyword = async (e) => {
     if (searchWord.trim() === "") {
       e.preventDefault();
@@ -33,10 +36,20 @@ const Search = ({ setShowSearch }) => {
   };
   const goToSearchPage = (item) => {
     sessionStorage.clear();
-
     navigate(`/search?keyword=${item}`);
     setShowSearch((prev) => !prev);
   };
+
+  const clickToBrand = (item) => {
+    sessionStorage.clear();
+    navigate(`/search?keyword=${item}`);
+    setShowSearch((prev) => !prev);
+  };
+
+  const goToDetail = (item) => {
+    navigate(`/products/${item.id}`);
+  };
+
   const closeSearch = () => {
     setSearchWord("");
   };
@@ -60,8 +73,9 @@ const Search = ({ setShowSearch }) => {
       }
     );
     const data = response.data;
-    setProducts(data);
-    return data;
+    setProducts(data.products);
+    setBrands(data.brands);
+    return;
   };
   useEffect(() => {
     recentKeyword &&
@@ -75,9 +89,9 @@ const Search = ({ setShowSearch }) => {
       fetch(searchWord);
     } else {
       setProducts([]);
+      setBrands([]);
     }
   }, [searchWord]);
-  console.log("프러덕뜨", products);
   return (
     <Style.Container>
       <Style.Close>
@@ -92,6 +106,7 @@ const Search = ({ setShowSearch }) => {
           }}
           onClick={() => {
             setShowSearch(false);
+            setShowNavbar(true);
           }}
         />
       </Style.Close>
@@ -105,30 +120,51 @@ const Search = ({ setShowSearch }) => {
             autoFocus
           />
 
-          <GrClose
+          <AiFillCloseCircle
             style={{
-              width: "45px",
-              height: "45px",
+              width: "25px",
+              height: "25px",
               cursor: "pointer",
-              marginTop: "5px",
+              marginTop: "15px",
+              color: "#F4F4F4",
             }}
             onClick={closeSearch}
           />
         </Style.SearchContent>
-        <Style.HorizonLine></Style.HorizonLine>
+        <HorizonLine width={"100%"} border={"3px"} color={"black"} />
         {products.length !== 0 ? (
           <Style.ProductsLayout>
+            {brands.map((item) => (
+              <div key={item}>
+                <Style.BrandLayout
+                  onClick={() => {
+                    clickToBrand(item);
+                  }}
+                >
+                  <Style.BrandName>{item}</Style.BrandName>
+                  <Style.BrandText>BRAND</Style.BrandText>
+                </Style.BrandLayout>
+                <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />
+              </div>
+            ))}
             {products.map((item) => (
-              <Style.ProductContent>
-                <Style.ProductImage src={item.image}></Style.ProductImage>
-                <Style.ProductDescription>
-                  <span>{item.description}</span>
-                  <span>{item.name}</span>
-                </Style.ProductDescription>
-              </Style.ProductContent>
+              <div key={item.name}>
+                <Style.ProductContent
+                  onClick={() => {
+                    goToDetail(item);
+                  }}
+                >
+                  <Style.ProductImage src={item.image}></Style.ProductImage>
+                  <Style.ProductInfo>
+                    <Style.ProductDesc>{item.description}</Style.ProductDesc>
+                    <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                  </Style.ProductInfo>
+                </Style.ProductContent>
+                <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />
+              </div>
             ))}
           </Style.ProductsLayout>
-        ) : searchWord.length !== 0 ? (
+        ) : searchWord && searchWord.length !== 0 ? (
           <Style.NullTextLayout>
             <Style.NullText>검색하신 상품이 존재하지 않습니다.</Style.NullText>
           </Style.NullTextLayout>

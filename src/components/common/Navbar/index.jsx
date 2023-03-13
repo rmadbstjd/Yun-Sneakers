@@ -21,6 +21,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [admin] = useState("");
   const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
@@ -39,6 +40,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const clickToSearch = () => {
     setSearchWord(null);
     setShowSearch((prev) => !prev);
+    setShowNavbar(false);
   };
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -50,148 +52,152 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   useEffect(() => {}, [nickName]);
   return (
     <>
-      <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
-        <Style.NavbarContainer>
-          <Style.NavbarLeftContainer
-            onClick={() => {
-              navigate("/");
-              setShowSearch(false);
-            }}
-          >
-            <GiConverseShoe size={45} />
-            <Style.ShopName>Yun's Sneakers</Style.ShopName>
-          </Style.NavbarLeftContainer>
-          <Style.NavbarRightContainer>
-            <AiTwotoneShopping
-              style={{
-                marginTop: "10px",
-                marginRight: "3px",
-                cursor: "pointer",
-                width: "21px",
-                height: "21px",
-              }}
+      {showNavbar && (
+        <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
+          <Style.NavbarContainer>
+            <Style.NavbarLeftContainer
               onClick={() => {
-                if (searchKeyword === undefined) {
-                  navigate("/search");
-                } else {
-                  navigate(
-                    `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
-                  );
-                  setShowSearch(false);
-                  setShowBar(false);
-                }
-              }}
-            />
-            <Style.MyPage
-              onClick={() => {
-                if (searchKeyword === undefined) {
-                  navigate("/search");
-                } else {
-                  navigate(
-                    `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
-                  );
-                  setShowSearch(false);
-                  setShowBar(false);
-                }
-              }}
-            >
-              SHOP
-            </Style.MyPage>
-            <FaUser
-              style={{
-                marginTop: "13px",
-                marginRight: "3px",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                navigate("/mypage/order");
-                setShowSearch(false);
-              }}
-            />
-            <Style.MyPage
-              onClick={() => {
-                navigate("/mypage/order");
+                navigate("/");
                 setShowSearch(false);
               }}
             >
-              MY PAGE
-            </Style.MyPage>
-            <BsHeartFill
-              style={{
-                marginTop: "15px",
-                marginRight: "3px",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                navigate("/products");
-                setShowSearch(false);
-              }}
-            />
-            <Style.Products
-              onClick={() => {
-                navigate("/products");
-                setShowSearch(false);
-              }}
-            >
-              MY LIKE
-            </Style.Products>
-            <BsFillCartFill
-              style={{
-                marginTop: "10px",
-                marginRight: "3px",
-                cursor: "pointer",
-              }}
-              size={20}
-              onClick={() => {
-                navigate("/cart");
-                setShowSearch(false);
-              }}
-            />
-            <Style.ShoppingBag
-              onClick={() => {
-                navigate("/cart");
-                setShowSearch(false);
-              }}
-            >
-              {isLogin && <Style.Count>{cartCount}</Style.Count>}
-              <Style.Products>MY CART</Style.Products>
-            </Style.ShoppingBag>
-
-            {
-              <BsFillPencilFill
-                size={28}
+              <GiConverseShoe size={45} />
+              <Style.ShopName>Yun's Sneakers</Style.ShopName>
+            </Style.NavbarLeftContainer>
+            <Style.NavbarRightContainer>
+              <AiTwotoneShopping
                 style={{
                   marginTop: "10px",
-                  marginRight: "10px",
+                  marginRight: "3px",
                   cursor: "pointer",
-                  display: "none",
+                  width: "21px",
+                  height: "21px",
                 }}
                 onClick={() => {
-                  navigate("/new");
+                  if (searchKeyword === undefined) {
+                    navigate("/search");
+                  } else {
+                    navigate(
+                      `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+                    );
+                    setShowSearch(false);
+                    setShowBar(false);
+                  }
+                }}
+              />
+              <Style.MyPage
+                onClick={() => {
+                  if (searchKeyword === undefined) {
+                    navigate("/search");
+                  } else {
+                    navigate(
+                      `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+                    );
+                    setShowSearch(false);
+                    setShowBar(false);
+                  }
+                }}
+              >
+                SHOP
+              </Style.MyPage>
+              <FaUser
+                style={{
+                  marginTop: "13px",
+                  marginRight: "3px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  navigate("/mypage/order");
                   setShowSearch(false);
                 }}
               />
-            }
-            {nickName && <Style.Nickname> {nickName}</Style.Nickname>}
-            {!nickName && <Style.Nickname>GUEST</Style.Nickname>}
-            {!isLogin ? (
-              <Style.Btn onClick={handleLogin}>Login</Style.Btn>
-            ) : (
-              <Style.Btn onClick={handleLogout}>Logout</Style.Btn>
-            )}
-            <FiSearch
-              style={{
-                margin: "7px 2px 0px 10px",
-                width: "30px",
-                height: "30px",
-                cursor: "pointer",
-              }}
-              onClick={clickToSearch}
-            />
-          </Style.NavbarRightContainer>
-        </Style.NavbarContainer>
-      </Style.Container>
-      {showSearch && <Search setShowSearch={setShowSearch} />}
+              <Style.MyPage
+                onClick={() => {
+                  navigate("/mypage/order");
+                  setShowSearch(false);
+                }}
+              >
+                MY PAGE
+              </Style.MyPage>
+              <BsHeartFill
+                style={{
+                  marginTop: "15px",
+                  marginRight: "3px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  navigate("/products");
+                  setShowSearch(false);
+                }}
+              />
+              <Style.Products
+                onClick={() => {
+                  navigate("/products");
+                  setShowSearch(false);
+                }}
+              >
+                MY LIKE
+              </Style.Products>
+              <BsFillCartFill
+                style={{
+                  marginTop: "10px",
+                  marginRight: "3px",
+                  cursor: "pointer",
+                }}
+                size={20}
+                onClick={() => {
+                  navigate("/cart");
+                  setShowSearch(false);
+                }}
+              />
+              <Style.ShoppingBag
+                onClick={() => {
+                  navigate("/cart");
+                  setShowSearch(false);
+                }}
+              >
+                {isLogin && <Style.Count>{cartCount}</Style.Count>}
+                <Style.Products>MY CART</Style.Products>
+              </Style.ShoppingBag>
+
+              {
+                <BsFillPencilFill
+                  size={28}
+                  style={{
+                    marginTop: "10px",
+                    marginRight: "10px",
+                    cursor: "pointer",
+                    display: "none",
+                  }}
+                  onClick={() => {
+                    navigate("/new");
+                    setShowSearch(false);
+                  }}
+                />
+              }
+              {nickName && <Style.Nickname> {nickName}</Style.Nickname>}
+              {!nickName && <Style.Nickname>GUEST</Style.Nickname>}
+              {!isLogin ? (
+                <Style.Btn onClick={handleLogin}>Login</Style.Btn>
+              ) : (
+                <Style.Btn onClick={handleLogout}>Logout</Style.Btn>
+              )}
+              <FiSearch
+                style={{
+                  margin: "7px 2px 0px 10px",
+                  width: "30px",
+                  height: "30px",
+                  cursor: "pointer",
+                }}
+                onClick={clickToSearch}
+              />
+            </Style.NavbarRightContainer>
+          </Style.NavbarContainer>
+        </Style.Container>
+      )}
+      {showSearch && (
+        <Search setShowSearch={setShowSearch} setShowNavbar={setShowNavbar} />
+      )}
     </>
   );
 };

@@ -33,7 +33,9 @@ const ProductLikeCard = ({ none, product, refetch }) => {
 
       <div className={styles.infoContainer}>
         <div className={styles.categoryContainer}>
-          <div className={styles.category}>{product && product.category}</div>
+          <div className={styles.category}>
+            {product && product.category[0]}
+          </div>
         </div>
         <div className={styles.info}>
           <div>{product && product.description} </div>
