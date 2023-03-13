@@ -187,3 +187,67 @@ export const ProductsCount = styled.div`
 export const Span = styled.div`
   margin-top: 3px;
 `;
+
+export const ProductsLayout = styled.div`
+  position: absolute;
+  margin-top: 113px;
+  margin-left: 396px;
+  width: 557px;
+  height: 500px;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: 1px 1px gray;
+`;
+
+export const ProductContent = styled.div`
+  display: flex;
+  width: 100 %;
+  margin: 10px 0px 10px 0px;
+  &:hover {
+    background: #fafafa;
+    font-weight: bolder;
+  }
+  cursor: pointer;
+`;
+
+export const ProductImage = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  margin-left: 10px;
+`;
+
+export const ProductInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 15px;
+`;
+export const ProductDesc = styled.span`
+  color: black;
+  margin-bottom: 5px;
+`;
+export const ProductTitle = styled.span`
+  color: gray;
+  font-size: 12px;
+`;
+export const NullTextLayout = styled.div`
+  position: absolute;
+  margin-top: 113px;
+  margin-left: 396px;
+  width: 556px;
+  height: 500px;
+  display: flex;
+  background: white;
+  justify-content: center;
+  box-shadow: 2px 2px 2px gray;
+`;
+
+export const NullText = styled.span`
+  font-size: 20px
+  text-align: center;
+  line-height : 1000%;
+
+`;

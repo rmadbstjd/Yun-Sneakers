@@ -42,7 +42,7 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
 
   const clickToBrand = (item) => {
     sessionStorage.clear();
-    navigate(`/search?keyword=${item}`);
+    navigate(`/search?keyword=${item[0]}`);
     setShowSearch((prev) => !prev);
   };
 
@@ -141,7 +141,10 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
                     clickToBrand(item);
                   }}
                 >
-                  <Style.BrandName>{item}</Style.BrandName>
+                  <Style.BrandName>
+                    <Style.KorName>{item[0]}</Style.KorName>{" "}
+                    <Style.EngName>{item[1]}</Style.EngName>
+                  </Style.BrandName>
                   <Style.BrandText>BRAND</Style.BrandText>
                 </Style.BrandLayout>
                 <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />

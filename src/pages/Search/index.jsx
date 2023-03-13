@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { GrClose } from "react-icons/gr";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import userInfoStore from "../../store/userInfoStore";
 import searchStore from "../../store/searchStore";
@@ -12,11 +12,12 @@ import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import { useImmer } from "use-immer";
-
+import axios from "axios";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [searchProducts, setSearchProducts] = useState([]);
   const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
@@ -146,6 +147,31 @@ const SearchPage = () => {
     setCheckedSort(item.id);
   };
 
+  const goToDetail = (item) => {
+    navigate(`/products/${item.id}`);
+  };
+
+  const fetch = async (result) => {
+    const response = await axios.post(
+      "http://localhost:3000/api/search/autocompleted",
+      {
+        keyword: result,
+      }
+    );
+    const data = response.data;
+    setSearchProducts(data.products);
+
+    return;
+  };
+  useEffect(() => {
+    if (result) {
+      if (result.trim() === "") return;
+      result.trim();
+      fetch(result);
+    } else {
+      setSearchProducts([]);
+    }
+  }, [result]);
   useEffect(() => {
     if (
       searchKeyword === "" &&
@@ -200,14 +226,13 @@ const SearchPage = () => {
                   onChange={(e) => handleChange(e)}
                   autoFocus
                 />
-                <GrClose
+                <AiFillCloseCircle
                   style={{
                     width: "25px",
-                    minWidth: "25px",
                     height: "25px",
-                    minHeight: "25px",
                     cursor: "pointer",
                     margin: "10px 0px 0px 10px",
+                    color: "#F4F4F4",
                   }}
                   onClick={() => {
                     clickToClose();
@@ -221,7 +246,31 @@ const SearchPage = () => {
               ></HorizonLine>
             </Style.SearchContainer>
           </Style.SearchBarLayout>
-
+          {searchProducts.length !== 0 ? (
+            <Style.ProductsLayout>
+              {searchProducts.map((item) => (
+                <div key={item.name}>
+                  <Style.ProductContent
+                    onClick={() => {
+                      goToDetail(item);
+                    }}
+                  >
+                    <Style.ProductImage src={item.image}></Style.ProductImage>
+                    <Style.ProductInfo>
+                      <Style.ProductDesc>{item.description}</Style.ProductDesc>
+                      <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                    </Style.ProductInfo>
+                  </Style.ProductContent>
+                </div>
+              ))}
+            </Style.ProductsLayout>
+          ) : result && result.length !== 0 ? (
+            <Style.NullTextLayout>
+              <Style.NullText>
+                검색하신 상품이 존재하지 않습니다.
+              </Style.NullText>
+            </Style.NullTextLayout>
+          ) : null}
           <Style.Content>
             <Style.SideLayout isScrolled={scrollPosition > 100 ? true : false}>
               <Style.Filter>필터</Style.Filter>

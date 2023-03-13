@@ -129,7 +129,7 @@ export const RecommendContent = styled.div`
 
 export const ProductsLayout = styled.div`
   position: fixed;
-  top: 130px;
+  top: 115px;
   width: 885px;
   background: white;
   height: 500px;
@@ -185,17 +185,24 @@ export const NullText = styled.span`
 
 export const BrandLayout = styled.div`
   width: 86.1%;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  margin: 5px 0px 5px 0px;
 `;
-export const BrandName = styled.div`
+export const BrandName = styled.span`
   font-size: 18px;
   font-weight: bolder;
-  margin-bottom: 20px;
+  line-height: 230%;
 `;
-
+export const KorName = styled.span``;
+export const EngName = styled.span`
+  color: #909090;
+  font-weight: normal;
+`;
 export const BrandText = styled.span`
   font-size: 14px;
+  line-height: 300%;
   color: #b1b1b1;
 `;
