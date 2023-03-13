@@ -8,7 +8,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import axios from "axios";
 import HorizonLine from "../../components/common/HorizonLine";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
-const Search = ({ setShowSearch, setShowNavbar }) => {
+const Search = ({ setShowSearch }) => {
   const navigate = useNavigate();
   const {
     searchWord,
@@ -17,6 +17,7 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
     addRecentKeyword,
     setRecentKeyword,
     allDeleteRecentKeyword,
+    setShowNavbar,
   } = searchStore();
   const [showKeyword, setShowKeyword] = useState(recentKeyword || []);
   const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
     sessionStorage.clear();
     navigate(`/search?keyword=${searchWord}`);
     setShowSearch((prev) => !prev);
+    setShowNavbar(true);
     if (!recentKeyword.includes(searchWord)) {
       addRecentKeyword(searchWord);
     }
@@ -38,16 +40,19 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
     sessionStorage.clear();
     navigate(`/search?keyword=${item}`);
     setShowSearch((prev) => !prev);
+    setShowNavbar(true);
   };
 
   const clickToBrand = (item) => {
     sessionStorage.clear();
     navigate(`/search?keyword=${item[0]}`);
     setShowSearch((prev) => !prev);
+    setShowNavbar(true);
   };
 
   const goToDetail = (item) => {
     navigate(`/products/${item.id}`);
+    setShowNavbar(true);
   };
 
   const closeSearch = () => {
@@ -206,6 +211,7 @@ const Search = ({ setShowSearch, setShowNavbar }) => {
               onClick={() => {
                 navigate(`/search?keyword=${item}`);
                 setShowSearch(false);
+                setShowNavbar(true);
               }}
               key={item}
             >

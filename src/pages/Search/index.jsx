@@ -18,6 +18,7 @@ const SearchPage = () => {
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [searchProducts, setSearchProducts] = useState([]);
+  const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query] = useSearchParams();
   const { product } = userInfoStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
@@ -112,6 +113,7 @@ const SearchPage = () => {
       return;
     }
     e.preventDefault();
+
     navigate(
       `/search?keyword=${result}&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
     );
@@ -150,7 +152,13 @@ const SearchPage = () => {
   const goToDetail = (item) => {
     navigate(`/products/${item.id}`);
   };
+  const handleFocus = () => {
+    setShowSearchedProducts(true);
+  };
 
+  const handleBlur = () => {
+    setShowSearchedProducts(false);
+  };
   const fetch = async (result) => {
     const response = await axios.post(
       "http://localhost:3000/api/search/autocompleted",
@@ -206,6 +214,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
+
   return (
     <div>
       <Navbar
@@ -224,7 +233,8 @@ const SearchPage = () => {
                   value={result}
                   placeholder="브랜드명, 모델명 등"
                   onChange={(e) => handleChange(e)}
-                  autoFocus
+                  onFocus={() => handleFocus()}
+                  onBlur={() => handleBlur()}
                 />
                 <AiFillCloseCircle
                   style={{
@@ -246,30 +256,34 @@ const SearchPage = () => {
               ></HorizonLine>
             </Style.SearchContainer>
           </Style.SearchBarLayout>
-          {searchProducts.length !== 0 ? (
-            <Style.ProductsLayout>
-              {searchProducts.map((item) => (
-                <div key={item.name}>
-                  <Style.ProductContent
-                    onClick={() => {
-                      goToDetail(item);
-                    }}
-                  >
-                    <Style.ProductImage src={item.image}></Style.ProductImage>
-                    <Style.ProductInfo>
-                      <Style.ProductDesc>{item.description}</Style.ProductDesc>
-                      <Style.ProductTitle>{item.name}</Style.ProductTitle>
-                    </Style.ProductInfo>
-                  </Style.ProductContent>
-                </div>
-              ))}
-            </Style.ProductsLayout>
-          ) : result && result.length !== 0 ? (
-            <Style.NullTextLayout>
-              <Style.NullText>
-                검색하신 상품이 존재하지 않습니다.
-              </Style.NullText>
-            </Style.NullTextLayout>
+          {showSearchedProducts === true ? (
+            searchProducts.length !== 0 ? (
+              <Style.ProductsLayout>
+                {searchProducts.map((item) => (
+                  <div key={item.name}>
+                    <Style.ProductContent
+                      onClick={() => {
+                        goToDetail(item);
+                      }}
+                    >
+                      <Style.ProductImage src={item.image}></Style.ProductImage>
+                      <Style.ProductInfo>
+                        <Style.ProductDesc>
+                          {item.description}
+                        </Style.ProductDesc>
+                        <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                      </Style.ProductInfo>
+                    </Style.ProductContent>
+                  </div>
+                ))}
+              </Style.ProductsLayout>
+            ) : result && result.length !== 0 ? (
+              <Style.NullTextLayout>
+                <Style.NullText>
+                  검색하신 상품이 존재하지 않습니다.
+                </Style.NullText>
+              </Style.NullTextLayout>
+            ) : null
           ) : null}
           <Style.Content>
             <Style.SideLayout isScrolled={scrollPosition > 100 ? true : false}>

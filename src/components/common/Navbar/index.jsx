@@ -16,12 +16,13 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { cart, nickName, userId, user } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
-  const { setSearchWord, setShowBar } = searchStore();
+  const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
+    searchStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const [token, setToken] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [showNavbar, setShowNavbar] = useState(true);
+
   const [admin] = useState("");
   const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
@@ -50,6 +51,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, []);
 
   useEffect(() => {}, [nickName]);
+  console.log("showNavbar", showNavbar);
   return (
     <>
       {showNavbar && (
@@ -195,9 +197,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
           </Style.NavbarContainer>
         </Style.Container>
       )}
-      {showSearch && (
-        <Search setShowSearch={setShowSearch} setShowNavbar={setShowNavbar} />
-      )}
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };

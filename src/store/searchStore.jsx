@@ -22,6 +22,8 @@ const store = (set) => ({
   setShowBar: (boolean) => set((state) => ({ showBar: boolean })),
   reset: false,
   setReset: (boolean) => set((state) => ({ reset: boolean })),
+  showNavbar: true,
+  setShowNavbar: (boolean) => set((state) => ({ showNavbar: boolean })),
 });
 const searchStore = create(devtools(store));
 export default searchStore;
