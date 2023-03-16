@@ -44,6 +44,7 @@
 ![image](https://user-images.githubusercontent.com/58474431/225018981-7227cb09-6e75-456f-b39f-955932cd8f12.png)
 
 # 기술적 의사결정
+
 *세션 기반 로그인 vs 토큰 기반 인증
 <br/>
 세션의 큰 단점으로 확장성 , 서버의 과부하 등이 있다.
