@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard";
 import * as Style from "./styles";
 import { useImmer } from "use-immer";
 import userInfoStore from "../../store/userInfoStore";
+import LoadingSpinner from "../common/LoadingSpinner";
 const Products = () => {
   const { product } = userInfoStore();
   const [showMoreBtn, setShowMoreBtn] = useState(true);
@@ -12,7 +13,7 @@ const Products = () => {
     isLoading,
     error,
     data: products,
-  } = useQuery(["new", currentPage], () => product.getProducts(currentPage));
+  } = useQuery(["new", currentPage], () => product.getNewProducts(currentPage));
   const [moreProducts, setMoreProducts] = useImmer([]);
   const ClickToMoreProduct = () => {
     setCurrentPage((prev) => prev + 1);
@@ -24,11 +25,18 @@ const Products = () => {
         product.push(products);
       });
   }, [products, currentPage]);
+
   return (
     <Style.Container>
       <Style.ProductsContainer>
         <Style.TitleENG>New In</Style.TitleENG>
         <Style.TitleKOR>새로운 상품</Style.TitleKOR>
+        {isLoading && (
+          <LoadingSpinner
+            width={"94.8%"}
+            margin={"100px 0px 0px 0px"}
+          ></LoadingSpinner>
+        )}
         {moreProducts &&
           moreProducts.map((product) =>
             product.map((product) => (
@@ -37,9 +45,11 @@ const Products = () => {
           )}
         <Style.MoreContainer>
           <Style.More>
-            <Style.Btn isShow={showMoreBtn} onClick={ClickToMoreProduct}>
-              더보기
-            </Style.Btn>
+            {!isLoading && (
+              <Style.Btn isShow={showMoreBtn} onClick={ClickToMoreProduct}>
+                더보기
+              </Style.Btn>
+            )}
           </Style.More>
         </Style.MoreContainer>
       </Style.ProductsContainer>

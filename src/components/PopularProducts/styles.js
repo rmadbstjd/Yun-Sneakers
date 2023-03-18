@@ -46,11 +46,12 @@ export const More = styled.div`
   height: 45px;
   font-weight: bold;
   color: gray;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Btn = styled.div`
   border: solid gray 1px;
-  margin-left: 30px;
   width: 100px;
   height: 40px;
   border-radius: 10px;

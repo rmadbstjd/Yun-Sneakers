@@ -34,24 +34,23 @@ export const MoreContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
-  margin: 65px 0px 100px 0px;
+  width: 94.7%;
+  margin-top: 45px;
 `;
-
 export const More = styled.div`
   text-align: center;
   line-height: 160%;
   width: 200px;
-  height: 40px;
-  margin-left: -65px;
+  height: 45px;
   font-weight: bold;
   color: gray;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Btn = styled.div`
   border: solid gray 1px;
   width: 100px;
-  margin-left: 30px;
   height: 40px;
   border-radius: 10px;
   background: white;

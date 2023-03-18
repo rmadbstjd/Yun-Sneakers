@@ -24,7 +24,7 @@ export default class Product {
 
     return data;
   }
-  async getProducts(currentPage) {
+  async getNewProducts(currentPage) {
     if (!currentPage) currentPage = 1;
     const response = await this.httpClient.post("products/orderByNew", {
       currentPage,

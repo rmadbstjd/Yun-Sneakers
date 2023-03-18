@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
+import LoadingSpinner from "../common/LoadingSpinner";
 import { useImmer } from "use-immer";
 import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
@@ -30,7 +31,12 @@ const ShowPopularProducts = () => {
       <Style.ProductsContainer>
         <Style.TitleENG>Most Popular</Style.TitleENG>
         <Style.TitleKOR>인기 있는 상품</Style.TitleKOR>
-
+        {isLoading && (
+          <LoadingSpinner
+            width={"100%"}
+            margin={"100px 0px 0px 0px"}
+          ></LoadingSpinner>
+        )}
         {moreProducts &&
           moreProducts.map((product) =>
             product.map((product) => (
@@ -39,9 +45,11 @@ const ShowPopularProducts = () => {
           )}
         <Style.MoreContainer>
           <Style.More>
-            <Style.Btn isShow={showMoreBtn} onClick={ClickToMoreProduct}>
-              더보기
-            </Style.Btn>
+            {!isLoading && (
+              <Style.Btn isShow={showMoreBtn} onClick={ClickToMoreProduct}>
+                더보기
+              </Style.Btn>
+            )}
           </Style.More>
         </Style.MoreContainer>
       </Style.ProductsContainer>
