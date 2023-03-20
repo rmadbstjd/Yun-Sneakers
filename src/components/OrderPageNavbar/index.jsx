@@ -5,6 +5,7 @@ import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import Modal from "../common/Modal";
 import convertToPrice from "../../hooks/convertToPrice";
+import LoadingSpinner from "../common/LoadingSpinner";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -18,14 +19,14 @@ const OrderPageNavbar = () => {
   const [number, setNumber] = useState();
   const {
     isLoading,
-    error,
     data: products,
     refetch: refetch1,
   } = useQuery(["배송중"], () => myPage.getOrderedProducts());
-  const { data: completedProducts, refetch: refetch2 } = useQuery(
-    ["배송완료"],
-    () => order.getShipIsCompleted()
-  );
+  const {
+    isLoading: isLoading2,
+    data: completedProducts,
+    refetch: refetch2,
+  } = useQuery(["배송완료"], () => order.getShipIsCompleted());
   const { cart, myPage, order } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
@@ -73,6 +74,12 @@ const OrderPageNavbar = () => {
       {products && products.length === 0 ? (
         <Style.NoneText>최근 배송중인 상품이 존재하지 않습니다.</Style.NoneText>
       ) : null}
+      {isLoading && (
+        <LoadingSpinner
+          text={"상품을 준비하고 있습니다."}
+          margin={"100px 0px 0px 0px"}
+        />
+      )}
       {products &&
         products.map((item, index) => (
           <Style.ProductContent key={index}>
@@ -149,6 +156,12 @@ const OrderPageNavbar = () => {
       {completedProducts && completedProducts.length === 0 ? (
         <Style.NoneText>배송이 완료된 상품이 존재하지 않습니다.</Style.NoneText>
       ) : null}
+      {isLoading2 && (
+        <LoadingSpinner
+          text={"상품을 준비하고 있습니다."}
+          margin={"100px 0px 0px 0px"}
+        />
+      )}
       {completedProducts &&
         completedProducts.map((item, index) => (
           <Style.ProductContent key={index}>

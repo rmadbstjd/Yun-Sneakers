@@ -10,12 +10,15 @@ export default class Product {
       }
     );
   }
-  async searchProducts(keyword, sort, collectionName, priceOrder) {
+  async searchProducts(keyword, sort, collectionName, priceOrder, page) {
     const response = await this.httpClient.get("/search", {
-      params: { keyword, sort, collectionName, priceOrder },
+      params: { keyword, sort, collectionName, priceOrder, page, offset: 10 },
     });
     const data = response.data;
-    return data;
+
+    const products = data.products;
+    const count = data.count;
+    return { products, count };
   }
 
   async getAllProducts() {

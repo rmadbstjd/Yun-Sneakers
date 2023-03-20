@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import convertToPrice from "../../../hooks/convertToPrice";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
+import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";
 
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
@@ -21,15 +22,15 @@ const Review = () => {
   const { order, myPage } = userInfoStore();
   const {
     isLoading,
-    error,
     data: product,
     refetch,
   } = useQuery([], () => myPage.getUserReviews());
 
-  const { data: completedProducts, refetch: refetch2 } = useQuery(
-    ["리뷰"],
-    () => order.getIsNotReviewdProducts()
-  );
+  const {
+    isLoading: isLoading2,
+    data: completedProducts,
+    refetch: refetch2,
+  } = useQuery(["리뷰"], () => order.getIsNotReviewdProducts());
 
   const goToDetail = (info) => {
     navigate(`/products/${info.id}`);
@@ -119,6 +120,12 @@ const Review = () => {
             {product && product.length === 0 ? (
               <Style.NoneText>아직 작성한 리뷰가 없습니다.</Style.NoneText>
             ) : null}
+            {isLoading && (
+              <LoadingSpinner
+                text={"상품을 준비하고 있습니다."}
+                margin={"100px 0px 0px 0px"}
+              />
+            )}
             {product &&
               product.map((item, index) => (
                 <div key={index}>
@@ -276,6 +283,12 @@ const Review = () => {
                 아직 리뷰를 작성할 수 있는 주문내역이 없습니다.
               </Style.NoneText>
             ) : null}
+            {isLoading2 && (
+              <LoadingSpinner
+                text={"상품을 준비하고 있습니다."}
+                margin={"100px 0px 0px 0px"}
+              />
+            )}
             {completedProducts &&
               completedProducts.map((item, index) => (
                 <div key={index}>

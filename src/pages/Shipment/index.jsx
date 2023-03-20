@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 const Shipment = () => {
   const navigate = useNavigate();
   const {
@@ -25,7 +26,9 @@ const Shipment = () => {
     card,
     setCard,
   } = userInfoStore();
-  const { data: products } = useQuery(["products"], () => cart.getUserCarts());
+  const { isLoading, data: products } = useQuery(["products"], () =>
+    cart.getUserCarts()
+  );
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
   );
@@ -434,12 +437,19 @@ const Shipment = () => {
             주문 상품 정보 / 총 {productsCount}개
           </Style.OrderTitle>
           <Style.ProductsContaier>
+            {isLoading && (
+              <LoadingSpinner
+                width={"100%"}
+                margin={"70px 0px 0px 0px"}
+                text={"상품을 준비하는 중입니다."}
+              />
+            )}
             {products &&
               products.products.map((item) => (
                 <Style.ProductsContent key={item.productId}>
                   <img src={item.image} alt="이미지"></img>
                   <div>
-                    <Style.Category>{item.category}</Style.Category>
+                    <Style.Category>{item.category[0]}</Style.Category>
                     <Style.Name>{item.name}</Style.Name>
                     <Style.PriceContainer>
                       <div>{convertToPrice(item.price)}원/</div>

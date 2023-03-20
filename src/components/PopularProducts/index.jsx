@@ -35,6 +35,7 @@ const ShowPopularProducts = () => {
           <LoadingSpinner
             width={"100%"}
             margin={"100px 0px 0px 0px"}
+            text="상품을 불러오는 중입니다."
           ></LoadingSpinner>
         )}
         {moreProducts &&

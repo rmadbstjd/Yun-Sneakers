@@ -252,3 +252,10 @@ export const NullText = styled.span`
   line-height : 1000%;
 
 `;
+
+export const Ref = styled.div`
+  border: solid black 1px;
+  width: 100%;
+  height: 100px;
+  background: red;
+`;

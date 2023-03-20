@@ -6,18 +6,19 @@ import ProductLikeCard from "../../components/ProductLikeCard";
 import userInfoStore from "../../store/userInfoStore";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
+import LoadingSpinner from "./../../components/common/LoadingSpinner";
 const Like = () => {
   const navigate = useNavigate();
   const { like } = userInfoStore();
   const [count, setCount] = useState(0);
-  const { data: product, refetch } = useQuery(["like"], () =>
-    like.getLikedProducts()
-  );
+  const {
+    isLoading,
+    data: product,
+    refetch,
+  } = useQuery(["like"], () => like.getLikedProducts());
 
   useEffect(() => {
-    if (product) {
-      setCount(product.length);
-    }
+    if (product) setCount(product.length);
   }, [product]);
 
   return (
@@ -34,7 +35,13 @@ const Like = () => {
               margin={"2% 0% 3% 0%"}
             />
           </Style.TitleContainer>
-
+          {isLoading && (
+            <LoadingSpinner
+              width={"100%"}
+              margin={"100px 0px 0px 0px"}
+              text="상품을 불러오는 중입니다."
+            ></LoadingSpinner>
+          )}
           {product &&
             product.map((item) =>
               item.map((product) => (

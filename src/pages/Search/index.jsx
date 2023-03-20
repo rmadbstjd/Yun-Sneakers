@@ -13,6 +13,8 @@ import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import { useImmer } from "use-immer";
 import axios from "axios";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
+import Pagination from "../../components/common/Pagination";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -89,6 +91,7 @@ const SearchPage = () => {
       setCheckedBrandList(checkedBrandList.filter((el) => el !== item));
     }
   };
+  const page = query.get("page") || 1;
 
   const searchKeyword = query.get("keyword") || "";
   const priceOrder = query.get("priceOrder") || "";
@@ -96,14 +99,15 @@ const SearchPage = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   let collectionName = query.get("collectionName") || "";
 
-  const { data: products } = useQuery(
-    [searchKeyword, checkedSort, collectionName, priceOrder],
+  const { isLoading, data: products } = useQuery(
+    [searchKeyword, checkedSort, collectionName, priceOrder, page],
     () =>
       product.searchProducts(
         searchKeyword,
         checkedSort,
         collectionName,
-        priceOrder
+        priceOrder,
+        page
       )
   );
 
@@ -115,7 +119,7 @@ const SearchPage = () => {
     e.preventDefault();
 
     navigate(
-      `/search?keyword=${result}&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+      `/search?keyword=${result}&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}&page=${page}`
     );
 
     if (!recentKeyword.includes(result)) {
@@ -131,13 +135,13 @@ const SearchPage = () => {
     setResult("");
     if (collectionName) {
       navigate(
-        `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+        `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}&page=${page}`
       );
     }
     if (!collectionName) {
       if (priceOrder) {
         navigate(
-          `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
+          `/search?&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}&page=${page}`
         );
       } else {
         navigate("/search");
@@ -150,7 +154,6 @@ const SearchPage = () => {
   };
 
   const goToDetail = (item) => {
-    console.log("테스트", item);
     navigate(`/products/${item.id}`);
   };
   const handleFocus = () => {
@@ -161,6 +164,7 @@ const SearchPage = () => {
     setShowSearchedProducts(false);
   };
   const handleMouseDown = (e) => e.preventDefault();
+
   const fetch = async (result) => {
     const response = await axios.post(
       "http://localhost:3000/api/search/autocompleted",
@@ -173,6 +177,7 @@ const SearchPage = () => {
 
     return;
   };
+
   useEffect(() => {
     if (result) {
       if (result.trim() === "") return;
@@ -182,12 +187,14 @@ const SearchPage = () => {
       setSearchProducts([]);
     }
   }, [result]);
+
   useEffect(() => {
     if (
       searchKeyword === "" &&
       checkedSort === "0" &&
       collectionName === "" &&
-      priceOrder === ""
+      priceOrder === "" &&
+      page === ""
     )
       navigate("/search");
 
@@ -206,7 +213,7 @@ const SearchPage = () => {
       sessionStorage.setItem("sort", checkedSort);
 
       navigate(
-        `/search?keyword=${searchKeyword}&sort=${checkedSort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}`
+        `/search?keyword=${searchKeyword}&sort=${checkedSort}&collectionName=${checkedBrandList}&priceOrder=${checkedPriceList}&page=${page}`
       );
     } else {
       isMounted.current = true;
@@ -216,7 +223,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-  console.log("흠..");
+
   return (
     <div>
       <Navbar
@@ -394,8 +401,8 @@ const SearchPage = () => {
               <Style.SortLayout>
                 <Style.ProductsCount>
                   상품{" "}
-                  {products && products.length !== 0
-                    ? convertToPrice(products.length)
+                  {products && products.products.length !== 0
+                    ? convertToPrice(products.count)
                     : 0}
                 </Style.ProductsCount>
                 <Style.SortContainer>
@@ -433,22 +440,37 @@ const SearchPage = () => {
                 </Style.SelectedBrandContainer>
               )}
               <Style.Cards>
-                {products && products.length !== 0 ? (
-                  products.map((item, index) => (
-                    <ProductLikeCard
-                      key={index}
-                      none={"none"}
-                      product={item}
-                    ></ProductLikeCard>
-                  ))
-                ) : (
+                {isLoading && (
+                  <LoadingSpinner
+                    width={"80%"}
+                    margin={"100px 0px 0px 0px"}
+                    text={"상품을 준비하는 중입니다."}
+                  />
+                )}
+                {!isLoading && products && products.products.length === 0 ? (
                   <Style.NotFound>
                     검색하신 상품이 존재하지 않습니다.
                   </Style.NotFound>
-                )}
+                ) : null}
+                {products && products.products.length !== 0
+                  ? products.products.map((item, index) => (
+                      <ProductLikeCard
+                        key={index}
+                        none={"none"}
+                        product={item}
+                      ></ProductLikeCard>
+                    ))
+                  : null}
               </Style.Cards>
             </Style.Products>
           </Style.Content>
+          <Pagination
+            result={result}
+            checkedSort={checkedSort}
+            collectionName={collectionName}
+            priceOrder={priceOrder}
+            count={products && products.count}
+          ></Pagination>
         </Style.Container>
       </Style.Layout>
     </div>

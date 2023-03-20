@@ -6,18 +6,18 @@ import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import userInfoStore from "../../../store/userInfoStore";
 import ProductLikeCard from "../../../components/ProductLikeCard";
-
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 const Wish = () => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const { like } = userInfoStore();
-  const { data: product, refetch } = useQuery(
-    ["like"],
-    () => like.getLikedProducts(),
-    {
-      enabled: true,
-    }
-  );
+  const {
+    isLoading,
+    data: product,
+    refetch,
+  } = useQuery(["like"], () => like.getLikedProducts(), {
+    enabled: true,
+  });
   const goToMain = () => {
     navigate("/");
   };
@@ -40,6 +40,13 @@ const Wish = () => {
             color={"black"}
           ></Style.HorizonLine>
           <Style.ProductsContainer>
+            {isLoading && (
+              <LoadingSpinner
+                margin={"50px 0px 0px 0px"}
+                width={"100%"}
+                text={"상품을 준비하고 있습니다."}
+              />
+            )}
             {product &&
               product.map((item) =>
                 item.map((product) => (

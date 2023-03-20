@@ -37,15 +37,11 @@ export const Close = styled.div`
   height: 25px;
   text-align: center;
   cursor: pointer;
-  background-color: #bababa;
+  background-color: black;
   border: solid black 0px;
   border-radius: 5px;
   line-height: 160%;
   color: white;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
 `;
 
 export const AddressContainer = styled.div`

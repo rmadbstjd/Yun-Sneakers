@@ -7,15 +7,17 @@ import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
-
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 const Cart = () => {
   const navigate = useNavigate();
   const { cart, initCartCount, plusCartCount } = cartStore();
   const [price, setPrice] = useState(0);
   const [count, setCount] = useState();
-  const { data: cartProducts, refetch } = useQuery(["totalPrice"], () =>
-    cart.getUserCarts()
-  );
+  const {
+    isLoading,
+    data: cartProducts,
+    refetch,
+  } = useQuery(["totalPrice"], () => cart.getUserCarts());
 
   useEffect(() => {
     if (cartProducts) {
@@ -80,6 +82,13 @@ const Cart = () => {
           </Style.TitleLayout>
           <Style.HeaderLayout>
             <Style.HeaderContainer>
+              {isLoading && (
+                <LoadingSpinner
+                  width={"100%"}
+                  text={"상품을 불러오는 중입니다."}
+                  margin={"80px 0px 80px 500px"}
+                />
+              )}
               <Style.HeaderContent width={52.8}>
                 상품명(옵션)
               </Style.HeaderContent>

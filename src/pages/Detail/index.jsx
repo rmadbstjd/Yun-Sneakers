@@ -15,7 +15,7 @@ import SimilarProducts from "../../components/SimilarProducts";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
 import convertToPrice from "../../hooks/convertToPrice";
-
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const ProductDetail = () => {
   const category = productInfo && productInfo.product.category[0];
   const productId = productInfo && productInfo.product.id;
 
-  const { data: similarProducts } = useQuery(
+  const { isLoading, data: similarProducts } = useQuery(
     ["similar", id],
     () => product.getSimilarProducts(category, id),
     { refetchOnMount: "alaways", enabled: !!category }
@@ -203,6 +203,13 @@ const ProductDetail = () => {
       </Style.SimilarProductTitleLayout>
       <Style.SimilarContainer>
         <Style.ShoesContainer>
+          {isLoading && (
+            <LoadingSpinner
+              width={"100%"}
+              text={"상품을 준비하는 중입니다."}
+              margin={"100px 0px 0px 0px"}
+            />
+          )}
           {similarProducts &&
             similarProducts.map((item) => (
               <SimilarProducts key={item.id} products={item} />
