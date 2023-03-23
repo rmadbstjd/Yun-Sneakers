@@ -10,7 +10,6 @@ export default class MyPage {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
   }
 
   async getOrderedProducts() {
@@ -56,6 +55,7 @@ export default class MyPage {
   }
 
   async addProductReview(
+    image,
     star,
     count,
     coupon,
@@ -68,6 +68,7 @@ export default class MyPage {
     rate
   ) {
     const response = await instance.post(`/review`, {
+      image,
       star,
       count,
       coupon,

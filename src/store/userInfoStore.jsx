@@ -6,6 +6,7 @@ import Like from "../api/like";
 import User from "../api/user";
 import MyPage from "../api/myPage";
 import Order from "../api/order";
+import Review from "../api/review";
 const store = (set) => ({
   cart: new Cart(),
   product: new Product(),
@@ -13,7 +14,7 @@ const store = (set) => ({
   user: new User(),
   myPage: new MyPage(),
   order: new Order(),
-
+  review: new Review(),
   nickName: "",
   setNickName: (keyword) => set((state) => ({ nickName: keyword })),
   userId: "",

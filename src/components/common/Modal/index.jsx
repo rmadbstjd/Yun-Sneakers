@@ -59,7 +59,7 @@ const Modal = ({
   };
 
   const handleSetValue = (e) => {
-    if (e.target.value.length > 100) setText(text.substring(0, 190));
+    if (e.target.value.length > 300) setText(text.substring(0, 300));
     else setText(e.target.value);
   };
 
@@ -80,6 +80,7 @@ const Modal = ({
 
     if (!isReviewed) {
       myPage.addProductReview(
+        product.info.image,
         star,
         product.product.count,
         product.product.coupon,
@@ -93,6 +94,7 @@ const Modal = ({
       );
     } else if (isReviewed) {
       myPage.addProductReview(
+        product.info.image,
         star,
         product.product.count,
         product.product.coupon,
@@ -242,7 +244,7 @@ const Modal = ({
               value={text}
               onChange={(e) => handleSetValue(e)}
             ></Style.TextArea>
-            <Style.TextLength>{text.length} / 100</Style.TextLength>
+            <Style.TextLength>{text.length} / 300</Style.TextLength>
           </div>
           <Style.HorizonLine></Style.HorizonLine>
         </Style.ReviewContainer>

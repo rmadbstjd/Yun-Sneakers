@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./Paging.css";
 import Pagination from "react-js-pagination";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 const Paging = ({ result, checkedSort, collectionName, priceOrder, count }) => {
-  const [page, setPage] = useState(1);
+  const [query] = useSearchParams();
+  const initPage = query.get("page") || 1;
+  const [page, setPage] = useState(Number(initPage));
   const navigate = useNavigate();
   const handlePageChange = (page) => {
     navigate(

@@ -12,6 +12,7 @@ import { FaHeart } from "react-icons/fa";
 import HorizonLine from "../../components/common/HorizonLine";
 import Modal from "../../components/common/Modal";
 import SimilarProducts from "../../components/SimilarProducts";
+import ProductReviews from "../../components/ProductReviews";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
 import convertToPrice from "../../hooks/convertToPrice";
@@ -19,7 +20,7 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { product, like, cart, userId } = userInfoStore();
+  const { product, review, like, cart, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const { selectSize, setInitSize } = productStore();
@@ -43,6 +44,13 @@ const ProductDetail = () => {
     { enabled: !!productId }
   );
 
+  const { data: productReviews } = useQuery(
+    ["review", id],
+    () => review.getProductReviews(id),
+    {
+      enabled: !!productId,
+    }
+  );
   const [sizeModalShow, setSizeModalShow] = useState(false);
   const [cartModalShow, setCartModalShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -80,6 +88,7 @@ const ProductDetail = () => {
   useEffect(() => {
     setInitSize();
   }, []);
+
   return (
     <>
       <Navbar />
@@ -195,6 +204,9 @@ const ProductDetail = () => {
           </Style.ProductInfoContainer>
         </Style.ProductContainer>
       </Style.Container>
+
+      <ProductReviews productReviews={productReviews} />
+
       <Style.SimilarProductTitleLayout>
         <Style.Span>
           <Style.SimilarProductTitle>{category}</Style.SimilarProductTitle>의
