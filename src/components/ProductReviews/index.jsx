@@ -21,6 +21,22 @@ const ProductReviews = ({ productReviews }) => {
         margin={"10px 0px 0px 170px"}
       />
       <Style.ReviewContainer>
+        {productReviews && productReviews.length === 0 ? (
+          <>
+            <Style.NoneTextTitle>
+              작성된 리뷰가 존재하지 않습니다.
+            </Style.NoneTextTitle>
+            <Style.NoneTextContent>
+              이 상품의 첫 번째 리뷰를 작성해보세요!
+            </Style.NoneTextContent>
+            <HorizonLine
+              width={"89.6%"}
+              border={"1px"}
+              color={"gray"}
+              margin={"30px 0px 0px 0px"}
+            />
+          </>
+        ) : null}
         {productReviews &&
           productReviews.map((review, index) => (
             <Style.Review

@@ -17,6 +17,10 @@ import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
 import convertToPrice from "../../hooks/convertToPrice";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import ProductDetailFooter from "../../components/ProductDetailFooter";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { Link } from "react-scroll";
+import QnA from "../../components/QnA";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -51,6 +55,8 @@ const ProductDetail = () => {
       enabled: !!productId,
     }
   );
+  const [rate, setRate] = useState(0);
+  const [star, setStar] = useState([false, false, false, false, false]);
   const [sizeModalShow, setSizeModalShow] = useState(false);
   const [cartModalShow, setCartModalShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -89,6 +95,44 @@ const ProductDetail = () => {
     setInitSize();
   }, []);
 
+  useEffect(() => {
+    if (productReviews) {
+      if (productReviews.length === 0) {
+        setRate(0);
+        return;
+      }
+      for (let i = 0; i < productReviews.length; i++) {
+        setRate((prev) => prev + productReviews[i].rate);
+      }
+      setRate((prev) => (prev / productReviews.length).toFixed(0));
+    }
+  }, [productReviews]);
+
+  useEffect(() => {
+    switch (rate) {
+      case 0:
+        setStar([false, false, false, false, false]);
+        break;
+      case "1":
+        setStar([true, false, false, false, false]);
+        break;
+      case "2":
+        setStar([true, true, false, false, false]);
+        break;
+      case "3":
+        setStar([true, true, true, false, false]);
+        break;
+      case "4":
+        setStar([true, true, true, true, false]);
+        break;
+      case "5":
+        setStar([true, true, true, true, true]);
+        break;
+      default:
+        break;
+    }
+  }, [rate]);
+
   return (
     <>
       <Navbar />
@@ -99,19 +143,40 @@ const ProductDetail = () => {
           </Style.ImageLayout>
 
           <Style.ProductInfoContainer>
+            <HorizonLine width={"100%"} border={"3px"} color={"black"} />
             <Style.Category>
               {productInfo && productInfo.product.category[0]}
             </Style.Category>
             <Style.Description>
               {productInfo && productInfo.product.description}
             </Style.Description>
+            <div style={{ display: "flex", margin: "5px 0px 0px 0px" }}>
+              {" "}
+              <Style.Star>
+                {star.map((item, index) =>
+                  item === false ? (
+                    <AiOutlineStar size={15} key={index} color={"gray"} />
+                  ) : (
+                    <AiFillStar size={15} key={index} color={"yellow"} />
+                  )
+                )}
+                {review.userId}
+              </Style.Star>
+              {productReviews && (
+                <Style.ReviewCount>
+                  <Link to="review" spy={true} smooth={true}>
+                    {productReviews.length}개 리뷰 보기
+                  </Link>
+                </Style.ReviewCount>
+              )}
+            </div>
 
             <div>
               <Style.SizeContainer>
                 <Style.SizeTitle>사이즈</Style.SizeTitle>
                 <Style.Size onClick={showSize}>
                   {selectSize === "" ? (
-                    <Style.SizeBtn>사이즈</Style.SizeBtn>
+                    <Style.SizeBtn>모든 사이즈</Style.SizeBtn>
                   ) : (
                     <Style.SizeNum>{selectSize}</Style.SizeNum>
                   )}
@@ -138,7 +203,6 @@ const ProductDetail = () => {
               </Style.SizeContainer>
               <HorizonLine width={"100%"} border={"1px"} color={"gray"} />
             </div>
-
             <Style.Price>
               {productInfo && convertToPrice(productInfo.product.price)}원
             </Style.Price>
@@ -156,7 +220,6 @@ const ProductDetail = () => {
                 </Style.GoToCartPageBtnContainer>
               </Style.GoToCartPageBtnLayout>
             )}
-
             <Style.AddBtnContainer>
               <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
               {isLogin === false ? (
@@ -164,7 +227,7 @@ const ProductDetail = () => {
                   style={{
                     width: "45px",
                     height: "45px",
-                    marginTop: "2px",
+                    marginTop: "-10px",
                     marginLeft: "10px",
                     cursor: "pointer",
                     fontsize: "35px",
@@ -178,7 +241,7 @@ const ProductDetail = () => {
                   style={{
                     width: "45px",
                     height: "45px",
-                    marginTop: "2px",
+                    marginTop: "-10px",
                     marginLeft: "10px",
                     cursor: "pointer",
                     fontsize: "35px",
@@ -191,7 +254,7 @@ const ProductDetail = () => {
                   style={{
                     width: "45px",
                     height: "45px",
-                    marginTop: "2px",
+                    marginTop: "-10px",
                     marginLeft: "10px",
                     cursor: "pointer",
                     fontsize: "35px",
@@ -204,8 +267,11 @@ const ProductDetail = () => {
           </Style.ProductInfoContainer>
         </Style.ProductContainer>
       </Style.Container>
-
-      <ProductReviews productReviews={productReviews} />
+      <QnA></QnA>
+      <ProductDetailFooter></ProductDetailFooter>
+      <div id="review">
+        <ProductReviews productReviews={productReviews} />
+      </div>
 
       <Style.SimilarProductTitleLayout>
         <Style.Span>

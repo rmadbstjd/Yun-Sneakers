@@ -31,6 +31,7 @@ export const ProductInfoContainer = styled.div`
 `;
 
 export const Category = styled.div`
+  margin-top: 20px;
   font-weight: bolder;
   font-size: 20px;
 `;
@@ -38,6 +39,7 @@ export const Category = styled.div`
 export const Description = styled.span`
   color: gray;
   font-size: 17px;
+  margin-top: 10px;
 `;
 
 export const SizeContainer = styled.div`
@@ -54,7 +56,7 @@ export const SizeTitle = styled.span`
 
 export const Size = styled.span`
   display: flex;
-  width: 75px;
+  width: 110px;
   justify-content: space-between;
 `;
 
@@ -64,6 +66,7 @@ export const SizeBtn = styled.span`
   line-height: 460%;
   cursor: pointer;
   height: 80px;
+  width: 80px;
 `;
 
 export const SizeNum = styled.div`
@@ -86,6 +89,7 @@ export const Price = styled.div`
   font-weight: bolder;
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
   margin-bottom: 155px;
 `;
 
@@ -110,13 +114,15 @@ export const AddBtn = styled.div`
     cursor: pointer;
     transition: all 0.8s;
   }
+  margin-top: -10px;
 `;
 
 export const HeartBtn = styled.div`
-  margin-top: 5px;
+  margin-top: -2px;
   margin-left: 10px;
   cursor: pointer;
   font-size: 35px;
+  background: red;
 `;
 
 export const SimilarProductTitleLayout = styled.div`
@@ -179,3 +185,13 @@ export const GoToCartBtn = styled.div`
   cursor: pointer;
   color: #a5ba93;
 `;
+
+export const ReviewCount = styled.div`
+  font-size: 12px;
+  text-decoration: underline;
+  color: #696969;
+  cursor: pointer;
+  margin: 2px 0px 0px 5px;
+`;
+
+export const Star = styled.div``;

@@ -57,3 +57,17 @@ export const Header = styled.div`
 export const Star = styled.div``;
 
 export const Date = styled.div``;
+
+export const NoneTextTitle = styled.div`
+  width: 90%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+`;
+
+export const NoneTextContent = styled.div`
+  width: 90%;
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+`;

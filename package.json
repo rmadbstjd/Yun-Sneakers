@@ -29,6 +29,7 @@
     "react-paginate": "^8.1.4",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
     "react-star-rating-component": "^1.4.1",
     "sweetalert2": "^11.7.1",
