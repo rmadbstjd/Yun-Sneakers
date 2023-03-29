@@ -6,6 +6,8 @@ const ProductReviews = ({ productReviews }) => {
   const [isClicked, setIsClicked] = useState();
   const clickToReview = (index) => {
     if (index === isClicked) {
+      console.log("i", index);
+      console.log("isClicked", isClicked);
       setIsClicked();
       return;
     }

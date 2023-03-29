@@ -14,6 +14,7 @@ export const Header = styled.div`
 export const Title = styled.div`
   font-size: 20px;
   font-weight: bolder;
+  margin-top: 10px;
 `;
 
 export const Write = styled.div`
@@ -114,4 +115,68 @@ export const Count = styled.div`
 
 export const InitCount = styled.div`
   color: ${(props) => (props.isInit === false ? "black" : "gray")};
+`;
+
+export const QnALayout = styled.div`
+  padding: 10px 0px 0px 10px;
+  line-height: 190%;
+  background: ${(props) => props.isShow && "#f3f3f3"};
+`;
+
+export const LockImg = styled.div`
+  margin-top: 2.5px;
+`;
+export const QnAContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const QnAInfo = styled.div`
+  width: 250px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px;
+  cursor: pointer;
+`;
+export const UserId = styled.div``;
+
+export const Dates = styled.div``;
+
+export const AnswerBox = styled.div`
+  border: solid black 0px;
+  color: white;
+  width: 35px;
+  height: 25px;
+  background: ${(props) => (props.answered === true ? "#375fff" : "gray")};
+  text-align: center;
+  line-height: 185%;
+  margin-top: 5px;
+`;
+
+export const QnATitle = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
+
+export const QnAContent = styled.div`
+  cursor: pointer;
+`;
+
+export const NullText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+`;
+
+export const ButtonLayout = styled.div`
+  width: 1236px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const Button = styled.div`
+  text-decoration: underline;
+  margin: 0px 5px 0px 5px;
+  cursor: pointer;
 `;

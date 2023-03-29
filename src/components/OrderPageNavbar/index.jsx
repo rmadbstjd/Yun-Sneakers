@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../common/Modal";
 import convertToPrice from "../../hooks/convertToPrice";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { Link } from "react-scroll";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -133,7 +134,9 @@ const OrderPageNavbar = () => {
                     clickToBtn(item.product._id);
                   }}
                 >
-                  배송완료
+                  <Link to="shipComplete" spy={true} smooth={true}>
+                    배송완료
+                  </Link>
                 </Style.Btn>
               </Style.BtnContainer>
               <div>{item.product.state}</div>
@@ -141,7 +144,9 @@ const OrderPageNavbar = () => {
           </Style.ProductContent>
         ))}
       <Style.ShipmentTitle>
-        배송 완료 ( {completedProducts && completedProducts.length} )
+        <div id="shipComplete">
+          배송 완료 ( {completedProducts && completedProducts.length} )
+        </div>
       </Style.ShipmentTitle>
       <Style.HorizonLine></Style.HorizonLine>
       <Style.TopContainer>

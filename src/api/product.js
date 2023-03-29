@@ -1,4 +1,5 @@
 import axios from "axios";
+import { instance } from "./../utils/instance";
 export default class Product {
   constructor() {
     this.httpClient = axios.create(
@@ -73,6 +74,43 @@ export default class Product {
   }
   async getBrandsName() {
     const response = await this.httpClient.get("products/brandsName", {});
+    const data = response.data;
+    return data;
+  }
+
+  async addQna(productId, title, content, isSecret, dates) {
+    const response = await instance.post(`/qna/${productId}`, {
+      title,
+      content,
+      isSecret,
+      dates,
+    });
+    const data = response.data;
+    return data;
+  }
+
+  async modifyQna(productId, title, content, isSecret, dates, qnaId) {
+    const response = await instance.put(`/qna/${productId}`, {
+      title,
+      content,
+      isSecret,
+      dates,
+      qnaId,
+    });
+    const data = response.data;
+    return data;
+  }
+
+  async getQna(productId) {
+    const response = await this.httpClient.get(`/qna/${productId}`, {});
+    const data = response.data;
+    return data.reverse();
+  }
+
+  async deleteQna(productId, qnaId) {
+    const response = await instance.delete(`/qna/${productId}`, {
+      data: { qnaId },
+    });
     const data = response.data;
     return data;
   }

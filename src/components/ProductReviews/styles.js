@@ -12,7 +12,7 @@ export const Title = styled.div`
 `;
 
 export const ReviewContainer = styled.div`
-  margin: 20px 0px 0px 170px;
+  margin: 0px 0px 0px 170px;
 `;
 
 export const Review = styled.div`
