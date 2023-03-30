@@ -129,6 +129,7 @@ export const LockImg = styled.div`
 export const QnAContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 export const QnAInfo = styled.div`

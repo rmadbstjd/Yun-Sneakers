@@ -30,6 +30,8 @@ const SearchPage = () => {
   const sessionSort = sessionStorage.getItem("sort");
   const sessionBrand = sessionStorage.getItem("brand");
   const sessionPrice = sessionStorage.getItem("price");
+  const initPage = query.get("page") || 1;
+  const [pages, setPages] = useState(Number(initPage));
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -176,6 +178,13 @@ const SearchPage = () => {
     setSearchProducts(data.products);
 
     return;
+  };
+
+  const handlePageChange = (pages) => {
+    navigate(
+      `/search?keyword=${result}&sort=${checkedSort}&collectionName=${collectionName}&priceOrder=${priceOrder}&page=${pages}`
+    );
+    setPages(pages);
   };
 
   useEffect(() => {
@@ -465,11 +474,10 @@ const SearchPage = () => {
             </Style.Products>
           </Style.Content>
           <Pagination
-            result={result}
-            checkedSort={checkedSort}
-            collectionName={collectionName}
-            priceOrder={priceOrder}
             count={products && products.count}
+            handleChange={handlePageChange}
+            page={pages}
+            pagePerCount={10}
           ></Pagination>
         </Style.Container>
       </Style.Layout>

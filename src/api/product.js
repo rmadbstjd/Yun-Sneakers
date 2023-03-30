@@ -101,10 +101,16 @@ export default class Product {
     return data;
   }
 
-  async getQna(productId) {
-    const response = await this.httpClient.get(`/qna/${productId}`, {});
+  async getQna(productId, page) {
+    const response = await this.httpClient.get(`/qna/${productId}`, {
+      headers: {
+        page,
+      },
+    });
     const data = response.data;
-    return data.reverse();
+    const QnA = data.Qna;
+    const count = data.count;
+    return { QnA, count };
   }
 
   async deleteQna(productId, qnaId) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
 import HorizonLine from "../common/HorizonLine";
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import productStore from "../../store/productStore";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillLock } from "react-icons/ai";
+import Pagination from "../../components/common/Pagination";
 const noticeArr = [
   "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",
   " 상품 및 상품 구매 과정과 관련 없는 비방, 욕설, 명예훼손성 게시글 및 상품과 관련 없는 광고글 등 부적절한 게시글 등록 시 글쓰기 제한 및 게시글이 삭제 조치 될 수 있습니다.",
@@ -28,11 +29,15 @@ const QnA = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [index, setIndex] = useState();
-  const {
+  const [page, setPage] = useState(1);
+  let {
     isLoading,
     data: QnA,
     refetch,
-  } = useQuery(["qna"], () => product.getQna(id));
+  } = useQuery(["qna"], () => product.getQna(id, page));
+  const QnAcounts = QnA && QnA.count.length;
+  QnA = QnA && QnA.QnA;
+  console.log("QnA", QnA);
   const clickToWriteBtn = () => {};
   const clickToSubmitBtn = async () => {
     if (title.length === 0) {
@@ -92,8 +97,8 @@ const QnA = () => {
     if (e.target.value.length > 14) setTitle(title.substring(0, 14));
     else setTitle(e.target.value);
   };
+
   const handleSetContent = (e) => {
-    console.log("e", e.target.value);
     if (e.target.value.length > 300) setContent(content.substring(0, 300));
     else setContent(e.target.value);
   };
@@ -143,6 +148,16 @@ const QnA = () => {
       }
     });
   };
+
+  const handlePageChange = async (page) => {
+    console.log("page", page);
+    setPage(page);
+    QnA = await product.getQna(id, page);
+    console.log("실행");
+
+    refetch();
+  };
+  useEffect(() => {}, [QnA]);
   return (
     <Style.Layout>
       <Style.Header>
@@ -292,6 +307,14 @@ const QnA = () => {
             />
           </Style.QnALayout>
         ))}
+      {QnA && QnA.length !== 0 && (
+        <Pagination
+          count={QnAcounts && QnAcounts}
+          pagePerCount={5}
+          page={page}
+          handleChange={handlePageChange}
+        ></Pagination>
+      )}
     </Style.Layout>
   );
 };
