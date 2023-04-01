@@ -4,7 +4,7 @@ export const SizeContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: 8px;
+  padding-left: 18px;
 `;
 
 export const Title = styled.div`

@@ -132,7 +132,7 @@ const ProductDetail = () => {
         break;
     }
   }, [rate]);
-
+  console.log("pr", productReviews);
   return (
     <>
       <Navbar />
@@ -165,7 +165,7 @@ const ProductDetail = () => {
               {productReviews && (
                 <Style.ReviewCount>
                   <Link to="review" spy={true} smooth={true}>
-                    {productReviews.length}개 리뷰 보기
+                    {productReviews.count}개 리뷰 보기
                   </Link>
                 </Style.ReviewCount>
               )}

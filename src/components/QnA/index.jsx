@@ -154,7 +154,6 @@ const QnA = () => {
     setPage(page);
     QnA = await product.getQna(id, page);
     console.log("실행");
-
     refetch();
   };
   useEffect(() => {}, [QnA]);

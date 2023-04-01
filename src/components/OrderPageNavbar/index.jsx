@@ -28,9 +28,10 @@ const OrderPageNavbar = () => {
     data: completedProducts,
     refetch: refetch2,
   } = useQuery(["배송완료"], () => order.getShipIsCompleted());
-  const { cart, myPage, order } = userInfoStore();
+  const { myPage, order } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
+    console.log("클릭;");
     await order.completeShipment(id);
     refetch1();
     refetch2();

@@ -11,9 +11,15 @@ export default class Review {
     );
   }
 
-  async getProductReviews(id) {
-    const response = await this.httpClient.get(`/review/${id}`);
+  async getProductReviews(id, page) {
+    const response = await this.httpClient.get(`/review/${id}`, {
+      headers: {
+        page,
+      },
+    });
     const data = response.data;
-    return data;
+    const reviews = data.reviews;
+    const count = data.count;
+    return { reviews, count };
   }
 }
