@@ -31,7 +31,6 @@ const OrderPageNavbar = () => {
   const { myPage, order } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
-    console.log("클릭;");
     await order.completeShipment(id);
     refetch1();
     refetch2();
@@ -130,15 +129,16 @@ const OrderPageNavbar = () => {
             <Style.State>
               <Style.BtnContainer>
                 <Style.Text>배송이 완료되었다면↓</Style.Text>
-                <Style.Btn
-                  onClick={() => {
-                    clickToBtn(item.product._id);
-                  }}
-                >
-                  <Link to="shipComplete" spy={true} smooth={true}>
+
+                <Link to="shipComplete" spy={true} smooth={true}>
+                  <Style.Btn
+                    onClick={() => {
+                      clickToBtn(item.product._id);
+                    }}
+                  >
                     배송완료
-                  </Link>
-                </Style.Btn>
+                  </Style.Btn>
+                </Link>
               </Style.BtnContainer>
               <div>{item.product.state}</div>
             </Style.State>

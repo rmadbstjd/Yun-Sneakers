@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsFillPencilFill, BsFillCartFill } from "react-icons/bs";
+import { AiFillFileAdd } from "react-icons/ai";
+import { IoBagAddSharp } from "react-icons/io";
 import { GiConverseShoe } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
@@ -12,6 +14,8 @@ import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import { useQuery } from "@tanstack/react-query";
+import jwt_decode from "jwt-decode";
+
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { cart, nickName, userId, user } = userInfoStore();
@@ -19,19 +23,21 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
-  const [token, setToken] = useState("");
+  const token = localStorage.getItem("accessToken");
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const info = token && jwt_decode(token);
+  const [isAdmin, setIsAdmin] = useState(
+    (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
+  );
 
-  const [admin] = useState("");
   const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
     initCartCount();
     if (cartProducts) {
       plusCartCount(cartProducts.products.length);
     }
-    setToken(localStorage.getItem("token"));
-  }, [token, admin, cartProducts]);
+  }, [cartProducts]);
   const handleLogin = async () => {
     navigate("/login");
   };
@@ -51,6 +57,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, []);
 
   useEffect(() => {}, [nickName]);
+
   return (
     <>
       {showNavbar && (
@@ -101,83 +108,111 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               >
                 SHOP
               </Style.MyPage>
-              <FaUser
-                style={{
-                  marginTop: "13px",
-                  marginRight: "3px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  navigate("/mypage/order");
-                  setShowSearch(false);
-                }}
-              />
-              <Style.MyPage
-                onClick={() => {
-                  navigate("/mypage/order");
-                  setShowSearch(false);
-                }}
-              >
-                MY PAGE
-              </Style.MyPage>
-              <BsHeartFill
-                style={{
-                  marginTop: "15px",
-                  marginRight: "3px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  navigate("/products");
-                  setShowSearch(false);
-                }}
-              />
-              <Style.Products
-                onClick={() => {
-                  navigate("/products");
-                  setShowSearch(false);
-                }}
-              >
-                MY LIKE
-              </Style.Products>
-              <BsFillCartFill
-                style={{
-                  marginTop: "10px",
-                  marginRight: "3px",
-                  cursor: "pointer",
-                }}
-                size={20}
-                onClick={() => {
-                  navigate("/cart");
-                  setShowSearch(false);
-                }}
-              />
-              <Style.ShoppingBag
-                onClick={() => {
-                  navigate("/cart");
-                  setShowSearch(false);
-                }}
-              >
-                {isLogin && <Style.Count>{cartCount}</Style.Count>}
-                <Style.Products>MY CART</Style.Products>
-              </Style.ShoppingBag>
+              {!isAdmin && (
+                <FaUser
+                  style={{
+                    marginTop: "13px",
+                    marginRight: "3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/mypage/order");
+                    setShowSearch(false);
+                  }}
+                />
+              )}
+              {!isAdmin && (
+                <Style.MyPage
+                  onClick={() => {
+                    navigate("/mypage/order");
+                    setShowSearch(false);
+                  }}
+                >
+                  MY PAGE
+                </Style.MyPage>
+              )}
 
-              {
-                <BsFillPencilFill
-                  size={28}
+              {!isAdmin && (
+                <BsHeartFill
+                  style={{
+                    marginTop: "15px",
+                    marginRight: "3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/products");
+                    setShowSearch(false);
+                  }}
+                />
+              )}
+              {!isAdmin && (
+                <Style.Products
+                  onClick={() => {
+                    navigate("/products");
+                    setShowSearch(false);
+                  }}
+                >
+                  MY LIKE
+                </Style.Products>
+              )}
+              {!isAdmin && (
+                <BsFillCartFill
                   style={{
                     marginTop: "10px",
-                    marginRight: "10px",
+                    marginRight: "3px",
                     cursor: "pointer",
-                    display: "none",
+                  }}
+                  size={20}
+                  onClick={() => {
+                    navigate("/cart");
+                    setShowSearch(false);
+                  }}
+                />
+              )}
+              {!isAdmin && (
+                <Style.ShoppingBag
+                  onClick={() => {
+                    navigate("/cart");
+                    setShowSearch(false);
+                  }}
+                >
+                  {isLogin && <Style.Count>{cartCount}</Style.Count>}
+                  <Style.Products>MY CART</Style.Products>
+                </Style.ShoppingBag>
+              )}
+
+              {isAdmin && (
+                <AiFillFileAdd
+                  size={20}
+                  style={{
+                    marginTop: "11px",
+                    marginRight: "3px",
+                    cursor: "pointer",
                   }}
                   onClick={() => {
                     navigate("/new");
                     setShowSearch(false);
                   }}
                 />
-              }
-              {nickName && <Style.Nickname> {nickName}</Style.Nickname>}
-              {!nickName && <Style.Nickname>GUEST</Style.Nickname>}
+              )}
+              {isAdmin && (
+                <Style.Products
+                  onClick={() => {
+                    navigate("/new");
+                    setShowSearch(false);
+                  }}
+                >
+                  상품 추가
+                </Style.Products>
+              )}
+              <Style.Nickname>
+                {isAdmin === true
+                  ? "관리자"
+                  : nickName.length !== 0
+                  ? nickName
+                  : "GUEST"}
+              </Style.Nickname>
+
               {!isLogin ? (
                 <Style.Btn onClick={handleLogin}>Login</Style.Btn>
               ) : (

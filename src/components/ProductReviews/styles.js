@@ -12,11 +12,12 @@ export const Title = styled.div`
 `;
 
 export const ReviewContainer = styled.div`
+  width: 80%;
   margin: 0px 0px 0px 170px;
 `;
 
 export const Review = styled.div`
-  width: 89.5%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   cursor: pointer;

@@ -37,7 +37,7 @@ const QnA = () => {
   } = useQuery(["qna"], () => product.getQna(id, page));
   const QnAcounts = QnA && QnA.count.length;
   QnA = QnA && QnA.QnA;
-  console.log("QnA", QnA);
+
   const clickToWriteBtn = () => {};
   const clickToSubmitBtn = async () => {
     if (title.length === 0) {
@@ -150,10 +150,8 @@ const QnA = () => {
   };
 
   const handlePageChange = async (page) => {
-    console.log("page", page);
     setPage(page);
     QnA = await product.getQna(id, page);
-    console.log("실행");
     refetch();
   };
   useEffect(() => {}, [QnA]);
@@ -286,7 +284,6 @@ const QnA = () => {
                     clickToModifyBtn(e, index);
                   }}
                 >
-                  {" "}
                   수정
                 </Style.Button>
                 <Style.Button

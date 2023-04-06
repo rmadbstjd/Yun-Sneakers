@@ -9,11 +9,9 @@ const Products = () => {
   const { product } = userInfoStore();
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery(["new", currentPage], () => product.getNewProducts(currentPage));
+  const { isLoading, data: products } = useQuery(["new", currentPage], () =>
+    product.getNewProducts(currentPage)
+  );
   const [moreProducts, setMoreProducts] = useImmer([]);
   const ClickToMoreProduct = () => {
     setCurrentPage((prev) => prev + 1);

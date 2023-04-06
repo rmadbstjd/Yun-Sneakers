@@ -13,6 +13,7 @@ import NewProducts from "../pages/NewProduct";
 import userInfoStore from "../store/userInfoStore";
 import authenticate from "../hooks/authenticate";
 import AuthenticateRoute from "./Authenticate";
+import EditProduct from "../pages/EditProduct";
 const Router = () => {
   const { setNickName, setUserId } = userInfoStore();
   const isAuthenticated = localStorage.getItem("isLogin") === "true";
@@ -30,6 +31,7 @@ const Router = () => {
           element={<Login isAuthenticated={isAuthenticated} />}
         />
         <Route path="/new" element={<NewProducts />} />
+        <Route path="/edit" element={<EditProduct />} />
         <Route path="/search" element={<SearchPage />} />
         <Route
           path="/mypage/*"

@@ -108,7 +108,7 @@ const ProductReviews = () => {
               />
             </Style.Review>
           ))}
-        {productReviews && productReviews !== 0 && (
+        {productReviews && productReviews.length !== 0 && (
           <Pagination
             count={productReviewsCount}
             pagePerCount={5}

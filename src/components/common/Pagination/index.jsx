@@ -3,7 +3,6 @@ import "./Paging.css";
 import Pagination from "react-js-pagination";
 
 const Paging = ({ count = 1, handleChange, page, pagePerCount }) => {
-  console.log("pzz", page);
   return (
     <Pagination
       activePage={page} // 현재 페이지

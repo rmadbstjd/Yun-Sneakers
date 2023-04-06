@@ -132,7 +132,7 @@ const ProductDetail = () => {
         break;
     }
   }, [rate]);
-  console.log("pr", productReviews);
+
   return (
     <>
       <Navbar />

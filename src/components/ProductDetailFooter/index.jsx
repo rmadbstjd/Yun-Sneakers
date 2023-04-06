@@ -20,7 +20,7 @@ const exchangeText = [
 const ProductDetailFooter = () => {
   return (
     <Style.Layout>
-      <Style.Title>배송정보</Style.Title>
+      <Style.Title>배송 정보</Style.Title>
       <HorizonLine
         width={"100%"}
         border={"4px"}
@@ -30,6 +30,12 @@ const ProductDetailFooter = () => {
       {shipText.map((content) => (
         <Style.Text key={content}>· {content}</Style.Text>
       ))}
+      <HorizonLine
+        width={"100%"}
+        border={"1px"}
+        color={"gray"}
+        margin={"10px 0px 0px 0px"}
+      />
       <Style.Title>교환, 환불 안내</Style.Title>
       <HorizonLine
         width={"100%"}
@@ -40,6 +46,12 @@ const ProductDetailFooter = () => {
       {exchangeText.map((content) => (
         <Style.Text key={content}>· {content}</Style.Text>
       ))}
+      <HorizonLine
+        width={"100%"}
+        border={"1px"}
+        color={"gray"}
+        margin={"20px 0px 0px 0px"}
+      />
     </Style.Layout>
   );
 };

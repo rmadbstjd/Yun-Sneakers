@@ -15,6 +15,8 @@ import { useImmer } from "use-immer";
 import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Pagination from "../../components/common/Pagination";
+import jwt_decode from "jwt-decode";
+
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -32,6 +34,12 @@ const SearchPage = () => {
   const sessionPrice = sessionStorage.getItem("price");
   const initPage = query.get("page") || 1;
   const [pages, setPages] = useState(Number(initPage));
+
+  const token = localStorage.getItem("accessToken");
+  const info = token && jwt_decode(token);
+  const [isAdmin, setIsAdmin] = useState(
+    (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
+  );
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -467,6 +475,7 @@ const SearchPage = () => {
                         key={index}
                         none={"none"}
                         product={item}
+                        isAdmin={isAdmin}
                       ></ProductLikeCard>
                     ))
                   : null}

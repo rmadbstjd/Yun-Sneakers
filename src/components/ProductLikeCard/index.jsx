@@ -3,11 +3,12 @@ import styles from "./ProductLikeCard.module.css";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import { HiHeart } from "react-icons/hi";
-import { AiFillCloseSquare } from "react-icons/ai";
+import { AiFillCloseSquare, AiFillSetting } from "react-icons/ai";
 import convertToPrice from "../../hooks/convertToPrice";
-const ProductLikeCard = ({ none, product, refetch }) => {
+const ProductLikeCard = ({ none, product, refetch, isAdmin }) => {
   const { like } = userInfoStore();
   const navigate = useNavigate();
+
   const clickDelete = async (e) => {
     e.stopPropagation();
     product && (await like.pushLike(product.id));
@@ -17,6 +18,10 @@ const ProductLikeCard = ({ none, product, refetch }) => {
     navigate(`/products/${product.id}`);
   };
 
+  const clickToSettingBtn = (e) => {
+    e.stopPropagation();
+    navigate("/edit", { state: { productId: product && product.id } });
+  };
   return (
     <div className={styles.card} onClick={goToDetail}>
       {none !== "none" ? (
@@ -30,7 +35,9 @@ const ProductLikeCard = ({ none, product, refetch }) => {
         src={product && product.image}
         alt="이미지"
       ></img>
-
+      <div className={styles.setting}>
+        <AiFillSetting size={25} color={"black"} onClick={clickToSettingBtn} />
+      </div>
       <div className={styles.infoContainer}>
         <div className={styles.categoryContainer}>
           <div className={styles.category}>
