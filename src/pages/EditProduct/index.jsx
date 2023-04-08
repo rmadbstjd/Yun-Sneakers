@@ -12,9 +12,13 @@ const EditProduct = () => {
     error,
     data: productInfo,
   } = useQuery(["edit", id], () => product.getProductInfo(id));
-  console.log("id", id);
-  console.log("product", productInfo);
-  return <InputProduct title={"상품 수정하기"} type={"수정"}></InputProduct>;
+  return (
+    <InputProduct
+      title={"상품 수정하기"}
+      type={"수정"}
+      productInfo={productInfo}
+    ></InputProduct>
+  );
 };
 
 export default EditProduct;

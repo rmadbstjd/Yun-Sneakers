@@ -72,6 +72,28 @@ export default class Product {
       description: product.description,
     });
   }
+
+  async editProduct(product, image, productId) {
+    return this.httpClient.put("/products", {
+      id: product.id,
+      name: product.title,
+      category: product.category,
+      size: product.size,
+      price: product.price,
+      image,
+      description: product.description,
+      productId,
+    });
+  }
+
+  async deleteProduct(productId) {
+    const response = await this.httpClient.delete(`/products`, {
+      data: { productId },
+    });
+    const data = response.data;
+    return data;
+  }
+
   async getBrandsName() {
     const response = await this.httpClient.get("products/brandsName", {});
     const data = response.data;

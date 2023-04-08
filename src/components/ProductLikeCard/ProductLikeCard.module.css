@@ -68,6 +68,32 @@
 }
 
 .setting {
-  position: absolute;
-  margin: -185px 0px 0px 160px;
+  border: solid gray 1px;
+  width: 40px;
+  text-align: center;
+  height: 22px;
+  line-height: 140%;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+.setting:hover {
+  background: black;
+  color: white;
+}
+.delete {
+  border: solid gray 1px;
+  width: 40px;
+  text-align: center;
+  height: 22px;
+  line-height: 140%;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+.delete:hover {
+  background: black;
+  color: white;
+}
+.buttonContainer {
+  display: flex;
+  margin: 0px 0px 0px 95px;
 }
