@@ -35,6 +35,11 @@ const QnA = () => {
     data: QnA,
     refetch,
   } = useQuery(["qna"], () => product.getQna(id, page));
+  const { data: productInfo } = useQuery([id], () =>
+    product.getProductInfo(id)
+  );
+  const image = productInfo && productInfo.product.image;
+
   const QnAcounts = QnA && QnA.count.length;
   QnA = QnA && QnA.QnA;
 
@@ -68,7 +73,7 @@ const QnA = () => {
 
     let dates = `${year}.${month}.${days2}`;
     if (!isClickedModifyBtn) {
-      await product.addQna(id, title, content, secretChecked, dates);
+      await product.addQna(id, title, content, secretChecked, dates, image);
       setShowModal(false);
       setTitle("");
       setContent("");

@@ -29,6 +29,18 @@
   background: whitesmoke;
   transition-duration: 2s, 4s;
 }
+.qnaModal {
+  border-radius: 10px;
+  width: 1000px;
+  height: 650px;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: whitesmoke;
+  transition-duration: 2s, 4s;
+}
 .overlay {
   border: 0px;
   position: fixed;

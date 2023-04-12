@@ -66,6 +66,7 @@ export const BtnContainer = styled.div`
   justify-content: space-around;
   width: 200px;
   margin-left: 35%;
+  margin-top: 10px;
 `;
 
 export const Btn = styled.div`
@@ -100,6 +101,12 @@ export const ProductContent = styled.div`
   width: 80%;
 `;
 
+export const QnAContent = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 95%;
+`;
+
 export const Img = styled.img`
   width: 150px;
   height: 150px;
@@ -122,6 +129,8 @@ export const ProductName = styled.div`
 
 export const ProductDescription = styled.div`
   margin-bottom: 3px;
+  width: 800px;
+  height: 122px;
 `;
 
 export const HorizonLine = styled.div`
@@ -167,11 +176,11 @@ export const StarBtn = styled.div`
 
 export const TextArea = styled.textarea`
   margin-top: 10px;
-  width: 565px;
-  height: 200px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   border: none;
   resize: none;
-  outline-color: white;
+  outline-color: black;
 `;
 
 export const TextLength = styled.div`

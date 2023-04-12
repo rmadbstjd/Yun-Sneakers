@@ -100,13 +100,27 @@ export default class Product {
     return data;
   }
 
-  async addQna(productId, title, content, isSecret, dates) {
+  async getNotAnsweredQna() {
+    const response = await this.httpClient.get("/qna/notanswered", {});
+    const data = response.data;
+    return data;
+  }
+
+  async getAnsweredQna() {
+    const response = await this.httpClient.get("/qna/answered", {});
+    const data = response.data;
+    return data;
+  }
+  async addQna(productId, title, content, isSecret, dates, image) {
+    console.log("image", image);
     const response = await instance.post(`/qna/${productId}`, {
       title,
       content,
       isSecret,
       dates,
+      image,
     });
+
     const data = response.data;
     return data;
   }
@@ -118,6 +132,15 @@ export default class Product {
       isSecret,
       dates,
       qnaId,
+    });
+    const data = response.data;
+    return data;
+  }
+
+  async answerQna(productId, qnaId, answer) {
+    const response = await this.httpClient.put(`/qna/answer/${productId}`, {
+      qnaId,
+      answer,
     });
     const data = response.data;
     return data;

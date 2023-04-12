@@ -17,6 +17,7 @@ const Modal = ({
   submitBtn,
   product,
   isReviewed,
+  qna,
 }) => {
   const [sizes, setSizes] = useState([]);
   const [star, setStar] = useState([false, false, false, false, false]);
@@ -181,6 +182,58 @@ const Modal = ({
         </Style.AddressContainer>
       </ReactModal>
     );
+  } else if (type === "qna") {
+    return (
+      <ReactModal
+        className={styles.qnaModal}
+        overlayClassName={styles.reviewOverlay}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        ariaHideApp={false}
+      >
+        <Style.ReviewContainer>
+          <Style.ReviewTitle>Q&A 답변</Style.ReviewTitle>
+          <Style.QnAContent>
+            <Style.Img src={qna && qna.image}></Style.Img>
+            <Style.InfoContainer>
+              <Style.ProductCategory>{qna && qna.title}</Style.ProductCategory>
+
+              <Style.ProductDescription>
+                {qna && qna.content}
+              </Style.ProductDescription>
+            </Style.InfoContainer>
+          </Style.QnAContent>
+          <Style.HorizonLine></Style.HorizonLine>
+          <div>
+            <Style.TextArea
+              width={"940px"}
+              height={"200px"}
+              placeholder="질문에 대한 답변을 작성해주세요."
+              value={text}
+              onChange={(e) => handleSetValue(e)}
+            ></Style.TextArea>
+            <Style.TextLength>{text.length} / 300</Style.TextLength>
+          </div>
+        </Style.ReviewContainer>
+        <Style.BtnContainer>
+          <Style.Btn
+            onClick={() => {
+              console.log("text", text);
+              submitBtn(text);
+            }}
+          >
+            저장
+          </Style.Btn>
+          <Style.Btn
+            onClick={() => {
+              setModalIsOpen(false);
+            }}
+          >
+            취소
+          </Style.Btn>
+        </Style.BtnContainer>
+      </ReactModal>
+    );
   } else if (type === "review") {
     return (
       <ReactModal
@@ -240,6 +293,8 @@ const Modal = ({
           <Style.HorizonLine></Style.HorizonLine>
           <div>
             <Style.TextArea
+              width={"565px"}
+              height={"200px"}
               placeholder="정확한 리뷰 작성을 위해 최소 10자 이상을 입력해주세요."
               value={text}
               onChange={(e) => handleSetValue(e)}
