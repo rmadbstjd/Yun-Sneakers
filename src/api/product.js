@@ -22,11 +22,18 @@ export default class Product {
     return { products, count };
   }
 
-  async getAllProducts() {
-    const response = await this.httpClient.get("products/all", {});
+  async getAllProducts(page) {
+    console.log("page", page);
+    const response = await this.httpClient.get("products/all", {
+      headers: {
+        page,
+      },
+    });
     const data = response.data;
+    const products = data.products;
+    const count = data.count;
 
-    return data;
+    return { products, count };
   }
   async getNewProducts(currentPage) {
     if (!currentPage) currentPage = 1;
@@ -112,7 +119,6 @@ export default class Product {
     return data;
   }
   async addQna(productId, title, content, isSecret, dates, image) {
-    console.log("image", image);
     const response = await instance.post(`/qna/${productId}`, {
       title,
       content,

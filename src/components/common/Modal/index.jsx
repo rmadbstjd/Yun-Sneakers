@@ -218,7 +218,6 @@ const Modal = ({
         <Style.BtnContainer>
           <Style.Btn
             onClick={() => {
-              console.log("text", text);
               submitBtn(text);
             }}
           >

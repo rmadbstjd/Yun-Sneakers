@@ -474,7 +474,7 @@ const SearchPage = () => {
                       <ProductLikeCard
                         key={index}
                         none={"none"}
-                        products={item}
+                        product={item}
                         isAdmin={isAdmin}
                       ></ProductLikeCard>
                     ))

@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-
 export const MyPageContainer = styled.div`
   font-family: "NanumSquareNeo-Variable";
   width: 1910px;
@@ -95,10 +94,11 @@ export const Info = styled.div`
   width: 300px;
   height: 200px;
   font-size: 15px;
-  line-height: 800%;
 `;
 
 export const Text = styled.div`
+  display: flex;
+  text-align: left;
   padding: 10px;
   &:hover {
     cursor: pointer;
@@ -137,11 +137,9 @@ export const Star = styled.div`
 
 export const BtnContainer = styled.div`
   display: flex;
-  width: 150px;
+  width: 650px;
   height: 100px;
-  margin-left: -15px;
-  justify-content: space-between;
-  align-items: center;
+  margin-left: 90px;
 `;
 
 export const Btn = styled.div`
@@ -152,7 +150,7 @@ export const Btn = styled.div`
   line-height: 190%;
   text-align: center;
   cursor: pointer;
-  margin-right: 10px;
+  margin-left: 30px;
   &:hover {
     background-color: black;
     color: white;
@@ -203,6 +201,7 @@ export const Review = styled.div`
   text-align: center;
   line-height: 190%;
   margin-top: 45px;
+  margin-left: 10px;
   cursor: pointer;
   color: white;
   font-size: 13px;

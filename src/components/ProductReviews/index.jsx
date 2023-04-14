@@ -51,7 +51,7 @@ const ProductReviews = () => {
               이 상품의 첫 번째 리뷰를 작성해보세요!
             </Style.NoneTextContent>
             <HorizonLine
-              width={"89.6%"}
+              width={"100%"}
               border={"1px"}
               color={"gray"}
               margin={"30px 0px 0px 0px"}

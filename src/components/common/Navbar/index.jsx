@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BsFillPencilFill, BsFillCartFill } from "react-icons/bs";
+import { BsFillCartFill } from "react-icons/bs";
 import { AiFillFileAdd } from "react-icons/ai";
-import { IoBagAddSharp } from "react-icons/io";
+import { RiQuestionAnswerFill } from "react-icons/ri";
 import { GiConverseShoe } from "react-icons/gi";
 import { FiSearch } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { AiTwotoneShopping } from "react-icons/ai";
+import { RiFileEditFill } from "react-icons/ri";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import Search from "../../Search";
@@ -180,7 +181,50 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                   <Style.Products>MY CART</Style.Products>
                 </Style.ShoppingBag>
               )}
-
+              {isAdmin && (
+                <RiFileEditFill
+                  size={19}
+                  style={{
+                    marginTop: "12px",
+                    marginRight: "3px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/manage");
+                    setShowSearch(false);
+                  }}
+                />
+              )}
+              {isAdmin && (
+                <Style.Products
+                  onClick={() => {
+                    navigate("/manage");
+                    setShowSearch(false);
+                  }}
+                >
+                  상품 관리
+                </Style.Products>
+              )}
+              {isAdmin && (
+                <RiQuestionAnswerFill
+                  size={20}
+                  style={{
+                    marginTop: "11px",
+                    marginRight: "3px",
+                    cursor: "pointer",
+                  }}
+                />
+              )}
+              {isAdmin && (
+                <Style.Products
+                  onClick={() => {
+                    navigate("/qna");
+                    setShowSearch(false);
+                  }}
+                >
+                  Q&A
+                </Style.Products>
+              )}
               {isAdmin && (
                 <AiFillFileAdd
                   size={20}

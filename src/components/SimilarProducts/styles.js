@@ -8,8 +8,8 @@ export const Product = styled.div`
 `;
 
 export const Img = styled.div`
-  width: 255px;
-  height: 250px;
+  width: 214px;
+  height: 214px;
   border-radius: 10px;
   background-size: cover;
   background-repeat: no-repeat;

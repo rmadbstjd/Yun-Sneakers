@@ -161,6 +161,7 @@ export const QnATitle = styled.div`
 
 export const QnAContent = styled.div`
   cursor: pointer;
+  font-weight: ${(props) => (props.font === "bolder" ? "bolder" : null)};
 `;
 
 export const NullText = styled.div`

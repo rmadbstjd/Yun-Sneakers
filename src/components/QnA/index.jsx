@@ -300,6 +300,13 @@ const QnA = () => {
                 </Style.Button>
               </Style.ButtonLayout>
             )}
+
+            {index === showContent && (
+              <Style.QnAContent font={"bolder"}>
+                <div>답변</div>
+                {item.answer}
+              </Style.QnAContent>
+            )}
             <HorizonLine
               width={"100.8%"}
               border={"1px"}

@@ -4,28 +4,32 @@ import productStore from "../../store/productStore";
 import Navbar from "./../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
 import Modal from "../../components/common/Modal";
-import Swal from "sweetalert2";
 
 const itemArr3 = ["제목", "내용", "유저", "날짜"];
 const QnA = () => {
   const [showModal, setShowModal] = useState(false);
   const { product } = productStore();
 
-  const { data: isNotAnsweredQnAs } = useQuery(["isNotAnsweredQnA"], () =>
-    product.getNotAnsweredQna()
+  const { data: isNotAnsweredQnAs, refetch } = useQuery(
+    ["isNotAnsweredQnA"],
+    () => product.getNotAnsweredQna()
   );
-  const { data: isAnsweredQnAs } = useQuery(["isAnsweredQnA"], () =>
-    product.getAnsweredQna()
+  const { data: isAnsweredQnAs, refetch: refetch2 } = useQuery(
+    ["isAnsweredQnA"],
+    () => product.getAnsweredQna()
   );
   const [showNotAnsweredQnA, setShowNotAnsweredQnA] = useState(true);
   const [isClicked, setIsClicked] = useState();
 
-  const submitBtn = (answer) => {
-    product.answerQna(
+  const submitBtn = async (answer) => {
+    await product.answerQna(
       isNotAnsweredQnAs[isClicked].productId,
       isNotAnsweredQnAs[isClicked]._id,
       answer
     );
+    refetch();
+    refetch2();
+    setShowModal(false);
   };
   const clickToQnA = (index) => {
     if (index === isClicked) setIsClicked();

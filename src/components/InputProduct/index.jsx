@@ -16,8 +16,7 @@ const InputProduct = ({ title, type, productInfo }) => {
     description: "",
     size: "",
   });
-  console.log("productInfo", productInfo);
-  console.log("프", convertToPrice(newProducts.price));
+
   const [file, setFile] = useState("");
   const [count, setCount] = useState(0);
 
@@ -25,7 +24,6 @@ const InputProduct = ({ title, type, productInfo }) => {
 
   const onChange = (e) => {
     const { files } = e.target;
-    console.log("files", files);
     setFile(files && files[0]);
   };
 
@@ -73,7 +71,7 @@ const InputProduct = ({ title, type, productInfo }) => {
       });
     }
   }, [productInfo]);
-  console.log("file", file);
+
   return (
     <>
       <Navbar />
@@ -159,10 +157,10 @@ const InputProduct = ({ title, type, productInfo }) => {
               type="text"
               placeholder={
                 count === 0
-                  ? "카테고리"
+                  ? "카테고리 ex)나이키,NIKE"
                   : newProducts.category === true
-                  ? "카테고리"
-                  : "카테고리를 입력해주세요."
+                  ? "카테고리 ex)나이키,NIKE"
+                  : "카테고리를 입력해주세요.ex)나이키,NIKE"
               }
               onChange={(e) => onChangeProduct(e, "category")}
               className={

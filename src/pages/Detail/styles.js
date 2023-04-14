@@ -148,16 +148,14 @@ export const SimilarProductTitle = styled.span`
 
 export const SimilarContainer = styled.div`
   display: flex;
-  justify-content: center;
-  width: 1600px;
+  width: 1260px;
   margin: 0 auto;
 `;
 
 export const ShoesContainer = styled.div`
   width: 79%;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  margin-left: 2px;
 `;
 
 export const GoToCartPageBtnLayout = styled.div`

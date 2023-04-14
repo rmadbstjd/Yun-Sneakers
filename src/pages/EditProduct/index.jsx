@@ -7,11 +7,13 @@ const EditProduct = () => {
   const { product } = userInfoStore();
   const location = useLocation();
   const id = location.state.productId;
+
   const {
     isLoading,
     error,
     data: productInfo,
   } = useQuery(["edit", id], () => product.getProductInfo(id));
+
   return (
     <InputProduct
       title={"상품 수정하기"}

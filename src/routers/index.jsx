@@ -11,6 +11,7 @@ import Shipment from "../pages/Shipment";
 import SearchPage from "../pages/Search";
 import NewProducts from "../pages/NewProduct";
 import QnA from "../pages/QnA";
+import ManageProducts from "../pages/ManageProducts";
 import userInfoStore from "../store/userInfoStore";
 import authenticate from "../hooks/authenticate";
 import AuthenticateRoute from "./Authenticate";
@@ -36,6 +37,7 @@ const Router = () => {
         <Route path="/edit" element={<EditProduct />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/qna" element={<QnA />} />
+        <Route path="/manage" element={<ManageProducts />} />
         <Route
           path="/mypage/*"
           element={
