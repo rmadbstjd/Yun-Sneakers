@@ -33,8 +33,11 @@ export const AddressSelectContainer = styled.div`
 `;
 
 export const ExistAddressSelectBox = styled.div`
-  border-top: solid #bebebe 1px;
+  border-top: ${(props) =>
+    props.haveAddress === false ? "solid #bebebe 1px" : null};
   border-left: ${(props) =>
+    props.haveAddress === false ? "solid #bebebe 1px" : null};
+  border-right: ${(props) =>
     props.haveAddress === false ? "solid #bebebe 1px" : null};
   color: ${(props) => (props.haveAddress === false ? "black" : "#bebebe")};
   background: ${(props) => (props.haveAddress === true ? "#f5f5f5" : null)};
@@ -52,6 +55,8 @@ export const AddAddressSelectBox = styled.div`
   border-top: ${(props) =>
     props.haveAddress === true ? "solid #bebebe 1px" : null};
   border-right: ${(props) =>
+    props.haveAddress === true ? "solid #bebebe 1px" : null};
+  border-left: ${(props) =>
     props.haveAddress === true ? "solid #bebebe 1px" : null};
   color: ${(props) => (props.haveAddress === false ? "#bebebe" : "black")};
   background: ${(props) => (props.haveAddress === false ? "#f5f5f5" : "white")};

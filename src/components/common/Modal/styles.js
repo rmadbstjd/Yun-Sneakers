@@ -87,6 +87,7 @@ export const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 export const ReviewTitle = styled.div`
@@ -98,7 +99,7 @@ export const ReviewTitle = styled.div`
 export const ProductContent = styled.div`
   display: flex;
   justify-content: flex-start;
-  width: 80%;
+  width: 500px;
 `;
 
 export const QnAContent = styled.div`
@@ -116,11 +117,13 @@ export const InfoContainer = styled.div`
   margin-left: 20px;
   display: flex;
   flex-direction: column;
+  width: 75%;
 `;
 
 export const ProductCategory = styled.div`
   font-weight: bolder;
   margin-bottom: 10px;
+  width: 75%;
 `;
 
 export const ProductName = styled.div`
@@ -129,10 +132,12 @@ export const ProductName = styled.div`
 
 export const ProductDescription = styled.div`
   margin-bottom: 3px;
-  width: 800px;
   height: 122px;
 `;
 
+export const Size = styled.div`
+  margin-top: -100px;
+`;
 export const HorizonLine = styled.div`
   width: 95%;
   margin-top: 20px;

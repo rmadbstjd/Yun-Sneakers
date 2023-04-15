@@ -23,7 +23,6 @@ export default class Product {
   }
 
   async getAllProducts(page) {
-    console.log("page", page);
     const response = await this.httpClient.get("products/all", {
       headers: {
         page,

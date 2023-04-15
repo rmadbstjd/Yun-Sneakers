@@ -4,8 +4,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
+import { useQuery } from "@tanstack/react-query";
 import { AiOutlineMinus } from "react-icons/ai";
 const AddShip = ({ type }) => {
+  const { data: address } = useQuery(["address"], () =>
+    myPage.getUserAddress()
+  );
+
   let regex;
   const {
     myPage,
@@ -14,7 +19,9 @@ const AddShip = ({ type }) => {
     shipReceiver,
     setShipReceiver,
     shipPostCode,
+    setShipPostCode,
     shipAddress,
+    setShipAddress,
     phoneNumInput1,
     phoneNumInput2,
     phoneNumInput3,
@@ -26,6 +33,7 @@ const AddShip = ({ type }) => {
     shipAddressDetail,
     setShipAddressDetail,
   } = userInfoStore();
+
   const requestArr = [
     "배송시 요청사항을 선택해 주세요",
     "부재시 문앞에 놓아주세요",
@@ -87,20 +95,19 @@ const AddShip = ({ type }) => {
   const checkAddress = (e) => {
     setDefaultAddress();
   };
+
   useEffect(() => {
-    if (defaultAddress) {
-      myPage.addUserAddress(
-        shipPlaceName,
-        shipReceiver,
-        shipPostCode,
-        shipAddress,
-        shipAddressDetail,
-        phoneNumInput1,
-        phoneNumInput2,
-        phoneNumInput3
-      );
+    if (address) {
+      setShipPlaceName(address[0].place);
+      setShipReceiver(address[0].receiver);
+      setPhoneNumInput1(address[0].phoneNumber1);
+      setPhoneNumInput2(address[0].phoneNumber2);
+      setPhoneNumInput3(address[0].phoneNumber3);
+      setShipAddress(address[0].address);
+      setShipAddressDetail(address[0].addressDetail);
+      setShipPostCode(address[0].postCode);
     }
-  }, [defaultAddress]);
+  }, [address]);
   return (
     <Style.Container>
       <Style.Content>

@@ -73,6 +73,7 @@ export const SizeNum = styled.div`
   font-weight: bolder;
   font-size: 20px;
   line-height: 355%;
+  margin-left: 35px;
 `;
 
 export const ShowSizeCircle = styled.div`

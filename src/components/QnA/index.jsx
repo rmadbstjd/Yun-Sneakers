@@ -274,8 +274,8 @@ const QnA = () => {
               <Style.QnAInfo>
                 <Style.UserId>{item.userId}</Style.UserId>{" "}
                 <Style.Dates>{item.dates}</Style.Dates>
-                <Style.AnswerBox answered={item.answered}>
-                  {item.answered === true ? "yes" : "no"}
+                <Style.AnswerBox answered={item.isAnswered}>
+                  {item.isAnswered === true ? "yes" : "no"}
                 </Style.AnswerBox>
               </Style.QnAInfo>
             </Style.QnAContainer>

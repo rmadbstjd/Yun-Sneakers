@@ -254,7 +254,7 @@ const Modal = ({
               <Style.ProductDescription>
                 {product.info.description}
               </Style.ProductDescription>
-              <div>[사이즈] {product.product.size}</div>
+              <Style.Size>[사이즈] {product.product.size}</Style.Size>
             </Style.InfoContainer>
           </Style.ProductContent>
           <Style.HorizonLine></Style.HorizonLine>
