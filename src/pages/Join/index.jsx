@@ -26,24 +26,44 @@ const Join = () => {
   const changeInput = (e, type) => {
     switch (type) {
       case "id":
-        regex = /^[a-z]+[a-z0-9]{5,19}$/g;
-        if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false });
-        } else {
-          setAllows({ ...allows, [type]: true });
-        }
+        regex = /^[A-za-z0-9]{5,19}$/;
+        if (e.target.value.length <= 19)
+          if (!regex.test(e.target.value)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
         setInputs({ ...inputs, [type]: e.target.value });
+        if (e.target.value.length > 19) {
+          let limitID = e.target.value.substring(0, 19);
+          if (!regex.test(limitID)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
+          setInputs({ ...inputs, [type]: limitID });
+        }
         break;
 
       case "pw":
         regex =
           /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-        if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false });
-        } else {
-          setAllows({ ...allows, [type]: true });
-        }
+        if (e.target.value.length <= 16)
+          if (!regex.test(e.target.value)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
         setInputs({ ...inputs, [type]: e.target.value });
+        if (e.target.value.length > 16) {
+          let limitPW = e.target.value.substring(0, 16);
+          if (!regex.test(limitPW)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
+          setInputs({ ...inputs, [type]: limitPW });
+        }
 
         break;
 
@@ -53,17 +73,30 @@ const Join = () => {
         } else {
           setAllows({ ...allows, [type]: true });
         }
-        setInputs({ ...inputs, [type]: e.target.value });
+        if (e.target.value.length > 16)
+          setInputs({ ...inputs, [type]: e.target.value.substring(0, 16) });
+        else setInputs({ ...inputs, [type]: e.target.value });
         break;
 
       case "nickname":
         regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
-        if (!regex.test(e.target.value)) {
-          setAllows({ ...allows, [type]: false });
-        } else {
-          setAllows({ ...allows, [type]: true });
-        }
+        if (e.target.value.length <= 6)
+          if (!regex.test(e.target.value)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
         setInputs({ ...inputs, [type]: e.target.value });
+        if (e.target.value.length > 6) {
+          let limitNickName = e.target.value.substring(0, 6);
+          if (!regex.test(limitNickName)) {
+            setAllows({ ...allows, [type]: false });
+          } else {
+            setAllows({ ...allows, [type]: true });
+          }
+          setInputs({ ...inputs, [type]: limitNickName });
+        }
+
         break;
       default:
         break;
@@ -83,6 +116,7 @@ const Join = () => {
 
     if (isPassed) if (result) navigate("/login");
   }, [result, allows, inputs, isPassed, navigate]);
+
   return (
     <div>
       <Navbar />
