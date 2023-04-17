@@ -16,7 +16,7 @@ import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import { useQuery } from "@tanstack/react-query";
 import jwt_decode from "jwt-decode";
-
+import ScrollToTop from "../../../hooks/scrollToTop";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { cart, nickName, userId, user } = userInfoStore();
@@ -61,6 +61,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
 
   return (
     <>
+      <ScrollToTop />
       {showNavbar && (
         <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
           <Style.NavbarContainer>

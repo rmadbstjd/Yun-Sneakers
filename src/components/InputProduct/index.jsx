@@ -6,6 +6,7 @@ import userInfoStore from "../../store/userInfoStore";
 import { uploadImage } from "../../api/upload";
 import Navbar from "../common/Navbar";
 import convertToPrice from "../../hooks/convertToPrice";
+import Swal from "sweetalert2";
 const InputProduct = ({ title, type, productInfo }) => {
   const { product } = userInfoStore();
   const [newProducts, setNewProducts] = useImmer({
@@ -46,11 +47,19 @@ const InputProduct = ({ title, type, productInfo }) => {
         product.addProduct(newProducts, url);
       }
     }
-    navigate("/");
+    Swal.fire({
+      icon: "success",
+      title: "성공적으로 상품을 수정하였습니다.",
+      confirmButtonColor: "black",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/manage");
+      }
+    });
   };
   const onCancel = () => {
     setCount(0);
-    navigate("/");
+    navigate("/manage");
   };
   const onChangeProduct = (e, column) => {
     const row = e.target.value;
@@ -115,10 +124,10 @@ const InputProduct = ({ title, type, productInfo }) => {
               type="text"
               placeholder={
                 count === 0
-                  ? "제품명"
+                  ? "상품명"
                   : newProducts.title === true
-                  ? "제품명"
-                  : "제품명을 입력해주세요."
+                  ? "상품명"
+                  : "상품명을 입력해주세요."
               }
               onChange={(e) => onChangeProduct(e, "title")}
               className={

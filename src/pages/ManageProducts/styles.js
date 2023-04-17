@@ -4,7 +4,7 @@ export const MyPageContainer = styled.div`
   width: 1910px;
   display: flex;
   height: 100%;
-  margin: 0px 50px 0px 180px;
+  margin: 0px 50px 0px 300px;
 `;
 
 export const MainContainer = styled.div`
@@ -22,9 +22,9 @@ export const ReviewContainer = styled.div`
 `;
 
 export const ReviewLeftTitle = styled.div`
-  border-top: solid black 1px;
-  border-right: solid black 1px;
-  border-left: solid black 1px;
+  border-top: solid black 2px;
+  border-right: solid black 2px;
+  border-left: solid black 2px;
   width: 180px;
   height: 45px;
   text-align: center;
@@ -110,7 +110,7 @@ export const PriceContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 340px;
+  width: 365px;
   height: 120px;
 `;
 

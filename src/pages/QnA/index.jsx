@@ -4,12 +4,13 @@ import productStore from "../../store/productStore";
 import Navbar from "./../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
 import Modal from "../../components/common/Modal";
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const itemArr3 = ["제목", "내용", "유저", "날짜"];
 const QnA = () => {
   const [showModal, setShowModal] = useState(false);
   const { product } = productStore();
-
+  const navigate = useNavigate();
   const { data: isNotAnsweredQnAs, refetch } = useQuery(
     ["isNotAnsweredQnA"],
     () => product.getNotAnsweredQna()
@@ -27,6 +28,16 @@ const QnA = () => {
       isNotAnsweredQnAs[isClicked]._id,
       answer
     );
+    Swal.fire({
+      icon: "success",
+      title: "성공적으로 답변을 작성하였습니다.",
+      confirmButtonColor: "black",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/qna");
+        setIsClicked();
+      }
+    });
     refetch();
     refetch2();
     setShowModal(false);
@@ -34,6 +45,12 @@ const QnA = () => {
   const clickToQnA = (index) => {
     if (index === isClicked) setIsClicked();
     else setIsClicked(index);
+  };
+
+  const clickToDetailPage = (e, item) => {
+    e.stopPropagation();
+    console.log("item", item);
+    navigate(`/products/${item.productId}`);
   };
   return (
     <div>
@@ -95,7 +112,12 @@ const QnA = () => {
                     isClicked={index === isClicked}
                     onClick={() => clickToQnA(index)}
                   >
-                    <Style.Img src={item.image}></Style.Img>
+                    <Style.Img
+                      src={item.image}
+                      onClick={(e) => {
+                        clickToDetailPage(e, item);
+                      }}
+                    ></Style.Img>
                     <Style.Info>{item.title}</Style.Info>
                     <Style.OrderNum isClicked={index === isClicked}>
                       {item.content}
@@ -121,7 +143,12 @@ const QnA = () => {
                     isClicked={index === isClicked}
                     onClick={() => clickToQnA(index)}
                   >
-                    <Style.Img src={item.image}></Style.Img>
+                    <Style.Img
+                      src={item.image}
+                      onClick={(e) => {
+                        clickToDetailPage(e, item);
+                      }}
+                    ></Style.Img>
                     <Style.Info>{item.title}</Style.Info>
                     <Style.OrderNum isClicked={index === isClicked}>
                       {item.content}

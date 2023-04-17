@@ -196,10 +196,12 @@ const Modal = ({
           <Style.QnAContent>
             <Style.Img src={qna && qna.image}></Style.Img>
             <Style.InfoContainer>
-              <Style.ProductCategory>{qna && qna.title}</Style.ProductCategory>
+              <Style.ProductCategory>
+                [제목] {qna && qna.title}
+              </Style.ProductCategory>
 
               <Style.ProductDescription>
-                {qna && qna.content}
+                [내용] {qna && qna.content}
               </Style.ProductDescription>
             </Style.InfoContainer>
           </Style.QnAContent>

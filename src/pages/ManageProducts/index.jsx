@@ -7,7 +7,7 @@ import convertToPrice from "./../../hooks/convertToPrice";
 import Pagination from "../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-const itemArr3 = ["제품명", "가격", "관리"];
+const itemArr3 = ["상품명", "상품코드", "가격", "관리"];
 const ManageProducts = () => {
   const navigate = useNavigate();
   const { product } = productStore();
@@ -29,7 +29,10 @@ const ManageProducts = () => {
     refetch();
   };
 
-  const clickToDeleteBtn = () => {
+  const goToDetailPage = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+  const clickToDeleteBtn = (productId) => {
     Swal.fire({
       title: "상품을 삭제하시겠습니까?",
       showCancelButton: true,
@@ -38,8 +41,9 @@ const ManageProducts = () => {
       cancelButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await product.deleteProduct(products.id);
-        navigate("/");
+        await product.deleteProduct(productId);
+        refetch();
+        navigate("/manage");
       }
     });
   };
@@ -54,20 +58,20 @@ const ManageProducts = () => {
             <Style.ReviewLeftTitle>상품</Style.ReviewLeftTitle>
 
             <Style.HorizonLine
-              width={"1190px"}
+              width={"1280px"}
               border={3}
               color={"black"}
             ></Style.HorizonLine>
           </Style.ReviewContainer>
           <Style.TopContainer>
             <Style.TopItem width={"610px"}>{itemArr3[0]}</Style.TopItem>
-            <Style.TopItem width={"50px"}>{itemArr3[1]}</Style.TopItem>
-            <Style.TopItem width={"615px"}>{itemArr3[2]}</Style.TopItem>
-            <Style.TopItem width={"40px"}>{itemArr3[3]}</Style.TopItem>
+            <Style.TopItem width={"70px"}>{itemArr3[1]}</Style.TopItem>
+            <Style.TopItem width={"645px"}>{itemArr3[2]}</Style.TopItem>
+            <Style.TopItem width={"60px"}>{itemArr3[3]}</Style.TopItem>
           </Style.TopContainer>
 
           <Style.HorizonLine
-            width={"1372px"}
+            width={"1465px"}
             border={3}
             color={"black "}
           ></Style.HorizonLine>
@@ -76,7 +80,12 @@ const ManageProducts = () => {
             products.map((item, index) => (
               <div key={index}>
                 <Style.ProductContent>
-                  <Style.Img src={item.image}></Style.Img>
+                  <Style.Img
+                    src={item.image}
+                    onClick={() => {
+                      goToDetailPage(item.id);
+                    }}
+                  ></Style.Img>
                   <Style.Info>
                     <Style.Text>
                       <span>[카테고리] {item.category}</span>
@@ -90,13 +99,16 @@ const ManageProducts = () => {
                   </Style.Info>
 
                   <Style.PriceContainer height={"120px"}>
+                    <div>{item.id}</div>
+                  </Style.PriceContainer>
+                  <Style.PriceContainer height={"120px"}>
                     <div>{convertToPrice(item.price)}</div>
                   </Style.PriceContainer>
                   <Style.BtnContainer>
                     <Style.Review onClick={() => clickToEditBtn(item.id)}>
                       수정
                     </Style.Review>
-                    <Style.Review onClick={() => clickToDeleteBtn()}>
+                    <Style.Review onClick={() => clickToDeleteBtn(item.id)}>
                       삭제
                     </Style.Review>
                   </Style.BtnContainer>

@@ -99,7 +99,7 @@ const QnA = () => {
   };
 
   const handleSetTitle = (e) => {
-    if (e.target.value.length > 14) setTitle(title.substring(0, 14));
+    if (e.target.value.length > 29) setTitle(title.substring(0, 29));
     else setTitle(e.target.value);
   };
 
@@ -194,7 +194,7 @@ const QnA = () => {
             <Style.QuestionTitle>문의 제목</Style.QuestionTitle>
             <Style.InputTitle
               type="text"
-              placeholder="15자 이내 입력"
+              placeholder="30자 이내 입력"
               value={title}
               onChange={(e) => handleSetTitle(e)}
             ></Style.InputTitle>
@@ -303,7 +303,7 @@ const QnA = () => {
 
             {index === showContent && (
               <Style.QnAContent font={"bolder"}>
-                <div>답변</div>
+                {item.isAnswerd && <div>답변</div>}
                 {item.answer}
               </Style.QnAContent>
             )}

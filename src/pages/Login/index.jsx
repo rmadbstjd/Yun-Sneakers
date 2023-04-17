@@ -55,8 +55,11 @@ const Login = ({ isAuthenticated }) => {
   const clickToSubmit = async () => {
     if (isPassed) {
       const data = await user.login(inputs.id, inputs.pw);
-      if (data === false) setResult(false);
-      else {
+
+      if (data === false) {
+        console.log("테스트");
+        setResult(false);
+      } else {
         setNickName(data.userInfo.nickname);
         setUserId(data.userInfo.userId);
         setResult(true);

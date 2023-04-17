@@ -10,7 +10,6 @@ export default class Login {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
   }
 
   async signUp(id, pw, nickname) {
@@ -19,9 +18,8 @@ export default class Login {
       password: pw,
       nickname,
     });
-
-    if (response.status === 201) return false;
-    else if (response.status === 200) return true;
+    if (response.status === 400) return false;
+    else if (response.status === 201) return true;
   }
 
   async login(id, pw) {
@@ -29,9 +27,12 @@ export default class Login {
       userId: id,
       password: pw,
     });
-
-    if (response.status === 201) return false;
     const data = response.data;
+    if (data.isLogin === false) {
+      return false;
+    }
+
+    console.log("data", data);
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
     localStorage.setItem("isLogin", true);
@@ -51,7 +52,6 @@ export default class Login {
         Authorization: localStorage.getItem("accessToken"),
       },
     });
-
     const data = response.data;
     return data;
   }
