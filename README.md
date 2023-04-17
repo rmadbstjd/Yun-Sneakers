@@ -180,7 +180,10 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 2) 상품 수정 및 삭제
 
+![ezgif com-video-to-gif (12)](https://user-images.githubusercontent.com/58474431/232531014-35233f8e-664c-4ad7-9506-af57b35229ed.gif)
 
 
 3) Q&A 
+
+
 
