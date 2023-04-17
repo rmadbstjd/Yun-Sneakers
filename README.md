@@ -137,6 +137,7 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 이 둘의 장단점을 비교하여 종합해봤을 때, CSS-in-JS의 단점은 지금의 나의 프로젝트에는 크게 영향이 없을 것으로 판단하여 CSS-in-JS를 채택하였다.
 
 # 주요 기능
+
 1. 회원가입 및 로그인 기능 
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58474431/232307697-cd366e7a-3f0c-47c6-8184-7b70c22727c8.gif)
@@ -161,4 +162,19 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 ![ezgif com-video-to-gif (7)](https://user-images.githubusercontent.com/58474431/232446884-7efe0b5a-bd02-4680-b51e-b218f33c6291.gif)
 
-7. 상품 리뷰 
+7. 상품 리뷰 기능
+
+![ezgif com-video-to-gif (8)](https://user-images.githubusercontent.com/58474431/232450094-68cd5ee6-a5dc-4a0e-b295-307cd02f9e05.gif)
+
+8. 상품 Q&A 기능
+
+![ezgif com-video-to-gif (9)](https://user-images.githubusercontent.com/58474431/232452338-9cb40ba3-ed26-40cc-9ad7-a3c9ee442657.gif)
+
+9. 백 오피스 기능
+
+1) 상품 추가
+
+2) 상품 수정 및 삭제
+
+3) Q&A 
+
