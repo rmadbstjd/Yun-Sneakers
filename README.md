@@ -180,52 +180,63 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 # 주요 기능
 
-1. 회원가입 및 로그인 기능 
+### 1. 회원가입 및 로그인 기능 
+<br/>
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58474431/232307697-cd366e7a-3f0c-47c6-8184-7b70c22727c8.gif)
 
-2. 상품 검색 기능
+### 2. 상품 검색 기능
+<br/>
 
 ![ezgif com-video-to-gif (2)](https://user-images.githubusercontent.com/58474431/232446363-921a5907-af75-4c96-87b3-ee13b06020f3.gif)
 
-3. 상품 필터링 기능
+### 3. 상품 필터링 기능
+<br/>
 
 ![ezgif com-video-to-gif (3)](https://user-images.githubusercontent.com/58474431/232446437-b3e869c3-caf5-42de-936a-54d1cf7924f4.gif)
 
-4. 상품 좋아요 기능
+### 4. 상품 좋아요 기능
+<br/>
 
 ![ezgif com-video-to-gif (4)](https://user-images.githubusercontent.com/58474431/232446575-9adf508e-f32a-4457-9533-7f5f24024302.gif)
 
-5. 상품 장바구니 기능
+### 5. 상품 장바구니 기능
+<br/>
 
 ![ezgif com-video-to-gif (5)](https://user-images.githubusercontent.com/58474431/232446717-c53d49ce-481e-46ff-8143-e092cb8a2920.gif)
 
-6. 상품 결제 기능
+### 6. 상품 결제 기능
+<br/>
 
 ![ezgif com-video-to-gif (7)](https://user-images.githubusercontent.com/58474431/232446884-7efe0b5a-bd02-4680-b51e-b218f33c6291.gif)
 
-7. 상품 리뷰 기능
+### 7. 상품 리뷰 기능
+<br/>
 
 ![ezgif com-video-to-gif (8)](https://user-images.githubusercontent.com/58474431/232450094-68cd5ee6-a5dc-4a0e-b295-307cd02f9e05.gif)
 
-8. 상품 Q&A 기능
+### 8. 상품 Q&A 기능
+<br/>
 
 ![ezgif com-video-to-gif (9)](https://user-images.githubusercontent.com/58474431/232452338-9cb40ba3-ed26-40cc-9ad7-a3c9ee442657.gif)
 
-9. 백 오피스 기능
+### 9. 백 오피스 기능
 
-1) 상품 추가
+1) 상품 추가 기능
+<br/>
 
 ![ezgif com-video-to-gif (11)](https://user-images.githubusercontent.com/58474431/232519347-1dc24145-51b9-408d-9fda-b2661c78fca2.gif)
 
 
 
-2) 상품 수정 및 삭제
+2) 상품 수정 및 삭제 기능
+<br/>
 
 ![ezgif com-video-to-gif (12)](https://user-images.githubusercontent.com/58474431/232531014-35233f8e-664c-4ad7-9506-af57b35229ed.gif)
 
 
-3) Q&A 
+3) Q&A 답변 기능
+<br/>
 
 ![ezgif com-video-to-gif (13)](https://user-images.githubusercontent.com/58474431/232555087-3ce94720-6c5a-441d-856a-25107bd71fbf.gif)
 
