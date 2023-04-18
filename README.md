@@ -182,6 +182,8 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 ### 1. 회원가입 및 로그인 기능 
 <br/>
+유저가 입력 양식에 맞게 입력하였을 때 회원가입 및 로그인 버튼을 활성화시키는 기능을 추가함으로써 UI를 향상시키도록 노력하였다.
+<br/>
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58474431/232307697-cd366e7a-3f0c-47c6-8184-7b70c22727c8.gif)
 
