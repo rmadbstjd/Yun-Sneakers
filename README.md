@@ -193,12 +193,14 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 ### 3. 상품 필터링 기능
 <br/>
 
-![ezgif com-video-to-gif (3)](https://user-images.githubusercontent.com/58474431/232446437-b3e869c3-caf5-42de-936a-54d1cf7924f4.gif)
+![ezgif com-video-to-gif (14)](https://user-images.githubusercontent.com/58474431/232766185-7bdeaf65-5a0e-4438-81a7-a15e389bb676.gif)
+
 
 ### 4. 상품 좋아요 기능
 <br/>
 
-![ezgif com-video-to-gif (4)](https://user-images.githubusercontent.com/58474431/232446575-9adf508e-f32a-4457-9533-7f5f24024302.gif)
+![ezgif com-video-to-gif (15)](https://user-images.githubusercontent.com/58474431/232810748-079b2bf2-8a0a-4d7b-a057-48b234026e4a.gif)
+
 
 ### 5. 상품 장바구니 기능
 <br/>
