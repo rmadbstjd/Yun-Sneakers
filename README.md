@@ -192,15 +192,15 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 자동완성, 최근 검색어, 추천 검색어 기능 등을 통해 UX를 향상시킬 수 있도록 하였다.
 <br/>
-1. 자동완성 기능
+1) 자동완성 기능
 
 ![ezgif com-video-to-gif (16)](https://user-images.githubusercontent.com/58474431/232942748-4233de5b-9e53-490e-881f-a30ba7251baf.gif)
 
-2. 최근 검색어 기능
+2) 최근 검색어 기능
 
 ![ezgif com-video-to-gif (17)](https://user-images.githubusercontent.com/58474431/232943328-1c1b080e-34d0-4e6a-8882-d82b29a5526d.gif)
 
-3. 추천 검색어 기능
+3) 추천 검색어 기능
 
 ![ezgif com-video-to-gif (18)](https://user-images.githubusercontent.com/58474431/232944361-3b7a6ffa-5485-401c-b01d-3e58c6923331.gif)
 
