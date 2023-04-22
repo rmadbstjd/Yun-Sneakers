@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import InputProduct from "../../components/InputProduct";
+import InputProduct from "../../../components/InputProduct";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../store/userInfoStore";
+import userInfoStore from "../../../store/userInfoStore";
 const EditProduct = () => {
   const { product } = userInfoStore();
   const location = useLocation();

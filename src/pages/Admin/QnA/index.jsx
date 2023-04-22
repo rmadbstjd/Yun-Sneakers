@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
-import productStore from "../../store/productStore";
-import Navbar from "./../../components/common/Navbar/index";
+import productStore from "../../../store/productStore";
+import Navbar from "../../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import Modal from "../../components/common/Modal";
+import Modal from "../../../components/common/Modal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const itemArr3 = ["제목", "내용", "유저", "날짜"];

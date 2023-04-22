@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
-import productStore from "../../store/productStore";
-import Navbar from "./../../components/common/Navbar/index";
+import productStore from "../../../store/productStore";
+import Navbar from ".././../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import convertToPrice from "./../../hooks/convertToPrice";
-import Pagination from "../../components/common/Pagination";
+import convertToPrice from "./../../../hooks/convertToPrice";
+import Pagination from "../../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const itemArr3 = ["상품명", "상품코드", "가격", "관리"];
