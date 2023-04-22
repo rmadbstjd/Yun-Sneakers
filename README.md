@@ -222,7 +222,8 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 ### 5. 상품 장바구니 기능
 <br/>
 
-![ezgif com-video-to-gif (5)](https://user-images.githubusercontent.com/58474431/232446717-c53d49ce-481e-46ff-8143-e092cb8a2920.gif)
+
+![ezgif com-video-to-gif (19)](https://user-images.githubusercontent.com/58474431/233791668-0aeafb08-45c1-42b8-85cf-45a0a2a475b5.gif)
 
 ### 6. 상품 결제 기능
 <br/>
