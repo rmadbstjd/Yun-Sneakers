@@ -14,6 +14,7 @@ import authenticate from "../hooks/authenticate";
 import AuthenticateRoute from "./Authenticate";
 import IsAdmin from "./IsAdmin";
 import AdminRoute from "./AdminRoute";
+import NotFound from "../pages/NotFound";
 const Router = () => {
   const { setNickName, setUserId } = userInfoStore();
   const isAuthenticated = localStorage.getItem("isLogin") === "true";
@@ -72,6 +73,7 @@ const Router = () => {
             </AuthenticateRoute>
           }
         />
+        <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
