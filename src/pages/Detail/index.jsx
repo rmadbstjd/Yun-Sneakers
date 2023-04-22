@@ -32,6 +32,10 @@ const ProductDetail = () => {
   const { data: productInfo } = useQuery([id], () =>
     product.getProductInfo(id)
   );
+
+  const { data: cartProducts, refetch: cartRefetch } = useQuery([userId], () =>
+    cart.getUserCarts()
+  );
   const products = productInfo && productInfo.product;
   const category = productInfo && productInfo.product.category[0];
   const productId = productInfo && productInfo.product.id;
@@ -81,6 +85,7 @@ const ProductDetail = () => {
     setCartModalShow((prev) => !prev);
     setTimeout(setCartModalShow, 3000);
     const isSubmit = await cart.addUserCart(products, selectSize);
+    cartRefetch();
     if (isSubmit.success === false) return;
     plusCartCount(1);
   };

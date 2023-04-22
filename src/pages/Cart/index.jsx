@@ -3,6 +3,7 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import cartStore from "../../store/cartStore";
+import userInfoStore from "../../store/userInfoStore";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
@@ -13,11 +14,13 @@ import Swal from "sweetalert2";
 const Cart = () => {
   const navigate = useNavigate();
   const { cart } = cartStore();
+  const { userId } = userInfoStore();
   const {
     isLoading,
     data: cartProducts,
     refetch,
-  } = useQuery(["totalPrice"], () => cart.getUserCarts());
+  } = useQuery([userId], () => cart.getUserCarts());
+
   const [checkedProducts, setCheckedProducts] = useImmer([]);
   const [price, setPrice] = useState(0);
 
@@ -25,6 +28,11 @@ const Cart = () => {
     if (checked) {
       setCheckedProducts((draft) => {
         draft.push({ id, price, quantity });
+        draft.sort((a, b) => {
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          return 0;
+        });
       });
     } else {
       for (let i = 0; i < checkedProducts?.length; i++) {
@@ -47,6 +55,11 @@ const Cart = () => {
             price: cartProducts.products[i].price,
             quantity: cartProducts.products[i].quantity,
           });
+          draft.sort((a, b) => {
+            if (a.price > b.price) return -1;
+            if (a.price < b.price) return 1;
+            return 0;
+          });
         });
       }
     } else {
@@ -68,6 +81,24 @@ const Cart = () => {
     navigate("/shipment");
   };
   useEffect(() => {
+    if (checkedProducts.length === 0) {
+      for (let i = 0; i < cartProducts?.products?.length; i++) {
+        setCheckedProducts((draft) => {
+          draft.push({
+            id: cartProducts?.products[i].productId,
+            price: cartProducts?.products[i].price,
+            quantity: cartProducts?.products[i].quantity,
+          });
+          draft.sort((a, b) => {
+            if (a.price > b.price) return -1;
+            if (a.price < b.price) return 1;
+            return 0;
+          });
+        });
+      }
+    }
+  }, [cartProducts]);
+  useEffect(() => {
     if (checkedProducts.length !== 0) {
       setPrice(0);
       for (let i = 0; i < checkedProducts.length; i++) {
@@ -83,22 +114,28 @@ const Cart = () => {
   }, [checkedProducts]);
 
   useEffect(() => {
-    if (cartProducts && checkedProducts.length === 0) {
-      for (let i = 0; i < cartProducts.products.length; i++) {
-        setCheckedProducts((draft) => {
-          draft.push({
-            id: cartProducts?.products[i].productId,
-            price: cartProducts?.products[i].price,
-            quantity: cartProducts?.products[i].quantity,
-          });
-        });
-      }
-    }
     if (checkedProducts.length !== 0) {
       for (let i = 0; i < cartProducts?.products.length; i++) {
+        for (let j = 0; j < checkedProducts?.length; j++) {
+          if (cartProducts.products[i].productId === checkedProducts[j]?.id) {
+            setCheckedProducts((draft) => {
+              draft[j].quantity = cartProducts.products[i].quantity;
+              draft.sort((a, b) => {
+                if (a.price > b.price) return -1;
+                if (a.price < b.price) return 1;
+                return 0;
+              });
+            });
+          }
+        }
         if (cartProducts.products[i].productId === checkedProducts[i]?.id) {
           setCheckedProducts((draft) => {
             draft[i].quantity = cartProducts.products[i].quantity;
+            draft.sort((a, b) => {
+              if (a.price > b.price) return -1;
+              if (a.price < b.price) return 1;
+              return 0;
+            });
           });
         }
       }

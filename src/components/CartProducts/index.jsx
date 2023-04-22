@@ -11,6 +11,7 @@ const CartProduct = ({
   refetch,
   handleSingleCheck,
   checkedProducts,
+  setCheckedProducts,
 }) => {
   const { cart } = userInfoStore();
   const navigate = useNavigate();
@@ -41,6 +42,8 @@ const CartProduct = ({
   const deleteProduct = async () => {
     await cart.deleteUserCart(item.productId, item.size);
     refetch();
+
+    setCheckedProducts((prev) => prev.filter((el) => el.id !== item.productId));
   };
 
   const goToDetail = () => {
