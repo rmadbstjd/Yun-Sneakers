@@ -11,6 +11,62 @@ import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+const couponArr = [
+  "선택안함",
+  "Welcome 5% 할인 쿠폰",
+  "10만원 이상 구매 시 10% 할인 쿠폰",
+  "20만원 이상 구매 시 20% 할인 쿠폰",
+];
+const paymentArr = [
+  "신용/체크카드",
+  "네이버페이",
+  "카카오페이",
+  "토스",
+  "삼성페이",
+  "페이코",
+  "SSG 페이",
+  "휴대폰 결제",
+  "무통장 입금",
+];
+const cardArr = [
+  "NH카드",
+  "수협카드",
+  "삼성카드",
+  "우체국카드",
+  "BC카드",
+  "전북카드",
+  "우리카드",
+  "현대카드",
+  "롯데카드",
+];
+const budgetArr = [
+  "일시불",
+  "2개월",
+  "3개월",
+  "4개월",
+  "5개월",
+  "6개월",
+  "7개월",
+  "8개월",
+  "9개월",
+  "10개월",
+  "11개월",
+  "12개월",
+];
+const termsArr = [
+  {
+    id: 0,
+    title: "(필수) 개인정보 수집/이용 동의",
+  },
+  {
+    id: 1,
+    title: "(필수) 개인정보 제3자 제공 동의",
+  },
+  {
+    id: 2,
+    title: "(필수) 결제대행 서비스 이용약관 (주)KG이니시스",
+  },
+];
 const Shipment = () => {
   const navigate = useNavigate();
   const {
@@ -27,69 +83,23 @@ const Shipment = () => {
     setCard,
   } = userInfoStore();
   const { isLoading, data: products } = useQuery(["products"], () =>
-    cart.getUserCarts()
+    cart.getUserCheckedCarts()
   );
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
   );
-  const couponArr = [
-    "선택안함",
-    "Welcome 5% 할인 쿠폰",
-    "10만원 이상 구매 시 10% 할인 쿠폰",
-    "20만원 이상 구매 시 20% 할인 쿠폰",
-  ];
-  const paymentArr = [
-    "신용/체크카드",
-    "네이버페이",
-    "카카오페이",
-    "토스",
-    "삼성페이",
-    "페이코",
-    "SSG 페이",
-    "휴대폰 결제",
-    "무통장 입금",
-  ];
-  const cardArr = [
-    "NH카드",
-    "수협카드",
-    "삼성카드",
-    "우체국카드",
-    "BC카드",
-    "전북카드",
-    "우리카드",
-    "현대카드",
-    "롯데카드",
-  ];
-  const budgetArr = [
-    "일시불",
-    "2개월",
-    "3개월",
-    "4개월",
-    "5개월",
-    "6개월",
-    "7개월",
-    "8개월",
-    "9개월",
-    "10개월",
-    "11개월",
-    "12개월",
-  ];
-  const termsArr = [
-    {
-      id: 0,
-      title: "(필수) 개인정보 수집/이용 동의",
-    },
-    {
-      id: 1,
-      title: "(필수) 개인정보 제3자 제공 동의",
-    },
-    {
-      id: 2,
-      title: "(필수) 결제대행 서비스 이용약관 (주)KG이니시스",
-    },
-  ];
-
   const [checkItems, setCheckItems] = useState([]);
+
+  const [showCouponBox, setShowCouponBox] = useState(false);
+  const [haveAddress, setHaveAddress] = useState(false);
+  const [coupon, setCoupon] = useState("선택안함");
+  const [couponAppliedPrice, setCouponAppliedPrice] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+  const [showCreditCardBox, setShowCreditCardBox] = useState(false);
+  const [budgetAccount, setBudgetAccount] = useState("일시불");
+  const [showBudgetAccount, setShowBudgetAccount] = useState(false);
+  const [showBudgetAccountBox, setShowBudgetAccountBox] = useState(false);
 
   const handleSingleCheck = (checked, id) => {
     if (checked) {
@@ -108,21 +118,13 @@ const Shipment = () => {
       setCheckItems([]);
     }
   };
-  const [showCouponBox, setShowCouponBox] = useState(false);
-  const [haveAddress, setHaveAddress] = useState(false);
-  const [coupon, setCoupon] = useState("선택안함");
-  const [couponAppliedPrice, setCouponAppliedPrice] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [productsCount, setProductsCount] = useState(0);
-  const [showCreditCardBox, setShowCreditCardBox] = useState(false);
-  const [budgetAccount, setBudgetAccount] = useState("일시불");
-  const [showBudgetAccount, setShowBudgetAccount] = useState(false);
-  const [showBudgetAccountBox, setShowBudgetAccountBox] = useState(false);
+
   const clickCard = (item) => {
     setCard(item);
     setShowCreditCardBox(false);
     setShowBudgetAccount(true);
   };
+
   const clickBudget = (item) => {
     setBudgetAccount(item);
     setShowBudgetAccountBox(false);
@@ -248,6 +250,7 @@ const Shipment = () => {
 
   useEffect(() => {
     setProductsCount(0);
+    setPrice(0);
     if (products) {
       for (let i = 0; i < products.products.length; i++) {
         let newPrice = Number(

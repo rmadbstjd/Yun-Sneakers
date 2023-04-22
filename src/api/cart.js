@@ -24,6 +24,16 @@ export default class Cart {
     }
   }
 
+  async getUserCheckedCarts() {
+    const response = await instance.get("/cart/checked", {});
+    const data = response.data;
+
+    if (data.success === "true") {
+      return data;
+    } else {
+      return null;
+    }
+  }
   async updateUserCart(productId, size, quantity) {
     const response = await instance.put(`/carts/${productId}`, {
       quantity: quantity,
@@ -33,6 +43,13 @@ export default class Cart {
     return data;
   }
 
+  async checkProduct(productId, isChecked) {
+    const response = await instance.put(`/carts/${productId}/check`, {
+      isChecked,
+    });
+    const data = response.data;
+    return data;
+  }
   async addUserCart(products, size) {
     const response = await instance.post(`/carts/${products.id}`, {
       product: products,
