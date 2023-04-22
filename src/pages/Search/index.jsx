@@ -37,7 +37,7 @@ const SearchPage = () => {
 
   const token = localStorage.getItem("accessToken");
   const info = token && jwt_decode(token);
-  const [isAdmin, setIsAdmin] = useState(
+  const [isAdmin] = useState(
     (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
   );
 
@@ -138,9 +138,12 @@ const SearchPage = () => {
   };
 
   const handleChange = (e) => {
+    setShowSearchedProducts(true);
     setResult(e.target.value);
   };
-
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") setShowSearchedProducts(false);
+  };
   const clickToClose = () => {
     setResult("");
     if (collectionName) {
@@ -165,9 +168,6 @@ const SearchPage = () => {
 
   const goToDetail = (item) => {
     navigate(`/products/${item.id}`);
-  };
-  const handleFocus = () => {
-    setShowSearchedProducts(true);
   };
 
   const handleBlur = () => {
@@ -259,7 +259,7 @@ const SearchPage = () => {
                   value={result}
                   placeholder="브랜드명, 모델명 등"
                   onChange={(e) => handleChange(e)}
-                  onFocus={() => handleFocus()}
+                  onKeyDown={(e) => handleKeyDown(e)}
                   onBlur={() => handleBlur()}
                 />
                 <AiFillCloseCircle

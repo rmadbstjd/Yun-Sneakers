@@ -49,6 +49,7 @@ export default class Product {
       currentPage,
     });
     const data = response.data;
+
     return data;
   }
 

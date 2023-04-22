@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
 import * as Style from "./styles";
-import { useImmer } from "use-immer";
+
 import userInfoStore from "../../store/userInfoStore";
 import LoadingSpinner from "../common/LoadingSpinner";
 const Products = () => {
@@ -12,17 +12,11 @@ const Products = () => {
   const { isLoading, data: products } = useQuery(["new", currentPage], () =>
     product.getNewProducts(currentPage)
   );
-  const [moreProducts, setMoreProducts] = useImmer([]);
+
   const ClickToMoreProduct = () => {
     setCurrentPage((prev) => prev + 1);
     if (currentPage >= 4) setShowMoreBtn(false);
   };
-  useEffect(() => {
-    products &&
-      setMoreProducts((product) => {
-        product.push(products);
-      });
-  }, [products, currentPage]);
 
   return (
     <Style.Container>
@@ -36,8 +30,8 @@ const Products = () => {
             text={"상품을 불러오는 중입니다."}
           ></LoadingSpinner>
         )}
-        {moreProducts &&
-          moreProducts.map((product) =>
+        {products &&
+          products.map((product) =>
             product.map((product) => (
               <ProductCard key={product.name} product={product}></ProductCard>
             ))

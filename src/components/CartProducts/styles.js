@@ -5,21 +5,21 @@ export const Container = styled.div`
 `;
 
 export const InfoLayout = styled.div`
+  width: 1504px;
   display: flex;
-  justify-content: space-around;
 `;
 
 export const InfoContainer = styled.div`
-  width: 33%;
+  width: 623px;
   display: flex;
   justify-content: flex-start;
+
+  margin-left: 55px;
 `;
 
 export const Img = styled.div`
-  min-width: 190px;
-  height: 200px;
-  width: 190px;
-  height: 250px;
+  width: 160px;
+  height: 160px;
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -46,25 +46,24 @@ export const Size = styled.div`
   font-size: 15px;
 `;
 
+export const PriceContainer = styled.div`
+  width: 300px;
+  display: flex;
+`;
 export const Price = styled.div`
-  margin-top: 3%;
-  font-size: 20px;
+  margin-top: ${(props) => props.marginTop};
+  margin-left: ${(props) => props.marginLeft};
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
 `;
 
 export const QuantityLayout = styled.div`
-  width: 50%;
+  width: 300px;
+
   display: flex;
 `;
-
-export const Quantity = styled.div`
-  width: 63%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const QuantityContent = styled.div`
   display: flex;
-  margin-left: -14%;
   margin-top: 19%;
 `;
 
@@ -102,17 +101,16 @@ export const Plus = styled.div`
 `;
 
 export const DeleteContainer = styled.div`
-  width: 37%;
   display: flex;
   justify-content: center;
 `;
 
 export const Delete = styled.div`
   border: solid gray 1px;
-  width: 80px;
+  width: 100px;
   height: 40px;
-  margin-top: 65px;
-  margin-left: 7%;
+  margin-top: 50%;
+  margin-left: 23%;
   text-align: center;
   line-height: 280%;
   font-size: 14px;
@@ -124,8 +122,15 @@ export const Delete = styled.div`
 `;
 
 export const HorizonLine = styled.div`
-  width: 100%;
-  margin-top: -1%;
+  width: 116%;
+  margin-top: 2%;
   border-bottom: 1px solid black;
   line-height: 0.1rem;
+`;
+
+export const Input = styled.input`
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1.5px solid gainsboro;
+  margin: 70px 0px 0px 9px;
 `;

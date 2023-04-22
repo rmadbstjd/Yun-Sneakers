@@ -65,6 +65,7 @@ export const Title = styled.div`
 `;
 
 export const HeaderLayout = styled.div`
+  width: 1500px;
   border: solid gray 1px;
   text-align: center;
   margin-top: 50px;
@@ -86,8 +87,7 @@ export const HeaderContent = styled.div`
 
 export const PayContainer = styled.div`
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 2.2%;
+  margin: 20px 0px 2.2% 9%;
 `;
 
 export const PayContent = styled.div`
@@ -125,9 +125,8 @@ export const Symbol = styled.div`
 
 export const FooterContainer = styled.div`
   display: flex;
-  margin-top: 5%;
+  margin: 5% 0% 5% 15%;
   justify-content: center;
-  margin-bottom: 5%;
 `;
 
 export const FooterBtn = styled.div`
@@ -145,4 +144,11 @@ export const FooterBtn = styled.div`
   &:hover {
     color: #a5ba93;
   }
+`;
+
+export const Input = styled.input`
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1.5px solid gainsboro;
+  margin-top: 7px;
 `;

@@ -57,7 +57,6 @@ const Login = ({ isAuthenticated }) => {
       const data = await user.login(inputs.id, inputs.pw);
 
       if (data === false) {
-        console.log("테스트");
         setResult(false);
       } else {
         setNickName(data.userInfo.nickname);

@@ -31,8 +31,6 @@ export default class Login {
     if (data.isLogin === false) {
       return false;
     }
-
-    console.log("data", data);
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
     localStorage.setItem("isLogin", true);
@@ -63,7 +61,6 @@ export default class Login {
       },
     });
     const data = response.data;
-
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("isLogin", true);
     return data;

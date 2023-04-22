@@ -49,7 +49,7 @@ const QnA = () => {
 
   const clickToDetailPage = (e, item) => {
     e.stopPropagation();
-    console.log("item", item);
+
     navigate(`/products/${item.productId}`);
   };
   return (

@@ -13,7 +13,8 @@ export const Card = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 10px;
   margin-top: 3.5%;
 `;

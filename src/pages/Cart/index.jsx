@@ -8,36 +8,71 @@ import HorizonLine from "../../components/common/HorizonLine";
 import convertToPrice from "../../hooks/convertToPrice";
 import Navbar from "./../../components/common/Navbar/index";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import { useImmer } from "use-immer";
 const Cart = () => {
   const navigate = useNavigate();
-  const { cart, initCartCount, plusCartCount } = cartStore();
-  const [price, setPrice] = useState(0);
-  const [count, setCount] = useState();
+  const { cart } = cartStore();
   const {
     isLoading,
     data: cartProducts,
     refetch,
   } = useQuery(["totalPrice"], () => cart.getUserCarts());
+  const [checkedProducts, setCheckedProducts] = useImmer([]);
+  const [price, setPrice] = useState(0);
 
+  const handleSingleCheck = (checked, id, price, quantity) => {
+    if (checked) {
+      setCheckedProducts((draft) => {
+        draft.push({ id, price, quantity });
+      });
+    } else {
+      for (let i = 0; i < checkedProducts?.length; i++) {
+        if (checkedProducts[i].id === id) {
+          setCheckedProducts((prev) => prev.filter((el) => el.id !== id));
+        }
+      }
+    }
+  };
+
+  const handleAllCheck = (checked) => {
+    if (checked) {
+      setCheckedProducts([]);
+      for (let i = 0; i < cartProducts.products?.length; i++) {
+        setCheckedProducts((draft) => {
+          draft.push({
+            id: cartProducts.products[i].productId,
+            price: cartProducts.products[i].price,
+            quantity: cartProducts.products[i].quantity,
+          });
+        });
+      }
+    } else setCheckedProducts([]);
+  };
   useEffect(() => {
-    if (cartProducts) {
+    if (checkedProducts.length !== 0) {
       setPrice(0);
-      setCount(0);
-      initCartCount();
-      for (let i = 0; i < cartProducts.products.length; i++) {
-        let newPrice = Number(
-          cartProducts.products[i].price * cartProducts.products[i].quantity
+      for (let i = 0; i < checkedProducts.length; i++) {
+        setPrice(
+          (prev) =>
+            prev + checkedProducts[i].price * checkedProducts[i].quantity
         );
-
-        setPrice((prev) => prev + newPrice);
-        setCount((prev) => prev + cartProducts.products[i].quantity);
-        plusCartCount(1);
       }
     } else {
-      initCartCount();
+      setPrice(0);
+    }
+  }, [checkedProducts]);
+
+  useEffect(() => {
+    if (checkedProducts.length !== 0) {
+      for (let i = 0; i < cartProducts?.products.length; i++) {
+        if (cartProducts.products[i].productId === checkedProducts[i]?.id) {
+          setCheckedProducts((draft) => {
+            draft[i].quantity = cartProducts.products[i].quantity;
+          });
+        }
+      }
     }
   }, [cartProducts]);
-
   if (cartProducts === null) {
     return (
       <>
@@ -89,23 +124,37 @@ const Cart = () => {
                   margin={"80px 0px 80px 500px"}
                 />
               )}
-              <Style.HeaderContent width={52.8}>
-                상품명(옵션)
+              <Style.HeaderContent width={4.8}>
+                <Style.Input
+                  type="checkbox"
+                  onChange={(e) => handleAllCheck(e.target.checked)}
+                  checked={
+                    checkedProducts.length === cartProducts?.products.length
+                      ? true
+                      : false
+                  }
+                ></Style.Input>
               </Style.HeaderContent>
-              <Style.HeaderContent width={35.9}>수량</Style.HeaderContent>
-              <Style.HeaderContent width={31}>주문관리</Style.HeaderContent>
+              <Style.HeaderContent width={67}>상품명(옵션)</Style.HeaderContent>
+              <Style.HeaderContent width={38.9}>수량</Style.HeaderContent>
+              <Style.HeaderContent width={38.9}>주문 금액</Style.HeaderContent>
+              <Style.HeaderContent width={31}>주문 관리</Style.HeaderContent>
             </Style.HeaderContainer>
           </Style.HeaderLayout>
           {cartProducts &&
-            cartProducts.products.map((item) => (
+            cartProducts.products.map((item, index) => (
               <CartProduct
                 key={`${item.productId}+${item.size}`}
+                productId={item.productId}
                 item={item}
                 refetch={refetch}
+                handleSingleCheck={handleSingleCheck}
+                checkedProducts={checkedProducts}
+                setCheckedProducts={setCheckedProducts}
               />
             ))}
           <HorizonLine
-            width={"100%"}
+            width={"116%"}
             border={"5px"}
             color={"black"}
             margin={"9% 0px 0px 0px"}
@@ -124,7 +173,7 @@ const Cart = () => {
 
           <Style.PayContainer>
             <Style.PayContent width={27.5} margin={true} fontSize={25}>
-              <Style.Count>총 {count}개</Style.Count>
+              <Style.Count>총 {checkedProducts?.length}개</Style.Count>
               {convertToPrice(price)}원
             </Style.PayContent>
             <Style.SymbolContainer>
@@ -138,7 +187,7 @@ const Cart = () => {
             </Style.PayContent>
           </Style.PayContainer>
           <HorizonLine
-            width={"100%"}
+            width={"116%"}
             border={"5px"}
             color={"black"}
             margin={"3% 0px 0px 0px"}
