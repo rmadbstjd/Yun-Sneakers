@@ -191,7 +191,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    navigate("/manage");
+                    navigate("/admin/manage");
                     setShowSearch(false);
                   }}
                 />
@@ -199,7 +199,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               {isAdmin && (
                 <Style.Products
                   onClick={() => {
-                    navigate("/manage");
+                    navigate("/admin/manage");
                     setShowSearch(false);
                   }}
                 >
@@ -219,7 +219,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               {isAdmin && (
                 <Style.Products
                   onClick={() => {
-                    navigate("/qna");
+                    navigate("/admin/qna");
                     setShowSearch(false);
                   }}
                 >
@@ -235,7 +235,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    navigate("/new");
+                    navigate("/admin/new");
                     setShowSearch(false);
                   }}
                 />
@@ -243,7 +243,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               {isAdmin && (
                 <Style.Products
                   onClick={() => {
-                    navigate("/new");
+                    navigate("/admin/new");
                     setShowSearch(false);
                   }}
                 >

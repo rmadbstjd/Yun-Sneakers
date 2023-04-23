@@ -17,6 +17,7 @@ export const Img = styled.img`
   height: 200px;
   border-radius: 10px;
   margin-top: 3.5%;
+  background: #ebebeb;
 `;
 
 export const CategoryContainer = styled.div`

@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import userInfoStore from "../store/userInfoStore";
 
 const AuthenticateRoute = ({ children }) => {
-  console.log("테스트");
   const { user } = userInfoStore();
   const { data, refetch } = useQuery(["isAuth"], () => user.authToken());
   const postToRefreshToken = async () => {

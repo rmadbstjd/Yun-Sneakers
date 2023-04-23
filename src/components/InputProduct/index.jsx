@@ -53,13 +53,13 @@ const InputProduct = ({ title, type, productInfo }) => {
       confirmButtonColor: "black",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/manage");
+        navigate("/admin/manage");
       }
     });
   };
   const onCancel = () => {
     setCount(0);
-    navigate("/manage");
+    navigate("/admin/manage");
   };
   const onChangeProduct = (e, column) => {
     const row = e.target.value;

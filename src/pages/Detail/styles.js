@@ -21,6 +21,7 @@ export const ImageLayout = styled.div`
 export const Image = styled.img`
   width: 425px;
   height: 425px;
+  background: #ebebeb;
 `;
 
 export const ProductInfoContainer = styled.div`

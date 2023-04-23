@@ -20,7 +20,7 @@ const ManageProducts = () => {
   products = products && products.products;
 
   const clickToEditBtn = (productId) => {
-    navigate("/edit", { state: { productId } });
+    navigate("/admin/edit", { state: { productId } });
   };
 
   const handleChange = async (page) => {
@@ -43,7 +43,7 @@ const ManageProducts = () => {
       if (result.isConfirmed) {
         await product.deleteProduct(productId);
         refetch();
-        navigate("/manage");
+        navigate("/admin/manage");
       }
     });
   };

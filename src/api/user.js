@@ -57,7 +57,7 @@ export default class Login {
   async isAdmin() {
     const response = await instance.get("/user/admin", {});
     const data = response.data;
-    console.log("data", data);
+
     return data;
   }
   async refreshToken() {

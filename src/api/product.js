@@ -164,6 +164,17 @@ export default class Product {
     return { QnA, count };
   }
 
+  async getMyQna(page) {
+    const response = await instance.get(`/qna/mypage`, {
+      headers: {
+        page,
+      },
+    });
+    const data = response.data;
+    console.log("data", data);
+    return data;
+  }
+
   async deleteQna(productId, qnaId) {
     const response = await instance.delete(`/qna/${productId}`, {
       data: { qnaId },
