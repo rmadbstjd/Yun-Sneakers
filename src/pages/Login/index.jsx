@@ -23,6 +23,24 @@ const Login = () => {
   const [showModal, setShowModal] = useState(false);
   let regex;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter") {
+      if (isPassed) {
+        const data = await user.login(inputs.id, inputs.pw);
+
+        if (data === false) {
+          setResult(false);
+        } else {
+          setNickName(data.userInfo.nickname);
+          setUserId(data.userInfo.userId);
+          setResult(true);
+        }
+      }
+    }
+  };
   const changeInput = (e, type) => {
     switch (type) {
       case "id":
@@ -119,6 +137,7 @@ const Login = () => {
           <Style.InputValue
             type="text"
             onChange={(e) => changeInput(e, "id")}
+            onKeyDown={(e) => handleKeyDown(e)}
             placeholder="6-20자의 영문,숫자를 입력해주세요"
             value={inputs.id}
             isAllowed={allows.id}
@@ -129,10 +148,15 @@ const Login = () => {
         </Style.InputContainer>
         <Style.InputContainer>
           <Style.Label isAllowed={allows.pw}>비밀번호</Style.Label>
-          <Style.Form>
+          <Style.Form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
             <Style.InputValue
               type="password"
               onChange={(e) => changeInput(e, "pw")}
+              onKeyDown={(e) => handleKeyDown(e)}
               placeholder="영문,숫자,특수문자를 각각 최소 한 개씩 포함하여 8-16자"
               value={inputs.pw}
               isAllowed={allows.pw}
