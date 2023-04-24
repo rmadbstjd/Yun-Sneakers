@@ -240,7 +240,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-
+  console.log("Show", showBrand);
   return (
     <div>
       <Navbar
@@ -317,7 +317,9 @@ const SearchPage = () => {
               <Style.Filter>필터</Style.Filter>
 
               <Style.SideContainer onClick={clickToBrand}>
-                <Style.BrandNavbar>브랜드</Style.BrandNavbar>
+                <Style.BrandNavbar isShow={showBrand === true ? true : false}>
+                  브랜드
+                </Style.BrandNavbar>
 
                 {showBrand === false ? (
                   <AiOutlinePlus style={{ width: "20px" }} />
@@ -356,16 +358,10 @@ const SearchPage = () => {
                       </Style.ItemName>
                     </Style.Item>
                   ))}
-                <HorizonLine
-                  width={"85%"}
-                  border={"1px"}
-                  color={"black"}
-                  margin={"0px 0px 10% 0px"}
-                ></HorizonLine>
               </Style.BrandContent>
 
               <Style.SideContainer onClick={clickToPrice}>
-                <Style.BrandNavbar>가격</Style.BrandNavbar>
+                <Style.PriceNavbar>가격</Style.PriceNavbar>
                 {showPrice === false ? (
                   <AiOutlinePlus style={{ width: "20px" }} />
                 ) : (
@@ -381,7 +377,7 @@ const SearchPage = () => {
                   margin={"0px 0px 10% 0px"}
                 ></HorizonLine>
               )}
-              <Style.BrandContent isShow={showPrice === true ? true : false}>
+              <Style.PriceContent isShow={showPrice === true ? true : false}>
                 {priceInitArr.map((item, index) => (
                   <Style.Item key={index}>
                     <Style.ItemName>
@@ -411,7 +407,7 @@ const SearchPage = () => {
                   color={"black"}
                   margin={"0px 0px 10% 0px"}
                 ></HorizonLine>
-              </Style.BrandContent>
+              </Style.PriceContent>
             </Style.SideLayout>
 
             <Style.Products>

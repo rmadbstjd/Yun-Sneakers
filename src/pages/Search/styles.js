@@ -162,13 +162,26 @@ export const SideContainer = styled.div`
 export const BrandNavbar = styled.div`
   width: 180px;
   font-size: 14px;
+  height: 200px;
 `;
-
+export const PriceNavbar = styled.div`
+  width: 180px;
+  font-size: 14px;
+  height: 200px;
+`;
 export const BrandContent = styled.div`
+  width: 185px;
+  display: ${(props) => (props.isShow === true ? "block" : "none")};
+  margin-left: -5px;
+  height: 150px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-bottom: 30px;
+`;
+export const PriceContent = styled.div`
   display: ${(props) => (props.isShow === true ? "block" : "none")};
   margin-left: -5px;
 `;
-
 export const Item = styled.div`
   display: flex;
   margin: 0px 0px 10px 0px;
