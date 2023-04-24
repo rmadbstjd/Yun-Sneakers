@@ -53,6 +53,14 @@ export default class Product {
     return data;
   }
 
+  async getUniqueProducts(currentPage) {
+    if (!currentPage) currentPage = 1;
+    const response = await this.httpClient.post("products/orderByUnique", {
+      currentPage,
+    });
+    const data = response.data;
+    return data;
+  }
   async getSimilarProducts(category, productId) {
     const response = await this.httpClient.post("products/similar", {
       category,

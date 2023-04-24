@@ -122,7 +122,7 @@ const QnA = () => {
                       <Style.QnAContents>{item.answer}</Style.QnAContents>
                     </Style.QnAContent>
                     <Style.Q>A.</Style.Q>
-                    <Style.QnAContents>{item.answer}</Style.QnAContents>
+                    <Style.QnAAnswer>{item.answer}</Style.QnAAnswer>
                   </Style.QnALayout>
                 )}
 

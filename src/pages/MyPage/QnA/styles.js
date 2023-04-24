@@ -118,7 +118,10 @@ export const QnATitle = styled.div`
 export const QnAContents = styled.div`
   margin-left: 12px;
 `;
-
+export const QnAAnswer = styled.div`
+  margin-left: 12px;
+  margin-bottom: 20px;
+`;
 export const Q = styled.div`
   font-size: 35px;
   font-weight: bolder;

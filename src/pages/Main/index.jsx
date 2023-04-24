@@ -4,6 +4,7 @@ import NewProducts from "../../components/NewProducts";
 import PopularProducts from "../../components/PopularProducts";
 import Brand from "../../components/RecommendBrand";
 import Navbar from "./../../components/common/Navbar/index";
+import UniqueProducts from "../../components/UniqueProducts";
 const Main = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const Main = () => {
             <Brand />
             <PopularProducts />
             <NewProducts />
+            <UniqueProducts />
           </Style.ProductsContainer>
         </Style.ProductsContainerLayout>
       </Style.Container>
