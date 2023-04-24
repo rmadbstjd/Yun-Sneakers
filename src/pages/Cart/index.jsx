@@ -211,7 +211,7 @@ const Cart = () => {
             </Style.HeaderContainer>
           </Style.HeaderLayout>
           {cartProducts &&
-            cartProducts.products.map((item, index) => (
+            cartProducts.products.map((item) => (
               <CartProduct
                 key={`${item.productId}+${item.size}`}
                 productId={item.productId}

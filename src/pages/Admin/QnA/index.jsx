@@ -52,6 +52,7 @@ const QnA = () => {
 
     navigate(`/products/${item.productId}`);
   };
+
   return (
     <div>
       <Navbar />
@@ -107,7 +108,7 @@ const QnA = () => {
           {showNotAnsweredQnA === true
             ? isNotAnsweredQnAs &&
               isNotAnsweredQnAs.map((item, index) => (
-                <div key={index}>
+                <div key={item._id}>
                   <Style.ProductContent
                     isClicked={index === isClicked}
                     onClick={() => clickToQnA(index)}
@@ -138,7 +139,7 @@ const QnA = () => {
               ))
             : isAnsweredQnAs &&
               isAnsweredQnAs.map((item, index) => (
-                <div key={index}>
+                <div key={item._id}>
                   <Style.ProductContent
                     isClicked={index === isClicked}
                     onClick={() => clickToQnA(index)}

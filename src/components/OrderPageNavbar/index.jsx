@@ -82,8 +82,8 @@ const OrderPageNavbar = () => {
         />
       )}
       {products &&
-        products.map((item, index) => (
-          <Style.ProductContent key={index}>
+        products.map((item) => (
+          <Style.ProductContent key={item.info.id}>
             <Style.Img
               src={item.info.image}
               onClick={() => {
@@ -170,7 +170,7 @@ const OrderPageNavbar = () => {
       )}
       {completedProducts &&
         completedProducts.map((item, index) => (
-          <Style.ProductContent key={index}>
+          <Style.ProductContent key={item.info.id}>
             <Style.Img
               src={item.info.image}
               onClick={() => {

@@ -5,9 +5,10 @@ import { history } from "../../hooks/history";
 import Navbar from "../../components/common/Navbar";
 import userInfoStore from "../../store/userInfoStore";
 
-const Login = ({ isAuthenticated }) => {
-  const location = useLocation();
+const Login = () => {
+  const isAuthenticated = localStorage.getItem("isLogin") === "true";
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
@@ -22,12 +23,10 @@ const Login = ({ isAuthenticated }) => {
   const [showModal, setShowModal] = useState(false);
   let regex;
 
-  if (isAuthenticated) navigate("/");
-
   const changeInput = (e, type) => {
     switch (type) {
       case "id":
-        regex = /^[a-z]+[a-z0-9]{5,19}$/g;
+        regex = /^[A-za-z0-9]{5,19}$/g;
         if (!regex.test(e.target.value)) {
           setAllows({ ...allows, [type]: false });
           setIsPassed(false);
@@ -82,7 +81,7 @@ const Login = ({ isAuthenticated }) => {
       setTimeout(setShowModal, 2000);
       setResult(null);
     }
-  }, [result, allows, navigate]);
+  }, [result, allows]);
 
   useEffect(() => {
     const listenBackEvent = () => navigate("/");
@@ -94,6 +93,10 @@ const Login = ({ isAuthenticated }) => {
 
     return unlistenHistoryEvent;
   }, [navigate, location.pathname]);
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated]);
   return (
     <>
       <Navbar />
@@ -104,7 +107,13 @@ const Login = ({ isAuthenticated }) => {
             <span>다시 입력해주세요.</span>
           </Style.Modal>
         )}
-        <Style.Title onClick={goToMainPage}>Yun's Sneakers</Style.Title>
+        <Style.Title
+          onClick={() => {
+            goToMainPage();
+          }}
+        >
+          Yun's Sneakers
+        </Style.Title>
         <Style.InputContainer>
           <Style.Label isAllowed={allows.id}>아이디</Style.Label>
           <Style.InputValue
@@ -115,7 +124,7 @@ const Login = ({ isAuthenticated }) => {
             isAllowed={allows.id}
           ></Style.InputValue>
           {allows.id === false ? (
-            <Style.Text>아이디를 입력해주세요.</Style.Text>
+            <Style.Text>양식에 준수하여 아이디를 입력해주세요.</Style.Text>
           ) : null}
         </Style.InputContainer>
         <Style.InputContainer>
@@ -131,14 +140,23 @@ const Login = ({ isAuthenticated }) => {
             ></Style.InputValue>
           </Style.Form>
           {allows.pw === false ? (
-            <Style.Text>비밀번호를 입력해주세요.</Style.Text>
+            <Style.Text>양식에 준수하여 비밀번호를 입력해주세요.</Style.Text>
           ) : null}
         </Style.InputContainer>
 
-        <Style.SubmitBtn isPassed={isPassed} onClick={clickToSubmit}>
+        <Style.SubmitBtn
+          isPassed={isPassed}
+          onClick={() => {
+            clickToSubmit();
+          }}
+        >
           로그인
         </Style.SubmitBtn>
-        <Style.SignUpLink onClick={goToSignUp}>
+        <Style.SignUpLink
+          onClick={() => {
+            goToSignUp();
+          }}
+        >
           아직 회원이 아니시라면
         </Style.SignUpLink>
       </Style.Container>

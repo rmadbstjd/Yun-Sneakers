@@ -17,7 +17,7 @@ import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";
 const Router = () => {
   const { setNickName, setUserId } = userInfoStore();
-  const isAuthenticated = localStorage.getItem("isLogin") === "true";
+
   useEffect(() => {
     authenticate(setNickName, setUserId);
   }, [setNickName, setUserId]);
@@ -27,10 +27,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/join" element={<Join />} />
-        <Route
-          path="/login"
-          element={<Login isAuthenticated={isAuthenticated} />}
-        />
+        <Route path="/login" element={<Login />} />
         <Route path="/search" element={<SearchPage />} />
         <Route
           path="/admin/*"

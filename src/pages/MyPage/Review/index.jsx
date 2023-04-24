@@ -128,7 +128,7 @@ const Review = () => {
             )}
             {product &&
               product.map((item, index) => (
-                <div key={index}>
+                <div key={item.product._id}>
                   <Style.Date>주문 일자 {item.product.date}</Style.Date>
                   <Style.ProductContent>
                     <Style.Img
@@ -291,7 +291,7 @@ const Review = () => {
             )}
             {completedProducts &&
               completedProducts.map((item, index) => (
-                <div key={index}>
+                <div key={item.product._id}>
                   <Style.Date>주문 일자 {item.product.date}</Style.Date>
                   <Style.ProductContent>
                     <Style.Img

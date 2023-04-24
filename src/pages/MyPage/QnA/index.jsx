@@ -19,7 +19,7 @@ const QnA = () => {
     product.getMyQna(page)
   );
   const QnAcounts = myQnAs && myQnAs.count;
-  console.log("count", QnAcounts);
+
   const goToDetailPage = (productId) => {
     navigate(`/products/${productId}`);
   };
@@ -64,7 +64,7 @@ const QnA = () => {
           <Style.HorizonLine width={"1466px"} border={1} color={"gray"} />
           {myQnAs &&
             myQnAs.QnA.map((item, index) => (
-              <div key={index}>
+              <div key={item._id}>
                 <Style.ProductContent
                   isClicked={index === showContent}
                   onClick={() => {

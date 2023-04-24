@@ -61,6 +61,7 @@ const ProductReviews = () => {
         {productReviews &&
           productReviews.map((review, index) => (
             <Style.Review
+              key={review._id}
               onClick={() => {
                 clickToReview(index);
               }}

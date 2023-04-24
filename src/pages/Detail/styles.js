@@ -160,25 +160,20 @@ export const ShoesContainer = styled.div`
   margin-left: 2px;
 `;
 
-export const GoToCartPageBtnLayout = styled.div`
+export const GoToCartPageBtnContainer = styled.div`
+  background-color: black;
   border-radius: 10px;
   width: 400px;
   height: 50px;
-  z-index: 999;
   position: absolute;
-  top: 38%;
-  left: 67.5%;
-  transform: translate(-59%, 70%);
-  background-color: black;
-  opacity: 0.9;
-`;
-
-export const GoToCartPageBtnContainer = styled.div`
   line-height: 300%;
   text-align: center;
   display: flex;
   justify-content: space-around;
   color: white;
+  opacity: 0.9;
+  z-index: 999;
+  top: 415px;
 `;
 
 export const GoToCartBtn = styled.div`

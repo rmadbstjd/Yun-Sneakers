@@ -77,8 +77,8 @@ const ManageProducts = () => {
           ></Style.HorizonLine>
 
           {products &&
-            products.map((item, index) => (
-              <div key={index}>
+            products.map((item) => (
+              <div key={item.id}>
                 <Style.ProductContent>
                   <Style.Img
                     src={item.image}

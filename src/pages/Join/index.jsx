@@ -79,7 +79,7 @@ const Join = () => {
         break;
 
       case "nickname":
-        regex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,6}$/;
+        regex = /[A-Za-z0-9가-힣]{2,7}/;
         if (e.target.value.length <= 6)
           if (!regex.test(e.target.value)) {
             setAllows({ ...allows, [type]: false });

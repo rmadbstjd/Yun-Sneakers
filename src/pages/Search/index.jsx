@@ -51,7 +51,7 @@ const SearchPage = () => {
   const [checkedPriceList, setCheckedPriceList] = useState(
     JSON.parse(sessionPrice) || sessionBrand || []
   );
-  const [checkedSort, setCheckedSort] = useState(sessionSort || "0");
+  const [checkedSort, setCheckedSort] = useState(sessionSort || "popular");
   const priceInitArr = [
     "20만원 이하",
     "20만원 - 40만원 이하",
@@ -59,10 +59,10 @@ const SearchPage = () => {
     "60만원 이상",
   ];
   const sortArr = [
-    { id: "0", title: "인기순" },
-    { id: "1", title: "최신순" },
-    { id: "2", title: "높은 가격순" },
-    { id: "3", title: "낮은 가격순" },
+    { id: "popular", title: "인기순" },
+    { id: "new", title: "최신순" },
+    { id: "highprice", title: "높은 가격순" },
+    { id: "lowprice", title: "낮은 가격순" },
   ];
 
   const clickToBrand = () => {
@@ -208,7 +208,7 @@ const SearchPage = () => {
   useEffect(() => {
     if (
       searchKeyword === "" &&
-      checkedSort === "0" &&
+      checkedSort === "popular" &&
       collectionName === "" &&
       priceOrder === "" &&
       page === ""
@@ -240,7 +240,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-  console.log("Show", showBrand);
+
   return (
     <div>
       <Navbar
@@ -337,8 +337,8 @@ const SearchPage = () => {
               )}
               <Style.BrandContent isShow={showBrand === true ? true : false}>
                 {brands &&
-                  brands.map((item, index) => (
-                    <Style.Item key={index}>
+                  brands.map((item) => (
+                    <Style.Item key={item}>
                       <Style.ItemName>
                         {" "}
                         <input
@@ -379,7 +379,7 @@ const SearchPage = () => {
               )}
               <Style.PriceContent isShow={showPrice === true ? true : false}>
                 {priceInitArr.map((item, index) => (
-                  <Style.Item key={index}>
+                  <Style.Item key={item}>
                     <Style.ItemName>
                       {" "}
                       <input
@@ -437,8 +437,8 @@ const SearchPage = () => {
                 <Style.SelectedBrandContainer>
                   {selectedBrands[0] &&
                     selectedBrands[0].map((item, index) => (
-                      <Style.SelectedBrand key={index}>
-                        {item}{" "}
+                      <Style.SelectedBrand key={item}>
+                        {item}
                         <Style.ItemName>
                           <Style.Close
                             onClick={() => {
@@ -468,7 +468,7 @@ const SearchPage = () => {
                 {products && products.products.length !== 0
                   ? products.products.map((item, index) => (
                       <ProductLikeCard
-                        key={index}
+                        key={item.id}
                         none={"none"}
                         product={item}
                         isAdmin={isAdmin}

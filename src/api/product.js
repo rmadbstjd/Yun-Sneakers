@@ -179,7 +179,6 @@ export default class Product {
       },
     });
     const data = response.data;
-    console.log("data", data);
     return data;
   }
 

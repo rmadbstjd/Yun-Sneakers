@@ -212,18 +212,16 @@ const ProductDetail = () => {
               {productInfo && convertToPrice(productInfo.product.price)}원
             </Style.Price>
             {cartModalShow && (
-              <Style.GoToCartPageBtnLayout>
-                <Style.GoToCartPageBtnContainer>
-                  <div>장바구니에 추가되었습니다.</div>
-                  <Style.GoToCartBtn
-                    onClick={() => {
-                      navigate("/cart");
-                    }}
-                  >
-                    바로가기
-                  </Style.GoToCartBtn>
-                </Style.GoToCartPageBtnContainer>
-              </Style.GoToCartPageBtnLayout>
+              <Style.GoToCartPageBtnContainer>
+                <div>장바구니에 추가되었습니다.</div>
+                <Style.GoToCartBtn
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                >
+                  바로가기
+                </Style.GoToCartBtn>
+              </Style.GoToCartPageBtnContainer>
             )}
             <Style.AddBtnContainer>
               <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>

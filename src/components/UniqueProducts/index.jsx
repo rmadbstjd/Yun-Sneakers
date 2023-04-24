@@ -12,7 +12,7 @@ const UniqueProducts = () => {
   const { isLoading, data: products } = useQuery(["unique", currentPage], () =>
     product.getUniqueProducts(currentPage)
   );
-  console.log("UNIQUEproducts", products);
+
   const ClickToMoreProduct = () => {
     setCurrentPage((prev) => prev + 1);
     if (currentPage >= 1) setShowMoreBtn(false);
