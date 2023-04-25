@@ -123,7 +123,7 @@ const Modal = ({
 
   useEffect(() => {
     size && setSizes(size.split(","));
-  }, [size, star, text]);
+  }, [size]);
 
   if (type === "size") {
     return (

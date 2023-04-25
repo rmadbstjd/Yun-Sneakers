@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import HorizonLine from "../../components/common/HorizonLine";
-import Modal from "../../components/common/Modal";
+import SizeModal from "../../components/common/Modal/SizeModal";
 import SimilarProducts from "../../components/SimilarProducts";
 import ProductReviews from "../../components/ProductReviews";
 import Swal from "sweetalert2";
@@ -192,20 +192,19 @@ const ProductDetail = () => {
                   </Style.ShowSizeCircle>
                 </Style.Size>
                 {sizeModalShow === true ? (
-                  <Modal
+                  <SizeModal
                     isOpen={true}
                     modalIsOpen={modalIsOpen}
                     setModalIsOpen={setModalIsOpen}
                     size={productInfo?.product.size}
-                    type={"size"}
-                  ></Modal>
+                  ></SizeModal>
                 ) : (
-                  <Modal
+                  <SizeModal
                     isOpen={false}
                     modalIsOpen={modalIsOpen}
                     setModalIsOpen={setModalIsOpen}
-                    type={"size"}
-                  ></Modal>
+                    size={productInfo?.product.size}
+                  ></SizeModal>
                 )}
               </Style.SizeContainer>
               <HorizonLine width={"100%"} border={"1px"} color={"gray"} />
