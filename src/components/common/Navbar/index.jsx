@@ -28,10 +28,11 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const info = token && jwt_decode(token);
-  const [isAdmin] = useState(
+  const isAdmin = useState(
     (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
   );
-
+  console.log("isAdmin", isAdmin);
+  console.log("pc", process.env.REACT_APP_ADMIN_ID);
   const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
   useEffect(() => {
     initCartCount();
