@@ -18,6 +18,7 @@ const Modal = ({
   product,
   isReviewed,
   qna,
+  refetch,
 }) => {
   const [sizes, setSizes] = useState([]);
   const [star, setStar] = useState([false, false, false, false, false]);
@@ -114,7 +115,8 @@ const Modal = ({
       confirmButtonColor: "black",
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.reload();
+        setModalIsOpen(false);
+        refetch();
       }
     });
   };
@@ -255,8 +257,8 @@ const Modal = ({
               <Style.ProductName>{product.info.name}</Style.ProductName>
               <Style.ProductDescription>
                 {product.info.description}
+                <Style.Size>[사이즈] {product.product.size}</Style.Size>
               </Style.ProductDescription>
-              <Style.Size>[사이즈] {product.product.size}</Style.Size>
             </Style.InfoContainer>
           </Style.ProductContent>
           <Style.HorizonLine></Style.HorizonLine>

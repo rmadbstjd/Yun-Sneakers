@@ -149,7 +149,7 @@ export const TextArea = styled.textarea`
   background: #f8f8f8;
 `;
 
-export const letterCount = styled.div`
+export const LetterCount = styled.div`
   width: 322px;
   height: 15px;
   font-size: 13px;

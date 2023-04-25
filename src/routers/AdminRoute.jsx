@@ -4,6 +4,7 @@ import NewProducts from "../pages/Admin/NewProduct";
 import QnA from "../pages/Admin/QnA";
 import EditProduct from "../pages/Admin/EditProduct";
 import ManageProducts from "../pages/Admin/ManageProducts";
+import NotFound from "../pages/NotFound";
 const AdminRoute = ({ isAdmin }) => {
   return (
     <Routes>
@@ -14,6 +15,7 @@ const AdminRoute = ({ isAdmin }) => {
         path="/manage"
         element={<ManageProducts isAdmin={isAdmin} />}
       ></Route>
+      <Route path={"*"} element={<NotFound />} />
     </Routes>
   );
 };

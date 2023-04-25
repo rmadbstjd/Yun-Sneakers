@@ -15,12 +15,13 @@ import SimilarProducts from "../../components/SimilarProducts";
 import ProductReviews from "../../components/ProductReviews";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import ProductDetailFooter from "../../components/ProductDetailFooter";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Link } from "react-scroll";
 import QnA from "../../components/QnA";
+import NotFound from "../NotFound";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -36,9 +37,10 @@ const ProductDetail = () => {
   const { data: cartProducts, refetch: cartRefetch } = useQuery([userId], () =>
     cart.getUserCarts()
   );
-  const products = productInfo && productInfo.product;
-  const category = productInfo && productInfo.product.category[0];
-  const productId = productInfo && productInfo.product.id;
+
+  const products = productInfo?.product;
+  const category = productInfo?.product?.category[0];
+  const productId = productInfo?.product?.id;
 
   const { isLoading, data: similarProducts } = useQuery(
     ["similar", id],
@@ -137,23 +139,23 @@ const ProductDetail = () => {
         break;
     }
   }, [rate]);
-
+  if (productInfo === "error") {
+    return <NotFound />;
+  }
   return (
     <>
       <Navbar />
       <Style.Container>
         <Style.ProductContainer>
           <Style.ImageLayout>
-            <Style.Image src={productInfo && productInfo.product.image} />
+            <Style.Image src={productInfo?.product?.image} />
           </Style.ImageLayout>
 
           <Style.ProductInfoContainer>
             <HorizonLine width={"100%"} border={"3px"} color={"black"} />
-            <Style.Category>
-              {productInfo && productInfo.product.category[0]}
-            </Style.Category>
+            <Style.Category>{productInfo?.product?.category[0]}</Style.Category>
             <Style.Description>
-              {productInfo && productInfo.product.description}
+              {productInfo?.product?.description}
             </Style.Description>
             <div style={{ display: "flex", margin: "5px 0px 0px 0px" }}>
               {" "}
@@ -194,7 +196,7 @@ const ProductDetail = () => {
                     isOpen={true}
                     modalIsOpen={modalIsOpen}
                     setModalIsOpen={setModalIsOpen}
-                    size={productInfo && productInfo.product.size}
+                    size={productInfo?.product.size}
                     type={"size"}
                   ></Modal>
                 ) : (
@@ -209,7 +211,9 @@ const ProductDetail = () => {
               <HorizonLine width={"100%"} border={"1px"} color={"gray"} />
             </div>
             <Style.Price>
-              {productInfo && convertToPrice(productInfo.product.price)}원
+              {productInfo?.product &&
+                convertStringToNumber(productInfo?.product?.price)}
+              원
             </Style.Price>
             {cartModalShow && (
               <Style.GoToCartPageBtnContainer>
@@ -239,7 +243,7 @@ const ProductDetail = () => {
                   onClick={clickToLike}
                 />
               ) : null}
-              {isLiked && isLiked.result === false ? (
+              {isLiked?.result === false ? (
                 <BsHeart
                   style={{
                     width: "45px",
@@ -252,7 +256,7 @@ const ProductDetail = () => {
                   }}
                   onClick={clickToLike}
                 />
-              ) : isLiked && isLiked.result === true ? (
+              ) : isLiked?.result === true ? (
                 <FaHeart
                   style={{
                     width: "45px",
@@ -291,10 +295,9 @@ const ProductDetail = () => {
               margin={"100px 0px 0px 0px"}
             />
           )}
-          {similarProducts &&
-            similarProducts.map((item) => (
-              <SimilarProducts key={item.id} products={item} />
-            ))}
+          {similarProducts?.map((item) => (
+            <SimilarProducts key={item.id} products={item} />
+          ))}
         </Style.ShoesContainer>
       </Style.SimilarContainer>
     </>

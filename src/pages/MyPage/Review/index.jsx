@@ -6,7 +6,7 @@ import userInfoStore from "../../../store/userInfoStore";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import Modal from "../../../components/common/Modal";
 import Swal from "sweetalert2";
-import convertToPrice from "../../../hooks/convertToPrice";
+import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";
@@ -162,7 +162,7 @@ const Review = () => {
                     <Style.PriceContainer height={"130px"}>
                       {item.product.coupon !== "선택안함" ? (
                         <Style.FirstPrice>
-                          {convertToPrice(item.info.price)}원
+                          {convertStringToNumber(item.info.price)}원
                         </Style.FirstPrice>
                       ) : null}
                       <div>
@@ -322,7 +322,7 @@ const Review = () => {
                     <Style.PriceContainer height={"120px"}>
                       {item.product.coupon !== "선택안함" ? (
                         <Style.FirstPrice>
-                          {convertToPrice(item.info.price)}원 원
+                          {convertStringToNumber(item.info.price)}원 원
                         </Style.FirstPrice>
                       ) : null}
                       <div>

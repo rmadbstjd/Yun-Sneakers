@@ -16,7 +16,6 @@ export default class Product {
       params: { keyword, sort, collectionName, priceOrder, page, offset: 10 },
     });
     const data = response.data;
-
     const products = data.products;
     const count = data.count;
     return { products, count };
@@ -36,6 +35,7 @@ export default class Product {
   }
   async getNewProducts(currentPage) {
     if (!currentPage) currentPage = 1;
+    console.log("currentPage", currentPage);
     const response = await this.httpClient.post("products/orderByNew", {
       currentPage,
     });
@@ -73,11 +73,12 @@ export default class Product {
   async getProductInfo(id) {
     const response = await this.httpClient.get(`products/${id}`);
     const data = response.data;
+    if (data.error === true) return "error";
     return data;
   }
 
   async addProduct(product, image) {
-    return this.httpClient.post("/products", {
+    await this.httpClient.post("/products", {
       id: product.id,
       name: product.title,
       category: product.category,
@@ -89,7 +90,7 @@ export default class Product {
   }
 
   async editProduct(product, image, productId) {
-    return this.httpClient.put("/products", {
+    await this.httpClient.put("/products", {
       id: product.id,
       name: product.title,
       category: product.category,

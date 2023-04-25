@@ -11,12 +11,11 @@ export default class Like {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
     this.token = localStorage.getItem("accessToken");
   }
 
   async pushLike(productId, userId) {
-    const response = await instance.post(
+    await instance.post(
       `/like/${productId}`,
       {
         userId,
@@ -27,8 +26,6 @@ export default class Like {
         },
       }
     );
-    const data = response.data;
-    return data;
   }
 
   async isLike(productId) {

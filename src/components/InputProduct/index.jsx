@@ -5,7 +5,8 @@ import { useImmer } from "use-immer";
 import userInfoStore from "../../store/userInfoStore";
 import { uploadImage } from "../../api/upload";
 import Navbar from "../common/Navbar";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
+
 import Swal from "sweetalert2";
 const InputProduct = ({ title, type, productInfo }) => {
   const { product } = userInfoStore();
@@ -72,7 +73,7 @@ const InputProduct = ({ title, type, productInfo }) => {
     if (productInfo) {
       setNewProducts((product) => {
         product["url"] = productInfo.product.image;
-        product["price"] = convertToPrice(productInfo.product.price);
+        product["price"] = convertStringToNumber(productInfo.product.price);
         product["title"] = productInfo.product.name;
         product["size"] = productInfo.product.size;
         product["description"] = productInfo.product.description;

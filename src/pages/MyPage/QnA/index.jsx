@@ -5,7 +5,7 @@ import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import productStore from "../../../store/productStore";
 import { useNavigate } from "react-router-dom";
-import convertToPrice from "./../../../hooks/convertToPrice";
+import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";
 const itemArr3 = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
 const QnA = () => {
@@ -89,7 +89,7 @@ const QnA = () => {
                     </Style.Text>
                     <Style.Text>
                       <span>
-                        {convertToPrice(
+                        {convertStringToNumber(
                           myQnAs && myQnAs.products[index][0].price
                         )}
                         원

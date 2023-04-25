@@ -29,7 +29,6 @@ const AddShip = ({ type }) => {
     setPhoneNumInput2,
     setPhoneNumInput3,
     defaultAddress,
-    setDefaultAddress,
     shipAddressDetail,
     setShipAddressDetail,
   } = userInfoStore();
@@ -92,8 +91,17 @@ const AddShip = ({ type }) => {
     if (value.length >= 51) return;
     setTextArea(value);
   };
-  const checkAddress = (e) => {
-    setDefaultAddress();
+  const checkAddress = async () => {
+    await myPage.addUserAddress(
+      shipPlaceName,
+      shipReceiver,
+      shipPostCode,
+      shipAddress,
+      shipAddressDetail,
+      phoneNumInput1,
+      phoneNumInput2,
+      phoneNumInput3
+    );
   };
 
   useEffect(() => {
@@ -207,7 +215,7 @@ const AddShip = ({ type }) => {
             onChange={(e) => checkTextLength(e)}
             placeholder="내용을 입력해주세요.(최대 50자)"
           ></Style.TextArea>
-          <Style.letterCount>{textArea.length}/50</Style.letterCount>
+          <Style.LetterCount>{textArea.length}/50</Style.LetterCount>
         </>
       )}
 

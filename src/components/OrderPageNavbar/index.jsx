@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import Modal from "../common/Modal";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { Link } from "react-scroll";
 const itemArr = [
@@ -83,7 +83,7 @@ const OrderPageNavbar = () => {
       )}
       {products &&
         products.map((item) => (
-          <Style.ProductContent key={item.info.id}>
+          <Style.ProductContent key={item.product._id}>
             <Style.Img
               src={item.info.image}
               onClick={() => {
@@ -114,7 +114,7 @@ const OrderPageNavbar = () => {
             <Style.PriceContainer>
               {item.product.coupon !== "선택안함" ? (
                 <Style.FirstPrice>
-                  {convertToPrice(item.info.price)}원
+                  {convertStringToNumber(item.info.price)}원
                 </Style.FirstPrice>
               ) : null}
               <div>
@@ -170,7 +170,7 @@ const OrderPageNavbar = () => {
       )}
       {completedProducts &&
         completedProducts.map((item, index) => (
-          <Style.ProductContent key={item.info.id}>
+          <Style.ProductContent key={item.product._id}>
             <Style.Img
               src={item.info.image}
               onClick={() => {
@@ -199,7 +199,7 @@ const OrderPageNavbar = () => {
             <Style.PriceContainer>
               {item.product.coupon !== "선택안함" ? (
                 <Style.FirstPrice>
-                  {convertToPrice(item.info.price)}원
+                  {convertStringToNumber(item.info.price)}원
                 </Style.FirstPrice>
               ) : null}
               <div>
@@ -234,6 +234,7 @@ const OrderPageNavbar = () => {
           type={"review"}
           product={completedProducts[number]}
           isReviewed={false}
+          refetch={refetch2}
         ></Modal>
       ) : null}
     </div>

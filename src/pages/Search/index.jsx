@@ -10,7 +10,7 @@ import searchStore from "../../store/searchStore";
 import ProductLikeCard from "../../components/ProductLikeCard";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import { useImmer } from "use-immer";
 import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
@@ -415,7 +415,7 @@ const SearchPage = () => {
                 <Style.ProductsCount>
                   상품{" "}
                   {products && products.products.length !== 0
-                    ? convertToPrice(products.count)
+                    ? convertStringToNumber(products.count)
                     : 0}
                 </Style.ProductsCount>
                 <Style.SortContainer>

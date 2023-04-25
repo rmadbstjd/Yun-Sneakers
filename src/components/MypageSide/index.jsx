@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+
 import * as Style from "./styles";
 const itemArr = [
   { id: 0, title: "주문 내역 조회", params: "order" },
@@ -11,7 +11,7 @@ const itemArr = [
   { id: 4, title: "상품 Q&A 문의 내역", params: "qna" },
 ];
 const MypageSide = () => {
-  const { nickName, isCheckedID, setIsCheckedID } = userInfoStore();
+  const { nickName, setIsCheckedID } = userInfoStore();
   const location = useLocation();
   const query = location && location.pathname.split("/")[2];
 

@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import productStore from "../../../store/productStore";
 import Navbar from ".././../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import convertToPrice from "./../../../hooks/convertToPrice";
+import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -102,7 +102,7 @@ const ManageProducts = () => {
                     <div>{item.id}</div>
                   </Style.PriceContainer>
                   <Style.PriceContainer height={"120px"}>
-                    <div>{convertToPrice(item.price)}</div>
+                    <div>{convertStringToNumber(item.price)}</div>
                   </Style.PriceContainer>
                   <Style.BtnContainer>
                     <Style.Review onClick={() => clickToEditBtn(item.id)}>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import * as Style from "./styles";
 import Swal from "sweetalert2";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 
 const CartProduct = ({
   item,
@@ -93,7 +93,7 @@ const CartProduct = ({
             marginTop={"20%"}
             marginLeft={"9%"}
           >
-            {convertToPrice(productCount * item.price)}원
+            {convertStringToNumber(productCount * item.price)}원
           </Style.Price>
         </Style.PriceContainer>
 

@@ -10,12 +10,11 @@ export default class Order {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
   }
 
   async addOrderProducts(productId, date, count, coupon, size) {
     const state = "배송중";
-    const response = await instance.post(`/order`, {
+    await instance.post(`/order`, {
       productId,
       date,
       count,
@@ -23,16 +22,12 @@ export default class Order {
       coupon,
       size,
     });
-    const data = response.data;
-    return data;
   }
 
   async completeShipment(orderId) {
-    const response = await instance.put(`/order`, {
+    instance.put(`/order`, {
       orderId,
     });
-    const data = response.data;
-    return data;
   }
 
   async getShipIsCompleted() {

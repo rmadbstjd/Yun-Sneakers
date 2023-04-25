@@ -7,7 +7,7 @@ import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
@@ -240,10 +240,8 @@ const Shipment = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         navigate("/mypage/order");
-        window.location.reload();
       } else {
         navigate("/");
-        window.location.reload();
       }
     });
   };
@@ -455,7 +453,7 @@ const Shipment = () => {
                     <Style.Category>{item.category[0]}</Style.Category>
                     <Style.Name>{item.name}</Style.Name>
                     <Style.PriceContainer>
-                      <div>{convertToPrice(item.price)}원/</div>
+                      <div>{convertStringToNumber(item.price)}원/</div>
                       <div>&nbsp;수량 {item.quantity}개</div>
                     </Style.PriceContainer>
                     <Style.Size>옵션 : [SIZE] {item.size}</Style.Size>
@@ -466,11 +464,11 @@ const Shipment = () => {
           <Style.InfoContainer>
             <Style.InfoContent>
               <div>총 상품금액</div>
-              <div>{convertToPrice(price)}원</div>
+              <div>{convertStringToNumber(price)}원</div>
             </Style.InfoContent>
             <Style.InfoContent>
               <div>쿠폰 사용</div>
-              <div>- {convertToPrice(couponAppliedPrice)}원</div>
+              <div>- {convertStringToNumber(couponAppliedPrice)}원</div>
             </Style.InfoContent>
             <Style.InfoContent>
               <div>배송비</div>
@@ -478,7 +476,7 @@ const Shipment = () => {
             </Style.InfoContent>
             <Style.InfoTotalPriceContainer>
               <div>총 결제금액</div>
-              <div>{convertToPrice(price - couponAppliedPrice)}원</div>
+              <div>{convertStringToNumber(price - couponAppliedPrice)}원</div>
             </Style.InfoTotalPriceContainer>
             <Style.HorizonLine width={"100%"} border={1}></Style.HorizonLine>
           </Style.InfoContainer>

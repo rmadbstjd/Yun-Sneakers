@@ -28,7 +28,7 @@ export default class MyPage {
     phoneNumInput2,
     phoneNumInput3
   ) {
-    const response = await instance.post(`/address`, {
+    await instance.post(`/address`, {
       place: shipPlaceName,
       receiver: shipReceiver,
       postCode: shipPostCode,
@@ -38,8 +38,6 @@ export default class MyPage {
       phoneNumber2: String(phoneNumInput2),
       phoneNumber3: String(phoneNumInput3),
     });
-    const data = response.data;
-    return data;
   }
   async getUserAddress() {
     const response = await instance.get("/address", {});
@@ -49,9 +47,7 @@ export default class MyPage {
     else return false;
   }
   async deleteUserAddress() {
-    const response = await instance.delete(`/address`, {});
-    const data = response.data;
-    return data;
+    await instance.delete(`/address`, {});
   }
 
   async addProductReview(
@@ -67,7 +63,7 @@ export default class MyPage {
     content,
     rate
   ) {
-    const response = await instance.post(`/review`, {
+    await instance.post(`/review`, {
       image,
       star,
       count,
@@ -80,8 +76,6 @@ export default class MyPage {
       content,
       rate,
     });
-    const data = response.data;
-    return data;
   }
 
   async getUserReviews() {
@@ -91,10 +85,8 @@ export default class MyPage {
   }
 
   async deleteProductReview(orderId) {
-    const response = await instance.delete(`/review`, {
+    await instance.delete(`/review`, {
       data: { orderId },
     });
-    const data = response.data;
-    return data;
   }
 }

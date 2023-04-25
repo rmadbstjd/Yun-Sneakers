@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import { HiHeart } from "react-icons/hi";
 import { AiFillCloseSquare } from "react-icons/ai";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 const ProductLikeCard = ({ none, product, refetch }) => {
   const { like } = userInfoStore();
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const ProductLikeCard = ({ none, product, refetch }) => {
           <div className={styles.name}>{product && product.name}</div>
           <div className={styles.priceContainer}>
             <div className={styles.price}>
-              {convertToPrice(product.price)}원
+              {convertStringToNumber(product.price)}원
             </div>
             <div className={styles.heartContainer}>
               <HiHeart className={styles.heart} />

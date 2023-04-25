@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 200%;
+  height: 300%;
   z-index: 5;
   position: absolute;
-  top: 103%;
+  top: 153%;
   left: 52%;
   transform: translate(-50%, -50%);
   background: white;

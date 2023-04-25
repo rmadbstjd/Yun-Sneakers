@@ -10,7 +10,6 @@ export default class Cart {
         withCredentials: true,
       }
     );
-    this.email = localStorage.getItem("email");
   }
 
   async getUserCarts() {
@@ -28,40 +27,31 @@ export default class Cart {
     const response = await instance.get("/cart/checked", {});
     const data = response.data;
 
-    if (data.success === "true") {
-      return data;
-    } else {
-      return null;
-    }
+    if (data.success === "true") return data;
+    else return null;
   }
   async updateUserCart(productId, size, quantity) {
-    const response = await instance.put(`/carts/${productId}`, {
-      quantity: quantity,
-      size: size,
+    await instance.put(`/carts/${productId}`, {
+      quantity,
+      size,
     });
-    const data = response.data;
-    return data;
   }
 
   async checkProduct(productId, isChecked) {
-    const response = await instance.put(`/carts/${productId}/check`, {
+    await instance.put(`/carts/${productId}/check`, {
       isChecked,
     });
-    const data = response.data;
-    return data;
   }
   async addUserCart(products, size) {
-    const response = await instance.post(`/carts/${products.id}`, {
+    await instance.post(`/carts/${products.id}`, {
       product: products,
       quantity: 1,
       size,
     });
-    const data = response.data;
-    return data;
   }
 
   async deleteUserCart(productId, size) {
-    return instance.delete(`/carts/${productId}`, {
+    await instance.delete(`/carts/${productId}`, {
       data: { size },
     });
   }

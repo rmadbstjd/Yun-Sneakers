@@ -38,10 +38,10 @@ const QnA = () => {
   const { data: productInfo } = useQuery([id], () =>
     product.getProductInfo(id)
   );
-  const image = productInfo && productInfo.product.image;
+  const image = productInfo?.product?.image;
 
-  const QnAcounts = QnA && QnA.count.length;
-  QnA = QnA && QnA.QnA;
+  const QnAcounts = QnA?.count?.length;
+  QnA = QnA?.QnA;
 
   const clickToWriteBtn = () => {};
   const clickToSubmitBtn = async () => {
@@ -202,7 +202,7 @@ const QnA = () => {
               비밀글
             </Style.Label>
             <Style.CheckBox
-              checked={secretChecked}
+              defaultChecked={secretChecked}
               type="checkbox"
               id="checkbox"
               onClick={() => {

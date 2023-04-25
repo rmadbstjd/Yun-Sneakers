@@ -135,11 +135,14 @@ export const QnAContainer = styled.div`
 export const QnAInfo = styled.div`
   width: 250px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 13px;
   cursor: pointer;
 `;
-export const UserId = styled.div``;
+export const UserId = styled.div`
+  width: 35px;
+  height: 25px;
+`;
 
 export const Dates = styled.div``;
 

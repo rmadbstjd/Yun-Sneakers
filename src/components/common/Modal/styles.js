@@ -100,6 +100,7 @@ export const ProductContent = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 500px;
+  height: 150px;
 `;
 
 export const QnAContent = styled.div`
@@ -121,7 +122,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const ProductCategory = styled.div`
-  font-weight: bolder;
+  font-weight: bolder;r
   margin-bottom: 10px;
   width: 75%;
 `;
@@ -135,9 +136,7 @@ export const ProductDescription = styled.div`
   height: 122px;
 `;
 
-export const Size = styled.div`
-  margin-top: -100px;
-`;
+export const Size = styled.div``;
 export const HorizonLine = styled.div`
   width: 95%;
   margin-top: 20px;

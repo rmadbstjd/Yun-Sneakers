@@ -21,7 +21,7 @@ const UniqueProducts = () => {
     <Style.Container>
       <Style.ProductsContainer>
         <Style.TitleENG>Unique Products</Style.TitleENG>
-        <Style.TitleKOR>눈길을 사로잡는 상품</Style.TitleKOR>
+        <Style.TitleKOR>시선을 사로잡는 상품</Style.TitleKOR>
         {isLoading && (
           <LoadingSpinner
             width={"100%"}

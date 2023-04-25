@@ -6,7 +6,7 @@ import cartStore from "../../store/cartStore";
 import userInfoStore from "../../store/userInfoStore";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";
@@ -243,7 +243,7 @@ const Cart = () => {
           <Style.PayContainer>
             <Style.PayContent width={27.5} margin={true} fontSize={25}>
               <Style.Count>총 {checkedProducts?.length}개</Style.Count>
-              {convertToPrice(price)}원
+              {convertStringToNumber(price)}원
             </Style.PayContent>
             <Style.SymbolContainer>
               <Style.Symbol> + </Style.Symbol>
@@ -252,7 +252,7 @@ const Cart = () => {
             </Style.SymbolContainer>
 
             <Style.PayContent width={23} margin={true} fontSize={25}>
-              {convertToPrice(price)}원
+              {convertStringToNumber(price)}원
             </Style.PayContent>
           </Style.PayContainer>
           <HorizonLine

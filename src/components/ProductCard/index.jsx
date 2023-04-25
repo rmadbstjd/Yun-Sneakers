@@ -2,7 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { HiHeart } from "react-icons/hi";
-import convertToPrice from "../../hooks/convertToPrice";
+import convertStringToNumber from "../../hooks/convertStringToNumber";
 import jwt_decode from "jwt-decode";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
           <div>{product && product.description} </div>
           <Style.Name>{product && product.name}</Style.Name>
           <Style.PriceContainer>
-            <>{convertToPrice(product.price)}원</>
+            <>{convertStringToNumber(product.price)}원</>
             <Style.HeartContainer>
               <HiHeart
                 style={{ marginTop: "-4px", color: "red", fontSize: "18px" }}
