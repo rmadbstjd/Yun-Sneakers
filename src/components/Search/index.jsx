@@ -72,7 +72,7 @@ const Search = ({ setShowSearch }) => {
   };
   const fetch = async (keyword) => {
     const response = await axios.post(
-      "http://yunseong.shop/api/search/autocompleted",
+      "https://yunseong.shop/api/search/autocompleted",
       {
         keyword,
       }

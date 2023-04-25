@@ -4,7 +4,7 @@ export default class Login {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://yunseong.shop/api",
+        baseURL: "https://yunseong.shop/api",
       },
       {
         withCredentials: true,

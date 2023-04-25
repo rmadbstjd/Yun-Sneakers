@@ -178,7 +178,7 @@ const SearchPage = () => {
 
   const fetch = async (result) => {
     const response = await axios.post(
-      "http://yunseong.shop/api/search/autocompleted",
+      "https://yunseong.shop/api/search/autocompleted",
       {
         keyword: result,
       }

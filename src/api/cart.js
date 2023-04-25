@@ -4,7 +4,7 @@ export default class Cart {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://yunseong.shop/api",
+        baseURL: "https://yunseong.shop/api",
       },
       {
         withCredentials: true,
