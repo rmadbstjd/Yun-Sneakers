@@ -4,7 +4,7 @@ export default class MyPage {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "http://localhost:3000/api",
+        baseURL: "http://yunseong.shop/api",
       },
       {
         withCredentials: true,

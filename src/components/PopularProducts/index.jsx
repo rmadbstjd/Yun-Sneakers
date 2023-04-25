@@ -31,8 +31,8 @@ const ShowPopularProducts = () => {
           ></LoadingSpinner>
         )}
         {products &&
-          products.map((product) =>
-            product.map((product) => (
+          products?.map((product) =>
+            product?.map((product) => (
               <ProductCard key={product.name} product={product}></ProductCard>
             ))
           )}
