@@ -35,7 +35,7 @@ export const MoreContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
   margin-top: 45px;
 `;
 
