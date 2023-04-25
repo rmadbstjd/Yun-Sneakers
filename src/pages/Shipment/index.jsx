@@ -332,7 +332,7 @@ const Shipment = () => {
             {haveAddress === false ? (
               <ShipAddress />
             ) : (
-              <AddShip type={"orderPage"}></AddShip>
+              <AddShip setDefaultAddress={true} type={"orderPage"}></AddShip>
             )}
           </div>
 

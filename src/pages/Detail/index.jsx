@@ -104,14 +104,15 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productReviews) {
-      if (productReviews.length === 0) {
+      if (productReviews.count === 0) {
         setRate(0);
         return;
       }
-      for (let i = 0; i < productReviews.length; i++) {
-        setRate((prev) => prev + productReviews[i].rate);
+
+      for (let i = 0; i < productReviews.count; i++) {
+        setRate((prev) => prev + productReviews.reviews[i].rate);
       }
-      setRate((prev) => (prev / productReviews.length).toFixed(0));
+      setRate((prev) => (prev / productReviews.count).toFixed(0));
     }
   }, [productReviews]);
 
@@ -142,6 +143,8 @@ const ProductDetail = () => {
   if (productInfo === "error") {
     return <NotFound />;
   }
+  console.log("prrv", productReviews);
+  console.log("rate", rate);
   return (
     <>
       <Navbar />

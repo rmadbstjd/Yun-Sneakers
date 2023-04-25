@@ -6,7 +6,7 @@ import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
 import { useQuery } from "@tanstack/react-query";
 import { AiOutlineMinus } from "react-icons/ai";
-const AddShip = ({ type }) => {
+const AddShip = ({ type, setDefaultAddress }) => {
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
   );
@@ -187,15 +187,17 @@ const AddShip = ({ type }) => {
           onChange={(e) => checkNumber(e, "last")}
         ></Style.Number>
       </Style.PhoneNumberContainer>
-      <Style.CheckBoxContainer>
-        <Style.CheckBox
-          margin={"2 0px"}
-          type="checkbox"
-          value={defaultAddress}
-          onChange={(e) => checkAddress(e)}
-        />
-        <Style.CheckBoxRight>기본 배송지로 설정</Style.CheckBoxRight>
-      </Style.CheckBoxContainer>
+      {setDefaultAddress && (
+        <Style.CheckBoxContainer>
+          <Style.CheckBox
+            margin={"2 0px"}
+            type="checkbox"
+            value={defaultAddress}
+            onChange={(e) => checkAddress(e)}
+          />
+          <Style.CheckBoxRight>기본 배송지로 설정</Style.CheckBoxRight>
+        </Style.CheckBoxContainer>
+      )}
       <Style.RequestBox onClick={showRequestBox}>
         {request} <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
       </Style.RequestBox>

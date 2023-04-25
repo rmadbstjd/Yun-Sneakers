@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../../store/userInfoStore";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import Modal from "../../../components/common/Modal";
+import ReviewModal from "../../../components/common/Modal/ReviewModal";
 import Swal from "sweetalert2";
 import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import MypageSide from "../../../components/MypageSide";
@@ -208,15 +208,16 @@ const Review = () => {
                         수정
                       </Style.Btn>
                       {showModal === true ? (
-                        <Modal
+                        <ReviewModal
                           isOpen={true}
                           modalIsOpen={showModal}
                           setModalIsOpen={setShowModal}
-                          type={"review"}
                           product={product[number]}
                           isReviewed={true}
                           setStateReview={setStateReview}
-                        ></Modal>
+                          refetch={refetch}
+                          refetch2={refetch2}
+                        ></ReviewModal>
                       ) : null}
                       <Style.Btn
                         onClick={() => {
@@ -351,14 +352,15 @@ const Review = () => {
                 </div>
               ))}
             {showModal === true ? (
-              <Modal
+              <ReviewModal
                 isOpen={true}
                 modalIsOpen={showModal}
                 setModalIsOpen={setShowModal}
-                type={"review"}
                 product={completedProducts[number]}
                 isReviewed={false}
-              ></Modal>
+                refetch={refetch}
+                refetch2={refetch2}
+              ></ReviewModal>
             ) : null}
           </Style.MainContainer>
         </Style.MyPageContainer>

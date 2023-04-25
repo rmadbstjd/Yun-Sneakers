@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import productStore from "../../../store/productStore";
 import Navbar from "../../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import Modal from "../../../components/common/Modal";
+import QnAModal from "../../../components/common/Modal/QnAModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const itemArr3 = ["제목", "내용", "유저", "날짜"];
@@ -34,7 +34,7 @@ const QnA = () => {
       confirmButtonColor: "black",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/qna");
+        navigate("/admin/qna");
         setIsClicked();
       }
     });
@@ -163,15 +163,14 @@ const QnA = () => {
                 </div>
               ))}
           {showModal === true ? (
-            <Modal
+            <QnAModal
               isOpen={true}
               modalIsOpen={showModal}
               setModalIsOpen={setShowModal}
-              type={"qna"}
               isReviewed={false}
               qna={isNotAnsweredQnAs[isClicked]}
               submitBtn={submitBtn}
-            ></Modal>
+            ></QnAModal>
           ) : null}
         </Style.MainContainer>
       </Style.MyPageContainer>

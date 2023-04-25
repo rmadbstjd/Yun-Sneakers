@@ -35,7 +35,7 @@ export default class Product {
   }
   async getNewProducts(currentPage) {
     if (!currentPage) currentPage = 1;
-    console.log("currentPage", currentPage);
+
     const response = await this.httpClient.post("products/orderByNew", {
       currentPage,
     });

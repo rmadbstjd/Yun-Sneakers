@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
-import Modal from "../common/Modal";
+import ReviewModal from "../common/Modal/ReviewModal";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { Link } from "react-scroll";
@@ -32,6 +32,7 @@ const OrderPageNavbar = () => {
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
     await order.completeShipment(id);
+    await order.getShipIsCompleted();
     refetch1();
     refetch2();
   };
@@ -227,15 +228,14 @@ const OrderPageNavbar = () => {
           </Style.ProductContent>
         ))}
       {showModal === true ? (
-        <Modal
+        <ReviewModal
           isOpen={true}
           modalIsOpen={showModal}
           setModalIsOpen={setShowModal}
-          type={"review"}
           product={completedProducts[number]}
           isReviewed={false}
           refetch={refetch2}
-        ></Modal>
+        ></ReviewModal>
       ) : null}
     </div>
   );

@@ -86,7 +86,7 @@ const ProductReviews = () => {
                       />
                     )
                   )}
-                  {review.userId}
+                  <Style.UserId>{review.userId}</Style.UserId>
                 </Style.Star>
                 <Style.Date>{review.date}</Style.Date>
               </Style.Header>

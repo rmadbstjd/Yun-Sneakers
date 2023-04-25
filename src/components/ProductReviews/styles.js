@@ -57,6 +57,9 @@ export const Header = styled.div`
 
 export const Star = styled.div``;
 
+export const UserId = styled.span`
+  margin-left: 10px;
+`;
 export const Date = styled.div``;
 
 export const NoneTextTitle = styled.div`

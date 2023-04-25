@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import Navbar from "./../../../components/common/Navbar/index";
 import userInfoStore from "./../../../store/userInfoStore";
 import ShipAddress from "./../../../components/ShipAddress/index";
-import Modal from "./../../../components/common/Modal/index";
+import AddressModal from "./../../../components/common/Modal/AddressModal";
 import MypageSide from "./../../../components/MypageSide/index";
 const Address = () => {
   const navigate = useNavigate();
@@ -132,14 +132,13 @@ const Address = () => {
               </Style.BtnContainer>
             )}
             {showModal === true ? (
-              <Modal
+              <AddressModal
                 isOpen={true}
                 modalIsOpen={showModal}
                 setModalIsOpen={setShowModal}
                 submitBtn={submitBtn}
                 refetch={refetch}
-                type={"ship"}
-              ></Modal>
+              ></AddressModal>
             ) : null}
           </Style.AddressContainer>
         </Style.MainContainer>

@@ -93,7 +93,7 @@ export const Number = styled.input`
 
 export const CheckBoxContainer = styled.div`
   display: flex;
-  margin-left: 16.5%;
+  margin-left: 17.2%;
 `;
 
 export const CheckBox = styled.input`
