@@ -122,7 +122,6 @@ const SearchPage = () => {
   );
 
   const submitKeyword = (e) => {
-    console.log("테스트", result);
     if (result.trim() === "") {
       e.preventDefault();
       return;

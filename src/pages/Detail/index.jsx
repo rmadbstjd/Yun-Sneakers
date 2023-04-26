@@ -143,8 +143,7 @@ const ProductDetail = () => {
   if (productInfo === "error") {
     return <NotFound />;
   }
-  console.log("prrv", productReviews);
-  console.log("rate", rate);
+
   return (
     <>
       <Navbar />
