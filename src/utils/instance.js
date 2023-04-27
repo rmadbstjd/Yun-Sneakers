@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://yunseong.shop/api",
+  baseURL: "https://weeklyrun.site/api",
   headers: { "Content-type": "application/json" }, // 요청시에 추가적으로 앞에 붙는 기본 URL 설정
   withCredentials: true,
 });
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
       const refreshToken = localStorage.getItem("refreshToken");
       // token refresh 요청
       const { data } = await axios.post(
-        `https://yunseong.shop/api/refresh`, // token refresh api
+        `https://weeklyrun.site/api/refresh`, // token refresh api
         {},
         { headers: { authorization: refreshToken } }
       );

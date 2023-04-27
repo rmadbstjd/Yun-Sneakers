@@ -3,7 +3,7 @@ export default class Review {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "https://yunseong.shop/api",
+        baseURL: "https://weeklyrun.site/api",
       },
       {
         withCredentials: true,
