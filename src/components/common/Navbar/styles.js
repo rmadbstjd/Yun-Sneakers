@@ -52,9 +52,6 @@ export const MyPage = styled.div`
   &:hover {
     font-weight: bolder;
   }
-  @media (max-width: 721px) {
-    display: none;
-  }
 `;
 
 export const Products = styled.div`
@@ -63,9 +60,6 @@ export const Products = styled.div`
   cursor: pointer;
   &:hover {
     font-weight: bolder;
-  }
-  @media (max-width: 721px) {
-    display: none;
   }
 `;
 
@@ -111,11 +105,6 @@ export const Btn = styled.button`
   color: black;
   &:hover {
     font-weight: bolder;
-  }
-  @media (max-width: 593px) {
-    width: 65px;
-    padding: 0px 15px 0px 12px;
-    display: none;
   }
 `;
 
