@@ -178,6 +178,10 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 <br/>
 이 둘의 장단점을 비교하여 종합해봤을 때, CSS-in-JS의 단점은 이번 프로젝트에 크게 영향이 없을 것으로 판단하여 CSS-in-JS를 채택하였다.
 
+# ERD 설계
+
+![yunsneakersERD](https://user-images.githubusercontent.com/58474431/235035329-35b0175b-fa8d-46d2-9b1e-e64fe96b7287.jpg)
+
 # 주요 기능
 
 ### 1. 회원가입 및 로그인 기능 
