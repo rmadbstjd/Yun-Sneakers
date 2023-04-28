@@ -3,6 +3,12 @@
  ⭐현재 서비스 중인 URL : https://yunsneakers.netlify.app/
  
  📋 프로젝트 기간
+ 2022.12.05 ~ 현재 계속 업데이트중
+ 
+ ✅ 업데이트 예정 기능
+ * 기존에 작성된 Javascript를 Typescript로 변환
+ * 반응형 웹 디자인
+ 
 # 주요기능
 * 회원가입 / 로그인 
 * 상품 검색
