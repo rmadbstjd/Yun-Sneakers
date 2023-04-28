@@ -1,8 +1,8 @@
 <h1>Yun's Neakers</h1>
- 배포 주소
- 
-https://yunsneakers.netlify.app/
 
+ ⭐현재 서비스 중인 URL : https://yunsneakers.netlify.app/
+ 
+ 📋 프로젝트 기간
 # 주요기능
 * 회원가입 / 로그인 
 * 상품 검색
