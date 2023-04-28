@@ -43,6 +43,11 @@
 
 ![image](https://user-images.githubusercontent.com/58474431/225018981-7227cb09-6e75-456f-b39f-955932cd8f12.png)
 
+# ERD 설계
+
+![yunsneakersERD](https://user-images.githubusercontent.com/58474431/235035329-35b0175b-fa8d-46d2-9b1e-e64fe96b7287.jpg)
+
+
 # 기술적 의사결정
 ### 1. 세션 기반 로그인 vs 토큰 기반 인증
 <br/>
@@ -178,9 +183,6 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 <br/>
 이 둘의 장단점을 비교하여 종합해봤을 때, CSS-in-JS의 단점은 이번 프로젝트에 크게 영향이 없을 것으로 판단하여 CSS-in-JS를 채택하였다.
 
-# ERD 설계
-
-![yunsneakersERD](https://user-images.githubusercontent.com/58474431/235035329-35b0175b-fa8d-46d2-9b1e-e64fe96b7287.jpg)
 
 # 주요 기능
 
