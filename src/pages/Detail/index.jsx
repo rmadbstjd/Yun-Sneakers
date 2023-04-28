@@ -275,32 +275,34 @@ const ProductDetail = () => {
           </Style.ProductInfoContainer>
         </Style.ProductContainer>
       </Style.Container>
-      <QnA></QnA>
-      <ProductDetailFooter></ProductDetailFooter>
-      <div id="review">
-        <ProductReviews productReviews={productReviews} />
-      </div>
-
-      <Style.SimilarProductTitleLayout>
-        <Style.Span>
-          <Style.SimilarProductTitle>{category}</Style.SimilarProductTitle>의
-          다른 상품
-        </Style.Span>
-      </Style.SimilarProductTitleLayout>
-      <Style.SimilarContainer>
-        <Style.ShoesContainer>
-          {isLoading && (
-            <LoadingSpinner
-              width={"100%"}
-              text={"상품을 준비하는 중입니다."}
-              margin={"100px 0px 0px 0px"}
-            />
-          )}
-          {similarProducts?.map((item) => (
-            <SimilarProducts key={item.id} products={item} />
-          ))}
-        </Style.ShoesContainer>
-      </Style.SimilarContainer>
+      <Style.Container2>
+        {" "}
+        <QnA></QnA>
+        <ProductDetailFooter></ProductDetailFooter>
+        <div id="review">
+          <ProductReviews productReviews={productReviews} />
+        </div>
+        <Style.SimilarProductTitleLayout>
+          <Style.Span>
+            <Style.SimilarProductTitle>{category}</Style.SimilarProductTitle>의
+            다른 상품
+          </Style.Span>
+        </Style.SimilarProductTitleLayout>
+        <Style.SimilarContainer>
+          <Style.ShoesContainer>
+            {isLoading && (
+              <LoadingSpinner
+                width={"100%"}
+                text={"상품을 준비하는 중입니다."}
+                margin={"100px 0px 0px 0px"}
+              />
+            )}
+            {similarProducts?.map((item) => (
+              <SimilarProducts key={item.id} products={item} />
+            ))}
+          </Style.ShoesContainer>
+        </Style.SimilarContainer>
+      </Style.Container2>
     </>
   );
 };

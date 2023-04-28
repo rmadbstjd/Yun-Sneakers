@@ -7,7 +7,12 @@ export const Container = styled.div`
   width: 1820px;
   margin: 0 auto;
 `;
+export const Container2 = styled.div`
+  font-family: "NanumSquareNeo-Variable";
 
+  width: 1820px;
+  margin: 0 auto;
+`;
 export const ProductContainer = styled.div`
   width: 69%;
   margin-top: 100px;
