@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://weeklyrun.site/api",
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: { "Content-type": "application/json" }, // 요청시에 추가적으로 앞에 붙는 기본 URL 설정
   withCredentials: true,
 });
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
       const refreshToken = localStorage.getItem("refreshToken");
       // token refresh 요청
       const { data } = await axios.post(
-        `https://weeklyrun.site/api/refresh`, // token refresh api
+        `${process.env.REACT_APP_BASE_URL}/refresh`, // token refresh api
         {},
         { headers: { authorization: refreshToken } }
       );

@@ -88,9 +88,6 @@ export const Count = styled.div`
 export const Nickname = styled.div`
   margin-right: 8px;
   font-size: 14px;
-  &:hover {
-    font-weight: bolder;
-  }
 `;
 
 export const Btn = styled.button`

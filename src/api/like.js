@@ -5,7 +5,7 @@ export default class Like {
   constructor() {
     this.httpClient = axios.create(
       {
-        baseURL: "https://weeklyrun.site/api",
+        baseURL: process.env.REACT_APP_BASE_URL,
       },
       {
         withCredentials: true,

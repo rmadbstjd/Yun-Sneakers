@@ -72,7 +72,7 @@ const Search = ({ setShowSearch }) => {
   };
   const fetch = async (keyword) => {
     const response = await axios.post(
-      "https://weeklyrun.site/api/search/autocompleted",
+      `${process.env.REACT_APP_BASE_URL}/search/autocompleted`,
       {
         keyword,
       }
