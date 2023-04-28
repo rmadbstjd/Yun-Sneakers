@@ -10,16 +10,15 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   font-family: "NanumSquareNeo-Variable";
-  width: 2000px;
+  width: 100%;
   height: 70px;
+  margin-left: -20px;
   background: white;
-  margin-left: auto;
-  margin-right: auto;
 `;
 export const NavbarContainer = styled.div`
   position: fixed;
   display: flex;
-  width: 1400px;
+  width: 63.5%;
   height: 60px;
   z-index: 999;
   padding-top: 10px;

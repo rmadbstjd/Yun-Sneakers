@@ -7,13 +7,12 @@ export const Product = styled.div`
   margin-right: 50px;
 `;
 
-export const Img = styled.div`
+export const Img = styled.img`
   width: 214px;
   height: 214px;
   border-radius: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
   margin-bottom: 5px;
+  background: #ededed;
   &:hover {
     scale: 1.05;
   }
