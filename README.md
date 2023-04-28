@@ -1,14 +1,18 @@
 <h1>Yun's Neakers</h1>
+# 배포 주소
+https://yunsneakers.netlify.app/
 
 # 주요기능
-### 1. 로그인
-* Access Token + Refresh Token을 이용한 로그인 인증
+* 회원가입 / 로그인 
 * 상품 검색
+* 상품 좋아요
 * 상품 필터링
 * 장바구니
 * 결제
 * 리뷰 작성
+* Q&A 작성
 * 마이 페이지
+* 백 오피스 
 
 # 기술 스택
 ### 1. Front-End
