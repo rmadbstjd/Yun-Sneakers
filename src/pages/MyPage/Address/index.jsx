@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
 import Swal from "sweetalert2";
 import Navbar from "./../../../components/common/Navbar/index";
@@ -9,7 +8,6 @@ import ShipAddress from "./../../../components/ShipAddress/index";
 import AddressModal from "./../../../components/common/Modal/AddressModal";
 import MypageSide from "./../../../components/MypageSide/index";
 const Address = () => {
-  const navigate = useNavigate();
   const {
     myPage,
     shipPlaceName,

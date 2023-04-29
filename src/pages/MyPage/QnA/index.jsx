@@ -13,7 +13,6 @@ const QnA = () => {
   const navigate = useNavigate();
   const [showContent, setShowContent] = useState();
   const [page, setPage] = useState(1);
-  const [index, setIndex] = useState();
 
   let { data: myQnAs, refetch } = useQuery(["myQnA"], () =>
     product.getMyQna(page)

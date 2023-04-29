@@ -8,11 +8,9 @@ const EditProduct = () => {
   const location = useLocation();
   const id = location.state.productId;
 
-  const {
-    isLoading,
-    error,
-    data: productInfo,
-  } = useQuery(["edit", id], () => product.getProductInfo(id));
+  const { data: productInfo } = useQuery(["edit", id], () =>
+    product.getProductInfo(id)
+  );
 
   return (
     <InputProduct
