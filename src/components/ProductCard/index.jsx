@@ -3,11 +3,9 @@ import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { HiHeart } from "react-icons/hi";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
-import jwt_decode from "jwt-decode";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
+
   const goToDetail = () => {
     navigate(`/products/${product.id}`);
   };

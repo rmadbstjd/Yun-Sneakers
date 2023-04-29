@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
-
 import * as Style from "./styles";
 import userInfoStore from "../../store/userInfoStore";
-
 const ShowPopularProducts = () => {
   const { product } = userInfoStore();
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,6 +11,7 @@ const ShowPopularProducts = () => {
   const { isLoading, data: products } = useQuery(["popular", currentPage], () =>
     product.getPopularProducts(currentPage)
   );
+
   const ClickToMoreProduct = () => {
     setCurrentPage((prev) => prev + 1);
     if (currentPage >= 4) setShowMoreBtn(false);
@@ -30,12 +29,11 @@ const ShowPopularProducts = () => {
             text="상품을 불러오는 중입니다."
           ></LoadingSpinner>
         )}
-        {products &&
-          products?.map((product) =>
-            product?.map((product) => (
-              <ProductCard key={product.name} product={product}></ProductCard>
-            ))
-          )}
+        {products?.map((product) =>
+          product?.map((product) => (
+            <ProductCard key={product.name} product={product}></ProductCard>
+          ))
+        )}
         <Style.MoreContainer>
           <Style.More>
             {!isLoading && (

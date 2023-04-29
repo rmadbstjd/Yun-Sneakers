@@ -17,24 +17,24 @@ const itemArr = [
 ];
 const OrderPageNavbar = () => {
   const [showModal, setShowModal] = useState(false);
-  const [number, setNumber] = useState();
+  const [index, setIndex] = useState();
   const {
     isLoading,
     data: products,
-    refetch: refetch1,
+    refetch: getOrderedProductsRefetch,
   } = useQuery(["배송중"], () => myPage.getOrderedProducts());
   const {
     isLoading: isLoading2,
     data: completedProducts,
-    refetch: refetch2,
+    refetch: getShipIsCompletedRefetch,
   } = useQuery(["배송완료"], () => order.getShipIsCompleted());
   const { myPage, order } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
     await order.completeShipment(id);
     await order.getShipIsCompleted();
-    refetch1();
-    refetch2();
+    getOrderedProductsRefetch();
+    getShipIsCompletedRefetch();
   };
   const setPrice = (coupon, price) => {
     switch (coupon) {
@@ -50,14 +50,14 @@ const OrderPageNavbar = () => {
         break;
     }
   };
+
   const goToDetail = (info) => {
     navigate(`/products/${info.id}`);
   };
+
   const goToSearch = (info) => {
     navigate(`/search?keyword=${info.category[0]}`);
   };
-
-  useEffect(() => {}, [products, completedProducts]);
 
   return (
     <div>
@@ -215,7 +215,7 @@ const OrderPageNavbar = () => {
                 <Style.Review
                   onClick={() => {
                     setShowModal((prev) => !prev);
-                    setNumber(index);
+                    setIndex(index);
                   }}
                 >
                   리뷰 쓰기
@@ -229,9 +229,9 @@ const OrderPageNavbar = () => {
           isOpen={true}
           modalIsOpen={showModal}
           setModalIsOpen={setShowModal}
-          product={completedProducts[number]}
+          product={completedProducts[index]}
           isReviewed={false}
-          refetch={refetch2}
+          refetch={getShipIsCompletedRefetch}
         ></ReviewModal>
       ) : null}
     </div>

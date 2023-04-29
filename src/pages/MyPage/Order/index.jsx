@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-import OrderPageNavbar from "../../../components/OrderPageNavbar";
+import OrderPageNavbar from "../../../components/Order";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 const Order = () => {

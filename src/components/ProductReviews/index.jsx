@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Style from "./styles";
 import HorizonLine from "../../components/common/HorizonLine";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
@@ -22,8 +22,8 @@ const ProductReviews = () => {
   let { data: productReviews, refetch } = useQuery(["review", id], () =>
     review.getProductReviews(id, page)
   );
-  let productReviewsCount = productReviews && productReviews.count;
-  productReviews = productReviews && productReviews.reviews;
+  const productReviewsCount = productReviews?.count;
+  productReviews = productReviews?.reviews;
 
   const handlePageChange = async (page) => {
     setPage(page);
@@ -31,7 +31,6 @@ const ProductReviews = () => {
     refetch();
   };
 
-  useEffect(() => {}, [productReviews]);
   return (
     <Style.Layout>
       <Style.Title>리뷰({productReviewsCount})</Style.Title>
@@ -42,7 +41,7 @@ const ProductReviews = () => {
         margin={"10px 0px 0px 170px"}
       />
       <Style.ReviewContainer>
-        {productReviews && productReviews.length === 0 ? (
+        {productReviews?.length === 0 ? (
           <>
             <Style.NoneTextTitle>
               작성된 리뷰가 존재하지 않습니다.
@@ -58,59 +57,58 @@ const ProductReviews = () => {
             />
           </>
         ) : null}
-        {productReviews &&
-          productReviews.map((review, index) => (
-            <Style.Review
-              key={review._id}
-              onClick={() => {
-                clickToReview(index);
-              }}
-              isClicked={index === isClicked}
-            >
-              <Style.Header>
-                <Style.Star>
-                  {review.star.map((item, index) =>
-                    item === false ? (
-                      <AiOutlineStar
-                        size={15}
-                        key={index}
-                        color={"gray"}
-                        cursor={"pointer"}
-                      />
-                    ) : (
-                      <AiFillStar
-                        size={15}
-                        key={index}
-                        color={"yellow"}
-                        cursor={"pointer"}
-                      />
-                    )
-                  )}
-                  <Style.UserId>{review.userId}</Style.UserId>
-                </Style.Star>
-                <Style.Date>{review.date}</Style.Date>
-              </Style.Header>
-              <Style.Info>
-                <Style.LeftLayout>
-                  <Style.Size>옵션: 사이즈 [{review.size}]</Style.Size>
-                  <Style.Content isClicked={index === isClicked}>
-                    {review.content}
-                  </Style.Content>
-                </Style.LeftLayout>
-                <Style.Img
-                  isClicked={index === isClicked}
-                  src={review.image}
-                ></Style.Img>
-              </Style.Info>
-              <HorizonLine
-                width={"100%"}
-                border={"1px"}
-                color={"gray"}
-                margin={"10px 0px 0px 0px"}
-              />
-            </Style.Review>
-          ))}
-        {productReviews && productReviews.length !== 0 && (
+        {productReviews?.map((review, index) => (
+          <Style.Review
+            key={review._id}
+            onClick={() => {
+              clickToReview(index);
+            }}
+            isClicked={index === isClicked}
+          >
+            <Style.Header>
+              <Style.Star>
+                {review.star.map((item, index) =>
+                  item === false ? (
+                    <AiOutlineStar
+                      size={15}
+                      key={index}
+                      color={"gray"}
+                      cursor={"pointer"}
+                    />
+                  ) : (
+                    <AiFillStar
+                      size={15}
+                      key={index}
+                      color={"yellow"}
+                      cursor={"pointer"}
+                    />
+                  )
+                )}
+                <Style.UserId>{review.userId}</Style.UserId>
+              </Style.Star>
+              <Style.Date>{review.date}</Style.Date>
+            </Style.Header>
+            <Style.Info>
+              <Style.LeftLayout>
+                <Style.Size>옵션: 사이즈 [{review.size}]</Style.Size>
+                <Style.Content isClicked={index === isClicked}>
+                  {review.content}
+                </Style.Content>
+              </Style.LeftLayout>
+              <Style.Img
+                isClicked={index === isClicked}
+                src={review.image}
+              ></Style.Img>
+            </Style.Info>
+            <HorizonLine
+              width={"100%"}
+              border={"1px"}
+              color={"gray"}
+              margin={"10px 0px 0px 0px"}
+            />
+          </Style.Review>
+        ))}
+        {productReviews?.length !== 0 && (
           <Pagination
             count={productReviewsCount}
             pagePerCount={5}

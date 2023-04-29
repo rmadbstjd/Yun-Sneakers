@@ -39,7 +39,6 @@ const QnA = () => {
     product.getProductInfo(id)
   );
   const image = productInfo?.product?.image;
-
   const QnAcounts = QnA?.count?.length;
   QnA = QnA?.QnA;
 
@@ -174,7 +173,7 @@ const QnA = () => {
         </Style.Write>
       </Style.Header>
       <HorizonLine width={"100%"} border={"4px"} color={"black"} />
-      {QnA && QnA.length === 0 && (
+      {QnA?.length === 0 && (
         <Style.NullText>
           궁금한 점은 언제든지 Q&A 쓰기를 통해 물어보세요.
           <HorizonLine
@@ -250,72 +249,68 @@ const QnA = () => {
           </Style.Notice>
         </Style.Modal>
       )}
-      {QnA &&
-        QnA.map((item, index) => (
-          <Style.QnALayout
-            key={`${item.title}+${index}`}
-            onClick={() => {
-              clickToQnA(index);
-            }}
-            isShow={index === showContent}
-          >
-            <Style.QnAContainer>
-              <Style.QnATitle>
-                {item.isSecret === true ? (
-                  <Style.LockImg>
-                    <AiFillLock
-                      size={20}
-                      style={{ margin: "0px 5px 0px 0px" }}
-                    />
-                  </Style.LockImg>
-                ) : null}
-                {item.isSecret === true ? "비밀글입니다." : item.title}
-              </Style.QnATitle>
-              <Style.QnAInfo>
-                <Style.UserId>{item.userId}</Style.UserId>{" "}
-                <Style.Dates>{item.dates}</Style.Dates>
-                <Style.AnswerBox answered={item.isAnswered}>
-                  {item.isAnswered === true ? "yes" : "no"}
-                </Style.AnswerBox>
-              </Style.QnAInfo>
-            </Style.QnAContainer>
-            {index === showContent && (
-              <Style.QnAContent>{item.content}</Style.QnAContent>
-            )}
-            {index === showContent && QnA[index].userId === userId && (
-              <Style.ButtonLayout>
-                <Style.Button
-                  onClick={(e) => {
-                    clickToModifyBtn(e, index);
-                  }}
-                >
-                  수정
-                </Style.Button>
-                <Style.Button
-                  onClick={(e) => {
-                    clickToDeleteBtn(e, index);
-                  }}
-                >
-                  삭제
-                </Style.Button>
-              </Style.ButtonLayout>
-            )}
+      {QnA?.map((item, index) => (
+        <Style.QnALayout
+          key={`${item.title}+${index}`}
+          onClick={() => {
+            clickToQnA(index);
+          }}
+          isShow={index === showContent}
+        >
+          <Style.QnAContainer>
+            <Style.QnATitle>
+              {item.isSecret === true ? (
+                <Style.LockImg>
+                  <AiFillLock size={20} style={{ margin: "0px 5px 0px 0px" }} />
+                </Style.LockImg>
+              ) : null}
+              {item.isSecret === true ? "비밀글입니다." : item.title}
+            </Style.QnATitle>
+            <Style.QnAInfo>
+              <Style.UserId>{item.userId}</Style.UserId>{" "}
+              <Style.Dates>{item.dates}</Style.Dates>
+              <Style.AnswerBox answered={item.isAnswered}>
+                {item.isAnswered === true ? "yes" : "no"}
+              </Style.AnswerBox>
+            </Style.QnAInfo>
+          </Style.QnAContainer>
+          {index === showContent && (
+            <Style.QnAContent>{item.content}</Style.QnAContent>
+          )}
+          {index === showContent && QnA[index].userId === userId && (
+            <Style.ButtonLayout>
+              <Style.Button
+                onClick={(e) => {
+                  clickToModifyBtn(e, index);
+                }}
+              >
+                수정
+              </Style.Button>
+              <Style.Button
+                onClick={(e) => {
+                  clickToDeleteBtn(e, index);
+                }}
+              >
+                삭제
+              </Style.Button>
+            </Style.ButtonLayout>
+          )}
 
-            {index === showContent && (
-              <Style.QnAContent font={"bolder"}>
-                {item.isAnswerd && <div>답변</div>}
-                {item.answer}
-              </Style.QnAContent>
-            )}
-            <HorizonLine
-              width={"100.8%"}
-              border={"1px"}
-              color={"gray"}
-              margin={"10px 0px 0px -10px"}
-            />
-          </Style.QnALayout>
-        ))}
-      {QnA && QnA.length !== 0 && (
+          {index === showContent && (
+            <Style.QnAContent font={"bolder"}>
+              {item.isAnswerd && <div>답변</div>}
+              {item.answer}
+            </Style.QnAContent>
+          )}
+          <HorizonLine
+            width={"100.8%"}
+            border={"1px"}
+            color={"gray"}
+            margin={"10px 0px 0px -10px"}
+          />
+        </Style.QnALayout>
+      ))}
+      {QnA?.length !== 0 && (
         <Pagination
           count={QnAcounts && QnAcounts}
           pagePerCount={5}

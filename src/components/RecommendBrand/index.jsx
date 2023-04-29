@@ -27,7 +27,7 @@ const Brand = () => {
       <Style.ProductsContainer>
         <Style.TitleENG>Recommend Brand</Style.TitleENG>
         <Style.TitleKOR>추천 브랜드</Style.TitleKOR>
-        {brandArr.map((item) => (
+        {brandArr?.map((item) => (
           <Style.BrandContainer
             key={item.name}
             onClick={() => {
