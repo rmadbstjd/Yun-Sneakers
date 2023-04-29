@@ -196,11 +196,19 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 
 # 웹 사이트 성능 개선 <작성중>
 웹 사이트의 성능을 측정하기 위해 LightHouse를 사용하였고 측정 결과, 매우 좋지 않았다.
+<br/>
+측정 결과
+
+![image](https://user-images.githubusercontent.com/58474431/235327949-47b8e9b0-773c-41a9-8a07-6cdaf743829e.png)
+
 성능이 가장 좋지 못하였고, 다음으로는 접근성이 좋지 못하였다.
 <br/>
 이유를 살펴보니 크게 두 가지로 나눌 수 있었다.
 <br/>
-첫 번째 이유는 react-icons 라이브러리때문이다.
+1. react-icons
+
+![image](https://user-images.githubusercontent.com/58474431/235327979-4e3e6750-38cb-4ca1-a74d-bd22842de182.png)
+
 <br/>
 react-icons는 icon 종류별로 구분되어 있으며, 종류별로 하나의 js파일에 아이콘 전체를 포함하고 있다.
 <br/>
@@ -222,7 +230,11 @@ react-icons는 icon 종류별로 구분되어 있으며, 종류별로 하나의 
 
 ![image](https://user-images.githubusercontent.com/58474431/235305716-39be2398-5406-42b4-96cc-1e2b78c39302.png)
 
-두 번째 이유는 이미지 태그에 alt 속성을 추가하는 것이다.
+2.이미지 태그에 alt 속성이 존재하지 않음
+
+![image](https://user-images.githubusercontent.com/58474431/235328018-a137ad09-eb37-4bd5-9d7b-5cf3161b2bb2.png)
+
+
 <br/>
 alt 속성을 추가하는 것은 접근성을 높이기 이전에
 <br/>
