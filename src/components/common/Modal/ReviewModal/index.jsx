@@ -4,7 +4,8 @@ import produce from "immer";
 import styles from "./ReviewModal.module.css";
 import * as Style from "./styles";
 import userInfoStore from "../../../../store/userInfoStore";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
+import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
 
 const Modal = ({

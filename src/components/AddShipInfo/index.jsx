@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import * as Style from "./styles";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import { useQuery } from "@tanstack/react-query";
-import { AiOutlineMinus } from "react-icons/ai";
+import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
+import * as Style from "./styles";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";

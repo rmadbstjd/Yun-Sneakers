@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { BsFillCartFill } from "react-icons/bs";
-import { AiFillFileAdd } from "react-icons/ai";
-import { RiQuestionAnswerFill } from "react-icons/ri";
-import { GiConverseShoe } from "react-icons/gi";
-import { FiSearch } from "react-icons/fi";
-import { BsHeartFill } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
-import { AiTwotoneShopping } from "react-icons/ai";
-import { RiFileEditFill } from "react-icons/ri";
-import * as Style from "./styles";
+import { FaShoppingCart } from "@react-icons/all-files/fa/FaShoppingCart";
+import { AiFillFileAdd } from "@react-icons/all-files/ai/AiFillFileAdd";
+import { RiQuestionAnswerFill } from "@react-icons/all-files/ri/RiQuestionAnswerFill";
+import { GiConverseShoe } from "@react-icons/all-files/gi/GiConverseShoe";
+import { FiSearch } from "@react-icons/all-files/fi/FiSearch";
+import { BsHeartFill } from "@react-icons/all-files/bs/BsHeartFill";
+import { FaUser } from "@react-icons/all-files/fa/FaUser";
+import { AiTwotoneShopping } from "@react-icons/all-files/ai/AiTwotoneShopping";
+import { RiFileEditFill } from "@react-icons/all-files/ri/RiFileEditFill";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import * as Style from "./styles";
 import Search from "../../Search";
 import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
-import { useQuery } from "@tanstack/react-query";
+
 import jwt_decode from "jwt-decode";
 import ScrollToTop from "../../../hooks/scrollToTop";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
@@ -156,7 +157,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                 </Style.Products>
               )}
               {!isAdmin && (
-                <BsFillCartFill
+                <FaShoppingCart
                   style={{
                     marginTop: "10px",
                     marginRight: "3px",

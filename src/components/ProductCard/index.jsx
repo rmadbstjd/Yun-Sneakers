@@ -1,7 +1,7 @@
 import React from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-import { HiHeart } from "react-icons/hi";
+import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
