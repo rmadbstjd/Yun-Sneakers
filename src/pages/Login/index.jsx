@@ -143,7 +143,7 @@ const Login = () => {
             isAllowed={allows.id}
           ></Style.InputValue>
           {allows.id === false ? (
-            <Style.Text>양식에 준수하여 아이디를 입력해주세요.</Style.Text>
+            <Style.Text>아이디를 정확하게 입력해주세요.</Style.Text>
           ) : null}
         </Style.InputContainer>
         <Style.InputContainer>
@@ -164,7 +164,9 @@ const Login = () => {
             ></Style.InputValue>
           </Style.Form>
           {allows.pw === false ? (
-            <Style.Text>양식에 준수하여 비밀번호를 입력해주세요.</Style.Text>
+            <Style.Text>
+              영문, 숫자, 특수문자를 조합해서 입력해주세요(8-16자).
+            </Style.Text>
           ) : null}
         </Style.InputContainer>
 
