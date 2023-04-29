@@ -27,7 +27,6 @@ const Search = ({ setShowSearch }) => {
       e.preventDefault();
       return;
     }
-
     sessionStorage.clear();
     navigate(`/search?keyword=${searchWord}`);
     setShowSearch((prev) => !prev);
@@ -36,37 +35,45 @@ const Search = ({ setShowSearch }) => {
       addRecentKeyword(searchWord);
     }
   };
+
   const goToSearchPage = (item) => {
     sessionStorage.clear();
     navigate(`/search?keyword=${item}`);
     setShowSearch((prev) => !prev);
     setShowNavbar(true);
   };
+
   const clickToBrand = (item) => {
     sessionStorage.clear();
     navigate(`/search?keyword=${item[0]}`);
     setShowSearch((prev) => !prev);
     setShowNavbar(true);
   };
+
   const goToDetail = (item) => {
     navigate(`/products/${item.id}`);
     setShowNavbar(true);
   };
+
   const closeSearch = () => {
     setSearchWord("");
   };
+
   const handleChange = (e) => {
     setSearchWord(e.target.value);
   };
+
   const deleteAllRecentKeyword = () => {
     localStorage.removeItem("recentKeyword");
     setShowKeyword([]);
     allDeleteRecentKeyword();
   };
+
   const deleteKeyword = (item) => {
     setShowKeyword(showKeyword.filter((keyword) => keyword !== item));
     setRecentKeyword(item);
   };
+
   const fetch = async (keyword) => {
     const response = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/search/autocompleted`,
@@ -79,10 +86,12 @@ const Search = ({ setShowSearch }) => {
     setBrands(data.brands);
     return;
   };
+
   useEffect(() => {
     recentKeyword &&
       localStorage.setItem("recentKeyword", JSON.stringify(recentKeyword));
   }, [recentKeyword]);
+
   useEffect(() => {
     if (searchWord) {
       if (searchWord.trim() === "") return;
@@ -93,6 +102,7 @@ const Search = ({ setShowSearch }) => {
       setBrands([]);
     }
   }, [searchWord]);
+
   return (
     <Style.Container>
       <Style.Close>
@@ -180,24 +190,23 @@ const Search = ({ setShowSearch }) => {
           </Style.Delete>
         </Style.RecentSearchContainer>
         <Style.KeywordContainer>
-          {showKeyword &&
-            showKeyword.map((item) => (
-              <Style.KeywordContent key={item}>
-                <Style.Keyword onClick={() => goToSearchPage(item)}>
-                  {item}
-                </Style.Keyword>
-                <IoMdCloseCircle
-                  style={{
-                    marginTop: "5px",
-                    width: "20px",
-                    height: "20px",
-                    color: "gray",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => deleteKeyword(item)}
-                />{" "}
-              </Style.KeywordContent>
-            ))}
+          {showKeyword?.map((item) => (
+            <Style.KeywordContent key={item}>
+              <Style.Keyword onClick={() => goToSearchPage(item)}>
+                {item}
+              </Style.Keyword>
+              <IoMdCloseCircle
+                style={{
+                  marginTop: "5px",
+                  width: "20px",
+                  height: "20px",
+                  color: "gray",
+                  cursor: "pointer",
+                }}
+                onClick={() => deleteKeyword(item)}
+              />{" "}
+            </Style.KeywordContent>
+          ))}
         </Style.KeywordContainer>
         <Style.RecommendSearch>추천 검색어</Style.RecommendSearch>
         <Style.RecommendContainer>
