@@ -11,12 +11,12 @@ const AuthenticateRoute = ({ children }) => {
     refetch();
   };
   if (data) {
-    if (data && data.isAuth === "forbidden") {
+    if (data?.isAuth === "forbidden") {
       postToRefreshToken();
     }
-    if (data && data.isAuth === false) {
+    if (data?.isAuth === false) {
       return <Navigate to="/login" />;
-    } else if (data && data.isAuth === true) {
+    } else if (data?.isAuth === true) {
       return children;
     }
   }

@@ -6,7 +6,13 @@ import GlobalStyle from "./styles/GlobalStyle";
 function App() {
   const queryClient = useRef();
   if (!queryClient.current) {
-    queryClient.current = new QueryClient();
+    queryClient.current = new QueryClient({
+      defaultOptions: {
+        quereis: {
+          refetchOnWindowFocus: false,
+        },
+      },
+    });
   }
 
   return (

@@ -57,8 +57,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     window.addEventListener("scroll", updateScroll);
   }, []);
 
-  useEffect(() => {}, [nickName]);
-
   return (
     <>
       <ScrollToTop />
