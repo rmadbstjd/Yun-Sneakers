@@ -15,19 +15,14 @@ export default class Cart {
   async getUserCarts() {
     const response = await instance.get("/cart", {});
     const data = response.data;
-
-    if (data.success === "true") {
-      return data;
-    } else {
-      return null;
-    }
+    if (data.success) return data;
+    else return null;
   }
 
   async getUserCheckedCarts() {
     const response = await instance.get("/cart/checked", {});
     const data = response.data;
-
-    if (data.success === "true") return data;
+    if (data.success) return data;
     else return null;
   }
   async updateUserCart(productId, size, quantity) {

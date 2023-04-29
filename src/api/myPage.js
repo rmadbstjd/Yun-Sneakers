@@ -15,7 +15,7 @@ export default class MyPage {
   async getOrderedProducts() {
     const response = await instance.get(`/order`, {});
     const data = response.data;
-    return data && data.reverse();
+    return data;
   }
 
   async addUserAddress(
@@ -81,7 +81,7 @@ export default class MyPage {
   async getUserReviews() {
     const response = await instance.get(`/review`, {});
     const data = response.data;
-    return data.reverse();
+    return data;
   }
 
   async deleteProductReview(orderId) {

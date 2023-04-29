@@ -198,7 +198,7 @@ const Cart = () => {
                   type="checkbox"
                   onChange={(e) => handleAllCheck(e.target.checked)}
                   checked={
-                    checkedProducts.length === cartProducts?.products.length
+                    checkedProducts?.length === cartProducts?.products?.length
                       ? true
                       : false
                   }
@@ -211,7 +211,7 @@ const Cart = () => {
             </Style.HeaderContainer>
           </Style.HeaderLayout>
           {cartProducts &&
-            cartProducts.products.map((item) => (
+            cartProducts.products?.map((item) => (
               <CartProduct
                 key={`${item.productId}+${item.size}`}
                 productId={item.productId}

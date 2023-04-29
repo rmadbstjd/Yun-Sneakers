@@ -33,12 +33,12 @@ export default class Order {
   async getShipIsCompleted() {
     const response = await instance.get(`/order/completed`, {});
     const data = response.data;
-    return data.reverse();
+    return data;
   }
 
   async getIsNotReviewdProducts() {
     const response = await instance.get(`/order/notreviewd`, {});
     const data = response.data;
-    return data.reverse();
+    return data;
   }
 }
