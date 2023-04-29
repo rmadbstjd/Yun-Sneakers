@@ -14,26 +14,25 @@ const MypageSide = () => {
   const { nickName, setIsCheckedID } = userInfoStore();
   const location = useLocation();
   const query = location && location.pathname.split("/")[2];
-
   const navigate = useNavigate();
 
   const goToPage = (title) => {
     switch (title) {
       case "주문 내역 조회":
-        navigate("/mypage/order");
-        break;
+        return navigate("/mypage/order");
+
       case "관심 상품":
-        navigate("/mypage/wish");
-        break;
+        return navigate("/mypage/wish");
+
       case "주소록":
-        navigate("/mypage/address");
-        break;
+        return navigate("/mypage/address");
+
       case "상품 리뷰":
-        navigate("/mypage/review");
-        break;
+        return navigate("/mypage/review");
+
       case "상품 Q&A 문의 내역":
-        navigate("/mypage/qna");
-        break;
+        return navigate("/mypage/qna");
+
       default:
         break;
     }

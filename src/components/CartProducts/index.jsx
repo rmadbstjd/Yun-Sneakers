@@ -23,26 +23,23 @@ const CartProduct = ({
         title: "최대 구매 개수는 10개입니다.",
         confirmButtonColor: "black",
       });
-
       return;
     }
     setProductCount((prev) => prev + 1);
     await cart.updateUserCart(item.productId, item.size, productCount + 1);
     refetch();
   };
-  const minus = async () => {
-    if (productCount <= 1) {
-      return;
-    }
 
+  const minus = async () => {
+    if (productCount <= 1) return;
     setProductCount((prev) => prev - 1);
     await cart.updateUserCart(item.productId, item.size, productCount - 1);
     refetch();
   };
+
   const deleteProduct = async () => {
     await cart.deleteUserCart(item.productId, item.size);
     refetch();
-
     setCheckedProducts((prev) => prev.filter((el) => el.id !== item.productId));
   };
 
