@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "react-icons/io";
+import { useQuery } from "@tanstack/react-query";
+import { AiOutlineMinus } from "react-icons/ai";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
-import { useQuery } from "@tanstack/react-query";
-import { AiOutlineMinus } from "react-icons/ai";
+
+const requestArr = [
+  "배송시 요청사항을 선택해 주세요",
+  "부재시 문앞에 놓아주세요",
+  "부재시 경비실에 맡겨 주세요.",
+  "부재시 전화 또는 문자 주세요",
+  "택배함에 넣어 주세요.",
+  "직접입력",
+];
+const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
+
 const AddShip = ({ type, setDefaultAddress }) => {
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
   );
 
-  let regex;
   const {
     myPage,
     shipPlaceName,
@@ -33,65 +43,59 @@ const AddShip = ({ type, setDefaultAddress }) => {
     setShipAddressDetail,
   } = userInfoStore();
 
-  const requestArr = [
-    "배송시 요청사항을 선택해 주세요",
-    "부재시 문앞에 놓아주세요",
-    "부재시 경비실에 맡겨 주세요.",
-    "부재시 전화 또는 문자 주세요",
-    "택배함에 넣어 주세요.",
-    "직접입력",
-  ];
   const [showRequest, setShowRequest] = useState(false);
   const [request, setRequest] = useState("배송시 요청사항을 선택해 주세요");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [textArea, setTextArea] = useState("");
   const [showTextArea, showSetTextArea] = useState(false);
+
   const closePostCode = () => {
     setIsPopupOpen(false);
   };
+
   const clickRequest = (item) => {
     setRequest(item);
     setShowRequest(false);
     if (item === "직접입력") showSetTextArea(true);
     else showSetTextArea(false);
   };
+
   const showRequestBox = () => {
     setShowRequest((prev) => !prev);
   };
-  const changeText = (e, keyword) => {
-    switch (keyword) {
-      case "shipPlaceName":
-        regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
-        if (regex.test(e.target.value)) setShipPlaceName(e.target.value);
-        break;
-      case "shipReceiver":
-        regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
-        if (regex.test(e.target.value)) setShipReceiver(e.target.value);
-        break;
-      default:
-        break;
-    }
+
+  const changePlaceName = (e) => {
+    if (regex.test(e.target.value)) setShipPlaceName(e.target.value);
   };
-  const checkNumber = (e, place) => {
-    const { value } = e.target;
-    const onlyNumber = value.replace(/[^0-9]/g, "");
-    if (place === "first") {
-      if (onlyNumber.length >= 4) return;
-      setPhoneNumInput1(onlyNumber);
-    } else if (place === "second") {
-      if (onlyNumber.length >= 5) return;
-      setPhoneNumInput2(onlyNumber);
-    } else if (place === "last") {
-      if (onlyNumber.length >= 5) return;
-      setPhoneNumInput3(onlyNumber);
-    }
+
+  const changeReceiverName = (e) => {
+    if (regex.test(e.target.value)) setShipReceiver(e.target.value);
   };
+
+  const checkNumber1 = (e) => {
+    const number = e.target.value.replace(/[^0-9]/g, "");
+    if (number.length >= 4) return;
+    setPhoneNumInput1(number);
+  };
+
+  const checkNumber2 = (e) => {
+    const number = e.target.value.replace(/[^0-9]/g, "");
+    if (number.length >= 5) return;
+    setPhoneNumInput2(number);
+  };
+
+  const checkNumber3 = (e) => {
+    const number = e.target.value.replace(/[^0-9]/g, "");
+    if (number.length >= 5) return;
+    setPhoneNumInput3(number);
+  };
+
   const checkTextLength = (e) => {
-    const { value } = e.target;
-    if (value.length >= 51) return;
-    setTextArea(value);
+    if (e.target.value.length >= 51) return;
+    setTextArea(e.target.value);
   };
-  const checkAddress = async () => {
+
+  const addAddress = async () => {
     await myPage.addUserAddress(
       shipPlaceName,
       shipReceiver,
@@ -106,16 +110,17 @@ const AddShip = ({ type, setDefaultAddress }) => {
 
   useEffect(() => {
     if (address) {
-      setShipPlaceName(address[0].place);
-      setShipReceiver(address[0].receiver);
-      setPhoneNumInput1(address[0].phoneNumber1);
-      setPhoneNumInput2(address[0].phoneNumber2);
-      setPhoneNumInput3(address[0].phoneNumber3);
-      setShipAddress(address[0].address);
-      setShipAddressDetail(address[0].addressDetail);
-      setShipPostCode(address[0].postCode);
+      setShipPlaceName(address.place);
+      setShipReceiver(address.receiver);
+      setPhoneNumInput1(address.phoneNumber1);
+      setPhoneNumInput2(address.phoneNumber2);
+      setPhoneNumInput3(address.phoneNumber3);
+      setShipAddress(address.address);
+      setShipAddressDetail(address.addressDetail);
+      setShipPostCode(address.postCode);
     }
   }, [address]);
+
   return (
     <Style.Container>
       <Style.Content>
@@ -124,7 +129,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
           type="text"
           maxLength={10}
           value={shipPlaceName}
-          onChange={(e) => changeText(e, "shipPlaceName")}
+          onChange={(e) => changePlaceName(e)}
         ></Style.DeliveryAddress>
       </Style.Content>
       <Style.Content>
@@ -133,7 +138,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
           type="text"
           maxLength={10}
           value={shipReceiver}
-          onChange={(e) => changeText(e, "shipReceiver")}
+          onChange={(e) => changeReceiverName(e)}
         ></Style.DeliveryAddress>
       </Style.Content>
       <Style.AddressContainer>
@@ -167,7 +172,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
         <Style.Number
           type="text"
           value={phoneNumInput1}
-          onChange={(e) => checkNumber(e, "first")}
+          onChange={(e) => checkNumber1(e)}
         />
 
         <AiOutlineMinus
@@ -176,7 +181,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
         <Style.Number
           type="text"
           value={phoneNumInput2}
-          onChange={(e) => checkNumber(e, "second")}
+          onChange={(e) => checkNumber2(e)}
         ></Style.Number>
         <AiOutlineMinus
           style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
@@ -184,7 +189,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
         <Style.Number
           type="text"
           value={phoneNumInput3}
-          onChange={(e) => checkNumber(e, "last")}
+          onChange={(e) => checkNumber3(e)}
         ></Style.Number>
       </Style.PhoneNumberContainer>
       {setDefaultAddress && (
@@ -193,7 +198,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
             margin={"2 0px"}
             type="checkbox"
             value={defaultAddress}
-            onChange={(e) => checkAddress(e)}
+            onChange={(e) => addAddress(e)}
           />
           <Style.CheckBoxRight>기본 배송지로 설정</Style.CheckBoxRight>
         </Style.CheckBoxContainer>

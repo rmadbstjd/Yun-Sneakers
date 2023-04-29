@@ -36,7 +36,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   useEffect(() => {
     initCartCount();
     if (cartProducts) {
-      console.log("cart", cartProducts);
       plusCartCount(cartProducts?.products?.length);
     }
   }, [cartProducts]);

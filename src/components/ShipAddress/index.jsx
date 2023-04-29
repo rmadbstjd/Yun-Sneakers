@@ -19,16 +19,15 @@ const ShipAddress = () => {
   } else {
     return (
       <div>
-        <Style.Content>배송지 {address && address[0].place}</Style.Content>
-        <Style.Content>수령인 {address && address[0].receiver}</Style.Content>
+        <Style.Content>배송지 {address && address.place}</Style.Content>
+        <Style.Content>수령인 {address && address.receiver}</Style.Content>
         <Style.Content>
-          주소 {address && address[0].address} {address && address[0].postCode}{" "}
-          {address && address[0].addressDetail}
+          주소 {address && address.address} {address && address.postCode}{" "}
+          {address && address.addressDetail}
         </Style.Content>
         <Style.Content>
-          연락처 {address && address[0].phoneNumber1} -{" "}
-          {address && address[0].phoneNumber2} -{" "}
-          {address && address[0].phoneNumber3}
+          연락처 {address && address.phoneNumber1} -{" "}
+          {address && address.phoneNumber2} - {address && address.phoneNumber3}
         </Style.Content>
       </div>
     );
