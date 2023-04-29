@@ -2,7 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { SiNike, SiJordan, SiNewbalance, SiAdidas } from "react-icons/si";
-import { GiConverseShoe } from "react-icons/gi";
+import { GiConverseShoe } from "@react-icons/all-files/gi/GiConverseShoe";
 const brandArr = [
   {
     name: "나이키",

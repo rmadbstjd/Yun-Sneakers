@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as Style from "./styles";
 import { GrClose } from "react-icons/gr";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { useNavigate } from "react-router-dom";
 import searchStore from "../../store/searchStore";
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCloseCircle } from "@react-icons/all-files/io/IoMdCloseCircle";
 import axios from "axios";
 import HorizonLine from "../../components/common/HorizonLine";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];

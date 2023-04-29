@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import cartStore from "../../store/cartStore";
 import productStore from "../../store/productStore";
-import { BsArrowDownCircle } from "react-icons/bs";
+import { CgArrowDownO } from "@react-icons/all-files/cg/CgArrowDownO";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { BsHeart } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
+import { BsHeart } from "@react-icons/all-files/bs/BsHeart";
+import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import HorizonLine from "../../components/common/HorizonLine";
 import SizeModal from "../../components/common/Modal/SizeModal";
 import SimilarProducts from "../../components/SimilarProducts";
@@ -18,7 +18,8 @@ import Navbar from "./../../components/common/Navbar/index";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import ProductDetailFooter from "../../components/ProductDetailFooter";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
+import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { Link } from "react-scroll";
 import QnA from "../../components/QnA";
 import NotFound from "../NotFound";
@@ -190,7 +191,7 @@ const ProductDetail = () => {
                     <Style.SizeNum>{selectSize}</Style.SizeNum>
                   )}
                   <Style.ShowSizeCircle>
-                    <BsArrowDownCircle size={20} />
+                    <CgArrowDownO size={20} />
                   </Style.ShowSizeCircle>
                 </Style.Size>
                 {sizeModalShow === true ? (

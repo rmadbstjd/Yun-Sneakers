@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./ProductLikeCard.module.css";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
-import { HiHeart } from "react-icons/hi";
-import { AiFillCloseSquare } from "react-icons/ai";
+import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
+import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 const ProductLikeCard = ({ none, product, refetch }) => {
   const { like } = userInfoStore();

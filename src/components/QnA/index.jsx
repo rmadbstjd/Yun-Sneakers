@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import productStore from "../../store/productStore";
 import { useQuery } from "@tanstack/react-query";
-import { AiFillLock } from "react-icons/ai";
+import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import Pagination from "../../components/common/Pagination";
 const noticeArr = [
   "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",

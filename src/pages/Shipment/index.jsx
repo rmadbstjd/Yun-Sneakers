@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import AddShip from "../../components/AddShipInfo";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
