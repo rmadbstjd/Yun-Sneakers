@@ -73,6 +73,7 @@ const QnA = () => {
                 >
                   <Style.Img
                     src={item.image}
+                    alt="상품"
                     onClick={() => {
                       goToDetailPage(item.productId);
                     }}

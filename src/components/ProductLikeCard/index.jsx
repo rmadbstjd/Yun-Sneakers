@@ -28,7 +28,7 @@ const ProductLikeCard = ({ none, product, refetch }) => {
       <img
         className={styles.img}
         src={product && product.image}
-        alt="이미지"
+        alt="상품"
       ></img>
 
       <div className={styles.infoContainer}>

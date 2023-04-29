@@ -118,7 +118,7 @@ const Modal = ({
       <Style.ReviewContainer>
         <Style.ReviewTitle>리뷰 쓰기</Style.ReviewTitle>
         <Style.ProductContent>
-          <Style.Img src={product.info.image}></Style.Img>
+          <Style.Img src={product.info.image} alt="상품"></Style.Img>
           <Style.InfoContainer>
             <Style.ProductCategory>
               {product.info.category}

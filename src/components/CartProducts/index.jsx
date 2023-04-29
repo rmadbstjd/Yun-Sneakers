@@ -65,6 +65,7 @@ const CartProduct = ({
         <Style.InfoContainer>
           <Style.Img
             style={{ backgroundImage: "url(" + `${item.image}` + ")" }}
+            alt="제품"
             onClick={goToDetail}
           ></Style.Img>
           <Style.InfoContent>

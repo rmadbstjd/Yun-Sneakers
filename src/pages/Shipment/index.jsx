@@ -448,7 +448,7 @@ const Shipment = () => {
             {products &&
               products.products.map((item) => (
                 <Style.ProductsContent key={item.productId}>
-                  <img src={item.image} alt="이미지"></img>
+                  <img src={item.image} alt="상품"></img>
                   <div>
                     <Style.Category>{item.category[0]}</Style.Category>
                     <Style.Name>{item.name}</Style.Name>

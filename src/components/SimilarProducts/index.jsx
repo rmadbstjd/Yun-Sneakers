@@ -9,7 +9,7 @@ const SimilarProducts = ({ products }) => {
   };
   return (
     <Style.Product onClick={goToDetail}>
-      <Style.Img src={products.image}></Style.Img>
+      <Style.Img src={products.image} alt="상품"></Style.Img>
       <Style.Category>{products.category[0]}</Style.Category>
       <Style.Name>{products.name}</Style.Name>
       <Style.Price>

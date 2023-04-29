@@ -136,7 +136,7 @@ const Review = () => {
                       onClick={() => {
                         goToDetail(item.info);
                       }}
-                      alt="이미지"
+                      alt="상품"
                     ></Style.Img>
 
                     <Style.Info>

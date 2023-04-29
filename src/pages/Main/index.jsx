@@ -12,6 +12,7 @@ const Main = () => {
       <Style.Container>
         <Style.ImgContainer>
           <Style.Img
+            alt="상품"
             style={{
               backgroundImage:
                 "url(https://res.cloudinary.com/dtw1xfagx/image/upload/v1672987124/homeimg_nrshhh.jpg)",

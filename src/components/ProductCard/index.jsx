@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Style.Card onClick={goToDetail}>
-      <Style.Img src={product && product.image}></Style.Img>
+      <Style.Img src={product && product.image} alt="상품"></Style.Img>
       <div>
         <Style.CategoryContainer>
           <Style.Category>{product && product.category[0]}</Style.Category>

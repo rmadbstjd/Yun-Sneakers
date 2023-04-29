@@ -97,6 +97,7 @@ const ProductReviews = () => {
               </Style.LeftLayout>
               <Style.Img
                 isClicked={index === isClicked}
+                alt="상품"
                 src={review.image}
               ></Style.Img>
             </Style.Info>

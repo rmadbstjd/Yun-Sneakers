@@ -86,6 +86,7 @@ const OrderPageNavbar = () => {
         <Style.ProductContent key={item.product._id}>
           <Style.Img
             src={item.info.image}
+            alt="상품"
             onClick={() => {
               goToDetail(item.info);
             }}
@@ -171,6 +172,7 @@ const OrderPageNavbar = () => {
           <Style.ProductContent key={item.product._id}>
             <Style.Img
               src={item.info.image}
+              alt="상품"
               onClick={() => {
                 goToDetail(item.info);
               }}
