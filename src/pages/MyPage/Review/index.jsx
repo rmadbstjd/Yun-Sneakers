@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../../store/userInfoStore";
+import { getIsNotReviewdProducts } from "../../../api/order";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import ReviewModal from "../../../components/common/Modal/ReviewModal";
@@ -11,7 +11,7 @@ import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";
-
+import { getUserReviews, deleteProductReview } from "../../../api/myPage";
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
 const Review = () => {
@@ -20,18 +20,18 @@ const Review = () => {
   const [deleted, setDeleted] = useState(false);
   const [stateReview, setStateReview] = useState(true);
   const navigate = useNavigate();
-  const { order, myPage } = userInfoStore();
+
   const {
     isLoading,
     data: product,
     refetch,
-  } = useQuery([], () => myPage.getUserReviews());
+  } = useQuery([], () => getUserReviews());
 
   const {
     isLoading: isLoading2,
     data: completedProducts,
     refetch: refetch2,
-  } = useQuery(["리뷰"], () => order.getIsNotReviewdProducts());
+  } = useQuery(["리뷰"], () => getIsNotReviewdProducts());
 
   const goToDetail = (info) => {
     navigate(`/products/${info.id}`);
@@ -62,7 +62,7 @@ const Review = () => {
       cancelButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await myPage.deleteProductReview(orderId);
+        await deleteProductReview(orderId);
         refetch();
         refetch2();
         setStateReview(true);

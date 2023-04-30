@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
-import productStore from "../../../store/productStore";
+import { answerQna } from "../../../api/product";
 import Navbar from "../../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
 import QnAModal from "../../../components/common/Modal/QnAModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getNotAnsweredQna, getAnsweredQna } from "../../../api/product";
 const itemArr3 = ["제목", "내용", "유저", "날짜"];
 const QnA = () => {
   const [showModal, setShowModal] = useState(false);
-  const { product } = productStore();
+
   const navigate = useNavigate();
   const { data: isNotAnsweredQnAs, refetch } = useQuery(
     ["isNotAnsweredQnA"],
-    () => product.getNotAnsweredQna()
+    () => getNotAnsweredQna()
   );
   const { data: isAnsweredQnAs, refetch: refetch2 } = useQuery(
     ["isAnsweredQnA"],
-    () => product.getAnsweredQna()
+    () => getAnsweredQna()
   );
   const [showNotAnsweredQnA, setShowNotAnsweredQnA] = useState(true);
   const [isClicked, setIsClicked] = useState();
 
   const submitBtn = async (answer) => {
-    await product.answerQna(
+    await answerQna(
       isNotAnsweredQnAs[isClicked].productId,
       isNotAnsweredQnAs[isClicked]._id,
       answer

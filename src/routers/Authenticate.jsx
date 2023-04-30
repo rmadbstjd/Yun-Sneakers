@@ -2,12 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router-dom";
 import userInfoStore from "../store/userInfoStore";
+import userApi from "../api/user";
 
 const AuthenticateRoute = ({ children }) => {
   const { user } = userInfoStore();
-  const { data, refetch } = useQuery(["isAuth"], () => user.authToken());
+  const { data, refetch } = useQuery(["isAuth"], () => userApi.authToken());
   const postToRefreshToken = async () => {
-    await user.refreshToken();
+    await userApi.refreshToken();
     refetch();
   };
   if (data) {

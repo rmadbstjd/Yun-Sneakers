@@ -3,19 +3,19 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import ProductLikeCard from "../../components/ProductLikeCard";
-import userInfoStore from "../../store/userInfoStore";
+import { getLikedProducts } from "../../api/like";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "./../../components/common/LoadingSpinner";
 const Like = () => {
   const navigate = useNavigate();
-  const { like } = userInfoStore();
+
   const [count, setCount] = useState(0);
   const {
     isLoading,
     data: product,
     refetch,
-  } = useQuery(["like"], () => like.getLikedProducts());
+  } = useQuery(["like"], () => getLikedProducts());
 
   useEffect(() => {
     if (product) setCount(product.length);

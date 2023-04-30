@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { history } from "../../hooks/history";
 import Navbar from "../../components/common/Navbar";
 import userInfoStore from "../../store/userInfoStore";
-
+import userApi from "../../api/user";
 const Login = () => {
   const isAuthenticated = localStorage.getItem("isLogin") === "true";
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = () => {
   const handleKeyDown = async (e) => {
     if (e.key === "Enter") {
       if (isPassed) {
-        const data = await user.login(inputs.id, inputs.pw);
+        const data = await userApi.login(inputs.id, inputs.pw);
 
         if (data === false) {
           setResult(false);
@@ -71,7 +71,7 @@ const Login = () => {
   };
   const clickToSubmit = async () => {
     if (isPassed) {
-      const data = await user.login(inputs.id, inputs.pw);
+      const data = await userApi.login(inputs.id, inputs.pw);
 
       if (data === false) {
         setResult(false);

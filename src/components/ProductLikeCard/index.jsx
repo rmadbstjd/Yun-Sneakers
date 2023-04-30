@@ -1,16 +1,15 @@
 import React from "react";
 import styles from "./ProductLikeCard.module.css";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../store/userInfoStore";
+import { pushLike } from "../../api/like";
 import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
 import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 const ProductLikeCard = ({ none, product, refetch }) => {
-  const { like } = userInfoStore();
   const navigate = useNavigate();
   const clickDelete = async (e) => {
     e.stopPropagation();
-    product && (await like.pushLike(product.id));
+    product && (await pushLike(product.id));
     refetch();
   };
   const goToDetail = () => {

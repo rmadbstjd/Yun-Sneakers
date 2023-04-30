@@ -6,7 +6,7 @@ import * as Style from "./styles";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
-
+import { addUserAddress, getUserAddress } from "../../api/myPage";
 const requestArr = [
   "배송시 요청사항을 선택해 주세요",
   "부재시 문앞에 놓아주세요",
@@ -18,9 +18,7 @@ const requestArr = [
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShip = ({ type, setDefaultAddress }) => {
-  const { data: address } = useQuery(["address"], () =>
-    myPage.getUserAddress()
-  );
+  const { data: address } = useQuery(["address"], () => getUserAddress());
 
   const {
     myPage,
@@ -96,7 +94,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
   };
 
   const addAddress = async () => {
-    await myPage.addUserAddress(
+    await addUserAddress(
       shipPlaceName,
       shipReceiver,
       shipPostCode,

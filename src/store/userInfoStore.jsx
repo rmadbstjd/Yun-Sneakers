@@ -1,24 +1,11 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import Cart from "../api/cart";
-import Product from "../api/product";
-import Like from "../api/like";
-import User from "../api/user";
-import MyPage from "../api/myPage";
-import Order from "../api/order";
-const store = (set) => ({
-  cart: new Cart(),
-  product: new Product(),
-  like: new Like(),
-  user: new User(),
-  myPage: new MyPage(),
-  order: new Order(),
 
+const store = (set) => ({
   nickName: "",
   setNickName: (keyword) => set((state) => ({ nickName: keyword })),
   userId: "",
   setUserId: (keyword) => set((state) => ({ userId: keyword })),
-
   shipPlaceName: "",
   setShipPlaceName: (keyword) => set((state) => ({ shipPlaceName: keyword })),
   shipReceiver: "",

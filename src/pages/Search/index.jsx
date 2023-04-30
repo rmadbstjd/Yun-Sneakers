@@ -17,7 +17,8 @@ import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Pagination from "../../components/common/Pagination";
 import jwt_decode from "jwt-decode";
-
+import { searchForProducts } from "../../api/product";
+import { getBrandsName } from "../../api/product";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -25,9 +26,8 @@ const SearchPage = () => {
   const [searchProducts, setSearchProducts] = useState([]);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query] = useSearchParams();
-  const { product } = userInfoStore();
   const { recentKeyword, addRecentKeyword } = searchStore();
-  const { data: brands } = useQuery(["brands"], () => product.getBrandsName());
+  const { data: brands } = useQuery(["brands"], () => getBrandsName());
   const [showBrand, setShowBrand] = useState(true);
   const [showPrice, setShowPrice] = useState(false);
   const sessionSort = sessionStorage.getItem("sort");
@@ -113,7 +113,7 @@ const SearchPage = () => {
   const { isLoading, data: products } = useQuery(
     [searchKeyword, checkedSort, collectionName, priceOrder, page],
     () =>
-      product.searchProducts(
+      searchForProducts(
         searchKeyword,
         checkedSort,
         collectionName,

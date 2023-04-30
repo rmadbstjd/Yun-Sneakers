@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
@@ -7,6 +7,7 @@ import ReviewModal from "../common/Modal/ReviewModal";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { Link } from "react-scroll";
+import { completeShipment, getShipIsCompleted } from "../../api/order";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -27,12 +28,12 @@ const OrderPageNavbar = () => {
     isLoading: isLoading2,
     data: completedProducts,
     refetch: getShipIsCompletedRefetch,
-  } = useQuery(["배송완료"], () => order.getShipIsCompleted());
-  const { myPage, order } = userInfoStore();
+  } = useQuery(["배송완료"], () => getShipIsCompleted());
+  const { myPage } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
-    await order.completeShipment(id);
-    await order.getShipIsCompleted();
+    await completeShipment(id);
+    await getShipIsCompleted();
     getOrderedProductsRefetch();
     getShipIsCompletedRefetch();
   };

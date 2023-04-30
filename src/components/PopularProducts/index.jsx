@@ -3,13 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import * as Style from "./styles";
-import userInfoStore from "../../store/userInfoStore";
+import { getPopularProducts } from "../../api/product";
 const ShowPopularProducts = () => {
-  const { product } = userInfoStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const { isLoading, data: products } = useQuery(["popular", currentPage], () =>
-    product.getPopularProducts(currentPage)
+    getPopularProducts(currentPage)
   );
 
   const ClickToMoreProduct = () => {

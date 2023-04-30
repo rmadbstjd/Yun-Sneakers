@@ -5,10 +5,11 @@ import HorizonLine from "../common/HorizonLine";
 import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
-import productStore from "../../store/productStore";
+import { deleteQna } from "../../api/product";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import Pagination from "../../components/common/Pagination";
+import { getProductInfo, addQna, modifyQna, getQna } from "../../api/product";
 const noticeArr = [
   "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",
   " 상품 및 상품 구매 과정과 관련 없는 비방, 욕설, 명예훼손성 게시글 및 상품과 관련 없는 광고글 등 부적절한 게시글 등록 시 글쓰기 제한 및 게시글이 삭제 조치 될 수 있습니다.",
@@ -16,7 +17,6 @@ const noticeArr = [
 ];
 const QnA = () => {
   const navigate = useNavigate();
-  const { product } = productStore();
   const token = localStorage.getItem("accessToken");
   const isLogin = localStorage.getItem("isLogin");
   const info = token && jwt_decode(token);
@@ -34,10 +34,8 @@ const QnA = () => {
     isLoading,
     data: QnA,
     refetch,
-  } = useQuery(["qna"], () => product.getQna(id, page));
-  const { data: productInfo } = useQuery([id], () =>
-    product.getProductInfo(id)
-  );
+  } = useQuery(["qna"], () => getQna(id, page));
+  const { data: productInfo } = useQuery([id], () => getProductInfo(id));
   const image = productInfo?.product?.image;
   const QnAcounts = QnA?.count?.length;
   QnA = QnA?.QnA;
@@ -72,21 +70,14 @@ const QnA = () => {
 
     let dates = `${year}.${month}.${days2}`;
     if (!isClickedModifyBtn) {
-      await product.addQna(id, title, content, secretChecked, dates, image);
+      await addQna(id, title, content, secretChecked, dates, image);
       setShowModal(false);
       setTitle("");
       setContent("");
       setSecretChecked(false);
       refetch();
     } else {
-      await product.modifyQna(
-        id,
-        title,
-        content,
-        secretChecked,
-        dates,
-        QnA[index]._id
-      );
+      await modifyQna(id, title, content, secretChecked, dates, QnA[index]._id);
       setShowModal(false);
       setTitle("");
       setContent("");
@@ -145,7 +136,7 @@ const QnA = () => {
       cancelButtonText: "취소",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await product.deleteQna(id, QnA[index]._id);
+        await deleteQna(id, QnA[index]._id);
         refetch();
         setIndex();
         setShowContent();
@@ -155,7 +146,7 @@ const QnA = () => {
 
   const handlePageChange = async (page) => {
     setPage(page);
-    QnA = await product.getQna(id, page);
+    QnA = await getQna(id, page);
     refetch();
   };
   useEffect(() => {}, [QnA]);

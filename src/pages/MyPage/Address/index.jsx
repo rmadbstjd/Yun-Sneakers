@@ -7,9 +7,13 @@ import userInfoStore from "./../../../store/userInfoStore";
 import ShipAddress from "./../../../components/ShipAddress/index";
 import AddressModal from "./../../../components/common/Modal/AddressModal";
 import MypageSide from "./../../../components/MypageSide/index";
+import {
+  addUserAddress,
+  getUserAddress,
+  deleteUserAddress,
+} from "../../../api/myPage";
 const Address = () => {
   const {
-    myPage,
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -21,7 +25,7 @@ const Address = () => {
   } = userInfoStore();
   const [showModal, setShowModal] = useState(false);
   const { data: address, refetch } = useQuery(["address"], () =>
-    myPage.getUserAddress()
+    getUserAddress()
   );
   const submitBtn = async () => {
     if (!shipPlaceName) {
@@ -68,7 +72,7 @@ const Address = () => {
       return;
     }
 
-    await myPage.addUserAddress(
+    await addUserAddress(
       shipPlaceName,
       shipReceiver,
       shipPostCode,
@@ -84,7 +88,7 @@ const Address = () => {
     setShowModal(false);
   };
   const deleteAddress = async () => {
-    await myPage.deleteUserAddress();
+    await deleteUserAddress();
     refetch();
   };
 

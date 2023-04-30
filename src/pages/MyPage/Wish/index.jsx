@@ -4,18 +4,17 @@ import { useQuery } from "@tanstack/react-query";
 import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
-import userInfoStore from "../../../store/userInfoStore";
+import { getLikedProducts } from "../../../api/like";
 import ProductLikeCard from "../../../components/ProductLikeCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 const Wish = () => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
-  const { like } = userInfoStore();
   const {
     isLoading,
     data: product,
     refetch,
-  } = useQuery(["like"], () => like.getLikedProducts(), {
+  } = useQuery(["like"], () => getLikedProducts(), {
     enabled: true,
   });
   const goToMain = () => {

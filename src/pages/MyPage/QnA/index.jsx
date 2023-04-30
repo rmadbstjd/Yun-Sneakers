@@ -7,6 +7,7 @@ import productStore from "../../../store/productStore";
 import { useNavigate } from "react-router-dom";
 import convertStringToNumber from "../../../hooks/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";
+import { getMyQna } from "../../../api/product";
 const itemArr3 = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
 const QnA = () => {
   const { product } = productStore();
@@ -14,9 +15,7 @@ const QnA = () => {
   const [showContent, setShowContent] = useState();
   const [page, setPage] = useState(1);
 
-  let { data: myQnAs, refetch } = useQuery(["myQnA"], () =>
-    product.getMyQna(page)
-  );
+  let { data: myQnAs, refetch } = useQuery(["myQnA"], () => getMyQna(page));
   const QnAcounts = myQnAs && myQnAs.count;
 
   const goToDetailPage = (productId) => {
@@ -33,7 +32,7 @@ const QnA = () => {
 
   const handlePageChange = async (page) => {
     setPage(page);
-    myQnAs = await product.getMyQna(page);
+    myQnAs = await getMyQna(page);
     refetch();
   };
 

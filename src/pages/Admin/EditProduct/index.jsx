@@ -2,14 +2,13 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import InputProduct from "../../../components/InputProduct";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../../store/userInfoStore";
+import { getProductInfo } from "../../../api/product";
 const EditProduct = () => {
-  const { product } = userInfoStore();
   const location = useLocation();
   const id = location.state.productId;
 
   const { data: productInfo } = useQuery(["edit", id], () =>
-    product.getProductInfo(id)
+    getProductInfo(id)
   );
 
   return (

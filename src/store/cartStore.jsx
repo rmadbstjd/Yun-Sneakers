@@ -1,8 +1,6 @@
 import { create } from "zustand";
-import Cart from "../api/cart";
 import { devtools } from "zustand/middleware";
 const store = (set) => ({
-  cart: new Cart(),
   cartCount: 0,
   initCartCount: () => set((state) => ({ cartCount: 0 })),
   plusCartCount: (count) =>

@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
 import Navbar from "./../../components/common/Navbar";
-
+import userApi from "../../api/user";
 const Join = () => {
   const navigate = useNavigate();
   const { user } = userInfoStore();
@@ -104,7 +104,11 @@ const Join = () => {
   };
   const clickToSubmit = async () => {
     if (isPassed) {
-      const response = await user.signUp(inputs.id, inputs.pw, inputs.nickname);
+      const response = await userApi.signUp(
+        inputs.id,
+        inputs.pw,
+        inputs.nickname
+      );
       setResult(response);
     }
   };

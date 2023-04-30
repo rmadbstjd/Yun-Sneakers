@@ -6,7 +6,7 @@ import userInfoStore from "../../store/userInfoStore";
 import { uploadImage } from "../../api/upload";
 import Navbar from "../common/Navbar";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
-
+import { addProduct, editProduct } from "../../api/product";
 import Swal from "sweetalert2";
 const InputProduct = ({ title, type, productInfo }) => {
   const { product } = userInfoStore();
@@ -33,19 +33,19 @@ const InputProduct = ({ title, type, productInfo }) => {
     if (!file) {
       if (type === "수정") {
         let url = productInfo.image;
-        product.editProduct(newProducts, url, productInfo.product.id);
+        editProduct(newProducts, url, productInfo.product.id);
       } else {
         setCount(1);
         const url = await uploadImage(file);
-        product.addProduct(newProducts, url);
+        addProduct(newProducts, url);
       }
     } else if (file) {
       const url = await uploadImage(file);
       setCount(1);
       if (type === "수정") {
-        product.editProduct(newProducts, url, productInfo.product.id);
+        editProduct(newProducts, url, productInfo.product.id);
       } else {
-        product.addProduct(newProducts, url);
+        addProduct(newProducts, url);
       }
     }
     Swal.fire({

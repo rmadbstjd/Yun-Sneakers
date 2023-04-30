@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../store/userInfoStore";
 import * as Style from "./styles";
 import Swal from "sweetalert2";
 import convertStringToNumber from "../../hooks/convertStringToNumber";
-
+import { updateUserCart } from "../../api/cart";
+import { deleteUserCart } from "../../api/cart";
 const CartProduct = ({
   item,
   productId,
@@ -13,7 +13,6 @@ const CartProduct = ({
   checkedProducts,
   setCheckedProducts,
 }) => {
-  const { cart } = userInfoStore();
   const navigate = useNavigate();
   const [productCount, setProductCount] = useState(item.quantity);
 
@@ -26,19 +25,19 @@ const CartProduct = ({
       return;
     }
     setProductCount((prev) => prev + 1);
-    await cart.updateUserCart(item.productId, item.size, productCount + 1);
+    await updateUserCart(item.productId, item.size, productCount + 1);
     refetch();
   };
 
   const minus = async () => {
     if (productCount <= 1) return;
     setProductCount((prev) => prev - 1);
-    await cart.updateUserCart(item.productId, item.size, productCount - 1);
+    await updateUserCart(item.productId, item.size, productCount - 1);
     refetch();
   };
 
   const deleteProduct = async () => {
-    await cart.deleteUserCart(item.productId, item.size);
+    await deleteUserCart(item.productId, item.size);
     refetch();
     setCheckedProducts((prev) => prev.filter((el) => el.id !== item.productId));
   };

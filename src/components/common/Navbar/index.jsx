@@ -15,12 +15,13 @@ import Search from "../../Search";
 import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
-
+import userApi from "../../../api/user";
 import jwt_decode from "jwt-decode";
 import ScrollToTop from "../../../hooks/scrollToTop";
+import { getUserCarts } from "../../../api/cart";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
-  const { cart, nickName, userId, user } = userInfoStore();
+  const { nickName, userId } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
@@ -33,7 +34,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
   );
 
-  const { data: cartProducts } = useQuery([userId], () => cart.getUserCarts());
+  const { data: cartProducts } = useQuery([userId], () => getUserCarts());
   useEffect(() => {
     initCartCount();
     if (cartProducts) {
@@ -44,7 +45,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     navigate("/login");
   };
   const handleLogout = () => {
-    user.logout();
+    userApi.logout();
   };
   const clickToSearch = () => {
     setSearchWord(null);

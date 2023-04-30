@@ -1,12 +1,9 @@
 import React from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../store/userInfoStore";
+import { getUserAddress } from "../../api/myPage";
 const ShipAddress = () => {
-  const { myPage } = userInfoStore();
-  const { data: address } = useQuery(["address"], () =>
-    myPage.getUserAddress()
-  );
+  const { data: address } = useQuery(["address"], () => getUserAddress());
   if (!address) {
     return (
       <Style.Box>

@@ -11,6 +11,9 @@ import convertStringToNumber from "../../hooks/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import { getUserCheckedCarts } from "../../api/cart";
+import { deleteUserCart } from "../../api/cart";
+import { addOrderProducts } from "../../api/order";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",
@@ -70,9 +73,7 @@ const termsArr = [
 const Shipment = () => {
   const navigate = useNavigate();
   const {
-    cart,
     myPage,
-    order,
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -83,7 +84,7 @@ const Shipment = () => {
     setCard,
   } = userInfoStore();
   const { isLoading, data: products } = useQuery(["products"], () =>
-    cart.getUserCheckedCarts()
+    getUserCheckedCarts()
   );
   const { data: address } = useQuery(["address"], () =>
     myPage.getUserAddress()
@@ -217,17 +218,14 @@ const Shipment = () => {
     let dates = `${year}.${month}.${days2}`;
 
     for (let i = 0; i < products.products.length; i++) {
-      order.addOrderProducts(
+      addOrderProducts(
         products.products[i].productId,
         dates,
         products.products[i].quantity,
         coupon,
         products.products[i].size
       );
-      cart.deleteUserCart(
-        products.products[i].productId,
-        products.products[i].size
-      );
+      deleteUserCart(products.products[i].productId, products.products[i].size);
     }
     Swal.fire({
       icon: "success",

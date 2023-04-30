@@ -24,17 +24,19 @@ import { Link } from "react-scroll";
 import QnA from "../../components/QnA";
 import NotFound from "../NotFound";
 import getProductReviews from "../../api/review";
+import { addUserCart } from "../../api/cart";
+import { pushLike, isLike } from "../../api/like";
+import { getSimilarProducts } from "../../api/product";
+import { getProductInfo } from "../../api/product";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { product, review, like, cart, userId } = userInfoStore();
+  const { review, cart, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const { selectSize, setInitSize } = productStore();
 
-  const { data: productInfo } = useQuery([id], () =>
-    product.getProductInfo(id)
-  );
+  const { data: productInfo } = useQuery([id], () => getProductInfo(id));
 
   const { refetch: cartRefetch } = useQuery([userId], () =>
     cart.getUserCarts()
@@ -46,13 +48,13 @@ const ProductDetail = () => {
 
   const { isLoading, data: similarProducts } = useQuery(
     ["similar", id],
-    () => product.getSimilarProducts(category, id),
+    () => getSimilarProducts(category, id),
     { refetchOnMount: "alaways", enabled: !!category }
   );
 
   const { data: isLiked, refetch } = useQuery(
     ["isLiked", id],
-    () => like.isLike(productId),
+    () => isLike(productId),
     { enabled: !!productId }
   );
 
@@ -88,7 +90,7 @@ const ProductDetail = () => {
 
     setCartModalShow((prev) => !prev);
     setTimeout(setCartModalShow, 3000);
-    const isSubmit = await cart.addUserCart(products, selectSize);
+    const isSubmit = await addUserCart(products, selectSize);
     cartRefetch();
     if (isSubmit.success === false) return;
     plusCartCount(1);
@@ -96,7 +98,7 @@ const ProductDetail = () => {
 
   const clickToLike = async () => {
     if (!isLogin) navigate("/login");
-    await like.pushLike(productInfo.product.id, userId);
+    await pushLike(productInfo.product.id, userId);
     refetch();
   };
 

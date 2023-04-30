@@ -1,92 +1,79 @@
-import axios from "axios";
 import { instance } from "./../utils/instance";
-export default class MyPage {
-  constructor() {
-    this.httpClient = axios.create(
-      {
-        baseURL: process.env.REACT_APP_BASE_URL,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-  }
 
-  async getOrderedProducts() {
-    const response = await instance.get(`/order`, {});
-    const data = response.data;
-    return data;
-  }
+export const getOrderedProducts = async () => {
+  const response = await instance.get(`/order`, {});
+  return response.data;
+};
 
-  async addUserAddress(
-    shipPlaceName,
-    shipReceiver,
-    shipPostCode,
-    shipAddress,
-    shipAddressDetail,
-    phoneNumInput1,
-    phoneNumInput2,
-    phoneNumInput3
-  ) {
-    await instance.post(`/address`, {
-      place: shipPlaceName,
-      receiver: shipReceiver,
-      postCode: shipPostCode,
-      address: shipAddress,
-      addressDetail: shipAddressDetail,
-      phoneNumber1: String(phoneNumInput1),
-      phoneNumber2: String(phoneNumInput2),
-      phoneNumber3: String(phoneNumInput3),
-    });
-  }
-  async getUserAddress() {
-    const response = await instance.get("/address", {});
-    const data = response.data;
+export const addUserAddress = async (
+  shipPlaceName,
+  shipReceiver,
+  shipPostCode,
+  shipAddress,
+  shipAddressDetail,
+  phoneNumInput1,
+  phoneNumInput2,
+  phoneNumInput3
+) => {
+  await instance.post(`/address`, {
+    place: shipPlaceName,
+    receiver: shipReceiver,
+    postCode: shipPostCode,
+    address: shipAddress,
+    addressDetail: shipAddressDetail,
+    phoneNumber1: String(phoneNumInput1),
+    phoneNumber2: String(phoneNumInput2),
+    phoneNumber3: String(phoneNumInput3),
+  });
+};
 
-    if (data) return data;
-    else return false;
+export const getUserAddress = async () => {
+  const response = await instance.get("/address", {});
+  if (response.data) {
+    return response.data;
   }
-  async deleteUserAddress() {
-    await instance.delete(`/address`, {});
-  }
+  return false;
+};
 
-  async addProductReview(
+export const deleteUserAddress = async () => {
+  await instance.delete(`/address`, {});
+};
+
+export const addProductReview = async (
+  image,
+  star,
+  count,
+  coupon,
+  price,
+  date,
+  size,
+  productId,
+  orderId,
+  content,
+  rate
+) => {
+  await instance.post(`/review`, {
     image,
     star,
     count,
     coupon,
     price,
-    date,
     size,
+    date,
     productId,
     orderId,
     content,
-    rate
-  ) {
-    await instance.post(`/review`, {
-      image,
-      star,
-      count,
-      coupon,
-      price,
-      size,
-      date,
-      productId,
-      orderId,
-      content,
-      rate,
-    });
-  }
+    rate,
+  });
+};
 
-  async getUserReviews() {
-    const response = await instance.get(`/review`, {});
-    const data = response.data;
-    return data;
-  }
+export const getUserReviews = async () => {
+  const response = await instance.get(`/review`, {});
+  return response.data;
+};
 
-  async deleteProductReview(orderId) {
-    await instance.delete(`/review`, {
-      data: { orderId },
-    });
-  }
-}
+export const deleteProductReview = async (orderId) => {
+  await instance.delete(`/review`, {
+    data: { orderId },
+  });
+};

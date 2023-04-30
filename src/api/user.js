@@ -1,29 +1,29 @@
 import axios from "axios";
 import { instance } from "../utils/instance";
-export default class Login {
-  constructor() {
-    this.httpClient = axios.create(
-      {
-        baseURL: process.env.REACT_APP_BASE_URL,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-  }
 
-  async signUp(id, pw, nickname) {
-    const response = await this.httpClient.post("/signUp", {
+const httpClient = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  withCredentials: true,
+});
+
+const signUp = async (id, pw, nickname) => {
+  try {
+    const response = await httpClient.post("/signUp", {
       userId: id,
       password: pw,
       nickname,
     });
     if (response.status === 400) return false;
     else if (response.status === 201) return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
+};
 
-  async login(id, pw) {
-    const response = await this.httpClient.post("/login", {
+const login = async (id, pw) => {
+  try {
+    const response = await httpClient.post("/login", {
       userId: id,
       password: pw,
     });
@@ -35,16 +35,21 @@ export default class Login {
     localStorage.setItem("refreshToken", data.refreshToken);
     localStorage.setItem("isLogin", true);
     return data;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
+};
 
-  async logout() {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.setItem("isLogin", false);
-    window.location.replace("/");
-  }
+const logout = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.setItem("isLogin", false);
+  window.location.replace("/");
+};
 
-  async authToken() {
+const authToken = async () => {
+  try {
     const response = await instance.get("/user", {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
@@ -52,15 +57,25 @@ export default class Login {
     });
     const data = response.data;
     return data;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
+};
 
-  async isAdmin() {
+const isAdmin = async () => {
+  try {
     const response = await instance.get("/user/admin", {});
     const data = response.data;
-
     return data;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
-  async refreshToken() {
+};
+
+const refreshToken = async () => {
+  try {
     const response = await instance.post("/refresh", {
       headers: {
         Authorization: localStorage.getItem("refreshToken"),
@@ -70,5 +85,18 @@ export default class Login {
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("isLogin", true);
     return data;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
-}
+};
+
+const userApi = {
+  signUp,
+  login,
+  logout,
+  authToken,
+  isAdmin,
+  refreshToken,
+};
+export default userApi;

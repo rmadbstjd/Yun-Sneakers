@@ -11,6 +11,8 @@ import Navbar from "./../../components/common/Navbar/index";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";
 import Swal from "sweetalert2";
+import { getUserCarts } from "../../api/cart";
+import { checkProduct } from "../../api/cart";
 const Cart = () => {
   const navigate = useNavigate();
   const { cart } = cartStore();
@@ -19,7 +21,7 @@ const Cart = () => {
     isLoading,
     data: cartProducts,
     refetch,
-  } = useQuery([userId], () => cart.getUserCarts());
+  } = useQuery([userId], () => getUserCarts());
 
   const [checkedProducts, setCheckedProducts] = useImmer([]);
   const [price, setPrice] = useState(0);
@@ -37,7 +39,7 @@ const Cart = () => {
     } else {
       for (let i = 0; i < checkedProducts?.length; i++) {
         if (checkedProducts[i].id === id) {
-          cart.checkProduct(id, false);
+          checkProduct(id, false);
           setCheckedProducts((prev) => prev.filter((el) => el.id !== id));
         }
       }
@@ -49,7 +51,7 @@ const Cart = () => {
       setCheckedProducts([]);
       for (let i = 0; i < cartProducts.products?.length; i++) {
         setCheckedProducts((draft) => {
-          cart.checkProduct(cartProducts.products[i].productId, true);
+          checkProduct(cartProducts.products[i].productId, true);
           draft.push({
             id: cartProducts.products[i].productId,
             price: cartProducts.products[i].price,
@@ -64,7 +66,7 @@ const Cart = () => {
       }
     } else {
       for (let i = 0; i < checkedProducts.length; i++) {
-        cart.checkProduct(checkedProducts[i].id, false);
+        checkProduct(checkedProducts[i].id, false);
       }
       setCheckedProducts([]);
     }
@@ -102,7 +104,7 @@ const Cart = () => {
     if (checkedProducts.length !== 0) {
       setPrice(0);
       for (let i = 0; i < checkedProducts.length; i++) {
-        cart.checkProduct(checkedProducts[i].id, true);
+        checkProduct(checkedProducts[i].id, true);
         setPrice(
           (prev) =>
             prev + checkedProducts[i].price * checkedProducts[i].quantity
