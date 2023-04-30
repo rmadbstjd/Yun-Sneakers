@@ -194,10 +194,10 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 <br/>
 이 둘의 장단점을 비교하여 종합해봤을 때, CSS-in-JS의 단점은 이번 프로젝트에 크게 영향이 없을 것으로 판단하여 CSS-in-JS를 채택하였다.
 
-# 웹 사이트 성능 개선 <작성중>
+# 웹 사이트의 성능을 개선하기 위한 노력
 웹 사이트의 성능을 측정하기 위해 LightHouse를 사용하였고 측정 결과, 매우 좋지 않았다.
 <br/>
-측정 결과
+<h3>처음 측정 결과</h3>
 
 ![image](https://user-images.githubusercontent.com/58474431/235327949-47b8e9b0-773c-41a9-8a07-6cdaf743829e.png)
 
@@ -226,13 +226,17 @@ react-icons는 icon 종류별로 구분되어 있으며, 종류별로 하나의 
 ![image](https://user-images.githubusercontent.com/58474431/235305762-605c997d-822f-4f56-8e1d-4b3157877ead.png)
 
 <br/>
-개선된 코드 
+수정된 코드 
 
 ![image](https://user-images.githubusercontent.com/58474431/235305716-39be2398-5406-42b4-96cc-1e2b78c39302.png)
 
 2.이미지 태그에 alt 속성이 존재하지 않음
 
 ![image](https://user-images.githubusercontent.com/58474431/235328018-a137ad09-eb37-4bd5-9d7b-5cf3161b2bb2.png)
+
+<h3>개선 결과</h3>
+<br/>
+![image](https://user-images.githubusercontent.com/58474431/235330666-f9c2ade5-c7f5-4ec8-9731-b0448cf17782.png)
 
 
 <br/>
