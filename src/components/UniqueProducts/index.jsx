@@ -7,9 +7,8 @@ import { getUniqueProducts } from "../../api/product";
 const UniqueProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
-  const { isLoading, data: products } = useQuery(
-    ["unique", currentPage],
-    () => currentPage
+  const { isLoading, data: products } = useQuery(["unique", currentPage], () =>
+    getUniqueProducts()
   );
 
   const ClickToMoreProduct = () => {
