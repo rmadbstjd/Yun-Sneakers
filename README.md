@@ -194,12 +194,63 @@ CSS-in-JS를 알게 된 후로는 더욱 간단하게 조건부 스타일링을 
 <br/>
 이 둘의 장단점을 비교하여 종합해봤을 때, CSS-in-JS의 단점은 이번 프로젝트에 크게 영향이 없을 것으로 판단하여 CSS-in-JS를 채택하였다.
 
+# 웹 사이트 성능 개선 <작성중>
+웹 사이트의 성능을 측정하기 위해 LightHouse를 사용하였고 측정 결과, 매우 좋지 않았다.
+<br/>
+측정 결과
+
+![image](https://user-images.githubusercontent.com/58474431/235327949-47b8e9b0-773c-41a9-8a07-6cdaf743829e.png)
+
+성능이 가장 좋지 못하였고, 다음으로는 접근성이 좋지 못하였다.
+<br/>
+이유를 살펴보니 크게 두 가지로 나눌 수 있었다.
+<br/>
+1. react-icons
+
+![image](https://user-images.githubusercontent.com/58474431/235327979-4e3e6750-38cb-4ca1-a74d-bd22842de182.png)
+
+<br/>
+react-icons는 icon 종류별로 구분되어 있으며, 종류별로 하나의 js파일에 아이콘 전체를 포함하고 있다.
+<br/>
+빌드 시 react-icons라이브러리의 모든 파일이 포함되기 때문에 chunk 사이즈가 커지게 된다.
+<br/>
+이러한 이유로 인해 react-icons 에서는 @react-icons/all-files 라는 별도의 라이브러리를 제공하고 있었다.
+<br/>
+@react-icons/all-files 라이브러리는 아이콘 별로 자바스크립트 파일을 별도로 가지고 있기 때문에,
+<br/>
+빌드 시 트리쉐이킹 방식(필요 없는 코드를 제거하여 번들의 크기나 번들링의 시간을 줄여주는 방식)으로 더 적은 크기의 chunk를 만들 수 있다.
+예를 들어,
+<br/>
+기존 코드
+
+![image](https://user-images.githubusercontent.com/58474431/235305762-605c997d-822f-4f56-8e1d-4b3157877ead.png)
+
+<br/>
+개선된 코드 
+
+![image](https://user-images.githubusercontent.com/58474431/235305716-39be2398-5406-42b4-96cc-1e2b78c39302.png)
+
+2.이미지 태그에 alt 속성이 존재하지 않음
+
+![image](https://user-images.githubusercontent.com/58474431/235328018-a137ad09-eb37-4bd5-9d7b-5cf3161b2bb2.png)
+
+
+<br/>
+alt 속성을 추가하는 것은 접근성을 높이기 이전에
+<br/>
+이미지를 보지 못하여 스크린리더를 이용하는 시각 장애인이나 이미지를 불러오지 못하여 엑스박스가
+<br/>
+발생할 경우를 고려하여 반드시 필요한 속성이다.
+<br/>
+기본적인 것을 지키지 못한 것에 대해 반성하며 이미지 태그에 alt 속성을 추가하였다.
+<br/>
 
 # 주요 기능
 
 ### 1. 회원가입 및 로그인 기능 
 <br/>
 유저가 입력 양식에 맞게 입력하였을 때 회원가입 및 로그인 버튼을 활성화시키는 기능을 추가함으로써 UI를 향상시키도록 노력하였다.
+
 <br/>
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/58474431/232307697-cd366e7a-3f0c-47c6-8184-7b70c22727c8.gif)
