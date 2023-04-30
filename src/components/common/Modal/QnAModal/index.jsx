@@ -21,7 +21,7 @@ const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
       <Style.ReviewContainer>
         <Style.ReviewTitle>Q&A 답변</Style.ReviewTitle>
         <Style.QnAContent>
-          <Style.Img src={qna && qna.image} alt="상품"></Style.Img>
+          <Style.Img alt="상품" src={qna && qna.image}></Style.Img>
           <Style.InfoContainer>
             <Style.ProductCategory>
               [제목] {qna && qna.title}

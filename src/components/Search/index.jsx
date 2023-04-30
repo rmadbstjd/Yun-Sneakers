@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Style from "./styles";
-import { GrClose } from "react-icons/gr";
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { useNavigate } from "react-router-dom";
 import searchStore from "../../store/searchStore";

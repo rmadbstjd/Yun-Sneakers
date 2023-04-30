@@ -30,7 +30,7 @@ export const TitleKOR = styled.div`
   font-size: 15px;
 `;
 
-export const BrandContainer = styled.div`
+export const BrandLogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,11 +40,19 @@ export const BrandContainer = styled.div`
   margin: 20px 15px 10px 0px;
   border: soldi black 1px;
   border-radius: 20px;
-  background-color: #222222;
+  background-color: black;
   text-align: center;
   cursor: pointer;
-  color: white;
   &:hover {
     scale: 1.05;
+    background: black;
+    transition: all 0.3s;
   }
+`;
+
+export const Img = styled.img`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin-top: ${(props) => props.marginTop};
+  color: white;
 `;

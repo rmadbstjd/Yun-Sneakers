@@ -81,8 +81,8 @@ const ManageProducts = () => {
               <div key={item.id}>
                 <Style.ProductContent>
                   <Style.Img
-                    src={item.image}
                     alt="상품"
+                    src={item.image}
                     onClick={() => {
                       goToDetailPage(item.id);
                     }}

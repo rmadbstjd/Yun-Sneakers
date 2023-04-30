@@ -101,18 +101,10 @@ const InputProduct = ({ title, type, productInfo }) => {
           </div>
           <div className={styles.imgContainer}>
             {file && (
-              <img
-                className={styles.img}
-                alt="상품"
-                src={URL.createObjectURL(file)}
-              ></img>
+              <img className={styles.img} src={URL.createObjectURL(file)}></img>
             )}
             {!file && newProducts && (
-              <img
-                className={styles.img}
-                alt="상품"
-                src={newProducts.url}
-              ></img>
+              <img className={styles.img} src={newProducts.url}></img>
             )}
           </div>
           <div className={styles.form1}>

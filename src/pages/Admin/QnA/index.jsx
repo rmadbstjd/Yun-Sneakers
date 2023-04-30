@@ -114,8 +114,8 @@ const QnA = () => {
                     onClick={() => clickToQnA(index)}
                   >
                     <Style.Img
-                      src={item.image}
                       alt="상품"
+                      src={item.image}
                       onClick={(e) => {
                         clickToDetailPage(e, item);
                       }}
@@ -146,6 +146,7 @@ const QnA = () => {
                     onClick={() => clickToQnA(index)}
                   >
                     <Style.Img
+                      alt="상품"
                       src={item.image}
                       onClick={(e) => {
                         clickToDetailPage(e, item);

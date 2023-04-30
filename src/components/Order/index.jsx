@@ -85,8 +85,8 @@ const OrderPageNavbar = () => {
       {products?.map((item) => (
         <Style.ProductContent key={item.product._id}>
           <Style.Img
-            src={item.info.image}
             alt="상품"
+            src={item.info.image}
             onClick={() => {
               goToDetail(item.info);
             }}
@@ -171,8 +171,8 @@ const OrderPageNavbar = () => {
         completedProducts.map((item, index) => (
           <Style.ProductContent key={item.product._id}>
             <Style.Img
-              src={item.info.image}
               alt="상품"
+              src={item.info.image}
               onClick={() => {
                 goToDetail(item.info);
               }}
