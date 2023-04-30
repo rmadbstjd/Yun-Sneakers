@@ -178,7 +178,7 @@ const SearchPage = () => {
 
   const fetch = async (result) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/api/search/autocompleted`,
+      `${process.env.REACT_APP_BASE_URL}/search/autocompleted`,
       {
         keyword: result,
       }
@@ -241,7 +241,7 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-
+  console.log("Sp", searchProducts);
   return (
     <div>
       <Navbar
