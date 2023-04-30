@@ -3,14 +3,12 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
-import productStore from "../../../store/productStore";
 import { useNavigate } from "react-router-dom";
-import convertStringToNumber from "../../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../../utils/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";
 import { getMyQna } from "../../../api/product";
 const itemArr3 = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
 const QnA = () => {
-  const { product } = productStore();
   const navigate = useNavigate();
   const [showContent, setShowContent] = useState();
   const [page, setPage] = useState(1);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
 import Swal from "sweetalert2";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import { updateUserCart } from "../../api/cart";
 import { deleteUserCart } from "../../api/cart";
 const CartProduct = ({

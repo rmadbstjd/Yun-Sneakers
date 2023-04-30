@@ -21,7 +21,6 @@ const AddShip = ({ type, setDefaultAddress }) => {
   const { data: address } = useQuery(["address"], () => getUserAddress());
 
   const {
-    myPage,
     shipPlaceName,
     setShipPlaceName,
     shipReceiver,

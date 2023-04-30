@@ -7,7 +7,7 @@ import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import ReviewModal from "../../../components/common/Modal/ReviewModal";
 import Swal from "sweetalert2";
-import convertStringToNumber from "../../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../../utils/convertStringToNumber";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";

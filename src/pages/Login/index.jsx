@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useNavigate, useLocation } from "react-router-dom";
-import { history } from "../../hooks/history";
+import { history } from "../../utils/history";
 import Navbar from "../../components/common/Navbar";
 import userInfoStore from "../../store/userInfoStore";
 import userApi from "../../api/user";
@@ -9,7 +9,7 @@ const Login = () => {
   const isAuthenticated = localStorage.getItem("isLogin") === "true";
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, setNickName, setUserId } = userInfoStore();
+  const { setNickName, setUserId } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",

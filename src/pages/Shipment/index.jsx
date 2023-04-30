@@ -7,7 +7,7 @@ import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "../../components/common/LoadingSpinner";

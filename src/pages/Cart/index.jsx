@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import cartStore from "../../store/cartStore";
 import userInfoStore from "../../store/userInfoStore";
 import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";
@@ -15,7 +14,6 @@ import { getUserCarts } from "../../api/cart";
 import { checkProduct } from "../../api/cart";
 const Cart = () => {
   const navigate = useNavigate();
-  const { cart } = cartStore();
   const { userId } = userInfoStore();
   const {
     isLoading,

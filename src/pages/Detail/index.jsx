@@ -15,7 +15,7 @@ import SimilarProducts from "../../components/SimilarProducts";
 import ProductReviews from "../../components/ProductReviews";
 import Swal from "sweetalert2";
 import Navbar from "./../../components/common/Navbar/index";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import ProductDetailFooter from "../../components/ProductDetailFooter";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";

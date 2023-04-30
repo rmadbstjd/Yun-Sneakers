@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { pushLike } from "../../api/like";
 import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
 import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 const ProductLikeCard = ({ none, product, refetch }) => {
   const navigate = useNavigate();
   const clickDelete = async (e) => {

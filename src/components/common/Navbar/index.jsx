@@ -17,7 +17,7 @@ import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import userApi from "../../../api/user";
 import jwt_decode from "jwt-decode";
-import ScrollToTop from "../../../hooks/scrollToTop";
+import ScrollToTop from "../../../utils/scrollToTop";
 import { getUserCarts } from "../../../api/cart";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();

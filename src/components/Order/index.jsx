@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import ReviewModal from "../common/Modal/ReviewModal";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../api/order";

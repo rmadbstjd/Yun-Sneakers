@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { deleteProduct } from "../../../api/product";
 import Navbar from ".././../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import convertStringToNumber from "../../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../../utils/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";

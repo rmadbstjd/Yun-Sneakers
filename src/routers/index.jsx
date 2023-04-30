@@ -10,14 +10,13 @@ import MyPageRoute from "./MyPageRoute";
 import Shipment from "../pages/Shipment";
 import SearchPage from "../pages/Search";
 import userInfoStore from "../store/userInfoStore";
-import authenticate from "../hooks/authenticate";
+import authenticate from "../utils/authenticate";
 import AuthenticateRoute from "./Authenticate";
 import IsAdmin from "./IsAdmin";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";
 const Router = () => {
   const { setNickName, setUserId } = userInfoStore();
-
   useEffect(() => {
     authenticate(setNickName, setUserId);
   }, [setNickName, setUserId]);

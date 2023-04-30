@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./InputProduct.module.css";
 import { useNavigate } from "react-router-dom";
 import { useImmer } from "use-immer";
-import userInfoStore from "../../store/userInfoStore";
 import { uploadImage } from "../../api/upload";
 import Navbar from "../common/Navbar";
-import convertStringToNumber from "../../hooks/convertStringToNumber";
+import convertStringToNumber from "../../utils/convertStringToNumber";
 import { addProduct, editProduct } from "../../api/product";
 import Swal from "sweetalert2";
 const InputProduct = ({ title, type, productInfo }) => {
-  const { product } = userInfoStore();
   const [newProducts, setNewProducts] = useImmer({
     url: "",
     title: "",
