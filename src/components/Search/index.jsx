@@ -136,7 +136,7 @@ const Search = ({ setShowSearch }) => {
               height: "25px",
               cursor: "pointer",
               marginTop: "15px",
-              color: "#F4F4F4",
+              color: "black",
             }}
             onClick={closeSearch}
           />

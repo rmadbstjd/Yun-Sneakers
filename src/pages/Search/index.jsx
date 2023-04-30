@@ -269,7 +269,7 @@ const SearchPage = () => {
                     height: "25px",
                     cursor: "pointer",
                     margin: "10px 0px 0px 10px",
-                    color: "#F4F4F4",
+                    color: "black",
                   }}
                   onClick={() => {
                     clickToClose();
