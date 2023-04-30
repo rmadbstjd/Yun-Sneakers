@@ -23,6 +23,7 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { Link } from "react-scroll";
 import QnA from "../../components/QnA";
 import NotFound from "../NotFound";
+import getProductReviews from "../../api/review";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const ProductDetail = () => {
 
   const { data: productReviews } = useQuery(
     ["review", id],
-    () => review.getProductReviews(id),
+    () => getProductReviews(id),
     {
       enabled: !!productId,
     }
@@ -170,7 +171,7 @@ const ProductDetail = () => {
                     <AiFillStar size={15} key={index} color={"yellow"} />
                   )
                 )}
-                {review.userId}
+                {review?.userId}
               </Style.Star>
               {productReviews && (
                 <Style.ReviewCount>

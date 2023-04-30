@@ -6,7 +6,7 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Pagination from "../../components/common/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-
+import getProductReviews from "../../api/review";
 import userInfoStore from "../../store/userInfoStore";
 const ProductReviews = () => {
   const { id } = useParams();
@@ -21,7 +21,7 @@ const ProductReviews = () => {
     setIsClicked(index);
   };
   let { data: productReviews, refetch } = useQuery(["review", id], () =>
-    review.getProductReviews(id, page)
+    getProductReviews(id, page)
   );
   const productReviewsCount = productReviews?.count;
   productReviews = productReviews?.reviews;
