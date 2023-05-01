@@ -75,7 +75,7 @@ export async function getSimilarProducts(category, productId) {
 export async function getProductInfo(id) {
   const response = await httpClient.get(`products/${id}`);
   const data = response.data;
-  if (data.error === true) return "error";
+  if (data.error) return "error";
   return data;
 }
 
@@ -173,7 +173,7 @@ export async function modifyQna(
 }
 
 export async function answerQna(productId, qnaId, answer) {
-  const response = await this.httpClient.put(`/qna/answer/${productId}`, {
+  const response = await httpClient.put(`/qna/answer/${productId}`, {
     qnaId,
     answer,
   });
@@ -182,11 +182,12 @@ export async function answerQna(productId, qnaId, answer) {
 }
 
 export async function getQna(productId, page) {
-  const response = await this.httpClient.get(`/qna/${productId}`, {
+  const response = await httpClient.get(`/qna/${productId}`, {
     headers: {
       page,
     },
   });
+  console.log("response", response);
   const data = response.data;
   const QnA = data.Qna;
   const count = data.count;

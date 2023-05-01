@@ -99,7 +99,7 @@ const QnA = () => {
   };
 
   const clickToQnA = (index) => {
-    if (QnA[index].isSecret === true) {
+    if (QnA[index].isSecret) {
       if (QnA[index].userId !== userId) {
         Swal.fire({
           title: "비밀글입니다.",
@@ -150,6 +150,7 @@ const QnA = () => {
     refetch();
   };
   useEffect(() => {}, [QnA]);
+  console.log("QnA", QnA);
   return (
     <Style.Layout>
       <Style.Header>

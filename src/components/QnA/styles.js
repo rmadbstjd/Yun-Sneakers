@@ -185,3 +185,17 @@ export const Button = styled.div`
   margin: 0px 5px 0px 5px;
   cursor: pointer;
 `;
+
+export const NoneTextTitle = styled.div`
+  width: 90%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+`;
+
+export const NoneTextContent = styled.div`
+  width: 90%;
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+`;

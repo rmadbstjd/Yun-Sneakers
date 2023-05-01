@@ -1,11 +1,9 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router-dom";
-import userInfoStore from "../store/userInfoStore";
 import userApi from "../api/user";
 
 const AuthenticateRoute = ({ children }) => {
-  const { user } = userInfoStore();
   const { data, refetch } = useQuery(["isAuth"], () => userApi.authToken());
   const postToRefreshToken = async () => {
     await userApi.refreshToken();
@@ -17,7 +15,7 @@ const AuthenticateRoute = ({ children }) => {
     }
     if (data?.isAuth === false) {
       return <Navigate to="/login" />;
-    } else if (data?.isAuth === true) {
+    } else if (data?.isAuth) {
       return children;
     }
   }

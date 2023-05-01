@@ -75,7 +75,7 @@ const SearchPage = () => {
 
   const onChecked = (e, title, index) => {
     if (title === "brand") {
-      if (e.target.checked === true) {
+      if (e.target.checked) {
         setCheckedBrandList([...checkedBrandList, e.target.value]);
       } else {
         setCheckedBrandList(
@@ -88,7 +88,7 @@ const SearchPage = () => {
         setCheckedPriceList(checkedPriceList.filter((el) => el === "0"));
       }
 
-      if (e.target.checked === true) {
+      if (e.target.checked) {
         setCheckedPriceList([...checkedPriceList, `${index}`]);
       } else {
         setCheckedPriceList(checkedPriceList.filter((el) => el !== `${index}`));

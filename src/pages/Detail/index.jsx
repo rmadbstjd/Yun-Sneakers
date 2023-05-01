@@ -114,9 +114,9 @@ const ProductDetail = () => {
       }
 
       for (let i = 0; i < productReviews.count; i++) {
-        setRate((prev) => prev + productReviews.reviews[i].rate);
+        setRate((prev) => prev + productReviews?.reviews[i]?.rate);
       }
-      setRate((prev) => (prev / productReviews.count).toFixed(0));
+      setRate((prev) => (prev / productReviews?.count).toFixed(0));
     }
   }, [productReviews]);
 
