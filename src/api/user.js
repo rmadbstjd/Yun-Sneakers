@@ -67,6 +67,7 @@ const isAdmin = async () => {
   try {
     const response = await instance.get("/user/admin", {});
     const data = response.data;
+    console.log("data", data);
     return data;
   } catch (error) {
     console.error(error);
