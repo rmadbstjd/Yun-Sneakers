@@ -19,9 +19,9 @@ const Like = () => {
   } = useQuery(["like"], () => getLikedProducts());
 
   useEffect(() => {
-    if (product) setCount(product[0].length);
+    if (product) setCount(product[1]?.length || 0);
   }, [product]);
-  console.log("p", product);
+
   return (
     <>
       <Navbar />
@@ -43,18 +43,20 @@ const Like = () => {
               text="상품을 불러오는 중입니다."
             ></LoadingSpinner>
           )}
-          {product &&
-            product.map((item) =>
-              item.map((product) => (
-                <ProductLikeCard
-                  key={product.name}
-                  product={product}
-                  refetch={refetch}
-                ></ProductLikeCard>
-              ))
-            )}
+          {product?.map((item) =>
+            item.map((product) => (
+              <ProductLikeCard
+                key={product.name}
+                product={product}
+                refetch={refetch}
+              ></ProductLikeCard>
+            ))
+          )}
 
-          {product[0]?.length === 0 ? (
+          {product &&
+          product[0]?.length === 0 &&
+          product &&
+          product[1]?.length === undefined ? (
             <Style.NoneProductsContainer>
               <div>
                 <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>

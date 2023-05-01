@@ -2,6 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import Navbar from "../../components/common/Navbar";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/common/Button";
 const NotFound = () => {
   const navigate = useNavigate();
   return (
@@ -20,13 +21,20 @@ const NotFound = () => {
             입력하신 주소가 정확한지 다시 한번 확인해주시기 바랍니다.
           </Style.TextContent>
         </Style.Text>
-        <Style.Btn
+        <Button
+          border={"none"}
+          width={"250px"}
+          height={"50px"}
+          background={"black"}
+          color={"white"}
+          hoverColor={"white"}
+          hoverBackground={"black"}
           onClick={() => {
             navigate("/");
           }}
         >
           홈으로 가기
-        </Style.Btn>
+        </Button>
       </Style.Container>
     </>
   );

@@ -7,6 +7,7 @@ import ShipAddress from "./../../../components/ShipAddress/index";
 import AddressModal from "./../../../components/common/Modal/AddressModal";
 import MypageSide from "./../../../components/MypageSide/index";
 import { validateAddress } from "../../../utils/validateAddress";
+import Button from "../../../components/common/Button";
 import {
   addUserAddress,
   getUserAddress,
@@ -75,29 +76,53 @@ const Address = () => {
             <ShipAddress />
 
             {!address ? (
-              <Style.Btn
+              <Button
+                border={"solid gray 1px"}
+                borderRadius={"15px"}
+                width={"70px"}
+                height={"30px"}
+                margin={"10px 0px 0px 0px"}
+                lineHeight={"190%"}
+                hoverColor={"white"}
+                hoverBackground={"black"}
                 onClick={() => {
                   setShowModal((prev) => !prev);
                 }}
               >
                 추가하기
-              </Style.Btn>
+              </Button>
             ) : (
               <Style.BtnContainer>
-                <Style.Btn
+                <Button
+                  border={"solid gray 1px"}
+                  borderRadius={"15px"}
+                  width={"70px"}
+                  height={"30px"}
+                  margin={"10px 0px 0px 0px"}
+                  lineHeight={"190%"}
+                  hoverColor={"white"}
+                  hoverBackground={"black"}
                   onClick={() => {
                     setShowModal((prev) => !prev);
                   }}
                 >
                   수정
-                </Style.Btn>
-                <Style.Btn
+                </Button>
+                <Button
+                  border={"solid gray 1px"}
+                  borderRadius={"15px"}
+                  width={"70px"}
+                  height={"30px"}
+                  margin={"10px 0px 0px 0px"}
+                  lineHeight={"190%"}
+                  hoverColor={"white"}
+                  hoverBackground={"black"}
                   onClick={() => {
                     deleteAddress();
                   }}
                 >
                   삭제
-                </Style.Btn>
+                </Button>
               </Style.BtnContainer>
             )}
             {showModal ? (
