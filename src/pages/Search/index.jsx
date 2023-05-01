@@ -240,7 +240,6 @@ const SearchPage = () => {
   useEffect(() => {
     window.addEventListener("scroll", updateScroll);
   }, []);
-  console.log("Sp", searchProducts);
   return (
     <div>
       <Navbar

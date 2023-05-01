@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
-import userInfoStore from "../../store/userInfoStore";
 import { useNavigate } from "react-router-dom";
 import ReviewModal from "../common/Modal/ReviewModal";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { getOrderedProducts } from "../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../api/order";
 const itemArr = [
@@ -23,13 +23,12 @@ const OrderPageNavbar = () => {
     isLoading,
     data: products,
     refetch: getOrderedProductsRefetch,
-  } = useQuery(["배송중"], () => myPage.getOrderedProducts());
+  } = useQuery(["배송중"], () => getOrderedProducts());
   const {
     isLoading: isLoading2,
     data: completedProducts,
     refetch: getShipIsCompletedRefetch,
   } = useQuery(["배송완료"], () => getShipIsCompleted());
-  const { myPage } = userInfoStore();
   const navigate = useNavigate();
   const clickToBtn = async (id) => {
     await completeShipment(id);

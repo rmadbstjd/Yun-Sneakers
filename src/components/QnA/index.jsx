@@ -150,7 +150,7 @@ const QnA = () => {
     refetch();
   };
   useEffect(() => {}, [QnA]);
-  console.log("QnA", QnA);
+
   return (
     <Style.Layout>
       <Style.Header>

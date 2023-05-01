@@ -187,7 +187,7 @@ export async function getQna(productId, page) {
       page,
     },
   });
-  console.log("response", response);
+
   const data = response.data;
   const QnA = data.Qna;
   const count = data.count;

@@ -14,6 +14,7 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { getUserCheckedCarts } from "../../api/cart";
 import { deleteUserCart } from "../../api/cart";
 import { addOrderProducts } from "../../api/order";
+import { validateOrder } from "../../utils/validateOrder";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",
@@ -137,111 +138,62 @@ const Shipment = () => {
   };
 
   const onValidate = () => {
-    if (!address) {
-      if (!shipPlaceName) {
-        Swal.fire({
-          title: "배송지를 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (!shipReceiver) {
-        Swal.fire({
-          title: "수령인을 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (!shipPostCode) {
-        Swal.fire({
-          title: "우편번호를 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (!phoneNumInput1 || !phoneNumInput2 || !phoneNumInput3) {
-        Swal.fire({
-          title: "핸드폰번호를 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (phoneNumInput1.length !== 3) {
-        Swal.fire({
-          title: "핸드폰 번호를 정확하게 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (phoneNumInput2.length !== 4) {
-        Swal.fire({
-          title: "핸드폰 번호를 정확하게 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (phoneNumInput3.length !== 4) {
-        Swal.fire({
-          title: "핸드폰 번호를 정확하게 입력해주세요.",
-          confirmButtonColor: "black",
-        });
-        return;
-      } else if (card === "카드사를 선택해주세요.") {
-        Swal.fire("카드사를 선택해주세요.");
+    if (
+      validateOrder(
+        shipPlaceName,
+        shipReceiver,
+        shipPostCode,
+        phoneNumInput1,
+        phoneNumInput2,
+        phoneNumInput3,
+        card,
+        checkItems,
+        termsArr
+      )
+    ) {
+      let now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth();
+      let days2 = now.getDate();
 
-        return;
+      if (month + 1 < 10) {
+        month = "0".concat(String(month + 1));
       }
-    }
-
-    if (card === "카드사를 선택해주세요.") {
-      Swal.fire({
-        title: "카드사를 선택해주세요.",
-        confirmButtonColor: "black",
-      });
-      return;
-    }
-
-    if (checkItems.length !== termsArr.length) {
-      Swal.fire({
-        title: "약관 동의를 모두 선택해주세요.",
-        confirmButtonColor: "black",
-      });
-      return;
-    }
-
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth();
-    let days2 = now.getDate();
-
-    if (month + 1 < 10) {
-      month = "0".concat(String(month + 1));
-    }
-    if (days2 < 10) {
-      days2 = "0".concat(String(days2));
-    }
-
-    let dates = `${year}.${month}.${days2}`;
-
-    for (let i = 0; i < products.products.length; i++) {
-      addOrderProducts(
-        products.products[i].productId,
-        dates,
-        products.products[i].quantity,
-        coupon,
-        products.products[i].size
-      );
-      deleteUserCart(products.products[i].productId, products.products[i].size);
-    }
-    Swal.fire({
-      icon: "success",
-      title: "성공적으로 주문하였습니다.",
-      text: "주문 내역을 확인하시겠습니까?",
-      showCancelButton: true,
-      confirmButtonColor: "black",
-      confirmButtonText: "확인",
-      cancelButtonText: "취소",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/mypage/order");
-      } else {
-        navigate("/");
+      if (days2 < 10) {
+        days2 = "0".concat(String(days2));
       }
-    });
+
+      let dates = `${year}.${month}.${days2}`;
+
+      for (let i = 0; i < products.products.length; i++) {
+        addOrderProducts(
+          products.products[i].productId,
+          dates,
+          products.products[i].quantity,
+          coupon,
+          products.products[i].size
+        );
+        deleteUserCart(
+          products.products[i].productId,
+          products.products[i].size
+        );
+      }
+      Swal.fire({
+        icon: "success",
+        title: "성공적으로 주문하였습니다.",
+        text: "주문 내역을 확인하시겠습니까?",
+        showCancelButton: true,
+        confirmButtonColor: "black",
+        confirmButtonText: "확인",
+        cancelButtonText: "취소",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/mypage/order");
+        } else {
+          navigate("/");
+        }
+      });
+    }
   };
 
   useEffect(() => {
