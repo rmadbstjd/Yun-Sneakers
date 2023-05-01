@@ -12,6 +12,7 @@ import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";
 import { getUserReviews, deleteProductReview } from "../../../api/myPage";
+import Button from "../../../components/common/Button";
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
 const Review = () => {
@@ -200,14 +201,22 @@ const Review = () => {
                     </Style.Star>
 
                     <Style.BtnContainer>
-                      <Style.Btn
+                      <Button
+                        border={"solid gray 1px"}
+                        borderRadius={"15px"}
+                        width={"80px"}
+                        height={"30px"}
+                        lineHeight={"190%"}
+                        margin={"0px 10px 0px 0px"}
+                        hoverColor={"white"}
+                        hoverBackground={"black"}
                         onClick={() => {
                           setShowModal((prev) => !prev);
                           setNumber(index);
                         }}
                       >
                         수정
-                      </Style.Btn>
+                      </Button>
                       {showModal ? (
                         <ReviewModal
                           isOpen={true}
@@ -220,14 +229,22 @@ const Review = () => {
                           refetch2={refetch2}
                         ></ReviewModal>
                       ) : null}
-                      <Style.Btn
+                      <Button
+                        border={"solid gray 1px"}
+                        borderRadius={"15px"}
+                        width={"80px"}
+                        height={"30px"}
+                        lineHeight={"190%"}
+                        margin={"0px 10px 0px 0px"}
+                        hoverColor={"white"}
+                        hoverBackground={"black"}
                         onClick={() => {
                           setNumber(index);
                           setDeleted(true);
                         }}
                       >
                         삭제
-                      </Style.Btn>
+                      </Button>
                     </Style.BtnContainer>
                   </Style.ProductContent>
                 </div>
