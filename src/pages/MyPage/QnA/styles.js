@@ -31,8 +31,8 @@ export const ReviewLeftTitle = styled.div`
   text-align: center;
   line-height: 250%;
   cursor: pointer;
-  background-color: ${(props) => (props.state === true ? "black" : "white")};
-  color: ${(props) => (props.state === true ? "white" : "black")};
+  background-color: ${(props) => (props.state ? "black" : "white")};
+  color: ${(props) => (props.state ? "white" : "black")};
 `;
 
 export const HorizonLine = styled.div`
@@ -57,7 +57,7 @@ export const ProductContent = styled.div`
   display: flex;
   border: solid black 0px;
   width: 100%;
-  height: ${(props) => (props.isClicked !== true ? "100px" : "340px")};
+  height: ${(props) => (!props.isClicked ? "100px" : "340px")};
   margin: 15px 0px 15px 0px;
 
   cursor: pointer;
@@ -95,7 +95,7 @@ export const AnswerBox = styled.div`
   color: white;
   width: 60px;
   height: 35px;
-  background: ${(props) => (props.answered === true ? "#375fff" : "gray")};
+  background: ${(props) => (props.answered ? "#375fff" : "gray")};
   text-align: center;
   line-height: 210%;
   margin-top: 5px;

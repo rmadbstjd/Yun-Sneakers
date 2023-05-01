@@ -91,14 +91,14 @@ const QnA = () => {
             border={3}
             color={"black "}
           ></Style.HorizonLine>
-          {showNotAnsweredQnA === true &&
+          {showNotAnsweredQnA &&
           isNotAnsweredQnAs &&
           isNotAnsweredQnAs.length === 0 ? (
             <Style.NoneText>
               아직 Q&A 답변을 할 수 있는 질문이 없습니다.
             </Style.NoneText>
           ) : null}
-          {showNotAnsweredQnA === false &&
+          {!showNotAnsweredQnA &&
           isAnsweredQnAs &&
           isAnsweredQnAs.length === 0 ? (
             <Style.NoneText>
@@ -106,7 +106,7 @@ const QnA = () => {
             </Style.NoneText>
           ) : null}
 
-          {showNotAnsweredQnA === true
+          {showNotAnsweredQnA
             ? isNotAnsweredQnAs &&
               isNotAnsweredQnAs.map((item, index) => (
                 <div key={item._id}>
@@ -165,7 +165,7 @@ const QnA = () => {
                   </Style.ProductContent>
                 </div>
               ))}
-          {showModal === true ? (
+          {showModal ? (
             <QnAModal
               isOpen={true}
               modalIsOpen={showModal}

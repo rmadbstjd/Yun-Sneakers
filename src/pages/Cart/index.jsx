@@ -19,7 +19,7 @@ const Cart = () => {
     isLoading,
     data: cartProducts,
     refetch,
-  } = useQuery([userId], () => getUserCarts());
+  } = useQuery(["cart", userId], () => getUserCarts());
 
   const [checkedProducts, setCheckedProducts] = useImmer([]);
   const [price, setPrice] = useState(0);

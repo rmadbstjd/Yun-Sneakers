@@ -29,8 +29,8 @@ export const AddressContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: ${(props) => (props.isBoolean === false ? "50px" : null)};
-  flex-direction: ${(props) => (props.isBoolean === false ? "column" : null)};
+  margin-top: ${(props) => (!props.isBoolean ? "50px" : null)};
+  flex-direction: ${(props) => (!props.isBoolean ? "column" : null)};
 `;
 
 export const Btn = styled.div`

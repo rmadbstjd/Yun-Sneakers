@@ -251,7 +251,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                 </Style.Products>
               )}
               <Style.Nickname>
-                {isAdmin === true
+                {isAdmin
                   ? "관리자"
                   : nickName.length !== 0
                   ? nickName

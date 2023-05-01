@@ -124,7 +124,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               placeholder={
                 count === 0
                   ? "상품명"
-                  : newProducts.title === true
+                  : newProducts.title
                   ? "상품명"
                   : "상품명을 입력해주세요."
               }
@@ -132,7 +132,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               className={
                 count === 0
                   ? styles.input
-                  : newProducts.title === true
+                  : newProducts.title
                   ? styles.input
                   : styles.input2
               }
@@ -145,7 +145,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               placeholder={
                 count === 0
                   ? "가격"
-                  : newProducts.price === true
+                  : newProducts.price
                   ? "가격"
                   : "가격을 입력해주세요."
               }
@@ -153,7 +153,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               className={
                 count === 0
                   ? styles.input
-                  : newProducts.price === true
+                  : newProducts.price
                   ? styles.input
                   : styles.input2
               }
@@ -166,7 +166,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               placeholder={
                 count === 0
                   ? "카테고리 ex)나이키,NIKE"
-                  : newProducts.category === true
+                  : newProducts.category
                   ? "카테고리 ex)나이키,NIKE"
                   : "카테고리를 입력해주세요.ex)나이키,NIKE"
               }
@@ -174,7 +174,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               className={
                 count === 0
                   ? styles.input
-                  : newProducts.category === true
+                  : newProducts.category
                   ? styles.input
                   : styles.input2
               }
@@ -187,7 +187,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               placeholder={
                 count === 0
                   ? "설명"
-                  : newProducts.description === true
+                  : newProducts.description
                   ? "설명"
                   : "설명을 입력해주세요."
               }
@@ -195,7 +195,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               className={
                 count === 0
                   ? styles.input
-                  : newProducts.description === true
+                  : newProducts.description
                   ? styles.input
                   : styles.input2
               }
@@ -209,7 +209,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               placeholder={
                 count === 0
                   ? '"사이즈(쉼표로 구분해주세요)"'
-                  : newProducts.size === true
+                  : newProducts.size
                   ? '"사이즈(쉼표로 구분해주세요)"'
                   : "사이즈를 입력해주세요"
               }
@@ -217,7 +217,7 @@ const InputProduct = ({ title, type, productInfo }) => {
               className={
                 count === 0
                   ? styles.input
-                  : newProducts.price === true
+                  : newProducts.price
                   ? styles.input
                   : styles.input2
               }

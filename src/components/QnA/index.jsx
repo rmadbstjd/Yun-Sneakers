@@ -230,7 +230,7 @@ const QnA = () => {
               backColor={"#303033"}
               onClick={() => clickToSubmitBtn()}
             >
-              {isClickedModifyBtn === true ? "수정" : "등록"}
+              {isClickedModifyBtn ? "수정" : "등록"}
             </Style.Btn>
           </Style.BtnLayout>
           <Style.Notice>
@@ -251,18 +251,18 @@ const QnA = () => {
         >
           <Style.QnAContainer>
             <Style.QnATitle>
-              {item.isSecret === true ? (
+              {item.isSecret ? (
                 <Style.LockImg>
                   <AiFillLock size={20} style={{ margin: "0px 5px 0px 0px" }} />
                 </Style.LockImg>
               ) : null}
-              {item.isSecret === true ? "비밀글입니다." : item.title}
+              {item.isSecret ? "비밀글입니다." : item.title}
             </Style.QnATitle>
             <Style.QnAInfo>
               <Style.UserId>{item.userId}</Style.UserId>{" "}
               <Style.Dates>{item.dates}</Style.Dates>
               <Style.AnswerBox answered={item.isAnswered}>
-                {item.isAnswered === true ? "yes" : "no"}
+                {item.isAnswered ? "yes" : "no"}
               </Style.AnswerBox>
             </Style.QnAInfo>
           </Style.QnAContainer>

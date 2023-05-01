@@ -25,7 +25,7 @@ export const SearchBarLayout = styled.div`
 
 export const SearchContainer = styled.div`
   margin-top: 5%;
-  margin-left: ${(props) => (props.isText === true ? "60px" : null)};
+  margin-left: ${(props) => (props.isText ? "60px" : null)};
   font-weight: bolder;
   font-size: 20px;
   color: black;
@@ -64,8 +64,8 @@ export const SortContent = styled.div`
   width: ${(props) => props.width};
   text-align: center;
   margin-right: 10px;
-  color: ${(props) => (props.isClicked === true ? "black" : "gray")};
-  font-weight: ${(props) => (props.isClicked === true ? "bolder" : "none")};
+  color: ${(props) => (props.isClicked ? "black" : "gray")};
+  font-weight: ${(props) => (props.isClicked ? "bolder" : "none")};
   cursor: pointer;
 `;
 
@@ -135,7 +135,7 @@ export const Close = styled.div`
 export const SideLayout = styled.div`
   position: fixed;
   left: 300px;
-  top: ${(props) => (props.isScrolled === true ? "90px" : "162px")};
+  top: ${(props) => (props.isScrolled ? "90px" : "162px")};
 `;
 export const Filter = styled.div`
   margin-top: 6px;
@@ -171,7 +171,7 @@ export const PriceNavbar = styled.div`
 `;
 export const BrandContent = styled.div`
   width: 185px;
-  display: ${(props) => (props.isShow === true ? "block" : "none")};
+  display: ${(props) => (props.isShow ? "block" : "none")};
   margin-left: -5px;
   height: 150px;
   overflow-x: hidden;
@@ -179,7 +179,7 @@ export const BrandContent = styled.div`
   margin-bottom: 30px;
 `;
 export const PriceContent = styled.div`
-  display: ${(props) => (props.isShow === true ? "block" : "none")};
+  display: ${(props) => (props.isShow ? "block" : "none")};
   margin-left: -5px;
 `;
 export const Item = styled.div`

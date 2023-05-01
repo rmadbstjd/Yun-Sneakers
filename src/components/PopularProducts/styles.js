@@ -60,7 +60,7 @@ export const Btn = styled.div`
   cursor: pointer;
   line-height: 240%;
   font-weight: 100;
-  display: ${(props) => (props.isShow === true ? "block" : "none")};
+  display: ${(props) => (props.isShow ? "block" : "none")};
   &:hover {
     background: black;
     color: white;

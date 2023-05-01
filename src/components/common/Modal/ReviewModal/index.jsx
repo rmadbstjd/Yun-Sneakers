@@ -3,10 +3,10 @@ import ReactModal from "react-modal";
 import produce from "immer";
 import styles from "./ReviewModal.module.css";
 import * as Style from "./styles";
-import userInfoStore from "../../../../store/userInfoStore";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
+import { addProductReview } from "./../../../../api/myPage";
 
 const Modal = ({
   modalIsOpen,
@@ -19,7 +19,6 @@ const Modal = ({
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
   const [text, setText] = useState("");
-  const { myPage } = userInfoStore();
 
   const clickToStar = (index) => {
     setClickIndex(index);
@@ -52,7 +51,7 @@ const Modal = ({
   };
 
   const submitReview = () => {
-    if (star[0] === false) {
+    if (!star[0]) {
       Swal.fire({
         title: "별점을 입력해주세요.",
         confirmButtonColor: "black",
@@ -67,7 +66,7 @@ const Modal = ({
     }
 
     if (!isReviewed) {
-      myPage.addProductReview(
+      addProductReview(
         product.info.image,
         star,
         product.product.count,
@@ -81,7 +80,7 @@ const Modal = ({
         clickIndex + 1
       );
     } else if (isReviewed) {
-      myPage.addProductReview(
+      addProductReview(
         product.info.image,
         star,
         product.product.count,
@@ -139,7 +138,7 @@ const Modal = ({
           </Style.StarBotText>
           <Style.Star>
             {star.map((item, index) =>
-              item === false ? (
+              !item ? (
                 <AiOutlineStar
                   size={35}
                   key={index}

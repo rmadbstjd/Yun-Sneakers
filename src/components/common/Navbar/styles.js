@@ -4,8 +4,7 @@ export const Container = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  border-bottom: ${(props) =>
-    props.isScrolled === true ? "solid gray 2px" : null};
+  border-bottom: ${(props) => (props.isScrolled ? "solid gray 2px" : null)};
   z-index: 999;
   display: flex;
   justify-content: center;

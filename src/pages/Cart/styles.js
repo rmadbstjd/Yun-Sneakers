@@ -95,7 +95,7 @@ export const PayContent = styled.div`
   font-weight: bolder;
   font-size: ${(props) => `${props.fontSize}px`};
   text-align: center;
-  margin-top: ${(props) => (props.margin === true ? "2.5%" : "0%")};
+  margin-top: ${(props) => (props.margin ? "2.5%" : "0%")};
 `;
 
 export const Count = styled.div`

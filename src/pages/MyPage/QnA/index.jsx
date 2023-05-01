@@ -101,7 +101,7 @@ const QnA = () => {
                   </Style.PriceContainer>
                   <Style.PriceContainer width={"100px"} height={"120px"}>
                     <Style.AnswerBox answered={item.isAnswered}>
-                      {item.isAnswered === true ? "yes" : "no"}
+                      {item.isAnswered ? "yes" : "no"}
                     </Style.AnswerBox>
                   </Style.PriceContainer>
                 </Style.ProductContent>

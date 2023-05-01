@@ -74,7 +74,7 @@ const Address = () => {
           <Style.AddressContainer isBoolean={address}>
             <ShipAddress />
 
-            {address === false ? (
+            {!address ? (
               <Style.Btn
                 onClick={() => {
                   setShowModal((prev) => !prev);
@@ -100,7 +100,7 @@ const Address = () => {
                 </Style.Btn>
               </Style.BtnContainer>
             )}
-            {showModal === true ? (
+            {showModal ? (
               <AddressModal
                 isOpen={true}
                 modalIsOpen={showModal}

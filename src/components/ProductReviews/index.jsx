@@ -7,12 +7,11 @@ import Pagination from "../../components/common/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import getProductReviews from "../../api/review";
-import userInfoStore from "../../store/userInfoStore";
 const ProductReviews = () => {
   const { id } = useParams();
   const [isClicked, setIsClicked] = useState();
   const [page, setPage] = useState(1);
-  const { review } = userInfoStore();
+
   const clickToReview = (index) => {
     if (index === isClicked) {
       setIsClicked();
@@ -28,7 +27,7 @@ const ProductReviews = () => {
 
   const handlePageChange = async (page) => {
     setPage(page);
-    productReviews = await review.getProductReviews(id, page);
+    productReviews = await getProductReviews(id, page);
     refetch();
   };
 
@@ -69,7 +68,7 @@ const ProductReviews = () => {
             <Style.Header>
               <Style.Star>
                 {review.star.map((item, index) =>
-                  item === false ? (
+                  !item ? (
                     <AiOutlineStar
                       size={15}
                       key={index}

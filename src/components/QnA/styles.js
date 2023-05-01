@@ -114,7 +114,7 @@ export const Count = styled.div`
 `;
 
 export const InitCount = styled.div`
-  color: ${(props) => (props.isInit === false ? "black" : "gray")};
+  color: ${(props) => (!props.isInit ? "black" : "gray")};
 `;
 
 export const QnALayout = styled.div`
@@ -151,7 +151,7 @@ export const AnswerBox = styled.div`
   color: white;
   width: 35px;
   height: 25px;
-  background: ${(props) => (props.answered === true ? "#375fff" : "gray")};
+  background: ${(props) => (props.answered ? "#375fff" : "gray")};
   text-align: center;
   line-height: 185%;
   margin-top: 5px;

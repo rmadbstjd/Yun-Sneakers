@@ -24,23 +24,21 @@ import { Link } from "react-scroll";
 import QnA from "../../components/QnA";
 import NotFound from "../NotFound";
 import getProductReviews from "../../api/review";
-import { addUserCart } from "../../api/cart";
+import { addUserCart, getUserCarts } from "../../api/cart";
 import { pushLike, isLike } from "../../api/like";
 import { getSimilarProducts } from "../../api/product";
 import { getProductInfo } from "../../api/product";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { review, cart, userId } = userInfoStore();
+  const { review, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
   const isLogin = localStorage.getItem("isLogin") === "true";
   const { selectSize, setInitSize } = productStore();
 
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
 
-  const { refetch: cartRefetch } = useQuery([userId], () =>
-    cart.getUserCarts()
-  );
+  const { refetch: cartRefetch } = useQuery([userId], () => getUserCarts());
 
   const products = productInfo?.product;
   const category = productInfo?.product?.category[0];
@@ -92,7 +90,7 @@ const ProductDetail = () => {
     setTimeout(setCartModalShow, 3000);
     const isSubmit = await addUserCart(products, selectSize);
     cartRefetch();
-    if (isSubmit.success === false) return;
+    if (!isSubmit.success) return;
     plusCartCount(1);
   };
 
@@ -167,7 +165,7 @@ const ProductDetail = () => {
               {" "}
               <Style.Star>
                 {star.map((item, index) =>
-                  item === false ? (
+                  !item ? (
                     <AiOutlineStar size={15} key={index} color={"gray"} />
                   ) : (
                     <AiFillStar size={15} key={index} color={"yellow"} />
@@ -197,7 +195,7 @@ const ProductDetail = () => {
                     <CgArrowDownO size={20} />
                   </Style.ShowSizeCircle>
                 </Style.Size>
-                {sizeModalShow === true ? (
+                {sizeModalShow ? (
                   <SizeModal
                     isOpen={true}
                     modalIsOpen={modalIsOpen}
@@ -234,7 +232,7 @@ const ProductDetail = () => {
             )}
             <Style.AddBtnContainer>
               <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
-              {isLogin === false ? (
+              {!isLogin ? (
                 <BsHeart
                   style={{
                     width: "45px",
@@ -248,7 +246,7 @@ const ProductDetail = () => {
                   onClick={clickToLike}
                 />
               ) : null}
-              {isLiked?.result === false ? (
+              {!isLiked?.result ? (
                 <BsHeart
                   style={{
                     width: "45px",
@@ -261,7 +259,7 @@ const ProductDetail = () => {
                   }}
                   onClick={clickToLike}
                 />
-              ) : isLiked?.result === true ? (
+              ) : isLiked?.result ? (
                 <FaHeart
                   style={{
                     width: "45px",

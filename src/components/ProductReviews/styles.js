@@ -37,8 +37,8 @@ export const Size = styled.div`
 `;
 
 export const Img = styled.img`
-  width: ${(props) => (props.isClicked === true ? "150px" : "50px")};
-  height: ${(props) => (props.isClicked === true ? "150px" : "50px")};
+  width: ${(props) => (props.isClicked ? "150px" : "50px")};
+  height: ${(props) => (props.isClicked ? "150px" : "50px")};
 `;
 
 export const Info = styled.div`

@@ -33,14 +33,11 @@ export const AddressSelectContainer = styled.div`
 `;
 
 export const ExistAddressSelectBox = styled.div`
-  border-top: ${(props) =>
-    props.haveAddress === false ? "solid #bebebe 1px" : null};
-  border-left: ${(props) =>
-    props.haveAddress === false ? "solid #bebebe 1px" : null};
-  border-right: ${(props) =>
-    props.haveAddress === false ? "solid #bebebe 1px" : null};
-  color: ${(props) => (props.haveAddress === false ? "black" : "#bebebe")};
-  background: ${(props) => (props.haveAddress === true ? "#f5f5f5" : null)};
+  border-top: ${(props) => (!props.haveAddress ? "solid #bebebe 1px" : null)};
+  border-left: ${(props) => (!props.haveAddress ? "solid #bebebe 1px" : null)};
+  border-right: ${(props) => (!props.haveAddress ? "solid #bebebe 1px" : null)};
+  color: ${(props) => (!props.haveAddress ? "black" : "#bebebe")};
+  background: ${(props) => (props.haveAddress ? "#f5f5f5" : null)};
   width: 150px;
   height: 50px;
   font-size: 14px;
@@ -51,15 +48,12 @@ export const ExistAddressSelectBox = styled.div`
 
 export const AddAddressSelectBox = styled.div`
   border-bottom: ${(props) =>
-    props.haveAddress === false ? "solid #bebebe 1px" : null};
-  border-top: ${(props) =>
-    props.haveAddress === true ? "solid #bebebe 1px" : null};
-  border-right: ${(props) =>
-    props.haveAddress === true ? "solid #bebebe 1px" : null};
-  border-left: ${(props) =>
-    props.haveAddress === true ? "solid #bebebe 1px" : null};
-  color: ${(props) => (props.haveAddress === false ? "#bebebe" : "black")};
-  background: ${(props) => (props.haveAddress === false ? "#f5f5f5" : "white")};
+    !props.haveAddress ? "solid #bebebe 1px" : null};
+  border-top: ${(props) => (props.haveAddress ? "solid #bebebe 1px" : null)};
+  border-right: ${(props) => (props.haveAddress ? "solid #bebebe 1px" : null)};
+  border-left: ${(props) => (props.haveAddress ? "solid #bebebe 1px" : null)};
+  color: ${(props) => (!props.haveAddress ? "#bebebe" : "black")};
+  background: ${(props) => (!props.haveAddress ? "#f5f5f5" : "white")};
   width: 150px;
   height: 50px;
   text-align: center;

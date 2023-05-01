@@ -31,8 +31,8 @@ export const ReviewLeftTitle = styled.div`
   text-align: center;
   line-height: 250%;
   cursor: pointer;
-  background-color: ${(props) => (props.state === true ? "black" : "white")};
-  color: ${(props) => (props.state === true ? "white" : "black")};
+  background-color: ${(props) => (props.state ? "black" : "white")};
+  color: ${(props) => (props.state ? "white" : "black")};
 `;
 export const ReviewRightTitle = styled.div`
   border-top: solid black 1px;
@@ -43,8 +43,8 @@ export const ReviewRightTitle = styled.div`
   text-align: center;
   line-height: 250%;
   cursor: pointer;
-  background-color: ${(props) => (props.state !== true ? "black" : "white")};
-  color: ${(props) => (props.state !== true ? "white" : "black")};
+  background-color: ${(props) => (!props.state ? "black" : "white")};
+  color: ${(props) => (!props.state ? "white" : "black")};
 `;
 
 export const HorizonLine = styled.div`

@@ -13,7 +13,7 @@ const AuthenticateRoute = ({ children }) => {
     if (data?.isAuth === "forbidden") {
       postToRefreshToken();
     }
-    if (data?.isAuth === false) {
+    if (!data?.isAuth) {
       return <Navigate to="/login" />;
     } else if (data?.isAuth) {
       return children;

@@ -31,8 +31,8 @@ export const ReviewLeftTitle = styled.div`
   text-align: center;
   line-height: 250%;
   cursor: pointer;
-  background-color: ${(props) => (props.state === true ? "black" : "white")};
-  color: ${(props) => (props.state === true ? "white" : "black")};
+  background-color: ${(props) => (props.state ? "black" : "white")};
+  color: ${(props) => (props.state ? "white" : "black")};
 `;
 export const ReviewRightTitle = styled.div`
   border-top: solid black 1px;
@@ -43,8 +43,8 @@ export const ReviewRightTitle = styled.div`
   text-align: center;
   line-height: 250%;
   cursor: pointer;
-  background-color: ${(props) => (props.state !== true ? "black" : "white")};
-  color: ${(props) => (props.state !== true ? "white" : "black")};
+  background-color: ${(props) => (!props.state ? "black" : "white")};
+  color: ${(props) => (!props.state ? "white" : "black")};
 `;
 
 export const HorizonLine = styled.div`
@@ -79,10 +79,10 @@ export const ProductContent = styled.div`
   display: flex;
   border: solid black 0px;
   width: 100%;
-  height: ${(props) => (props.isClicked !== true ? "150px" : "190px")};
+  height: ${(props) => (!props.isClicked ? "150px" : "190px")};
   text-align: center;
   margin: 15px 0px 15px 0px;
-  background: ${(props) => (props.isClicked !== true ? "white" : "#f4f4f4")};
+  background: ${(props) => (!props.isClicked ? "white" : "#f4f4f4")};
   cursor: pointer;
 `;
 export const Img = styled.img`
@@ -164,7 +164,7 @@ export const OrderNum = styled.div`
   flex-direction: ${(props) => !props.isClicked && "column"};
   justify-content: center;
   width: 350px;
-  height: ${(props) => (props.isClicked !== true ? "120px" : "240px")};
+  height: ${(props) => (!props.isClicked ? "120px" : "240px")};
   overflow: ${(props) => !props.isClicked && "hidden"};
   text-overflow: ${(props) => !props.isClicked && "ellipsis"};
   white-space: ${(props) => !props.isClicked && "nowrap"};

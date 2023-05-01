@@ -213,7 +213,7 @@ const OrderPageNavbar = () => {
             <Style.Coupon>{item.product.coupon}</Style.Coupon>
             <Style.State>
               <div>{item.product.state}</div>
-              {item.product.isReviewd === false ? (
+              {!item.product.isReviewd ? (
                 <Style.Review
                   onClick={() => {
                     setShowModal((prev) => !prev);
@@ -226,7 +226,7 @@ const OrderPageNavbar = () => {
             </Style.State>
           </Style.ProductContent>
         ))}
-      {showModal === true ? (
+      {showModal ? (
         <ReviewModal
           isOpen={true}
           modalIsOpen={showModal}

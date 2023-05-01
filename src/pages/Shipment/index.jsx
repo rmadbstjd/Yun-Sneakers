@@ -74,7 +74,6 @@ const termsArr = [
 const Shipment = () => {
   const navigate = useNavigate();
   const {
-    myPage,
     shipPlaceName,
     shipReceiver,
     shipPostCode,
@@ -87,11 +86,7 @@ const Shipment = () => {
   const { isLoading, data: products } = useQuery(["products"], () =>
     getUserCheckedCarts()
   );
-  const { data: address } = useQuery(["address"], () =>
-    myPage.getUserAddress()
-  );
   const [checkItems, setCheckItems] = useState([]);
-
   const [showCouponBox, setShowCouponBox] = useState(false);
   const [haveAddress, setHaveAddress] = useState(false);
   const [coupon, setCoupon] = useState("선택안함");
@@ -279,7 +274,7 @@ const Shipment = () => {
                 color={"#bebebe"}
               ></HorizonLine>
             </Style.AddressSelectContainer>
-            {haveAddress === false ? (
+            {!haveAddress ? (
               <ShipAddress />
             ) : (
               <AddShip setDefaultAddress={true} type={"orderPage"}></AddShip>

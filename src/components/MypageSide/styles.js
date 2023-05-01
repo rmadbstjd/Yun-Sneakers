@@ -24,8 +24,8 @@ export const Last = styled.span`
 `;
 
 export const Item = styled.div`
-  color: ${(props) => (props.isChecked === true ? "black" : "gray")};
-  font-weight: ${(props) => (props.isChecked === true ? "bolder" : "none")};
+  color: ${(props) => (props.isChecked ? "black" : "gray")};
+  font-weight: ${(props) => (props.isChecked ? "bolder" : "none")};
   margin-top: 10px;
   cursor: pointer;
 `;

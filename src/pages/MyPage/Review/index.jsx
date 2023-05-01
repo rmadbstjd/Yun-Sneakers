@@ -72,7 +72,7 @@ const Review = () => {
     });
   };
   useEffect(() => {
-    if (deleted === true) {
+    if (deleted) {
       deleteReview(product[number].product.orderId);
       setDeleted(false);
     }
@@ -181,7 +181,7 @@ const Review = () => {
 
                     <Style.Star>
                       {item.product.star.map((item, index) =>
-                        item === false ? (
+                        !item ? (
                           <AiOutlineStar
                             size={35}
                             key={index}
@@ -208,7 +208,7 @@ const Review = () => {
                       >
                         수정
                       </Style.Btn>
-                      {showModal === true ? (
+                      {showModal ? (
                         <ReviewModal
                           isOpen={true}
                           modalIsOpen={showModal}
@@ -338,7 +338,7 @@ const Review = () => {
                     <Style.Coupon>{item.product.coupon}</Style.Coupon>
                     <Style.State>
                       <div>{item.product.state}</div>
-                      {item.product.isReviewd === false ? (
+                      {!item.product.isReviewd ? (
                         <Style.Review
                           onClick={() => {
                             setShowModal((prev) => !prev);
@@ -352,7 +352,7 @@ const Review = () => {
                   </Style.ProductContent>
                 </div>
               ))}
-            {showModal === true ? (
+            {showModal ? (
               <ReviewModal
                 isOpen={true}
                 modalIsOpen={showModal}

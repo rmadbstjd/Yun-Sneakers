@@ -29,7 +29,7 @@ export const InputContainer = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${(props) => (props.isAllowed === false ? "red" : "black")};
+  color: ${(props) => (props.isAllowed === null || true ? "black" : "red")};
 `;
 
 export const InputValue = styled.input`
@@ -37,7 +37,7 @@ export const InputValue = styled.input`
   border: none;
   height: 30px;
   border-bottom: ${(props) =>
-    props.isAllowed === false ? "solid red 1px" : "solid black 1px"};
+    props.isAllowed === null || true ? "solid black 1px" : "solidred 1px"};
   &:focus {
     outline: none;
   }
@@ -54,15 +54,14 @@ export const SubmitBtn = styled.button`
   width: 100%;
   margin-top: 20px;
   border-radius: 10px;
-  background-color: ${(props) =>
-    props.isPassed === true ? "black" : "#ececec"};
+  background-color: ${(props) => (props.isPassed ? "black" : "#ececec")};
   height: 50px;
   text-align: center;
   font-weight: bolder;
   font-size: 17px;
   color: white;
   line-height: 300%;
-  cursor: ${(props) => (props.isPassed === true ? "pointer" : "default")};
+  cursor: ${(props) => (props.isPassed ? "pointer" : "default")};
 `;
 
 export const Form = styled.form``;

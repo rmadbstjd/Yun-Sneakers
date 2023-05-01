@@ -281,7 +281,7 @@ const SearchPage = () => {
               ></HorizonLine>
             </Style.SearchContainer>
           </Style.SearchBarLayout>
-          {showSearchedProducts === true ? (
+          {showSearchedProducts ? (
             searchProducts.length !== 0 ? (
               <Style.ProductsLayout>
                 {searchProducts.map((item) => (
@@ -316,11 +316,11 @@ const SearchPage = () => {
               <Style.Filter>필터</Style.Filter>
 
               <Style.SideContainer onClick={clickToBrand}>
-                <Style.BrandNavbar isShow={showBrand === true ? true : false}>
+                <Style.BrandNavbar isShow={showBrand ? true : false}>
                   브랜드
                 </Style.BrandNavbar>
 
-                {showBrand === false ? (
+                {!showBrand ? (
                   <AiOutlinePlus style={{ width: "20px" }} />
                 ) : (
                   <AiOutlineMinus style={{ width: "20px" }} />
@@ -334,7 +334,7 @@ const SearchPage = () => {
                   margin={"0px 0px 10% 0px"}
                 ></HorizonLine>
               )}
-              <Style.BrandContent isShow={showBrand === true ? true : false}>
+              <Style.BrandContent isShow={showBrand ? true : false}>
                 {brands &&
                   brands.map((item) => (
                     <Style.Item key={item}>
@@ -361,7 +361,7 @@ const SearchPage = () => {
 
               <Style.SideContainer onClick={clickToPrice}>
                 <Style.PriceNavbar>가격</Style.PriceNavbar>
-                {showPrice === false ? (
+                {!showPrice ? (
                   <AiOutlinePlus style={{ width: "20px" }} />
                 ) : (
                   <AiOutlineMinus style={{ width: "20px" }} />
@@ -376,7 +376,7 @@ const SearchPage = () => {
                   margin={"0px 0px 10% 0px"}
                 ></HorizonLine>
               )}
-              <Style.PriceContent isShow={showPrice === true ? true : false}>
+              <Style.PriceContent isShow={showPrice ? true : false}>
                 {priceInitArr.map((item, index) => (
                   <Style.Item key={item}>
                     <Style.ItemName>
