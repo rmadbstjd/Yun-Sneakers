@@ -50,7 +50,7 @@ export const More = styled.div`
   justify-content: center;
 `;
 
-export const Btn = styled.div`
+export const Btn = styled.button`
   border: solid gray 1px;
   width: 100px;
   height: 40px;
@@ -59,7 +59,8 @@ export const Btn = styled.div`
   color: black;
   cursor: pointer;
   line-height: 240%;
-  font-weight: 100;
+  font-weight: 200;
+  font-size: 16px;
   display: ${(props) => (props.isShow ? "block" : "none")};
   &:hover {
     background: black;

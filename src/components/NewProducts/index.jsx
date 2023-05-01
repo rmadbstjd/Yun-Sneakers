@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard";
 import * as Style from "./styles";
 import { getNewProducts } from "../../api/product";
 import LoadingSpinner from "../common/LoadingSpinner";
+import Button from "../common/button";
 const Products = () => {
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,9 +38,21 @@ const Products = () => {
         <Style.MoreContainer>
           <Style.More>
             {!isLoading && (
-              <Style.Btn isShow={showMoreBtn} onClick={ClickToMoreProduct}>
+              <Button
+                border={"solid gray 1px"}
+                borderRadius={"10px"}
+                color={"black"}
+                background={"white"}
+                fontWeight={500}
+                fontSize={"16px"}
+                width={"100px"}
+                height={"40px"}
+                lineHeight={"10%"}
+                isShow={showMoreBtn}
+                onClick={ClickToMoreProduct}
+              >
                 더보기
-              </Style.Btn>
+              </Button>
             )}
           </Style.More>
         </Style.MoreContainer>
