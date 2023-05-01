@@ -105,12 +105,11 @@ export const AddBtnContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const AddBtn = styled.div`
+export const AddBtn = styled.button`
   border: solid black 0px;
   background-color: #bcbcbc;
   border-radius: 10px;
   width: 88%;
-  text-align: center;
   height: 50px;
   font-size: 20px;
   line-height: 250%;

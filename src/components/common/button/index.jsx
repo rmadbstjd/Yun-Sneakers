@@ -4,29 +4,41 @@ import * as Style from "./styles";
 const Button = ({
   border,
   borderRadius,
+  margin,
   width,
   height,
   children,
-  color,
-  background,
+  color = "black",
+  hoverColor = false,
+  hoverBackground = false,
+  hoverFontWeight = false,
+  background = "white",
+  padding,
   fontSize,
   fontWeight,
   lineHeight,
-  isShow,
+  transition,
+  isShow = true,
   onClick,
 }) => {
   return (
     <Style.Button
       border={border}
       borderRadius={borderRadius}
+      margin={margin}
       width={width}
       height={height}
+      padding={padding}
       color={color}
+      hoverColor={hoverColor}
       background={background}
+      hoverBackground={hoverBackground}
       lineHeight={lineHeight}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      hoverFontWeight={hoverFontWeight}
       isShow={isShow}
+      transition={transition}
       onClick={onClick}
     >
       {children}

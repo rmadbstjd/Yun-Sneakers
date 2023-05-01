@@ -153,9 +153,6 @@ export const SideContainer = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  &:hover {
-    font-weight: bolder;
-  }
   margin-right: 40px;
 `;
 
@@ -185,6 +182,10 @@ export const PriceContent = styled.div`
 export const Item = styled.div`
   display: flex;
   margin: 0px 0px 10px 0px;
+  &:hover {
+    font-weight : bolder;
+  }
+  }
 `;
 
 export const ItemName = styled.label`

@@ -291,7 +291,7 @@ export const CheckBoxLetter = styled.div`
   color: ${(props) => props.color};
 `;
 
-export const PaymentBtn = styled.div`
+export const PaymentBtn = styled.button`
   border: solid black 0px;
   width: 600px;
   height: 70px;

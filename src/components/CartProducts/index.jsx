@@ -45,7 +45,6 @@ const CartProduct = ({
   const goToDetail = () => {
     navigate(`/products/${item.productId}`);
   };
-
   return (
     <Style.Container>
       <Style.InfoLayout>

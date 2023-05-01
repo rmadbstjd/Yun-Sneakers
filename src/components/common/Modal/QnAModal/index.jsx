@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 import * as Style from "./styles";
 import styles from "./QnAModal.module.css";
-
+import Button from "../../../../components/common/Button";
 const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
   const [text, setText] = useState("");
   const handleSetValue = (e) => {
@@ -45,20 +45,40 @@ const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
         </div>
       </Style.ReviewContainer>
       <Style.BtnContainer>
-        <Style.Btn
+        <Button
+          border={"solid gray 1px"}
+          borderRadius={"15px"}
+          width={"70px"}
+          height={"30px"}
+          lineHeight={"190%"}
+          color={"black"}
+          background={"white"}
+          hoverColor={"white"}
+          hoverBackground={"black"}
+          isShow={true}
           onClick={() => {
             submitBtn(text);
           }}
         >
           저장
-        </Style.Btn>
-        <Style.Btn
+        </Button>
+        <Button
+          border={"solid gray 1px"}
+          borderRadius={"15px"}
+          width={"70px"}
+          height={"30px"}
+          lineHeight={"190%"}
+          color={"black"}
+          background={"white"}
+          hoverColor={"white"}
+          hoverBackground={"black"}
+          isShow={true}
           onClick={() => {
             setModalIsOpen(false);
           }}
         >
           취소
-        </Style.Btn>
+        </Button>
       </Style.BtnContainer>
     </ReactModal>
   );

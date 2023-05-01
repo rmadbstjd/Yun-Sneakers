@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import Pagination from "../../components/common/Pagination";
 import { getProductInfo, addQna, modifyQna, getQna } from "../../api/product";
+import Button from "../../components/common/Button";
 const noticeArr = [
   "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",
   " 상품 및 상품 구매 과정과 관련 없는 비방, 욕설, 명예훼손성 게시글 및 상품과 관련 없는 광고글 등 부적절한 게시글 등록 시 글쓰기 제한 및 게시글이 삭제 조치 될 수 있습니다.",
@@ -216,22 +217,34 @@ const QnA = () => {
             / 300
           </Style.Count>
           <Style.BtnLayout>
-            <Style.Btn
+            <Button
+              border={"solid #d4d4d4 1px"}
+              width={"80px"}
+              height={"40px"}
+              margin={"0px 5px 0px 5px"}
               color={"black"}
-              backColor={"white"}
+              background={"white"}
+              fontWeight={"bolder"}
               onClick={() => {
                 setShowModal(false);
               }}
             >
               닫기
-            </Style.Btn>
-            <Style.Btn
+            </Button>
+            <Button
+              border={"solid #d4d4d4 1px"}
+              width={"80px"}
+              height={"40px"}
+              margin={"0px 5px 0px 5px"}
               color={"white"}
-              backColor={"#303033"}
+              hoverColor={"white"}
+              background={"#303033"}
+              hoverBackground={"#303033"}
+              fontWeight={"bolder"}
               onClick={() => clickToSubmitBtn()}
             >
               {isClickedModifyBtn ? "수정" : "등록"}
-            </Style.Btn>
+            </Button>
           </Style.BtnLayout>
           <Style.Notice>
             <Style.NoticeTitle>상품 Q&A 작성 시 유의사항</Style.NoticeTitle>

@@ -119,7 +119,7 @@ export const Text = styled.div`
   margin-bottom: 3px;
 `;
 
-export const Btn = styled.div`
+export const Btn = styled.button`
   border: solid gray 1px;
   width: 80px;
   margin-left: 17px;
@@ -139,7 +139,7 @@ export const ShipmentTitle = styled.div`
   margin: 20px 0px 5px 0px;
 `;
 
-export const Review = styled.div`
+export const Review = styled.button`
   border: solid gray 1px;
   width: 70px;
   height: 25px;

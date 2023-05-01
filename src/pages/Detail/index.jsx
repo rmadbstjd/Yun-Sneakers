@@ -28,6 +28,7 @@ import { addUserCart, getUserCarts } from "../../api/cart";
 import { pushLike, isLike } from "../../api/like";
 import { getSimilarProducts } from "../../api/product";
 import { getProductInfo } from "../../api/product";
+import Button from "../../components/common/Button";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ const ProductDetail = () => {
     setTimeout(setCartModalShow, 3000);
     const isSubmit = await addUserCart(products, selectSize);
     cartRefetch();
-    if (!isSubmit.success) return;
+    if (!isSubmit?.success) return;
     plusCartCount(1);
   };
 
@@ -231,7 +232,22 @@ const ProductDetail = () => {
               </Style.GoToCartPageBtnContainer>
             )}
             <Style.AddBtnContainer>
-              <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
+              <Button
+                border={"solid gray 0px"}
+                width={"88%"}
+                height={"50px"}
+                borderRadius={"10px"}
+                color={"white"}
+                background={"#bcbcbc"}
+                fontSize={"20px"}
+                lineHeight={"250%"}
+                margin={"-10px 0px 0px 0px"}
+                isShow={true}
+                transition={"all 0.8s"}
+                onClick={clickToCart}
+              >
+                장바구니에 추가
+              </Button>
               {!isLogin ? (
                 <BsHeart
                   style={{
@@ -246,7 +262,7 @@ const ProductDetail = () => {
                   onClick={clickToLike}
                 />
               ) : null}
-              {!isLiked?.result ? (
+              {isLiked?.result === false ? (
                 <BsHeart
                   style={{
                     width: "45px",

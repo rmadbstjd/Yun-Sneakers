@@ -28,7 +28,7 @@ const login = async (id, pw) => {
       password: pw,
     });
     const data = response.data;
-    if (data.isLogin) {
+    if (!data?.isLogin) {
       return false;
     }
     localStorage.setItem("accessToken", data.accessToken);

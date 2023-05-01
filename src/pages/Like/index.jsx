@@ -7,6 +7,7 @@ import { getLikedProducts } from "../../api/like";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "./../../components/common/LoadingSpinner";
+import Button from "../../components/common/Button";
 const Like = () => {
   const navigate = useNavigate();
 
@@ -18,9 +19,9 @@ const Like = () => {
   } = useQuery(["like"], () => getLikedProducts());
 
   useEffect(() => {
-    if (product) setCount(product.length);
+    if (product) setCount(product[0].length);
   }, [product]);
-
+  console.log("p", product);
   return (
     <>
       <Navbar />
@@ -53,17 +54,28 @@ const Like = () => {
               ))
             )}
 
-          {product && product.length === 0 ? (
+          {product[0]?.length === 0 ? (
             <Style.NoneProductsContainer>
               <div>
                 <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
-                <Style.GoToMainBtn
+                <Button
+                  border={"solid gray 1px"}
+                  background={"white"}
+                  margin={"5% 0px 0px 15%"}
+                  width={"350px"}
+                  height={"80px"}
+                  padding={"20px"}
+                  color={"3a3b3c"}
+                  fontSize={"25px"}
+                  fontWeight={"bolder"}
+                  hoverBackground={"black"}
+                  hoverColor={"white"}
                   onClick={() => {
                     navigate("/");
                   }}
                 >
                   CONTINUE SHOPPING{" "}
-                </Style.GoToMainBtn>
+                </Button>
               </div>
             </Style.NoneProductsContainer>
           ) : null}

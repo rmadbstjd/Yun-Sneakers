@@ -15,6 +15,7 @@ import { getUserCheckedCarts } from "../../api/cart";
 import { deleteUserCart } from "../../api/cart";
 import { addOrderProducts } from "../../api/order";
 import { validateOrder } from "../../utils/validateOrder";
+import Button from "../../components/common/Button";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",
@@ -459,7 +460,23 @@ const Shipment = () => {
               </Style.CheckBoxContent>
             ))}
           </Style.CheckBoxContainer>
-          <Style.PaymentBtn onClick={onValidate}>CHECK OUT</Style.PaymentBtn>
+          <Button
+            border={"solid black 0px"}
+            width={"600px"}
+            height={"70px"}
+            background={"black"}
+            hoverBackground={"black"}
+            hoverColor={"#a5ba93"}
+            color={"white"}
+            fontSize={"25px"}
+            fontWeight={"bolder"}
+            margin={"40px 0px 0px 25px"}
+            lineHeight={"270%"}
+            isShow={true}
+            onClick={onValidate}
+          >
+            CHECK OUT
+          </Button>
         </Style.RightContainer>
       </Style.Container>
     </>

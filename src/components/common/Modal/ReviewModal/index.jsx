@@ -7,7 +7,7 @@ import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
 import { addProductReview } from "./../../../../api/myPage";
-
+import Button from "../../Button";
 const Modal = ({
   modalIsOpen,
   setModalIsOpen,
@@ -176,26 +176,39 @@ const Modal = ({
         <Style.HorizonLine></Style.HorizonLine>
       </Style.ReviewContainer>
       <Style.BtnContainer>
-        <Style.StarBtn
+        <Button
           color={"white"}
-          backcolor={"black"}
-          border={"black"}
+          background={"black"}
+          hoverBackground={"black"}
+          border={"solid black 1px"}
+          borderRadius={"10px"}
+          width={"150px"}
+          height={"40px"}
+          lineHeight={"250%"}
+          margin={"10px"}
+          hoverColor={"#a5ba93"}
           onClick={() => {
             submitReview();
           }}
         >
           등록하기
-        </Style.StarBtn>
-        <Style.StarBtn
+        </Button>
+        <Button
           color={"#303033"}
-          backcolor={"white"}
-          border={"gray"}
+          background={"white"}
+          border={"solid gray 1px"}
+          borderRadius={"10px"}
+          width={"150px"}
+          height={"40px"}
+          lineHeight={"250%"}
+          margin={"10px"}
+          hoverColor={"#a5ba93"}
           onClick={() => {
             setModalIsOpen(false);
           }}
         >
           취소하기
-        </Style.StarBtn>
+        </Button>
       </Style.BtnContainer>
     </ReactModal>
   );

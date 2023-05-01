@@ -7,6 +7,7 @@ import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
+import Button from "./../../components/common/Button";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";
 import Swal from "sweetalert2";
@@ -36,7 +37,7 @@ const Cart = () => {
       });
     } else {
       for (let i = 0; i < checkedProducts?.length; i++) {
-        if (checkedProducts[i].id === id) {
+        if (checkedProducts[i]?.id === id) {
           checkProduct(id, false);
           setCheckedProducts((prev) => prev.filter((el) => el.id !== id));
         }
@@ -47,13 +48,13 @@ const Cart = () => {
   const handleAllCheck = (checked) => {
     if (checked) {
       setCheckedProducts([]);
-      for (let i = 0; i < cartProducts.products?.length; i++) {
+      for (let i = 0; i < cartProducts?.products?.length; i++) {
         setCheckedProducts((draft) => {
-          checkProduct(cartProducts.products[i].productId, true);
+          checkProduct(cartProducts?.products[i]?.productId, true);
           draft.push({
-            id: cartProducts.products[i].productId,
-            price: cartProducts.products[i].price,
-            quantity: cartProducts.products[i].quantity,
+            id: cartProducts?.products[i]?.productId,
+            price: cartProducts?.products[i]?.price,
+            quantity: cartProducts?.products[i]?.quantity,
           });
           draft.sort((a, b) => {
             if (a.price > b.price) return -1;
@@ -81,13 +82,13 @@ const Cart = () => {
     navigate("/shipment");
   };
   useEffect(() => {
-    if (checkedProducts.length === 0) {
+    if (checkedProducts?.length === 0) {
       for (let i = 0; i < cartProducts?.products?.length; i++) {
         setCheckedProducts((draft) => {
           draft.push({
-            id: cartProducts?.products[i].productId,
-            price: cartProducts?.products[i].price,
-            quantity: cartProducts?.products[i].quantity,
+            id: cartProducts?.products[i]?.productId,
+            price: cartProducts?.products[i]?.price,
+            quantity: cartProducts?.products[i]?.quantity,
           });
           draft.sort((a, b) => {
             if (a.price > b.price) return -1;
@@ -99,13 +100,13 @@ const Cart = () => {
     }
   }, [cartProducts]);
   useEffect(() => {
-    if (checkedProducts.length !== 0) {
+    if (checkedProducts?.length !== 0) {
       setPrice(0);
-      for (let i = 0; i < checkedProducts.length; i++) {
-        checkProduct(checkedProducts[i].id, true);
+      for (let i = 0; i < checkedProducts?.length; i++) {
+        checkProduct(checkedProducts[i]?.id, true);
         setPrice(
           (prev) =>
-            prev + checkedProducts[i].price * checkedProducts[i].quantity
+            prev + checkedProducts[i]?.price * checkedProducts[i]?.quantity
         );
       }
     } else {
@@ -114,12 +115,12 @@ const Cart = () => {
   }, [checkedProducts]);
 
   useEffect(() => {
-    if (checkedProducts.length !== 0) {
-      for (let i = 0; i < cartProducts?.products.length; i++) {
+    if (checkedProducts?.length !== 0) {
+      for (let i = 0; i < cartProducts?.products?.length; i++) {
         for (let j = 0; j < checkedProducts?.length; j++) {
-          if (cartProducts.products[i].productId === checkedProducts[j]?.id) {
+          if (cartProducts?.products[i]?.productId === checkedProducts[j]?.id) {
             setCheckedProducts((draft) => {
-              draft[j].quantity = cartProducts.products[i].quantity;
+              draft[j].quantity = cartProducts?.products[i]?.quantity;
               draft.sort((a, b) => {
                 if (a.price > b.price) return -1;
                 if (a.price < b.price) return 1;
@@ -128,9 +129,9 @@ const Cart = () => {
             });
           }
         }
-        if (cartProducts.products[i].productId === checkedProducts[i]?.id) {
+        if (cartProducts?.products[i]?.productId === checkedProducts[i]?.id) {
           setCheckedProducts((draft) => {
-            draft[i].quantity = cartProducts.products[i].quantity;
+            draft[i].quantity = cartProducts?.products[i]?.quantity;
             draft.sort((a, b) => {
               if (a.price > b.price) return -1;
               if (a.price < b.price) return 1;
@@ -141,7 +142,7 @@ const Cart = () => {
       }
     }
   }, [cartProducts]);
-
+  console.log("cp", checkedProducts);
   if (cartProducts === null) {
     return (
       <>
@@ -156,13 +157,22 @@ const Cart = () => {
             />
             <Style.NullText>장바구니에 담긴 상품이 없습니다.</Style.NullText>
             <Style.NullBoxContainer>
-              <Style.GoToMainBtn
+              <Button
+                border={"solid gray 1px"}
+                width={"350px"}
+                height={"60px"}
+                padding={"20px"}
+                fontSize={"25px"}
+                color={"#3a3b3c"}
+                fontWeight={"bold"}
+                hoverBackground={"black"}
+                hoverColor={"white"}
                 onClick={() => {
                   navigate("/");
                 }}
               >
                 CONTINUE SHOPPING
-              </Style.GoToMainBtn>
+              </Button>
             </Style.NullBoxContainer>
             <HorizonLine
               width={"98%"}
@@ -210,18 +220,17 @@ const Cart = () => {
               <Style.HeaderContent width={31}>주문 관리</Style.HeaderContent>
             </Style.HeaderContainer>
           </Style.HeaderLayout>
-          {cartProducts &&
-            cartProducts.products?.map((item) => (
-              <CartProduct
-                key={`${item.productId}+${item.size}`}
-                productId={item.productId}
-                item={item}
-                refetch={refetch}
-                handleSingleCheck={handleSingleCheck}
-                checkedProducts={checkedProducts}
-                setCheckedProducts={setCheckedProducts}
-              />
-            ))}
+          {cartProducts?.products?.map((item) => (
+            <CartProduct
+              key={`${item.productId}+${item.size}`}
+              productId={item.productId}
+              item={item}
+              refetch={refetch}
+              handleSingleCheck={handleSingleCheck}
+              checkedProducts={checkedProducts}
+              setCheckedProducts={setCheckedProducts}
+            />
+          ))}
           <HorizonLine
             width={"116%"}
             border={"5px"}
@@ -263,23 +272,43 @@ const Cart = () => {
           ></HorizonLine>
 
           <Style.FooterContainer>
-            <Style.FooterBtn
+            <Button
+              width={"30%"}
+              border={"solid black 1px"}
+              height={"65px"}
+              lineHeight={"270%"}
+              margin={"0px 10px 0px 0px"}
+              fontWeight={"bolder"}
+              background={"white"}
               color={"#3a3b3c"}
+              hoverColor={"#a5ba93"}
+              isShow={true}
+              fontSize={"25px"}
               onClick={() => {
                 navigate("/");
               }}
             >
               쇼핑 계속하기
-            </Style.FooterBtn>
-            <Style.FooterBtn
+            </Button>
+            <Button
+              width={"30%"}
+              border={"solid black 1px"}
+              height={"65px"}
+              lineHeight={"270%"}
+              margin={"0px 10px 0px 0px"}
+              fontWeight={"bolder"}
+              background={"black"}
               color={"white"}
-              back={"black"}
+              hoverColor={"#a5ba93"}
+              hoverBackground={"black"}
+              isShow={true}
+              fontSize={"25px"}
               onClick={() => {
                 clickToBuyBtn();
               }}
             >
               구매하기
-            </Style.FooterBtn>
+            </Button>
           </Style.FooterContainer>
         </Style.ProductsContainer>
       </Style.Layout>

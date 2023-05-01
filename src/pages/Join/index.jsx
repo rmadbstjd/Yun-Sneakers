@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../store/userInfoStore";
 import Navbar from "./../../components/common/Navbar";
 import userApi from "../../api/user";
 const Join = () => {
   const navigate = useNavigate();
-  const { user } = userInfoStore();
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",

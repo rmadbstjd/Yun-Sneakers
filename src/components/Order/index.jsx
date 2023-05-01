@@ -8,6 +8,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import { getOrderedProducts } from "../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../api/order";
+import Button from "../common/Button";
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -130,13 +131,23 @@ const OrderPageNavbar = () => {
               <Style.Text>배송이 완료되었다면↓</Style.Text>
 
               <Link to="shipComplete" spy={true} smooth={true}>
-                <Style.Btn
+                <Button
+                  border={"solid gray 1px"}
+                  width={"80px"}
+                  height={"30px"}
+                  margin={"0px 0px 0px 17px"}
+                  fontSize={"15px"}
+                  background={"white"}
+                  isShow={true}
+                  color={"black"}
+                  hoverColor={"white"}
+                  hoverBackground={"black"}
                   onClick={() => {
                     clickToBtn(item.product._id);
                   }}
                 >
                   배송완료
-                </Style.Btn>
+                </Button>
               </Link>
             </Style.BtnContainer>
             <div>{item.product.state}</div>
@@ -214,14 +225,25 @@ const OrderPageNavbar = () => {
             <Style.State>
               <div>{item.product.state}</div>
               {!item.product.isReviewd ? (
-                <Style.Review
+                <Button
+                  border={"solid gray 1px"}
+                  width={"70px"}
+                  height={"25px"}
+                  background={"#303033"}
+                  color={"white"}
+                  lineHeight={"190%"}
+                  margin={"10px 0px 0px 0px"}
+                  fontSize={"13px"}
+                  isShow={true}
+                  hoverColor={"white"}
+                  hoverBackground={"black"}
                   onClick={() => {
                     setShowModal((prev) => !prev);
                     setIndex(index);
                   }}
                 >
                   리뷰 쓰기
-                </Style.Review>
+                </Button>
               ) : null}
             </Style.State>
           </Style.ProductContent>

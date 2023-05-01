@@ -6,6 +6,7 @@ import * as Style from "./styles";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
+import Button from "../../components/common/Button";
 import { addUserAddress, getUserAddress } from "../../api/myPage";
 const requestArr = [
   "배송시 요청사항을 선택해 주세요",
@@ -143,9 +144,21 @@ const AddShip = ({ type, setDefaultAddress }) => {
         <Style.SearchContainer>
           <Style.Search>
             <Style.AddressNumber>{shipPostCode}</Style.AddressNumber>
-            <Style.SearchBtn onClick={() => setIsPopupOpen((prev) => !prev)}>
+            <Button
+              border={"solid gray 0px"}
+              width={"100px"}
+              height={"37px"}
+              background={"#bebebe"}
+              hoverBackground={"#bebebe"}
+              color={"black"}
+              lineHeight={"330%"}
+              margin={"0px 0px 0px 15px"}
+              fontSize={"12px"}
+              isShow={true}
+              onClick={() => setIsPopupOpen((prev) => !prev)}
+            >
               우편 번호 검색
-            </Style.SearchBtn>
+            </Button>
           </Style.Search>
           <div id="popupDom">
             {isPopupOpen && (

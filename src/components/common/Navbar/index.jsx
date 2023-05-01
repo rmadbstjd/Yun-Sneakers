@@ -19,6 +19,7 @@ import userApi from "../../../api/user";
 import jwt_decode from "jwt-decode";
 import ScrollToTop from "../../../utils/scrollToTop";
 import { getUserCarts } from "../../../api/cart";
+import Button from "../Button";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { nickName, userId } = userInfoStore();
@@ -259,9 +260,31 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               </Style.Nickname>
 
               {!isLogin ? (
-                <Style.Btn onClick={handleLogin}>Login</Style.Btn>
+                <Button
+                  border={"solid black 0px"}
+                  width={"60px"}
+                  height={"24px"}
+                  borderRadius={"5px"}
+                  margin={"10px 0px 0px 0px"}
+                  background={"#fafafa"}
+                  hoverFontWeight={"bolder"}
+                  onClick={handleLogin}
+                >
+                  Login
+                </Button>
               ) : (
-                <Style.Btn onClick={handleLogout}>Logout</Style.Btn>
+                <Button
+                  border={"solid black 0px"}
+                  width={"60px"}
+                  height={"24px"}
+                  borderRadius={"5px"}
+                  margin={"10px 0px 0px 0px"}
+                  background={"#fafafa"}
+                  hoverFontWeight={"bolder"}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
               )}
               <FiSearch
                 style={{

@@ -129,7 +129,7 @@ export const FooterContainer = styled.div`
   justify-content: center;
 `;
 
-export const FooterBtn = styled.div`
+export const FooterBtn = styled.button`
   width: 30%;
   border: solid black 1px;
   height: 65px;

@@ -8,6 +8,7 @@ import Pagination from "../../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getAllProducts } from "../../../api/product";
+import Button from "../../../components/common/Button";
 const itemArr3 = ["상품명", "상품코드", "가격", "관리"];
 const ManageProducts = () => {
   const navigate = useNavigate();
@@ -107,12 +108,34 @@ const ManageProducts = () => {
                     <div>{convertStringToNumber(item.price)}</div>
                   </Style.PriceContainer>
                   <Style.BtnContainer>
-                    <Style.Review onClick={() => clickToEditBtn(item.id)}>
+                    <Button
+                      border={"solid gray 1px"}
+                      width={"70px"}
+                      height={"25px"}
+                      background={"303033"}
+                      lineHeight={"190%"}
+                      margin={"45px 0px 0px 10px"}
+                      fontSize={"13px"}
+                      hoverColor={"white"}
+                      hoverBackground={"black"}
+                      onClick={() => clickToEditBtn(item.id)}
+                    >
                       수정
-                    </Style.Review>
-                    <Style.Review onClick={() => clickToDeleteBtn(item.id)}>
+                    </Button>
+                    <Button
+                      border={"solid gray 1px"}
+                      width={"70px"}
+                      height={"25px"}
+                      background={"303033"}
+                      lineHeight={"190%"}
+                      margin={"45px 0px 0px 10px"}
+                      fontSize={"13px"}
+                      hoverColor={"white"}
+                      hoverBackground={"black"}
+                      onClick={() => clickToDeleteBtn(item.id)}
+                    >
                       삭제
-                    </Style.Review>
+                    </Button>
                   </Style.BtnContainer>
                 </Style.ProductContent>
               </div>
