@@ -19,7 +19,7 @@ import userApi from "../../../api/user";
 import jwt_decode from "jwt-decode";
 import ScrollToTop from "../../../utils/scrollToTop";
 import { getUserCarts } from "../../../api/cart";
-import Button from "../Button";
+import Button from "../button";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { nickName, userId } = userInfoStore();
