@@ -238,6 +238,8 @@ const ProductDetail = () => {
                 height={"50px"}
                 borderRadius={"10px"}
                 color={"white"}
+                hoverBackground={"black"}
+                hoverColor={"white"}
                 background={"#bcbcbc"}
                 fontSize={"20px"}
                 lineHeight={"250%"}
