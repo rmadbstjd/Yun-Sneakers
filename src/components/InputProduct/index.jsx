@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "./InputProduct.module.css";
 import { useNavigate } from "react-router-dom";
 import { useImmer } from "use-immer";
 import { uploadImage } from "../../api/upload";
+import { addProduct, editProduct } from "../../api/product";
 import Navbar from "../common/Navbar";
 import convertStringToNumber from "../../utils/convertStringToNumber";
-import { addProduct, editProduct } from "../../api/product";
+import styles from "./InputProduct.module.css";
 import Swal from "sweetalert2";
+
 const InputProduct = ({ title, type, productInfo }) => {
   const [newProducts, setNewProducts] = useImmer({
     url: "",
@@ -19,10 +20,9 @@ const InputProduct = ({ title, type, productInfo }) => {
 
   const [file, setFile] = useState("");
   const [count, setCount] = useState(0);
-
   const navigate = useNavigate();
 
-  const onChange = (e) => {
+  const onChangeFile = (e) => {
     const { files } = e.target;
     setFile(files && files[0]);
   };
@@ -56,10 +56,12 @@ const InputProduct = ({ title, type, productInfo }) => {
       }
     });
   };
+
   const onCancel = () => {
     setCount(0);
     navigate("/admin/manage");
   };
+
   const onChangeProduct = (e, column) => {
     const row = e.target.value;
     setNewProducts((product) => {
@@ -113,7 +115,7 @@ const InputProduct = ({ title, type, productInfo }) => {
                 accept="image/jpg,impge/png,image/jpeg,image/gif"
                 name="file"
                 required
-                onChange={onChange}
+                onChange={onChangeFile}
               ></input>
             </div>
           </div>

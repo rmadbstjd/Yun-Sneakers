@@ -14,12 +14,12 @@ const store = (set) => ({
   setShipPostCode: (keyword) => set((state) => ({ shipPostCode: keyword })),
   card: "카드사를 선택해주세요.",
   setCard: (keyword) => set((state) => ({ card: keyword })),
-  phoneNumInput1: "",
-  setPhoneNumInput1: (keyword) => set((state) => ({ phoneNumInput1: keyword })),
-  phoneNumInput2: "",
-  setPhoneNumInput2: (keyword) => set((state) => ({ phoneNumInput2: keyword })),
-  phoneNumInput3: "",
-  setPhoneNumInput3: (keyword) => set((state) => ({ phoneNumInput3: keyword })),
+  firstPhoneNum: "",
+  setFirstPhoneNum: (keyword) => set((state) => ({ firstPhoneNum: keyword })),
+  middlePhoneNum: "",
+  setMiddlePhoneNum: (keyword) => set((state) => ({ middlePhoneNum: keyword })),
+  lastPhoneNum: "",
+  setLastPhoneNum: (keyword) => set((state) => ({ lastPhoneNum: keyword })),
 
   defaultAddress: false,
   setDefaultAddress: () =>

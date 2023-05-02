@@ -4,9 +4,9 @@ export const validateOrder = (
   shipPlaceName,
   shipReceiver,
   shipPostCode,
-  phoneNumInput1,
-  phoneNumInput2,
-  phoneNumInput3,
+  firstPhoneNum,
+  middlePhoneNum,
+  lastPhoneNum,
   card,
   checkItems,
   termsArr
@@ -29,25 +29,25 @@ export const validateOrder = (
       confirmButtonColor: "black",
     });
     return;
-  } else if (!phoneNumInput1 || !phoneNumInput2 || !phoneNumInput3) {
+  } else if (!firstPhoneNum || !middlePhoneNum || !lastPhoneNum) {
     Swal.fire({
       title: "핸드폰번호를 입력해주세요.",
       confirmButtonColor: "black",
     });
     return;
-  } else if (phoneNumInput1.length !== 3) {
+  } else if (firstPhoneNum.length !== 3) {
     Swal.fire({
       title: "핸드폰 번호를 정확하게 입력해주세요.",
       confirmButtonColor: "black",
     });
     return;
-  } else if (phoneNumInput2.length !== 4) {
+  } else if (middlePhoneNum.length !== 4) {
     Swal.fire({
       title: "핸드폰 번호를 정확하게 입력해주세요.",
       confirmButtonColor: "black",
     });
     return;
-  } else if (phoneNumInput3.length !== 4) {
+  } else if (lastPhoneNum.length !== 4) {
     Swal.fire({
       title: "핸드폰 번호를 정확하게 입력해주세요.",
       confirmButtonColor: "black",

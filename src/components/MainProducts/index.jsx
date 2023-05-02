@@ -1,32 +1,28 @@
-import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import ProductCard from "../ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import * as Style from "./styles";
-import { getPopularProducts } from "../../api/product";
 import Button from "../common/button";
-const ShowPopularProducts = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [showMoreBtn, setShowMoreBtn] = useState(true);
-  const { isLoading, data: products } = useQuery(["popular", currentPage], () =>
-    getPopularProducts(currentPage)
-  );
 
-  const ClickToMoreProduct = () => {
-    setCurrentPage((prev) => prev + 1);
-    if (currentPage >= 4) setShowMoreBtn(false);
-  };
-
+const MainProducts = ({
+  isLoading,
+  products,
+  showMoreBtn,
+  ClickToShowMoreProductsBtn,
+  width,
+  titleKOR,
+  titleENG,
+}) => {
   return (
     <Style.Container>
       <Style.ProductsContainer>
-        <Style.TitleENG>Most Popular</Style.TitleENG>
-        <Style.TitleKOR>인기 있는 상품</Style.TitleKOR>
+        <Style.TitleENG>{titleENG}</Style.TitleENG>
+        <Style.TitleKOR>{titleKOR}</Style.TitleKOR>
         {isLoading && (
           <LoadingSpinner
-            width={"100%"}
+            width={width}
             margin={"100px 0px 0px 0px"}
-            text="상품을 불러오는 중입니다."
+            text={"상품을 불러오는 중입니다."}
           ></LoadingSpinner>
         )}
         {products?.map((product) =>
@@ -41,6 +37,8 @@ const ShowPopularProducts = () => {
                 border={"solid gray 1px"}
                 borderRadius={"10px"}
                 color={"black"}
+                hoverColor={"white"}
+                hoverBackground={"black"}
                 background={"white"}
                 fontWeight={500}
                 fontSize={"16px"}
@@ -48,7 +46,7 @@ const ShowPopularProducts = () => {
                 height={"40px"}
                 lineHeight={"10%"}
                 isShow={showMoreBtn}
-                onClick={ClickToMoreProduct}
+                onClick={ClickToShowMoreProductsBtn}
               >
                 더보기
               </Button>
@@ -60,4 +58,4 @@ const ShowPopularProducts = () => {
   );
 };
 
-export default ShowPopularProducts;
+export default MainProducts;

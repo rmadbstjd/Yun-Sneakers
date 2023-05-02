@@ -16,7 +16,7 @@ const CartProduct = ({
   const navigate = useNavigate();
   const [productCount, setProductCount] = useState(item.quantity);
 
-  const plus = async () => {
+  const plusProductQuantity = async () => {
     if (productCount >= 10) {
       Swal.fire({
         title: "최대 구매 개수는 10개입니다.",
@@ -29,7 +29,7 @@ const CartProduct = ({
     refetch();
   };
 
-  const minus = async () => {
+  const minusProductQuantity = async () => {
     if (productCount <= 1) return;
     setProductCount((prev) => prev - 1);
     await updateUserCart(item.productId, item.size, productCount - 1);
@@ -45,6 +45,7 @@ const CartProduct = ({
   const goToDetail = () => {
     navigate(`/products/${item.productId}`);
   };
+
   return (
     <Style.Container>
       <Style.InfoLayout>
@@ -76,9 +77,9 @@ const CartProduct = ({
         </Style.InfoContainer>
         <Style.QuantityLayout>
           <Style.QuantityContent>
-            <Style.Minus onClick={minus}>-</Style.Minus>
+            <Style.Minus onClick={minusProductQuantity}>-</Style.Minus>
             <Style.Count>{productCount}</Style.Count>
-            <Style.Plus onClick={plus}>+</Style.Plus>
+            <Style.Plus onClick={plusProductQuantity}>+</Style.Plus>
           </Style.QuantityContent>
         </Style.QuantityLayout>
         <Style.PriceContainer>

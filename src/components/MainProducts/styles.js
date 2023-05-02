@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -7,15 +6,14 @@ export const Container = styled.div`
 `;
 
 export const ProductsContainer = styled.div`
-  width: 1250px;
+  width: 1320px;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  margin: 50px;
+  margin: 50px 0px 0px 65px;
 `;
 
 export const TitleENG = styled.div`
-  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -35,10 +33,9 @@ export const MoreContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 95%;
+  width: 90.5%;
   margin-top: 45px;
 `;
-
 export const More = styled.div`
   text-align: center;
   line-height: 160%;

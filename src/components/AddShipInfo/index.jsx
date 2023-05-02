@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import { useQuery } from "@tanstack/react-query";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
+import { addUserAddress, getUserAddress } from "../../api/myPage";
 import * as Style from "./styles";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
 import Button from "../../components/common/button";
-import { addUserAddress, getUserAddress } from "../../api/myPage";
+
 const requestArr = [
   "배송시 요청사항을 선택해 주세요",
   "부재시 문앞에 놓아주세요",
@@ -16,6 +17,7 @@ const requestArr = [
   "택배함에 넣어 주세요.",
   "직접입력",
 ];
+
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShip = ({ type, setDefaultAddress }) => {
@@ -30,12 +32,12 @@ const AddShip = ({ type, setDefaultAddress }) => {
     setShipPostCode,
     shipAddress,
     setShipAddress,
-    phoneNumInput1,
-    phoneNumInput2,
-    phoneNumInput3,
-    setPhoneNumInput1,
-    setPhoneNumInput2,
-    setPhoneNumInput3,
+    firstPhoneNum,
+    middlePhoneNum,
+    lastPhoneNum,
+    setFirstPhoneNum,
+    setMiddlePhoneNum,
+    setLastPhoneNum,
     defaultAddress,
     shipAddressDetail,
     setShipAddressDetail,
@@ -70,22 +72,22 @@ const AddShip = ({ type, setDefaultAddress }) => {
     if (regex.test(e.target.value)) setShipReceiver(e.target.value);
   };
 
-  const checkNumber1 = (e) => {
+  const validateFirstPhoneNum = (e) => {
     const number = e.target.value.replace(/[^0-9]/g, "");
     if (number.length >= 4) return;
-    setPhoneNumInput1(number);
+    setFirstPhoneNum(number);
   };
 
-  const checkNumber2 = (e) => {
+  const validateMiddlePhoneNum = (e) => {
     const number = e.target.value.replace(/[^0-9]/g, "");
     if (number.length >= 5) return;
-    setPhoneNumInput2(number);
+    setMiddlePhoneNum(number);
   };
 
-  const checkNumber3 = (e) => {
+  const validateLastPhoneNum = (e) => {
     const number = e.target.value.replace(/[^0-9]/g, "");
     if (number.length >= 5) return;
-    setPhoneNumInput3(number);
+    setLastPhoneNum(number);
   };
 
   const checkTextLength = (e) => {
@@ -100,9 +102,9 @@ const AddShip = ({ type, setDefaultAddress }) => {
       shipPostCode,
       shipAddress,
       shipAddressDetail,
-      phoneNumInput1,
-      phoneNumInput2,
-      phoneNumInput3
+      firstPhoneNum,
+      middlePhoneNum,
+      lastPhoneNum
     );
   };
 
@@ -110,9 +112,9 @@ const AddShip = ({ type, setDefaultAddress }) => {
     if (address) {
       setShipPlaceName(address.place);
       setShipReceiver(address.receiver);
-      setPhoneNumInput1(address.phoneNumber1);
-      setPhoneNumInput2(address.phoneNumber2);
-      setPhoneNumInput3(address.phoneNumber3);
+      setFirstPhoneNum(address.phoneNumber1);
+      setMiddlePhoneNum(address.phoneNumber2);
+      setLastPhoneNum(address.phoneNumber3);
       setShipAddress(address.address);
       setShipAddressDetail(address.addressDetail);
       setShipPostCode(address.postCode);
@@ -181,8 +183,8 @@ const AddShip = ({ type, setDefaultAddress }) => {
 
         <Style.Number
           type="text"
-          value={phoneNumInput1}
-          onChange={(e) => checkNumber1(e)}
+          value={firstPhoneNum}
+          onChange={(e) => validateFirstPhoneNum(e)}
         />
 
         <AiOutlineMinus
@@ -190,16 +192,16 @@ const AddShip = ({ type, setDefaultAddress }) => {
         />
         <Style.Number
           type="text"
-          value={phoneNumInput2}
-          onChange={(e) => checkNumber2(e)}
+          value={middlePhoneNum}
+          onChange={(e) => validateMiddlePhoneNum(e)}
         ></Style.Number>
         <AiOutlineMinus
           style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
         />
         <Style.Number
           type="text"
-          value={phoneNumInput3}
-          onChange={(e) => checkNumber3(e)}
+          value={lastPhoneNum}
+          onChange={(e) => validateLastPhoneNum(e)}
         ></Style.Number>
       </Style.PhoneNumberContainer>
       {setDefaultAddress && (
@@ -217,7 +219,6 @@ const AddShip = ({ type, setDefaultAddress }) => {
         {request} <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
       </Style.RequestBox>
       <Style.RequestContainer>
-        {" "}
         {showRequest &&
           requestArr.map((item) => (
             <Style.Request onClick={() => clickRequest(item)} key={item}>

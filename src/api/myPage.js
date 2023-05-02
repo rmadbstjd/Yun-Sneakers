@@ -11,9 +11,9 @@ export const addUserAddress = async (
   shipPostCode,
   shipAddress,
   shipAddressDetail,
-  phoneNumInput1,
-  phoneNumInput2,
-  phoneNumInput3
+  firstPhoneNum,
+  middlePhoneNum,
+  lastPhoneNum
 ) => {
   await instance.post(`/address`, {
     place: shipPlaceName,
@@ -21,9 +21,9 @@ export const addUserAddress = async (
     postCode: shipPostCode,
     address: shipAddress,
     addressDetail: shipAddressDetail,
-    phoneNumber1: String(phoneNumInput1),
-    phoneNumber2: String(phoneNumInput2),
-    phoneNumber3: String(phoneNumInput3),
+    phoneNumber1: String(firstPhoneNum),
+    phoneNumber2: String(middlePhoneNum),
+    phoneNumber3: String(lastPhoneNum),
   });
 };
 

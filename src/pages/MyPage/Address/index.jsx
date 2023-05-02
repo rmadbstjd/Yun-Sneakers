@@ -20,9 +20,9 @@ const Address = () => {
     shipPostCode,
     shipAddress,
     shipAddressDetail,
-    phoneNumInput1,
-    phoneNumInput2,
-    phoneNumInput3,
+    firstPhoneNum,
+    middlePhoneNum,
+    lastPhoneNum,
   } = userInfoStore();
   const [showModal, setShowModal] = useState(false);
   const { data: address, refetch } = useQuery(["address"], () =>
@@ -34,9 +34,9 @@ const Address = () => {
         shipPlaceName,
         shipReceiver,
         shipPostCode,
-        phoneNumInput1,
-        phoneNumInput2,
-        phoneNumInput3
+        firstPhoneNum,
+        middlePhoneNum,
+        lastPhoneNum
       )
     ) {
       await addUserAddress(
@@ -45,9 +45,9 @@ const Address = () => {
         shipPostCode,
         shipAddress,
         shipAddressDetail,
-        phoneNumInput1,
-        phoneNumInput2,
-        phoneNumInput3
+        firstPhoneNum,
+        middlePhoneNum,
+        lastPhoneNum
       );
 
       refetch();
