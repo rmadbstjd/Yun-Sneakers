@@ -1,7 +1,7 @@
 import React from "react";
 import DaumPostcode from "react-daum-postcode";
 import styles from "./css/PopupPostCode.module.css";
-import userInfoStore from "../../store/userInfoStore";
+import userInfoStore from "../../../store/userInfoStore";
 const PopupPostCode = (props) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
   const { setShipPostCode, setShipAddress } = userInfoStore();

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-import HorizonLine from "../common/HorizonLine";
+import HorizonLine from "../../../components/common/HorizonLine";
 
 const shipText = [
   "Delivery 브랜드 업체발송은 상품설명에 별도로 기입된 브랜드 알림 배송공지 기준으로 출고되고 브랜드마다 개별 배송비가 부여됩니다.",

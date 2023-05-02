@@ -1,7 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-
 const SimilarProducts = ({ products }) => {
   const navigate = useNavigate();
   const goToDetailPage = () => {

@@ -149,8 +149,6 @@ const QnA = () => {
     refetch();
   };
 
-  useEffect(() => {}, [QnA]);
-
   return (
     <Style.Layout>
       <Style.Header>

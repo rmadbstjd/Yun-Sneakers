@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PopupDom from "./PopupDom";
 import PopupPostCode from "./PopupPostCode";
-import styles from "../components/css/PostButton.module.css";
+import styles from "../PostPopUp/css/PostButton.module.css";
 const PostButton = () => {
   // 팝업창 상태 관리
   const [isPopupOpen, setIsPopupOpen] = useState(false);

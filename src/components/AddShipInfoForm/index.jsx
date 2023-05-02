@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
 import { addUserAddress, getUserAddress } from "../../api/myPage";
 import * as Style from "./styles";
-import PopupPostCode from "../PostPopUp/PopupPostCode";
-import PopupDom from "../PostPopUp/PopupDom";
+import PopupPostCode from "./PostPopUp/PopupPostCode";
+import PopupDom from "./PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
 import Button from "../common/button";
 

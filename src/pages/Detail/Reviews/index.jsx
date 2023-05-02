@@ -3,16 +3,14 @@ import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import getProductReviews from "../../api/review";
+import getProductReviews from "../../../api/review";
+import HorizonLine from "../../../components/common/HorizonLine";
+import Pagination from "react-js-pagination";
 import * as Style from "./styles";
-import HorizonLine from "../../components/common/HorizonLine";
-import Pagination from "../../components/common/Pagination";
-
 const ProductReviews = () => {
   const { id } = useParams();
   const [isClicked, setIsClicked] = useState();
   const [page, setPage] = useState(1);
-
   const clickToReview = (index) => {
     if (index === isClicked) {
       setIsClicked();
@@ -31,7 +29,6 @@ const ProductReviews = () => {
     productReviews = await getProductReviews(id, page);
     refetch();
   };
-
   return (
     <Style.Layout>
       <Style.Title>리뷰({productReviewsCount})</Style.Title>

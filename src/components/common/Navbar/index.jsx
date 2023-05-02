@@ -11,7 +11,7 @@ import { RiFileEditFill } from "@react-icons/all-files/ri/RiFileEditFill";
 import { useQuery } from "@tanstack/react-query";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-import Search from "../../Search";
+import SearchModal from "../Modal/SearchModal";
 import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
@@ -299,7 +299,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
           </Style.NavbarContainer>
         </Style.Container>
       )}
-      {showSearch && <Search setShowSearch={setShowSearch} />}
+      {showSearch && <SearchModal setShowSearch={setShowSearch} />}
     </>
   );
 };

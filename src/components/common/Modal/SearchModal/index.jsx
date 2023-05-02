@@ -3,12 +3,13 @@ import * as Style from "./styles";
 import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { useNavigate } from "react-router-dom";
-import searchStore from "../../store/searchStore";
 import { IoMdCloseCircle } from "@react-icons/all-files/io/IoMdCloseCircle";
+import searchStore from "../../../../store/searchStore";
 import axios from "axios";
-import HorizonLine from "../../components/common/HorizonLine";
+import HorizonLine from "../../HorizonLine";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
-const Search = ({ setShowSearch }) => {
+
+const SearchModal = ({ setShowSearch }) => {
   const navigate = useNavigate();
   const {
     searchWord,
@@ -102,7 +103,6 @@ const Search = ({ setShowSearch }) => {
       setBrands([]);
     }
   }, [searchWord]);
-
   return (
     <Style.Container>
       <Style.Close>
@@ -227,4 +227,5 @@ const Search = ({ setShowSearch }) => {
     </Style.Container>
   );
 };
-export default Search;
+
+export default SearchModal;

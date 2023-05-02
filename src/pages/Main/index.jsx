@@ -6,7 +6,8 @@ import {
   getUniqueProducts,
 } from "../../api/product";
 import * as Style from "./styles";
-import Brand from "../../components/RecommendBrand";
+
+import RecommendBrand from "./RecommendBrand";
 import Navbar from "./../../components/common/Navbar/index";
 import MainProducts from "../../components/MainProducts";
 
@@ -63,7 +64,7 @@ const Main = () => {
 
         <Style.ProductsContainerLayout>
           <Style.ProductsContainer>
-            <Brand />
+            <RecommendBrand />
             <MainProducts
               isLoading={isLoadingOfPopularProducts}
               products={popularProducts}

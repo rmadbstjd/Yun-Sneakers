@@ -1,11 +1,11 @@
 import React from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-import nikeLogo from "../../images/brands/nike.png";
-import jordanLogo from "../../images/brands/jordan.png";
-import adidasLogo from "../../images/brands/adidas.png";
-import crocsLogo from "../../images/brands/crocs.png";
-import newbalanceLogo from "../../images/brands/newbalance.png";
+import nikeLogo from "../../../images/brands/nike.png";
+import jordanLogo from "../../../images/brands/jordan.png";
+import adidasLogo from "../../../images/brands/adidas.png";
+import crocsLogo from "../../../images/brands/crocs.png";
+import newbalanceLogo from "../../../images/brands/newbalance.png";
 const brandArr = [
   {
     name: "조던",
@@ -43,12 +43,11 @@ const brandArr = [
     marginTop: "12px",
   },
 ];
-const Brand = () => {
+const RecommendBrand = () => {
   const navigate = useNavigate();
   const goToDetail = (item) => {
     navigate(`/search?keyword=${item}`);
   };
-
   return (
     <Style.Container>
       <Style.ProductsContainer>
@@ -75,4 +74,4 @@ const Brand = () => {
   );
 };
 
-export default Brand;
+export default RecommendBrand;
