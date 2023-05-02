@@ -27,7 +27,13 @@ const MainProducts = ({
         )}
         {products?.map((product) =>
           product?.map((product) => (
-            <ProductCard key={product.name} product={product}></ProductCard>
+            <ProductCard
+              width={"200px"}
+              height={"200px"}
+              margin={"20px 56px 150px 0px"}
+              key={product.name}
+              product={product}
+            ></ProductCard>
           ))
         )}
         <Style.MoreContainer>

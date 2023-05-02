@@ -7,6 +7,7 @@ import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 const ProductLikeCard = ({ none, product, refetch }) => {
   const navigate = useNavigate();
+
   const clickDelete = async (e) => {
     e.stopPropagation();
     product && (await pushLike(product.id));

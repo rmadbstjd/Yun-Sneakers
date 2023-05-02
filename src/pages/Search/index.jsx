@@ -28,19 +28,12 @@ const SearchPage = () => {
   const { recentKeyword, addRecentKeyword } = searchStore();
   const { data: brands } = useQuery(["brands"], () => getBrandsName());
   const [showBrand, setShowBrand] = useState(true);
-  const [showPrice, setShowPrice] = useState(false);
+  const [showPrice, setShowPrice] = useState(true);
   const sessionSort = sessionStorage.getItem("sort");
   const sessionBrand = sessionStorage.getItem("brand");
   const sessionPrice = sessionStorage.getItem("price");
   const initPage = query.get("page") || 1;
   const [pages, setPages] = useState(Number(initPage));
-
-  const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
-  const [isAdmin] = useState(
-    (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
-  );
-
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
   };
@@ -469,9 +462,10 @@ const SearchPage = () => {
                       <ProductCard
                         width={"190px"}
                         height={"320px"}
-                        margin={"0px 30px 20px 0px"}
+                        margin={"20px 30px 30px 0px"}
                         key={item.id}
                         product={item}
+                        deletable={true}
                       ></ProductCard>
                     ))
                   : null}

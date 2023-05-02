@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
+import { pushLike } from "../../api/like";
+import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import * as Style from "./styles";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 
@@ -9,8 +11,16 @@ const ProductCard = ({
   width = "200px",
   height = "200px",
   margin = "20px 30px 20px 0px",
+  refetch,
+  deletable = false,
 }) => {
   const navigate = useNavigate();
+
+  const clickToDeleteBtn = async (e) => {
+    e.stopPropagation();
+    product && (await pushLike(product.id));
+    refetch();
+  };
 
   const goToDetail = () => {
     navigate(`/products/${product.id}`);
@@ -23,6 +33,11 @@ const ProductCard = ({
       margin={margin}
       onClick={goToDetail}
     >
+      {deletable === true ? (
+        <Style.DeleteBtn>
+          <AiFillCloseSquare size={25} onClick={clickToDeleteBtn} />
+        </Style.DeleteBtn>
+      ) : null}
       <Style.Img src={product?.image} alt="상품"></Style.Img>
       <div>
         <Style.CategoryContainer>

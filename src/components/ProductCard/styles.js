@@ -6,10 +6,6 @@ export const Card = styled.div`
   cursor: pointer;
   font-family: "NanumSquareNeo-Variable";
   z-index: 1;
-  &:hover {
-    opacity: 0.9;
-    scale: 1.05;
-  }
 `;
 
 export const Img = styled.img`
@@ -20,6 +16,14 @@ export const Img = styled.img`
   background: #ebebeb;
 `;
 
+export const DeleteBtn = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: 0.8%;
+  margin-left: 8.7%;
+  cursor: pointer;
+`;
 export const CategoryContainer = styled.div`
   display: flex;
   justify-content: space-between;
