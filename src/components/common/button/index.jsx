@@ -1,5 +1,5 @@
 import React from "react";
-import * as Style from "./styles";
+import * as Style from "./styless";
 
 const Button = ({
   border,
