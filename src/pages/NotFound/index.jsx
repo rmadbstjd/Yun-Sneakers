@@ -2,7 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import Navbar from "../../components/common/Navbar";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/common/button";
+import Button from "../../components/common/Button";
 const NotFound = () => {
   const navigate = useNavigate();
   return (
