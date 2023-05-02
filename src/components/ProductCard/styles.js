@@ -1,4 +1,15 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
+
+export const DeleteBtn = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: 0.8%;
+  margin-left: 8.7%;
+  cursor: pointer;
+  display: none;
+  color: black;
+`;
 export const Card = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -6,6 +17,11 @@ export const Card = styled.div`
   cursor: pointer;
   font-family: "NanumSquareNeo-Variable";
   z-index: 1;
+  &: hover {
+    ${DeleteBtn} {
+      display: block;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -16,14 +32,6 @@ export const Img = styled.img`
   background: #ebebeb;
 `;
 
-export const DeleteBtn = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  margin-top: 0.8%;
-  margin-left: 8.7%;
-  cursor: pointer;
-`;
 export const CategoryContainer = styled.div`
   display: flex;
   justify-content: space-between;

@@ -142,7 +142,6 @@ const Cart = () => {
       }
     }
   }, [cartProducts]);
-  console.log("cp", checkedProducts);
   if (cartProducts === null) {
     return (
       <>

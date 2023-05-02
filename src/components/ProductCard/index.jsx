@@ -15,7 +15,6 @@ const ProductCard = ({
   deletable = false,
 }) => {
   const navigate = useNavigate();
-
   const clickToDeleteBtn = async (e) => {
     e.stopPropagation();
     product && (await pushLike(product.id));
@@ -35,7 +34,7 @@ const ProductCard = ({
     >
       {deletable === true ? (
         <Style.DeleteBtn>
-          <AiFillCloseSquare size={25} onClick={clickToDeleteBtn} />
+          <AiFillCloseSquare size={30} onClick={clickToDeleteBtn} />
         </Style.DeleteBtn>
       ) : null}
       <Style.Img src={product?.image} alt="상품"></Style.Img>

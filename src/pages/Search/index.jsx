@@ -15,9 +15,9 @@ import { useImmer } from "use-immer";
 import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Pagination from "../../components/common/Pagination";
-import jwt_decode from "jwt-decode";
 import { searchForProducts } from "../../api/product";
 import { getBrandsName } from "../../api/product";
+
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -465,7 +465,6 @@ const SearchPage = () => {
                         margin={"20px 30px 30px 0px"}
                         key={item.id}
                         product={item}
-                        deletable={true}
                       ></ProductCard>
                     ))
                   : null}

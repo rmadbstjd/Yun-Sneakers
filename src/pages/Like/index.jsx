@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import ProductLikeCard from "../../components/ProductLikeCard";
+import ProductCard from "../../components/ProductCard";
 import { getLikedProducts } from "../../api/like";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
@@ -19,9 +19,8 @@ const Like = () => {
   } = useQuery(["like"], () => getLikedProducts());
 
   useEffect(() => {
-    if (product) setCount(product[1]?.length || 0);
+    if (product) setCount(product?.length - 1 || 0);
   }, [product]);
-
   return (
     <>
       <Navbar />
@@ -45,11 +44,15 @@ const Like = () => {
           )}
           {product?.map((item) =>
             item.map((product) => (
-              <ProductLikeCard
+              <ProductCard
                 key={product.name}
+                width={"190px"}
+                height={"320px"}
+                margin={"20px 30px 30px 0px"}
                 product={product}
                 refetch={refetch}
-              ></ProductLikeCard>
+                deletable={true}
+              ></ProductCard>
             ))
           )}
 

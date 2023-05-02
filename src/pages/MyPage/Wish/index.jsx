@@ -5,7 +5,6 @@ import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import { getLikedProducts } from "../../../api/like";
-import ProductLikeCard from "../../../components/ProductLikeCard";
 import ProductCard from "../../../components/ProductCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import Button from "../../../components/common/button";
@@ -25,7 +24,7 @@ const Wish = () => {
 
   useEffect(() => {
     if (product) {
-      setCount(product[1]?.length || 0);
+      if (product) setCount(product?.length - 1 || 0);
     }
   }, [product]);
 
@@ -51,11 +50,15 @@ const Wish = () => {
             )}
             {product?.map((item) =>
               item.map((product) => (
-                <ProductLikeCard
-                  key={product.id}
+                <ProductCard
+                  key={product.name}
+                  width={"190px"}
+                  height={"320px"}
+                  margin={"20px 30px 30px 0px"}
                   product={product}
                   refetch={refetch}
-                ></ProductLikeCard>
+                  deletable={true}
+                ></ProductCard>
               ))
             )}
             {product &&
