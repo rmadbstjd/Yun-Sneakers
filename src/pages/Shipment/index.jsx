@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import AddShip from "../../components/AddShipInfo";
+import AddShip from "../../components/AddShipInfoForm";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
@@ -16,6 +16,7 @@ import { deleteUserCart } from "../../api/cart";
 import { addOrderProducts } from "../../api/order";
 import { validateOrder } from "../../utils/validateOrder";
 import Button from "../../components/common/button";
+import { getUserAddress } from "../../api/myPage";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",
@@ -81,11 +82,21 @@ const Shipment = () => {
     firstPhoneNum,
     middlePhoneNum,
     lastPhoneNum,
+    setShipPlaceName,
+    setShipReceiver,
+    setShipPostCode,
+    setFirstPhoneNum,
+    setMiddlePhoneNum,
+    setLastPhoneNum,
     card,
     setCard,
   } = userInfoStore();
   const { isLoading, data: products } = useQuery(["products"], () =>
     getUserCheckedCarts()
+  );
+
+  const { data: userAddress } = useQuery(["userAddress"], () =>
+    getUserAddress()
   );
   const [checkItems, setCheckItems] = useState([]);
   const [showCouponBox, setShowCouponBox] = useState(false);
@@ -205,7 +216,16 @@ const Shipment = () => {
       }
     }
   }, [products]);
-
+  useEffect(() => {
+    if (userAddress) {
+      setShipPlaceName(userAddress.place);
+      setShipReceiver(userAddress.receiver);
+      setShipPostCode(userAddress.postCode);
+      setFirstPhoneNum(userAddress.phoneNumber1);
+      setMiddlePhoneNum(userAddress.phoneNumber2);
+      setLastPhoneNum(userAddress.phoneNumber3);
+    }
+  }, [userAddress]);
   const clickCoupon = (item) => {
     setCoupon(item);
     setShowCouponBox(false);

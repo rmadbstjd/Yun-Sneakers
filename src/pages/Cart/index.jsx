@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
-import CartProduct from "../../components/CartProducts";
+import CartProducts from "./CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
@@ -220,7 +220,7 @@ const Cart = () => {
             </Style.HeaderContainer>
           </Style.HeaderLayout>
           {cartProducts?.products?.map((item) => (
-            <CartProduct
+            <CartProducts
               key={`${item.productId}+${item.size}`}
               productId={item.productId}
               item={item}

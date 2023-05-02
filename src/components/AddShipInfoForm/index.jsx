@@ -7,7 +7,7 @@ import * as Style from "./styles";
 import PopupPostCode from "../PostPopUp/PopupPostCode";
 import PopupDom from "../PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
-import Button from "../../components/common/button";
+import Button from "../common/button";
 
 const requestArr = [
   "배송시 요청사항을 선택해 주세요",

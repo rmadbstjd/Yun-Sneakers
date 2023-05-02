@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 const SimilarProducts = ({ products }) => {
   const navigate = useNavigate();
-  const goToDetail = () => {
+  const goToDetailPage = () => {
     navigate(`/products/${products.id}`);
   };
   return (
-    <Style.Product onClick={goToDetail}>
+    <Style.Product onClick={goToDetailPage}>
       <Style.Img alt="상품" src={products.image}></Style.Img>
       <Style.Category>{products.category[0]}</Style.Category>
       <Style.Name>{products.name}</Style.Name>

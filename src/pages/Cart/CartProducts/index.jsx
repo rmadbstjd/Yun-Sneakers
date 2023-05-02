@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Style from "./styles";
+import { updateUserCart, deleteUserCart } from "../../../api/cart";
 import Swal from "sweetalert2";
-import convertStringToNumber from "../../utils/convertStringToNumber";
-import { updateUserCart } from "../../api/cart";
-import { deleteUserCart } from "../../api/cart";
-const CartProduct = ({
+import * as Style from "./styles";
+import convertStringToNumber from "../../../utils/convertStringToNumber";
+const CartProdcuts = ({
   item,
   productId,
   refetch,
@@ -45,7 +44,6 @@ const CartProduct = ({
   const goToDetail = () => {
     navigate(`/products/${item.productId}`);
   };
-
   return (
     <Style.Container>
       <Style.InfoLayout>
@@ -102,4 +100,4 @@ const CartProduct = ({
   );
 };
 
-export default CartProduct;
+export default CartProdcuts;
