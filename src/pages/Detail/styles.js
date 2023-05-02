@@ -118,7 +118,7 @@ export const AddBtn = styled.button`
     background-color: black;
     color: white;
     cursor: pointer;
-    transition: all 0.8s;
+    transition: all 0.3s;
   }
   margin-top: -10px;
 `;

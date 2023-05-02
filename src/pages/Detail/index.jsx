@@ -28,7 +28,6 @@ import { addUserCart, getUserCarts } from "../../api/cart";
 import { pushLike, isLike } from "../../api/like";
 import { getSimilarProducts } from "../../api/product";
 import { getProductInfo } from "../../api/product";
-import Button from "../../components/common/Button/index";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -232,24 +231,7 @@ const ProductDetail = () => {
               </Style.GoToCartPageBtnContainer>
             )}
             <Style.AddBtnContainer>
-              <Button
-                border={"solid gray 0px"}
-                width={"88%"}
-                height={"50px"}
-                borderRadius={"10px"}
-                color={"white"}
-                hoverBackground={"black"}
-                hoverColor={"white"}
-                background={"#bcbcbc"}
-                fontSize={"20px"}
-                lineHeight={"250%"}
-                margin={"-10px 0px 0px 0px"}
-                isShow={true}
-                transition={"all 0.8s"}
-                onClick={clickToCart}
-              >
-                장바구니에 추가
-              </Button>
+              <Style.AddBtn onClick={clickToCart}>장바구니에 추가</Style.AddBtn>
               {!isLogin ? (
                 <BsHeart
                   style={{
