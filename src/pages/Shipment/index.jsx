@@ -15,7 +15,7 @@ import { getUserCheckedCarts } from "../../api/cart";
 import { deleteUserCart } from "../../api/cart";
 import { addOrderProducts } from "../../api/order";
 import { validateOrder } from "../../utils/validateOrder";
-import Button from "../../components/common/Button";
+import Button from "../../components/common/button";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",

@@ -8,7 +8,7 @@ import Pagination from "../../../components/common/Pagination";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getAllProducts } from "../../../api/product";
-import Button from "../../../components/common/Button";
+import Button from "../../../components/common/button";
 const itemArr3 = ["상품명", "상품코드", "가격", "관리"];
 const ManageProducts = () => {
   const navigate = useNavigate();

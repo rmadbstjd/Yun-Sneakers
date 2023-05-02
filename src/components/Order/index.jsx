@@ -8,7 +8,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import { getOrderedProducts } from "../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../api/order";
-import Button from "../common/Button";
+import Button from "../common/button";
 const itemArr = [
   "상품정보",
   "주문일자",

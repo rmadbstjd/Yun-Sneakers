@@ -7,7 +7,7 @@ import { getLikedProducts } from "../../api/like";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "./../../components/common/LoadingSpinner";
-import Button from "../../components/common/Button";
+import Button from "../../components/common/button";
 const Like = () => {
   const navigate = useNavigate();
 

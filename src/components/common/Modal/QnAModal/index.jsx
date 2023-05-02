@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactModal from "react-modal";
 import * as Style from "./styles";
 import styles from "./QnAModal.module.css";
-import Button from "../../../../components/common/Button";
+import Button from "../../../../components/common/button";
 const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
   const [text, setText] = useState("");
   const handleSetValue = (e) => {

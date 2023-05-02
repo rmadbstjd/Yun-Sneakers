@@ -7,7 +7,7 @@ import Navbar from "./../../../components/common/Navbar/index";
 import { getLikedProducts } from "../../../api/like";
 import ProductLikeCard from "../../../components/ProductLikeCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
-import Button from "../../../components/common/Button";
+import Button from "../../../components/common/button";
 const Wish = () => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();

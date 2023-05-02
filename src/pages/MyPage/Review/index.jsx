@@ -12,7 +12,7 @@ import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import LoadingSpinner from "./../../../components/common/LoadingSpinner/index";
 import { getUserReviews, deleteProductReview } from "../../../api/myPage";
-import Button from "../../../components/common/Button";
+import Button from "../../../components/common/button";
 const itemArr2 = ["상품정보", "가격(수량)", "내용", "평점", "관리"];
 const itemArr3 = ["상품정보", "주문번호", "주문금액(수량)", "쿠폰할인", "관리"];
 const Review = () => {

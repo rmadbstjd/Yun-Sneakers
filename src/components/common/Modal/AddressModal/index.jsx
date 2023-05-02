@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import * as Style from "./styles";
 import styles from "./AddressModal.module.css";
 import AddShip from "../../../AddShipInfo";
-import Button from "../../Button";
+import Button from "../../button";
 const AddressModal = ({ modalIsOpen, setModalIsOpen, submitBtn }) => {
   return (
     <ReactModal

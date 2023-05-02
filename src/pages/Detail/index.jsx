@@ -28,7 +28,7 @@ import { addUserCart, getUserCarts } from "../../api/cart";
 import { pushLike, isLike } from "../../api/like";
 import { getSimilarProducts } from "../../api/product";
 import { getProductInfo } from "../../api/product";
-import Button from "../../components/common/Button/index";
+import Button from "../../components/common/button";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();

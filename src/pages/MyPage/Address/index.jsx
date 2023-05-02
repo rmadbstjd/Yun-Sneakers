@@ -7,7 +7,7 @@ import ShipAddress from "./../../../components/ShipAddress/index";
 import AddressModal from "./../../../components/common/Modal/AddressModal";
 import MypageSide from "./../../../components/MypageSide/index";
 import { validateAddress } from "../../../utils/validateAddress";
-import Button from "../../../components/common/Button";
+import Button from "../../../components/common/button";
 import {
   addUserAddress,
   getUserAddress,

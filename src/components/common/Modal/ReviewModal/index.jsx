@@ -7,7 +7,7 @@ import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
 import { addProductReview } from "./../../../../api/myPage";
-import Button from "../../Button";
+import Button from "../../button";
 const Modal = ({
   modalIsOpen,
   setModalIsOpen,

@@ -7,7 +7,7 @@ import CartProduct from "../../components/CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 import Navbar from "./../../components/common/Navbar/index";
-import Button from "./../../components/common/Button";
+import Button from "./../../components/common/button";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";
 import Swal from "sweetalert2";

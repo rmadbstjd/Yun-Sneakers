@@ -4,7 +4,7 @@ import ProductCard from "../ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import * as Style from "./styles";
 import { getPopularProducts } from "../../api/product";
-import Button from "../common/Button";
+import Button from "../common/button";
 const ShowPopularProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
