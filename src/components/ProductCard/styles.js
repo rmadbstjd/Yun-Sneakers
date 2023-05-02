@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 export const Card = styled.div`
-  width: 220px;
-  height: 340px;
-  margin: 20px 30px 20px 0px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   cursor: pointer;
   font-family: "NanumSquareNeo-Variable";
   z-index: 1;

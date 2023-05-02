@@ -6,6 +6,7 @@ import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import { getLikedProducts } from "../../../api/like";
 import ProductLikeCard from "../../../components/ProductLikeCard";
+import ProductCard from "../../../components/ProductCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import Button from "../../../components/common/button";
 const Wish = () => {

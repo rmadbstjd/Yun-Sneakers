@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Style from "./styles";
-import HorizonLine from "../common/HorizonLine";
-import jwt_decode from "jwt-decode";
-import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { deleteQna } from "../../api/product";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
-import Pagination from "../../components/common/Pagination";
 import { getProductInfo, addQna, modifyQna, getQna } from "../../api/product";
 import Button from "../common/button";
+import Pagination from "../../components/common/Pagination";
+import HorizonLine from "../common/HorizonLine";
+import jwt_decode from "jwt-decode";
+import Swal from "sweetalert2";
+import * as Style from "./styles";
+
 const noticeArr = [
   "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",
   " 상품 및 상품 구매 과정과 관련 없는 비방, 욕설, 명예훼손성 게시글 및 상품과 관련 없는 광고글 등 부적절한 게시글 등록 시 글쓰기 제한 및 게시글이 삭제 조치 될 수 있습니다.",
   "전화번호, 이메일 등 개인 정보가 포함된 글 작성이 필요한 경우 판매자만 볼 수 있도록 비밀글로 문의해 주시기 바랍니다.",
 ];
+
 const QnA = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
@@ -31,11 +33,7 @@ const QnA = () => {
   const [content, setContent] = useState("");
   const [index, setIndex] = useState();
   const [page, setPage] = useState(1);
-  let {
-    isLoading,
-    data: QnA,
-    refetch,
-  } = useQuery(["qna"], () => getQna(id, page));
+  let { data: QnA, refetch } = useQuery(["qna"], () => getQna(id, page));
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
   const image = productInfo?.product?.image;
   const QnAcounts = QnA?.count?.length;
@@ -150,6 +148,7 @@ const QnA = () => {
     QnA = await getQna(id, page);
     refetch();
   };
+
   useEffect(() => {}, [QnA]);
 
   return (

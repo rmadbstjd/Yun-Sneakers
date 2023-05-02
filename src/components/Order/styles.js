@@ -42,12 +42,13 @@ export const ProductContent = styled.div`
   width: 100%;
   height: 200px;
   text-align: center;
-  margin: 15px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
 `;
 
 export const Img = styled.img`
   width: 200px;
   height: 200px;
+  margin-top: -20px;
   cursor: pointer;
 `;
 
@@ -55,8 +56,9 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 200px;
+  height: 100px;
   text-align: left;
+  margin-top: 50px;
 `;
 
 export const InfoItem = styled.div`

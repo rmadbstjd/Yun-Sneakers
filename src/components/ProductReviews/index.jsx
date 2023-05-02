@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import * as Style from "./styles";
-import HorizonLine from "../../components/common/HorizonLine";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
-import Pagination from "../../components/common/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import getProductReviews from "../../api/review";
+import * as Style from "./styles";
+import HorizonLine from "../../components/common/HorizonLine";
+import Pagination from "../../components/common/Pagination";
+
 const ProductReviews = () => {
   const { id } = useParams();
   const [isClicked, setIsClicked] = useState();

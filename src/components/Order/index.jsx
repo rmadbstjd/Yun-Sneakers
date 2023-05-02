@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import * as Style from "./styles";
+
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import ReviewModal from "../common/Modal/ReviewModal";
-import convertStringToNumber from "../../utils/convertStringToNumber";
-import LoadingSpinner from "../common/LoadingSpinner";
 import { getOrderedProducts } from "../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../api/order";
 import Button from "../common/button";
+import ReviewModal from "../common/Modal/ReviewModal";
+import convertStringToNumber from "../../utils/convertStringToNumber";
+import LoadingSpinner from "../common/LoadingSpinner";
+import * as Style from "./styles";
+
 const itemArr = [
   "상품정보",
   "주문일자",
@@ -17,6 +19,7 @@ const itemArr = [
   "쿠폰할인",
   "주문상태",
 ];
+
 const OrderPageNavbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [index, setIndex] = useState();
@@ -31,12 +34,18 @@ const OrderPageNavbar = () => {
     refetch: getShipIsCompletedRefetch,
   } = useQuery(["배송완료"], () => getShipIsCompleted());
   const navigate = useNavigate();
+
   const clickToBtn = async (id) => {
     await completeShipment(id);
     await getShipIsCompleted();
+    refetchProducts();
+  };
+
+  const refetchProducts = () => {
     getOrderedProductsRefetch();
     getShipIsCompletedRefetch();
   };
+
   const setPrice = (coupon, price) => {
     switch (coupon) {
       case "선택안함":

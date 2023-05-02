@@ -90,15 +90,17 @@ export const Img = styled.img`
   width: 150px;
   height: 150px;
   cursor: pointer;
+  margin-top: -30px;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 200px;
+  height: 100px;
   text-align: left;
   font-size: 15px;
+  margin-top: 10px;
 `;
 
 export const Text = styled.div`

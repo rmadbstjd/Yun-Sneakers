@@ -7,7 +7,7 @@ import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
 import searchStore from "../../store/searchStore";
-import ProductLikeCard from "../../components/ProductLikeCard";
+import ProductCard from "../../components/ProductCard";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
@@ -465,13 +465,14 @@ const SearchPage = () => {
                   </Style.NotFound>
                 ) : null}
                 {products && products.products.length !== 0
-                  ? products.products.map((item, index) => (
-                      <ProductLikeCard
+                  ? products.products.map((item) => (
+                      <ProductCard
+                        width={"190px"}
+                        height={"320px"}
+                        margin={"0px 30px 20px 0px"}
                         key={item.id}
-                        none={"none"}
                         product={item}
-                        isAdmin={isAdmin}
-                      ></ProductLikeCard>
+                      ></ProductCard>
                     ))
                   : null}
               </Style.Cards>
