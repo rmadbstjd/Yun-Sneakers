@@ -281,6 +281,9 @@ alt 속성을 추가하는 것은 접근성을 높이기 이전에
 ### 3. 상품 필터링 기능
 <br/>
 
+query-string을 통해 상품 필터링 기능을 구현하였습니다. 
+<br/>
+
 ![ezgif com-video-to-gif (14)](https://user-images.githubusercontent.com/58474431/232766185-7bdeaf65-5a0e-4438-81a7-a15e389bb676.gif)
 
 
