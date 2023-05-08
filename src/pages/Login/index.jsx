@@ -3,13 +3,13 @@ import * as Style from "./styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import { history } from "../../utils/history";
 import Navbar from "../../components/common/Navbar";
-import userInfoStore from "../../store/userInfoStore";
+
 import userApi from "../../api/user";
 const Login = () => {
   const isAuthenticated = localStorage.getItem("isLogin") === "true";
   const navigate = useNavigate();
   const location = useLocation();
-  const { setNickName, setUserId } = userInfoStore();
+
   const [inputs, setInputs] = useState({
     id: "",
     pw: "",
@@ -33,11 +33,7 @@ const Login = () => {
 
         if (data === false) {
           setResult(false);
-        } else {
-          setNickName(data.userInfo.nickname);
-          setUserId(data.userInfo.userId);
-          setResult(true);
-        }
+        } else setResult(true);
       }
     }
   };
@@ -75,11 +71,7 @@ const Login = () => {
 
       if (data === false) {
         setResult(false);
-      } else {
-        setNickName(data.userInfo.nickname);
-        setUserId(data.userInfo.userId);
-        setResult(true);
-      }
+      } else setResult(true);
     }
   };
 

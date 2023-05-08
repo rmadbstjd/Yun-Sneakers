@@ -1,9 +1,6 @@
-import jwt_decode from "jwt-decode";
-
-async function authenticate(setNickName, setUserId) {
-  const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
-  setNickName(info?.nickname || "GUEST");
-  setUserId(info?.id);
+function authenticate() {
+  const token = localStorage.getItem("accessToken") || null;
+  if (token) return true;
+  else return false;
 }
 export default authenticate;
