@@ -212,6 +212,7 @@ export const ProductsLayout = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   box-shadow: 1px 1px gray;
+  z-index: 999;
 `;
 
 export const ProductContent = styled.div`
@@ -258,6 +259,7 @@ export const NullTextLayout = styled.div`
   background: white;
   justify-content: center;
   box-shadow: 2px 2px 2px gray;
+  z-index: 999;
 `;
 
 export const NullText = styled.span`

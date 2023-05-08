@@ -11,6 +11,7 @@ export const DeleteBtn = styled.div`
   color: black;
 `;
 export const Card = styled.div`
+  position: relative;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};

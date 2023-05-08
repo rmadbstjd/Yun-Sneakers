@@ -17,17 +17,8 @@ import NewProducts from "../pages/Admin/NewProduct";
 import EditProduct from "../pages/Admin/EditProduct";
 import ManageProducts from "../pages/Admin/ManageProducts";
 import QnA from "../pages/Admin/QnA";
-import userInfoStore from "../store/userInfoStore";
-import jwt_decode from "jwt-decode";
-const Router = () => {
-  const { setNickName, setUserId } = userInfoStore();
-  const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
 
-  useEffect(() => {
-    setNickName(info?.nickname || "GUEST");
-    setUserId(info?.id);
-  }, []);
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>

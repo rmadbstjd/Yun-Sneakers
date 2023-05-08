@@ -9,56 +9,71 @@ import { FaUser } from "@react-icons/all-files/fa/FaUser";
 import { AiTwotoneShopping } from "@react-icons/all-files/ai/AiTwotoneShopping";
 import { RiFileEditFill } from "@react-icons/all-files/ri/RiFileEditFill";
 import { useQuery } from "@tanstack/react-query";
-import * as Style from "./styles";
+import { getUserCarts } from "../../../api/cart";
 import { useNavigate } from "react-router-dom";
+import * as Style from "./styles";
 import SearchModal from "../Modal/SearchModal";
 import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";
 import userApi from "../../../api/user";
-import jwt_decode from "jwt-decode";
 import ScrollToTop from "../../../utils/scrollToTop";
-import { getUserCarts } from "../../../api/cart";
 import Button from "../button";
+import jwt_decode from "jwt-decode";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { nickName, userId } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
+  const { setNickName, setUserId } = userInfoStore();
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
-  const isLogin = localStorage.getItem("isLogin") === "true";
-  const token = localStorage.getItem("accessToken");
+  const { data: cartProducts } = useQuery([userId], () => getUserCarts());
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const isLogin = localStorage.getItem("isLogin") === "true";
+  const token = localStorage.getItem("accessToken");
   const info = token && jwt_decode(token);
-  const [isAdmin] = useState(
-    (info && info.id === process.env.REACT_APP_ADMIN_ID) || false
-  );
 
-  const { data: cartProducts } = useQuery([userId], () => getUserCarts());
+  const handleLogin = async () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    userApi.logout();
+  };
+
+  const clickToSearch = () => {
+    setSearchWord(null);
+    setShowSearch((prev) => !prev);
+    setShowNavbar(false);
+  };
+
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+
+  useEffect(() => {
+    if (info?.id === process.env.REACT_APP_ADMIN_ID) {
+      setNickName("관리자");
+      setUserId(info?.id);
+      setIsAdmin(true);
+      return;
+    }
+    setNickName(info?.nickname || "GUEST");
+    setUserId(info?.id);
+  }, [nickName]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", updateScroll);
+  }, []);
+
   useEffect(() => {
     initCartCount();
     if (cartProducts) {
       plusCartCount(cartProducts?.products?.length);
     }
   }, [cartProducts]);
-  const handleLogin = async () => {
-    navigate("/login");
-  };
-  const handleLogout = () => {
-    userApi.logout();
-  };
-  const clickToSearch = () => {
-    setSearchWord(null);
-    setShowSearch((prev) => !prev);
-    setShowNavbar(false);
-  };
-  const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-  }, []);
 
   return (
     <>
