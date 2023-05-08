@@ -236,6 +236,7 @@ react-icons는 icon 종류별로 구분되어 있으며, 종류별로 하나의 
 
 <h3>개선 결과</h3>
 <br/>
+
 ![image](https://user-images.githubusercontent.com/58474431/235330666-f9c2ade5-c7f5-4ec8-9731-b0448cf17782.png)
 
 
@@ -278,6 +279,9 @@ alt 속성을 추가하는 것은 접근성을 높이기 이전에
 
 
 ### 3. 상품 필터링 기능
+<br/>
+
+query-string을 통해 상품 필터링 기능을 구현하였습니다. 
 <br/>
 
 ![ezgif com-video-to-gif (14)](https://user-images.githubusercontent.com/58474431/232766185-7bdeaf65-5a0e-4438-81a7-a15e389bb676.gif)
