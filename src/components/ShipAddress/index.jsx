@@ -3,7 +3,8 @@ import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import { getUserAddress } from "../../api/myPage";
 const ShipAddress = () => {
-  const { data: address } = useQuery(["address"], () => getUserAddress());
+  let { data: address } = useQuery(["address"], () => getUserAddress());
+  address = address[0];
   if (!address) {
     return (
       <Style.Box>
