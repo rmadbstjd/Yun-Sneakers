@@ -60,6 +60,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
       setIsAdmin(true);
       return;
     }
+
     setNickName(info?.nickname || "GUEST");
     setUserId(info?.id);
   }, [nickName]);

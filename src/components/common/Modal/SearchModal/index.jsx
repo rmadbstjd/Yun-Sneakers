@@ -160,22 +160,28 @@ const SearchModal = ({ setShowSearch }) => {
                 <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />
               </div>
             ))}
-            {products.map((item) => (
-              <div key={item.name}>
-                <Style.ProductContent
-                  onClick={() => {
-                    goToDetail(item);
-                  }}
-                >
-                  <Style.ProductImage src={item.image}></Style.ProductImage>
-                  <Style.ProductInfo>
-                    <Style.ProductDesc>{item.description}</Style.ProductDesc>
-                    <Style.ProductTitle>{item.name}</Style.ProductTitle>
-                  </Style.ProductInfo>
-                </Style.ProductContent>
-                <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />
-              </div>
-            ))}
+            <Style.ProductContainer>
+              {products.map((item) => (
+                <div key={item.name}>
+                  <Style.ProductContent
+                    onClick={() => {
+                      goToDetail(item);
+                    }}
+                  >
+                    <Style.ProductImage src={item.image}></Style.ProductImage>
+                    <Style.ProductInfo>
+                      <Style.ProductDesc>{item.description}</Style.ProductDesc>
+                      <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                    </Style.ProductInfo>
+                  </Style.ProductContent>
+                  <HorizonLine
+                    width={"86.1%"}
+                    border={"1px"}
+                    color={"#EBEBEB"}
+                  />
+                </div>
+              ))}
+            </Style.ProductContainer>
           </Style.ProductsLayout>
         ) : searchWord && searchWord.length !== 0 ? (
           <Style.NullTextLayout>
@@ -219,7 +225,7 @@ const SearchModal = ({ setShowSearch }) => {
               }}
               key={item}
             >
-              {item}{" "}
+              {item}
             </Style.RecommendContent>
           ))}
         </Style.RecommendContainer>

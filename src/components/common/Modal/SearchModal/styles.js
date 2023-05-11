@@ -112,6 +112,12 @@ export const RecommendContainer = styled.div`
   display: flex;
 `;
 
+export const ProductContainer = styled.div`
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 500px;
+  width: 762px;
+`;
 export const RecommendContent = styled.div`
   border: solid black 0px;
   width: 5rem;
