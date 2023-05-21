@@ -39,7 +39,9 @@ const ProductDetail = () => {
 
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
 
-  const { refetch: cartRefetch } = useQuery([userId], () => getUserCarts());
+  const { refetch: cartRefetch } = useQuery(["cart", userId], () =>
+    getUserCarts()
+  );
 
   const products = productInfo?.product;
   const category = productInfo?.product?.category[0];

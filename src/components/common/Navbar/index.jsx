@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FaShoppingCart } from "@react-icons/all-files/fa/FaShoppingCart";
 import { GiConverseShoe } from "@react-icons/all-files/gi/GiConverseShoe";
 import { FiSearch } from "@react-icons/all-files/fi/FiSearch";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +22,9 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const { cartCount, initCartCount, plusCartCount } = cartStore();
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
-  const { data: cartProducts } = useQuery([userId], () => getUserCarts());
+  const { data: cartProducts } = useQuery(["cart", userId], () =>
+    getUserCarts()
+  );
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const token = localStorage.getItem("accessToken");
@@ -54,8 +55,11 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, [nickName]);
 
   useEffect(() => {
+    console.log("워야");
     initCartCount();
-    if (cartProducts) plusCartCount(cartProducts?.products?.length);
+    if (cartProducts) {
+      plusCartCount(cartProducts?.products?.length);
+    }
   }, [cartProducts]);
 
   useEffect(() => {
@@ -106,6 +110,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                   setShowSearch={setShowSearch}
                   setShowNavbar={setShowNavbar}
                   setShowBar={setShowBar}
+                  cartCount={cartCount}
                 />
               )}
               {<Style.Nickname>{nickName}</Style.Nickname>}

@@ -12,9 +12,9 @@ const UserNavbar = ({
   collectionName,
   priceOrder,
   setShowBar,
+  cartCount,
 }) => {
   const navigate = useNavigate();
-  console.log("sk", searchKeyword);
   return (
     <>
       <AiTwotoneShopping
@@ -104,13 +104,14 @@ const UserNavbar = ({
           setShowSearch(false);
         }}
       />
+      <Style.Count>{cartCount}</Style.Count>
       <Style.NavbarItemLayout
         onClick={() => {
           navigate("/cart");
           setShowSearch(false);
         }}
       >
-        CART
+        MY CART
       </Style.NavbarItemLayout>
     </>
   );
