@@ -64,7 +64,7 @@ export async function getUniqueProducts(currentPage) {
 }
 
 export async function getSimilarProducts(category, productId) {
-  const response = await httpClient.post("smilarproducts", {
+  const response = await httpClient.post("similarproducts", {
     category,
     productId,
   });

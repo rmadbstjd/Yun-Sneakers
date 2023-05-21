@@ -21,7 +21,7 @@ import ProductDetailFooter from "./DetailFooter";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { Link } from "react-scroll";
-import QnA from "../../components/QnA";
+import QnAForm from "../../components/QnAForm";
 import NotFound from "../NotFound";
 import getProductReviews from "../../api/review";
 import { addUserCart, getUserCarts } from "../../api/cart";
@@ -299,7 +299,7 @@ const ProductDetail = () => {
       </Style.Container>
       <Style.Container2>
         {" "}
-        <QnA></QnA>
+        <QnAForm></QnAForm>
         <ProductDetailFooter></ProductDetailFooter>
         <div id="review">
           <ProductReviews productReviews={productReviews} />
