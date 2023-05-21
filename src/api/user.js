@@ -21,19 +21,16 @@ const signUp = async (id, pw, nickname) => {
   }
 };
 
-const login = async (id, pw) => {
+const login = async (userId, password) => {
   try {
     const response = await httpClient.post("/login", {
-      userId: id,
-      password: pw,
+      userId,
+      password,
     });
     const data = response.data;
-    if (data.isLogin === false) {
-      return false;
-    }
+    if (data.isLogin === false) return false;
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
-    localStorage.setItem("isLogin", true);
     return data;
   } catch (error) {
     console.error(error);
@@ -46,16 +43,15 @@ const logout = async () => {
     await instance.post("/logout", {});
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    localStorage.setItem("isLogin", false);
     window.location.replace("/");
   } catch (error) {
     console.error(error);
   }
 };
 
-const authToken = async () => {
+const verifyAccessToken = async () => {
   try {
-    const response = await instance.get("/user", {});
+    const response = await instance.get("/user/token", {});
     const data = response.data;
     return data;
   } catch (error) {
@@ -75,7 +71,7 @@ const isAdmin = async () => {
   }
 };
 
-const refreshToken = async (userId) => {
+const sendRefreshToken = async (userId) => {
   try {
     const response = await httpClient.post(
       "/refresh",
@@ -84,7 +80,6 @@ const refreshToken = async (userId) => {
     );
     const data = response.data;
     localStorage.setItem("accessToken", data.accessToken);
-    localStorage.setItem("isLogin", true);
     return data;
   } catch (error) {
     return false;
@@ -95,8 +90,8 @@ const userApi = {
   signUp,
   login,
   logout,
-  authToken,
+  verifyAccessToken,
   isAdmin,
-  refreshToken,
+  sendRefreshToken,
 };
 export default userApi;

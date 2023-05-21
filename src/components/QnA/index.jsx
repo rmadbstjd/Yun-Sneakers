@@ -21,7 +21,6 @@ const noticeArr = [
 const QnA = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
-  const isLogin = localStorage.getItem("isLogin");
   const info = token && jwt_decode(token);
   const userId = info && info.id;
   const { id } = useParams();
@@ -155,7 +154,7 @@ const QnA = () => {
         <Style.Title>상품 Q&A</Style.Title>
         <Style.Write
           onClick={() => {
-            if (isLogin === "false") navigate("/login");
+            if (!token) navigate("/login");
             clickToWriteBtn(setShowModal(true));
           }}
         >

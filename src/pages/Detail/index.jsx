@@ -34,7 +34,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { review, userId } = userInfoStore();
   const { plusCartCount } = cartStore();
-  const isLogin = localStorage.getItem("isLogin") === "true";
+  const token = localStorage.getItem("accessToken");
   const { selectSize, setInitSize } = productStore();
 
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
@@ -75,7 +75,7 @@ const ProductDetail = () => {
   };
 
   const clickToCart = async () => {
-    if (!isLogin) {
+    if (!token) {
       navigate("/login");
       return;
     }
@@ -96,7 +96,7 @@ const ProductDetail = () => {
   };
 
   const clickToLike = async () => {
-    if (!isLogin) navigate("/login");
+    if (!token) navigate("/login");
     await pushLike(productInfo.product.id, userId);
     refetch();
   };
@@ -250,7 +250,7 @@ const ProductDetail = () => {
               >
                 장바구니에 추가
               </Button>
-              {!isLogin ? (
+              {!token ? (
                 <BsHeart
                   style={{
                     width: "45px",

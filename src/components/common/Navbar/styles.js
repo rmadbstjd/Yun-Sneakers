@@ -109,3 +109,7 @@ export const Search = styled.div`
   height: 30px;
   cursor: pointer;
 `;
+
+export const CartIconContainer = styled.div``;
+export const SearchIconContainer = styled.div``;
+export const CartCount = styled.div``;

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "@react-icons/all-files/fa/FaShoppingCart";
-import { AiFillFileAdd } from "@react-icons/all-files/ai/AiFillFileAdd";
-import { RiQuestionAnswerFill } from "@react-icons/all-files/ri/RiQuestionAnswerFill";
 import { GiConverseShoe } from "@react-icons/all-files/gi/GiConverseShoe";
 import { FiSearch } from "@react-icons/all-files/fi/FiSearch";
-import { BsHeartFill } from "@react-icons/all-files/bs/BsHeartFill";
-import { FaUser } from "@react-icons/all-files/fa/FaUser";
-import { AiTwotoneShopping } from "@react-icons/all-files/ai/AiTwotoneShopping";
-import { RiFileEditFill } from "@react-icons/all-files/ri/RiFileEditFill";
 import { useQuery } from "@tanstack/react-query";
 import { getUserCarts } from "../../../api/cart";
 import { useNavigate } from "react-router-dom";
@@ -20,22 +14,23 @@ import userApi from "../../../api/user";
 import ScrollToTop from "../../../utils/scrollToTop";
 import Button from "../button";
 import jwt_decode from "jwt-decode";
+import AdminNavbar from "./AdminNavbar/AdminNavbar";
+import UserNavbar from "./UserNavbar/UserNavbar";
+
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
-  const { nickName, userId } = userInfoStore();
+  const { nickName, userId, setNickName, setUserId } = userInfoStore();
   const { cartCount, initCartCount, plusCartCount } = cartStore();
-  const { setNickName, setUserId } = userInfoStore();
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
   const { data: cartProducts } = useQuery([userId], () => getUserCarts());
   const [showSearch, setShowSearch] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const isLogin = localStorage.getItem("isLogin") === "true";
   const token = localStorage.getItem("accessToken");
   const info = token && jwt_decode(token);
-
-  const handleLogin = async () => {
+  let { data: isAdmin } = useQuery(["admin"], () => userApi.isAdmin());
+  isAdmin = isAdmin?.isAdmin;
+  const handleLogin = () => {
     navigate("/login");
   };
 
@@ -54,33 +49,27 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   };
 
   useEffect(() => {
-    if (info?.id === process.env.REACT_APP_ADMIN_ID) {
-      setNickName("관리자");
-      setUserId(info?.id);
-      setIsAdmin(true);
-      return;
-    }
-
     setNickName(info?.nickname || "GUEST");
     setUserId(info?.id);
   }, [nickName]);
 
   useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-  }, []);
+    initCartCount();
+    if (cartProducts) plusCartCount(cartProducts?.products?.length);
+  }, [cartProducts]);
 
   useEffect(() => {
-    initCartCount();
-    if (cartProducts) {
-      plusCartCount(cartProducts?.products?.length);
-    }
-  }, [cartProducts]);
+    window.addEventListener("scroll", updateScroll);
+    return () => {
+      window.removeEventListener("scroll", updateScroll);
+    };
+  }, []);
 
   return (
     <>
       <ScrollToTop />
       {showNavbar && (
-        <Style.Container isScrolled={scrollPosition > 100 ? true : false}>
+        <Style.Container isScrolled={scrollPosition > 100}>
           <Style.NavbarContainer>
             <Style.NavbarLeftContainer
               onClick={() => {
@@ -88,194 +77,39 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                 setShowSearch(false);
               }}
             >
-              <GiConverseShoe size={45} />
-              <Style.ShopName>Yun's Sneakers</Style.ShopName>
-            </Style.NavbarLeftContainer>
-            <Style.NavbarRightContainer>
-              <AiTwotoneShopping
-                style={{
-                  marginTop: "10px",
-                  marginRight: "3px",
-                  cursor: "pointer",
-                  width: "21px",
-                  height: "21px",
-                }}
-                onClick={() => {
-                  if (searchKeyword === undefined) {
-                    navigate("/search");
-                  } else {
-                    navigate(
-                      `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
-                    );
-                    setShowSearch(false);
-                    setShowBar(false);
-                  }
-                }}
+              <GiConverseShoe
+                size={45}
+                style={{ marginLeft: "6px", marginRight: "6px" }}
               />
-              <Style.MyPage
+              <Style.ShopName
                 onClick={() => {
-                  if (searchKeyword === undefined) {
-                    navigate("/search");
-                  } else {
-                    navigate(
-                      `/search?keyword=${searchKeyword}&sort=${sort}&collectionName=${collectionName}&priceOrder=${priceOrder}`
-                    );
-                    setShowSearch(false);
-                    setShowBar(false);
-                  }
+                  navigate("/");
+                  setShowSearch(false);
                 }}
               >
-                SHOP
-              </Style.MyPage>
-              {!isAdmin && (
-                <FaUser
-                  style={{
-                    marginTop: "13px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/mypage/order");
-                    setShowSearch(false);
-                  }}
-                />
-              )}
-              {!isAdmin && (
-                <Style.MyPage
-                  onClick={() => {
-                    navigate("/mypage/order");
-                    setShowSearch(false);
-                  }}
-                >
-                  MY PAGE
-                </Style.MyPage>
-              )}
+                Yun'Sneakers
+              </Style.ShopName>
+            </Style.NavbarLeftContainer>
 
-              {!isAdmin && (
-                <BsHeartFill
-                  style={{
-                    marginTop: "15px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/products");
-                    setShowSearch(false);
-                  }}
+            <Style.NavbarRightContainer>
+              {isAdmin ? (
+                <AdminNavbar
+                  navigate={navigate}
+                  setShowSearch={setShowSearch}
+                />
+              ) : (
+                <UserNavbar
+                  searchKeyword={searchKeyword}
+                  sort={sort}
+                  collectionName={collectionName}
+                  priceOrder={priceOrder}
+                  setShowSearch={setShowSearch}
+                  setShowNavbar={setShowNavbar}
+                  setShowBar={setShowBar}
                 />
               )}
-              {!isAdmin && (
-                <Style.Products
-                  onClick={() => {
-                    navigate("/products");
-                    setShowSearch(false);
-                  }}
-                >
-                  MY LIKE
-                </Style.Products>
-              )}
-              {!isAdmin && (
-                <FaShoppingCart
-                  style={{
-                    marginTop: "10px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                  size={20}
-                  onClick={() => {
-                    navigate("/cart");
-                    setShowSearch(false);
-                  }}
-                />
-              )}
-              {!isAdmin && (
-                <Style.ShoppingBag
-                  onClick={() => {
-                    navigate("/cart");
-                    setShowSearch(false);
-                  }}
-                >
-                  {isLogin && <Style.Count>{cartCount}</Style.Count>}
-                  <Style.Products>MY CART</Style.Products>
-                </Style.ShoppingBag>
-              )}
-              {isAdmin && (
-                <RiFileEditFill
-                  size={19}
-                  style={{
-                    marginTop: "12px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/admin/manage");
-                    setShowSearch(false);
-                  }}
-                />
-              )}
-              {isAdmin && (
-                <Style.Products
-                  onClick={() => {
-                    navigate("/admin/manage");
-                    setShowSearch(false);
-                  }}
-                >
-                  상품 관리
-                </Style.Products>
-              )}
-              {isAdmin && (
-                <RiQuestionAnswerFill
-                  size={20}
-                  style={{
-                    marginTop: "11px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                />
-              )}
-              {isAdmin && (
-                <Style.Products
-                  onClick={() => {
-                    navigate("/admin/qna");
-                    setShowSearch(false);
-                  }}
-                >
-                  Q&A
-                </Style.Products>
-              )}
-              {isAdmin && (
-                <AiFillFileAdd
-                  size={20}
-                  style={{
-                    marginTop: "11px",
-                    marginRight: "3px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/admin/new");
-                    setShowSearch(false);
-                  }}
-                />
-              )}
-              {isAdmin && (
-                <Style.Products
-                  onClick={() => {
-                    navigate("/admin/new");
-                    setShowSearch(false);
-                  }}
-                >
-                  상품 추가
-                </Style.Products>
-              )}
-              <Style.Nickname>
-                {isAdmin
-                  ? "관리자"
-                  : nickName.length !== 0
-                  ? nickName
-                  : "GUEST"}
-              </Style.Nickname>
-
-              {!isLogin ? (
+              {<Style.Nickname>{nickName}</Style.Nickname>}
+              {!userId ? (
                 <Button
                   border={"solid black 0px"}
                   width={"60px"}
@@ -286,7 +120,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                   hoverFontWeight={"bolder"}
                   onClick={handleLogin}
                 >
-                  Login
+                  LOGIN
                 </Button>
               ) : (
                 <Button
@@ -299,23 +133,34 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
                   hoverFontWeight={"bolder"}
                   onClick={handleLogout}
                 >
-                  Logout
+                  LOGOUT
                 </Button>
               )}
-              <FiSearch
-                style={{
-                  margin: "7px 2px 0px 10px",
-                  width: "30px",
-                  height: "30px",
-                  cursor: "pointer",
-                }}
-                onClick={clickToSearch}
-              />
+              <Style.SearchIconContainer onClick={clickToSearch}>
+                <FiSearch
+                  style={{
+                    margin: "5px 2px 0px 10px",
+                    width: "30px",
+                    height: "30px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Style.SearchIconContainer>
             </Style.NavbarRightContainer>
           </Style.NavbarContainer>
         </Style.Container>
       )}
-      {showSearch && <SearchModal setShowSearch={setShowSearch} />}
+      {showSearch && (
+        <SearchModal
+          searchKeyword={searchKeyword}
+          sort={sort}
+          collectionName={collectionName}
+          priceOrder={priceOrder}
+          setShowSearch={setShowSearch}
+          setShowNavbar={setShowNavbar}
+          setShowBar={setShowBar}
+        />
+      )}
     </>
   );
 };

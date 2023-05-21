@@ -29,10 +29,7 @@ instance.interceptors.request.use(
 
     if (config.headers && token) {
       const accessToken = localStorage.getItem("accessToken");
-      const refreshToken = localStorage.getItem("refreshToken");
-
       config.headers.authorization = accessToken;
-      config.headers.refreshToken = refreshToken;
       return config;
     }
   },
@@ -54,13 +51,11 @@ instance.interceptors.response.use(
 
       // token refresh 요청
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/refresh`, // token refresh api
+        `${process.env.REACT_APP_BASE_URL}/refresh`,
         { userId, userNickName },
         { headers: { authorization: refreshToken } }
       );
-
       const data = response.data;
-
       if (data.isSuccess) {
         const newAccessToken = data.accessToken;
         localStorage.setItem("accessToken", newAccessToken);
@@ -68,12 +63,9 @@ instance.interceptors.response.use(
       } else {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        localStorage.setItem("isLogin", false);
         history.push("/login");
-
         return Promise.reject(error);
       }
-
       return axios(originalRequest);
     }
     return Promise.reject(error);

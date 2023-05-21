@@ -6,7 +6,6 @@ import Navbar from "../../components/common/Navbar";
 
 import userApi from "../../api/user";
 const Login = () => {
-  const isAuthenticated = localStorage.getItem("isLogin") === "true";
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -104,9 +103,6 @@ const Login = () => {
     return unlistenHistoryEvent;
   }, [navigate, location.pathname]);
 
-  useEffect(() => {
-    if (isAuthenticated) navigate("/");
-  }, [isAuthenticated]);
   return (
     <>
       <Navbar />
