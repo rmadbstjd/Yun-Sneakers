@@ -8,11 +8,25 @@ const MainProducts = ({
   isLoading,
   products,
   showMoreBtn,
-  ClickToShowMoreProductsBtn,
+  onClick,
   width,
   titleKOR,
   titleENG,
 }) => {
+  const renderProductCards = () => {
+    return products?.map((productGroup) =>
+      productGroup.map((product) => (
+        <ProductCard
+          key={product.name}
+          width={"200px"}
+          height={"200px"}
+          margin={"20px 56px 150px 0px"}
+          product={product}
+        />
+      ))
+    );
+  };
+
   return (
     <Style.Container>
       <Style.ProductsContainer>
@@ -23,22 +37,12 @@ const MainProducts = ({
             width={width}
             margin={"100px 0px 0px 0px"}
             text={"상품을 불러오는 중입니다."}
-          ></LoadingSpinner>
+          />
         )}
-        {products?.map((product) =>
-          product?.map((product) => (
-            <ProductCard
-              width={"200px"}
-              height={"200px"}
-              margin={"20px 56px 150px 0px"}
-              key={product.name}
-              product={product}
-            ></ProductCard>
-          ))
-        )}
+        {renderProductCards()}
         <Style.MoreContainer>
-          <Style.More>
-            {!isLoading && (
+          {!isLoading && showMoreBtn && (
+            <Style.More>
               <Button
                 border={"solid gray 1px"}
                 borderRadius={"10px"}
@@ -51,13 +55,12 @@ const MainProducts = ({
                 width={"100px"}
                 height={"40px"}
                 lineHeight={"10%"}
-                isShow={showMoreBtn}
-                onClick={ClickToShowMoreProductsBtn}
+                onClick={onClick}
               >
                 더보기
               </Button>
-            )}
-          </Style.More>
+            </Style.More>
+          )}
         </Style.MoreContainer>
       </Style.ProductsContainer>
     </Style.Container>

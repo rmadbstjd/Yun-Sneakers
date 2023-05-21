@@ -32,17 +32,17 @@ const Main = () => {
       getUniqueProducts(uniqueCurrentPage)
     );
 
-  const ClickToNewShowMoreProductsBtn = () => {
+  const onClickNewShowMoreProductsBtn = () => {
     setNewCurrentPage((prev) => prev + 1);
     if (newCurrentPage >= 4) setShowNewMoreBtn(false);
   };
 
-  const ClickToPopularShowMoreProductsBtn = () => {
+  const onClickPopularShowMoreProductsBtn = () => {
     setPopularCurrentPage((prev) => prev + 1);
     if (popularCurrentPage >= 4) setShowPopularMoreBtn(false);
   };
 
-  const ClickToUniqueShowMoreProductsBtn = () => {
+  const onClickUniqueShowMoreProductsBtn = () => {
     setUniqueCurrentPage((prev) => prev + 1);
     if (uniqueCurrentPage >= 1) setShowUniqueMoreBtn(false);
   };
@@ -70,7 +70,7 @@ const Main = () => {
               products={popularProducts}
               showMoreBtn={showPopularMoreBtn}
               setShowMoreBtn={setShowPopularMoreBtn}
-              ClickToShowMoreProductsBtn={ClickToPopularShowMoreProductsBtn}
+              onClick={onClickPopularShowMoreProductsBtn}
               titleENG={"Most Popular"}
               titleKOR={"인기 있는 상품"}
               width={"94.8%"}
@@ -83,7 +83,7 @@ const Main = () => {
               setCurrentPage={setNewCurrentPage}
               showMoreBtn={showNewMoreBtn}
               setShowMoreBtn={setShowNewMoreBtn}
-              ClickToShowMoreProductsBtn={ClickToNewShowMoreProductsBtn}
+              onClick={onClickNewShowMoreProductsBtn}
               titleENG={"New In"}
               titleKOR={"새로운 상품"}
               width={"100%"}
@@ -95,7 +95,7 @@ const Main = () => {
               setCurrentPage={setUniqueCurrentPage}
               showMoreBtn={showUniqueMoreBtn}
               setShowMoreBtn={setShowUniqueMoreBtn}
-              ClickToShowMoreProductsBtn={ClickToUniqueShowMoreProductsBtn}
+              onClick={onClickUniqueShowMoreProductsBtn}
               titleENG={"Unique Products"}
               titleKOR={"시선을 사로잡는 상품"}
               width={"100%"}

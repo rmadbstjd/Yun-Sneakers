@@ -1,8 +1,8 @@
 import React from "react";
 
-import InputProduct from "../../../components/Admin/AddProductForm";
+import AddProductForm from "../../../components/Admin/AddProductForm";
 const NewProducts = () => {
-  return <InputProduct></InputProduct>;
+  return <AddProductForm></AddProductForm>;
 };
 
 export default NewProducts;
