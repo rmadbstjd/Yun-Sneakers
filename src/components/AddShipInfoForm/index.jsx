@@ -9,7 +9,7 @@ import PopupDom from "./PostPopUp/PopupDom";
 import userInfoStore from "../../store/userInfoStore";
 import Button from "../common/button";
 
-const requestArr = [
+const requestedTermList = [
   "배송시 요청사항을 선택해 주세요",
   "부재시 문앞에 놓아주세요",
   "부재시 경비실에 맡겨 주세요.",
@@ -20,7 +20,7 @@ const requestArr = [
 
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
-const AddShip = ({ type, setDefaultAddress }) => {
+const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   const { data: address } = useQuery(["address"], () => getUserAddress());
 
   const {
@@ -43,25 +43,26 @@ const AddShip = ({ type, setDefaultAddress }) => {
     setShipAddressDetail,
   } = userInfoStore();
 
-  const [showRequest, setShowRequest] = useState(false);
-  const [request, setRequest] = useState("배송시 요청사항을 선택해 주세요");
+  const [showRequestedTermList, setShowRequestedTermList] = useState(false);
+  const [requestedTermItem, setRequestedTermItem] =
+    useState("배송시 요청사항을 선택해 주세요");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [textArea, setTextArea] = useState("");
-  const [showTextArea, showSetTextArea] = useState(false);
+  const [requestTextArea, setRequestTextArea] = useState("");
+  const [showTextArea, setShowTextArea] = useState(false);
 
   const closePostCode = () => {
     setIsPopupOpen(false);
   };
 
-  const clickRequest = (item) => {
-    setRequest(item);
-    setShowRequest(false);
-    if (item === "직접입력") showSetTextArea(true);
-    else showSetTextArea(false);
+  const clickRequestedTermBox = (item) => {
+    setRequestedTermItem(item);
+    setShowRequestedTermList(false);
+    if (item === "직접입력") setShowTextArea(true);
+    else setShowTextArea(false);
   };
 
   const showRequestBox = () => {
-    setShowRequest((prev) => !prev);
+    setShowRequestedTermList((prev) => !prev);
   };
 
   const changePlaceName = (e) => {
@@ -92,7 +93,7 @@ const AddShip = ({ type, setDefaultAddress }) => {
 
   const checkTextLength = (e) => {
     if (e.target.value.length >= 51) return;
-    setTextArea(e.target.value);
+    setRequestTextArea(e.target.value);
   };
 
   const addAddress = async () => {
@@ -216,12 +217,16 @@ const AddShip = ({ type, setDefaultAddress }) => {
         </Style.CheckBoxContainer>
       )}
       <Style.RequestBox onClick={showRequestBox}>
-        {request} <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
+        {requestedTermItem}{" "}
+        <IoIosArrowDown style={{ margin: "10px 10px 0px 0px" }} />
       </Style.RequestBox>
       <Style.RequestContainer>
-        {showRequest &&
-          requestArr.map((item) => (
-            <Style.Request onClick={() => clickRequest(item)} key={item}>
+        {showRequestedTermList &&
+          requestedTermList.map((item) => (
+            <Style.Request
+              onClick={() => clickRequestedTermBox(item)}
+              key={item}
+            >
               {item}
             </Style.Request>
           ))}
@@ -229,17 +234,15 @@ const AddShip = ({ type, setDefaultAddress }) => {
       {showTextArea && (
         <>
           <Style.TextArea
-            value={textArea}
+            value={requestTextArea}
             onChange={(e) => checkTextLength(e)}
             placeholder="내용을 입력해주세요.(최대 50자)"
           ></Style.TextArea>
-          <Style.LetterCount>{textArea.length}/50</Style.LetterCount>
+          <Style.LetterCount>{requestTextArea.length}/50</Style.LetterCount>
         </>
       )}
-
-      <div></div>
     </Style.Container>
   );
 };
 
-export default AddShip;
+export default AddShipInfoForm;

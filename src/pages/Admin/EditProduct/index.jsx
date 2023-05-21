@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import InputProduct from "../../../components/AddProductForm";
+import EditProductForm from "../../../components/Admin/EditProductForm";
 import { useQuery } from "@tanstack/react-query";
 import { getProductInfo } from "../../../api/product";
 const EditProduct = () => {
@@ -11,13 +11,7 @@ const EditProduct = () => {
     getProductInfo(id)
   );
 
-  return (
-    <InputProduct
-      title={"상품 수정하기"}
-      type={"수정"}
-      productInfo={productInfo}
-    ></InputProduct>
-  );
+  return <EditProductForm productInfo={productInfo}></EditProductForm>;
 };
 
 export default EditProduct;

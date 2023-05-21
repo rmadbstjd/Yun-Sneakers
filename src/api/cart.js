@@ -22,7 +22,6 @@ export const updateUserCart = async (productId, size, quantity) => {
 };
 
 export const checkProduct = async (productId, isChecked) => {
-  console.log("isChecked", isChecked);
   await instance.put(`/carts/check/${productId}`, {
     isChecked,
   });

@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import * as Style from "./styles";
 import styles from "./AddressModal.module.css";
-import AddShip from "../../../AddShipInfoForm";
+import AddShipInfoForm from "../../../AddShipInfoForm";
 import Button from "../../button";
 const AddressModal = ({ modalIsOpen, setModalIsOpen, submitBtn }) => {
   return (
@@ -15,7 +15,7 @@ const AddressModal = ({ modalIsOpen, setModalIsOpen, submitBtn }) => {
     >
       <Style.AddressContainer>
         <Style.AddressContent>
-          <AddShip setDefaultAddress={false} />
+          <AddShipInfoForm setDefaultAddress={false} />
           <Style.BtnContainer>
             <Button
               border={"solid gray 1px"}

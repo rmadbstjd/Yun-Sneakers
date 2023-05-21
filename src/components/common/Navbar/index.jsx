@@ -55,7 +55,6 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, [nickName]);
 
   useEffect(() => {
-    console.log("워야");
     initCartCount();
     if (cartProducts) {
       plusCartCount(cartProducts?.products?.length);

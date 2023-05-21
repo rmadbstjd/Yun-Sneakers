@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import AddShip from "../../components/AddShipInfoForm";
+import AddShipInfoForm from "../../components/AddShipInfoForm";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
@@ -298,7 +298,10 @@ const Shipment = () => {
             {!haveAddress ? (
               <ShipAddress />
             ) : (
-              <AddShip setDefaultAddress={true} type={"orderPage"}></AddShip>
+              <AddShipInfoForm
+                setDefaultAddress={true}
+                type={"orderPage"}
+              ></AddShipInfoForm>
             )}
           </div>
 
