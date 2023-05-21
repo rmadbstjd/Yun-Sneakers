@@ -8,7 +8,7 @@ const httpClient = axios.create({
 
 const signUp = async (id, pw, nickname) => {
   try {
-    const response = await httpClient.post("/signUp", {
+    const response = await httpClient.post("/signup", {
       userId: id,
       password: pw,
       nickname,

@@ -19,13 +19,13 @@ export async function completeShipment(orderId) {
 }
 
 export async function getShipIsCompleted() {
-  const response = await instance.get(`/order/completed`, {});
+  const response = await instance.get(`/order/completedproducts`, {});
   const data = response.data;
   return data;
 }
 
 export async function getIsNotReviewdProducts() {
-  const response = await instance.get(`/order/notreviewd`, {});
+  const response = await instance.get(`/order/notreviewdproducts`, {});
   const data = response.data;
   return data;
 }

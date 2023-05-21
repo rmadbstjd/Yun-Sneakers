@@ -8,7 +8,7 @@ export const getUserCarts = async () => {
 };
 
 export const getUserCheckedCarts = async () => {
-  const response = await instance.get("/cart/checked", {});
+  const response = await instance.get("/cart/check/products", {});
   const data = response.data;
   if (data.success) return data;
   else return null;
@@ -22,7 +22,8 @@ export const updateUserCart = async (productId, size, quantity) => {
 };
 
 export const checkProduct = async (productId, isChecked) => {
-  await instance.put(`/carts/${productId}/check`, {
+  console.log("isChecked", isChecked);
+  await instance.put(`/carts/check/${productId}`, {
     isChecked,
   });
 };

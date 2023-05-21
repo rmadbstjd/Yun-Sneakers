@@ -49,7 +49,7 @@ font-size: 12px;
 margin-top : 3px;
 }`;
 
-export const SubmitBtn = styled.button`
+export const SubmitButton = styled.button`
   border: none;
   width: 100%;
   margin-top: 20px;
@@ -65,3 +65,5 @@ export const SubmitBtn = styled.button`
 `;
 
 export const Form = styled.form``;
+
+export const ResultMessage = styled.div``;

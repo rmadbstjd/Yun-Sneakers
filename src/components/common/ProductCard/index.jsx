@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
-import { pushLike } from "../../api/like";
+import { pushLike } from "../../../api/like";
 import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import * as Style from "./styles";
-import convertStringToNumber from "../../utils/convertStringToNumber";
+import convertStringToNumber from "../../../utils/convertStringToNumber";
 
 const ProductCard = ({
   product,

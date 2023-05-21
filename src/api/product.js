@@ -13,7 +13,7 @@ export async function searchForProducts(
   priceOrder,
   page
 ) {
-  const response = await httpClient.get("/search", {
+  const response = await httpClient.get("search/products", {
     params: { keyword, sort, collectionName, priceOrder, page, offset: 10 },
   });
   const data = response.data;
@@ -23,7 +23,7 @@ export async function searchForProducts(
 }
 
 export async function getAllProducts(page) {
-  const response = await httpClient.get("products/all", {
+  const response = await httpClient.get("allproducts", {
     headers: {
       page,
     },
@@ -38,7 +38,7 @@ export async function getAllProducts(page) {
 export async function getNewProducts(currentPage) {
   if (!currentPage) currentPage = 1;
 
-  const response = await httpClient.post("products/orderByNew", {
+  const response = await httpClient.post("newproducts", {
     currentPage,
   });
   const data = response.data;
@@ -47,7 +47,7 @@ export async function getNewProducts(currentPage) {
 
 export async function getPopularProducts(currentPage) {
   if (!currentPage) currentPage = 1;
-  const response = await httpClient.post("products/orderByPopular", {
+  const response = await httpClient.post("popularproducts", {
     currentPage,
   });
   const data = response.data;
@@ -56,7 +56,7 @@ export async function getPopularProducts(currentPage) {
 
 export async function getUniqueProducts(currentPage) {
   if (!currentPage) currentPage = 1;
-  const response = await httpClient.post("products/orderByUnique", {
+  const response = await httpClient.post("uniqueproducts", {
     currentPage,
   });
   const data = response.data;
@@ -64,7 +64,7 @@ export async function getUniqueProducts(currentPage) {
 }
 
 export async function getSimilarProducts(category, productId) {
-  const response = await httpClient.post("products/similar", {
+  const response = await httpClient.post("smilarproducts", {
     category,
     productId,
   });
@@ -73,14 +73,14 @@ export async function getSimilarProducts(category, productId) {
 }
 
 export async function getProductInfo(id) {
-  const response = await httpClient.get(`products/${id}`);
+  const response = await httpClient.get(`product/${id}`);
   const data = response.data;
   if (data.error) return "error";
   return data;
 }
 
 export async function addProduct(product, image) {
-  await httpClient.post("/products", {
+  await httpClient.post("/product", {
     id: product.id,
     name: product.title,
     category: product.category,
@@ -92,7 +92,7 @@ export async function addProduct(product, image) {
 }
 
 export async function editProduct(product, image, productId) {
-  await httpClient.put("/products", {
+  await httpClient.put("/product", {
     id: product.id,
     name: product.title,
     category: product.category,
@@ -105,7 +105,7 @@ export async function editProduct(product, image, productId) {
 }
 
 export async function deleteProduct(productId) {
-  const response = await httpClient.delete(`/products`, {
+  const response = await httpClient.delete(`/product`, {
     data: { productId },
   });
   const data = response.data;
@@ -113,13 +113,13 @@ export async function deleteProduct(productId) {
 }
 
 export async function getBrandsName() {
-  const response = await httpClient.get("products/brandsName", {});
+  const response = await httpClient.get("products/brandsname", {});
   const data = response.data;
   return data;
 }
 
 export async function getNotAnsweredQna() {
-  const response = await httpClient.get("/qna/notanswered", {});
+  const response = await httpClient.get("/notansweredqna", {});
   const data = response.data;
   return data;
 }
@@ -139,7 +139,7 @@ export async function addQna(
   image
 ) {
   try {
-    const response = await instance.post(`/qna/${productId}`, {
+    const response = await instance.post(`qna/${productId}`, {
       title,
       content,
       isSecret,

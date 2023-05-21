@@ -16,7 +16,7 @@ export const pushLike = async (productId, userId) => {
 };
 
 export const isLike = async (productId) => {
-  const response = await instance.get(`/like/isLike/${productId}`, {
+  const response = await instance.get(`/like/${productId}`, {
     headers: {
       Authorization: localStorage.getItem("accessToken"),
     },

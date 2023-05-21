@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../ProductCard";
+import ProductCard from "../common/ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import * as Style from "./styles";
 import Button from "../common/button";

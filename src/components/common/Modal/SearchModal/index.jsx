@@ -77,7 +77,7 @@ const SearchModal = ({ setShowSearch }) => {
 
   const fetch = async (keyword) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/search/autocompleted`,
+      `${process.env.REACT_APP_BASE_URL}/search/autocompletedproducts`,
       {
         keyword,
       }

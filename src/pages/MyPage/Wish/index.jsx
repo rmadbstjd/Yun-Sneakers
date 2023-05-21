@@ -5,7 +5,7 @@ import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
 import { getLikedProducts } from "../../../api/like";
-import ProductCard from "../../../components/ProductCard";
+import ProductCard from "../../../components/common/ProductCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import Button from "../../../components/common/button";
 const Wish = () => {

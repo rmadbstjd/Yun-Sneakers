@@ -7,7 +7,7 @@ import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
 import searchStore from "../../store/searchStore";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/common/ProductCard";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
@@ -170,7 +170,7 @@ const SearchPage = () => {
 
   const fetch = async (result) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/search/autocompleted`,
+      `${process.env.REACT_APP_BASE_URL}/search/autocompletedproducts`,
       {
         keyword: result,
       }

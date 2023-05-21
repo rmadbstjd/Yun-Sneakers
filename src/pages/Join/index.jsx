@@ -188,9 +188,9 @@ const Join = () => {
           ) : null}
         </Style.InputContainer>
 
-        <Style.SubmitBtn isPassed={isPassed} onClick={clickToSubmit}>
+        <Style.SubmitButton isPassed={isPassed} onClick={clickToSubmit}>
           가입하기
-        </Style.SubmitBtn>
+        </Style.SubmitButton>
       </Style.Container>
     </div>
   );
