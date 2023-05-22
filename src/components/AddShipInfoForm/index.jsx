@@ -6,7 +6,6 @@ import { addUserAddress, getUserAddress } from "../../api/myPage";
 import * as Style from "./styles";
 import PopupPostCode from "./PostPopUp/PopupPostCode";
 import PopupDom from "./PostPopUp/PopupDom";
-import userInfoStore from "../../store/userInfoStore";
 import Button from "../common/button";
 
 const requestedTermList = [
@@ -22,26 +21,17 @@ const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   const { data: address } = useQuery(["address"], () => getUserAddress());
-
-  const {
-    shipPlaceName,
-    setShipPlaceName,
-    shipReceiver,
-    setShipReceiver,
-    shipPostCode,
-    setShipPostCode,
-    shipAddress,
-    setShipAddress,
-    firstPhoneNum,
-    middlePhoneNum,
-    lastPhoneNum,
-    setFirstPhoneNum,
-    setMiddlePhoneNum,
-    setLastPhoneNum,
-    defaultAddress,
-    shipAddressDetail,
-    setShipAddressDetail,
-  } = userInfoStore();
+  const [inputs, setInputs] = useState({
+    place: "",
+    receiver: "",
+    postCode: "",
+    address: "",
+    detail: "",
+    firstPhoneNum: "",
+    middlePhoneNum: "",
+    lastPhoneNum: "",
+    defaultAddress: "",
+  });
 
   const [showRequestedTermList, setShowRequestedTermList] = useState(false);
   const [requestedTermItem, setRequestedTermItem] =
@@ -66,31 +56,28 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   };
 
   const changePlaceName = (e) => {
-    if (regex.test(e.target.value)) setShipPlaceName(e.target.value);
+    if (regex.test(e.target.value))
+      setInputs({ ...inputs, place: e.target.value });
   };
 
   const changeReceiverName = (e) => {
-    if (regex.test(e.target.value)) setShipReceiver(e.target.value);
+    if (regex.test(e.target.value))
+      setInputs({ ...inputs, receiver: e.target.value });
   };
 
-  const validateFirstPhoneNum = (e) => {
-    const number = e.target.value.replace(/[^0-9]/g, "");
-    if (number.length >= 4) return;
-    setFirstPhoneNum(number);
+  const changeDetailName = (e) => {
+    if (regex.test(e.target.value));
+    setInputs({ ...inputs, detail: e.target.value });
   };
 
-  const validateMiddlePhoneNum = (e) => {
-    const number = e.target.value.replace(/[^0-9]/g, "");
-    if (number.length >= 5) return;
-    setMiddlePhoneNum(number);
-  };
-
-  const validateLastPhoneNum = (e) => {
+  const validatePhoneNumber = (e, field) => {
     const number = e.target.value.replace(/[^0-9]/g, "");
     if (number.length >= 5) return;
-    setLastPhoneNum(number);
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [field]: number,
+    }));
   };
-
   const checkTextLength = (e) => {
     if (e.target.value.length >= 51) return;
     setRequestTextArea(e.target.value);
@@ -98,30 +85,32 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
 
   const addAddress = async () => {
     await addUserAddress(
-      shipPlaceName,
-      shipReceiver,
-      shipPostCode,
-      shipAddress,
-      shipAddressDetail,
-      firstPhoneNum,
-      middlePhoneNum,
-      lastPhoneNum
+      inputs.place,
+      inputs.receiver,
+      inputs.postCode,
+      inputs.address,
+      inputs.detail,
+      inputs.firstPhoneNum,
+      inputs.middlePhoneNum,
+      inputs.lastPhoneNum
     );
   };
 
   useEffect(() => {
     if (address) {
-      setShipPlaceName(address.place);
-      setShipReceiver(address.receiver);
-      setFirstPhoneNum(address.phoneNumber1);
-      setMiddlePhoneNum(address.phoneNumber2);
-      setLastPhoneNum(address.phoneNumber3);
-      setShipAddress(address.address);
-      setShipAddressDetail(address.addressDetail);
-      setShipPostCode(address.postCode);
+      setInputs({
+        ...inputs,
+        place: address.place,
+        receiver: address.receiver,
+        firstPhoneNum: address.phoneNumber1,
+        middlePhoneNum: address.phoneNumber2,
+        lastPhoneNum: address.phoneNumber3,
+        address: address.address,
+        detail: address.detail,
+        postCode: address.postCode,
+      });
     }
   }, [address]);
-
   return (
     <Style.Container>
       <Style.Content>
@@ -129,7 +118,7 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
         <Style.DeliveryAddress
           type="text"
           maxLength={10}
-          value={shipPlaceName}
+          value={inputs.place}
           onChange={(e) => changePlaceName(e)}
         ></Style.DeliveryAddress>
       </Style.Content>
@@ -138,7 +127,7 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
         <Style.DeliveryAddress
           type="text"
           maxLength={10}
-          value={shipReceiver}
+          value={inputs.receiver}
           onChange={(e) => changeReceiverName(e)}
         ></Style.DeliveryAddress>
       </Style.Content>
@@ -146,7 +135,7 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
         <Style.AddressItem>배송지</Style.AddressItem>
         <Style.SearchContainer>
           <Style.Search>
-            <Style.AddressNumber>{shipPostCode}</Style.AddressNumber>
+            <Style.AddressNumber>{inputs.postCode}</Style.AddressNumber>
             <Button
               style={{
                 border: "solid gray 0px",
@@ -168,16 +157,21 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
           <div id="popupDom">
             {isPopupOpen && (
               <PopupDom>
-                <PopupPostCode onClose={closePostCode} type={type} />
+                <PopupPostCode
+                  onClose={closePostCode}
+                  type={type}
+                  setInputs={setInputs}
+                  inputs={inputs}
+                />
               </PopupDom>
             )}
           </div>
-          <Style.AddressInfo>{shipAddress}</Style.AddressInfo>
+          <Style.AddressInfo>{inputs.address}</Style.AddressInfo>
           <Style.MoreInfo
             type="text"
             placeholder="상세 주소 입력"
-            value={shipAddressDetail}
-            onChange={(e) => setShipAddressDetail(e.target.value)}
+            value={inputs.detail}
+            onChange={(e) => changeDetailName(e)}
           ></Style.MoreInfo>
         </Style.SearchContainer>
       </Style.AddressContainer>
@@ -186,8 +180,8 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
 
         <Style.Number
           type="text"
-          value={firstPhoneNum}
-          onChange={(e) => validateFirstPhoneNum(e)}
+          value={inputs.firstPhoneNum}
+          onChange={(e) => validatePhoneNumber(e, "firstPhoneNum")}
         />
 
         <AiOutlineMinus
@@ -195,16 +189,16 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
         />
         <Style.Number
           type="text"
-          value={middlePhoneNum}
-          onChange={(e) => validateMiddlePhoneNum(e)}
+          value={inputs.middlePhoneNum}
+          onChange={(e) => validatePhoneNumber(e, "middlePhoneNum")}
         ></Style.Number>
         <AiOutlineMinus
           style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
         />
         <Style.Number
           type="text"
-          value={lastPhoneNum}
-          onChange={(e) => validateLastPhoneNum(e)}
+          value={inputs.lastPhoneNum}
+          onChange={(e) => validatePhoneNumber(e, "lastPhoneNum")}
         ></Style.Number>
       </Style.PhoneNumberContainer>
       {setDefaultAddress && (
@@ -212,7 +206,7 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
           <Style.CheckBox
             margin={"2 0px"}
             type="checkbox"
-            value={defaultAddress}
+            value={inputs.defaultAddress}
             onChange={(e) => addAddress(e)}
           />
           <Style.CheckBoxRight>기본 배송지로 설정</Style.CheckBoxRight>

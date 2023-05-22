@@ -294,18 +294,20 @@ const Cart = () => {
               쇼핑 계속하기
             </Button>
             <Button
-              width={"30%"}
-              border={"solid black 1px"}
-              height={"65px"}
-              lineHeight={"270%"}
-              margin={"0px 10px 0px 0px"}
-              fontWeight={"bolder"}
-              background={"black"}
-              color={"white"}
-              hoverColor={"#a5ba93"}
-              hoverBackground={"black"}
+              style={{
+                width: "30%",
+                border: "solid black 1px",
+                height: "65px",
+                lineHeight: "270%",
+                margin: "0px 10px 0px 0px",
+                fontWeight: "bolder",
+                background: "black",
+                color: "white",
+                hoverColor: "#a5ba93",
+                hoverBackground: "black",
+                fontSize: "25px",
+              }}
               isShow={true}
-              fontSize={"25px"}
               onClick={() => {
                 clickToBuyBtn();
               }}

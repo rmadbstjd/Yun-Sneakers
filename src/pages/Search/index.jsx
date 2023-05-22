@@ -465,6 +465,7 @@ const SearchPage = () => {
                         margin={"20px 30px 30px 0px"}
                         key={item.id}
                         product={item}
+                        navigate={() => goToDetail(item.id)}
                       ></ProductCard>
                     ))
                   : null}

@@ -3,7 +3,7 @@ import ProductCard from "../common/ProductCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import * as Style from "./styles";
 import Button from "../common/button";
-
+import { useNavigate } from "react-router-dom";
 const MainProducts = ({
   isLoading,
   products,
@@ -13,6 +13,11 @@ const MainProducts = ({
   titleKOR,
   titleENG,
 }) => {
+  const navigate = useNavigate();
+  const goToDetail = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
   const renderProductCards = () => {
     return products?.map((productGroup) =>
       productGroup.map((product) => (
@@ -22,6 +27,7 @@ const MainProducts = ({
           height={"200px"}
           margin={"20px 56px 150px 0px"}
           product={product}
+          navigate={() => goToDetail(product.id)}
         />
       ))
     );

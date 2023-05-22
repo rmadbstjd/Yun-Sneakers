@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../../components/common/ProductCard";
 import { getLikedProducts } from "../../api/like";
+import { pushLike } from "../../api/like";
 import Navbar from "./../../components/common/Navbar/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "./../../components/common/LoadingSpinner";
@@ -17,6 +18,16 @@ const Like = () => {
     data: product,
     refetch,
   } = useQuery(["like"], () => getLikedProducts());
+
+  const goToDetail = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
+  const clickToDeleteBtn = async (e, productId) => {
+    e.stopPropagation();
+    product && (await pushLike(productId));
+    refetch();
+  };
 
   useEffect(() => {
     if (product) setCount(product?.length - 1 || 0);
@@ -50,8 +61,9 @@ const Like = () => {
                 height={"320px"}
                 margin={"20px 30px 30px 0px"}
                 product={product}
-                refetch={refetch}
                 deletable={true}
+                onClick={(e) => clickToDeleteBtn(e, product.id)}
+                navigate={() => goToDetail(product.id)}
               ></ProductCard>
             ))
           )}

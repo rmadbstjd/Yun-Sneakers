@@ -1,8 +1,6 @@
 import Swal from "sweetalert2";
 
 export const validateAddProductForm = (file, product) => {
-  console.log("파일", file);
-  console.log("상품", product);
   if (!file) {
     Swal.fire({
       title: "상품의 사진을 업로드해주세요.",

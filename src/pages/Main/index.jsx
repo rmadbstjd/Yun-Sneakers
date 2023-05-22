@@ -6,7 +6,6 @@ import {
   getUniqueProducts,
 } from "../../api/product";
 import * as Style from "./styles";
-
 import RecommendBrand from "./RecommendBrand";
 import Navbar from "./../../components/common/Navbar/index";
 import MainProducts from "../../components/MainProducts";
@@ -15,10 +14,10 @@ const Main = () => {
   const [newCurrentPage, setNewCurrentPage] = useState(1);
   const [popularCurrentPage, setPopularCurrentPage] = useState(1);
   const [uniqueCurrentPage, setUniqueCurrentPage] = useState(1);
-
   const [showNewMoreBtn, setShowNewMoreBtn] = useState(true);
   const [showPopularMoreBtn, setShowPopularMoreBtn] = useState(true);
   const [showUniqueMoreBtn, setShowUniqueMoreBtn] = useState(true);
+
   const { isLoading: isLoadingOfNewProducts, data: newProducts } = useQuery(
     ["showNewProducts", newCurrentPage],
     () => getNewProducts(newCurrentPage)

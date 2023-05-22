@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide";
 import Navbar from "./../../../components/common/Navbar/index";
-import { getLikedProducts } from "../../../api/like";
+import { pushLike, getLikedProducts } from "../../../api/like";
 import ProductCard from "../../../components/common/ProductCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import Button from "../../../components/common/button";
@@ -20,6 +20,16 @@ const Wish = () => {
   });
   const goToMain = () => {
     navigate("/");
+  };
+
+  const clickToDeleteBtn = async (e, productId) => {
+    e.stopPropagation();
+    product && (await pushLike(productId));
+    refetch();
+  };
+
+  const goToDetail = (productId) => {
+    navigate(`/products/${productId}`);
   };
 
   useEffect(() => {
@@ -56,8 +66,9 @@ const Wish = () => {
                   height={"320px"}
                   margin={"20px 30px 30px 0px"}
                   product={product}
-                  refetch={refetch}
                   deletable={true}
+                  onClick={(e) => clickToDeleteBtn(e, product.id)}
+                  navigate={() => goToDetail(product.id)}
                 ></ProductCard>
               ))
             )}

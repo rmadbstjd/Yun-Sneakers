@@ -19,7 +19,7 @@ const InputProduct = ({ newProduct, setNewProduct }) => {
       addProduct(newProduct, url);
       Swal.fire({
         icon: "success",
-        title: "성공적으로 상품을 수정하였습니다.",
+        title: "성공적으로 상품을 등록하였습니다.",
         confirmButtonColor: "black",
       }).then((result) => {
         if (result.isConfirmed) {

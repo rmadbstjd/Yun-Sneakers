@@ -4,8 +4,8 @@ export const DeleteBtn = styled.div`
   position: absolute;
   width: 50px;
   height: 50px;
-  margin-top: 0.8%;
-  margin-left: 8.7%;
+  top: 12px;
+  right: -25px;
   cursor: pointer;
   display: none;
   color: black;

@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserAddress } from "../../api/myPage";
 const ShipAddress = () => {
   let { data: address } = useQuery(["address"], () => getUserAddress());
-  console.log("address", address);
   if (!address) {
     return (
       <Style.Box>
