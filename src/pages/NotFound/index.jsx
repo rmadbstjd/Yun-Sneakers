@@ -22,13 +22,15 @@ const NotFound = () => {
           </Style.TextContent>
         </Style.Text>
         <Button
-          border={"none"}
-          width={"250px"}
-          height={"50px"}
-          background={"black"}
-          color={"white"}
-          hoverColor={"white"}
-          hoverBackground={"black"}
+          style={{
+            border: "none",
+            width: "250px",
+            height: "50px",
+            background: "black",
+            color: "white",
+            hoverColor: "white",
+            hoverBackground: "black",
+          }}
           onClick={() => {
             navigate("/");
           }}

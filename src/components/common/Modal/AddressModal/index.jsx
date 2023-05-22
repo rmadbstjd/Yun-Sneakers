@@ -18,15 +18,19 @@ const AddressModal = ({ modalIsOpen, setModalIsOpen, submitBtn }) => {
           <AddShipInfoForm setDefaultAddress={false} />
           <Style.BtnContainer>
             <Button
-              border={"solid gray 1px"}
-              borderRadius={"15px"}
-              width={"70px"}
-              height={"30px"}
-              lineHeight={"190%"}
-              color={"black"}
-              isShow={"true"}
-              hoverColor={"white"}
-              hoverBackground={"black"}
+              style={{
+                border: "solid gray 1px",
+                borderRadius: "15px",
+                width: "70px",
+                height: "30px",
+                lineHeight: "190%",
+                color: "black",
+                background: "#bebebe",
+                hoverBackground: "#bebebe",
+                margin: "0px 0px 0px 15px",
+                fontSize: "12px",
+              }}
+              isShow={true}
               onClick={() => {
                 submitBtn();
               }}
@@ -34,15 +38,17 @@ const AddressModal = ({ modalIsOpen, setModalIsOpen, submitBtn }) => {
               저장
             </Button>
             <Button
-              border={"solid gray 1px"}
-              borderRadius={"15px"}
-              width={"70px"}
-              height={"30px"}
-              lineHeight={"190%"}
-              color={"black"}
-              isShow={"true"}
-              hoverColor={"white"}
-              hoverBackground={"black"}
+              style={{
+                border: "solid gray 1px",
+                borderRadius: "15px",
+                width: "70px",
+                height: "30px",
+                lineHeight: "190%",
+                color: "black",
+                hoverColor: "white",
+                hoverBackground: "black",
+              }}
+              isShow={true}
               onClick={() => {
                 setModalIsOpen(false);
               }}

@@ -149,16 +149,19 @@ const Order = () => {
 
                     <Link to="shipComplete" spy={true} smooth={true}>
                       <Button
-                        border={"solid gray 1px"}
-                        width={"80px"}
-                        height={"30px"}
-                        margin={"0px 0px 0px 17px"}
-                        fontSize={"15px"}
-                        background={"white"}
+                        style={{
+                          border: "solid gray 1px",
+                          width: "80px",
+                          height: "30px",
+                          margin: "0px 0px 0px 17px",
+                          fontSize: "15px",
+                          background: "white",
+
+                          color: "black",
+                          hoverColor: "white",
+                          hoverBackground: "black",
+                        }}
                         isShow={true}
-                        color={"black"}
-                        hoverColor={"white"}
-                        hoverBackground={"black"}
                         onClick={() => {
                           clickToBtn(item.product._id);
                         }}
@@ -249,17 +252,19 @@ const Order = () => {
                     <div>{item.product.state}</div>
                     {!item.product.isReviewd ? (
                       <Button
-                        border={"solid gray 1px"}
-                        width={"70px"}
-                        height={"25px"}
-                        background={"#303033"}
-                        color={"white"}
-                        lineHeight={"190%"}
-                        margin={"10px 0px 0px 0px"}
-                        fontSize={"13px"}
+                        style={{
+                          border: "solid gray 1px",
+                          width: "70px",
+                          height: "25px",
+                          background: "#303033",
+                          color: "white",
+                          lineHeight: "190%",
+                          margin: "10px 0px 0px 0px",
+                          fontSize: "13px",
+                          hoverColor: "white",
+                          hoverBackground: "black",
+                        }}
                         isShow={true}
-                        hoverColor={"white"}
-                        hoverBackground={"black"}
                         onClick={() => {
                           setShowModal((prev) => !prev);
                           setIndex(index);

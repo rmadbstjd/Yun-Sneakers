@@ -484,17 +484,19 @@ const Shipment = () => {
             ))}
           </Style.CheckBoxContainer>
           <Button
-            border={"solid black 0px"}
-            width={"600px"}
-            height={"70px"}
-            background={"black"}
-            hoverBackground={"black"}
-            hoverColor={"#a5ba93"}
-            color={"white"}
-            fontSize={"25px"}
-            fontWeight={"bolder"}
-            margin={"40px 0px 0px 25px"}
-            lineHeight={"270%"}
+            style={{
+              border: "solid black 0px",
+              width: "600px",
+              height: "70px",
+              background: "black",
+              hoverBackground: "black",
+              hoverColor: "#a5ba93",
+              color: "white",
+              fontSize: "25px",
+              fontWeight: "bolder",
+              margin: "40px 0px 0px 25px",
+              lineHeight: "270%",
+            }}
             isShow={true}
             onClick={onValidate}
           >

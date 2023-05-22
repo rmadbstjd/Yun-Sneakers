@@ -44,17 +44,19 @@ const MainProducts = ({
           {!isLoading && showMoreBtn && (
             <Style.More>
               <Button
-                border={"solid gray 1px"}
-                borderRadius={"10px"}
-                color={"black"}
-                hoverColor={"white"}
-                hoverBackground={"black"}
-                background={"white"}
-                fontWeight={500}
-                fontSize={"16px"}
-                width={"100px"}
-                height={"40px"}
-                lineHeight={"10%"}
+                style={{
+                  border: "solid gray 1px",
+                  borderRadius: "10px",
+                  color: "black",
+                  hoverColor: "white",
+                  hoverBackground: "black",
+                  background: "white",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                  width: "100px",
+                  height: "40px",
+                  lineHeight: "10%",
+                }}
                 onClick={onClick}
               >
                 더보기

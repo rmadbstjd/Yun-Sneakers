@@ -77,14 +77,16 @@ const Address = () => {
 
             {!address ? (
               <Button
-                border={"solid gray 1px"}
-                borderRadius={"15px"}
-                width={"70px"}
-                height={"30px"}
-                margin={"10px 0px 0px 0px"}
-                lineHeight={"190%"}
-                hoverColor={"white"}
-                hoverBackground={"black"}
+                style={{
+                  border: "solid gray 1px",
+                  borderRadius: "15px",
+                  width: "70px",
+                  height: "30px",
+                  margin: "10px 0px 0px 0px",
+                  lineHeight: "190%",
+                  hoverColor: "white",
+                  hoverBackground: "black",
+                }}
                 onClick={() => {
                   setShowModal((prev) => !prev);
                 }}
@@ -94,14 +96,16 @@ const Address = () => {
             ) : (
               <Style.BtnContainer>
                 <Button
-                  border={"solid gray 1px"}
-                  borderRadius={"15px"}
-                  width={"70px"}
-                  height={"30px"}
-                  margin={"10px 0px 0px 0px"}
-                  lineHeight={"190%"}
-                  hoverColor={"white"}
-                  hoverBackground={"black"}
+                  style={{
+                    border: "solid gray 1px",
+                    borderRadius: "15px",
+                    width: "70px",
+                    height: "30px",
+                    margin: "10px 0px 0px 0px",
+                    lineHeight: "190%",
+                    hoverColor: "white",
+                    hoverBackground: "black",
+                  }}
                   onClick={() => {
                     setShowModal((prev) => !prev);
                   }}
@@ -109,14 +113,18 @@ const Address = () => {
                   수정
                 </Button>
                 <Button
-                  border={"solid gray 1px"}
-                  borderRadius={"15px"}
-                  width={"70px"}
-                  height={"30px"}
-                  margin={"10px 0px 0px 0px"}
-                  lineHeight={"190%"}
-                  hoverColor={"white"}
-                  hoverBackground={"black"}
+                  style={{
+                    border: "solid gray 1px",
+                    borderRadius: "15px",
+                    width: "70px",
+                    height: "30px",
+                    margin: "10px 0px 0px 0px",
+                    lineHeight: "190%",
+                    color: "black",
+                    background: "white",
+                    hoverColor: "white",
+                    hoverBackground: "black",
+                  }}
                   onClick={() => {
                     deleteAddress();
                   }}

@@ -202,14 +202,16 @@ const Review = () => {
 
                     <Style.BtnContainer>
                       <Button
-                        border={"solid gray 1px"}
-                        borderRadius={"15px"}
-                        width={"80px"}
-                        height={"30px"}
-                        lineHeight={"190%"}
-                        margin={"0px 10px 0px 0px"}
-                        hoverColor={"white"}
-                        hoverBackground={"black"}
+                        style={{
+                          border: "solid gray 1px",
+                          borderRadius: "15px",
+                          width: "80px",
+                          height: "30px",
+                          lineHeight: "190%",
+                          margin: "0px 10px 0px 0px",
+                          hoverColor: "white",
+                          hoverBackground: "black",
+                        }}
                         onClick={() => {
                           setShowModal((prev) => !prev);
                           setNumber(index);
@@ -230,14 +232,16 @@ const Review = () => {
                         ></ReviewModal>
                       ) : null}
                       <Button
-                        border={"solid gray 1px"}
-                        borderRadius={"15px"}
-                        width={"80px"}
-                        height={"30px"}
-                        lineHeight={"190%"}
-                        margin={"0px 10px 0px 0px"}
-                        hoverColor={"white"}
-                        hoverBackground={"black"}
+                        style={{
+                          border: "solid gray 1px",
+                          borderRadius: "15px",
+                          width: "80px",
+                          height: "30px",
+                          lineHeight: "190%",
+                          margin: "0px 10px 0px 0px",
+                          hoverColor: "white",
+                          hoverBackground: "black",
+                        }}
                         onClick={() => {
                           setNumber(index);
                           setDeleted(true);

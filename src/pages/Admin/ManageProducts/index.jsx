@@ -109,29 +109,35 @@ const ManageProducts = () => {
                   </Style.PriceContainer>
                   <Style.BtnContainer>
                     <Button
-                      border={"solid gray 1px"}
-                      width={"70px"}
-                      height={"25px"}
-                      background={"303033"}
-                      lineHeight={"190%"}
-                      margin={"45px 0px 0px 10px"}
-                      fontSize={"13px"}
-                      hoverColor={"white"}
-                      hoverBackground={"black"}
+                      style={{
+                        border: "solid gray 1px",
+                        width: "70px",
+                        height: "25px",
+                        background: "#303033",
+                        lineHeight: "190%",
+                        margin: "45px 0px 0px 10px",
+                        fontSize: "13px",
+                        color: "black",
+                        hoverColor: "white",
+                        hoverBackground: "black",
+                      }}
                       onClick={() => clickToEditBtn(item.id)}
                     >
                       수정
                     </Button>
                     <Button
-                      border={"solid gray 1px"}
-                      width={"70px"}
-                      height={"25px"}
-                      background={"303033"}
-                      lineHeight={"190%"}
-                      margin={"45px 0px 0px 10px"}
-                      fontSize={"13px"}
-                      hoverColor={"white"}
-                      hoverBackground={"black"}
+                      style={{
+                        border: "solid gray 1px",
+                        width: "70px",
+                        height: "25px",
+                        background: "#303033",
+                        lineHeight: "190%",
+                        margin: "45px 0px 0px 10px",
+                        fontSize: "13px",
+                        color: "black",
+                        hoverColor: "white",
+                        hoverBackground: "black",
+                      }}
                       onClick={() => clickToDeleteBtn(item.id)}
                     >
                       삭제

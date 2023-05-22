@@ -177,16 +177,18 @@ const Modal = ({
       </Style.ReviewContainer>
       <Style.BtnContainer>
         <Button
-          color={"white"}
-          background={"black"}
-          hoverBackground={"black"}
-          border={"solid black 1px"}
-          borderRadius={"10px"}
-          width={"150px"}
-          height={"40px"}
-          lineHeight={"250%"}
-          margin={"10px"}
-          hoverColor={"#a5ba93"}
+          style={{
+            color: "white",
+            background: "black",
+            hoverBackground: "black",
+            border: "solid black 1px",
+            borderRadius: "10px",
+            width: "150px",
+            height: "40px",
+            lineHeight: "250%",
+            margin: "10px",
+            hoverColor: "#a5ba93",
+          }}
           onClick={() => {
             submitReview();
           }}
@@ -194,15 +196,17 @@ const Modal = ({
           등록하기
         </Button>
         <Button
-          color={"#303033"}
-          background={"white"}
-          border={"solid gray 1px"}
-          borderRadius={"10px"}
-          width={"150px"}
-          height={"40px"}
-          lineHeight={"250%"}
-          margin={"10px"}
-          hoverColor={"#a5ba93"}
+          style={{
+            color: "#303033",
+            background: "white",
+            border: "solid gray 1px",
+            borderRadius: "10px",
+            width: "150px",
+            height: "40px",
+            lineHeight: "250%",
+            margin: "10px",
+            hoverColor: "#a5ba93",
+          }}
           onClick={() => {
             setModalIsOpen(false);
           }}

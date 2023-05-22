@@ -157,15 +157,17 @@ const Cart = () => {
             <Style.NullText>장바구니에 담긴 상품이 없습니다.</Style.NullText>
             <Style.NullBoxContainer>
               <Button
-                border={"solid gray 1px"}
-                width={"350px"}
-                height={"60px"}
-                padding={"20px"}
-                fontSize={"25px"}
-                color={"#3a3b3c"}
-                fontWeight={"bold"}
-                hoverBackground={"black"}
-                hoverColor={"white"}
+                style={{
+                  border: "solid gray 1px",
+                  width: "350px",
+                  height: "60px",
+                  padding: "20px",
+                  fontSize: "25px",
+                  color: "#3a3b3c",
+                  fontWeight: "bold",
+                  hoverBackground: "black",
+                  hoverColor: "white",
+                }}
                 onClick={() => {
                   navigate("/");
                 }}
@@ -272,17 +274,19 @@ const Cart = () => {
 
           <Style.FooterContainer>
             <Button
-              width={"30%"}
-              border={"solid black 1px"}
-              height={"65px"}
-              lineHeight={"270%"}
-              margin={"0px 10px 0px 0px"}
-              fontWeight={"bolder"}
-              background={"white"}
-              color={"#3a3b3c"}
-              hoverColor={"#a5ba93"}
+              style={{
+                width: "30%",
+                border: "solid black 1px",
+                height: "65px",
+                lineHeight: "270%",
+                margin: "0px 10px 0px 0px",
+                fontWeight: "bolder",
+                background: "white",
+                color: "#3a3b3c",
+                hoverColor: "#a5ba93",
+                fontSize: "25px",
+              }}
               isShow={true}
-              fontSize={"25px"}
               onClick={() => {
                 navigate("/");
               }}

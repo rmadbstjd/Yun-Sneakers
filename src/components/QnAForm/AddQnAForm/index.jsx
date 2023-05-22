@@ -81,13 +81,15 @@ const AddQnAForm = ({
       </Style.Count>
       <Style.BtnLayout>
         <Button
-          border={"solid #d4d4d4 1px"}
-          width={"80px"}
-          height={"40px"}
-          margin={"0px 5px 0px 5px"}
-          color={"black"}
-          background={"white"}
-          fontWeight={"bolder"}
+          style={{
+            border: "solid #d4d4d4 1px",
+            width: "80px",
+            height: "40px",
+            margin: "0px 5px 0px 5px",
+            color: "black",
+            background: "white",
+            fontWeight: "bolder",
+          }}
           onClick={() => {
             setShowWriteForm(false);
           }}
@@ -95,15 +97,17 @@ const AddQnAForm = ({
           닫기
         </Button>
         <Button
-          border={"solid #d4d4d4 1px"}
-          width={"80px"}
-          height={"40px"}
-          margin={"0px 5px 0px 5px"}
-          color={"white"}
-          hoverColor={"white"}
-          background={"#303033"}
-          hoverBackground={"#303033"}
-          fontWeight={"bolder"}
+          style={{
+            border: "solid #d4d4d4 1px",
+            width: "80px",
+            height: "40px",
+            margin: "0px 5px 0px 5px",
+            color: "white",
+            hoverColor: "white",
+            background: "#303033",
+            hoverBackground: "#303033",
+            fontWeight: "bolder",
+          }}
           onClick={() => clickToSubmitBtn()}
         >
           등록

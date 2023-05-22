@@ -115,26 +115,30 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
               {<Style.Nickname>{nickName}</Style.Nickname>}
               {!userId ? (
                 <Button
-                  border={"solid black 0px"}
-                  width={"60px"}
-                  height={"24px"}
-                  borderRadius={"5px"}
-                  margin={"10px 0px 0px 0px"}
-                  background={"#fafafa"}
-                  hoverFontWeight={"bolder"}
+                  style={{
+                    border: "solid black 0px",
+                    width: "60px",
+                    height: "24px",
+                    borderRadius: "5px",
+                    margin: "10px 0px 0px 0px",
+                    background: "#fafafa",
+                    hoverFontWeight: "bolder",
+                  }}
                   onClick={handleLogin}
                 >
                   LOGIN
                 </Button>
               ) : (
                 <Button
-                  border={"solid black 0px"}
-                  width={"60px"}
-                  height={"24px"}
-                  borderRadius={"5px"}
-                  margin={"10px 0px 0px 0px"}
-                  background={"#fafafa"}
-                  hoverFontWeight={"bolder"}
+                  style={{
+                    border: "solid black 0px",
+                    width: "60px",
+                    height: "24px",
+                    borderRadius: "5px",
+                    margin: "10px 0px 0px 0px",
+                    background: "#fafafa",
+                    hoverFontWeight: "bolder",
+                  }}
                   onClick={handleLogout}
                 >
                   LOGOUT

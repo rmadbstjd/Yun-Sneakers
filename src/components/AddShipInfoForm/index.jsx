@@ -148,15 +148,17 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
           <Style.Search>
             <Style.AddressNumber>{shipPostCode}</Style.AddressNumber>
             <Button
-              border={"solid gray 0px"}
-              width={"100px"}
-              height={"37px"}
-              background={"#bebebe"}
-              hoverBackground={"#bebebe"}
-              color={"black"}
-              lineHeight={"330%"}
-              margin={"0px 0px 0px 15px"}
-              fontSize={"12px"}
+              style={{
+                border: "solid gray 0px",
+                width: "100px",
+                height: "37px",
+                background: "#bebebe",
+                hoverBackground: "#bebebe",
+                color: "black",
+                lineHeight: "330%",
+                margin: "0px 0px 0px 15px",
+                fontSize: "12px",
+              }}
               isShow={true}
               onClick={() => setIsPopupOpen((prev) => !prev)}
             >

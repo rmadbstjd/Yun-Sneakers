@@ -69,16 +69,16 @@ const Wish = () => {
                 <div>
                   <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
                   <Button
-                    border={"solid gray 1px"}
-                    width={"350px"}
-                    height={"80px"}
-                    margin={"5% 0% 0% 14%"}
-                    fontSize={"25px"}
-                    padding={"20px"}
-                    color={"3a3b3c"}
-                    fontWeight={"bold"}
-                    hoverColor={"white"}
-                    hoverBackground={"black"}
+                    style={{
+                      border: "solid gray 1px",
+                      borderRadius: "15px",
+                      width: "80px",
+                      height: "30px",
+                      lineHeight: "190%",
+                      margin: "0px 10px 0px 0px",
+                      hoverColor: "white",
+                      hoverBackground: "black",
+                    }}
                     onClick={goToMain}
                   >
                     CONTINUE SHOPPING{" "}

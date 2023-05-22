@@ -15,11 +15,11 @@ export const Button = styled.button`
   cursor: pointer;
   &:hover {
     color: ${(props) =>
-      props.hoverColor === false ? "black" : props.hoverColor};
+      props.hoverColor === undefined ? "black" : props.hoverColor};
     background: ${(props) =>
-      props.hoverBackground === false ? "white" : props.hoverBackground};
+      props.hoverBackground === undefined ? "white" : props.hoverBackground};
     transition: ${(props) => props.transition};
     font-weight: ${(props) =>
-      props.hoverFontWeight === false ? "none" : props.hoverFontWeight};
+      props.hoverFontWeight === undefined ? "none" : props.hoverFontWeight};
   }
 `;

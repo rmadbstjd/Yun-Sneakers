@@ -235,19 +235,22 @@ const ProductDetail = () => {
             )}
             <Style.AddBtnContainer>
               <Button
-                border={"solid gray 0px"}
-                width={"88%"}
-                height={"50px"}
-                borderRadius={"10px"}
-                color={"white"}
-                hoverBackground={"black"}
-                hoverColor={"white"}
-                background={"#bcbcbc"}
-                fontSize={"20px"}
-                lineHeight={"250%"}
-                margin={"-10px 0px 0px 0px"}
+                style={{
+                  border: "solid gray 0px",
+                  width: "88%",
+                  height: "50px",
+                  borderRadius: "10px",
+                  color: "white",
+                  hoverBackground: "black",
+                  hoverColor: "white",
+                  background: "#bcbcbc",
+                  fontSize: "20px",
+                  lineHeight: "250%",
+                  margin: "-10px 0px 0px 0px",
+
+                  transition: "all 0.8s",
+                }}
                 isShow={true}
-                transition={"all 0.8s"}
                 onClick={clickToCart}
               >
                 장바구니에 추가

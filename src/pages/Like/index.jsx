@@ -64,17 +64,19 @@ const Like = () => {
               <div>
                 <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
                 <Button
-                  border={"solid gray 1px"}
-                  background={"white"}
-                  margin={"5% 0px 0px 15%"}
-                  width={"350px"}
-                  height={"80px"}
-                  padding={"20px"}
-                  color={"3a3b3c"}
-                  fontSize={"25px"}
-                  fontWeight={"bolder"}
-                  hoverBackground={"black"}
-                  hoverColor={"white"}
+                  style={{
+                    border: "solid gray 1px",
+                    background: "white",
+                    margin: "5% 0px 0px 15%",
+                    width: "350px",
+                    height: "80px",
+                    padding: "20px",
+                    color: "#3a3b3c",
+                    fontSize: "25px",
+                    fontWeight: "bolder",
+                    hoverBackground: "black",
+                    hoverColor: "white",
+                  }}
                   onClick={() => {
                     navigate("/");
                   }}
