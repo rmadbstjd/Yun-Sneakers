@@ -1,7 +1,7 @@
 import React from "react";
 import * as Style from "./styles";
 import FileInput from "../FileInput";
-import TextInput from "../../TextInput";
+import TextInput from "../TextInput";
 const InputProduct = ({
   product,
   file,
