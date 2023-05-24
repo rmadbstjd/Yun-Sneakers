@@ -13,6 +13,7 @@ export const Container = styled.div`
   height: 70px;
   margin-left: -20px;
   background: white;
+  font-family: "OTWelcomeRA";
 `;
 export const NavbarContainer = styled.div`
   position: fixed;
@@ -47,18 +48,12 @@ export const MyPage = styled.div`
   margin-right: 10px;
   font-size: 12px;
   cursor: pointer;
-  &:hover {
-    font-weight: bolder;
-  }
 `;
 
 export const Products = styled.div`
   margin-right: 10px;
   font-size: 12px;
   cursor: pointer;
-  &:hover {
-    font-weight: bolder;
-  }
 `;
 
 export const ShoppingBag = styled.div`
@@ -98,9 +93,6 @@ export const Btn = styled.button`
   cursor: pointer;
   background-color: #fafafa;
   color: black;
-  &:hover {
-    font-weight: bolder;
-  }
 `;
 
 export const Search = styled.div`

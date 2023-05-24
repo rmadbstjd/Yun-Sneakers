@@ -23,6 +23,7 @@ export const Card = styled.div`
       display: block;
     }
   }
+  font-family: "OTWelcomeRA";
 `;
 
 export const Img = styled.img`

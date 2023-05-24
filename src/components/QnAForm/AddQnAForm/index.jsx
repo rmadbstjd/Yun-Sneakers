@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import * as Style from "./styles";
-import Button from "../../common/button";
+import userInfoStore from "../../../store/userInfoStore";
 import { validateAddQnAForm } from "../../../utils/validateAddQnAForm";
 import { getProductInfo, addQna } from "../../../api/product";
 import { bringNowDates } from "../../../utils/bringNowDates";
 import { useQuery } from "@tanstack/react-query";
-const AddQnAForm = ({
-  QnA,
-  isSecretChecked,
-  setIsSecretChecked,
-  setShowWriteForm,
-  noticeList,
-  id,
-  refetch,
-}) => {
+import Layout from "./Layout";
+const noticeList = [
+  "교환, 반품, 취소는 1:1문의를 통해 접수 부탁드립니다.",
+  " 상품 및 상품 구매 과정과 관련 없는 비방, 욕설, 명예훼손성 게시글 및 상품과 관련 없는 광고글 등 부적절한 게시글 등록 시 글쓰기 제한 및 게시글이 삭제 조치 될 수 있습니다.",
+  "전화번호, 이메일 등 개인 정보가 포함된 글 작성이 필요한 경우 판매자만 볼 수 있도록 비밀글로 문의해 주시기 바랍니다.",
+];
+
+const AddQnAForm = ({ setShowWriteForm, id, refetch }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const dates = bringNowDates();
+  const [isSecretChecked, setIsSecretChecked] = useState(false);
 
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
   const image = productInfo?.product?.image;
+
+  const { userId } = userInfoStore();
+  const dates = bringNowDates();
 
   const clickToSubmitBtn = async () => {
     if (validateAddQnAForm(title, content)) {
@@ -31,6 +32,7 @@ const AddQnAForm = ({
       refetch();
     }
   };
+
   const validateTitle = (e) => {
     if (e.target.value.length > 29) setTitle(title.substring(0, 29));
     else setTitle(e.target.value);
@@ -40,86 +42,20 @@ const AddQnAForm = ({
     if (e.target.value.length > 300) setContent(content.substring(0, 300));
     else setContent(e.target.value);
   };
+
   return (
-    <Style.Modal>
-      <Style.ID>
-        <span>아이디 </span> <span>{QnA.userId}</span>
-      </Style.ID>
-      <Style.QuestionLayout>
-        <Style.QuestionTitle>문의 제목</Style.QuestionTitle>
-        <Style.InputTitle
-          type="text"
-          placeholder="30자 이내 입력"
-          value={title}
-          onChange={(e) => validateTitle(e)}
-        ></Style.InputTitle>
-        <Style.Label htmlFor="checkbox" secretChecked={isSecretChecked}>
-          비밀글
-        </Style.Label>
-        <Style.CheckBox
-          defaultChecked={isSecretChecked}
-          type="checkbox"
-          id="checkbox"
-          onClick={() => {
-            setIsSecretChecked((prev) => !prev);
-          }}
-        ></Style.CheckBox>
-      </Style.QuestionLayout>
-      <Style.QuestionLayout>
-        <Style.QuestionTitle>내용</Style.QuestionTitle>
-        <Style.InputTextArea
-          placeholder="문의 내용은 최소 5자 이상 입력해주세요."
-          onChange={(e) => validateContent(e)}
-          value={content}
-        ></Style.InputTextArea>
-      </Style.QuestionLayout>
-      <Style.Count>
-        <Style.InitCount isInit={content.length === 0 ? true : false}>
-          {content.length}&nbsp;
-        </Style.InitCount>{" "}
-        / 300
-      </Style.Count>
-      <Style.BtnLayout>
-        <Button
-          style={{
-            border: "solid #d4d4d4 1px",
-            width: "80px",
-            height: "40px",
-            margin: "0px 5px 0px 5px",
-            color: "black",
-            background: "white",
-            fontWeight: "bolder",
-          }}
-          onClick={() => {
-            setShowWriteForm(false);
-          }}
-        >
-          닫기
-        </Button>
-        <Button
-          style={{
-            border: "solid #d4d4d4 1px",
-            width: "80px",
-            height: "40px",
-            margin: "0px 5px 0px 5px",
-            color: "white",
-            hoverColor: "white",
-            background: "#303033",
-            hoverBackground: "#303033",
-            fontWeight: "bolder",
-          }}
-          onClick={() => clickToSubmitBtn()}
-        >
-          등록
-        </Button>
-      </Style.BtnLayout>
-      <Style.Notice>
-        <Style.NoticeTitle>상품 Q&A 작성 시 유의사항</Style.NoticeTitle>
-        {noticeList.map((text) => (
-          <Style.Text key={text}>{text}</Style.Text>
-        ))}
-      </Style.Notice>
-    </Style.Modal>
+    <Layout
+      userId={userId}
+      title={title}
+      content={content}
+      validateTitle={validateTitle}
+      validateContent={validateContent}
+      clickToSubmitBtn={clickToSubmitBtn}
+      noticeList={noticeList}
+      setShowWriteForm={setShowWriteForm}
+      isSecretChecked={isSecretChecked}
+      setIsSecretChecked={setIsSecretChecked}
+    />
   );
 };
 

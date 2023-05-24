@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { addUserAddress, getUserAddress } from "../../api/myPage";
-import * as Style from "./styles";
-import Input from "./Input";
-import AddressInput from "./AddressInput";
-import NumberInput from "./NumberInput";
-import CheckBoxInput from "./CheckBoxInput";
-import RequestInput from "./RequestInput";
+import Layout from "./Layout";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShipInfoForm = ({ type, setDefaultAddress }) => {
@@ -96,63 +91,33 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
         middlePhoneNum: address.phoneNumber2,
         lastPhoneNum: address.phoneNumber3,
         address: address.address,
-        detail: address.detail,
+        detail: address.addressDetail,
         postCode: address.postCode,
       });
     }
   }, [address]);
   return (
-    <Style.Container>
-      <Input
-        title={"배송지명"}
-        maxLength={10}
-        value={inputs.place}
-        onChange={(e) => changePlaceName(e)}
-      />
-      <Input
-        title={"수령인"}
-        maxLength={10}
-        value={inputs.receiver}
-        onChange={(e) => changeReceiverName(e)}
-      />
-      <AddressInput
-        title={"배송지"}
-        postCode={inputs.postCode}
-        address={inputs.address}
-        detail={inputs.detail}
-        onClick={() => setIsPopupOpen((prev) => !prev)}
-        isPopupOpen={isPopupOpen}
-        closePostCode={closePostCode}
-        type={type}
-        setInputs={setInputs}
-        inputs={inputs}
-      />
-      <NumberInput
-        title={"연락처"}
-        first={inputs.firstPhoneNum}
-        middle={inputs.middlePhoneNum}
-        last={inputs.lastPhoneNum}
-        validateFirstPhoneNum={(e) => validatePhoneNumber(e, "firstPhoneNum")}
-        validateMiddlePhoneNum={(e) => validatePhoneNumber(e, "middlePhoneNum")}
-        validateLastPhoneNum={(e) => validatePhoneNumber(e, "lastPhoneNum")}
-      />
-      {setDefaultAddress && (
-        <CheckBoxInput
-          title={"기본 배송지로 설정"}
-          value={inputs.defaultAddress}
-          onChange={(e) => addAddress(e)}
-        />
-      )}
-      <RequestInput
-        requestedTermItem={requestedTermItem}
-        onClick1={showRequestBox}
-        showRequestedTermList={showRequestedTermList}
-        requestTextArea={requestTextArea}
-        showTextArea={showTextArea}
-        onChange={(e) => checkTextLength(e)}
-        clickRequestedTermBox={clickRequestedTermBox}
-      />
-    </Style.Container>
+    <Layout
+      inputs={inputs}
+      setInputs={setInputs}
+      changePlaceName={changePlaceName}
+      changeReceiverName={changeReceiverName}
+      changeDetailName={changeDetailName}
+      validatePhoneNumber={validatePhoneNumber}
+      setDefaultAddress={setDefaultAddress}
+      addAddress={addAddress}
+      requestedTermItem={requestedTermItem}
+      showRequestedTermList={showRequestedTermList}
+      requestTextArea={requestTextArea}
+      showTextArea={showTextArea}
+      showRequestBox={showRequestBox}
+      checkTextLength={checkTextLength}
+      clickRequestedTermBox={clickRequestedTermBox}
+      setIsPopupOpen={setIsPopupOpen}
+      isPopupOpen={isPopupOpen}
+      closePostCode={closePostCode}
+      type={type}
+    />
   );
 };
 

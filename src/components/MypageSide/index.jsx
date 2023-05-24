@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import userInfoStore from "../../store/userInfoStore";
-import * as Style from "./styles";
-
+import Layout from "./Layout";
 const itemArr = [
   { id: 0, title: "주문 내역 조회", params: "order" },
   { id: 1, title: "관심 상품", params: "wish" },
@@ -25,25 +24,13 @@ const MypageSide = () => {
   };
 
   return (
-    <Style.Container>
-      <Style.Title>마이 페이지</Style.Title>
-      <Style.NickName>
-        {nickName}
-        <Style.Last>님</Style.Last>
-      </Style.NickName>
-      {itemArr.map((item) => (
-        <Style.Item
-          isChecked={item.params === query}
-          key={item.id}
-          onClick={() => {
-            goToPage(item.title);
-            setIsCheckedID(item.id);
-          }}
-        >
-          {item.title}
-        </Style.Item>
-      ))}
-    </Style.Container>
+    <Layout
+      nickName={nickName}
+      setIsCheckedID={setIsCheckedID}
+      query={query}
+      goToPage={goToPage}
+      itemArr={itemArr}
+    />
   );
 };
 

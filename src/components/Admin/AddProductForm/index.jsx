@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useImmer } from "use-immer";
 import Navbar from "../../common/Navbar";
 import { addProduct } from "../../../api/product";
-import InputLayout from "../Inputs/InputLayout";
+import InputLayout from "../Layout";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../../api/upload";

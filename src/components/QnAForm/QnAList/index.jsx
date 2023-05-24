@@ -12,7 +12,6 @@ const QnAList = ({
   page,
 }) => {
   const { id } = useParams();
-
   let { data: QnAList } = useQuery(["qna"], () => getQna(id, page));
   QnAList = QnAList?.QnA;
   return (

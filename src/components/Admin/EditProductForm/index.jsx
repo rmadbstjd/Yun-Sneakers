@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { editProduct } from "../../../api/product";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
-import InputLayout from "../Inputs/InputLayout";
+import InputLayout from "../Layout";
 const EditProductForm = ({ productInfo }) => {
   const [product, setProduct] = useImmer({
     url: "",

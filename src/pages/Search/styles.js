@@ -58,7 +58,7 @@ export const SortLayout = styled.div`
 `;
 export const SortContainer = styled.div`
   display: flex;
-  width: 300px;
+  width: 310px;
 `;
 export const SortContent = styled.div`
   width: ${(props) => props.width};
