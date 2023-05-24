@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { BsHeart } from "@react-icons/all-files/bs/BsHeart";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import HorizonLine from "../../components/common/HorizonLine";
-import SizeModal from "../../components/common/Modal/Children/SizeModal";
+import SizeModal from "../../components/common/Modal/Children/Size";
 import Modal from "../../components/common/Modal/Layout";
 import SimilarProducts from "./SimilarProducts";
 import ProductReviews from "./Reviews";

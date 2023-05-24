@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserCarts } from "../../../api/cart";
 import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
-import SearchModal from "../Modal/Children/SearchModal";
+import SearchModal from "../Modal/Children/Search";
 import userInfoStore from "../../../store/userInfoStore";
 import cartStore from "../../../store/cartStore";
 import searchStore from "./../../../store/searchStore";

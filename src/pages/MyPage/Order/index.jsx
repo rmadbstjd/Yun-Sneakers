@@ -5,7 +5,7 @@ import { getOrderedProducts } from "../../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../../api/order";
 import Button from "../../../components/common/button";
-import ReviewModal from "../../../components/common/Modal/Children/ReviewModal";
+import ReviewModal from "../../../components/common/Modal/Children/Review";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import * as Style from "./styles";
