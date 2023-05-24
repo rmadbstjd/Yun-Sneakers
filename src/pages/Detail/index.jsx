@@ -10,7 +10,8 @@ import { useParams } from "react-router-dom";
 import { BsHeart } from "@react-icons/all-files/bs/BsHeart";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import HorizonLine from "../../components/common/HorizonLine";
-import SizeModal from "../../components/common/Modal/SizeModal";
+import SizeModal from "../../components/common/Modal/Children/SizeModal";
+import Modal from "../../components/common/Modal/Layout";
 import SimilarProducts from "./SimilarProducts";
 import ProductReviews from "./Reviews";
 import Swal from "sweetalert2";
@@ -198,20 +199,22 @@ const ProductDetail = () => {
                     <CgArrowDownO size={20} />
                   </Style.ShowSizeCircle>
                 </Style.Size>
-                {sizeModalShow ? (
-                  <SizeModal
+                {sizeModalShow && (
+                  <Modal
+                    width={"400px"}
+                    height={"400px"}
                     isOpen={true}
-                    modalIsOpen={modalIsOpen}
-                    setModalIsOpen={setModalIsOpen}
-                    size={productInfo?.product.size}
-                  ></SizeModal>
-                ) : (
-                  <SizeModal
-                    isOpen={false}
-                    modalIsOpen={modalIsOpen}
-                    setModalIsOpen={setModalIsOpen}
-                    size={productInfo?.product.size}
-                  ></SizeModal>
+                    modalIsOpen={sizeModalShow}
+                    setModalIsOpen={setSizeModalShow}
+                    children={
+                      <SizeModal
+                        isOpen={true}
+                        modalIsOpen={modalIsOpen}
+                        setModalIsOpen={setSizeModalShow}
+                        size={productInfo?.product.size}
+                      />
+                    }
+                  ></Modal>
                 )}
               </Style.SizeContainer>
               <HorizonLine width={"100%"} border={"1px"} color={"gray"} />

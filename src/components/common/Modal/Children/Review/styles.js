@@ -110,12 +110,14 @@ export const QnAContent = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
+  margin-top: -100px;
+  margin-left: -60px;
 `;
 
 export const InfoContainer = styled.div`
-  margin-left: 20px;
+  margin-left: 13px;
   display: flex;
   flex-direction: column;
   width: 75%;
@@ -185,6 +187,7 @@ export const TextArea = styled.textarea`
   border: none;
   resize: none;
   outline-color: black;
+  background: #ececec;
 `;
 
 export const TextLength = styled.div`

@@ -9,7 +9,7 @@ import * as Style from "./styles";
 import RecommendBrand from "./RecommendBrand";
 import Navbar from "./../../components/common/Navbar/index";
 import MainProducts from "../../components/MainProducts";
-
+import { useNavigate } from "react-router-dom";
 const Main = () => {
   const [newCurrentPage, setNewCurrentPage] = useState(1);
   const [popularCurrentPage, setPopularCurrentPage] = useState(1);
@@ -30,7 +30,11 @@ const Main = () => {
     useQuery(["showUniqueProducts", uniqueCurrentPage], () =>
       getUniqueProducts(uniqueCurrentPage)
     );
+  const navigate = useNavigate();
 
+  const goToDetail = (productId) => {
+    navigate(`/products/${productId}`);
+  };
   const onClickNewShowMoreProductsBtn = () => {
     setNewCurrentPage((prev) => prev + 1);
     if (newCurrentPage >= 4) setShowNewMoreBtn(false);
@@ -73,6 +77,7 @@ const Main = () => {
               titleENG={"Most Popular"}
               titleKOR={"인기 있는 상품"}
               width={"94.8%"}
+              onNavigate={goToDetail}
             />
 
             <MainProducts
@@ -86,6 +91,7 @@ const Main = () => {
               titleENG={"New In"}
               titleKOR={"새로운 상품"}
               width={"100%"}
+              onNavigate={goToDetail}
             />
             <MainProducts
               isLoading={isLoadingOfUniqueProducts}
@@ -98,6 +104,7 @@ const Main = () => {
               titleENG={"Unique Products"}
               titleKOR={"시선을 사로잡는 상품"}
               width={"100%"}
+              onNavigate={goToDetail}
             />
           </Style.ProductsContainer>
         </Style.ProductsContainerLayout>

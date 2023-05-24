@@ -4,9 +4,9 @@ import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { useNavigate } from "react-router-dom";
 import { IoMdCloseCircle } from "@react-icons/all-files/io/IoMdCloseCircle";
-import searchStore from "../../../../store/searchStore";
+import searchStore from "../../../../../store/searchStore";
 import axios from "axios";
-import HorizonLine from "../../HorizonLine";
+import HorizonLine from "../../../HorizonLine";
 const recommendKeywordArr = ["나이키", "조던", "아디다스", "뉴발란스"];
 
 const SearchModal = ({ setShowSearch }) => {

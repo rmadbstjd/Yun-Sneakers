@@ -21,7 +21,7 @@ export const BtnContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 200px;
-  margin-left: 35%;
+  margin-left: 30%;
   margin-top: 10px;
 `;
 

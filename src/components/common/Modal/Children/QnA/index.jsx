@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import ReactModal from "react-modal";
 import * as Style from "./styles";
-import styles from "./QnAModal.module.css";
-import Button from "../../../../components/common/button";
+import Button from "../../../button";
 const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
   const [text, setText] = useState("");
   const handleSetValue = (e) => {
@@ -11,13 +9,7 @@ const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
   };
 
   return (
-    <ReactModal
-      className={styles.modal}
-      overlayClassName={styles.overlay}
-      isOpen={modalIsOpen}
-      onRequestClose={() => setModalIsOpen(false)}
-      ariaHideApp={false}
-    >
+    <>
       <Style.ReviewContainer>
         <Style.ReviewTitle>Q&A 답변</Style.ReviewTitle>
         <Style.QnAContent>
@@ -84,7 +76,7 @@ const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
           취소
         </Button>
       </Style.BtnContainer>
-    </ReactModal>
+    </>
   );
 };
 

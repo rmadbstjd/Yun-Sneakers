@@ -3,7 +3,8 @@ import * as Style from "./styles";
 import { answerQna } from "../../../api/product";
 import Navbar from "../../../components/common/Navbar/index";
 import { useQuery } from "@tanstack/react-query";
-import QnAModal from "../../../components/common/Modal/QnAModal";
+import QnAModal from "../../../components/common/Modal/Children/QnA";
+import Modal from "../../../components/common/Modal/Layout";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getNotAnsweredQna, getAnsweredQna } from "../../../api/product";
@@ -165,16 +166,25 @@ const QnA = () => {
                   </Style.ProductContent>
                 </div>
               ))}
-          {showModal ? (
-            <QnAModal
+          {showModal && (
+            <Modal
+              width={"1000px"}
+              height={"650px"}
               isOpen={true}
               modalIsOpen={showModal}
               setModalIsOpen={setShowModal}
-              isReviewed={false}
-              qna={isNotAnsweredQnAs[isClicked]}
-              submitBtn={submitBtn}
-            ></QnAModal>
-          ) : null}
+              children={
+                <QnAModal
+                  isOpen={true}
+                  modalIsOpen={showModal}
+                  setModalIsOpen={setShowModal}
+                  isReviewed={false}
+                  qna={isNotAnsweredQnAs[isClicked]}
+                  submitBtn={submitBtn}
+                ></QnAModal>
+              }
+            ></Modal>
+          )}
         </Style.MainContainer>
       </Style.MyPageContainer>
     </div>

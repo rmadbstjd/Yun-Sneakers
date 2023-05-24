@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import ReactModal from "react-modal";
 import produce from "immer";
-import styles from "./ReviewModal.module.css";
 import * as Style from "./styles";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
-import { addProductReview } from "./../../../../api/myPage";
-import Button from "../../button";
-const Modal = ({
-  modalIsOpen,
-  setModalIsOpen,
-  product,
-  isReviewed,
-  refetch,
-  refetch2,
-}) => {
+import { addProductReview } from "../../../../../api/myPage";
+import Button from "../../../button";
+const Modal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
+  const reviewType = type === "new" ? "리뷰 작성" : "리뷰 수정";
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
   const [text, setText] = useState("");
@@ -65,35 +57,20 @@ const Modal = ({
       return;
     }
 
-    if (!isReviewed) {
-      addProductReview(
-        product.info.image,
-        star,
-        product.product.count,
-        product.product.coupon,
-        product.info.price,
-        product.product.date,
-        product.product.size,
-        product.product.productId,
-        product.product._id,
-        text,
-        clickIndex + 1
-      );
-    } else if (isReviewed) {
-      addProductReview(
-        product.info.image,
-        star,
-        product.product.count,
-        product.product.coupon,
-        product.info.price,
-        product.product.date,
-        product.product.size,
-        product.product.productId,
-        product.product.orderId,
-        text,
-        clickIndex + 1
-      );
-    }
+    addProductReview(
+      product.info.image,
+      star,
+      product.product.count,
+      product.product.coupon,
+      product.info.price,
+      product.product.date,
+      product.product.size,
+      product.product.productId,
+      product.product.orderId,
+      text,
+      clickIndex + 1
+    );
+
     Swal.fire({
       icon: "success",
       title: "성공적으로 리뷰를 작성하였습니다.",
@@ -106,17 +83,10 @@ const Modal = ({
       }
     });
   };
-
   return (
-    <ReactModal
-      className={styles.modal}
-      overlayClassName={styles.overlay}
-      isOpen={modalIsOpen}
-      onRequestClose={() => setModalIsOpen(false)}
-      ariaHideApp={false}
-    >
+    <>
       <Style.ReviewContainer>
-        <Style.ReviewTitle>리뷰 쓰기</Style.ReviewTitle>
+        <Style.ReviewTitle>{reviewType}</Style.ReviewTitle>
         <Style.ProductContent>
           <Style.Img src={product.info.image} alt="상품"></Style.Img>
           <Style.InfoContainer>
@@ -193,7 +163,7 @@ const Modal = ({
             submitReview();
           }}
         >
-          등록하기
+          {reviewType === "리뷰 작성" ? "등록하기" : "수정하기"}
         </Button>
         <Button
           style={{
@@ -214,7 +184,7 @@ const Modal = ({
           취소하기
         </Button>
       </Style.BtnContainer>
-    </ReactModal>
+    </>
   );
 };
 

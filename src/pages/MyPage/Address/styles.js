@@ -52,5 +52,21 @@ export const BtnContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 200px;
-  margin-left: 35%;
+  margin-left: 28%;
+`;
+
+export const ModalContainer = styled.div`
+  border: solid black 0px;
+  border-radius: 20px;
+  width: 700px;
+  height: 500px;
+  z-index: 555;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const ModalContent = styled.div`
+  margin-left: 40px;
 `;

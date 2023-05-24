@@ -1,5 +1,4 @@
 import React from "react";
-
 import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
 import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import * as Style from "./styles";

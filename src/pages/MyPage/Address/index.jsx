@@ -4,15 +4,17 @@ import * as Style from "./styles";
 import Navbar from "./../../../components/common/Navbar/index";
 import userInfoStore from "./../../../store/userInfoStore";
 import ShipAddress from "./../../../components/ShipAddress/index";
-import AddressModal from "./../../../components/common/Modal/AddressModal";
+import Modal from "../../../components/common/Modal/Layout";
 import MypageSide from "./../../../components/MypageSide/index";
 import { validateAddress } from "../../../utils/validateAddress";
 import Button from "../../../components/common/button";
+import AddShipInfoForm from "../../../components/AddShipInfoForm";
 import {
   addUserAddress,
   getUserAddress,
   deleteUserAddress,
 } from "../../../api/myPage";
+
 const Address = () => {
   const {
     shipPlaceName,
@@ -49,9 +51,7 @@ const Address = () => {
         middlePhoneNum,
         lastPhoneNum
       );
-
       refetch();
-
       setShowModal(false);
     }
   };
@@ -133,15 +133,66 @@ const Address = () => {
                 </Button>
               </Style.BtnContainer>
             )}
-            {showModal ? (
-              <AddressModal
+            {showModal && (
+              <Modal
                 isOpen={true}
                 modalIsOpen={showModal}
                 setModalIsOpen={setShowModal}
+                children={
+                  <Style.ModalContainer>
+                    <Style.ModalContent>
+                      <AddShipInfoForm setDefaultAddress={false} />
+                      <Style.BtnContainer>
+                        <Button
+                          style={{
+                            border: "solid gray 1px",
+                            borderRadius: "15px",
+                            width: "70px",
+                            height: "30px",
+                            lineHeight: "190%",
+                            color: "black",
+                            background: "white",
+                            hoverBackground: "black",
+                            hoverColor: "white",
+                            margin: "0px 0px 0px 15px",
+                            fontSize: "12px",
+                          }}
+                          isShow={true}
+                          onClick={() => {
+                            submitBtn();
+                          }}
+                        >
+                          저장
+                        </Button>
+                        <Button
+                          style={{
+                            border: "solid gray 1px",
+                            borderRadius: "15px",
+                            width: "70px",
+                            height: "30px",
+                            lineHeight: "190%",
+                            color: "black",
+                            hoverColor: "white",
+                            hoverBackground: "black",
+                          }}
+                          isShow={true}
+                          onClick={() => {
+                            setShowModal(false);
+                          }}
+                        >
+                          취소
+                        </Button>
+                      </Style.BtnContainer>
+                    </Style.ModalContent>
+                  </Style.ModalContainer>
+                }
+                width={"700px"}
+                height={"550px"}
+                borderRadius={"20px"}
                 submitBtn={submitBtn}
                 refetch={refetch}
-              ></AddressModal>
-            ) : null}
+              ></Modal>
+            )}
           </Style.AddressContainer>
         </Style.MainContainer>
       </Style.MyPageContainer>

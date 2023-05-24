@@ -213,3 +213,116 @@ export const Review = styled.div`
     color: white;
   }
 `;
+///////////////////////////////////////////////
+export const TReviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+export const TStar = styled.div`
+  margin-top: 10px;
+`;
+export const TReviewTitle = styled.div`
+  font-size: 22px;
+  font-weight: bolder;
+  margin: 20px 0px 30px 0px;
+`;
+
+export const TProductContent = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 500px;
+  height: 150px;
+`;
+
+export const TQnAContent = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 95%;
+`;
+
+export const TImg = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+
+export const TInfoContainer = styled.div`
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+`;
+
+export const TProductCategory = styled.div`
+  font-weight: bolder;r
+  margin-bottom: 10px;
+  width: 75%;
+`;
+
+export const TProductName = styled.div`
+  margin-bottom: 3px;
+`;
+
+export const TProductDescription = styled.div`
+  margin-bottom: 3px;
+  height: 122px;
+`;
+
+export const TSize = styled.div``;
+export const THorizonLine = styled.div`
+  width: 95%;
+  margin-top: 20px;
+  border-bottom: 2px solid #d4d4d4;
+  line-height: 0.1rem;
+`;
+
+export const TStarContainer = styled.div`
+  text-align: center;
+  padding: 20px;
+`;
+
+export const TStarTopText = styled.div`
+  font-weight: bolder;
+  margin: 10px 0px 5px 0px;
+`;
+
+export const TStarBotText = styled.div`
+  color: gray;
+`;
+export const TextLength = styled.div`
+  display: flex;
+  margin: 10px 0px -10px 0px;
+  justify-content: flex-end;
+`;
+export const TextArea = styled.textarea`
+  margin-top: 10px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  border: none;
+  resize: none;
+  outline-color: black;
+  background: #ececec;
+`;
+
+export const TBtnContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-left: 35%;
+  margin-top: 10px;
+`;
+
+export const TBtn = styled.div`
+  border: solid gray 1px;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  line-height: 190%;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
