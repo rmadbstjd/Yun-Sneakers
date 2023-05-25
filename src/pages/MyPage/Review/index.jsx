@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getIsNotReviewdProducts } from "../../../api/order";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
-import ReviewModal from "../../../components/common/Modal/Children/ReviewContainer";
+import ReviewModal from "../../../components/common/Modal/Conatiner/Review";
 import Swal from "sweetalert2";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
 import MypageSide from "../../../components/MypageSide/Container";

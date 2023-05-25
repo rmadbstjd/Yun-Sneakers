@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getQna } from "../../../api/product";
+import { getQna } from "../../../../api/product";
 import QnAItem from "../QnAItem";
 const QnAList = ({
   clickToQnAItem,

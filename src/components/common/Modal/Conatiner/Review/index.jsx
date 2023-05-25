@@ -6,7 +6,7 @@ import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
 import { addProductReview } from "../../../../../api/myPage";
 import Button from "../../../button";
-const Modal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
+const ReviewModal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
   const reviewType = type === "new" ? "리뷰 작성" : "리뷰 수정";
   const [star, setStar] = useState([false, false, false, false, false]);
   const [clickIndex, setClickIndex] = useState();
@@ -188,4 +188,4 @@ const Modal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
   );
 };
 
-export default Modal;
+export default ReviewModal;

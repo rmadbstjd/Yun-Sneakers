@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import AddShipInfoForm from "../../components/AddShipInfoForm/Container";
+import AddUserAddressForm from "../../components/Form/AddUserAddressForm/Container";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
@@ -16,7 +16,6 @@ import { deleteUserCart } from "../../api/cart";
 import { addOrderProducts } from "../../api/order";
 import { validateOrder } from "../../utils/validateOrder";
 import Button from "../../components/common/button";
-import { getUserAddress } from "../../api/myPage";
 import useGetUserAddress from "../../hooks/useGetUserAddress";
 const couponArr = [
   "선택안함",
@@ -83,12 +82,7 @@ const Shipment = () => {
     firstPhoneNum,
     middlePhoneNum,
     lastPhoneNum,
-    setShipPlaceName,
-    setShipReceiver,
-    setShipPostCode,
-    setFirstPhoneNum,
-    setMiddlePhoneNum,
-    setLastPhoneNum,
+
     card,
     setCard,
   } = userInfoStore();
@@ -288,10 +282,10 @@ const Shipment = () => {
             {!haveAddress ? (
               <ShipAddress />
             ) : (
-              <AddShipInfoForm
+              <AddUserAddressForm
                 setDefaultAddress={true}
                 type={"orderPage"}
-              ></AddShipInfoForm>
+              ></AddUserAddressForm>
             )}
           </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import * as Style from "./styles";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
-import HorizonLine from "../../common/HorizonLine";
+import HorizonLine from "../../../common/HorizonLine";
 const QnAItem = ({
   item,
   index,

@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "../../common/Navbar/Container";
-import { addProduct } from "../../../api/product";
+import Navbar from "../../../common/Navbar/UINavbar";
 import UIForm from "../UIForm";
-import { validateAddProductForm } from "../../../utils/validateAddProductForm";
+import { validateAddProductForm } from "../../../../utils/validateAddProductForm";
 import Swal from "sweetalert2";
-import { uploadImage } from "../../../api/upload";
+import { uploadImage } from "../../../../api/upload";
 import { useNavigate } from "react-router-dom";
-import { useProductInputs } from "../../../hooks/useInputs";
+import { useProductInputs } from "../../../../hooks/useInputs";
+import { addProduct } from "../../../../api/product";
 const AddProductForm = () => {
   const { product, setProduct, onChangeProduct, file, onChangeFile } =
     useProductInputs();

@@ -6,7 +6,7 @@ import ScrollToTop from "../../../../utils/scrollToTop";
 import AdminNavbar from "../UIAdminNavbar/AdminNavbar";
 import UserNavbar from "../UIUserNavbar/UserNavbar";
 import Button from "../../button";
-import SearchModal from "../../Modal/Children/SearchContainer";
+import SearchModal from "../../Modal/Conatiner/Search";
 const Container = ({
   showNavbar,
   scrollPosition,

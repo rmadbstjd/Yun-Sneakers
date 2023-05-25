@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-import Button from "../../../common/button";
+import Button from "../../../../common/button";
 const Layout = ({
   QnA,
   title,

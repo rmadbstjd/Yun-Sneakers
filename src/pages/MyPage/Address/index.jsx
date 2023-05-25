@@ -8,7 +8,7 @@ import Modal from "../../../components/common/Modal/UIModal";
 import MypageSide from "../../../components/MypageSide/Container/index";
 import { validateAddress } from "../../../utils/validateAddress";
 import Button from "../../../components/common/button";
-import AddShipInfoForm from "../../../components/AddShipInfoForm/Container";
+import Container from "../../../components/Form/AddUserAddressForm/Container";
 import {
   addUserAddress,
   getUserAddress,
@@ -141,7 +141,7 @@ const Address = () => {
                 children={
                   <Style.ModalContainer>
                     <Style.ModalContent>
-                      <AddShipInfoForm setDefaultAddress={false} />
+                      <Container setDefaultAddress={false} />
                       <Style.BtnContainer>
                         <Button
                           style={{

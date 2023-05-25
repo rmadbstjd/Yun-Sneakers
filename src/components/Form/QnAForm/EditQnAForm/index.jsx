@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { validateAddQnAForm } from "../../../utils/validateAddQnAForm";
-import { modifyQna } from "../../../api/product";
-import { bringNowDates } from "../../../utils/bringNowDates";
+import { validateAddQnAForm } from "../../../../utils/validateAddQnAForm";
+import { modifyQna } from "../../../../api/product";
+import { bringNowDates } from "../../../../utils/bringNowDates";
 import Layout from "./Layout";
 
 const noticeList = [

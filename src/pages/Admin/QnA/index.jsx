@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { answerQna } from "../../../api/product";
 import Navbar from "../../../components/common/Navbar/Container/index";
 import { useQuery } from "@tanstack/react-query";
-import QnAModal from "../../../components/common/Modal/Children/QnAContainer";
+import QnAModal from "../../../components/common/Modal/Conatiner/QnA";
 import Modal from "../../../components/common/Modal/UIModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";

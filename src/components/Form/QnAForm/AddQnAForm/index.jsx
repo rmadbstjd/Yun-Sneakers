@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import userInfoStore from "../../../store/userInfoStore";
-import { validateAddQnAForm } from "../../../utils/validateAddQnAForm";
-import { getProductInfo, addQna } from "../../../api/product";
-import { bringNowDates } from "../../../utils/bringNowDates";
+import userInfoStore from "../../../../store/userInfoStore";
+import { validateAddQnAForm } from "../../../../utils/validateAddQnAForm";
+import { getProductInfo, addQna } from "../../../../api/product";
+import { bringNowDates } from "../../../../utils/bringNowDates";
 import { useQuery } from "@tanstack/react-query";
 import Layout from "./Layout";
 const noticeList = [

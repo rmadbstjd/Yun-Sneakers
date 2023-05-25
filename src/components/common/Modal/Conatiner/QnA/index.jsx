@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Style from "./styles";
 import Button from "../../../button";
-const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
-  const [text, setText] = useState("");
-  const handleSetValue = (e) => {
-    if (e.target.value.length > 300) setText(text.substring(0, 300));
-    else setText(e.target.value);
-  };
+
+import { useTextInputs } from "./../../../../../hooks/useInputs";
+const QnAModal = ({ setModalIsOpen, qna, submitBtn }) => {
+  const { state: text, handleChange: setText } = useTextInputs("", 300);
 
   return (
     <>
@@ -31,7 +29,7 @@ const QnAModal = ({ modalIsOpen, setModalIsOpen, qna, submitBtn }) => {
             height={"200px"}
             placeholder="질문에 대한 답변을 작성해주세요."
             value={text}
-            onChange={(e) => handleSetValue(e)}
+            onChange={(e) => e}
           ></Style.TextArea>
           <Style.TextLength>{text.length} / 300</Style.TextLength>
         </div>

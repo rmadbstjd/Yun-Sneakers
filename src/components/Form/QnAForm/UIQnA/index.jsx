@@ -1,11 +1,11 @@
 import React from "react";
-import HorizonLine from "../../common/HorizonLine";
+import HorizonLine from "../../../common/HorizonLine";
 import AddQnAForm from "../AddQnAForm";
 import EditQnAForm from "../EditQnAForm";
 import QnALists from "../QnAList";
 import Pagination from "react-js-pagination";
 import * as Style from "./styles";
-const Container = ({
+const UIQnA = ({
   clickToWriteBtn,
   QnAList,
   showWriteForm,
@@ -89,4 +89,4 @@ const Container = ({
   );
 };
 
-export default Container;
+export default UIQnA;

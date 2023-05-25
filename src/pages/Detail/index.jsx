@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { BsHeart } from "@react-icons/all-files/bs/BsHeart";
 import { FaHeart } from "@react-icons/all-files/fa/FaHeart";
 import HorizonLine from "../../components/common/HorizonLine";
-import SizeModal from "../../components/common/Modal/Children/SizeContainer";
+import SizeModal from "../../components/common/Modal/Conatiner/Size";
 import Modal from "../../components/common/Modal/UIModal";
 import SimilarProducts from "./SimilarProducts";
 import ProductReviews from "./Reviews";
@@ -22,7 +22,7 @@ import ProductDetailFooter from "./DetailFooter";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { Link } from "react-scroll";
-import QnAForm from "../../components/QnAForm/Container";
+import UIQnA from "../../components/Form/QnAForm/UIQnA";
 import NotFound from "../NotFound";
 import getProductReviews from "../../api/review";
 import { addUserCart, getUserCarts } from "../../api/cart";
@@ -305,7 +305,7 @@ const ProductDetail = () => {
       </Style.Container>
       <Style.Container2>
         {" "}
-        <QnAForm></QnAForm>
+        <UIQnA></UIQnA>
         <ProductDetailFooter></ProductDetailFooter>
         <div id="review">
           <ProductReviews productReviews={productReviews} />

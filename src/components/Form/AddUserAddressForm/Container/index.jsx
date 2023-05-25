@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { addUserAddress } from "../../../api/myPage";
+import { addUserAddress } from "../../../../api/myPage";
 import UI from "../UI";
-import useGetUserAddress from "./../../../hooks/useGetUserAddress";
-import { useTextInputs, useNumberInputs } from "../../../hooks/useInputs";
+import useGetUserAddress from "./../../../../hooks/useGetUserAddress";
+import { useTextInputs, useNumberInputs } from "../../../../hooks/useInputs";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
-const AddShipInfoForm = ({ type, setDefaultAddress }) => {
+const Container = ({ type, setDefaultAddress }) => {
   const [address] = useGetUserAddress();
   const { state: place, handleChange: setPlace } = useTextInputs(
     address?.place,
@@ -127,4 +127,4 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   );
 };
 
-export default AddShipInfoForm;
+export default Container;

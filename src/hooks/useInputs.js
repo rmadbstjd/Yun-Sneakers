@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useImmer } from "use-immer";
 import convertStringToNumber from "../utils/convertStringToNumber";
+
 export const useTextInputs = (initState, maxLength) => {
   const [state, setState] = useState(initState);
   const getValue = (e) => {

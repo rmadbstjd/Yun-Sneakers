@@ -1,12 +1,12 @@
 import React from "react";
-import { uploadImage } from "../../../api/upload";
+import { uploadImage } from "../../../../api/upload";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../common/Navbar/Container";
+import Navbar from "../../../common/Navbar/UINavbar";
 import Swal from "sweetalert2";
-import { editProduct } from "../../../api/product";
-import { validateAddProductForm } from "../../../utils/validateAddProductForm";
+import { editProduct } from "../../../../api/product";
+import { validateAddProductForm } from "../../../../utils/validateAddProductForm";
 import UIForm from "../UIForm";
-import { useProductInputs } from "../../../hooks/useInputs";
+import { useProductInputs } from "../../../../hooks/useInputs";
 const EditProductForm = ({ productInfo }) => {
   const navigate = useNavigate();
 
