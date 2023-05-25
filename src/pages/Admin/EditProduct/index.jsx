@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import EditProductForm from "../EditProduct";
+import EditProductForm from "../../../components/ProductForm/EditProductFormContainer";
 import { useQuery } from "@tanstack/react-query";
 import { getProductInfo } from "../../../api/product";
 const EditProduct = () => {

@@ -1,36 +1,17 @@
-import React, { useState } from "react";
-import { useImmer } from "use-immer";
+import React from "react";
 import Navbar from "../../common/Navbar/Container";
 import { addProduct } from "../../../api/product";
-import InputLayout from "../Layout";
+import UIForm from "../UIForm";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";
 import Swal from "sweetalert2";
 import { uploadImage } from "../../../api/upload";
 import { useNavigate } from "react-router-dom";
+import { useProductInputs } from "../../../hooks/useInputs";
 const AddProductForm = () => {
-  const [product, setProduct] = useImmer({
-    url: "",
-    title: "",
-    price: "",
-    category: "",
-    description: "",
-    size: "",
-  });
-  const [file, setFile] = useState("");
+  const { product, setProduct, onChangeProduct, file, onChangeFile } =
+    useProductInputs();
 
   const navigate = useNavigate();
-
-  const onChangeFile = (e) => {
-    const { files } = e.target;
-    setFile(files && files[0]);
-  };
-
-  const onChangeProduct = (e, value) => {
-    const row = e.target.value;
-    setProduct((product) => {
-      product[value] = row;
-    });
-  };
 
   const clickAddBtn = async (e) => {
     if (validateAddProductForm(file, product)) {
@@ -55,7 +36,7 @@ const AddProductForm = () => {
   return (
     <>
       <Navbar />
-      <InputLayout
+      <UIForm
         file={file}
         onChangeFile={onChangeFile}
         product={product}

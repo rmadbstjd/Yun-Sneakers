@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { uploadImage } from "../../../api/upload";
 import { useNavigate } from "react-router-dom";
-import { useImmer } from "use-immer";
 import Navbar from "../../common/Navbar/Container";
 import Swal from "sweetalert2";
 import { editProduct } from "../../../api/product";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";
-import convertStringToNumber from "../../../utils/convertStringToNumber";
-import InputLayout from "../Layout";
+import UIForm from "../UIForm";
+import { useProductInputs } from "../../../hooks/useInputs";
 const EditProductForm = ({ productInfo }) => {
-  const [product, setProduct] = useImmer({
-    url: "",
-    title: "",
-    price: "",
-    category: "",
-    description: "",
-    size: "",
-  });
-  const [file, setFile] = useState("");
-
   const navigate = useNavigate();
 
-  const onChangeFile = (e) => {
-    const { files } = e.target;
-    setFile(files && files[0]);
-  };
-  const onChangeProduct = (e, column) => {
-    const row = e.target.value;
-    setProduct((product) => {
-      product[column] = row;
-    });
-  };
+  const { product, onChangeProduct, file, onChangeFile } =
+    useProductInputs(productInfo);
 
   const clickEditBtn = async (e) => {
     if (validateAddProductForm(product.url, product)) {
@@ -50,23 +31,11 @@ const EditProductForm = ({ productInfo }) => {
   const clickCancelBtn = () => {
     navigate("/admin/manage");
   };
-  useEffect(() => {
-    if (productInfo) {
-      setProduct((product) => {
-        product["url"] = productInfo.product.image;
-        product["price"] = convertStringToNumber(productInfo.product.price);
-        product["title"] = productInfo.product.name;
-        product["size"] = productInfo.product.size;
-        product["description"] = productInfo.product.description;
-        product["category"] = productInfo.product.category;
-      });
-    }
-  }, [productInfo]);
 
   return (
     <>
       <Navbar />
-      <InputLayout
+      <UIForm
         product={product}
         onChangeProduct={onChangeProduct}
         file={file}

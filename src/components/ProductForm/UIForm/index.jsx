@@ -2,7 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import FileInput from "../Inputs/FileInput";
 import TextInput from "../Inputs/TextInput";
-const InputProduct = ({
+const UIForm = ({
   product,
   file,
   type,
@@ -58,4 +58,4 @@ const InputProduct = ({
   );
 };
 
-export default InputProduct;
+export default UIForm;

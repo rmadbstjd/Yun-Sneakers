@@ -7,21 +7,24 @@ const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   const [address] = useGetUserAddress();
-  const [place, setPlace] = useTextInputs(address?.place, 30);
-  const [receiver, setReceiver] = useTextInputs(address?.receiver, 30);
-  const [detail, setDetail] = useTextInputs(address?.detail, 50);
-  const [firstPhoneNum, setFirstPhoneNum] = useNumberInputs(
-    address?.phoneNumber1,
-    3
+  const { state: place, handleChange: setPlace } = useTextInputs(
+    address?.place,
+    30
   );
-  const [middlePhoneNum, setMiddlePhoneNum] = useNumberInputs(
-    address?.phoneNumber2,
-    4
+  const { state: receiver, handleChange: setReceiver } = useTextInputs(
+    address?.receiver,
+    30
   );
-  const [lastPhoneNum, setLastPhoneNum] = useNumberInputs(
-    address?.phoneNumber3,
-    4
+  const { state: detail, handleChange: setDetail } = useTextInputs(
+    address?.detail,
+    50
   );
+  const { state: firstPhoneNum, handleChange: setFirstPhoneNum } =
+    useNumberInputs(address?.phoneNumber1, 3);
+  const { state: middlePhoneNum, handleChange: setMiddlePhoneNum } =
+    useNumberInputs(address?.phoneNumber2, 4);
+  const { state: lastPhoneNum, handleChange: setLastPhoneNum } =
+    useNumberInputs(address?.phoneNumber3, 4);
   const [placeAddress, setPlaceAddress] = useState(address?.address);
   const [postCode, setPostCode] = useState(address?.postCode);
   const [defaultAddress] = useState(false);

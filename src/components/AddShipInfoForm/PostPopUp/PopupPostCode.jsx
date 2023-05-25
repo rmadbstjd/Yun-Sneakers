@@ -3,7 +3,6 @@ import DaumPostcode from "react-daum-postcode";
 import styles from "./css/PopupPostCode.module.css";
 const PopupPostCode = (props) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
-  console.log("props", props);
   const handlePostCode = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
