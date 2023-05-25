@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { addUserAddress, getUserAddress } from "../../../api/myPage";
-import Layout from "../Layout";
+import React, { useState } from "react";
+import { addUserAddress } from "../../../api/myPage";
+import UI from "../UI";
+import useGetUserAddress from "./../../../hooks/useGetUserAddress";
+import { useTextInputs, useNumberInputs } from "../../../hooks/useInputs";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShipInfoForm = ({ type, setDefaultAddress }) => {
-  const { data: address } = useQuery(["address"], () => getUserAddress());
-  const [inputs, setInputs] = useState({
-    place: "",
-    receiver: "",
-    postCode: "",
-    address: "",
-    detail: "",
-    firstPhoneNum: "",
-    middlePhoneNum: "",
-    lastPhoneNum: "",
-    defaultAddress: "",
-  });
-
+  const [address] = useGetUserAddress();
+  const [place, setPlace] = useTextInputs(address?.place, 30);
+  const [receiver, setReceiver] = useTextInputs(address?.receiver, 30);
+  const [detail, setDetail] = useTextInputs(address?.detail, 50);
+  const [firstPhoneNum, setFirstPhoneNum] = useNumberInputs(
+    address?.phoneNumber1,
+    3
+  );
+  const [middlePhoneNum, setMiddlePhoneNum] = useNumberInputs(
+    address?.phoneNumber2,
+    4
+  );
+  const [lastPhoneNum, setLastPhoneNum] = useNumberInputs(
+    address?.phoneNumber3,
+    4
+  );
+  const [placeAddress, setPlaceAddress] = useState(address?.address);
+  const [postCode, setPostCode] = useState(address?.postCode);
+  const [defaultAddress] = useState(false);
   const [showRequestedTermList, setShowRequestedTermList] = useState(false);
   const [requestedTermItem, setRequestedTermItem] =
     useState("배송시 요청사항을 선택해 주세요");
@@ -41,27 +48,26 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
   };
 
   const changePlaceName = (e) => {
-    if (regex.test(e.target.value))
-      setInputs({ ...inputs, place: e.target.value });
+    if (regex.test(e.target.value)) setPlace(e.target.value);
   };
 
   const changeReceiverName = (e) => {
-    if (regex.test(e.target.value))
-      setInputs({ ...inputs, receiver: e.target.value });
+    if (regex.test(e.target.value)) setReceiver(e.target.value);
   };
 
   const changeDetailName = (e) => {
     if (regex.test(e.target.value));
-    setInputs({ ...inputs, detail: e.target.value });
+    setDetail(e.target.value);
   };
 
-  const validatePhoneNumber = (e, field) => {
-    const number = e.target.value.replace(/[^0-9]/g, "");
-    if (number.length >= 5) return;
-    setInputs((prevInputs) => ({
-      ...prevInputs,
-      [field]: number,
-    }));
+  const changeFirstPhoneNumber = (e) => {
+    setFirstPhoneNum(e.target.value);
+  };
+  const changeMiddlePhoneNumber = (e) => {
+    setMiddlePhoneNum(e.target.value);
+  };
+  const changeLastPhoneNumber = (e) => {
+    setLastPhoneNum(e.target.value);
   };
   const checkTextLength = (e) => {
     if (e.target.value.length >= 51) return;
@@ -70,40 +76,37 @@ const AddShipInfoForm = ({ type, setDefaultAddress }) => {
 
   const addAddress = async () => {
     await addUserAddress(
-      inputs.place,
-      inputs.receiver,
-      inputs.postCode,
-      inputs.address,
-      inputs.detail,
-      inputs.firstPhoneNum,
-      inputs.middlePhoneNum,
-      inputs.lastPhoneNum
+      place,
+      receiver,
+      postCode,
+      placeAddress,
+      detail,
+      firstPhoneNum,
+      middlePhoneNum,
+      lastPhoneNum
     );
   };
 
-  useEffect(() => {
-    if (address) {
-      setInputs({
-        ...inputs,
-        place: address.place,
-        receiver: address.receiver,
-        firstPhoneNum: address.phoneNumber1,
-        middlePhoneNum: address.phoneNumber2,
-        lastPhoneNum: address.phoneNumber3,
-        address: address.address,
-        detail: address.addressDetail,
-        postCode: address.postCode,
-      });
-    }
-  }, [address]);
   return (
-    <Layout
-      inputs={inputs}
-      setInputs={setInputs}
+    <UI
+      place={place}
+      receiver={receiver}
+      detail={detail}
+      firstPhoneNum={firstPhoneNum}
+      middlePhoneNum={middlePhoneNum}
+      lastPhoneNum={lastPhoneNum}
+      postCode={postCode}
+      setPostCode={setPostCode}
+      placeAddress={placeAddress}
+      setPlaceAddress={setPlaceAddress}
+      setDetail={setDetail}
       changePlaceName={changePlaceName}
       changeReceiverName={changeReceiverName}
       changeDetailName={changeDetailName}
-      validatePhoneNumber={validatePhoneNumber}
+      changeFirstPhoneNumber={changeFirstPhoneNumber}
+      changeMiddlePhoneNumber={changeMiddlePhoneNumber}
+      changeLastPhoneNumber={changeLastPhoneNumber}
+      defaultAddress={defaultAddress}
       setDefaultAddress={setDefaultAddress}
       addAddress={addAddress}
       requestedTermItem={requestedTermItem}

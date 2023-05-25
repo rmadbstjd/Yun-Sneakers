@@ -6,6 +6,9 @@ import PopupPostCode from "../../PostPopUp/PopupPostCode";
 const AddressInput = ({
   title,
   postCode,
+  setPostCode,
+  placeAddress,
+  setPlaceAddress,
   address,
   detail,
   onClick,
@@ -46,8 +49,10 @@ const AddressInput = ({
               <PopupPostCode
                 onClose={closePostCode}
                 type={type}
-                setInputs={setInputs}
-                inputs={inputs}
+                postCode={postCode}
+                setPostCode={setPostCode}
+                placeAddress={placeAddress}
+                setPlaceAddress={setPlaceAddress}
               />
             </PopupDom>
           )}

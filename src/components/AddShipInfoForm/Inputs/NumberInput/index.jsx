@@ -6,26 +6,22 @@ const NumberInput = ({
   first,
   middle,
   last,
-  validateFirstPhoneNum,
-  validateMiddlePhoeNum,
-  validateLastPhoneNum,
+  changeFirstPhoneNum,
+  changeMiddlePhoneNum,
+  changeLastPhoneNum,
 }) => {
   return (
     <Style.Container>
       <Style.Title>{title}</Style.Title>
-      <Style.Input type="text" value={first} onChange={validateFirstPhoneNum} />
+      <Style.Input type="text" value={first} onChange={changeFirstPhoneNum} />
       <AiOutlineMinus
         style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
       />
-      <Style.Input
-        type="text"
-        value={middle}
-        onChange={validateMiddlePhoeNum}
-      />
+      <Style.Input type="text" value={middle} onChange={changeMiddlePhoneNum} />
       <AiOutlineMinus
         style={{ width: "15px", height: "15px", margin: "10px 1px 0px 3px" }}
       />
-      <Style.Input type="text" value={last} onChange={validateLastPhoneNum} />
+      <Style.Input type="text" value={last} onChange={changeLastPhoneNum} />
     </Style.Container>
   );
 };

@@ -17,6 +17,7 @@ import { addOrderProducts } from "../../api/order";
 import { validateOrder } from "../../utils/validateOrder";
 import Button from "../../components/common/button";
 import { getUserAddress } from "../../api/myPage";
+import useGetUserAddress from "../../hooks/useGetUserAddress";
 const couponArr = [
   "선택안함",
   "Welcome 5% 할인 쿠폰",
@@ -94,10 +95,8 @@ const Shipment = () => {
   const { isLoading, data: products } = useQuery(["products"], () =>
     getUserCheckedCarts()
   );
+  const [userAddress] = useGetUserAddress();
 
-  const { data: userAddress } = useQuery(["userAddress"], () =>
-    getUserAddress()
-  );
   const [checkItems, setCheckItems] = useState([]);
   const [showCouponBox, setShowCouponBox] = useState(false);
   const [haveAddress, setHaveAddress] = useState(false);
@@ -216,16 +215,7 @@ const Shipment = () => {
       }
     }
   }, [products]);
-  useEffect(() => {
-    if (userAddress) {
-      setShipPlaceName(userAddress.place);
-      setShipReceiver(userAddress.receiver);
-      setShipPostCode(userAddress.postCode);
-      setFirstPhoneNum(userAddress.phoneNumber1);
-      setMiddlePhoneNum(userAddress.phoneNumber2);
-      setLastPhoneNum(userAddress.phoneNumber3);
-    }
-  }, [userAddress]);
+
   const clickCoupon = (item) => {
     setCoupon(item);
     setShowCouponBox(false);
