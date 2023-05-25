@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import userInfoStore from "../../store/userInfoStore";
-import Layout from "./Layout";
+import userInfoStore from "../../../store/userInfoStore";
+import Container from "../UISide";
 const itemArr = [
   { id: 0, title: "주문 내역 조회", params: "order" },
   { id: 1, title: "관심 상품", params: "wish" },
@@ -24,7 +24,7 @@ const MypageSide = () => {
   };
 
   return (
-    <Layout
+    <Container
       nickName={nickName}
       setIsCheckedID={setIsCheckedID}
       query={query}

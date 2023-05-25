@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/Container";
 import userApi from "../../api/user";
 const Join = () => {
   const navigate = useNavigate();

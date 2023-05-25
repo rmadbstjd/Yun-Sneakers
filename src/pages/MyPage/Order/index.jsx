@@ -5,12 +5,12 @@ import { getOrderedProducts } from "../../../api/myPage";
 import { Link } from "react-scroll";
 import { completeShipment, getShipIsCompleted } from "../../../api/order";
 import Button from "../../../components/common/button";
-import ReviewModal from "../../../components/common/Modal/Children/Review";
+import ReviewModal from "../../../components/common/Modal/Children/ReviewContainer";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import * as Style from "./styles";
-import MypageSide from "../../../components/MypageSide";
-import Navbar from "./../../../components/common/Navbar/index";
+import MypageSide from "../../../components/MypageSide/Container";
+import Navbar from "../../../components/common/Navbar/Container/index";
 
 const itemArr = [
   "상품정보",

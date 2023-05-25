@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/Container";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/common/button";
 const NotFound = () => {

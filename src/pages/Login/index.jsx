@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { useNavigate, useLocation } from "react-router-dom";
 import { history } from "../../utils/history";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/Container";
 
 import userApi from "../../api/user";
 const Login = () => {

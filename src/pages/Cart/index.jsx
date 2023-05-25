@@ -6,7 +6,7 @@ import userInfoStore from "../../store/userInfoStore";
 import CartProducts from "./CartProducts";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Container/index";
 import Button from "./../../components/common/button";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useImmer } from "use-immer";

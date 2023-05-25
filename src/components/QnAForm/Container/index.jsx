@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { deleteQna } from "../../api/product";
+import { deleteQna } from "../../../api/product";
 import { useQuery } from "@tanstack/react-query";
-import { getQna } from "../../api/product";
+import { getQna } from "../../../api/product";
 import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
-
-import Layout from "./Layout";
+import Container from "../UIQnA";
 const QnAForm = () => {
   const [isClickedModifyBtn] = useState(false);
   const [showWriteForm, setShowWriteForm] = useState(false);
@@ -80,7 +79,7 @@ const QnAForm = () => {
   };
 
   return (
-    <Layout
+    <Container
       clickToWriteBtn={clickToWriteBtn}
       QnAList={QnAList}
       showWriteForm={showWriteForm}

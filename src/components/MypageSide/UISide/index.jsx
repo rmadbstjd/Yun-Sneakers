@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-const Layout = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
+const Container = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
   return (
     <Style.Container>
       <Style.Title>마이 페이지</Style.Title>
@@ -24,4 +24,4 @@ const Layout = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
   );
 };
 
-export default Layout;
+export default Container;

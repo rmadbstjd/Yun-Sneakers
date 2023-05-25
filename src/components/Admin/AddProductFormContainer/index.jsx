@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useImmer } from "use-immer";
-import Navbar from "../../common/Navbar";
+import Navbar from "../../common/Navbar/Container";
 import { addProduct } from "../../../api/product";
 import InputLayout from "../Layout";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";

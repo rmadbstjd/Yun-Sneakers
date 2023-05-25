@@ -8,7 +8,7 @@ import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
 import searchStore from "../../store/searchStore";
 import ProductCard from "../../components/common/ProductCard";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Container/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import convertStringToNumber from "../../utils/convertStringToNumber";
 import { useImmer } from "use-immer";

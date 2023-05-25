@@ -7,7 +7,7 @@ import {
 } from "../../api/product";
 import * as Style from "./styles";
 import RecommendBrand from "./RecommendBrand";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Container/index";
 import MainProducts from "../../components/MainProducts";
 import { useNavigate } from "react-router-dom";
 const Main = () => {

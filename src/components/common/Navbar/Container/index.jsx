@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getUserCarts } from "../../../api/cart";
+import { getUserCarts } from "../../../../api/cart";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../../store/userInfoStore";
-import cartStore from "../../../store/cartStore";
-import searchStore from "./../../../store/searchStore";
-import userApi from "../../../api/user";
+import userInfoStore from "../../../../store/userInfoStore";
+import cartStore from "../../../../store/cartStore";
+import searchStore from "../../../../store/searchStore";
+import userApi from "../../../../api/user";
 import jwt_decode from "jwt-decode";
 
-import Layout from "./Layout";
+import Container from "../UINavbar";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
   const { nickName, userId, setNickName, setUserId } = userInfoStore();
@@ -62,7 +62,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   }, []);
 
   return (
-    <Layout
+    <Container
       showNavbar={showNavbar}
       scrollPosition={scrollPosition}
       setShowSearch={setShowSearch}

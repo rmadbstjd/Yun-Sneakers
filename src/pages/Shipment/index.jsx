@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import AddShipInfoForm from "../../components/AddShipInfoForm";
+import AddShipInfoForm from "../../components/AddShipInfoForm/Container";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import convertStringToNumber from "../../utils/convertStringToNumber";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Container/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { getUserCheckedCarts } from "../../api/cart";

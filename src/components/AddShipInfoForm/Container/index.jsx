@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { addUserAddress, getUserAddress } from "../../api/myPage";
-import Layout from "./Layout";
+import { addUserAddress, getUserAddress } from "../../../api/myPage";
+import Layout from "../Layout";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
 const AddShipInfoForm = ({ type, setDefaultAddress }) => {

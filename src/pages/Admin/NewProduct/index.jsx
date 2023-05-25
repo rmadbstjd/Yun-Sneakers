@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddProductForm from "../../../components/Admin/AddProductForm";
+import AddProductForm from "../../Admin/NewProduct";
 const NewProducts = () => {
   return <AddProductForm></AddProductForm>;
 };

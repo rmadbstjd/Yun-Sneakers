@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import * as Style from "./styles";
-import Navbar from "./../../../components/common/Navbar/index";
+import Navbar from "../../../components/common/Navbar/Container/index";
 import userInfoStore from "./../../../store/userInfoStore";
 import ShipAddress from "./../../../components/ShipAddress/index";
-import Modal from "../../../components/common/Modal/Layout";
-import MypageSide from "./../../../components/MypageSide/index";
+import Modal from "../../../components/common/Modal/UIModal";
+import MypageSide from "../../../components/MypageSide/Container/index";
 import { validateAddress } from "../../../utils/validateAddress";
 import Button from "../../../components/common/button";
-import AddShipInfoForm from "../../../components/AddShipInfoForm";
+import AddShipInfoForm from "../../../components/AddShipInfoForm/Container";
 import {
   addUserAddress,
   getUserAddress,

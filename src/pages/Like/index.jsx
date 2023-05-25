@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "../../components/common/ProductCard";
 import { getLikedProducts } from "../../api/like";
 import { pushLike } from "../../api/like";
-import Navbar from "./../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Container/index";
 import HorizonLine from "../../components/common/HorizonLine";
 import LoadingSpinner from "./../../components/common/LoadingSpinner";
 import Button from "../../components/common/button";

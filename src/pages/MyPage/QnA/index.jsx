@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
 import { useQuery } from "@tanstack/react-query";
-import MypageSide from "../../../components/MypageSide";
-import Navbar from "./../../../components/common/Navbar/index";
+import MypageSide from "../../../components/MypageSide/Container";
+import Navbar from "../../../components/common/Navbar/Container/index";
 import { useNavigate } from "react-router-dom";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";

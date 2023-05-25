@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
 import { answerQna } from "../../../api/product";
-import Navbar from "../../../components/common/Navbar/index";
+import Navbar from "../../../components/common/Navbar/Container/index";
 import { useQuery } from "@tanstack/react-query";
-import QnAModal from "../../../components/common/Modal/Children/QnA";
-import Modal from "../../../components/common/Modal/Layout";
+import QnAModal from "../../../components/common/Modal/Children/QnAContainer";
+import Modal from "../../../components/common/Modal/UIModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getNotAnsweredQna, getAnsweredQna } from "../../../api/product";

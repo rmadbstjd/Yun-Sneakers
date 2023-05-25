@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
 import { deleteProduct } from "../../../api/product";
-import Navbar from ".././../../components/common/Navbar/index";
+import Navbar from "../../../components/common/Navbar/Container/index";
 import { useQuery } from "@tanstack/react-query";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
 import Pagination from "../../../components/common/Pagination";

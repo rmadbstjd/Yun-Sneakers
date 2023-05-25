@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { uploadImage } from "../../../api/upload";
 import { useNavigate } from "react-router-dom";
 import { useImmer } from "use-immer";
-import Navbar from "../../common/Navbar";
+import Navbar from "../../common/Navbar/Container";
 import Swal from "sweetalert2";
 import { editProduct } from "../../../api/product";
 import { validateAddProductForm } from "../../../utils/validateAddProductForm";

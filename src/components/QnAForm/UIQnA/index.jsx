@@ -5,7 +5,7 @@ import EditQnAForm from "../EditQnAForm";
 import QnALists from "../QnAList";
 import Pagination from "react-js-pagination";
 import * as Style from "./styles";
-const Layout = ({
+const Container = ({
   clickToWriteBtn,
   QnAList,
   showWriteForm,
@@ -89,4 +89,4 @@ const Layout = ({
   );
 };
 
-export default Layout;
+export default Container;
