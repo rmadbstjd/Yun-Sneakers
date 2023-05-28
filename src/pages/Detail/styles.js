@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: flex;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   justify-content: center;
   width: 1820px;
   margin: 0 auto;
 `;
 export const Container2 = styled.div`
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
 
   width: 1820px;
   margin: 0 auto;

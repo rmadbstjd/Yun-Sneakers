@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Style from "./styles";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
-import AddUserAddressForm from "../../components/Form/AddUserAddressForm/Container";
+import AddUserAddressForm from "../../components/Form/UserAddressForm/Container";
 import { useQuery } from "@tanstack/react-query";
 import userInfoStore from "../../store/userInfoStore";
 import ShipAddress from "../../components/ShipAddress";

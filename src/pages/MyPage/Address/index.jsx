@@ -8,7 +8,7 @@ import Modal from "../../../components/common/Modal/UIModal";
 import MypageSide from "../../../components/MypageSide/Container/index";
 import { validateAddress } from "../../../utils/validateAddress";
 import Button from "../../../components/common/button";
-import Container from "../../../components/Form/AddUserAddressForm/Container";
+import Container from "../../../components/Form/UserAddressForm/Container";
 import {
   addUserAddress,
   getUserAddress,

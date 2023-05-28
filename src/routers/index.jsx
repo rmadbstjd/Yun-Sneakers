@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Join from "../pages/Join";
 import Login from "../pages/Login";
@@ -14,8 +14,8 @@ import NotFound from "../pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import NewProducts from "../pages/Admin/NewProduct";
-import EditProduct from "../pages/Admin/EditProduct";
-import ManageProducts from "../pages/Admin/ManageProducts";
+import EditProduct from "../pages/Admin/EditProduct/Container";
+import ManageProducts from "../pages/Admin/ManageProducts/Container";
 import QnA from "../pages/Admin/QnA";
 
 const Router = () => {

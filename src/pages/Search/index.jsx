@@ -17,11 +17,11 @@ import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Pagination from "../../components/common/Pagination";
 import { searchForProducts } from "../../api/product";
 import { getBrandsName } from "../../api/product";
-
+import { useUpdateScroll } from "../../hooks/useUpdateScroll";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const { scrollPosition, setScrollPosition, updateScroll } = useUpdateScroll();
   const [searchProducts, setSearchProducts] = useState([]);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query] = useSearchParams();
@@ -34,9 +34,6 @@ const SearchPage = () => {
   const sessionPrice = sessionStorage.getItem("price");
   const initPage = query.get("page") || 1;
   const [pages, setPages] = useState(Number(initPage));
-  const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-  };
 
   const [checkedBrandList, setCheckedBrandList] = useImmer(
     JSON.parse(sessionBrand) || []
@@ -230,9 +227,6 @@ const SearchPage = () => {
     }
   }, [checkedBrandList, checkedPriceList, checkedSort]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-  }, []);
   return (
     <div>
       <Navbar

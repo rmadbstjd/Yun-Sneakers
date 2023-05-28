@@ -3,11 +3,11 @@ import * as Style from "./styles";
 import { GiConverseShoe } from "@react-icons/all-files/gi/GiConverseShoe";
 import { FiSearch } from "@react-icons/all-files/fi/FiSearch";
 import ScrollToTop from "../../../../utils/scrollToTop";
-import AdminNavbar from "../UIAdminNavbar/AdminNavbar";
-import UserNavbar from "../UIUserNavbar/UserNavbar";
+import AdminNavbar from "../UINavbar/Admin/AdminNavbar";
+import UserNavbar from "../UINavbar/User/UserNavbar";
 import Button from "../../button";
 import SearchModal from "../../Modal/Conatiner/Search";
-const Container = ({
+const UINavbar = ({
   showNavbar,
   scrollPosition,
   setShowSearch,
@@ -132,4 +132,4 @@ const Container = ({
   );
 };
 
-export default Container;
+export default UINavbar;

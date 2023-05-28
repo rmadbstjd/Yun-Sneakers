@@ -1,8 +1,8 @@
 import React from "react";
 import * as Style from "./styles";
 import Button from "../../../button";
-
 import { useTextInputs } from "./../../../../../hooks/useInputs";
+
 const QnAModal = ({ setModalIsOpen, qna, submitBtn }) => {
   const { state: text, handleChange: setText } = useTextInputs("", 300);
 
@@ -11,14 +11,12 @@ const QnAModal = ({ setModalIsOpen, qna, submitBtn }) => {
       <Style.ReviewContainer>
         <Style.ReviewTitle>Q&A 답변</Style.ReviewTitle>
         <Style.QnAContent>
-          <Style.Img alt="상품" src={qna && qna.image}></Style.Img>
+          <Style.Img alt="상품" src={qna?.image}></Style.Img>
           <Style.InfoContainer>
-            <Style.ProductCategory>
-              [제목] {qna && qna.title}
-            </Style.ProductCategory>
+            <Style.ProductCategory>[제목] {qna?.title}</Style.ProductCategory>
 
             <Style.ProductDescription>
-              [내용] {qna && qna.content}
+              [내용] {qna?.content}
             </Style.ProductDescription>
           </Style.InfoContainer>
         </Style.QnAContent>
@@ -29,7 +27,7 @@ const QnAModal = ({ setModalIsOpen, qna, submitBtn }) => {
             height={"200px"}
             placeholder="질문에 대한 답변을 작성해주세요."
             value={text}
-            onChange={(e) => e}
+            onChange={(e) => setText(e.target.value)}
           ></Style.TextArea>
           <Style.TextLength>{text.length} / 300</Style.TextLength>
         </div>

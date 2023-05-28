@@ -1,46 +1,16 @@
-import React, { useState } from "react";
-import produce from "immer";
+import React from "react";
 import * as Style from "./styles";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
 import { addProductReview } from "../../../../../api/myPage";
+import { useTextInputs } from "../../../../../hooks/useInputs";
+import { useHandleStar } from "../../../../../hooks/useHandleStar";
 import Button from "../../../button";
 const ReviewModal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
   const reviewType = type === "new" ? "리뷰 작성" : "리뷰 수정";
-  const [star, setStar] = useState([false, false, false, false, false]);
-  const [clickIndex, setClickIndex] = useState();
-  const [text, setText] = useState("");
-
-  const clickToStar = (index) => {
-    setClickIndex(index);
-    if (clickIndex === index) {
-      setStar(
-        produce(star, (draft) => {
-          for (let i = 0; i <= index; i++) {
-            draft[i] = false;
-          }
-        })
-      );
-      setClickIndex("");
-      return;
-    }
-    setStar(
-      produce(star, (draft) => {
-        for (let i = 0; i <= index; i++) {
-          draft[i] = true;
-        }
-        for (let i = index + 1; i <= 4; i++) {
-          draft[i] = false;
-        }
-      })
-    );
-  };
-
-  const handleSetValue = (e) => {
-    if (e.target.value.length > 300) setText(text.substring(0, 300));
-    else setText(e.target.value);
-  };
+  const { state: text, handleChange: setText } = useTextInputs("", 300);
+  const { star, clickIndex, clickToStar } = useHandleStar();
 
   const submitReview = () => {
     if (!star[0]) {
@@ -139,7 +109,7 @@ const ReviewModal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
             height={"200px"}
             placeholder="정확한 리뷰 작성을 위해 최소 10자 이상을 입력해주세요."
             value={text}
-            onChange={(e) => handleSetValue(e)}
+            onChange={(e) => setText(e.target.value)}
           ></Style.TextArea>
           <Style.TextLength>{text.length} / 300</Style.TextLength>
         </div>

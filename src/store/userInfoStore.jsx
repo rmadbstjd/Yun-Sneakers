@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
-  nickName: "",
+  nickName: "GUEST",
   setNickName: (keyword) => set((state) => ({ nickName: keyword })),
   userId: "",
   setUserId: (keyword) => set((state) => ({ userId: keyword })),

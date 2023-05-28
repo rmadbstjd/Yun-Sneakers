@@ -1,6 +1,5 @@
 import axios from "axios";
 import { instance } from "../utils/instance";
-
 const httpClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   withCredentials: true,
@@ -31,6 +30,7 @@ const login = async (userId, password) => {
     if (data.isLogin === false) return false;
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
+
     return data;
   } catch (error) {
     console.error(error);

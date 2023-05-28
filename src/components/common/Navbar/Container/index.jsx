@@ -1,29 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getUserCarts } from "../../../../api/cart";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import userInfoStore from "../../../../store/userInfoStore";
 import cartStore from "../../../../store/cartStore";
 import searchStore from "../../../../store/searchStore";
 import userApi from "../../../../api/user";
-import jwt_decode from "jwt-decode";
-
-import Container from "../UINavbar";
+import { useGetUserInfo } from "../../../../hooks/useGetUserInfo";
+import UINavbar from "../UINavbar";
+import { useGetUserCart } from "../../../../hooks/useGetUserCart";
+import { useUpdateScroll } from "../../../../hooks/useUpdateScroll";
+import CheckIsAdmin from "../../../../utils/checkIsAdmin";
 const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
   const navigate = useNavigate();
-  const { nickName, userId, setNickName, setUserId } = userInfoStore();
-  const { cartCount, initCartCount, plusCartCount } = cartStore();
+  const isAdmin = CheckIsAdmin();
+  const { cartCount } = cartStore();
   const { setSearchWord, setShowBar, showNavbar, setShowNavbar } =
     searchStore();
-  const { data: cartProducts } = useQuery(["cart", userId], () =>
-    getUserCarts()
-  );
   const [showSearch, setShowSearch] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
-  let { data: isAdmin } = useQuery(["admin"], () => userApi.isAdmin());
-  isAdmin = isAdmin?.isAdmin;
+  const { scrollPosition } = useUpdateScroll();
+  const { nickName, userId } = useGetUserInfo();
+  useGetUserCart(userId);
+
   const handleLogin = () => {
     navigate("/login");
   };
@@ -38,31 +33,8 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     setShowNavbar(false);
   };
 
-  const updateScroll = () => {
-    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-  };
-
-  useEffect(() => {
-    setNickName(info?.nickname || "GUEST");
-    setUserId(info?.id);
-  }, [nickName]);
-
-  useEffect(() => {
-    initCartCount();
-    if (cartProducts) {
-      plusCartCount(cartProducts?.products?.length);
-    }
-  }, [cartProducts]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", updateScroll);
-    return () => {
-      window.removeEventListener("scroll", updateScroll);
-    };
-  }, []);
-
   return (
-    <Container
+    <UINavbar
       showNavbar={showNavbar}
       scrollPosition={scrollPosition}
       setShowSearch={setShowSearch}

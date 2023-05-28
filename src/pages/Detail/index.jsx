@@ -22,14 +22,15 @@ import ProductDetailFooter from "./DetailFooter";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import { Link } from "react-scroll";
-import UIQnA from "../../components/Form/QnAForm/UIQnA";
+import Container from "./QnA/Container";
 import NotFound from "../NotFound";
 import getProductReviews from "../../api/review";
-import { addUserCart, getUserCarts } from "../../api/cart";
+import { addUserCart } from "../../api/cart";
 import { pushLike, isLike } from "../../api/like";
 import { getSimilarProducts } from "../../api/product";
 import { getProductInfo } from "../../api/product";
 import Button from "../../components/common/button";
+import { useGetUserCart } from "../../hooks/useGetUserCart";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -40,9 +41,7 @@ const ProductDetail = () => {
 
   const { data: productInfo } = useQuery([id], () => getProductInfo(id));
 
-  const { refetch: cartRefetch } = useQuery(["cart", userId], () =>
-    getUserCarts()
-  );
+  const { refetch: cartRefetch } = useGetUserCart();
 
   const products = productInfo?.product;
   const category = productInfo?.product?.category[0];
@@ -304,8 +303,7 @@ const ProductDetail = () => {
         </Style.ProductContainer>
       </Style.Container>
       <Style.Container2>
-        {" "}
-        <UIQnA></UIQnA>
+        <Container></Container>
         <ProductDetailFooter></ProductDetailFooter>
         <div id="review">
           <ProductReviews productReviews={productReviews} />
