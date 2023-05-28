@@ -4,7 +4,7 @@ import Join from "../pages/Join";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
 import ProductDetail from "../pages/Detail";
-import Cart from "../pages/Cart";
+import CartPage from "../pages/Cart/CartPage/Container";
 import Like from "../pages/Like";
 import MyPageRoute from "./MyPageRoute";
 import Shipment from "../pages/Shipment";
@@ -23,7 +23,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoute />}>
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/mypage/*" element={<MyPageRoute />} />
           <Route path="/products" element={<Like />} />
           <Route path="/shipment" element={<Shipment />} />

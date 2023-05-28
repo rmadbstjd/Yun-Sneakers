@@ -1,15 +1,9 @@
 import axios from "axios";
-import userInfoStore from "../store/userInfoStore";
 import { createBrowserHistory } from "history";
+import jwt_decode from "jwt-decode";
 const history = createBrowserHistory();
-
-let userId = userInfoStore.getState().userId;
-let userNickName = userInfoStore.getState().nickName;
-
-userInfoStore.subscribe(() => {
-  userId = userInfoStore.getState().userId;
-  userNickName = userInfoStore.getState().nickName;
-});
+const token = localStorage.getItem("accessToken");
+const info = token && jwt_decode(token);
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -30,6 +24,7 @@ instance.interceptors.request.use(
     if (config.headers && token) {
       const accessToken = localStorage.getItem("accessToken");
       config.headers.authorization = accessToken;
+
       return config;
     }
   },
@@ -52,7 +47,7 @@ instance.interceptors.response.use(
       // token refresh 요청
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/refresh`,
-        { userId, userNickName },
+        { userId: info.id, userNickName: info.nickname },
         { headers: { authorization: refreshToken } }
       );
       const data = response.data;
@@ -61,6 +56,7 @@ instance.interceptors.response.use(
         localStorage.setItem("accessToken", newAccessToken);
         originalRequest.headers.authorization = newAccessToken;
       } else {
+        console.log("너야?");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         history.push("/login");
