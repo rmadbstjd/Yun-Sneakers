@@ -1,6 +1,6 @@
 import React from "react";
 import * as Style from "./styles";
-const Container = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
+const UISide = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
   return (
     <Style.Container>
       <Style.Title>마이 페이지</Style.Title>
@@ -24,4 +24,4 @@ const Container = ({ nickName, itemArr, query, goToPage, setIsCheckedID }) => {
   );
 };
 
-export default Container;
+export default UISide;

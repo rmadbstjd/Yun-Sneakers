@@ -1,8 +1,7 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getQna } from "../../../../api/product";
 import QnAItem from "../QnAItem";
+import { useGetProductQnA } from "./../../../../hooks/useGetProductQnA";
 const QnAList = ({
   clickToQnAItem,
   showContent,
@@ -12,12 +11,13 @@ const QnAList = ({
   page,
 }) => {
   const { id } = useParams();
-  let { data: QnAList } = useQuery(["qna"], () => getQna(id, page));
-  QnAList = QnAList?.QnA;
+  const { QnAList } = useGetProductQnA(id, page);
+
   return (
     <>
       {QnAList?.map((item, index) => (
         <QnAItem
+          key={index}
           item={item}
           index={index}
           showContent={showContent}

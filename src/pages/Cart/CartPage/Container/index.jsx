@@ -74,6 +74,7 @@ const CartPage = () => {
     }
     navigate("/shipment");
   };
+
   useEffect(() => {
     if (checkedProducts?.length === 0) {
       for (let i = 0; i < cartProducts?.products?.length; i++) {

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Join from "../pages/Join";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
-import ProductDetail from "../pages/Detail";
+import DetailPage from "../pages/Detail/DetailPage/Container";
 import CartPage from "../pages/Cart/CartPage/Container";
 import Like from "../pages/Like";
 import MyPageRoute from "./MyPageRoute";
@@ -40,7 +40,7 @@ const Router = () => {
         </Route>
         <Route path="/" element={<Main />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products/:id" element={<DetailPage />} />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
     </BrowserRouter>

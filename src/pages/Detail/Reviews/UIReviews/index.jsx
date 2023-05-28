@@ -1,34 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import * as Style from "./styles";
+import HorizonLine from "../../../../components/common/HorizonLine";
+import Pagination from "../../../../components/common/Pagination";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import getProductReviews from "../../../api/review";
-import HorizonLine from "../../../components/common/HorizonLine";
-import Pagination from "react-js-pagination";
-import * as Style from "./styles";
-const ProductReviews = () => {
-  const { id } = useParams();
-  const [isClicked, setIsClicked] = useState();
-  const [page, setPage] = useState(1);
-  const clickToReview = (index) => {
-    if (index === isClicked) {
-      setIsClicked();
-      return;
-    }
-    setIsClicked(index);
-  };
-  let { data: productReviews, refetch } = useQuery(["review", id], () =>
-    getProductReviews(id, page)
-  );
-  const productReviewsCount = productReviews?.count;
-  productReviews = productReviews?.reviews;
-
-  const handlePageChange = async (page) => {
-    setPage(page);
-    productReviews = await getProductReviews(id, page);
-    refetch();
-  };
+const UIReviews = ({
+  productReviews,
+  productReviewsCount,
+  clickToReview,
+  isClicked,
+  page,
+  handlePageChange,
+}) => {
   return (
     <Style.Layout>
       <Style.Title>리뷰({productReviewsCount})</Style.Title>
@@ -120,4 +103,4 @@ const ProductReviews = () => {
   );
 };
 
-export default ProductReviews;
+export default UIReviews;

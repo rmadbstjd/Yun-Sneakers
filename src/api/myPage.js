@@ -15,17 +15,6 @@ export const addUserAddress = async (
   middlePhoneNum,
   lastPhoneNum
 ) => {
-  console.log(
-    "테스트",
-    shipPlaceName,
-    shipReceiver,
-    shipPostCode,
-    shipAddress,
-    shipAddressDetail,
-    firstPhoneNum,
-    middlePhoneNum,
-    lastPhoneNum
-  );
   await instance.post(`/address`, {
     place: shipPlaceName,
     receiver: shipReceiver,

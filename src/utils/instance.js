@@ -56,7 +56,6 @@ instance.interceptors.response.use(
         localStorage.setItem("accessToken", newAccessToken);
         originalRequest.headers.authorization = newAccessToken;
       } else {
-        console.log("너야?");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         history.push("/login");

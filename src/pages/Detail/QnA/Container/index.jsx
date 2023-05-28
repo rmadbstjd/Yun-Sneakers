@@ -2,30 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { deleteQna } from "../../../../api/product";
-import { useQuery } from "@tanstack/react-query";
 import { getQna } from "../../../../api/product";
-import jwt_decode from "jwt-decode";
 import Swal from "sweetalert2";
 import UIForm from "../UIForm";
+import { useGetUserInfo } from "./../../../../hooks/useGetUserInfo";
+import { useGetProductQnA } from "../../../../hooks/useGetProductQnA";
 const QnAForm = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [isClickedModifyBtn] = useState(false);
   const [showWriteForm, setShowWriteForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showContent, setShowContent] = useState();
   const [qnaIdx, setQnAIdx] = useState();
-
   const [setIndex] = useState();
   const [page, setPage] = useState(1);
-  const navigate = useNavigate();
-  const { id } = useParams();
   const token = localStorage.getItem("accessToken");
-  const info = token && jwt_decode(token);
-  const userId = info && info.id;
-
-  let { data: QnAList, refetch } = useQuery(["qna"], () => getQna(id, page));
-  const QnAcounts = QnAList?.count?.length;
-  QnAList = QnAList?.QnA;
-
+  const { userId } = useGetUserInfo();
+  let { QnAcounts, QnAList, refetch } = useGetProductQnA(id, page);
   const clickToWriteBtn = () => {
     if (!token) navigate("/login");
     setShowWriteForm(true);
@@ -77,7 +71,7 @@ const QnAForm = () => {
     QnAList = await getQna(id, page);
     refetch();
   };
-  console.log("잉", clickToWriteBtn);
+
   return (
     <UIForm
       clickToWriteBtn={clickToWriteBtn}

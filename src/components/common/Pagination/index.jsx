@@ -2,7 +2,7 @@ import React from "react";
 import "./Paging.css";
 import Pagination from "react-js-pagination";
 
-const Paging = ({ count = 1, handleChange, page, pagePerCount }) => {
+const Paging = ({ count, handleChange, page, pagePerCount }) => {
   return (
     <Pagination
       activePage={page} // 현재 페이지

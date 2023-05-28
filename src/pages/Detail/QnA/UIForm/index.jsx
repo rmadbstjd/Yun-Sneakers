@@ -3,7 +3,7 @@ import HorizonLine from "../../../../components/common/HorizonLine";
 import AddQnAForm from "../../../../components/Form/QnAForm/AddQnAForm/Container";
 import EditQnAForm from "../../../../components/Form/QnAForm/EditQnAForm/Container";
 import QnALists from "../QnAList";
-import Pagination from "react-js-pagination";
+import Pagination from "../../../../components/common/Pagination";
 import * as Style from "./styles";
 const UIForm = ({
   clickToWriteBtn,
@@ -23,13 +23,13 @@ const UIForm = ({
   userId,
   deleteQnAItem,
   page,
-  QnAcounts,
+  QnAcounts = 1,
   handlePageChange,
 }) => {
   return (
     <Style.Layout>
       <Style.Header>
-        <Style.Title>상품 Q&A</Style.Title>
+        <Style.Title>상품 Q&A({QnAcounts})</Style.Title>
         <Style.Write
           onClick={() => {
             clickToWriteBtn();
@@ -79,7 +79,7 @@ const UIForm = ({
       />
       {QnAList?.length !== 0 && (
         <Pagination
-          count={QnAcounts && QnAcounts}
+          count={QnAcounts}
           pagePerCount={5}
           page={page}
           handleChange={handlePageChange}
