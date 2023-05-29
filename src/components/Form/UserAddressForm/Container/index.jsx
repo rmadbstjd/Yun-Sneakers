@@ -3,10 +3,17 @@ import { addUserAddress } from "../../../../api/myPage";
 import UIAddUserAddressForm from "../UIUserAddrsesForm";
 import useGetUserAddress from "./../../../../hooks/useGetUserAddress";
 import { useTextInputs, useNumberInputs } from "../../../../hooks/useInputs";
+
+import { validateAddress } from "./../../../../utils/validateAddress";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
-const Container = ({ type, setDefaultAddress }) => {
-  const [address] = useGetUserAddress();
+const UserAddressForm = ({
+  type,
+  setDefaultAddress,
+  setShowModal,
+  refetch,
+}) => {
+  const { address } = useGetUserAddress();
   const { state: place, handleChange: setPlace } = useTextInputs(
     address?.place,
     30
@@ -16,7 +23,7 @@ const Container = ({ type, setDefaultAddress }) => {
     30
   );
   const { state: detail, handleChange: setDetail } = useTextInputs(
-    address?.detail,
+    address?.addressDetail,
     50
   );
   const { state: firstPhoneNum, handleChange: setFirstPhoneNum } =
@@ -78,16 +85,28 @@ const Container = ({ type, setDefaultAddress }) => {
   };
 
   const addAddress = async () => {
-    await addUserAddress(
-      place,
-      receiver,
-      postCode,
-      placeAddress,
-      detail,
-      firstPhoneNum,
-      middlePhoneNum,
-      lastPhoneNum
-    );
+    if (
+      validateAddress(
+        place,
+        receiver,
+        postCode,
+        firstPhoneNum,
+        middlePhoneNum,
+        lastPhoneNum
+      )
+    ) {
+      await addUserAddress(
+        place,
+        receiver,
+        postCode,
+        placeAddress,
+        detail,
+        firstPhoneNum,
+        middlePhoneNum,
+        lastPhoneNum
+      );
+      refetch();
+    }
   };
 
   return (
@@ -123,8 +142,10 @@ const Container = ({ type, setDefaultAddress }) => {
       isPopupOpen={isPopupOpen}
       closePostCode={closePostCode}
       type={type}
+      setShowModal={setShowModal}
+      refetch={refetch}
     />
   );
 };
 
-export default Container;
+export default UserAddressForm;

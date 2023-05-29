@@ -1,12 +1,11 @@
 import React from "react";
 import * as Style from "./styles";
-import AddShipInfoForm from "../../../../AddShipInfoForm";
+
 import Button from "../../../button";
 const AddressModal = ({ setModalIsOpen, submitBtn }) => {
   return (
     <Style.AddressContainer>
       <Style.AddressContent>
-        <AddShipInfoForm setDefaultAddress={false} />
         <Style.BtnContainer>
           <Button
             style={{

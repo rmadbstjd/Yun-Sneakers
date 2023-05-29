@@ -12,7 +12,7 @@ import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide/Container";
 import Navbar from "../../../components/common/Navbar/Container/index";
 
-const itemArr = [
+const NavbarItems = [
   "상품정보",
   "주문일자",
   "주문번호",
@@ -79,12 +79,12 @@ const Order = () => {
             <Style.Title>배송중 ( {products && products.length} )</Style.Title>
             <Style.HorizonLine></Style.HorizonLine>
             <Style.TopContainer>
-              <Style.TopItem width={"500px"}>{itemArr[0]}</Style.TopItem>
-              <Style.TopItem width={"150px"}>{itemArr[1]}</Style.TopItem>
-              <Style.TopItem width={"350px"}>{itemArr[2]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[3]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[4]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[5]}</Style.TopItem>
+              <Style.TopItem width={"500px"}>{NavbarItems[0]}</Style.TopItem>
+              <Style.TopItem width={"150px"}>{NavbarItems[1]}</Style.TopItem>
+              <Style.TopItem width={"350px"}>{NavbarItems[2]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[3]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[4]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[5]}</Style.TopItem>
             </Style.TopContainer>
             <Style.HorizonLine></Style.HorizonLine>
             {products?.length === 0 ? (
@@ -181,12 +181,12 @@ const Order = () => {
             </Style.ShipmentTitle>
             <Style.HorizonLine></Style.HorizonLine>
             <Style.TopContainer>
-              <Style.TopItem width={"500px"}>{itemArr[0]}</Style.TopItem>
-              <Style.TopItem width={"150px"}>{itemArr[1]}</Style.TopItem>
-              <Style.TopItem width={"350px"}>{itemArr[2]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[3]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[4]}</Style.TopItem>
-              <Style.TopItem width={"200px"}>{itemArr[5]}</Style.TopItem>
+              <Style.TopItem width={"500px"}>{NavbarItems[0]}</Style.TopItem>
+              <Style.TopItem width={"150px"}>{NavbarItems[1]}</Style.TopItem>
+              <Style.TopItem width={"350px"}>{NavbarItems[2]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[3]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[4]}</Style.TopItem>
+              <Style.TopItem width={"200px"}>{NavbarItems[5]}</Style.TopItem>
             </Style.TopContainer>
             <Style.HorizonLine></Style.HorizonLine>
             {completedProducts && completedProducts.length === 0 ? (

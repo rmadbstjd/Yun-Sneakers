@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Order from "../pages/MyPage/Order/index";
 import Wish from "../pages/MyPage/Wish/index";
-import Address from "../pages/MyPage/Address/index";
+import AddressPage from "../pages/MyPage/Address/Container";
 import Review from "../pages/MyPage/Review/index";
 import QnA from "../pages/MyPage/QnA/index";
 import NotFound from "../pages/NotFound";
@@ -23,7 +23,7 @@ const MyPageRoute = ({ isAuthenticated }) => {
       ></Route>
       <Route
         path="/address"
-        element={<Address isAuthenticated={isAuthenticated} />}
+        element={<AddressPage isAuthenticated={isAuthenticated} />}
       ></Route>
       <Route
         path="/qna"

@@ -89,7 +89,6 @@ const Shipment = () => {
   const { isLoading, data: products } = useQuery(["products"], () =>
     getUserCheckedCarts()
   );
-  const [userAddress] = useGetUserAddress();
 
   const [checkItems, setCheckItems] = useState([]);
   const [showCouponBox, setShowCouponBox] = useState(false);

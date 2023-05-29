@@ -15,8 +15,6 @@ const AddressInput = ({
   isPopupOpen,
   closePostCode,
   type,
-  setInputs,
-  inputs,
   onChange,
 }) => {
   return (

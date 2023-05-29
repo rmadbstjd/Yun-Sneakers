@@ -157,3 +157,9 @@ export const LetterCount = styled.div`
   color: black;
   margin: -30px 0px 10px 212px;
 `;
+export const BtnContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  margin-left: 28%;
+`;

@@ -2,7 +2,7 @@ import React from "react";
 import * as Style from "./styles";
 import useGetUserAddress from "../../hooks/useGetUserAddress";
 const ShipAddress = () => {
-  const [address] = useGetUserAddress();
+  const { address } = useGetUserAddress();
   if (!address) {
     return (
       <Style.Box>
