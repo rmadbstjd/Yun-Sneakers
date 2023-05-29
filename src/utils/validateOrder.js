@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
 export const validateOrder = (
-  shipPlaceName,
-  shipReceiver,
-  shipPostCode,
+  placeName,
+  receiver,
+  postCode,
   firstPhoneNum,
   middlePhoneNum,
   lastPhoneNum,
@@ -11,19 +11,19 @@ export const validateOrder = (
   checkItems,
   termsArr
 ) => {
-  if (!shipPlaceName) {
+  if (!placeName) {
     Swal.fire({
       title: "배송지를 입력해주세요.",
       confirmButtonColor: "black",
     });
     return;
-  } else if (!shipReceiver) {
+  } else if (!receiver) {
     Swal.fire({
       title: "수령인을 입력해주세요.",
       confirmButtonColor: "black",
     });
     return;
-  } else if (!shipPostCode) {
+  } else if (!postCode) {
     Swal.fire({
       title: "우편번호를 입력해주세요.",
       confirmButtonColor: "black",

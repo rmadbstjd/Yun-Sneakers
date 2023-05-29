@@ -21,7 +21,7 @@ import { useUpdateScroll } from "../../hooks/useUpdateScroll";
 const SearchPage = () => {
   const isMounted = useRef(false);
   const navigate = useNavigate();
-  const { scrollPosition, setScrollPosition, updateScroll } = useUpdateScroll();
+  const { scrollPosition } = useUpdateScroll();
   const [searchProducts, setSearchProducts] = useState([]);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query] = useSearchParams();

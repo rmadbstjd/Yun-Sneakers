@@ -3,7 +3,6 @@ import { addUserAddress } from "../../../../api/myPage";
 import UIAddUserAddressForm from "../UIUserAddrsesForm";
 import useGetUserAddress from "./../../../../hooks/useGetUserAddress";
 import { useTextInputs, useNumberInputs } from "../../../../hooks/useInputs";
-
 import { validateAddress } from "./../../../../utils/validateAddress";
 const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]*$/;
 
@@ -14,10 +13,12 @@ const UserAddressForm = ({
   refetch,
 }) => {
   const { address } = useGetUserAddress();
+  console.log("타입", type);
   const { state: place, handleChange: setPlace } = useTextInputs(
     address?.place,
     30
   );
+
   const { state: receiver, handleChange: setReceiver } = useTextInputs(
     address?.receiver,
     30

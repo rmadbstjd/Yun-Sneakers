@@ -6,7 +6,7 @@ import DetailPage from "../pages/Detail/DetailPage/Container";
 import CartPage from "../pages/Cart/CartPage/Container";
 import LikePage from "../pages/Like/Container";
 import MyPageRoute from "./MyPageRoute";
-import Shipment from "../pages/Shipment";
+import Shipment from "../pages/Shipment/Container";
 import SearchPage from "../pages/Search";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";

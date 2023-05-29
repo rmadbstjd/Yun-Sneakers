@@ -4,6 +4,7 @@ import convertStringToNumber from "../utils/convertStringToNumber";
 
 export const useTextInputs = (initState, maxLength) => {
   const [state, setState] = useState(initState);
+
   const getValue = (e) => {
     const value = e.substring(0, maxLength);
     return value;

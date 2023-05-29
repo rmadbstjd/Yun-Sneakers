@@ -5,6 +5,7 @@ import {
   getNewProducts,
   getUniqueProducts,
 } from "../../../../api/product";
+import useGetUserAddress from "../../../../hooks/useGetUserAddress";
 import { useNavigate } from "react-router-dom";
 import UIMainPage from "../UIMainPage";
 const MainPage = () => {
@@ -14,7 +15,7 @@ const MainPage = () => {
   const [showNewMoreBtn, setShowNewMoreBtn] = useState(true);
   const [showPopularMoreBtn, setShowPopularMoreBtn] = useState(true);
   const [showUniqueMoreBtn, setShowUniqueMoreBtn] = useState(true);
-
+  useGetUserAddress();
   const { isLoading: isLoadingOfNewProducts, data: newProducts } = useQuery(
     ["showNewProducts", newCurrentPage],
     () => getNewProducts(newCurrentPage)

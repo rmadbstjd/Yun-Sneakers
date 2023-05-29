@@ -4,6 +4,7 @@ const useGetUserAddress = () => {
   const { data: address, refetch } = useQuery(["address"], () =>
     getUserAddress()
   );
+
   return { address, refetch };
 };
 
