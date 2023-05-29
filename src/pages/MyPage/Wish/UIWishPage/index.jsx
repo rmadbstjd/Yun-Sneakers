@@ -1,32 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import * as Style from "./styles";
-import MypageSide from "../../../components/MypageSide/Container";
-import Navbar from "../../../components/common/Navbar/Container/index";
-import { pushLike } from "../../../api/like";
-import ProductCard from "../../../components/common/ProductCard";
-import LoadingSpinner from "../../../components/common/LoadingSpinner";
-import Button from "../../../components/common/button";
-import { useGetLikedProducts } from "../../../hooks/useGetLikedProducts";
-const Wish = () => {
-  const navigate = useNavigate();
-
-  const { isLoading, products, refetch, count } = useGetLikedProducts();
-
-  const goToMain = () => {
-    navigate("/");
-  };
-
-  const clickToDeleteBtn = async (e, productId) => {
-    e.stopPropagation();
-    products && (await pushLike(productId));
-    refetch();
-  };
-
-  const goToDetail = (productId) => {
-    navigate(`/products/${productId}`);
-  };
-
+import Navbar from "../../../../components/common/Navbar/Container";
+import MypageSide from "../../../../components/MypageSide/Container";
+import LoadingSpinner from "../../../../components/common/LoadingSpinner";
+import ProductCard from "../../../../components/common/ProductCard";
+import Button from "../../../../components/common/button";
+const UIWishPage = ({
+  count,
+  isLoading,
+  products,
+  clickToDeleteBtn,
+  goToDetail,
+  goToMain,
+}) => {
   return (
     <>
       <Navbar />
@@ -90,4 +76,4 @@ const Wish = () => {
   );
 };
 
-export default Wish;
+export default UIWishPage;

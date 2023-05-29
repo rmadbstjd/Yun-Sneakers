@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import OrderPage from "../pages/MyPage/Order/Container";
-import Wish from "../pages/MyPage/Wish/index";
+import WishPage from "../pages/MyPage/Wish/Container";
 import AddressPage from "../pages/MyPage/Address/Container";
 import Review from "../pages/MyPage/Review/Container";
 import QnAPage from "../pages/MyPage/QnA/Container/index";
@@ -19,7 +19,7 @@ const MyPageRoute = ({ isAuthenticated }) => {
       ></Route>
       <Route
         path="/wish"
-        element={<Wish isAuthenticated={isAuthenticated} />}
+        element={<WishPage isAuthenticated={isAuthenticated} />}
       ></Route>
       <Route
         path="/address"
