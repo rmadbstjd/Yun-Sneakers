@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Join from "../pages/Join";
 import Login from "../pages/Login";
-import Main from "../pages/Main";
 import DetailPage from "../pages/Detail/DetailPage/Container";
 import CartPage from "../pages/Cart/CartPage/Container";
 import LikePage from "../pages/Like/Container";
@@ -17,6 +16,7 @@ import NewProducts from "../pages/Admin/NewProduct";
 import EditProduct from "../pages/Admin/EditProduct/Container";
 import ManageProducts from "../pages/Admin/ManageProducts/Container";
 import QnA from "../pages/Admin/QnA";
+import MainPage from "./../pages/Main/MainPage/Container";
 
 const Router = () => {
   return (
@@ -38,7 +38,7 @@ const Router = () => {
           <Route path="/admin/edit" element={<EditProduct />}></Route>
           <Route path="/admin/qna" element={<QnA />}></Route>
         </Route>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/products/:id" element={<DetailPage />} />
         <Route path={"*"} element={<NotFound />} />
