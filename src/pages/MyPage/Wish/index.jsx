@@ -1,42 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import * as Style from "./styles";
 import MypageSide from "../../../components/MypageSide/Container";
 import Navbar from "../../../components/common/Navbar/Container/index";
-import { pushLike, getLikedProducts } from "../../../api/like";
+import { pushLike } from "../../../api/like";
 import ProductCard from "../../../components/common/ProductCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 import Button from "../../../components/common/button";
+import { useGetLikedProducts } from "../../../hooks/useGetLikedProducts";
 const Wish = () => {
-  const [count, setCount] = useState(0);
   const navigate = useNavigate();
-  const {
-    isLoading,
-    data: product,
-    refetch,
-  } = useQuery(["like"], () => getLikedProducts(), {
-    enabled: true,
-  });
+
+  const { isLoading, products, refetch, count } = useGetLikedProducts();
+
   const goToMain = () => {
     navigate("/");
   };
 
   const clickToDeleteBtn = async (e, productId) => {
     e.stopPropagation();
-    product && (await pushLike(productId));
+    products && (await pushLike(productId));
     refetch();
   };
 
   const goToDetail = (productId) => {
     navigate(`/products/${productId}`);
   };
-
-  useEffect(() => {
-    if (product) {
-      if (product) setCount(product?.length - 1 || 0);
-    }
-  }, [product]);
 
   return (
     <>
@@ -58,7 +47,7 @@ const Wish = () => {
                 text={"상품을 준비하고 있습니다."}
               />
             )}
-            {product?.map((item) =>
+            {products?.map((item) =>
               item.map((product) => (
                 <ProductCard
                   key={product.name}
@@ -72,31 +61,28 @@ const Wish = () => {
                 ></ProductCard>
               ))
             )}
-            {product &&
-            product[0].length === 0 &&
-            product &&
-            product[1]?.length === undefined ? (
+            {count === 0 ? (
               <Style.NoneProductContainer>
                 <div>
                   <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
-                  <Button
-                    style={{
-                      border: "solid gray 1px",
-                      borderRadius: "15px",
-                      width: "80px",
-                      height: "30px",
-                      lineHeight: "190%",
-                      margin: "0px 10px 0px 0px",
-                      hoverColor: "white",
-                      hoverBackground: "black",
-                    }}
-                    onClick={goToMain}
-                  >
-                    CONTINUE SHOPPING{" "}
-                  </Button>
                 </div>
               </Style.NoneProductContainer>
             ) : null}
+            <Button
+              style={{
+                border: "solid gray 1px",
+                borderRadius: "15px",
+                width: "200px",
+                height: "40px",
+                lineHeight: "190%",
+                margin: "-30px 10px 0px 500px",
+                hoverColor: "white",
+                hoverBackground: "black",
+              }}
+              onClick={goToMain}
+            >
+              CONTINUE SHOPPING{" "}
+            </Button>
           </Style.ProductsContainer>
         </Style.MainContainer>
       </Style.MyPageContainer>

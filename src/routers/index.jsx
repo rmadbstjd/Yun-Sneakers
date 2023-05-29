@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Main from "../pages/Main";
 import DetailPage from "../pages/Detail/DetailPage/Container";
 import CartPage from "../pages/Cart/CartPage/Container";
-import Like from "../pages/Like";
+import LikePage from "../pages/Like/Container";
 import MyPageRoute from "./MyPageRoute";
 import Shipment from "../pages/Shipment";
 import SearchPage from "../pages/Search";
@@ -25,7 +25,7 @@ const Router = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/cart" element={<CartPage />} />
           <Route path="/mypage/*" element={<MyPageRoute />} />
-          <Route path="/products" element={<Like />} />
+          <Route path="/products" element={<LikePage />} />
           <Route path="/shipment" element={<Shipment />} />
         </Route>
         <Route element={<PublicRoute />}>

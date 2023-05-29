@@ -1,37 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as Style from "./styles";
-import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import ProductCard from "../../components/common/ProductCard";
-import { getLikedProducts } from "../../api/like";
-import { pushLike } from "../../api/like";
-import Navbar from "../../components/common/Navbar/Container/index";
-import HorizonLine from "../../components/common/HorizonLine";
-import LoadingSpinner from "./../../components/common/LoadingSpinner";
-import Button from "../../components/common/button";
-const Like = () => {
-  const navigate = useNavigate();
-
-  const [count, setCount] = useState(0);
-  const {
-    isLoading,
-    data: product,
-    refetch,
-  } = useQuery(["like"], () => getLikedProducts());
-
-  const goToDetail = (productId) => {
-    navigate(`/products/${productId}`);
-  };
-
-  const clickToDeleteBtn = async (e, productId) => {
-    e.stopPropagation();
-    product && (await pushLike(productId));
-    refetch();
-  };
-
-  useEffect(() => {
-    if (product) setCount(product?.length - 1 || 0);
-  }, [product]);
+import Navbar from "../../../components/common/Navbar/Container";
+import HorizonLine from "../../../components/common/HorizonLine";
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
+import ProductCard from "../../../components/common/ProductCard";
+import Button from "../../../components/common/button";
+const UILikePage = ({
+  count,
+  isLoading,
+  products,
+  clickToDeleteBtn,
+  goToDetail,
+  navigate,
+}) => {
   return (
     <>
       <Navbar />
@@ -53,7 +34,7 @@ const Like = () => {
               text="상품을 불러오는 중입니다."
             ></LoadingSpinner>
           )}
-          {product?.map((item) =>
+          {products?.map((item) =>
             item.map((product) => (
               <ProductCard
                 key={product.name}
@@ -68,10 +49,7 @@ const Like = () => {
             ))
           )}
 
-          {product &&
-          product[0]?.length === 0 &&
-          product &&
-          product[1]?.length === undefined ? (
+          {count === 0 ? (
             <Style.NoneProductsContainer>
               <div>
                 <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
@@ -104,4 +82,4 @@ const Like = () => {
   );
 };
 
-export default Like;
+export default UILikePage;

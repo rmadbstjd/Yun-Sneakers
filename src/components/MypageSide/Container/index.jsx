@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import userInfoStore from "../../../store/userInfoStore";
-import Container from "../UISide";
+import UISide from "../UISide";
+import { useGetUserInfo } from "./../../../hooks/useGetUserInfo";
 const itemArr = [
   { id: 0, title: "주문 내역 조회", params: "order" },
   { id: 1, title: "관심 상품", params: "wish" },
@@ -11,7 +12,8 @@ const itemArr = [
 ];
 
 const MypageSide = () => {
-  const { nickName, setIsCheckedID } = userInfoStore();
+  const { setIsCheckedID } = userInfoStore();
+  const { nickName } = useGetUserInfo();
   const location = useLocation();
   const query = location.pathname.split("/")[2];
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const MypageSide = () => {
   };
 
   return (
-    <Container
+    <UISide
       nickName={nickName}
       setIsCheckedID={setIsCheckedID}
       query={query}
