@@ -4,7 +4,7 @@ import OrderPage from "../pages/MyPage/Order/Container";
 import Wish from "../pages/MyPage/Wish/index";
 import AddressPage from "../pages/MyPage/Address/Container";
 import Review from "../pages/MyPage/Review/index";
-import QnA from "../pages/MyPage/QnA/index";
+import QnAPage from "../pages/MyPage/QnA/Container/index";
 import NotFound from "../pages/NotFound";
 const MyPageRoute = ({ isAuthenticated }) => {
   return (
@@ -27,7 +27,7 @@ const MyPageRoute = ({ isAuthenticated }) => {
       ></Route>
       <Route
         path="/qna"
-        element={<QnA isAuthenticated={isAuthenticated} />}
+        element={<QnAPage isAuthenticated={isAuthenticated} />}
       ></Route>
       <Route path={"*"} element={<NotFound />} />
     </Routes>

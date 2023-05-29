@@ -1,39 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Style from "./styles";
-import { useQuery } from "@tanstack/react-query";
-import MypageSide from "../../../components/MypageSide/Container";
-import Navbar from "../../../components/common/Navbar/Container/index";
-import { useNavigate } from "react-router-dom";
-import convertStringToNumber from "../../../utils/convertStringToNumber";
-import Pagination from "../../../components/common/Pagination";
-import { getMyQna } from "../../../api/product";
-const itemArr3 = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
-const QnA = () => {
-  const navigate = useNavigate();
-  const [showContent, setShowContent] = useState();
-  const [page, setPage] = useState(1);
-
-  let { data: myQnAs, refetch } = useQuery(["myQnA"], () => getMyQna(page));
-  const QnAcounts = myQnAs && myQnAs.count;
-
-  const goToDetailPage = (productId) => {
-    navigate(`/products/${productId}`);
-  };
-
-  const clickToQnA = (index) => {
-    if (index === showContent) {
-      setShowContent();
-      return;
-    }
-    setShowContent(index);
-  };
-
-  const handlePageChange = async (page) => {
-    setPage(page);
-    myQnAs = await getMyQna(page);
-    refetch();
-  };
-
+import Navbar from "../../../../components/common/Navbar/Container";
+import MypageSide from "../../../../components/MypageSide/Container";
+import convertStringToNumber from "./../../../../utils/convertStringToNumber";
+import Pagination from "../../../../components/common/Pagination";
+const navbarItems = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
+const UIQnAPage = ({
+  myQnAs,
+  showContent,
+  clickToQnA,
+  goToDetailPage,
+  QnAcounts,
+  page,
+  handlePageChange,
+}) => {
   return (
     <>
       <Navbar />
@@ -52,10 +32,10 @@ const QnA = () => {
             ></Style.HorizonLine>
           </Style.ReviewContainer>
           <Style.TopContainer>
-            <Style.TopItem width={"390px"}>{itemArr3[0]}</Style.TopItem>
-            <Style.TopItem width={"810px"}>{itemArr3[1]}</Style.TopItem>
-            <Style.TopItem width={"96px"}>{itemArr3[2]}</Style.TopItem>
-            <Style.TopItem width={"100px"}>{itemArr3[3]}</Style.TopItem>
+            <Style.TopItem width={"390px"}>{navbarItems[0]}</Style.TopItem>
+            <Style.TopItem width={"810px"}>{navbarItems[1]}</Style.TopItem>
+            <Style.TopItem width={"96px"}>{navbarItems[2]}</Style.TopItem>
+            <Style.TopItem width={"100px"}>{navbarItems[3]}</Style.TopItem>
           </Style.TopContainer>
           <Style.HorizonLine width={"1466px"} border={1} color={"gray"} />
           {myQnAs &&
@@ -140,4 +120,4 @@ const QnA = () => {
   );
 };
 
-export default QnA;
+export default UIQnAPage;
