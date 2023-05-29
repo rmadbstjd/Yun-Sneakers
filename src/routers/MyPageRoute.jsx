@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import OrderPage from "../pages/MyPage/Order/Container";
 import Wish from "../pages/MyPage/Wish/index";
 import AddressPage from "../pages/MyPage/Address/Container";
-import Review from "../pages/MyPage/Review/index";
+import Review from "../pages/MyPage/Review/Container";
 import QnAPage from "../pages/MyPage/QnA/Container/index";
 import NotFound from "../pages/NotFound";
 const MyPageRoute = ({ isAuthenticated }) => {
