@@ -5,7 +5,7 @@ const httpClient = axios.create({
   withCredentials: true,
 });
 export async function getNotAnsweredQna() {
-  const response = await httpClient.get("/notansweredqna", {});
+  const response = await httpClient.get("/qna/notanswered", {});
   const data = response.data;
   return data;
 }
@@ -16,6 +16,28 @@ export async function getAnsweredQna() {
   return data;
 }
 
+export async function getQna(productId, page) {
+  const response = await httpClient.get(`/qna/product/${productId}`, {
+    headers: {
+      page,
+    },
+  });
+
+  const data = response.data;
+  const QnA = data.Qna;
+  const count = data.count;
+  return { QnA, count };
+}
+
+export async function getMyQna(page) {
+  const response = await instance.get(`/qna/mypage`, {
+    headers: {
+      page,
+    },
+  });
+  const data = response.data;
+  return data;
+}
 export async function createQna(
   productId,
   title,
@@ -25,7 +47,7 @@ export async function createQna(
   image
 ) {
   try {
-    const response = await instance.post(`qna/${productId}`, {
+    const response = await instance.post(`/qna/product/${productId}`, {
       title,
       content,
       isSecret,
@@ -47,7 +69,7 @@ export async function editQna(
   dates,
   qnaId
 ) {
-  const response = await instance.put(`/qna/${productId}`, {
+  const response = await instance.put(`/qna/product/${productId}/${qnaId}`, {
     title,
     content,
     isSecret,
@@ -58,8 +80,8 @@ export async function editQna(
   return data;
 }
 
-export async function answerQna(productId, qnaId, answer) {
-  const response = await httpClient.put(`/qna/answer/${productId}`, {
+export async function answerQna(qnaId, answer) {
+  const response = await httpClient.put(`/qna/answer/${qnaId}`, {
     qnaId,
     answer,
   });
@@ -67,33 +89,8 @@ export async function answerQna(productId, qnaId, answer) {
   return data;
 }
 
-export async function getQna(productId, page) {
-  const response = await httpClient.get(`/qna/${productId}`, {
-    headers: {
-      page,
-    },
-  });
-
-  const data = response.data;
-  const QnA = data.Qna;
-  const count = data.count;
-  return { QnA, count };
-}
-
-export async function getMyQna(page) {
-  const response = await instance.get(`/qna/mypage`, {
-    headers: {
-      page,
-    },
-  });
-  const data = response.data;
-  return data;
-}
-
-export async function deleteQna(productId, qnaId) {
-  const response = await instance.delete(`/qna/${productId}`, {
-    data: { qnaId },
-  });
+export async function deleteQna(qnaId) {
+  const response = await instance.delete(`/qna/${qnaId}`, {});
   const data = response.data;
   return data;
 }

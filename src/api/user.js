@@ -12,7 +12,7 @@ const signUp = async (id, pw, nickname) => {
       password: pw,
       nickname,
     });
-    if (response.status === 400) return false;
+    if (response.status === 409) return false;
     else if (response.status === 201) return true;
   } catch (error) {
     console.error(error);
@@ -26,12 +26,13 @@ const login = async (userId, password) => {
       userId,
       password,
     });
-    const data = response.data;
-    if (data.isLogin === false) return false;
-    localStorage.setItem("accessToken", data.accessToken);
-    localStorage.setItem("refreshToken", data.refreshToken);
-
-    return data;
+    if (response.status === 400) return false;
+    else if (response.status === 200) {
+      const data = response.data;
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      return data;
+    }
   } catch (error) {
     console.error(error);
     return false;
@@ -40,10 +41,12 @@ const login = async (userId, password) => {
 
 const logout = async () => {
   try {
-    await instance.post("/logout", {});
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    window.location.replace("/");
+    const response = await instance.post("/logout", {});
+    if (response.status === 200) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      window.location.replace("/");
+    }
   } catch (error) {
     console.error(error);
   }
@@ -52,8 +55,10 @@ const logout = async () => {
 const verifyAccessToken = async () => {
   try {
     const response = await instance.get("/user/token", {});
-    const data = response.data;
-    return data;
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else if (response.status === 400) return false;
   } catch (error) {
     console.error(error);
     return false;
@@ -63,8 +68,10 @@ const verifyAccessToken = async () => {
 const isAdmin = async () => {
   try {
     const response = await instance.get("/user/admin", {});
-    const data = response.data;
-    return data;
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else if (response.status === 400) return false;
   } catch (error) {
     console.error(error);
     return false;
@@ -78,9 +85,11 @@ const sendRefreshToken = async (userId) => {
       { userId },
       { headers: { authorization: localStorage.getItem("refreshToken") } }
     );
-    const data = response.data;
-    localStorage.setItem("accessToken", data.accessToken);
-    return data;
+    if (response.status === 200) {
+      const data = response.data;
+      localStorage.setItem("accessToken", data.accessToken);
+      return data;
+    } else if (response.status === 400) return false;
   } catch (error) {
     return false;
   }
