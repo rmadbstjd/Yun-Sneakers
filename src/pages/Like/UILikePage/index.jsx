@@ -13,6 +13,8 @@ const UILikePage = ({
   goToDetail,
   navigate,
 }) => {
+  console.log("프", products);
+  console.log("count", count);
   return (
     <>
       <Navbar />
@@ -34,20 +36,18 @@ const UILikePage = ({
               text="상품을 불러오는 중입니다."
             ></LoadingSpinner>
           )}
-          {products?.map((item) =>
-            item.map((product) => (
-              <ProductCard
-                key={product.name}
-                width={"190px"}
-                height={"320px"}
-                margin={"20px 30px 30px 0px"}
-                product={product}
-                deletable={true}
-                onClick={(e) => clickToDeleteBtn(e, product.id)}
-                navigate={() => goToDetail(product.id)}
-              ></ProductCard>
-            ))
-          )}
+          {products?.map((product) => (
+            <ProductCard
+              key={product.name}
+              width={"190px"}
+              height={"320px"}
+              margin={"20px 30px 30px 0px"}
+              product={product}
+              deletable={true}
+              onClick={(e) => clickToDeleteBtn(e, product.id)}
+              navigate={() => goToDetail(product.id)}
+            ></ProductCard>
+          ))}
 
           {count === 0 ? (
             <Style.NoneProductsContainer>

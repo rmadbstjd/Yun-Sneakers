@@ -7,7 +7,7 @@ import CartPage from "../pages/Cart/CartPage/Container";
 import LikePage from "../pages/Like/Container";
 import MyPageRoute from "./MyPageRoute";
 import Shipment from "../pages/Shipment/Container";
-import SearchPage from "../pages/Search";
+import SearchPage from "../pages/Search/Container";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "./PrivateRoute";

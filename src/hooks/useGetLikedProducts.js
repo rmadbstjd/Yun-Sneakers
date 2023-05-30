@@ -10,7 +10,9 @@ export const useGetLikedProducts = (props) => {
     refetch,
   } = useQuery(["like"], () => getLikedProducts());
   useEffect(() => {
-    if (products) setCount(products?.length);
+    if (products) {
+      setCount(products?.length);
+    }
   }, [products]);
 
   return { isLoading, count, products, refetch };

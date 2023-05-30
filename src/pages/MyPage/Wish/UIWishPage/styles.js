@@ -35,8 +35,10 @@ export const ProductsContainer = styled.div`
 export const NoneProductContainer = styled.div`
   margin-top: 10%;
   width: 100%;
+  height: 300px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Span = styled.div`
@@ -44,7 +46,6 @@ export const Span = styled.div`
   display: flex;
   justify-content: center;
   height: 20px;
-  margin-top: -100px;
   font-size: 20px;
 `;
 

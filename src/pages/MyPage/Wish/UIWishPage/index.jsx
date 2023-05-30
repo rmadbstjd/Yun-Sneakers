@@ -13,6 +13,7 @@ const UIWishPage = ({
   goToDetail,
   goToMain,
 }) => {
+  console.log("카", count);
   return (
     <>
       <Navbar />
@@ -33,42 +34,38 @@ const UIWishPage = ({
                 text={"상품을 준비하고 있습니다."}
               />
             )}
-            {products?.map((item) =>
-              item.map((product) => (
-                <ProductCard
-                  key={product.name}
-                  width={"190px"}
-                  height={"320px"}
-                  margin={"20px 30px 30px 0px"}
-                  product={product}
-                  deletable={true}
-                  onClick={(e) => clickToDeleteBtn(e, product.id)}
-                  navigate={() => goToDetail(product.id)}
-                ></ProductCard>
-              ))
-            )}
-            {count === 0 ? (
+            {products?.map((product) => (
+              <ProductCard
+                key={product.name}
+                width={"190px"}
+                height={"320px"}
+                margin={"20px 30px 30px 0px"}
+                product={product}
+                deletable={true}
+                onClick={(e) => clickToDeleteBtn(e, product.id)}
+                navigate={() => goToDetail(product.id)}
+              ></ProductCard>
+            ))}
+            {products?.length === 0 ? (
               <Style.NoneProductContainer>
-                <div>
-                  <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
-                </div>
+                <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>
+                <Button
+                  style={{
+                    border: "solid gray 1px",
+                    borderRadius: "15px",
+                    width: "200px",
+                    height: "40px",
+                    lineHeight: "190%",
+                    margin: "50px 10px 0px 0px",
+                    hoverColor: "white",
+                    hoverBackground: "black",
+                  }}
+                  onClick={goToMain}
+                >
+                  CONTINUE SHOPPING{" "}
+                </Button>
               </Style.NoneProductContainer>
             ) : null}
-            <Button
-              style={{
-                border: "solid gray 1px",
-                borderRadius: "15px",
-                width: "200px",
-                height: "40px",
-                lineHeight: "190%",
-                margin: "-30px 10px 0px 500px",
-                hoverColor: "white",
-                hoverBackground: "black",
-              }}
-              onClick={goToMain}
-            >
-              CONTINUE SHOPPING{" "}
-            </Button>
           </Style.ProductsContainer>
         </Style.MainContainer>
       </Style.MyPageContainer>
