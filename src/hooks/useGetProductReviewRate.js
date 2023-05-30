@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import getProductReviews from "../api/review";
+import { getProductReviews } from "../api/review";
 import useGetProductInfo from "./useGetProductInfo";
 export const useGetProductReviewRate = (props) => {
   const [rate, setRate] = useState(0);

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import userInfoStore from "../../../../../store/userInfoStore";
 import { validateAddQnAForm } from "../../../../../utils/validateAddQnAForm";
-import { getProductInfo, addQna } from "../../../../../api/product";
+import { getProductInfo } from "../../../../../api/product";
+import { createQna } from "../../../../../api/qna";
 import { bringNowDates } from "../../../../../utils/bringNowDates";
 import { useQuery } from "@tanstack/react-query";
 import { useTextInputs } from "../../../../../hooks/useInputs";
@@ -23,7 +24,7 @@ const AddQnAForm = ({ setShowWriteForm, id, refetch }) => {
 
   const clickToSubmitBtn = async () => {
     if (validateAddQnAForm(title, content)) {
-      await addQna(id, title, content, isSecretChecked, dates, image);
+      await createQna(id, title, content, isSecretChecked, dates, image);
       setShowWriteForm(false);
       setTitle("");
       setContent("");

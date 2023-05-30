@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getIsNotReviewdProducts } from "../../../../api/order";
-import { getUserReviews, deleteProductReview } from "../../../../api/myPage";
+import { getNotReviewdProducts } from "../../../../api/order";
+import {
+  getUserWrittenReviews,
+  deleteProductReview,
+} from "../../../../api/review";
 import Swal from "sweetalert2";
 import UIReviewPage from "../UIReviewPage";
 const Review = () => {
@@ -15,12 +18,12 @@ const Review = () => {
     isLoading,
     data: product,
     refetch,
-  } = useQuery([], () => getUserReviews());
+  } = useQuery([], () => getUserWrittenReviews());
   const {
     isLoading: isLoading2,
     data: completedProducts,
     refetch: refetch2,
-  } = useQuery(["리뷰"], () => getIsNotReviewdProducts());
+  } = useQuery(["리뷰"], () => getNotReviewdProducts());
 
   const goToDetail = (info) => {
     navigate(`/products/${info.id}`);

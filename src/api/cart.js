@@ -15,20 +15,20 @@ export const getUserCheckedCarts = async () => {
 };
 
 export const updateUserCart = async (productId, size, quantity) => {
-  await instance.put(`/carts/${productId}`, {
+  await instance.put(`/cart/${productId}`, {
     quantity,
     size,
   });
 };
 
 export const checkProduct = async (productId, isChecked) => {
-  await instance.put(`/carts/check/${productId}`, {
+  await instance.put(`/cart/check/${productId}`, {
     isChecked,
   });
 };
 
 export const addUserCart = async (products, size) => {
-  await instance.post(`/carts/${products.id}`, {
+  await instance.post(`/cart/${products.id}`, {
     product: products,
     quantity: 1,
     size,
@@ -36,7 +36,7 @@ export const addUserCart = async (products, size) => {
 };
 
 export const deleteUserCart = async (productId, size) => {
-  await instance.delete(`/carts/${productId}`, {
+  await instance.delete(`/cart/${productId}`, {
     data: { size },
   });
 };

@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
 import Swal from "sweetalert2";
-import { addProductReview } from "../../../../../api/myPage";
+import { addProductReview } from "../../../../../api/review";
 import { useTextInputs } from "../../../../../hooks/useInputs";
 import { useHandleStar } from "../../../../../hooks/useHandleStar";
 import Button from "../../../button";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addUserAddress } from "../../../../api/myPage";
+import { addUserAddress } from "../../../../api/address";
 import UIAddUserAddressForm from "../UIUserAddrsesForm";
 import useGetUserAddress from "./../../../../hooks/useGetUserAddress";
 import { useTextInputs, useNumberInputs } from "../../../../hooks/useInputs";

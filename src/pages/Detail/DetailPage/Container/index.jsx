@@ -6,11 +6,11 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useGetUserCart } from "../../../../hooks/useGetUserCart";
 import { getSimilarProducts } from "../../../../api/product";
-import { pushLike, isLike } from "../../../../api/like";
+import { pushLike, isLikedProduct } from "../../../../api/like";
 import { addUserCart } from "../../../../api/cart";
 import { useGetUserInfo } from "../../../../hooks/useGetUserInfo";
 import useGetProductInfo from "./../../../../hooks/useGetProductInfo";
-import getProductReviews from "./../../../../api/review";
+import { getProductReviews } from "./../../../../api/review";
 import Swal from "sweetalert2";
 import UIDetailPage from "../UIDetailPage";
 import userInfoStore from "./../../../../store/userInfoStore";
@@ -38,7 +38,7 @@ const DetailPage = () => {
 
   const { data: isLiked, refetch } = useQuery(
     ["isLiked", id],
-    () => isLike(productId),
+    () => isLikedProduct(productId),
     { enabled: !!productId }
   );
 

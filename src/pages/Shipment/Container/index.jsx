@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import userInfoStore from "../../../store/userInfoStore";
 import { getUserCheckedCarts } from "../../../api/cart";
 import { validateOrder } from "../../../utils/validateOrder";
-import { addOrderProducts } from "../../../api/order";
+import { createOrder } from "../../../api/order";
 import { deleteUserCart } from "../../../api/cart";
 import Swal from "sweetalert2";
 import UIShipmentPage from "./../UIShipmentPage/index";
@@ -115,7 +115,7 @@ const Shipment = () => {
       let dates = `${year}.${month}.${days2}`;
 
       for (let i = 0; i < products.products.length; i++) {
-        addOrderProducts(
+        createOrder(
           products.products[i].productId,
           dates,
           products.products[i].quantity,

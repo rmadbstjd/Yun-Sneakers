@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getMyQna } from "../../../../api/product";
+import { getMyQna } from "../../../../api/qna";
 import { useGeyMyQna } from "../../../../hooks/useGeyMyQna";
 import UIQnAPage from "../UIQnAPage";
 

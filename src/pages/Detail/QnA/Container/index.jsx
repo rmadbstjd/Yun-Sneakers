@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { deleteQna } from "../../../../api/product";
-import { getQna } from "../../../../api/product";
+import { getQna, deleteQna } from "../../../../api/qna";
 import Swal from "sweetalert2";
 import UIForm from "../UIForm";
 import { useGetUserInfo } from "./../../../../hooks/useGetUserInfo";

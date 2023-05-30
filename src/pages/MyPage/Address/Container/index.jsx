@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useGetUserAddress from "../../../../hooks/useGetUserAddress";
-import { deleteUserAddress } from "../../../../api/myPage";
+import { deleteUserAddress } from "../../../../api/address";
 import UIAddressPage from "../UIAddressPage";
 const AddressPage = () => {
   const [showModal, setShowModal] = useState(false);

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import * as Style from "./styles";
-import { answerQna } from "../../../api/product";
+import { answerQna, getNotAnsweredQna, getAnsweredQna } from "../../../api/qna";
 import Navbar from "../../../components/common/Navbar/Container/index";
 import { useQuery } from "@tanstack/react-query";
 import QnAModal from "../../../components/common/Modal/Conatiner/QnA";
 import Modal from "../../../components/common/Modal/UIModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getNotAnsweredQna, getAnsweredQna } from "../../../api/product";
 const itemArr3 = ["제목", "내용", "유저", "날짜"];
 const QnA = () => {
   const [showModal, setShowModal] = useState(false);

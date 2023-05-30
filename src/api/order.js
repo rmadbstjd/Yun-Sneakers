@@ -1,6 +1,6 @@
 import { instance } from "./../utils/instance";
 
-export async function addOrderProducts(productId, date, count, coupon, size) {
+export async function createOrder(productId, date, count, coupon, size) {
   const state = "배송중";
   await instance.post(`/order`, {
     productId,
@@ -12,19 +12,19 @@ export async function addOrderProducts(productId, date, count, coupon, size) {
   });
 }
 
-export async function completeShipment(orderId) {
+export async function completeDelivery(orderId) {
   instance.put(`/order`, {
     orderId,
   });
 }
 
-export async function getShipIsCompleted() {
+export async function getDeliveredProducts() {
   const response = await instance.get(`/order/completedproducts`, {});
   const data = response.data;
   return data;
 }
 
-export async function getIsNotReviewdProducts() {
+export async function getNotReviewdProducts() {
   const response = await instance.get(`/order/notreviewdproducts`, {});
   const data = response.data;
   return data;

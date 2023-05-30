@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getOrderedProducts } from "../../../../api/myPage";
-import { completeShipment, getShipIsCompleted } from "../../../../api/order";
+import { getOrderedProducts } from "../../../../api/product";
+import { completeDelivery, getDeliveredProducts } from "../../../../api/order";
 import UIOrderPage from "../UIOrderPage";
 const Order = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,19 +15,19 @@ const Order = () => {
   const {
     isLoading: isLoading2,
     data: completedProducts,
-    refetch: getShipIsCompletedRefetch,
-  } = useQuery(["배송완료"], () => getShipIsCompleted());
+    refetch: getDeliveredProductsRefetch,
+  } = useQuery(["배송완료"], () => getDeliveredProducts());
   const navigate = useNavigate();
 
   const clickToBtn = async (id) => {
-    await completeShipment(id);
-    await getShipIsCompleted();
+    await completeDelivery(id);
+    await getDeliveredProducts();
     refetchProducts();
   };
 
   const refetchProducts = () => {
     getOrderedProductsRefetch();
-    getShipIsCompletedRefetch();
+    getDeliveredProductsRefetch();
   };
 
   const setPrice = (coupon, price) => {
@@ -66,7 +66,7 @@ const Order = () => {
       setIndex={setIndex}
       showModal={showModal}
       index={index}
-      getShipIsCompletedRefetch={getShipIsCompletedRefetch}
+      getShipIsCompletedRefetch={getDeliveredProductsRefetch}
     />
   );
 };

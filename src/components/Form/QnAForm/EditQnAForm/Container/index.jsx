@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { validateAddQnAForm } from "../../../../../utils/validateAddQnAForm";
-import { modifyQna } from "../../../../../api/product";
+import { editQna } from "../../../../../api/qna";
 import { bringNowDates } from "../../../../../utils/bringNowDates";
 import UIEditQnAForm from "../UIEditQnAForm/index";
 import { useTextInputs } from "../../../../../hooks/useInputs";
@@ -20,7 +20,7 @@ const EditQnAForm = ({ QnA, setShowEditForm, id, refetch, setIndex }) => {
 
   const clickToEditForm = async () => {
     if (validateAddQnAForm(title, content)) {
-      await modifyQna(id, title, content, isSecretChecked, dates, QnA._id);
+      await editQna(id, title, content, isSecretChecked, dates, QnA._id);
       setShowEditForm(false);
       setTitle("");
       setContent("");

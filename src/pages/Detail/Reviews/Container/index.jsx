@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import getProductReviews from "../../../../api/review";
+import { getProductReviews } from "../../../../api/review";
 import UIReviews from "../UIReviews";
 const Reviews = () => {
   const { id } = useParams();

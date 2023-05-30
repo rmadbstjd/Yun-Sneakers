@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { useUpdateScroll } from "../../../hooks/useUpdateScroll";
-import { searchForProducts } from "../../../api/product";
+import { getSearchedPrdocuts } from "../../../api/product";
 import { getBrandsName } from "../../../api/product";
 import searchStore from "../../../store/searchStore";
 import UISearchPage from "../UISearchPage";
@@ -43,7 +43,7 @@ const Search = () => {
   const { isLoading, data: products } = useQuery(
     [searchKeyword, checkedSort, collectionName, priceOrder, page],
     () =>
-      searchForProducts(
+      getSearchedPrdocuts(
         searchKeyword,
         checkedSort,
         collectionName,
