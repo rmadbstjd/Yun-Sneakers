@@ -9,13 +9,13 @@ export const Container = styled.div`
   margin: 0px auto;
   align-items: center;
   justify-content: center;
+  font-family: "OTWelcomeRA";
 `;
 
 export const Title = styled.span`
   width: 100%;
   font-size: 28px;
   text-align: center;
-  font-family: "LINESeedKR-Bd";
   margin-top: 150px;
 `;
 

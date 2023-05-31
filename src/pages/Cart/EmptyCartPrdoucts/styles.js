@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const NullProductContainer = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
 `;
 
 export const NullProductContentLayout = styled.div`
@@ -41,7 +41,7 @@ export const GoToMainBtn = styled.div`
 export const Layout = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   width: 1820px;
   margin: 0 auto;
 `;

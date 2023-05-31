@@ -3,7 +3,7 @@ export const Product = styled.div`
   margin-top: 20px;
   width: 235px;
   cursor: pointer;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   margin-right: 50px;
 `;
 

@@ -5,7 +5,7 @@ export const Layout = styled.div`
   justify-content: center;
   width: 1400px;
   margin: 0px 300px;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
 `;
 
 export const Container = styled.div`
@@ -148,7 +148,7 @@ export const Filter = styled.div`
 export const SideContainer = styled.div`
   width: 180px;
   word-break: break-all;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   height: 40px;
   cursor: pointer;
   display: flex;

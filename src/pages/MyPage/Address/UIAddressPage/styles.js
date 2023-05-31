@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const MyPageContainer = styled.div`
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   width: 1520px;
   display: flex;
   height: 100%;

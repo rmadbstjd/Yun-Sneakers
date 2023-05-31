@@ -147,7 +147,7 @@ export const Span = styled.span`
 `;
 
 export const SimilarProductTitle = styled.span`
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   font-weight: bold;
   margin-right: 3px;
 `;

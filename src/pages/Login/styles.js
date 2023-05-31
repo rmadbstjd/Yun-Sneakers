@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.span`
   width: 100%;
-  font-family: "LINESeedKR-Bd";
+  font-family: "OTWelcomeRA";
   font-size: 30px;
   text-align: center;
   font-weight: 900;
@@ -26,7 +26,7 @@ export const InputContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 70px;
-  font-family: "LINESeedKR-Bd";
+  font-family: "OTWelcomeRA";
   padding: 10px 0px 10px 0px;
 `;
 

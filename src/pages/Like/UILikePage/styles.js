@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
 `;
 
 export const ProductsContainer = styled.div`

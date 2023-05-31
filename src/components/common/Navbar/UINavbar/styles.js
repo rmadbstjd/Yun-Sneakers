@@ -7,8 +7,7 @@ export const Container = styled.div`
   border-bottom: ${(props) => (props.isScrolled ? "solid gray 2px" : null)};
   z-index: 999;
   display: flex;
-  justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
+
   width: 100%;
   height: 70px;
   margin-left: -20px;

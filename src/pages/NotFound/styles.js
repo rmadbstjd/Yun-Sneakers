@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: flex;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   flex-direction: column;
   align-items: center;
   width: 1820px;

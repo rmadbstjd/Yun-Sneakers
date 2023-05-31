@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
 `;
 
 export const ProductsContainer = styled.div`
@@ -25,7 +25,7 @@ export const TitleKOR = styled.div`
   margin-top: 3px;
   width: 100%;
   color: #3a3b3c;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   font-size: 15px;
 `;
 

@@ -16,7 +16,7 @@ export const Card = styled.div`
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   cursor: pointer;
-  font-family: "NanumSquareNeo-Variable";
+  font-family: "OTWelcomeRA";
   z-index: 1;
   &: hover {
     ${DeleteBtn} {
