@@ -65,6 +65,7 @@ const termsArr = [
   },
 ];
 const UIShipmentPage = ({
+  isLoading,
   haveAddress,
   setHaveAddress,
   setShowCouponBox,
@@ -84,7 +85,6 @@ const UIShipmentPage = ({
   products,
   price,
   couponAppliedPrice,
-  isLoading,
   checkItems,
   handleAllCheck,
   handleSingleCheck,
@@ -235,11 +235,9 @@ const UIShipmentPage = ({
           </Style.OrderTitle>
           <Style.ProductsContaier>
             {isLoading && (
-              <LoadingSpinner
-                width={"100%"}
-                margin={"70px 0px 0px 0px"}
-                text={"상품을 준비하는 중입니다."}
-              />
+              <LoadingSpinner width={"100%"} margin={"70px 0px 0px 0px"}>
+                상품을 준비하는 중입니다.
+              </LoadingSpinner>
             )}
             {products &&
               products.products.map((item) => (

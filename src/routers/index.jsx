@@ -15,7 +15,7 @@ import PublicRoute from "./PublicRoute";
 import NewProducts from "../pages/Admin/NewProduct";
 import EditProduct from "../pages/Admin/EditProduct/Container";
 import ManageProducts from "../pages/Admin/ManageProducts/Container";
-import QnA from "../pages/Admin/QnA";
+import QnA from "../pages/Admin/QnA/Conatiner";
 import MainPage from "./../pages/Main/MainPage/Container";
 
 const Router = () => {

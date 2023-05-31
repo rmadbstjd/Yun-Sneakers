@@ -4,8 +4,10 @@ import AddQnAForm from "../../../../components/Form/QnAForm/AddQnAForm/Container
 import EditQnAForm from "../../../../components/Form/QnAForm/EditQnAForm/Container";
 import QnALists from "../QnAList";
 import Pagination from "../../../../components/common/Pagination";
+import LoadingSpinner from "./../../../../components/common/LoadingSpinner/index";
 import * as Style from "./styles";
 const UIForm = ({
+  isLoading,
   clickToWriteBtn,
   QnAList,
   showWriteForm,
@@ -39,6 +41,11 @@ const UIForm = ({
         </Style.Write>
       </Style.Header>
       <HorizonLine width={"100%"} border={"4px"} color={"black"} />
+      {isLoading && (
+        <LoadingSpinner margin={"100px 0px 0px 0px"}>
+          Q&A 목록을 준비하는 중입니다.
+        </LoadingSpinner>
+      )}
       {QnAList?.length === 0 && (
         <Style.NullText>
           궁금한 점은 언제든지 Q&A 쓰기를 통해 물어보세요.

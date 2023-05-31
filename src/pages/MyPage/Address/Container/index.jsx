@@ -4,7 +4,7 @@ import { deleteUserAddress } from "../../../../api/address";
 import UIAddressPage from "../UIAddressPage";
 const AddressPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const { address, refetch } = useGetUserAddress();
+  const { isLoading, address, refetch } = useGetUserAddress();
 
   const deleteAddress = async () => {
     await deleteUserAddress();
@@ -12,6 +12,7 @@ const AddressPage = () => {
   };
   return (
     <UIAddressPage
+      isLoading={isLoading}
       address={address}
       setShowModal={setShowModal}
       deleteAddress={deleteAddress}

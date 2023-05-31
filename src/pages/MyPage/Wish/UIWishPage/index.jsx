@@ -27,11 +27,9 @@ const UIWishPage = ({
           ></Style.HorizonLine>
           <Style.ProductsContainer>
             {isLoading && (
-              <LoadingSpinner
-                margin={"50px 0px 0px 0px"}
-                width={"100%"}
-                text={"상품을 준비하고 있습니다."}
-              />
+              <LoadingSpinner margin={"50px 0px 0px 0px"} width={"100%"}>
+                좋아요를 누른 상품을 준비하고 있습니다.
+              </LoadingSpinner>
             )}
             {products?.map((product) => (
               <ProductCard

@@ -32,7 +32,7 @@ const Navbar = ({ searchKeyword, sort, collectionName, priceOrder }) => {
     setShowSearch((prev) => !prev);
     setShowNavbar(false);
   };
-  if (isAdmin === false) return <div>에러 ㅋ</div>;
+
   return (
     <UINavbar
       showNavbar={showNavbar}

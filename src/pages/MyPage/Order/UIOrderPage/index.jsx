@@ -17,8 +17,8 @@ const NavbarItems = [
 ];
 const UIOrderPage = ({
   products,
-  isLoading,
-  isLoading2,
+  isOrderedproductsLoading,
+  isDelieveredProductsLoading,
   goToDetail,
   goToSearch,
   setPrice,
@@ -49,17 +49,16 @@ const UIOrderPage = ({
               <Style.TopItem width={"200px"}>{NavbarItems[5]}</Style.TopItem>
             </Style.TopContainer>
             <Style.HorizonLine></Style.HorizonLine>
-            {products?.length === 0 ? (
+            {isOrderedproductsLoading === true ? (
+              <LoadingSpinner margin={"100px 0px 0px 0px"}>
+                최근 배송중인 상품을 준비하고 있습니다.
+              </LoadingSpinner>
+            ) : products?.length === 0 ? (
               <Style.NoneText>
                 최근 배송중인 상품이 존재하지 않습니다.
               </Style.NoneText>
             ) : null}
-            {isLoading && (
-              <LoadingSpinner
-                text={"상품을 준비하고 있습니다."}
-                margin={"100px 0px 0px 0px"}
-              />
-            )}
+
             {products?.map((item) => (
               <Style.ProductContent key={item.product._id}>
                 <Style.Img
@@ -156,11 +155,10 @@ const UIOrderPage = ({
                 배송이 완료된 상품이 존재하지 않습니다.
               </Style.NoneText>
             ) : null}
-            {isLoading2 && (
-              <LoadingSpinner
-                text={"상품을 준비하고 있습니다."}
-                margin={"100px 0px 0px 0px"}
-              />
+            {isDelieveredProductsLoading && (
+              <LoadingSpinner margin={"100px 0px 0px 0px"}>
+                배송이 완료된 상품을 준비하고 있습니다.
+              </LoadingSpinner>
             )}
             {completedProducts &&
               completedProducts.map((item, index) => (

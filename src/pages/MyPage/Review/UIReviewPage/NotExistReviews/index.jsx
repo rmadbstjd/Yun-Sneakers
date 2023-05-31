@@ -69,10 +69,9 @@ const NotExistsReviews = ({
             <Style.NoneText>아직 작성한 리뷰가 없습니다.</Style.NoneText>
           ) : null}
           {isLoading && (
-            <LoadingSpinner
-              text={"상품을 준비하고 있습니다."}
-              margin={"100px 0px 0px 0px"}
-            />
+            <LoadingSpinner margin={"100px 0px 0px 0px"}>
+              상품을 준비하고 있습니다
+            </LoadingSpinner>
           )}
           {product?.map((item, index) => (
             <div key={item.product._id}>

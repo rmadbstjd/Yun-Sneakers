@@ -8,7 +8,7 @@ const QnA = () => {
   const navigate = useNavigate();
   const [showContent, setShowContent] = useState();
   const [page, setPage] = useState(1);
-  let { myQnAs, QnAcounts, refetch } = useGeyMyQna(page);
+  let { isLoading, myQnAs, QnAcounts, refetch } = useGeyMyQna(page);
 
   const goToDetailPage = (productId) => {
     navigate(`/products/${productId}`);
@@ -29,6 +29,7 @@ const QnA = () => {
   };
   return (
     <UIQnAPage
+      isLoading={isLoading}
       myQnAs={myQnAs}
       showContent={showContent}
       clickToQnA={clickToQnA}

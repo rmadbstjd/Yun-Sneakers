@@ -4,7 +4,9 @@ import HorizonLine from "../../../../components/common/HorizonLine";
 import Pagination from "../../../../components/common/Pagination";
 import { AiOutlineStar } from "@react-icons/all-files/ai/AiOutlineStar";
 import { AiFillStar } from "@react-icons/all-files/ai/AiFillStar";
+import LoadingSpinner from "../../../../components/common/LoadingSpinner";
 const UIReviews = ({
+  isLoading,
   productReviews,
   productReviewsCount,
   clickToReview,
@@ -22,6 +24,11 @@ const UIReviews = ({
         margin={"10px 0px 0px 170px"}
       />
       <Style.ReviewContainer>
+        {isLoading && (
+          <LoadingSpinner margin={"100px 0px 0px 0px"}>
+            리뷰를 준비하는 중입니다.
+          </LoadingSpinner>
+        )}
         {productReviews?.length === 0 ? (
           <>
             <Style.NoneTextTitle>

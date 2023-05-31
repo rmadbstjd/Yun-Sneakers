@@ -37,7 +37,7 @@ const Shipment = () => {
     useNumberInputs("", 4);
   const { card, setCard } = userInfoStore();
   const postCode = address?.postCode;
-  const { data: products } = useQuery(["products"], () =>
+  const { isLoading, data: products } = useQuery(["products"], () =>
     getUserCheckedCarts()
   );
   const [checkItems, setCheckItems] = useState([]);
@@ -207,6 +207,7 @@ const Shipment = () => {
   }, [address]);
   return (
     <UIShipmentPage
+      isLoading={isLoading}
       haveAddress={haveAddress}
       setHaveAddress={setHaveAddress}
       setShowCouponBox={setShowCouponBox}

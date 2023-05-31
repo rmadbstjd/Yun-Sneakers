@@ -34,11 +34,9 @@ const MainProducts = ({
         <Style.TitleENG>{titleENG}</Style.TitleENG>
         <Style.TitleKOR>{titleKOR}</Style.TitleKOR>
         {isLoading && (
-          <LoadingSpinner
-            width={width}
-            margin={"100px 0px 0px 0px"}
-            text={"상품을 불러오는 중입니다."}
-          />
+          <LoadingSpinner width={width} margin={"100px 0px 0px 0px"}>
+            상품을 불러오는 중입니다.
+          </LoadingSpinner>
         )}
         {renderProductCards()}
         <Style.MoreContainer>

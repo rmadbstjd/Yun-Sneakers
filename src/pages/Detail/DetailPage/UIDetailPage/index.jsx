@@ -160,7 +160,7 @@ const UIDetailPage = ({
                   onClick={clickToLike}
                 />
               ) : null}
-              {isLiked?.result === false ? (
+              {isLiked === false ? (
                 <BsHeart
                   style={{
                     width: "45px",
@@ -173,7 +173,7 @@ const UIDetailPage = ({
                   }}
                   onClick={clickToLike}
                 />
-              ) : isLiked?.result ? (
+              ) : isLiked ? (
                 <FaHeart
                   style={{
                     width: "45px",

@@ -16,7 +16,5 @@ export const useGetUserCart = (userId) => {
       plusCartCount(cartProducts?.products?.length);
     }
   }, [cartProducts]);
-  console.log("cartPrdocuts", cartProducts);
-  console.log("에로", isError);
   return { isLoading, refetch, cartProducts, isError };
 };

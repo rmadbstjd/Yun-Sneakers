@@ -27,13 +27,7 @@ const UILikePage = ({
               margin={"2% 0% 3% 0%"}
             />
           </Style.TitleContainer>
-          {isLoading && (
-            <LoadingSpinner
-              width={"100%"}
-              margin={"100px 0px 0px 0px"}
-              text="상품을 불러오는 중입니다."
-            ></LoadingSpinner>
-          )}
+
           {products?.map((product) => (
             <ProductCard
               key={product.name}
@@ -46,8 +40,11 @@ const UILikePage = ({
               navigate={() => goToDetail(product.id)}
             ></ProductCard>
           ))}
-
-          {count === 0 ? (
+          {isLoading === true ? (
+            <LoadingSpinner width={"100%"} margin={"100px 0px 0px 0px"}>
+              좋아요를 누른 상품을 불러오는 중입니다.
+            </LoadingSpinner>
+          ) : count === 0 ? (
             <Style.NoneProductsContainer>
               <div>
                 <Style.Span>좋아요를 누른 상품이 없습니다.</Style.Span>

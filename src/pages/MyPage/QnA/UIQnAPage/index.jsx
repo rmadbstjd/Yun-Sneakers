@@ -4,8 +4,10 @@ import Navbar from "../../../../components/common/Navbar/Container";
 import MypageSide from "../../../../components/MypageSide/Container";
 import convertStringToNumber from "./../../../../utils/convertStringToNumber";
 import Pagination from "../../../../components/common/Pagination";
+import LoadingSpinner from "../../../../components/common/LoadingSpinner";
 const navbarItems = ["상품 정보", "문의 내용", "작성일", "답변 유무"];
 const UIQnAPage = ({
+  isLoading,
   myQnAs,
   showContent,
   clickToQnA,
@@ -38,6 +40,11 @@ const UIQnAPage = ({
             <Style.TopItem width={"100px"}>{navbarItems[3]}</Style.TopItem>
           </Style.TopContainer>
           <Style.HorizonLine width={"1466px"} border={1} color={"gray"} />
+          {isLoading && (
+            <LoadingSpinner margin={"100px 0px 0px 0px"}>
+              내가 작성한 Q&A 내역을 준비하는 중입니다.
+            </LoadingSpinner>
+          )}
           {myQnAs &&
             myQnAs.QnA.map((item, index) => (
               <div key={item._id}>

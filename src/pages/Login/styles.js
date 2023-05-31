@@ -31,7 +31,7 @@ export const InputContainer = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${(props) => (props.isAllowed === null || true ? "black" : "red")};
+  color: "black";
 `;
 
 export const InputValue = styled.input`
@@ -39,7 +39,11 @@ export const InputValue = styled.input`
   border: none;
   height: 30px;
   border-bottom: ${(props) =>
-    props.isAllowed === null || true ? "solid black 1px" : "solid red 1px"};
+    props.isAllowed === null
+      ? "solid black 1px"
+      : props.isAllowed === true
+      ? "solid black 1px"
+      : "solid red 1px"};
   &:focus {
     outline: none;
   }

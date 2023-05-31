@@ -8,12 +8,12 @@ const Order = () => {
   const [showModal, setShowModal] = useState(false);
   const [index, setIndex] = useState();
   const {
-    isLoading,
+    isLoading: isOrderedproductsLoading,
     data: products,
     refetch: getOrderedProductsRefetch,
   } = useQuery(["배송중"], () => getOrderedProducts());
   const {
-    isLoading: isLoading2,
+    isLoading: isDelieveredProductsLoading,
     data: completedProducts,
     refetch: getDeliveredProductsRefetch,
   } = useQuery(["배송완료"], () => getDeliveredProducts());
@@ -55,8 +55,8 @@ const Order = () => {
   return (
     <UIOrderPage
       products={products}
-      isLoading={isLoading}
-      isLoading2={isLoading2}
+      isOrderedproductsLoading={isOrderedproductsLoading}
+      isDelieveredProductsLoading={isDelieveredProductsLoading}
       goToDetail={goToDetail}
       goToSearch={goToSearch}
       setPrice={setPrice}

@@ -18,7 +18,7 @@ const QnAForm = () => {
   const [page, setPage] = useState(1);
   const token = localStorage.getItem("accessToken");
   const { userId } = useGetUserInfo();
-  let { QnAcounts, QnAList, refetch } = useGetProductQnA(id, page);
+  let { isLoading, QnAcounts, QnAList, refetch } = useGetProductQnA(id, page);
   const clickToWriteBtn = () => {
     if (!token) navigate("/login");
     setShowWriteForm(true);
@@ -73,6 +73,7 @@ const QnAForm = () => {
 
   return (
     <UIForm
+      isLoading={isLoading}
       clickToWriteBtn={clickToWriteBtn}
       QnAList={QnAList}
       showWriteForm={showWriteForm}

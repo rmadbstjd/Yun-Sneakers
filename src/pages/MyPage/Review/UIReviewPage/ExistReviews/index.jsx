@@ -78,10 +78,9 @@ const ExistReviews = ({
             </Style.NoneText>
           ) : null}
           {isLoading2 && (
-            <LoadingSpinner
-              text={"상품을 준비하고 있습니다."}
-              margin={"100px 0px 0px 0px"}
-            />
+            <LoadingSpinner margin={"100px 0px 0px 0px"}>
+              상품을 준비하고 있습니다.
+            </LoadingSpinner>
           )}
           {completedProducts?.map((item, index) => (
             <div key={item.product._id}>

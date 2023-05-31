@@ -14,9 +14,11 @@ const Reviews = () => {
     }
     setIsClicked(index);
   };
-  let { data: productReviews, refetch } = useQuery(["review", id], () =>
-    getProductReviews(id, page)
-  );
+  let {
+    isLoading,
+    data: productReviews,
+    refetch,
+  } = useQuery(["review", id], () => getProductReviews(id, page));
   const productReviewsCount = productReviews?.count;
   productReviews = productReviews?.reviews;
 
@@ -27,6 +29,7 @@ const Reviews = () => {
   };
   return (
     <UIReviews
+      isLoading={isLoading}
       productReviews={productReviews}
       productReviewsCount={productReviewsCount}
       clickToReview={clickToReview}

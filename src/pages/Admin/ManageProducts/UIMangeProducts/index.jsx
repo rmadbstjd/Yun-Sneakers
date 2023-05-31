@@ -8,7 +8,6 @@ import LoadingSpinner from "./../../../../components/common/LoadingSpinner/index
 const NavbarItems = ["상품명", "상품코드", "가격", "관리"];
 const UIManageProducts = ({
   isLoading,
-  isError,
   products,
   goToDetailPage,
   clickToDeleteBtn,

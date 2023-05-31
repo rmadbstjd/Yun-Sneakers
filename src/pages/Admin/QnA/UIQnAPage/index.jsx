@@ -1,59 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Style from "./styles";
-import { answerQna, getNotAnsweredQna, getAnsweredQna } from "../../../api/qna";
-import Navbar from "../../../components/common/Navbar/Container/index";
-import { useQuery } from "@tanstack/react-query";
-import QnAModal from "../../../components/common/Modal/Conatiner/QnA";
-import Modal from "../../../components/common/Modal/UIModal";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-const itemArr3 = ["제목", "내용", "유저", "날짜"];
-const QnA = () => {
-  const [showModal, setShowModal] = useState(false);
+import Navbar from "../../../../components/common/Navbar/Container";
+import LoadingSpinner from "../../../../components/common/LoadingSpinner";
+import Modal from "../../../../components/common/Modal/UIModal";
+import QnAModal from "../../../../components/common/Modal/Conatiner/QnA";
 
-  const navigate = useNavigate();
-  const { data: isNotAnsweredQnAs, refetch } = useQuery(
-    ["isNotAnsweredQnA"],
-    () => getNotAnsweredQna()
-  );
-  const { data: isAnsweredQnAs, refetch: refetch2 } = useQuery(
-    ["isAnsweredQnA"],
-    () => getAnsweredQna()
-  );
-  const [showNotAnsweredQnA, setShowNotAnsweredQnA] = useState(true);
-  const [isClicked, setIsClicked] = useState();
-
-  const submitBtn = async (answer) => {
-    await answerQna(
-      isNotAnsweredQnAs[isClicked].productId,
-      isNotAnsweredQnAs[isClicked]._id,
-      answer
-    );
-    Swal.fire({
-      icon: "success",
-      title: "성공적으로 답변을 작성하였습니다.",
-      confirmButtonColor: "black",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/admin/qna");
-        setIsClicked();
-      }
-    });
-    refetch();
-    refetch2();
-    setShowModal(false);
-  };
-  const clickToQnA = (index) => {
-    if (index === isClicked) setIsClicked();
-    else setIsClicked(index);
-  };
-
-  const clickToDetailPage = (e, item) => {
-    e.stopPropagation();
-
-    navigate(`/products/${item.productId}`);
-  };
-
+const NavbarItems = ["제목", "내용", "유저", "날짜"];
+const UIQnAPage = ({
+  showNotAnsweredQnA,
+  setShowNotAnsweredQnA,
+  isNotAnsweredQnAs,
+  isAnsweredQnAs,
+  isNotAnsweredQnALoading,
+  isAnsweredQnALoading,
+  isClicked,
+  clickToQnA,
+  clickToDetailPage,
+  setShowModal,
+  showModal,
+  submitBtn,
+}) => {
   return (
     <div>
       <Navbar />
@@ -80,10 +46,10 @@ const QnA = () => {
             ></Style.HorizonLine>
           </Style.ReviewContainer>
           <Style.TopContainer>
-            <Style.TopItem width={"610px"}>{itemArr3[0]}</Style.TopItem>
-            <Style.TopItem width={"50px"}>{itemArr3[1]}</Style.TopItem>
-            <Style.TopItem width={"615px"}>{itemArr3[2]}</Style.TopItem>
-            <Style.TopItem width={"40px"}>{itemArr3[3]}</Style.TopItem>
+            <Style.TopItem width={"610px"}>{NavbarItems[0]}</Style.TopItem>
+            <Style.TopItem width={"50px"}>{NavbarItems[1]}</Style.TopItem>
+            <Style.TopItem width={"615px"}>{NavbarItems[2]}</Style.TopItem>
+            <Style.TopItem width={"40px"}>{NavbarItems[3]}</Style.TopItem>
           </Style.TopContainer>
 
           <Style.HorizonLine
@@ -105,7 +71,16 @@ const QnA = () => {
               아직 Q&A에 대한 답변이 존재하지 않습니다.
             </Style.NoneText>
           ) : null}
-
+          {isNotAnsweredQnALoading && (
+            <LoadingSpinner margin={"100px 0px 0px 0px"}>
+              상품을 준비중입니다.
+            </LoadingSpinner>
+          )}
+          {isAnsweredQnALoading && (
+            <LoadingSpinner margin={"100px 0px 0px 0px"}>
+              상품을 준비중입니다.
+            </LoadingSpinner>
+          )}
           {showNotAnsweredQnA
             ? isNotAnsweredQnAs &&
               isNotAnsweredQnAs.map((item, index) => (
@@ -190,4 +165,4 @@ const QnA = () => {
   );
 };
 
-export default QnA;
+export default UIQnAPage;

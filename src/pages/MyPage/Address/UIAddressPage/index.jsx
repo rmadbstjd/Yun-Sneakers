@@ -6,7 +6,9 @@ import ShipAddress from "../../.././../components/ShipAddress";
 import Button from "../../../../components/common/button";
 import Modal from "../../../../components/common/Modal/UIModal";
 import UserAddressForm from "../../../../components/Form/UserAddressForm/Container";
+import LoadingSpinner from "../../../../components/common/LoadingSpinner";
 const UIAddressPage = ({
+  isLoading,
   address,
   setShowModal,
   deleteAddress,
@@ -27,28 +29,15 @@ const UIAddressPage = ({
             color={"black"}
           ></Style.HorizonLine>
           <Style.AddressContainer isBoolean={address}>
-            <ShipAddress />
+            {isLoading && (
+              <LoadingSpinner margin={"100px 0px 0px 0px"}>
+                유저의 주소를 준비하고 있습니다.
+              </LoadingSpinner>
+            )}
+            {!isLoading && <ShipAddress />}
 
-            {!address ? (
-              <Button
-                style={{
-                  border: "solid gray 1px",
-                  borderRadius: "15px",
-                  width: "70px",
-                  height: "30px",
-                  margin: "10px 0px 0px 0px",
-                  lineHeight: "190%",
-                  hoverColor: "white",
-                  hoverBackground: "black",
-                }}
-                onClick={() => {
-                  setShowModal((prev) => !prev);
-                }}
-              >
-                추가하기
-              </Button>
-            ) : (
-              <Style.BtnContainer>
+            {!isLoading &&
+              (!address ? (
                 <Button
                   style={{
                     border: "solid gray 1px",
@@ -64,29 +53,48 @@ const UIAddressPage = ({
                     setShowModal((prev) => !prev);
                   }}
                 >
-                  수정
+                  추가하기
                 </Button>
-                <Button
-                  style={{
-                    border: "solid gray 1px",
-                    borderRadius: "15px",
-                    width: "70px",
-                    height: "30px",
-                    margin: "10px 0px 0px 0px",
-                    lineHeight: "190%",
-                    color: "black",
-                    background: "white",
-                    hoverColor: "white",
-                    hoverBackground: "black",
-                  }}
-                  onClick={() => {
-                    deleteAddress();
-                  }}
-                >
-                  삭제
-                </Button>
-              </Style.BtnContainer>
-            )}
+              ) : (
+                <Style.BtnContainer>
+                  <Button
+                    style={{
+                      border: "solid gray 1px",
+                      borderRadius: "15px",
+                      width: "70px",
+                      height: "30px",
+                      margin: "10px 0px 0px 0px",
+                      lineHeight: "190%",
+                      hoverColor: "white",
+                      hoverBackground: "black",
+                    }}
+                    onClick={() => {
+                      setShowModal((prev) => !prev);
+                    }}
+                  >
+                    수정
+                  </Button>
+                  <Button
+                    style={{
+                      border: "solid gray 1px",
+                      borderRadius: "15px",
+                      width: "70px",
+                      height: "30px",
+                      margin: "10px 0px 0px 0px",
+                      lineHeight: "190%",
+                      color: "black",
+                      background: "white",
+                      hoverColor: "white",
+                      hoverBackground: "black",
+                    }}
+                    onClick={() => {
+                      deleteAddress();
+                    }}
+                  >
+                    삭제
+                  </Button>
+                </Style.BtnContainer>
+              ))}
             {showModal && (
               <Modal
                 isOpen={true}
