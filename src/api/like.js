@@ -1,20 +1,30 @@
 import { instance } from "../utils/instance";
 
 export const pushLike = async (productId, userId) => {
-  await instance.post(`/${productId}/like`, {
-    userId,
-  });
+  try {
+    const response = await instance.post(`/${productId}/like`, {
+      userId,
+    });
+    if (response.statusText) return true;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const isLikedProduct = async (productId) => {
-  const response = await instance.get(`/product/${productId}/like`, {});
-  const data = response.data;
-  return data;
+  try {
+    const response = await instance.get(`/product/${productId}/like`, {});
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const getLikedProducts = async () => {
-  const response = await instance.get(`/products/like`, {});
-
-  const data = response.data;
-  return data;
+  try {
+    const response = await instance.get(`/products/like`, {});
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 };

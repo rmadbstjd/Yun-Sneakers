@@ -8,9 +8,12 @@ import UIManageProducts from "../UIMangeProducts";
 const ManageProducts = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  let { data: products, refetch } = useQuery(["products"], () =>
-    getAllProducts(page)
-  );
+  let {
+    isLoading,
+    data: products,
+    refetch,
+    isError,
+  } = useQuery(["products"], () => getAllProducts(page));
 
   let productsCount = products && products.count;
   products = products && products.products;
@@ -45,6 +48,8 @@ const ManageProducts = () => {
   };
   return (
     <UIManageProducts
+      isLoading={isLoading}
+      isError={isError}
       products={products}
       goToDetailPage={goToDetailPage}
       clickToDeleteBtn={clickToDeleteBtn}

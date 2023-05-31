@@ -13,8 +13,6 @@ const UILikePage = ({
   goToDetail,
   navigate,
 }) => {
-  console.log("프", products);
-  console.log("count", count);
   return (
     <>
       <Navbar />

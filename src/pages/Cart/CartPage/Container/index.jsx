@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useGetUserInfo } from "../../../../hooks/useGetUserInfo";
-import { getUserCarts, checkProduct } from "../../../../api/cart";
+import { checkProduct } from "../../../../api/cart";
 import { useImmer } from "use-immer";
 import Swal from "sweetalert2";
 import UICartPage from "../UICartPage";
+import { useGetUserCart } from "./../../../../hooks/useGetUserCart";
 const CartPage = () => {
   const navigate = useNavigate();
-  const { userId } = useGetUserInfo();
-  const {
-    isLoading,
-    data: cartProducts,
-    refetch,
-  } = useQuery(["cart", userId], () => getUserCarts());
+
+  const { isLoading, isError, cartProducts, refetch } = useGetUserCart();
 
   const [checkedProducts, setCheckedProducts] = useImmer([]);
   const [price, setPrice] = useState(0);
@@ -139,6 +134,7 @@ const CartPage = () => {
   return (
     <UICartPage
       isLoading={isLoading}
+      isError={isError}
       handleAllCheck={handleAllCheck}
       checkedProducts={checkedProducts}
       cartProducts={cartProducts}

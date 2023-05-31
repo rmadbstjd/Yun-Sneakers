@@ -29,7 +29,6 @@ const Login = () => {
     if (e.key === "Enter") {
       if (isPassed) {
         const data = await userApi.login(inputs.id, inputs.pw);
-
         if (data === false) {
           setResult(false);
         } else setResult(true);

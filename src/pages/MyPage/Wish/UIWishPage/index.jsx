@@ -13,7 +13,6 @@ const UIWishPage = ({
   goToDetail,
   goToMain,
 }) => {
-  console.log("카", count);
   return (
     <>
       <Navbar />

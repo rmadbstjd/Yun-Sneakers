@@ -12,10 +12,8 @@ const signUp = async (id, pw, nickname) => {
       password: pw,
       nickname,
     });
-    if (response.status === 409) return false;
-    else if (response.status === 201) return true;
+    if (response.statusText) return true;
   } catch (error) {
-    console.error(error);
     return false;
   }
 };
@@ -26,15 +24,13 @@ const login = async (userId, password) => {
       userId,
       password,
     });
-    if (response.status === 400) return false;
-    else if (response.status === 200) {
+    if (response.statusText) {
       const data = response.data;
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
       return data;
     }
   } catch (error) {
-    console.error(error);
     return false;
   }
 };
@@ -42,25 +38,24 @@ const login = async (userId, password) => {
 const logout = async () => {
   try {
     const response = await instance.post("/logout", {});
-    if (response.status === 200) {
+    if (response.statusText) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       window.location.replace("/");
     }
   } catch (error) {
-    console.error(error);
+    return false;
   }
 };
 
 const verifyAccessToken = async () => {
   try {
     const response = await instance.get("/user/token", {});
-    if (response.status === 200) {
+    if (response.statusText) {
       const data = response.data;
       return data;
-    } else if (response.status === 400) return false;
+    }
   } catch (error) {
-    console.error(error);
     return false;
   }
 };
@@ -68,12 +63,11 @@ const verifyAccessToken = async () => {
 const isAdmin = async () => {
   try {
     const response = await instance.get("/user/admin", {});
-    if (response.status === 200) {
+    if (response.statusText) {
       const data = response.data;
       return data;
-    } else if (response.status === 400) return false;
+    }
   } catch (error) {
-    console.error(error);
     return false;
   }
 };
@@ -85,11 +79,11 @@ const sendRefreshToken = async (userId) => {
       { userId },
       { headers: { authorization: localStorage.getItem("refreshToken") } }
     );
-    if (response.status === 200) {
+    if (response.statusText) {
       const data = response.data;
       localStorage.setItem("accessToken", data.accessToken);
       return data;
-    } else if (response.status === 400) return false;
+    }
   } catch (error) {
     return false;
   }

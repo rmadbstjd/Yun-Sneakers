@@ -4,8 +4,11 @@ import Navbar from "../../../../components/common/Navbar/Container";
 import convertStringToNumber from "../../../../utils/convertStringToNumber";
 import Button from "../../../../components/common/button";
 import Pagination from "react-js-pagination";
+import LoadingSpinner from "./../../../../components/common/LoadingSpinner/index";
 const NavbarItems = ["상품명", "상품코드", "가격", "관리"];
 const UIManageProducts = ({
+  isLoading,
+  isError,
   products,
   goToDetailPage,
   clickToDeleteBtn,
@@ -41,7 +44,11 @@ const UIManageProducts = ({
             border={3}
             color={"black "}
           ></Style.HorizonLine>
-
+          {isLoading && (
+            <LoadingSpinner width={"100%"} margin={"100px 0px 0px 0px"}>
+              상품을 준비하는 중입니다.
+            </LoadingSpinner>
+          )}
           {products?.map((product) => (
             <div key={product.id}>
               <Style.ProductContent>

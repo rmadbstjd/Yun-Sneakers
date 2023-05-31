@@ -2,8 +2,10 @@ import React from "react";
 import * as Style from "./styles";
 import useGetUserAddress from "../../hooks/useGetUserAddress";
 const ShipAddress = () => {
-  const { address } = useGetUserAddress();
-
+  const { address, isError } = useGetUserAddress();
+  if (isError) {
+    return <div>에러 ㅋ</div>;
+  }
   if (!address) {
     return (
       <Style.Box>

@@ -8,6 +8,7 @@ import Button from "../../../../components/common/button";
 import convertStringToNumber from "./../../../../utils/convertStringToNumber";
 const UICartPage = ({
   isLoading,
+  isError,
   handleAllCheck,
   checkedProducts,
   cartProducts,
@@ -29,11 +30,9 @@ const UICartPage = ({
           <Style.HeaderLayout>
             <Style.HeaderContainer>
               {isLoading && (
-                <LoadingSpinner
-                  width={"100%"}
-                  text={"상품을 불러오는 중입니다."}
-                  margin={"80px 0px 80px 500px"}
-                />
+                <LoadingSpinner width={"100%"} margin={"80px 0px 80px 500px"}>
+                  상품을 불러오는 중입니다.
+                </LoadingSpinner>
               )}
               <Style.HeaderContent width={4.8}>
                 <Style.Input

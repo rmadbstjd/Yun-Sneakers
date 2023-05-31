@@ -13,82 +13,111 @@ export async function getSearchedPrdocuts(
   priceOrder,
   page
 ) {
-  const response = await httpClient.get("search/products", {
-    params: { keyword, sort, collectionName, priceOrder, page, offset: 10 },
-  });
-  const data = response.data;
-  const products = data.products;
-  const count = data.count;
-  return { products, count };
+  try {
+    const response = await httpClient.get("search/products", {
+      params: { keyword, sort, collectionName, priceOrder, page, offset: 10 },
+    });
+    if (response.statusText) {
+      const data = response.data;
+      const products = data.products;
+      const count = data.count;
+      return { products, count };
+    }
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getAllProducts(page) {
-  const response = await httpClient.get("allproducts", {
-    headers: {
-      page,
-    },
-  });
-  const data = response.data;
-  const products = data.products;
-  const count = data.count;
-
-  return { products, count };
+  try {
+    const response = await httpClient.get("allproducts", {
+      headers: {
+        page,
+      },
+    });
+    if (response.statusText) {
+      const data = response.data;
+      const products = data.products;
+      const count = data.count;
+      return { products, count };
+    }
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getNewProducts(currentPage) {
-  if (!currentPage) currentPage = 1;
-
-  const response = await httpClient.post("newproducts", {
-    currentPage,
-  });
-  const data = response.data;
-  return data;
+  try {
+    if (!currentPage) currentPage = 1;
+    const response = await httpClient.post("newproducts", {
+      currentPage,
+    });
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getPopularProducts(currentPage) {
-  if (!currentPage) currentPage = 1;
-  const response = await httpClient.post("popularproducts", {
-    currentPage,
-  });
-  const data = response.data;
-  return data;
+  try {
+    if (!currentPage) currentPage = 1;
+    const response = await httpClient.post("popularproducts", {
+      currentPage,
+    });
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getUniqueProducts(currentPage) {
-  if (!currentPage) currentPage = 1;
-  const response = await httpClient.post("uniqueproducts", {
-    currentPage,
-  });
-  const data = response.data;
-  return data;
+  try {
+    if (!currentPage) currentPage = 1;
+    const response = await httpClient.post("uniqueproducts", {
+      currentPage,
+    });
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getSimilarProducts(category, productId) {
-  const response = await httpClient.post("similarproducts", {
-    category,
-    productId,
-  });
-  const data = response.data;
-  return data;
+  try {
+    const response = await httpClient.post("similarproducts", {
+      category,
+      productId,
+    });
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getProductInfo(id) {
-  const response = await httpClient.get(`product/${id}`);
-  const data = response.data;
-  if (data.error) return "error";
-  return data;
+  try {
+    const response = await httpClient.get(`product/${id}`);
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function addProduct(product, image) {
-  await httpClient.post("/product", {
-    id: product.id,
-    name: product.title,
-    category: product.category,
-    size: product.size,
-    price: product.price,
-    image,
-    description: product.description,
-  });
+  try {
+    const response = await httpClient.post("/product", {
+      id: product.id,
+      name: product.title,
+      category: product.category,
+      size: product.size,
+      price: product.price,
+      image,
+      description: product.description,
+    });
+    if (response.statusText) return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function editProduct(product, image, productId) {
@@ -105,20 +134,30 @@ export async function editProduct(product, image, productId) {
 }
 
 export async function deleteProduct(productId) {
-  const response = await httpClient.delete(`/product`, {
-    data: { productId },
-  });
-  const data = response.data;
-  return data;
+  try {
+    const response = await httpClient.delete(`/product`, {
+      data: { productId },
+    });
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export async function getBrandsName() {
-  const response = await httpClient.get("products/brandsname", {});
-  const data = response.data;
-  return data;
+  try {
+    const response = await httpClient.get("products/brandsname", {});
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 }
 
 export const getOrderedProducts = async () => {
-  const response = await instance.get(`/order`, {});
-  return response.data;
+  try {
+    const response = await instance.get(`/order`, {});
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 };

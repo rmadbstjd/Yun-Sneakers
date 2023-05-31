@@ -28,6 +28,7 @@ export const TextContent = styled.div`
   font-size: 15px;
   line-height: 140%;
   text-align: center;
+  margin-top: 10px;
 `;
 export const Btn = styled.button`
   border: none;

@@ -6,25 +6,40 @@ const httpClient = axios.create({
 });
 
 export const getProductReviews = async (id, page) => {
-  const { data } = await httpClient.get(`/review/${id}`, {
-    headers: {
-      page,
-    },
-  });
-  const reviews = data.reviews;
-  const count = data.count;
-  return { reviews, count };
+  try {
+    const response = await httpClient.get(`/review/${id}`, {
+      headers: {
+        page,
+      },
+    });
+    if (response.statusText) {
+      const reviews = response.data.reviews;
+      const count = response.data.count;
+      return { reviews, count };
+    }
+  } catch (error) {
+    return false;
+  }
 };
 
 export const getUserWrittenReviews = async () => {
-  const response = await instance.get(`/review`, {});
-  return response.data;
+  try {
+    const response = await instance.get(`/review`, {});
+    if (response.statusText) return response.data;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const deleteProductReview = async (orderId) => {
-  await instance.delete(`/review`, {
-    data: { orderId },
-  });
+  try {
+    const response = await instance.delete(`/review`, {
+      data: { orderId },
+    });
+    if (response.statusText) return true;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const addProductReview = async (
@@ -40,17 +55,22 @@ export const addProductReview = async (
   content,
   rate
 ) => {
-  await instance.post(`/review`, {
-    image,
-    star,
-    count,
-    coupon,
-    price,
-    size,
-    date,
-    productId,
-    orderId,
-    content,
-    rate,
-  });
+  try {
+    const response = await instance.post(`/review`, {
+      image,
+      star,
+      count,
+      coupon,
+      price,
+      size,
+      date,
+      productId,
+      orderId,
+      content,
+      rate,
+    });
+    if (response.statusText) return true;
+  } catch (error) {
+    return false;
+  }
 };

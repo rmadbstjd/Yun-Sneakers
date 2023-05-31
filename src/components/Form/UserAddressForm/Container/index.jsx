@@ -13,7 +13,6 @@ const UserAddressForm = ({
   refetch,
 }) => {
   const { address } = useGetUserAddress();
-  console.log("타입", type);
   const { state: place, handleChange: setPlace } = useTextInputs(
     address?.place,
     30
