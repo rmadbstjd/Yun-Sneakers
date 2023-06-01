@@ -48,6 +48,7 @@ export const QuestionLayout = styled.div`
 
 export const InputTitle = styled.input`
   border: solid #d4d4d4 1px;
+  margin-top: -5px;
 `;
 
 export const CheckBox = styled.input`
@@ -55,10 +56,12 @@ export const CheckBox = styled.input`
   height: 25px;
   width: 20px;
   height: 20px;
+  margin-top: 2px;
 `;
 
 export const Label = styled.label`
   margin-left: 10px;
+  margin-top: 2px;
   font-weight: ${(props) => props.secretChecked && "bolder"};
   font-size: 15px;
   line-height: 160%;

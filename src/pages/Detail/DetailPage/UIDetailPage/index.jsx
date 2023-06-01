@@ -114,7 +114,7 @@ const UIDetailPage = ({
             </Style.Price>
             {cartModalShow && (
               <Style.GoToCartPageBtnContainer>
-                <div>장바구니에 추가되었습니다.</div>
+                <Style.Text>장바구니에 추가되었습니다.</Style.Text>
                 <Style.GoToCartBtn
                   onClick={() => {
                     navigate("/cart");

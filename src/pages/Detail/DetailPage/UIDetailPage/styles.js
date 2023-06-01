@@ -183,6 +183,7 @@ export const GoToCartPageBtnContainer = styled.div`
 export const GoToCartBtn = styled.div`
   cursor: pointer;
   color: #a5ba93;
+  margin-top: 5px;
 `;
 
 export const ReviewCount = styled.div`
@@ -194,3 +195,7 @@ export const ReviewCount = styled.div`
 `;
 
 export const Star = styled.div``;
+
+export const Text = styled.div`
+  margin-top: 5px;
+`;

@@ -4,6 +4,7 @@ import Navbar from "../../../../components/common/Navbar/Container";
 import MypageSide from "../../../../components/MypageSide/Container";
 import LoadingSpinner from "../../../../components/common/LoadingSpinner";
 import Button from "../../../../components/common/button";
+import Modal from "../../../../components/common/Modal/UIModal";
 import ReviewModal from "../../../../components/common/Modal/Conatiner/Review";
 import { Link } from "react-router-dom";
 import convertStringToNumber from "../../../../utils/convertStringToNumber";
@@ -108,28 +109,25 @@ const UIOrderPage = ({
                   <Style.BtnContainer>
                     <Style.Text>배송이 완료되었다면↓</Style.Text>
 
-                    <Link to="shipComplete" spy={true} smooth={true}>
-                      <Button
-                        style={{
-                          border: "solid gray 1px",
-                          width: "80px",
-                          height: "30px",
-                          margin: "0px 0px 0px 17px",
-                          fontSize: "15px",
-                          background: "white",
-
-                          color: "black",
-                          hoverColor: "white",
-                          hoverBackground: "black",
-                        }}
-                        isShow={true}
-                        onClick={() => {
-                          clickToBtn(item.product._id);
-                        }}
-                      >
-                        배송완료
-                      </Button>
-                    </Link>
+                    <Button
+                      style={{
+                        border: "solid gray 1px",
+                        width: "80px",
+                        height: "30px",
+                        margin: "0px 0px 0px 17px",
+                        fontSize: "13px",
+                        background: "white",
+                        color: "black",
+                        hoverColor: "white",
+                        hoverBackground: "black",
+                      }}
+                      isShow={true}
+                      onClick={() => {
+                        clickToBtn(item.product._id);
+                      }}
+                    >
+                      배송완료
+                    </Button>
                   </Style.BtnContainer>
                   <div>{item.product.state}</div>
                 </Style.State>
@@ -218,7 +216,7 @@ const UIOrderPage = ({
                           height: "25px",
                           background: "#303033",
                           color: "white",
-                          lineHeight: "190%",
+                          lineHeight: "210%",
                           margin: "10px 0px 0px 0px",
                           fontSize: "13px",
                           hoverColor: "white",
@@ -236,16 +234,26 @@ const UIOrderPage = ({
                   </Style.State>
                 </Style.ProductContent>
               ))}
-            {showModal ? (
-              <ReviewModal
+            {showModal && (
+              <Modal
+                width={"700px"}
+                height={"750px"}
                 isOpen={true}
                 modalIsOpen={showModal}
                 setModalIsOpen={setShowModal}
-                product={completedProducts[index]}
-                isReviewed={false}
-                refetch={getShipIsCompletedRefetch}
-              ></ReviewModal>
-            ) : null}
+                children={
+                  <ReviewModal
+                    isOpen={true}
+                    modalIsOpen={showModal}
+                    setModalIsOpen={setShowModal}
+                    product={completedProducts[index]}
+                    isReviewed={false}
+                    refetch={getShipIsCompletedRefetch}
+                    type={"new"}
+                  ></ReviewModal>
+                }
+              ></Modal>
+            )}
           </div>
         </Style.MainContainer>
       </Style.MyPageContainer>

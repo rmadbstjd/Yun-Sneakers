@@ -84,7 +84,7 @@ export const ShowCouponBox = styled.div`
 `;
 
 export const Default = styled.div`
-  line-height: 230%;
+  line-height: 290%;
   margin-left: 10px;
 `;
 
@@ -101,7 +101,7 @@ export const Coupon = styled.div`
   border: solid #bebebe 0px;
   width: 600px;
   height: 40px;
-  line-height: 240%;
+  line-height: 290%;
   background-color: white;
   &:hover {
     background-color: #d4d4d4;
@@ -123,7 +123,7 @@ export const BrandCouponBox = styled.div`
   cursor: pointer;
   background-color: #ececec;
   color: #6a6a6a;
-  line-height: 240%;
+  line-height: 290%;
   margin-top: 5px;
 `;
 
@@ -147,7 +147,7 @@ export const Card = styled.div`
   height: 40px;
   text-align: center;
   margin: 2px;
-  line-height: 290%;
+  line-height: 320%;
   font-size: 14px;
 `;
 
@@ -156,7 +156,7 @@ export const SelectCard = styled.div`
   border: 1px solid #bebebe;
   width: 734px;
   height: 40px;
-  line-height: 290%;
+  line-height: 330%;
   font-size: 14px;
   cursor: pointer;
 `;
@@ -179,7 +179,7 @@ export const CardItem = styled.div`
   width: 724px;
   height: 40px;
   margin-top: 10px;
-  line-height: 240%;
+  line-height: 290%;
   cursor: pointer;
   margin-left: 10px;
 `;
@@ -195,6 +195,7 @@ font-size: 14px;
 margin-top: 10px;
 cursor: pointer;
 z-index: 199;
+
 
 }`;
 

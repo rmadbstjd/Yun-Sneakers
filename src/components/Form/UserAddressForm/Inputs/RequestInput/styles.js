@@ -9,7 +9,7 @@ export const RequestBox = styled.div`
   justify-content: space-between;
   cursor: pointer;
   background-color: white;
-  line-height: 220%;
+  line-height: 250%;
 `;
 export const Item = styled.div`
   border: solid black 0px;

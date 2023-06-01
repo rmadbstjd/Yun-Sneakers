@@ -8,7 +8,6 @@ import Button from "../../../../components/common/button";
 import convertStringToNumber from "./../../../../utils/convertStringToNumber";
 const UICartPage = ({
   isLoading,
-  isError,
   handleAllCheck,
   checkedProducts,
   cartProducts,

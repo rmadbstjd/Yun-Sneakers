@@ -7,11 +7,18 @@ import { addProductReview } from "../../../../../api/review";
 import { useTextInputs } from "../../../../../hooks/useInputs";
 import { useHandleStar } from "../../../../../hooks/useHandleStar";
 import Button from "../../../button";
-const ReviewModal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
+const ReviewModal = ({
+  type,
+  orderId,
+  setModalIsOpen,
+  product,
+  refetch,
+  refetch2,
+}) => {
   const reviewType = type === "new" ? "리뷰 작성" : "리뷰 수정";
   const { state: text, handleChange: setText } = useTextInputs("", 300);
   const { star, clickIndex, clickToStar } = useHandleStar();
-
+  console.log("프", product.product.orderId);
   const submitReview = () => {
     if (!star[0]) {
       Swal.fire({
@@ -36,7 +43,7 @@ const ReviewModal = ({ type, setModalIsOpen, product, refetch, refetch2 }) => {
       product.product.date,
       product.product.size,
       product.product.productId,
-      product.product.orderId,
+      product.product._id,
       text,
       clickIndex + 1
     );

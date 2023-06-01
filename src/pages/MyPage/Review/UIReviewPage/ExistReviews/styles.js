@@ -203,7 +203,7 @@ export const Review = styled.div`
   height: 25px;
   background-color: #303033;
   text-align: center;
-  line-height: 190%;
+  line-height: 220%;
   margin-top: 10px;
   cursor: pointer;
   color: white;

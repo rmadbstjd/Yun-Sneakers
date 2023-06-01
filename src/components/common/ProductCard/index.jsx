@@ -3,7 +3,7 @@ import { HiHeart } from "@react-icons/all-files/hi/HiHeart";
 import { AiFillCloseSquare } from "@react-icons/all-files/ai/AiFillCloseSquare";
 import * as Style from "./styles";
 import convertStringToNumber from "../../../utils/convertStringToNumber";
-
+import { useNavigate } from "react-router-dom";
 const ProductCard = ({
   product,
   width = "200px",
@@ -11,14 +11,16 @@ const ProductCard = ({
   margin = "20px 30px 20px 0px",
   deletable = false,
   onClick,
-  navigate,
 }) => {
+  const navigate = useNavigate();
   return (
     <Style.Card
       width={width}
       height={height}
       margin={margin}
-      onClick={navigate}
+      onClick={() => {
+        navigate(`/products/${product?.id}`);
+      }}
     >
       {deletable === true ? (
         <Style.DeleteBtn>

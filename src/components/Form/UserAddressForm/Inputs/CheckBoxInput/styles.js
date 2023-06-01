@@ -14,5 +14,6 @@ export const Input = styled.input`
 export const Title = styled.div`
   line-height: 175%;
   margin-left: 7px;
+  margin-top: 3px;
   font-size: 14px;
 `;
