@@ -104,13 +104,14 @@ const UserNavbar = ({
           setShowSearch(false);
         }}
       />
-      <Style.Count>{cartCount}</Style.Count>
+
       <Style.NavbarItemLayout
         onClick={() => {
           navigate("/cart");
           setShowSearch(false);
         }}
       >
+        <Style.Count>{cartCount}</Style.Count>
         MY CART
       </Style.NavbarItemLayout>
     </>

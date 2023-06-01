@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Join from "../pages/Join";
-import Login from "../pages/Login";
+import Join from "../pages/Join/Container";
+import Login from "../pages/Login/Container";
 import DetailPage from "../pages/Detail/DetailPage/Container";
 import CartPage from "../pages/Cart/CartPage/Container";
 import LikePage from "../pages/Like/Container";
