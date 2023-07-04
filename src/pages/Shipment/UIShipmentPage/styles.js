@@ -4,7 +4,7 @@ export const Container = styled.div`
   font-family: "OTWelcomeRA";
   display: flex;
   justify-content: center;
-  width: 1820px;
+  width: 100%;
   margin: 0 auto;
 `;
 

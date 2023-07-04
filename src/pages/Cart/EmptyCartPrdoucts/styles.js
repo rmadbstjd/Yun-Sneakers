@@ -42,7 +42,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: center;
   font-family: "OTWelcomeRA";
-  width: 1820px;
+  width: 100%;
   margin: 0 auto;
 `;
 

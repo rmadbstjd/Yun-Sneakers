@@ -5,7 +5,7 @@ export const Container = styled.div`
   font-family: "OTWelcomeRA";
   flex-direction: column;
   align-items: center;
-  width: 1820px;
+  width: 100%;
 
   margin: 0px auto;
 `;

@@ -4,13 +4,12 @@ export const Container = styled.div`
   display: flex;
   font-family: "OTWelcomeRA";
   justify-content: center;
-  width: 1820px;
+  width: 100%;
   margin: 0 auto;
 `;
 export const Container2 = styled.div`
   font-family: "OTWelcomeRA";
-
-  width: 1820px;
+  width: 100%;
   margin: 0 auto;
 `;
 export const ProductContainer = styled.div`

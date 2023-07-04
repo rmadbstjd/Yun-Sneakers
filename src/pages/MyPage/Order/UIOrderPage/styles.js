@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const MyPageContainer = styled.div`
   font-family: "OTWelcomeRA";
-  width: 1820px;
+  width: 100%;
   display: flex;
   height: 100%;
   margin: 0px 50px 0px 80px;
