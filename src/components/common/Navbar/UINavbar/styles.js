@@ -4,15 +4,16 @@ export const Container = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  border-bottom: ${(props) => (props.isScrolled ? "solid gray 2px" : null)};
+  border-bottom: ${(props) => (props.isScrolled ? "solid black 3px" : null)};
   z-index: 999;
   display: flex;
   justify-content: center;
   font-family: "OTWelcomeRA";
-  width: 100%;
+  width: 110%;
   height: 70px;
   margin-left: -20px;
   background: white;
+  margin-top: -10px;
   font-family: "OTWelcomeRA";
 `;
 export const NavbarContainer = styled.div`

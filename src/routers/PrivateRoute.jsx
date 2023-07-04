@@ -2,9 +2,9 @@ import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import userApi from "../api/user";
-import userInfoStore from "../store/userInfoStore";
+import { useGetUserInfo } from "../hooks/useGetUserInfo";
 const PrivateRoute = () => {
-  const { userId } = userInfoStore();
+  const { userId } = useGetUserInfo();
   const { data, refetch } = useQuery(["isAuth"], () =>
     userApi.verifyAccessToken()
   );

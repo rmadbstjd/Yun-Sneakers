@@ -33,7 +33,6 @@ export const ProductsContainer = styled.div`
 `;
 
 export const NoneProductContainer = styled.div`
-  margin-top: 10%;
   width: 100%;
   height: 300px;
   display: flex;

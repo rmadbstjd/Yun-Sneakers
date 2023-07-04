@@ -54,7 +54,7 @@ const UILikePage = ({
                     background: "white",
                     margin: "5% 0px 0px 15%",
                     width: "350px",
-                    height: "80px",
+                    height: "60px",
                     padding: "20px",
                     color: "#3a3b3c",
                     fontSize: "25px",
@@ -66,7 +66,7 @@ const UILikePage = ({
                     navigate("/");
                   }}
                 >
-                  CONTINUE SHOPPING{" "}
+                  CONTINUE SHOPPING
                 </Button>
               </div>
             </Style.NoneProductsContainer>

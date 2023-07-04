@@ -49,17 +49,20 @@ const UIWishPage = ({
                 <Button
                   style={{
                     border: "solid gray 1px",
-                    borderRadius: "15px",
-                    width: "200px",
-                    height: "40px",
-                    lineHeight: "190%",
-                    margin: "50px 10px 0px 0px",
-                    hoverColor: "white",
+                    background: "white",
+                    margin: "50px 0px 0px 0px",
+                    width: "350px",
+                    height: "60px",
+                    padding: "20px",
+                    color: "#3a3b3c",
+                    fontSize: "25px",
+                    fontWeight: "bolder",
                     hoverBackground: "black",
+                    hoverColor: "white",
                   }}
                   onClick={goToMain}
                 >
-                  CONTINUE SHOPPING{" "}
+                  CONTINUE SHOPPING
                 </Button>
               </Style.NoneProductContainer>
             ) : null}
