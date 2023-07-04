@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 export const Product = styled.div`
   margin-top: 20px;
-  width: 235px;
+  width: ${(props) => props.width};
   cursor: pointer;
   font-family: "OTWelcomeRA";
-  margin-right: 50px;
+  margin-right: 3vw;
 `;
 
 export const Img = styled.img`
-  width: 214px;
-  height: 214px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.width};
   border-radius: 10px;
   margin-bottom: 5px;
   background: #ededed;
@@ -23,7 +23,7 @@ export const Category = styled.div`
 `;
 
 export const Name = styled.div`
-  width: 200px;
+  width: ${(props) => props.width};
   margin-top: 10px;
   margin-bottom: 5px;
   font-size: 14px;

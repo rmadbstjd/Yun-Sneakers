@@ -7,7 +7,8 @@ export const NavbarItemLayout = styled.div`
   cursor: pointer;
   @media (max-width: 1150px) {
     color: white;
-    width: 30px;
+    width: 20px;
+    margin-right: 1px;
   }
 `;
 

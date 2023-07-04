@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  border-bottom: ${(props) => (props.isScrolled ? "solid black 3px" : null)};
+  border-bottom: ${(props) => (props.isScrolled ? "solid gray 2px" : null)};
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -83,6 +83,9 @@ export const Count = styled.div`
 export const Nickname = styled.div`
   margin-right: 8px;
   font-size: 14px;
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const Btn = styled.button`

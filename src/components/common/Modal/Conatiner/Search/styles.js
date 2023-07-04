@@ -3,10 +3,10 @@ export const Container = styled.div`
   border-radius: 10px;
   width: 100%;
   height: 300%;
-  z-index: 5;
+  z-index: 999;
   position: absolute;
   top: 153%;
-  left: 52%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background: white;
 `;
@@ -116,7 +116,7 @@ export const ProductContainer = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   height: 500px;
-  width: 762px;
+  width: 39.9vw;
 `;
 export const RecommendContent = styled.div`
   border: solid black 0px;
@@ -136,14 +136,14 @@ export const RecommendContent = styled.div`
 export const ProductsLayout = styled.div`
   position: fixed;
   top: 115px;
-  width: 885px;
+  width: 39.5vw;
   background: white;
   height: 500px;
 `;
 
 export const ProductContent = styled.div`
   display: flex;
-  width: 86.1%;
+  width: 95.2%;
   margin: 10px 0px 10px 0px;
   &:hover {
     background: #fafafa;
@@ -175,7 +175,7 @@ export const ProductTitle = styled.span`
 export const NullTextLayout = styled.div`
   position: fixed;
   top: 130px;
-  width: 785px;
+  width: 39.5vw;
   height: 500px;
   display: flex;
   background: white;

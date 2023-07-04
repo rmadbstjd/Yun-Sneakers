@@ -133,7 +133,7 @@ export const HeartBtn = styled.div`
 export const SimilarProductTitleLayout = styled.div`
   display: flex;
   justify-content: center;
-  width: 1590px;
+  width: 84vw;
   margin: 0 auto;
 `;
 
@@ -153,7 +153,7 @@ export const SimilarProductTitle = styled.span`
 
 export const SimilarContainer = styled.div`
   display: flex;
-  width: 1260px;
+  width: 67vw;
   margin: 0 auto;
 `;
 

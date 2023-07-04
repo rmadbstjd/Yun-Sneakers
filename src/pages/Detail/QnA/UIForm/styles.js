@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Layout = styled.div`
-  width: 1260px;
+  width: 67vw;
   margin: 0 auto;
 `;
 

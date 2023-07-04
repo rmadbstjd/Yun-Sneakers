@@ -2,32 +2,30 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   margin-top: 20px;
+  width: 90vw;
 `;
 
 export const InfoLayout = styled.div`
-  width: 1504px;
+  width: 90vw;
   display: flex;
 `;
 
 export const InfoContainer = styled.div`
-  width: 623px;
+  width: 47.1vw;
   display: flex;
   justify-content: flex-start;
-
-  margin-left: 55px;
 `;
 
 export const Img = styled.div`
-  width: 160px;
-  height: 160px;
+  width: 50%;
+  height: 20vh;
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
 `;
 
 export const InfoContent = styled.div`
-  margin-top: 4%;
-  margin-left: 5%;
+  width: 100%;
 `;
 
 export const Name = styled.div`
@@ -47,32 +45,39 @@ export const Size = styled.div`
 `;
 
 export const PriceContainer = styled.div`
-  width: 300px;
   display: flex;
+  width: 15.1vw;
 `;
 export const Price = styled.div`
-  margin-top: ${(props) => props.marginTop};
-  margin-left: ${(props) => props.marginLeft};
+  margin: 0 auto;
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
+`;
+
+export const Price2 = styled.div`
+  margin: 56px auto;
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
 `;
 
 export const QuantityLayout = styled.div`
-  width: 300px;
-
+  width: 10vw;
   display: flex;
 `;
 export const QuantityContent = styled.div`
   display: flex;
-  margin-top: 19%;
+  justify-content: center;
+  margin: 50px auto;
 `;
 
 export const Minus = styled.div`
   text-align: center;
   font-size: 20px;
   border: solid #d3d3d3 1px;
-  width: 30px;
-  height: 30px;
+  width: 1.5vw;
+  height: 1.5vw;
+  min-width: 25px;
+  min-height: 25px;
   cursor: pointer;
   color: #414141;
   line-height: 120%;
@@ -83,8 +88,10 @@ export const Count = styled.div`
   text-align: center;
   font-size: 17px;
   border: solid gray 0px;
-  width: 30px;
-  height: 30px;
+  width: 1.5vw;
+  height: 1.5vw;
+  min-width: 25px;
+  min-height: 25px;
   color: #414141;
   line-height: 170%;
 `;
@@ -93,8 +100,10 @@ export const Plus = styled.div`
   text-align: center;
   font-size: 20px;
   border: solid #d3d3d3 1px;
-  width: 30px;
-  height: 30px;
+  width: 1.5vw;
+  height: 1.5vw;
+  min-width: 25px;
+  min-height: 25px;
   cursor: pointer;
   color: #414141;
   line-height: 150%;
@@ -103,14 +112,14 @@ export const Plus = styled.div`
 export const DeleteContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 15.3vw;
 `;
 
 export const Delete = styled.div`
   border: solid gray 1px;
   width: 100px;
   height: 40px;
-  margin-top: 50%;
-  margin-left: 23%;
+  margin: 50px auto;
   text-align: center;
   line-height: 280%;
   font-size: 14px;
@@ -128,9 +137,14 @@ export const HorizonLine = styled.div`
   line-height: 0.1rem;
 `;
 
+export const InputLayout = styled.div`
+  width: 2.7vw;
+  display: flex;
+`;
+
 export const Input = styled.input`
   width: 1.6rem;
   height: 1.6rem;
   border: 1.5px solid gainsboro;
-  margin: 70px 0px 0px 9px;
+  margin: 70px auto;
 `;

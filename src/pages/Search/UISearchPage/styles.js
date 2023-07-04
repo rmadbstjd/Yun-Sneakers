@@ -3,32 +3,33 @@ import styled from "@emotion/styled";
 export const Layout = styled.div`
   display: flex;
   justify-content: center;
-  width: 1400px;
-  margin: 0px 300px;
+  width: 100vw;
   font-family: "OTWelcomeRA";
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1350px;
-  margin-left: 8%;
+  width: 100%;
   margin-top: 30px;
 `;
 
 export const SearchBarLayout = styled.div`
   width: 100%;
-  min-height: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
 `;
 
 export const SearchContainer = styled.div`
-  margin-top: 5%;
-  margin-left: ${(props) => (props.isText ? "60px" : null)};
+  width: 30vw;
+  margin: 60px auto;
   font-weight: bolder;
   font-size: 20px;
   color: black;
+  position: relative;
+  z-index: 999;
+  font-family: initial;
 `;
 
 export const SearchContent = styled.form`
@@ -74,16 +75,20 @@ export const Sort = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 98%;
+  width: 100vw;
   display: flex;
   justify-content: center;
 `;
 
 export const Products = styled.div`
-  width: 1250px;
-  flex-wrap: wrap;
-  display: flex;
-  margin-left: 200px;
+  width: 70vw;
+
+  left: 7vw;
+`;
+export const SideLayout = styled.div`
+  width: 200px;
+  top: ${(props) => (props.isScrolled ? "90px" : "162px")};
+  margin-left: 17vw;
 `;
 
 export const Cards = styled.div`
@@ -114,7 +119,7 @@ export const SelectedBrand = styled.div`
   background: #375fff;
   color: white;
   height: 20px;
-  line-height: 130%;
+  line-height: 150%;
   display: flex;
   margin-right: 10px;
 `;
@@ -132,11 +137,6 @@ export const Close = styled.div`
   cursor: pointer;
 `;
 
-export const SideLayout = styled.div`
-  position: fixed;
-  left: 300px;
-  top: ${(props) => (props.isScrolled ? "90px" : "162px")};
-`;
 export const Filter = styled.div`
   margin-top: 6px;
   width: 180px;
@@ -199,20 +199,7 @@ export const ProductsCount = styled.div`
 `;
 
 export const Span = styled.div`
-  margin-top: 3px;
-`;
-
-export const ProductsLayout = styled.div`
-  position: absolute;
-  margin-top: 113px;
-  margin-left: 396px;
-  width: 557px;
-  height: 500px;
-  background: white;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  box-shadow: 1px 1px gray;
-  z-index: 999;
+  margin-top: 5px;
 `;
 
 export const ProductContent = styled.div`
@@ -249,29 +236,45 @@ export const ProductTitle = styled.span`
   color: gray;
   font-size: 12px;
 `;
-export const NullTextLayout = styled.div`
-  position: absolute;
-  margin-top: 113px;
-  margin-left: 396px;
-  width: 556px;
-  height: 500px;
-  display: flex;
-  background: white;
-  justify-content: center;
-  box-shadow: 2px 2px 2px gray;
-  z-index: 999;
-`;
-
-export const NullText = styled.span`
-  font-size: 20px
-  text-align: center;
-  line-height : 1000%;
-
-`;
 
 export const Ref = styled.div`
   border: solid black 1px;
   width: 100%;
   height: 100px;
   background: red;
+`;
+
+export const NullText = styled.span`
+  font-size: 20px
+  text-align: center;
+  line-height : 1000%;
+  z-index : 999;
+  
+
+`;
+
+export const NullTextLayout = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  width: 556px;
+  height: 500px;
+  display: flex;
+  background: white;
+  justify-content: center;
+  box-shadow: 2px 2px 2px gray;
+  font-family: initial;
+  z-index: 999;
+`;
+
+export const ProductsLayout = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  width: 557px;
+  height: 500px;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: 1px 1px gray;
+  z-index: 999;
+  font-family: initial;
 `;

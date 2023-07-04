@@ -1,19 +1,19 @@
 import styled from "@emotion/styled";
 
 export const Layout = styled.div`
-  width: 1600px;
+  width: 67vw;
   margin: 0 auto;
 `;
 
 export const Title = styled.div`
-  margin: 50px 0px 0px 170px;
+  margin: 50px 0px 0px 0px;
   font-weight: bolder;
   font-size: 20px;
 `;
 
 export const ReviewContainer = styled.div`
-  width: 80%;
-  margin: 0px 0px 0px 170px;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
 `;
 
 export const Review = styled.div`
@@ -46,7 +46,9 @@ export const Info = styled.div`
   justify-content: space-between;
 `;
 
-export const LeftLayout = styled.div``;
+export const LeftLayout = styled.div`
+  width: 56vw;
+`;
 
 export const Header = styled.div`
   width: 100%;

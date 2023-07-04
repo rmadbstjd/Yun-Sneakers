@@ -1,6 +1,7 @@
 import React from "react";
 import * as Style from "./styles";
 import convertStringToNumber from "../../../../utils/convertStringToNumber";
+import HorizonLine from "../../../../components/common/HorizonLine";
 const UICartProducts = ({
   handleSingleCheck,
   checkedProducts,
@@ -15,18 +16,23 @@ const UICartProducts = ({
   return (
     <Style.Container>
       <Style.InfoLayout>
-        <Style.Input
-          type="checkbox"
-          onChange={(e) =>
-            handleSingleCheck(
-              e.target.checked,
-              item.productId,
-              item.price,
-              item.quantity
-            )
-          }
-          checked={checkedProducts.some((checked) => checked.id === productId)}
-        ></Style.Input>
+        <Style.InputLayout>
+          <Style.Input
+            type="checkbox"
+            onChange={(e) =>
+              handleSingleCheck(
+                e.target.checked,
+                item.productId,
+                item.price,
+                item.quantity
+              )
+            }
+            checked={checkedProducts.some(
+              (checked) => checked.id === productId
+            )}
+          ></Style.Input>
+        </Style.InputLayout>
+
         <Style.InfoContainer>
           <Style.Img
             style={{ backgroundImage: "url(" + `${item.image}` + ")" }}
@@ -49,21 +55,16 @@ const UICartProducts = ({
           </Style.QuantityContent>
         </Style.QuantityLayout>
         <Style.PriceContainer>
-          <Style.Price
-            fontSize={"20px"}
-            fontWeight={"bolder"}
-            marginTop={"20%"}
-            marginLeft={"9%"}
-          >
+          <Style.Price2 fontSize={"20px"} fontWeight={"bolder"}>
             {convertStringToNumber(productCount * item.price)}원
-          </Style.Price>
+          </Style.Price2>
         </Style.PriceContainer>
 
         <Style.DeleteContainer>
           <Style.Delete onClick={deleteProduct}>삭제하기</Style.Delete>
         </Style.DeleteContainer>
       </Style.InfoLayout>
-      <Style.HorizonLine></Style.HorizonLine>
+      <HorizonLine width={"90vw"} border={"1px"} color={"gray"}></HorizonLine>
     </Style.Container>
   );
 };

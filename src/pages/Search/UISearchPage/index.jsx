@@ -93,38 +93,41 @@ const UISearchPage = ({
                 border={"3px"}
                 color={"black"}
               ></HorizonLine>
+              {showSearchedProducts ? (
+                searchProducts.length !== 0 ? (
+                  <Style.ProductsLayout>
+                    {searchProducts.map((item) => (
+                      <div key={item.name}>
+                        <Style.ProductContent
+                          onMouseDown={handleMouseDown}
+                          onClick={() => {
+                            goToDetail(item);
+                          }}
+                        >
+                          <Style.ProductImage
+                            src={item.image}
+                          ></Style.ProductImage>
+                          <Style.ProductInfo>
+                            <Style.ProductDesc>
+                              {item.description}
+                            </Style.ProductDesc>
+                            <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                          </Style.ProductInfo>
+                        </Style.ProductContent>
+                      </div>
+                    ))}
+                  </Style.ProductsLayout>
+                ) : result && result.length !== 0 ? (
+                  <Style.NullTextLayout>
+                    <Style.NullText>
+                      검색하신 상품이 존재하지 않습니다.
+                    </Style.NullText>
+                  </Style.NullTextLayout>
+                ) : null
+              ) : null}
             </Style.SearchContainer>
           </Style.SearchBarLayout>
-          {showSearchedProducts ? (
-            searchProducts.length !== 0 ? (
-              <Style.ProductsLayout>
-                {searchProducts.map((item) => (
-                  <div key={item.name}>
-                    <Style.ProductContent
-                      onMouseDown={handleMouseDown}
-                      onClick={() => {
-                        goToDetail(item);
-                      }}
-                    >
-                      <Style.ProductImage src={item.image}></Style.ProductImage>
-                      <Style.ProductInfo>
-                        <Style.ProductDesc>
-                          {item.description}
-                        </Style.ProductDesc>
-                        <Style.ProductTitle>{item.name}</Style.ProductTitle>
-                      </Style.ProductInfo>
-                    </Style.ProductContent>
-                  </div>
-                ))}
-              </Style.ProductsLayout>
-            ) : result && result.length !== 0 ? (
-              <Style.NullTextLayout>
-                <Style.NullText>
-                  검색하신 상품이 존재하지 않습니다.
-                </Style.NullText>
-              </Style.NullTextLayout>
-            ) : null
-          ) : null}
+
           <Style.Content>
             <Style.SideLayout isScrolled={scrollPosition > 100 ? true : false}>
               <Style.Filter>필터</Style.Filter>
@@ -153,7 +156,6 @@ const UISearchPage = ({
                   brands.map((item) => (
                     <Style.Item key={item}>
                       <Style.ItemName>
-                        {" "}
                         <input
                           type="checkbox"
                           checked={

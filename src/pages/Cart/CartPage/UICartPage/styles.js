@@ -42,12 +42,12 @@ export const Layout = styled.div`
   display: flex;
   justify-content: center;
   font-family: "OTWelcomeRA";
-  width: 100%;
+  width: 90vw;
   margin: 0 auto;
 `;
 
 export const ProductsContainer = styled.div`
-  width: 71.5%;
+  width: 100%;
   margin-top: 90px;
 `;
 
@@ -65,7 +65,7 @@ export const Title = styled.div`
 `;
 
 export const HeaderLayout = styled.div`
-  width: 1500px;
+  width: 90vw;
   border: solid gray 1px;
   text-align: center;
   margin-top: 50px;
@@ -76,12 +76,27 @@ export const HeaderLayout = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  width: 100%;
+  width: 90vw;
   display: flex;
 `;
-
 export const HeaderContent = styled.div`
-  width: ${(props) => `${props.width}%`};
+  width: ${(props) => `${props.width}vw`};
+  text-align: center;
+`;
+export const HeaderContent1 = styled.div`
+  width: ${(props) => `${props.width}vw`};
+  text-align: center;
+`;
+export const HeaderContent2 = styled.div`
+  width: ${(props) => `${props.width}vw`};
+  text-align: center;
+`;
+export const HeaderContent3 = styled.div`
+  width: ${(props) => `${props.width}vw`};
+  text-align: center;
+`;
+export const HeaderContent4 = styled.div`
+  width: ${(props) => `${props.width}vw`};
   text-align: center;
 `;
 
@@ -125,7 +140,7 @@ export const Symbol = styled.div`
 
 export const FooterContainer = styled.div`
   display: flex;
-  margin: 5% 0% 5% 15%;
+  margin: 2% auto;
   justify-content: center;
 `;
 

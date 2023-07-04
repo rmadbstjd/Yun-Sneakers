@@ -18,10 +18,10 @@ const UIReviews = ({
     <Style.Layout>
       <Style.Title>리뷰({productReviewsCount})</Style.Title>
       <HorizonLine
-        width={"80%"}
+        width={"100%"}
         color={"black"}
         border={"4px"}
-        margin={"10px 0px 0px 170px"}
+        margin={"10px 0px 0px 0px"}
       />
       <Style.ReviewContainer>
         {isLoading && (

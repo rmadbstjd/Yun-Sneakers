@@ -157,7 +157,7 @@ const SearchModal = ({ setShowSearch }) => {
                   </Style.BrandName>
                   <Style.BrandText>BRAND</Style.BrandText>
                 </Style.BrandLayout>
-                <HorizonLine width={"86.1%"} border={"1px"} color={"#EBEBEB"} />
+                <HorizonLine width={"95%"} border={"1px"} color={"#EBEBEB"} />
               </div>
             ))}
             <Style.ProductContainer>
@@ -174,11 +174,7 @@ const SearchModal = ({ setShowSearch }) => {
                       <Style.ProductTitle>{item.name}</Style.ProductTitle>
                     </Style.ProductInfo>
                   </Style.ProductContent>
-                  <HorizonLine
-                    width={"86.1%"}
-                    border={"1px"}
-                    color={"#EBEBEB"}
-                  />
+                  <HorizonLine width={"95%"} border={"1px"} color={"#EBEBEB"} />
                 </div>
               ))}
             </Style.ProductContainer>

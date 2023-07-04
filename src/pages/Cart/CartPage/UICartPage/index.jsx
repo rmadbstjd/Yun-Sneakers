@@ -33,7 +33,7 @@ const UICartPage = ({
                   상품을 불러오는 중입니다.
                 </LoadingSpinner>
               )}
-              <Style.HeaderContent width={4.8}>
+              <Style.HeaderContent width={2.7}>
                 <Style.Input
                   type="checkbox"
                   onChange={(e) => handleAllCheck(e.target.checked)}
@@ -44,10 +44,12 @@ const UICartPage = ({
                   }
                 ></Style.Input>
               </Style.HeaderContent>
-              <Style.HeaderContent width={67}>상품명(옵션)</Style.HeaderContent>
-              <Style.HeaderContent width={38.9}>수량</Style.HeaderContent>
-              <Style.HeaderContent width={38.9}>주문 금액</Style.HeaderContent>
-              <Style.HeaderContent width={31}>주문 관리</Style.HeaderContent>
+              <Style.HeaderContent1 width={47}>
+                상품명(옵션)
+              </Style.HeaderContent1>
+              <Style.HeaderContent2 width={10}>수량</Style.HeaderContent2>
+              <Style.HeaderContent3 width={15}>주문 금액</Style.HeaderContent3>
+              <Style.HeaderContent4 width={15}>주문 관리</Style.HeaderContent4>
             </Style.HeaderContainer>
           </Style.HeaderLayout>
           {cartProducts?.products?.map((item) => (
@@ -62,7 +64,7 @@ const UICartPage = ({
             />
           ))}
           <HorizonLine
-            width={"116%"}
+            width={"90vw"}
             border={"5px"}
             color={"black"}
             margin={"9% 0px 0px 0px"}
@@ -95,7 +97,7 @@ const UICartPage = ({
             </Style.PayContent>
           </Style.PayContainer>
           <HorizonLine
-            width={"116%"}
+            width={"90vw"}
             border={"5px"}
             color={"black"}
             margin={"3% 0px 0px 0px"}

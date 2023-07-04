@@ -213,7 +213,7 @@ const UIDetailPage = ({
               />
             )}
             {similarProducts?.map((item) => (
-              <SimilarProducts key={item.id} products={item} />
+              <SimilarProducts key={item.id} products={item} width={"11vw"} />
             ))}
           </Style.ShoesContainer>
         </Style.SimilarContainer>

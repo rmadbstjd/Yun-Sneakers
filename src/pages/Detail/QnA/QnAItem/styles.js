@@ -159,6 +159,7 @@ export const AnswerBox = styled.div`
 
 export const QnATitle = styled.div`
   display: flex;
+  margin-top: 5px;
   cursor: pointer;
 `;
 

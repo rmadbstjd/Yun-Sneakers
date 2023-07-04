@@ -81,6 +81,7 @@ const UINavbar = ({
                     borderRadius: "5px",
                     margin: "10px 0px 0px 0px",
                     background: "#fafafa",
+                    hoverBackground: "#fafafa",
                     hoverFontWeight: "bolder",
                   }}
                   onClick={handleLogin}
@@ -96,6 +97,7 @@ const UINavbar = ({
                     borderRadius: "5px",
                     margin: "10px 0px 0px 0px",
                     background: "#fafafa",
+                    hoverBackground: "#fafafa",
                     hoverFontWeight: "bolder",
                   }}
                   onClick={handleLogout}
