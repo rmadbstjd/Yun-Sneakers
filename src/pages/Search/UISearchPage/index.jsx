@@ -3,7 +3,7 @@ import * as Style from "./styles";
 import Navbar from "../../../components/common/Navbar/Container";
 import HorizonLine from "../../../components/common/HorizonLine";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
-import Pagination from "react-js-pagination";
+import Pagination from "../../../components/common/Pagination";
 import ProductCard from "../../../components/common/ProductCard";
 import { AiFillCloseCircle } from "@react-icons/all-files/ai/AiFillCloseCircle";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
@@ -296,10 +296,11 @@ const UISearchPage = ({
             </Style.Products>
           </Style.Content>
           <Pagination
-            count={products && products.count}
+            count={products?.count}
             handleChange={handlePageChange}
             page={pages}
             pagePerCount={10}
+            margin={"40px 0px 0px 230px"}
           ></Pagination>
         </Style.Container>
       </Style.Layout>

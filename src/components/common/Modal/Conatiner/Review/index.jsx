@@ -18,7 +18,6 @@ const ReviewModal = ({
   const reviewType = type === "new" ? "리뷰 작성" : "리뷰 수정";
   const { state: text, handleChange: setText } = useTextInputs("", 300);
   const { star, clickIndex, clickToStar } = useHandleStar();
-  console.log("프", product.product.orderId);
   const submitReview = () => {
     if (!star[0]) {
       Swal.fire({

@@ -12,6 +12,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 30px;
+  height: 1200px;
 `;
 
 export const SearchBarLayout = styled.div`
@@ -38,6 +39,8 @@ export const SearchContent = styled.form`
 
 export const InputSearch = styled.input`
   border: none;
+  position: relative;
+  z-index: 999;
   min-width: 520px;
   height: 40px;
   font-size: 25px;

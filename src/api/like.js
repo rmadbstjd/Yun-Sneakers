@@ -12,7 +12,6 @@ export const pushLike = async (productId) => {
 export const isLikedProduct = async (productId) => {
   try {
     const response = await instance.get(`/product/${productId}/like`, {});
-    console.log("response", response);
     if (response.statusText) return response.data;
   } catch (error) {
     return false;

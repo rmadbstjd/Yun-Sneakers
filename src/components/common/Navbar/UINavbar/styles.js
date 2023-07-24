@@ -5,7 +5,7 @@ export const Container = styled.div`
   left: 0;
   right: 0;
   border-bottom: ${(props) => (props.isScrolled ? "solid gray 2px" : null)};
-  z-index: 999;
+  z-index: 990;
   display: flex;
   justify-content: center;
   font-family: "OTWelcomeRA";

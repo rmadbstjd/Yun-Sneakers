@@ -41,9 +41,8 @@ const DetailPage = () => {
     () => isLikedProduct(productId),
     { enabled: !!productId }
   );
-  console.log("isLiked", isLiked);
+
   if (undefined === false) {
-    console.log("ㅋ'");
   }
   const { data: productReviews } = useQuery(
     ["review", id],
