@@ -25,12 +25,11 @@ export const SearchBarLayout = styled.div`
 export const SearchContainer = styled.div`
   width: 30vw;
   margin: 60px auto;
-  font-weight: bolder;
   font-size: 20px;
   color: black;
   position: relative;
   z-index: 999;
-  font-family: initial;
+  font-family: "OTWelcomeRA";
 `;
 
 export const SearchContent = styled.form`
@@ -230,14 +229,17 @@ export const ProductInfo = styled.div`
   justify-content: center;
   margin-left: 10px;
   font-size: 15px;
+  font-family: "OTWelcomeRA";
 `;
 export const ProductDesc = styled.span`
   color: black;
   margin-bottom: 5px;
+  font-family: "OTWelcomeRA";
 `;
 export const ProductTitle = styled.span`
   color: gray;
   font-size: 12px;
+  font-family: "OTWelcomeRA";
 `;
 
 export const Ref = styled.div`
@@ -248,11 +250,11 @@ export const Ref = styled.div`
 `;
 
 export const NullText = styled.span`
-  font-size: 20px
+  font-size: 10px
   text-align: center;
   line-height : 1000%;
   z-index : 999;
-  
+    font-family: "OTWelcomeRA";
 
 `;
 
@@ -265,8 +267,9 @@ export const NullTextLayout = styled.div`
   background: white;
   justify-content: center;
   box-shadow: 2px 2px 2px gray;
-  font-family: initial;
+
   z-index: 999;
+  font-family: "OTWelcomeRA";
 `;
 
 export const ProductsLayout = styled.div`
@@ -279,5 +282,5 @@ export const ProductsLayout = styled.div`
   overflow-y: scroll;
   box-shadow: 1px 1px gray;
   z-index: 999;
-  font-family: initial;
+  font-family: "OTWelcomeRA";
 `;

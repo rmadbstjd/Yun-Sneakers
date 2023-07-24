@@ -111,7 +111,9 @@ const UISearchPage = ({
                             <Style.ProductDesc>
                               {item.description}
                             </Style.ProductDesc>
-                            <Style.ProductTitle>{item.name}</Style.ProductTitle>
+                            <Style.ProductTitle>
+                              {item.name}123
+                            </Style.ProductTitle>
                           </Style.ProductInfo>
                         </Style.ProductContent>
                       </div>
